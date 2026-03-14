@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { parseIsolatedEntityName } from "typescript";
-	import CloseIcon from "../icons/CloseIcon.svelte";
-	import Panel from "./Panel.svelte";
+	import Pane from "../Pane.svelte";
+	import BookIcon from "../icons/BookIcon.svelte";
+	import View from "../views/View.svelte";
 
     let { title = undefined }: { title?: string } = $props();
 
@@ -250,19 +250,26 @@
 
 <svelte:document onkeydown={onDocumentKeydown} />
 
-<Panel {title} width="38rem"> 
-    {#if title}
-        <h1>{title}</h1>
-    {/if}
-    <div class="content">
-        <div class="editor" bind:this={editor} tabindex="0" onblur={cleanup} {onfocus} onkeydown={onkeypress}></div>
-        <div class="cursor-content" bind:this={cursorContent}>
-            {@html cursorContentHTML}
+<Pane tabs={[{ title: "Editor", icon: BookIcon }]} width="38rem"> 
+    <View views={["markdown", "preview"]} view="preview">
+        {#if title}
+            <h1>{title}</h1>
+        {/if}
+        <div class="content">
+            <div class="editor" bind:this={editor} tabindex="0" onblur={cleanup} {onfocus} onkeydown={onkeypress}></div>
+            <div class="cursor-content" bind:this={cursorContent}>
+                {@html cursorContentHTML}
+            </div>
         </div>
-    </div>
-</Panel>
+    </View>
+</Pane>
 
 <style>
+    h1 {
+        color: #cdd6f4;
+        margin-bottom: 1rem;
+    }
+
     .content {
         position: relative;
         width: 100%;
@@ -270,6 +277,7 @@
 
         .editor {
             cursor: text;
+            color: #cdd6f4;
         }
 
         .editor, .cursor-content {
@@ -278,7 +286,6 @@
             overflow: scroll;
             position: absolute;
             top: 0px; left: 0px;
-            text-indent: 3em;
 
             :global(> *, .character) {
                 text-wrap: wrap;

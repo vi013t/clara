@@ -19,10 +19,6 @@
     {/if}
 </button>
 
-<button class="between">
-    <EllipsisIcon stroke="#45475a" style="width: 1rem; height: 1rem;"/>
-</button>
-
 {#if tree.children.length !== 0}
     <ul>
         {#each tree.children as child}
@@ -60,7 +56,7 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
         position: relative;
         left: -7px;
         padding: 0.25rem;
@@ -71,9 +67,5 @@
             background-color: #b4befe;
             color: #181825;
         }
-    }
-
-    .between {
-        margin-bottom: 0.5rem;
     }
 </style>

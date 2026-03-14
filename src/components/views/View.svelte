@@ -2,8 +2,30 @@
 	import type { Snippet } from "svelte";
 	import GraphIcon from "../icons/GraphIcon.svelte";
 	import TreeIcon from "../icons/TreeIcon.svelte";
+	import type { Icon } from "../../api/components";
+	import SpreadsheetIcon from "../icons/SpreadsheetIcon.svelte";
+	import MarkdownIcon from "../icons/MarkdownIcon.svelte";
+	import EyeIcon from "../icons/EyeIcon.svelte";
 
-    let { children, view = $bindable("tree") }: { children: Snippet, view?: string } = $props();
+    export type View = "tree" | "graph" | "spreadsheet" | "markdown" | "preview"
+
+    let { 
+        children, 
+        view = $bindable() ,
+        views
+    }: { 
+        children: Snippet,
+        view: string 
+        views: View[]
+    } = $props();
+
+    const viewIcons: { [Key in View]: Icon } = {
+        tree: TreeIcon,
+        spreadsheet: SpreadsheetIcon,
+        graph: GraphIcon,
+        markdown: MarkdownIcon,
+        preview: EyeIcon,
+    }
 
     function selectView(viewName: string) {
         return function() {
@@ -14,12 +36,12 @@
 
 <section>
     <div class="views">
-        <button onclick={selectView("tree")} class={{selected: view === "tree"}}>
-            <TreeIcon stroke="var(--stroke)" style="width: 1.25rem; height: 1.25rem;" />
-        </button>
-        <button onclick={selectView("graph")} class={{selected: view === "graph"}}>
-            <GraphIcon stroke="var(--stroke)" style="width: 1.25rem; height: 1.25rem;" />
-        </button>
+        {#each views as possibleView}
+            {@const Icon = viewIcons[possibleView]}
+            <button onclick={selectView(possibleView)} class={{selected: view === possibleView}}>
+                <Icon stroke="var(--stroke)" style="width: 1.25rem; height: 1.25rem;" />
+            </button>
+        {/each}
     </div>
     {@render children()}
 </section>
@@ -35,7 +57,6 @@
         top: 0.5rem;
         right: 0.5rem;
         z-index: 9999;
-        background-color: #181825;
 
         > * {
             color: #cdd6f4;
@@ -46,7 +67,7 @@
             --stroke: #cdd6f4;
 
             &.selected {
-                border: 1px solid #313244;
+                outline: 1px solid #313244;
                 background-color: #1e1e2e;
             }
 
@@ -59,13 +80,11 @@
     }
 
     section {
-        border-right: 1px solid #313244;
-        background-color: #181825;
         padding: 0.5rem;
         padding-left: 1.5rem;
-        width: 20rem;
         display: flex;
         flex-direction: column;
         position: relative;
+        height: 100%;
     }
 </style>

@@ -1,7 +1,9 @@
-# Tauri + SvelteKit + TypeScript
+# writing-app
 
-This template should help get you started developing with Tauri, SvelteKit and TypeScript in Vite.
+A free software application for screenwriting, novel writing, etc.
 
-## Recommended IDE Setup
+## Terminology
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
+**Pane** - A resizeable window section that may contain multiple tabs
+**Tab** - A panel displayed within a pane
+**View** - A way to visualize data in a tab

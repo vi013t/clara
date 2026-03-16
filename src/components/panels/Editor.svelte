@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import Pane from "../Pane.svelte";
-	import BookIcon from "../icons/BookIcon.svelte";
 	import View from "../views/View.svelte";
+	import PencilIcon from "../icons/PencilIcon.svelte";
+	import BookIcon from "../icons/BookIcon.svelte";
 
-    let { title = undefined }: { title?: string } = $props();
+    let { title = "New Note" }: { title?: string } = $props();
 
     type Style = {
         bold: boolean;
@@ -19,6 +19,14 @@
     function stylesAreEqual(style1: Style, style2: Style): boolean {
         return style1.bold === style2.bold
             && style1.italic === style2.italic;
+    }
+
+    export function getTitle() {
+        return title;
+    }
+
+    export function getIcon() {
+        return BookIcon;
     }
 
     function partToHTML(part: Part, index: number, addCursor: boolean = false): HTMLElement {
@@ -250,19 +258,17 @@
 
 <svelte:document onkeydown={onDocumentKeydown} />
 
-<Pane tabs={[{ title: "Editor", icon: BookIcon }]} width="38rem"> 
-    <View views={["markdown", "preview"]} view="preview">
-        {#if title}
-            <h1>{title}</h1>
-        {/if}
-        <div class="content">
-            <div class="editor" bind:this={editor} tabindex="0" onblur={cleanup} {onfocus} onkeydown={onkeypress}></div>
-            <div class="cursor-content" bind:this={cursorContent}>
-                {@html cursorContentHTML}
-            </div>
+<View views={["markdown", "preview"]} view="preview">
+    {#if title}
+        <h1 contenteditable bind:textContent={title}></h1>
+    {/if}
+    <div class="content">
+        <div class="editor" bind:this={editor} tabindex="0" onblur={cleanup} {onfocus} onkeydown={onkeypress}></div>
+        <div class="cursor-content" bind:this={cursorContent}>
+            {@html cursorContentHTML}
         </div>
-    </View>
-</Pane>
+    </div>
+</View>
 
 <style>
     h1 {
@@ -273,7 +279,7 @@
     .content {
         position: relative;
         width: 100%;
-        height: 100%;
+        flex-grow: 1;
 
         .editor {
             cursor: text;
@@ -282,7 +288,7 @@
 
         .editor, .cursor-content {
             width: 100%;
-            height: 100%;
+            flex-grow: 1;
             overflow: scroll;
             position: absolute;
             top: 0px; left: 0px;

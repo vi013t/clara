@@ -19,13 +19,17 @@ strong * {
 	font-weight: bold;
 }
 
-body,
 html {
+	width: 100dvw;
+	height: 100dvh;
+}
+
+body {
 	width: 100%;
 	height: 100%;
 }
 
-button,
+button:not([disabled]),
 label,
 video[controls] {
 	cursor: pointer;

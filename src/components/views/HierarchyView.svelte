@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { isJsxChild } from "typescript";
 	import type { Icon } from "../../api/components";
-	import { type DataRow, type TreeNode } from "../../api/Data.svelte";
-	import ContextMenu from "../ContextMenu.svelte";
+	import ContextMenu from "../menus/ContextMenu.svelte";
 	import ArrowIcon from "../icons/ArrowIcon.svelte";
 	import PackageIcon from "../icons/PackageIcon.svelte";
 	import TreeView from "./HierarchyView.svelte";
@@ -10,6 +8,7 @@
 	import TreeIcon from "../icons/TreeIcon.svelte";
 	import TrashIcon from "../icons/TrashIcon.svelte";
 	import RenameIcon from "../icons/RenameIcon.svelte";
+	import type { DataEntry } from "../../api/data/dataset";
 
 	let {
 		tree,
@@ -18,18 +17,21 @@
 		subtree = false,
 		rightClick = onRightClick,
 	}: {
-		tree: TreeNode<DataRow>;
+		tree: TreeNode<DataEntry>;
 		LeafIcon: Icon;
 		hideRoot?: boolean;
 		subtree?: boolean;
 		rightClick?: (event: MouseEvent) => void;
 	} = $props();
 
+	// svelte-ignore state_referenced_locally
 	let expanded = $state(hideRoot);
 
 	function toggle(event: MouseEvent) {
 		if (event.button !== 0) return;
-		if (event.composedPath().some(element => "classList" in element && (element as HTMLElement).classList.contains("node-name"))) {
+		if (
+			event.composedPath().some(element => "classList" in element && (element as HTMLElement).classList.contains("node-name"))
+		) {
 			return;
 		}
 		expanded = !expanded;
@@ -61,9 +63,18 @@
 		{:else}
 			<LeafIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 		{/if}
-		<span class="node-name" contenteditable bind:textContent={tree.data["Name"]} onkeypress={onNameKeypress} spellcheck="false"></span>
+		<span
+			class="node-name"
+			contenteditable
+			bind:textContent={tree.data.name}
+			onkeypress={onNameKeypress}
+			spellcheck="false"
+		></span>
 		{#if tree.isGroup}
-			<ArrowIcon stroke="var(--arrow)" style="width: 1rem; transition: rotate 0.1s; height: 1rem; rotate: {expanded ? '180deg' : '90deg'};" />
+			<ArrowIcon
+				stroke="var(--arrow)"
+				style="width: 1rem; transition: rotate 0.1s; height: 1rem; rotate: {expanded ? '180deg' : '90deg'};"
+			/>
 		{/if}
 	</button>
 {/if}

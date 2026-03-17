@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { bfsTreeLeaves, valueTypeIcon, type ManualDataset } from "../../api/Data.svelte";
+	import type { ManualDataset } from "../../api/data/dataset";
+	import { valueTypeIcon } from "../../api/views";
 	import GearIcon from "../icons/GearIcon.svelte";
 	import PlusIcon from "../icons/PlusIcon.svelte";
 
 	let { dataset }: { dataset: ManualDataset } = $props();
 
-	let rows = $derived(bfsTreeLeaves(dataset.data));
+	let rows = $derived(dataset.data.dfsLeaves());
 
 	// function onkeypress(event: KeyboardEvent) {
 	//     if (event.key === "Enter") {
@@ -16,7 +17,7 @@
 
 <div class="columns">
 	{#each dataset.fields as field}
-		{@const Icon = valueTypeIcon(field.ValueType)}
+		{@const Icon = valueTypeIcon(field.type)}
 		<div class="column">
 			<div class="cell">
 				<Icon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
@@ -27,7 +28,7 @@
 			</div>
 			{#each rows as row}
 				<div class="cell">
-					<textarea bind:value={() => `${row[field.name] ?? ""}`, value => (row[field.name] = value)}></textarea>
+					<textarea bind:value={() => `${row.get(field.name) ?? ""}`, value => row.set(field.name, value)}></textarea>
 				</div>
 			{/each}
 		</div>

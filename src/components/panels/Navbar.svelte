@@ -1,23 +1,22 @@
 <script lang="ts">
-	import { project } from "../../api/Data.svelte";
 	import { getCurrentWindow } from "@tauri-apps/api/window";
-	import ContextMenu from "../ContextMenu.svelte";
+	import ContextMenu from "../menus/ContextMenu.svelte";
 	import CircledPlusIcon from "../icons/CircledPlusIcon.svelte";
 	import CloseIcon from "../icons/CloseIcon.svelte";
 	import DashIcon from "../icons/DashIcon.svelte";
 	import FolderIcon from "../icons/FolderIcon.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
 	import MinimizeIcon from "../icons/MinimizeIcon.svelte";
-	import PlusIcon from "../icons/PlusIcon.svelte";
 	import QuestionMarkIcon from "../icons/QuestionMarkIcon.svelte";
 	import SaveIcon from "../icons/SaveIcon.svelte";
-	import SpreadsheetIcon from "../icons/SpreadsheetIcon.svelte";
-	import TrashIcon from "../icons/TrashIcon.svelte";
-	import Popup from "../Popup.svelte";
 	import NewProjectPopup from "../popups/NewProjectPopup.svelte";
+	import { invoke } from "@tauri-apps/api/core";
+	import { open as chooseFile } from "@tauri-apps/plugin-dialog";
+	import { Project, type BackendProject } from "../../api/project.svelte";
+	import ProjectSettingsPopup from "../popups/ProjectSettingsPopup.svelte";
 
 	let projectMenu: ContextMenu;
-	let projectSettingsPopup: Popup;
+	let projectSettingsPopup: ProjectSettingsPopup;
 	let newProjectPopup: NewProjectPopup;
 
 	function typeTitle(event: KeyboardEvent) {
@@ -39,6 +38,25 @@
 	function maximize() {
 		const appWindow = getCurrentWindow();
 		appWindow.toggleMaximize();
+	}
+
+	async function openProject(path: string) {
+		const selected = await chooseFile({
+			directory: true,
+			multiple: false,
+			title: "Select a directory",
+		});
+
+		// Directory Chosen
+		if (typeof selected === "string") {
+			const project = await invoke<BackendProject>("open_project", { selected });
+			Project.set(Project.fromBackend(project));
+		}
+
+		// No directory chosen
+		else {
+			console.log("No directory selected");
+		}
 	}
 </script>
 
@@ -69,6 +87,13 @@
 
 				<hr />
 
+				<button>
+					<FolderIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+					<span>
+						Open project
+						<span></span>
+					</span>
+				</button>
 				<button
 					onmousedown={() => {
 						newProjectPopup.open();
@@ -89,7 +114,7 @@
 	</div>
 
 	<div>
-		<input onkeydown={typeTitle} bind:value={() => project().name, name => (project().name = name)} />
+		<input onkeydown={typeTitle} bind:value={() => Project.get().name, name => (Project.get().name = name)} />
 	</div>
 
 	<div>
@@ -106,43 +131,7 @@
 </nav>
 
 <NewProjectPopup bind:this={newProjectPopup} />
-
-<Popup bind:this={projectSettingsPopup}>
-	<div class="popup">
-		<div class="sidebar">
-			<button>
-				<GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>General</span>
-			</button>
-			<button>
-				<SpreadsheetIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Datasets</span>
-			</button>
-		</div>
-		<div class="content">
-			<h1>Datasets</h1>
-			<div class="datasets">
-				{#each project().datasets as dataset}
-					<div class="dataset">
-						<div class="dataset-info">
-							<div class="dataset-header">
-								<dataset.icon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-								<span>{dataset.name}</span>
-							</div>
-							<p>{dataset.description ?? ""}</p>
-						</div>
-						<button>
-							<TrashIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-						</button>
-					</div>
-				{/each}
-			</div>
-			<button class="add-dataset">
-				<PlusIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-			</button>
-		</div>
-	</div>
-</Popup>
+<ProjectSettingsPopup bind:this={projectSettingsPopup} />
 
 <style>
 	nav {
@@ -200,137 +189,6 @@
 				background-color: #f38ba8;
 				--stroke: #181825;
 			}
-		}
-	}
-
-	.popup {
-		width: 100%;
-		height: 100%;
-		display: flex;
-
-		.content {
-			padding: 1rem;
-			flex-grow: 1;
-			padding-left: 3rem;
-			padding-right: 3rem;
-			display: flex;
-			flex-direction: column;
-			gap: 0.25rem;
-
-			h1 {
-				font-weight: 700;
-				text-transform: uppercase;
-				font-size: 0.85rem;
-				margin-bottom: 0.5rem;
-				color: #a6adc8;
-			}
-		}
-
-		.sidebar {
-			height: 100%;
-			width: 15rem;
-			border-right: 1px solid #313244;
-			display: flex;
-			flex-direction: column;
-			gap: 0.25rem;
-			padding: 1rem;
-
-			button {
-				display: flex;
-				align-items: center;
-				gap: 0.5rem;
-				padding: 0.25rem;
-				padding-left: 0.5rem;
-				width: 100%;
-				border-radius: 0.25rem;
-				--stroke: #cdd6f4;
-
-				&:hover {
-					background-color: #b4befe;
-					--stroke: #181825;
-				}
-
-				span {
-					color: var(--stroke);
-				}
-			}
-		}
-	}
-
-	.datasets {
-		background-color: #181825;
-		border-radius: 0.5rem;
-	}
-
-	.dataset {
-		color: #cdd6f4;
-		padding: 1rem;
-		border-radius: 0.5rem;
-		display: flex;
-		align-items: center;
-		width: 100%;
-		gap: 0.5rem;
-		position: relative;
-
-		&:not(:last-child)::after {
-			content: "";
-			position: absolute;
-			top: 100%;
-			left: 50%;
-			transform: translateX(-50%);
-			height: 1px;
-			width: calc(100% - 2rem);
-			background-color: #313244;
-		}
-
-		> *:last-child {
-			margin-left: auto;
-		}
-
-		button {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			--stroke: #a6adc8;
-			padding: 0.25rem;
-			border-radius: 0.25rem;
-
-			&:hover {
-				background-color: #b4befe;
-				--stroke: #181825;
-			}
-		}
-	}
-
-	.dataset-info {
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-
-		p {
-			color: #a6adc8;
-			font-size: 0.8rem;
-		}
-	}
-
-	.dataset-header {
-		align-items: center;
-		display: flex;
-		gap: 0.5rem;
-	}
-
-	.add-dataset {
-		margin-left: auto;
-		--stroke: #cdd6f4;
-		padding: 0.25rem;
-		border-radius: 0.25rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		&:hover {
-			--stroke: #181825;
-			background-color: #b4befe;
 		}
 	}
 

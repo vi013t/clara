@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { frameworks, isGenerated, type Framework } from "../../api/Data.svelte";
+	import { invoke } from "@tauri-apps/api/core";
 	import FolderIcon from "../icons/FolderIcon.svelte";
 	import PlusIcon from "../icons/PlusIcon.svelte";
 	import Select from "../input/Select.svelte";
-	import Popup from "../Popup.svelte";
+	import Popup from "./Popup.svelte";
 	import { open as chooseFile } from "@tauri-apps/plugin-dialog";
+	import { frameworks, Project, type Framework } from "../../api/project.svelte";
 
 	let popup: Popup;
 
@@ -12,16 +13,18 @@
 		popup.open();
 	}
 
-	let location: string = $state("");
+	let location: string = $state(localStorage.getItem("books-folder") ?? "");
 	let name: string = $state("");
 	let framework: Framework = $state(frameworks.basic);
+	let manualDatasets = $derived(framework.datasets().filter(dataset => dataset.isManual()));
+	let generatedDatasets = $derived(framework.datasets().filter(dataset => dataset.isGenerated()));
 
 	let startedTypingLocation = $state(false);
 	let startedTypingName = $state(false);
 
 	let locationError = $derived.by(() => {
 		if (location.length === 0) return "Location cannot be empty";
-		if (!/^[\w\.\/\\]+$/.test(location)) return "Location contains invalid characters";
+		if (!/^([a-zA-Z]:)?[\w\.\/\\]+$/.test(location)) return "Location contains invalid characters";
 		return null;
 	});
 
@@ -46,9 +49,12 @@
 			title: "Select a directory",
 		});
 
+		startedTypingLocation = true;
+
 		// Directory Chosen
 		if (typeof selected === "string") {
 			location = selected;
+			localStorage.setItem("books-folder", location);
 		}
 
 		// No directory chosen
@@ -56,99 +62,186 @@
 			console.log("No directory selected");
 		}
 	}
+
+	let hasErrors = $derived(!!nameError || !!locationError);
+	let triedToCreate = $state(false);
+
+	async function createProject() {
+		if (hasErrors) {
+			triedToCreate = true;
+			return;
+		}
+
+		Project.set(
+			new Project({
+				name,
+				location,
+				framework,
+				datasets: framework.datasets(),
+			}),
+		);
+
+		await invoke("new_project", { location, name, framework: framework.name });
+		popup.close();
+	}
+
+	function reset() {
+		location = localStorage.getItem("books-folder") ?? "";
+		name = "";
+		framework = frameworks.basic;
+	}
 </script>
 
-<Popup bind:this={popup} width="50rem">
+<Popup {reset} bind:this={popup} width="50rem">
 	<section class="popup">
-		<div>
-			<h2>Location</h2>
-			<div class="wrapper">
-				<input
-					class={[locationError && startedTypingLocation && "invalid-input"]}
-					bind:value={location}
-					placeholder="/path/to/books/folder"
-					onkeydown={typeLocation}
-				/>
-				<button class="input-button" onmousedown={pickLocation}>
-					<FolderIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
-				</button>
-			</div>
-			{#if locationError && startedTypingLocation}
-				<span class="error">
-					{locationError}
-				</span>
-			{/if}
-		</div>
-
-		<div>
-			<h2>Name</h2>
-			<input
-				class={[nameError && startedTypingName && "invalid-input"]}
-				bind:value={name}
-				placeholder="Book title"
-				onkeydown={typeName}
-			/>
-			{#if nameError && startedTypingName}
-				<span class="error">
-					{nameError}
-				</span>
-			{/if}
-
-			{#if !locationError && !nameError && startedTypingLocation && startedTypingName}
-				<span>
-					Project will be created at <span style:color="#cdd6f4">{location}/{name}</span>
-				</span>
-			{/if}
-		</div>
-
-		<div>
-			<h2>Template</h2>
-			<div class="frameworks">
-				<div class="select">
-					<Select
-						width="100%"
-						options={Object.values(frameworks).map(framework => ({ name: framework.name, icon: framework.icon }))}
-						bind:value={
-							() => framework.name, choice => (framework = Object.values(frameworks).find(other => other.name === choice)!)
-						}
+		<h1>New Project</h1>
+		<div class={["template", (nameError || locationError) && triedToCreate && "invalid-input"]}>
+			<div>
+				<h2>Location</h2>
+				<div class="wrapper">
+					<input
+						class={[locationError && startedTypingLocation && "invalid-input"]}
+						bind:value={location}
+						placeholder="/path/to/books/folder"
+						onchange={typeLocation}
 					/>
-					<button>
-						<PlusIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+					<button class="input-button" onmousedown={pickLocation}>
+						<FolderIcon stroke="#a6adc8" style="width: 1rem; height: 1rem;" />
 					</button>
 				</div>
-				<div class="content">
-					<p>{framework.description}</p>
-					<h2>Datasets</h2>
+				{#if locationError && startedTypingLocation}
+					<span class="error">
+						{locationError}
+					</span>
+				{/if}
+			</div>
+
+			<div>
+				<h2>Name</h2>
+				<input
+					class={[nameError && startedTypingName && "invalid-input"]}
+					bind:value={name}
+					placeholder="Book title"
+					onchange={typeName}
+				/>
+				{#if nameError && startedTypingName}
+					<span class="error">
+						{nameError}
+					</span>
+				{/if}
+
+				{#if !locationError && !nameError && startedTypingLocation && startedTypingName}
+					<span>
+						Project will be created at <span style:color="#cdd6f4">{location}/{name}</span>
+					</span>
+				{/if}
+			</div>
+		</div>
+
+		<div class="template">
+			<div>
+				<h2>Template</h2>
+				<div class="frameworks">
+					<div class="select">
+						<Select
+							width="calc(100% - 1.75rem)"
+							options={Object.values(frameworks).map(framework => ({ name: framework.name, icon: framework.icon }))}
+							bind:value={
+								() => framework.name, choice => (framework = Object.values(frameworks).find(other => other.name === choice)!)
+							}
+						/>
+						<button>
+							<PlusIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<p>{framework.description}</p>
+
+			<div>
+				<h2>Datasets</h2>
+				<div>
 					<div class="datasets">
-						{#each framework.datasets().filter(dataset => !isGenerated(dataset)) as dataset}
+						{#each manualDatasets as dataset, index}
 							<div class="dataset">
 								<div class="header">
 									<dataset.icon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
-									<h3>{dataset.name}</h3>
+									<h2>{dataset.name}</h2>
 								</div>
 								<p>{dataset.description}</p>
 							</div>
-							<hr />
+							{#if index !== manualDatasets.length - 1}
+								<hr />
+							{/if}
+						{:else}
+							<div class="dataset">
+								<h2 class="header">None</h2>
+							</div>
 						{/each}
-						<h2>Generated Datasets</h2>
-						{#each framework.datasets().filter(isGenerated) as dataset}
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<h2>Generated Datasets</h2>
+				<div>
+					<div class="datasets">
+						{#each generatedDatasets as dataset, index}
 							<div class="dataset">
 								<div class="header">
 									<dataset.icon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
-									<h3>{dataset.name}</h3>
+									<h2>{dataset.name}</h2>
 								</div>
 								<p>{dataset.description}</p>
 							</div>
-							<hr />
+							{#if index !== generatedDatasets.length - 1}
+								<hr />
+							{/if}
+						{:else}
+							<div class="dataset">
+								<h2 class="header">None</h2>
+							</div>
 						{/each}
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<button class={["create-button", hasErrors && "disabled"]} onmousedown={createProject}>Create</button>
 	</section>
 </Popup>
 
 <style>
+	.create-button {
+		font-size: 0.85rem;
+		padding-left: 5rem;
+		padding-right: 5rem;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+		border-radius: 0.25rem;
+		transition: scale 0.1s;
+		width: fit-content;
+		margin-left: auto;
+		margin-right: auto;
+
+		&.disabled {
+			color: #9399b2;
+			background-color: #313244;
+			cursor: default;
+		}
+
+		&:not(.disabled) {
+			background-image: linear-gradient(to bottom right, #b4befe, #89b4fa);
+			color: #181825;
+			box-shadow: 0px 0px 0.5rem black;
+
+			&:hover {
+				scale: 105%;
+			}
+		}
+	}
+
 	.wrapper {
 		position: relative;
 		width: 100%;
@@ -182,6 +275,9 @@
 		flex-direction: column;
 		gap: 1rem;
 		width: 100%;
+		background-color: #181825;
+		padding: 1rem;
+		border-radius: 0.5rem;
 
 		hr {
 			background-color: #313244;
@@ -194,27 +290,33 @@
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 0.5rem;
 
 		.select {
 			display: flex;
 			width: 100%;
-			gap: 0.5rem;
-		}
+			gap: 0.25rem;
+			align-items: center;
 
-		.content {
-			background-color: #181825;
-			padding: 1rem;
-			display: flex;
-			border-radius: 0.25rem;
-			flex-direction: column;
-			gap: 1rem;
+			button {
+				--stroke: #cdd6f4;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0.25rem;
+				border-radius: 0.25rem;
 
-			p {
-				font-size: 0.85rem;
-				color: #a6adc8;
+				&:hover {
+					--stroke: #181825;
+					background-color: #b4befe;
+				}
 			}
 		}
+	}
+
+	p {
+		font-size: 0.75rem;
+		color: #a6adc8;
 	}
 
 	.invalid-input {
@@ -223,6 +325,7 @@
 
 	.popup {
 		padding: 2rem;
+		padding-top: 1.25rem;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
@@ -236,21 +339,41 @@
 			font-size: 0.85rem;
 		}
 
-		> div {
+		> div:not(.template) {
 			display: flex;
 			flex-direction: column;
 			gap: 0.25rem;
 		}
 	}
 
-	h2 {
-		font-weight: 700;
-		text-transform: uppercase;
-		font-size: 0.85rem;
-		color: #cdd6f4;
+	.template {
+		border: 1px solid #45475a;
+		padding: 1rem;
+		border-radius: 0.25rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		background-color: rgba(200, 200, 255, 5%);
+
+		> div {
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+		}
+
+		> p {
+			background-color: #181825;
+			padding: 1rem;
+			border-radius: 0.5rem;
+		}
 	}
 
-	h3 {
+	h1 {
+		color: #cdd6f4;
+		font-size: 1rem;
+	}
+
+	h2 {
 		font-weight: 700;
 		text-transform: uppercase;
 		font-size: 0.85rem;
@@ -264,5 +387,10 @@
 		border-radius: 0.25rem;
 		width: 100%;
 		color: #cdd6f4;
+		font-size: 0.85rem;
+
+		&::placeholder {
+			color: #6c7086;
+		}
 	}
 </style>

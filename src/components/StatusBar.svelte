@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ContextMenu from "./ContextMenu.svelte";
+	import ContextMenu from "./menus/ContextMenu.svelte";
 	import CharacterCountIcon from "./icons/CharacterCountIcon.svelte";
 	import SaveIcon from "./icons/SaveIcon.svelte";
 	import WordCountIcon from "./icons/WordCountIcon.svelte";

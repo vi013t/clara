@@ -100,7 +100,7 @@
 	{/if}
 
 	<!-- Options -->
-	<div class="options" style:display={optionsVisible ? "flex" : "none"} style:width>
+	<div class={["options", optionsVisible && "visible"]}>
 		{#each options as option}
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -137,7 +137,7 @@
 	.select {
 		cursor: pointer;
 		border-radius: 0.25rem;
-		padding: 0.25rem;
+		padding: 0.5rem;
 		position: relative;
 		background-color: #181825;
 		border: 1px solid #313244;
@@ -162,28 +162,40 @@
 		position: absolute;
 		left: 0px;
 		top: calc(100% + 0.25rem);
-		background: #181825;
+		background: #11111b;
 		border: 1px solid #313244;
 		overflow: hidden;
 		box-shadow: 0px 0px 0.5rem black;
 		z-index: 9999;
-		max-height: 10rem;
+		height: 10rem;
 		overflow-y: auto;
+		display: flex;
+		width: 100%;
+		max-height: 0rem;
+		opacity: 0%;
+		transition:
+			max-height 0.1s,
+			opacity 0.1s step-end;
+
+		&.visible {
+			max-height: 10rem;
+			opacity: 100%;
+			transition:
+				max-height 0.1s,
+				opacity 0.1s step-start;
+		}
 
 		> * {
 			padding: 0.5rem;
 			padding-left: 0.5rem;
 			color: #a6adc8;
-			background-color: #181825;
+			background: #11111b;
 			text-align: left;
 			display: flex;
 			align-items: center;
 			gap: 0.5rem;
 			font-size: 0.85rem;
-
-			&:not(:last-child) {
-				border-bottom: 1px solid #313244;
-			}
+			user-select: none;
 
 			&:hover {
 				background-color: #1e1e2e;

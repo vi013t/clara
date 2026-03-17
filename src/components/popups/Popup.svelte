@@ -1,18 +1,25 @@
+<script module>
+	let popupID = 0;
+</script>
+
 <script lang="ts">
 	import type { Snippet } from "svelte";
-	import CloseIcon from "./icons/CloseIcon.svelte";
+	import CloseIcon from "../icons/CloseIcon.svelte";
 
 	let {
 		children,
+		reset,
 		width = "70%",
 		height = "85%",
 	}: {
+		reset: () => void | Promise<void>;
 		children?: Snippet;
 		width?: string;
 		height?: string;
 	} = $props();
 
 	let visible = $state(false);
+	let id = popupID++;
 
 	export function open() {
 		visible = true;
@@ -20,6 +27,7 @@
 
 	export function close() {
 		visible = false;
+		reset();
 	}
 
 	let popup: HTMLElement;
@@ -29,15 +37,35 @@
 			close();
 		}
 	}
+
+	function onkeydown(event: KeyboardEvent) {
+		if (event.key === "Escape" && !popup.querySelector(".visible.popup")) {
+			close();
+		}
+	}
 </script>
 
+<svelte:document {onkeydown} />
+
+<!-- svelte-ignore a11y_click_events_have_key_events -->
 <div
 	class="background"
 	onclick={clickBackground}
 	style:background-color={visible ? "rgba(0, 0, 0, 50%)" : "rgba(0, 0, 0, 0%)"}
 	style:pointer-events={visible ? "auto" : "none"}
+	role="combobox"
+	aria-expanded={visible}
+	aria-controls="popup-{id}"
+	tabindex="0"
 >
-	<section bind:this={popup} style:scale={visible ? "100%" : "0%"} style:width style:height>
+	<section
+		class={["popup", visible && "visible"]}
+		bind:this={popup}
+		style:scale={visible ? "100%" : "0%"}
+		style:width
+		style:height
+		id="popup-{id}"
+	>
 		{@render children?.()}
 		<button class="close-button" onmousedown={close}>
 			<CloseIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
@@ -71,8 +99,8 @@
 
 	.close-button {
 		position: absolute;
-		top: 0.5rem;
-		right: 0.5rem;
+		top: 0.25rem;
+		right: 0.25rem;
 		--stroke: #cdd6f4;
 		display: flex;
 		align-items: center;

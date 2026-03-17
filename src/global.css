@@ -49,3 +49,7 @@ body {
 ::-webkit-scrollbar {
 	display: none;
 }
+
+*:not([contenteditble], textarea, input) {
+	user-select: none;
+}

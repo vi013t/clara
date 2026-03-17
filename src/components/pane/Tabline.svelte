@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { isGenerated, project, views, type Dataset, type View } from "../../api/Data.svelte";
-	import ContextMenu from "../ContextMenu.svelte";
+	import { views, type View } from "../../api/views";
+	import ContextMenu from "../menus/ContextMenu.svelte";
 	import CircledPlusIcon from "../icons/CircledPlusIcon.svelte";
 	import CloseIcon from "../icons/CloseIcon.svelte";
 	import FilterIcon from "../icons/FilterIcon.svelte";
@@ -10,6 +10,8 @@
 	import SplitHorizontalIcon from "../icons/SplitHorizontalIcon.svelte";
 	import type { Tab } from "./Pane.svelte";
 	import RenameIcon from "../icons/RenameIcon.svelte";
+	import { Project } from "../../api/project.svelte";
+	import type { Dataset } from "../../api/data/dataset";
 
 	let {
 		tabs,
@@ -117,7 +119,10 @@
 		mounted;
 		if (!tabline || !controls || !newTabContainer) return "0px";
 		return `${
-			(tabline.getBoundingClientRect().width - controls.getBoundingClientRect().width - newTabContainer.getBoundingClientRect().width - 16) /
+			(tabline.getBoundingClientRect().width -
+				controls.getBoundingClientRect().width -
+				newTabContainer.getBoundingClientRect().width -
+				16) /
 			tabs.length
 		}px`;
 	});
@@ -150,14 +155,14 @@
 			<PlusIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 		</button>
 		<ContextMenu bind:this={newTabContextMenu} top="100%" left="0px">
-			{#each project().datasets.filter(dataset => !isGenerated(dataset)) as dataset}
+			{#each Project.get().datasets.filter(dataset => dataset.isManual()) as dataset}
 				<button onmousedown={createTab(dataset)}>
 					<dataset.icon stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
 					<span>{dataset.name}</span>
 				</button>
 			{/each}
 			<hr />
-			{#each project().datasets.filter(isGenerated) as dataset}
+			{#each Project.get().datasets.filter(dataset => dataset.isGenerated) as dataset}
 				<button onmousedown={createTab(dataset)}>
 					<dataset.icon stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
 					<span>{dataset.name}</span>

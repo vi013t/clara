@@ -1,6 +1,6 @@
 <script>
 	import Navbar from "../components/panels/Navbar.svelte";
-	import Pane from "../components/panes/Pane.svelte";
+	import Pane from "../components/pane/Pane.svelte";
 	import StatusBar from "../components/StatusBar.svelte";
 </script>
 

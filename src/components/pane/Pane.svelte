@@ -1,11 +1,12 @@
 <script lang="ts">
 	import Pane from "./Pane.svelte";
 	import TreeView from "../views/HierarchyView.svelte";
-	import { type Dataset, type View } from "../../api/Data.svelte";
-	import { project } from "../../api/Data.svelte";
+	import { type View } from "../../api/views";
 	import SpreadsheetView from "../views/SpreadsheetView.svelte";
 	import { type Snippet } from "svelte";
 	import Tabline from "./Tabline.svelte";
+	import type { Dataset } from "../../api/data/dataset";
+	import { Project } from "../../api/project.svelte";
 
 	let {
 		width = "500px",
@@ -27,7 +28,7 @@
 
 	let dragging = $state("none");
 
-	let datasets: Dataset[] = $state([project().datasets[0]]);
+	let datasets: Dataset[] = $state([Project.get().datasets[0]]);
 	export type Tab = { id: number; dataset: Dataset; component: TreeView };
 	let tabID = $state(0);
 	let tabs: Tab[] = $state(datasets.map(dataset => ({ id: tabID++, dataset, component: null! })));
@@ -74,7 +75,7 @@
 		<Tabline bind:isMasterPaneAlive bind:tabID bind:selectedTabID bind:view {background} {split} {subpane} {onclose} {tabs} />
 		<div class="content" style:background>
 			{#each tabs as tab, index (tab.id)}
-				{#if !("content" in tab.dataset)}
+				{#if tab.dataset.isManual()}
 					<div style="display: {tab.id === selectedTabID ? 'block' : 'none'}">
 						{#if view === "hierarchy"}
 							<TreeView hideRoot tree={tab.dataset.data} bind:this={tabs[index].component} LeafIcon={tab.dataset.icon} />

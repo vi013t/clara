@@ -10,6 +10,8 @@
 	font-family: "Inter", "Segoe UI";
 	flex-grow: 0;
 	flex-shrink: 0;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 
 b,
@@ -30,6 +32,10 @@ body {
 	height: 100%;
 }
 
+*[disabled] {
+	cursor: default;
+}
+
 button:not([disabled]),
 label,
 video[controls] {
@@ -38,4 +44,8 @@ video[controls] {
 
 body {
 	background: #181825;
+}
+
+::-webkit-scrollbar {
+	display: none;
 }

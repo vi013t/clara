@@ -2,6 +2,4 @@
 	import Popup from "../Popup.svelte";
 </script>
 
-<Popup>
-
-</Popup>
+<Popup></Popup>

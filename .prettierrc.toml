@@ -1,4 +1,6 @@
 useTabs = true
 plugins = ["prettier-plugin-svelte"]
-pluginSearchDirs = ["."]
 overrides = [{ files = "*.svelte", options = { parser = "svelte" }}]
+htmlWhitespaceSensitivity = "ignore"
+printWidth = 130
+arrowParens = "avoid"

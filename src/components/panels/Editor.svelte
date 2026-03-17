@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import View from "../views/View.svelte";
 	import PencilIcon from "../icons/PencilIcon.svelte";
 	import BookIcon from "../icons/BookIcon.svelte";
 
@@ -258,17 +257,15 @@
 
 <svelte:document onkeydown={onDocumentKeydown} />
 
-<View views={["markdown", "preview"]} view="preview">
-    {#if title}
-        <h1 contenteditable bind:textContent={title}></h1>
-    {/if}
-    <div class="content">
-        <div class="editor" bind:this={editor} tabindex="0" onblur={cleanup} {onfocus} onkeydown={onkeypress}></div>
-        <div class="cursor-content" bind:this={cursorContent}>
-            {@html cursorContentHTML}
-        </div>
+{#if title}
+    <h1 contenteditable bind:textContent={title}></h1>
+{/if}
+<div class="content">
+    <div class="editor" bind:this={editor} tabindex="0" onblur={cleanup} {onfocus} onkeydown={onkeypress}></div>
+    <div class="cursor-content" bind:this={cursorContent}>
+        {@html cursorContentHTML}
     </div>
-</View>
+</div>
 
 <style>
     h1 {

@@ -57,7 +57,7 @@
     }
 
     function onmousedown(event: MouseEvent) {
-        if (doneTransitioning && domElement && !event.composedPath().includes(domElement)) {
+        if (visible && doneTransitioning && domElement && !event.composedPath().includes(domElement)) {
             close();
         }
     }
@@ -108,7 +108,7 @@
             gap: 0.25rem;
             width: 100%;
             border-radius: 0.5rem;
-            transition: scale 0.1s;
+            transition: scale 0.05s;
 
             :global(> *:not(hr) ) {
                 width: 100%;
@@ -125,7 +125,7 @@
                     color: #6c7086;
                 }
 
-                &:hover {
+                &:not([disabled]):hover {
                     background-color: #252634;
                 }
             }

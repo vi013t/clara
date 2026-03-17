@@ -6,6 +6,7 @@
 
 <svelte:head>
     <link href={globalCss} rel="stylesheet" />
+    <title>Wallflower</title>
 </svelte:head>
 
 {@render children()}

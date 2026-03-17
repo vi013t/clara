@@ -1,118 +1,45 @@
 <script lang="ts">
+	import { project } from "../api/Data.svelte";
 	import ContextMenu from "./ContextMenu.svelte";
+	import CharacterCountIcon from "./icons/CharacterCountIcon.svelte";
 	import CircledPlusIcon from "./icons/CircledPlusIcon.svelte";
 	import FolderIcon from "./icons/FolderIcon.svelte";
 	import GearIcon from "./icons/GearIcon.svelte";
+	import PlusIcon from "./icons/PlusIcon.svelte";
 	import SaveIcon from "./icons/SaveIcon.svelte";
+	import SpreadsheetIcon from "./icons/SpreadsheetIcon.svelte";
+	import TrashIcon from "./icons/TrashIcon.svelte";
+	import WordCountIcon from "./icons/WordCountIcon.svelte";
 	import Popup from "./Popup.svelte";
 
     let projectMenu: ContextMenu;
+    let wordCountMenu: ContextMenu;
     let projectSettingsPopup: Popup;
 </script>
 
 <section>
     <div class="wrapper">
-        <button onmousedown={() => projectMenu.toggle()}>
-            <FolderIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+        <button onmousedown={() => wordCountMenu.toggle()}>
+            <span>0 / 0 words</span>
         </button>
-        <ContextMenu bind:this={projectMenu} bottom="100%" right="1.75rem">
+        <ContextMenu bind:this={wordCountMenu} bottom="100%" right="4rem">
             <button onmousedown={() => { projectSettingsPopup.open(); projectMenu.close() }}>
-                <GearIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-                <span>Project settings</span>
+                <WordCountIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+                <span>Word Count</span>
+            </button>
+            <button>
+                <CharacterCountIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+                <span>Character Count</span>
             </button>
             <button>
                 <SaveIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-                <span>Save project</span>
-            </button>
-            <button>
-                <SaveIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-                <span>Save project as...</span>
-            </button>
-
-            <hr />
-
-            <button>
-                <CircledPlusIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-                <span>New project</span>
+                <span>Chapter Count</span>
             </button>
         </ContextMenu>
     </div>
-    <div class="wrapper">
-        <button>
-            <GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-        </button>
-    </div>
 </section>
 
-<Popup bind:this={projectSettingsPopup}>
-    <div class="popup">
-        <div class="sidebar">
-            <button>
-                <GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-                <span>General</span>
-            </button>
-            <button>
-                <GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-                <span>Datasets</span>
-            </button>
-        </div>
-        <div class="content">
-            <div class="dataset">
-
-            </div>
-        </div>
-    </div> 
-</Popup>
-
 <style>
-    .popup {
-        width: 100%;
-        height: 100%;
-        display: flex;
-
-        .content {
-            padding: 1rem;
-            flex-grow: 1;
-            padding-left: 3rem;
-            padding-right: 3rem;
-
-            h1 {
-                color: #cdd6f4;
-                line-height: 1em;
-            }
-        }
-
-        .sidebar {
-            height: 100%;
-            width: 15rem;
-            border-right: 1px solid #313244;
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-            padding: 1rem;
-
-            button {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                padding: 0.25rem;
-                padding-left: 0.5rem;
-                width: 100%;
-                border-radius: 0.25rem;
-                --stroke: #cdd6f4;
-
-                &:hover {
-                    background-color: #b4befe;
-                    --stroke: #181825;
-                }
-
-                span {
-                    color: var(--stroke);
-                }
-            }
-        }
-    }
-
     .wrapper {
         position: relative;
         display: contents;
@@ -124,6 +51,7 @@
             --stroke: #cdd6f4;
             padding: 0.25rem;
             border-radius: 0.25rem;
+            color: var(--stroke);
             
             &:hover {
                 --stroke: #181825;

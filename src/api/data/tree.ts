@@ -1,15 +1,16 @@
 export class TreeNode<T> {
-	parent?: TreeNode<T>;
-	children: TreeNode<T>[];
+	private parent?: TreeNode<T>;
+	private children_: TreeNode<T>[];
+	private isBranch_: boolean;
+
 	data: T;
-	isGroup: boolean;
 
 	public constructor(data: T, children: TreeNode<T>[], isGroup?: boolean) {
 		if (isGroup === undefined) isGroup = children.length !== 0;
 		this.data = data;
-		this.children = children;
+		this.children_ = children;
 		this.children.forEach(child => (child.parent = this));
-		this.isGroup = isGroup;
+		this.isBranch_ = isGroup;
 	}
 
 	public dfs(): T[] {
@@ -21,11 +22,30 @@ export class TreeNode<T> {
 		return visited;
 	}
 
-	public dfsLeaves(visited: T[] = []): T[] {
-		if (!this.isGroup) visited.push(this.data);
+	public dfsLeaves(): T[] {
+		let visited: T[] = [];
+		if (!this.isBranch) visited.push(this.data);
 		this.children.forEach(child => {
-			visited = [...visited, ...child.dfsLeaves(visited)];
+			let childLeaves = child.dfsLeaves();
+			visited = [...visited, ...childLeaves];
 		});
 		return visited;
+	}
+
+	public addChild(node: TreeNode<T>): void {
+		this.children.push(node);
+		node.parent = this;
+	}
+
+	public filter(predicate: (data: T) => boolean): void {
+		this.children_ = this.children.filter(child => predicate(child.data));
+	}
+
+	public get isBranch() {
+		return this.isBranch_;
+	}
+
+	public get children() {
+		return this.children_;
 	}
 }

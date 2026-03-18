@@ -7,6 +7,7 @@
 	import Tabline from "./Tabline.svelte";
 	import type { Dataset } from "../../api/data/dataset";
 	import { Project } from "../../api/project.svelte";
+	import Editor from "../panels/Editor.svelte";
 
 	let {
 		width = "500px",
@@ -15,6 +16,8 @@
 		subpane = false,
 		split = undefined,
 		onclose = () => {},
+		dataset,
+		editor = false,
 		children = undefined,
 	}: {
 		width?: string;
@@ -23,15 +26,21 @@
 		subpane?: boolean;
 		split?: "horizontal" | "vertical";
 		onclose?: () => void;
+		editor?: boolean;
+		dataset?: Dataset;
 		children?: Snippet;
 	} = $props();
 
 	let dragging = $state("none");
 
-	let datasets: Dataset[] = $state([Project.get().datasets[0]]);
-	export type Tab = { id: number; dataset: Dataset; component: TreeView };
+	let datasets: Dataset[] = $state(dataset ? [dataset] : editor ? [] : [Project.get().datasets[0]]);
+	export type Tab = { id: number; dataset: Dataset | null; component: TreeView };
 	let tabID = $state(0);
-	let tabs: Tab[] = $state(datasets.map(dataset => ({ id: tabID++, dataset, component: null! })));
+	let tabs: Tab[] = $state(
+		editor
+			? [{ id: tabID++, dataset: null, component: null! }]
+			: datasets.map(dataset => ({ id: tabID++, dataset, component: null! })),
+	);
 	let view: View = $state("hierarchy");
 	let selectedTabID = $state(0);
 
@@ -56,6 +65,14 @@
 		}
 	}
 	let isMasterPaneAlive = $state(true);
+
+	let editorContent = $state("");
+
+	function openEditor(value: string) {
+		editorContent = value;
+		tabs.push({ id: tabID++, dataset: null, component: null! });
+		selectedTabID = tabID - 1;
+	}
 </script>
 
 <svelte:document onmouseup={stopDrag} {onmousemove} />
@@ -72,15 +89,28 @@
 		style:height={split === "vertical" ? masterHeight : "100%"}
 		style:width={split === "horizontal" ? masterWidth : "100%"}
 	>
-		<Tabline bind:isMasterPaneAlive bind:tabID bind:selectedTabID bind:view {background} {split} {subpane} {onclose} {tabs} />
+		<Tabline
+			{openEditor}
+			bind:isMasterPaneAlive
+			bind:tabID
+			bind:selectedTabID
+			bind:view
+			{background}
+			{split}
+			{subpane}
+			{onclose}
+			{tabs}
+		/>
 		<div class="content" style:background>
 			{#each tabs as tab, index (tab.id)}
-				{#if tab.dataset.isManual()}
+				{#if !tab.dataset && tab.id === selectedTabID}
+					<Editor value={editorContent} />
+				{:else if tab.dataset?.isManual()}
 					<div style="display: {tab.id === selectedTabID ? 'block' : 'none'}">
 						{#if view === "hierarchy"}
 							<TreeView hideRoot tree={tab.dataset.data} bind:this={tabs[index].component} LeafIcon={tab.dataset.icon} />
 						{:else if view === "spreadsheet"}
-							<SpreadsheetView dataset={tab.dataset} />
+							<SpreadsheetView {openEditor} dataset={tab.dataset} />
 						{/if}
 					</div>
 				{/if}

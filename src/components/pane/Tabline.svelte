@@ -12,6 +12,8 @@
 	import RenameIcon from "../icons/RenameIcon.svelte";
 	import { Project } from "../../api/project.svelte";
 	import type { Dataset } from "../../api/data/dataset";
+	import BookIcon from "../icons/BookIcon.svelte";
+	import PencilIcon from "../icons/PencilIcon.svelte";
 
 	let {
 		tabs,
@@ -23,6 +25,7 @@
 		selectedTabID = $bindable(),
 		tabID = $bindable(),
 		view = $bindable(),
+		openEditor,
 	}: {
 		tabs: Tab[];
 		background: string;
@@ -33,6 +36,7 @@
 		selectedTabID: number;
 		tabID: number;
 		view: View;
+		openEditor: (value: string) => void;
 	} = $props();
 
 	let tabContextMenu: ContextMenu = $state(null!);
@@ -58,6 +62,10 @@
 
 	function tabExists(id: number) {
 		return !!tabs.find(tab => tab.id === id);
+	}
+
+	function currentTab() {
+		return tabs.find(tab => tab.id === selectedTabID)!;
 	}
 
 	function clickTab(id: number) {
@@ -105,7 +113,7 @@
 
 	function setView(name: View) {
 		return function () {
-			paneSettingsMenu.close();
+			tabContextMenu.close();
 			view = name;
 		};
 	}
@@ -127,6 +135,13 @@
 		}px`;
 	});
 
+	function changeDataset(dataset: Dataset) {
+		return function () {
+			currentTab().dataset = dataset;
+			tabContextMenu.close();
+		};
+	}
+
 	onMount(() => {
 		mounted = true;
 	});
@@ -134,17 +149,18 @@
 
 <div class="tabs" bind:this={tabline}>
 	{#each tabs as tab, index (tab.id)}
+		{@const Icon = tab.dataset?.icon ?? PencilIcon}
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div
 			style:left="calc(min(13rem, {tabWidth}) * {index} + 1rem)"
 			style:width={tabWidth}
 			style:background
-			class={["tab", selectedTabID === index && "selected"]}
+			class={["tab", selectedTabID === tab.id && "selected"]}
 			onmousedown={clickTab(tab.id)}
 			oncontextmenu={rightClickTab(tab.id)}
 		>
-			<span><tab.dataset.icon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" /> {tab.dataset.name}</span>
+			<span><Icon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" /> {tab.dataset?.name ?? "Editor"}</span>
 			<button onclick={closeTab(tab.id)}>
 				<CloseIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 			</button>
@@ -155,6 +171,16 @@
 			<PlusIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 		</button>
 		<ContextMenu bind:this={newTabContextMenu} top="100%" left="0px">
+			<button
+				onmousedown={() => {
+					openEditor("");
+					newTabContextMenu.close();
+				}}
+			>
+				<BookIcon stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
+				<span>Editor</span>
+			</button>
+			<hr />
 			{#each Project.get().datasets.filter(dataset => dataset.isManual()) as dataset}
 				<button onmousedown={createTab(dataset)}>
 					<dataset.icon stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
@@ -162,7 +188,7 @@
 				</button>
 			{/each}
 			<hr />
-			{#each Project.get().datasets.filter(dataset => dataset.isGenerated) as dataset}
+			{#each Project.get().datasets.filter(dataset => dataset.isGenerated()) as dataset}
 				<button onmousedown={createTab(dataset)}>
 					<dataset.icon stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
 					<span>{dataset.name}</span>
@@ -191,13 +217,6 @@
 				<span>Filter</span>
 			</button>
 			<hr />
-			{#each Object.entries(views) as [name, info]}
-				<button disabled={view === name} onmousedown={setView(name as View)}>
-					<info.icon stroke={view === name ? "#6c7086" : "#cdd6f4"} style="width: 1rem; height: 1rem;" />
-					<span>View as {name}</span>
-				</button>
-			{/each}
-			<hr />
 			<button onclick={splitHorizontal}>
 				<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
 				<span>Split horizontally</span>
@@ -216,6 +235,23 @@
 </div>
 
 <ContextMenu bind:this={tabContextMenu} top={tabContextMenuTop} left={tabContextMenuLeft}>
+	{#each Project.get().datasets as dataset}
+		{@const disabled = dataset.name === currentTab().dataset?.name}
+		<button onmousedown={changeDataset(dataset)} {disabled}>
+			<dataset.icon stroke={disabled ? "#6c7086" : "#cdd6f4"} style="width: 0.9rem; height: 0.9rem;" />
+			<span>{dataset.name}</span>
+		</button>
+	{/each}
+	<hr />
+	{#if currentTab().dataset}
+		{#each Object.entries(views) as [name, info]}
+			<button disabled={view === name} onmousedown={setView(name as View)}>
+				<info.icon stroke={view === name ? "#6c7086" : "#cdd6f4"} style="width: 1rem; height: 1rem;" />
+				<span>View as {name}</span>
+			</button>
+		{/each}
+		<hr />
+	{/if}
 	<button>
 		<RenameIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
 		<span>Rename tab</span>

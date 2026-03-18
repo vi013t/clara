@@ -1,36 +1,69 @@
 <script lang="ts">
-	import type { ManualDataset } from "../../api/data/dataset";
+	import { DataEntry, type ManualDataset } from "../../api/data/dataset";
 	import { valueTypeIcon } from "../../api/views";
 	import GearIcon from "../icons/GearIcon.svelte";
 	import PlusIcon from "../icons/PlusIcon.svelte";
+	import TrashIcon from "../icons/TrashIcon.svelte";
+	import Input from "../input/Input.svelte";
 
-	let { dataset }: { dataset: ManualDataset } = $props();
+	let { dataset, openEditor }: { dataset: ManualDataset; openEditor: (value: string) => void } = $props();
 
-	let rows = $derived(dataset.data.dfsLeaves());
+	let updateCounter = $state(0);
 
-	// function onkeypress(event: KeyboardEvent) {
-	//     if (event.key === "Enter") {
-	//         (event.target as HTMLElement).blur();
-	//     }
-	// }
+	let rows = $derived.by(() => {
+		updateCounter;
+		return dataset.data.dfsLeaves();
+	});
+
+	function addRow() {
+		dataset.data.addChild(DataEntry.node("Unnamed Entry"));
+		updateCounter++;
+	}
+
+	function remove(id: number) {
+		return function () {
+			dataset.data.filter(entry => entry.id !== id);
+			updateCounter++;
+		};
+	}
 </script>
 
 <div class="columns">
-	{#each dataset.fields as field}
+	<div class="column">
+		<div style:width="100%" class="control cell">
+			<button style:opacity="0%" disabled>
+				<TrashIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+			</button>
+		</div>
+
+		{#each rows as row}
+			<div class="control cell">
+				<button onmousedown={remove(row.id)}>
+					<TrashIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+				</button>
+			</div>
+		{/each}
+	</div>
+	{#each dataset.fields as field, index}
 		{@const Icon = valueTypeIcon(field.type)}
 		<div class="column">
 			<div class="cell">
 				<Icon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
 				{field.name}
 				<button>
-					<GearIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+					<GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 				</button>
 			</div>
 			{#each rows as row}
 				<div class="cell">
-					<textarea bind:value={() => `${row.get(field.name) ?? ""}`, value => row.set(field.name, value)}></textarea>
+					<Input {openEditor} type={field.type} bind:value={() => row.get(field.name), value => row.set(field.name, value!)} />
 				</div>
 			{/each}
+			{#if index === 0}
+				<button onmousedown={addRow}>
+					<PlusIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+				</button>
+			{/if}
 		</div>
 	{/each}
 	<div class="column">
@@ -45,15 +78,35 @@
 <style>
 	.columns {
 		display: flex;
+		position: relative;
 	}
 
 	.column {
 		display: flex;
 		flex-direction: column;
+
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-right: auto;
+			margin-top: 0.25rem;
+			padding: 0.25rem;
+			border-radius: 0.25rem;
+			--stroke: #cdd6f4;
+
+			&:hover {
+				background-color: #b4befe;
+				--stroke: #181825;
+			}
+		}
+
+		&:first-child .cell {
+			background-color: #181825;
+		}
 	}
 
 	.cell {
-		color: #cdd6f4;
 		width: 10rem;
 		height: 2.5rem;
 		display: flex;
@@ -64,38 +117,21 @@
 		border-bottom: 1px solid #45475a;
 		font-size: 0.85rem;
 		gap: 0.5rem;
+		color: #a6adc8;
 
-		&:has(textarea:only-child) {
-			padding-left: 0.5rem;
-			padding-right: 0.5rem;
+		&:first-child {
+			background-color: #181825;
+			color: #cdd6f4;
 		}
 
-		textarea:only-child {
-			resize: none;
-			width: 100%;
-			color: #cdd6f4;
-			height: 70%;
-			border-radius: 0.25rem;
-			padding: 0.25rem;
-
-			&:hover {
-				background-color: rgba(200, 200, 255, 10%);
-			}
+		&.control {
+			width: fit-content;
+			gap: 0.25rem;
 		}
 
 		button {
-			display: flex;
-			align-items: center;
 			margin-left: auto;
-			justify-content: center;
-			padding: 0.25rem;
-			border-radius: 0.25rem;
-			--stroke: #cdd6f4;
-
-			&:hover {
-				background-color: #b4befe;
-				--stroke: #181825;
-			}
+			margin-right: 0rem;
 		}
 	}
 </style>

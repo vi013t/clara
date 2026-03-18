@@ -4,7 +4,7 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
-        .invoke_handler(tauri::generate_handler![new_project, read_project])
+        .invoke_handler(tauri::generate_handler![new_project, read_project, get_fonts])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
@@ -61,8 +61,20 @@ async fn new_project(location: String, name: String, framework: String) -> Resul
     Ok(())
 }
 
-type DataRow = std::collections::HashMap<String, serde_json::Value>;
+#[tauri::command]
+async fn get_fonts() -> Vec<String> {
+    let mut fonts = font_enumeration::Collection::new()
+        .unwrap()
+        .all()
+        .map(|font| font.family_name.clone())
+        .collect::<Vec<String>>();
+    fonts.sort();
+    fonts.dedup();
+    fonts
+}
 
+
+type DataRow = std::collections::HashMap<String, serde_json::Value>;
 
 #[derive(serde::Serialize, serde::Deserialize)]
 #[serde(rename_all = "camelCase")]

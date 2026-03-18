@@ -1,10 +1,25 @@
 import type { Icon } from "../components";
 import { getIconByName, getIconName } from "../icons.svelte";
+import type { Length, Measurement, Weight } from "./measurement";
 import { TreeNode } from "./tree";
 
-export type Value = number | string;
-export type ValueType = "number" | "short text" | "long text";
+export type ValueType = "number" | "short text" | "long text" | "length" | "weight";
+type InputTypes = {
+	number: number;
+	"short text": string;
+	"long text": string;
+	length: Measurement<Length>;
+	weight: Measurement<Weight>;
+};
+
+export type FieldWithValue = { [Type in keyof InputTypes]: { type: Type; value: InputTypes[Type] } }[keyof InputTypes];
+export type FieldWithNullableValue = {
+	[Type in keyof InputTypes]: { type: Type; value: InputTypes[Type] | null };
+}[keyof InputTypes];
+
 export type Field = { name: string; type: ValueType };
+
+export type Value = InputTypes[keyof InputTypes];
 export type DataValue<Name> = Name extends "id" ? number : Name extends "Name" ? string : Value;
 type DatasetKind = "manual" | "generated";
 
@@ -40,7 +55,12 @@ export class DataEntry {
 		delete this.data[key];
 	}
 
-	public static node(name: string, children: TreeNode<DataEntry>[] = [], isLeaf = false): TreeNode<DataEntry> {
+	public static node(
+		name: string,
+		children: TreeNode<DataEntry>[] = [],
+		isLeaf: boolean | undefined = undefined,
+	): TreeNode<DataEntry> {
+		if (isLeaf === undefined) isLeaf = children.length === 0;
 		return new TreeNode(new DataEntry(name), children, !isLeaf);
 	}
 }

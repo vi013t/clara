@@ -9,6 +9,7 @@
 	import TrashIcon from "../icons/TrashIcon.svelte";
 	import RenameIcon from "../icons/RenameIcon.svelte";
 	import type { DataEntry } from "../../api/data/dataset";
+	import type { TreeNode } from "../../api/data/tree";
 
 	let {
 		tree,
@@ -58,7 +59,7 @@
 
 {#if !hideRoot || subtree}
 	<button class="node" onmousedown={toggle} oncontextmenu={rightClick}>
-		{#if tree.isGroup}
+		{#if tree.isBranch}
 			<PackageIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 		{:else}
 			<LeafIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
@@ -70,7 +71,7 @@
 			onkeypress={onNameKeypress}
 			spellcheck="false"
 		></span>
-		{#if tree.isGroup}
+		{#if tree.isBranch}
 			<ArrowIcon
 				stroke="var(--arrow)"
 				style="width: 1rem; transition: rotate 0.1s; height: 1rem; rotate: {expanded ? '180deg' : '90deg'};"
@@ -80,7 +81,11 @@
 {/if}
 
 {#if tree.children.length !== 0}
-	<ul class={{ expanded }} style:border-left={hideRoot ? "none" : "1px solid #45475a"}>
+	<ul
+		class={{ expanded }}
+		style:border-left={hideRoot ? "none" : "1px solid #45475a"}
+		style:margin-top={subtree ? "0px" : "0.5rem"}
+	>
 		{#each tree.children as child (child.data.id)}
 			<li><TreeView tree={child} {LeafIcon} subtree {rightClick} /></li>
 		{/each}

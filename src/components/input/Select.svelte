@@ -18,16 +18,20 @@
 		additionalButtonText,
 		additionalButtonClick,
 		isError,
+		emptyText = "None Selected",
+		noarrow = false,
 		...rest
 	}: {
 		value?: SelectOption;
 		width?: string;
 		height?: string;
 		itemOverride?: string;
+		emptyText?: string;
 		onSelect?: (value: string) => void;
 		options: SelectOption[];
 		title?: string;
 		children?: () => any;
+		noarrow?: boolean;
 		locked?: boolean;
 		additionalButtonText?: string;
 		additionalButtonClick?: (event: MouseEvent) => void;
@@ -88,14 +92,16 @@
 					{value}
 				{/if}
 			{:else}
-				None Selected
+				{emptyText}
 			{/if}
-			<RightArrow
-				stroke="#b4befe"
-				style="width: 1rem; height: 1rem; margin-left: auto; transform: rotate({optionsVisible
-					? '180deg'
-					: '90deg'}); transition: transform 0.1s;"
-			/>
+			{#if !noarrow}
+				<RightArrow
+					stroke="#b4befe"
+					style="width: 1rem; height: 1rem; margin-left: auto; transform: rotate({optionsVisible
+						? '180deg'
+						: '90deg'}); transition: transform 0.1s;"
+				/>
+			{/if}
 		</button>
 	{/if}
 

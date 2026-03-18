@@ -5,13 +5,17 @@ import type { Icon } from "./components";
 import ParagraphIcon from "../components/icons/ParagraphIcon.svelte";
 import NumberSignIcon from "../components/icons/NumberSignIcon.svelte";
 import TextIcon from "../components/icons/TextIcon.svelte";
-import { Dataset, type ValueType } from "./data/dataset";
+import { type ValueType } from "./data/dataset";
+import RulerIcon from "../components/icons/RulerIcon.svelte";
+import WeightScaleIcon from "../components/icons/WeightScaleIcon.svelte";
 
 export function valueTypeIcon(type: ValueType): Icon {
 	return {
 		number: NumberSignIcon,
 		"long text": ParagraphIcon,
 		"short text": TextIcon,
+		length: RulerIcon,
+		weight: WeightScaleIcon,
 	}[type];
 }
 

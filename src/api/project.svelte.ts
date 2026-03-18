@@ -96,8 +96,15 @@ export const frameworks = {
 					name: "Characters",
 					icon: PersonIcon,
 					description: "The characters of this story.",
-					data: DataEntry.node("Characters"),
-					fields: [{ name: "Name", type: "short text" }],
+					data: DataEntry.node("Characters", [], false),
+					fields: [
+						{ name: "Name", type: "short text" },
+						{ name: "Gender", type: "short text" },
+						{ name: "Sexuality", type: "short text" },
+						{ name: "Height", type: "length" },
+						{ name: "Weight", type: "weight" },
+						{ name: "Partner", type: "short text" },
+					],
 				}),
 				Dataset.create({
 					name: "Locations",

@@ -1,8 +1,8 @@
 <script lang="ts">
-	let { value = $bindable(), openEditor }: { value: string | null; openEditor: (value: string) => void } = $props();
+	let { openEditor }: { openEditor: () => void } = $props();
 </script>
 
-<button onmousedown={() => openEditor(value ?? "")}>Open in Editor</button>
+<button onmousedown={openEditor}>Open in Editor</button>
 
 <style>
 	button {

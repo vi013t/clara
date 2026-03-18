@@ -9,7 +9,7 @@
 	<div>
 		<Pane width="600" height="1080px" background="#181825" split="horizontal">
 			<Pane subpane width="1200px" split="horizontal" editor>
-				<Pane subpane />
+				<Pane subpane editor />
 			</Pane>
 		</Pane>
 		<StatusBar />

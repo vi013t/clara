@@ -5,9 +5,9 @@
 	import SpreadsheetView from "../views/SpreadsheetView.svelte";
 	import { type Snippet } from "svelte";
 	import Tabline from "./Tabline.svelte";
-	import type { Dataset } from "../../api/data/dataset";
+	import { DataEntry, type Dataset } from "../../api/data/dataset";
 	import { Project } from "../../api/project.svelte";
-	import Editor from "../panels/Editor.svelte";
+	import Editor, { type StyledText } from "../panels/Editor.svelte";
 
 	let {
 		width = "500px",
@@ -34,7 +34,7 @@
 	let dragging = $state("none");
 
 	let datasets: Dataset[] = $state(dataset ? [dataset] : editor ? [] : [Project.get().datasets[0]]);
-	export type Tab = { id: number; dataset: Dataset | null; component: TreeView };
+	export type Tab = { id: number; dataset: Dataset | null; component: TreeView; editorContent?: [DataEntry, string] };
 	let tabID = $state(0);
 	let tabs: Tab[] = $state(
 		editor
@@ -66,11 +66,8 @@
 	}
 	let isMasterPaneAlive = $state(true);
 
-	let editorContent = $state("");
-
-	function openEditor(value: string) {
-		editorContent = value;
-		tabs.push({ id: tabID++, dataset: null, component: null! });
+	function openEditor(entryID: number, fieldName: string) {
+		tabs.push({ id: tabID++, dataset: null, component: null!, editorContent: [DataEntry.fromID(entryID)!, fieldName] });
 		selectedTabID = tabID - 1;
 	}
 </script>
@@ -89,22 +86,30 @@
 		style:height={split === "vertical" ? masterHeight : "100%"}
 		style:width={split === "horizontal" ? masterWidth : "100%"}
 	>
-		<Tabline
-			{openEditor}
-			bind:isMasterPaneAlive
-			bind:tabID
-			bind:selectedTabID
-			bind:view
-			{background}
-			{split}
-			{subpane}
-			{onclose}
-			{tabs}
-		/>
+		<Tabline bind:isMasterPaneAlive bind:tabID bind:selectedTabID bind:view bind:tabs {background} {split} {subpane} {onclose} />
 		<div class="content" style:background>
 			{#each tabs as tab, index (tab.id)}
 				{#if !tab.dataset && tab.id === selectedTabID}
-					<Editor value={editorContent} />
+					<!-- Editing a field -->
+					{#if tab.editorContent}
+						<Editor
+							bind:doc={
+								() =>
+									(tab.editorContent![0].get(tab.editorContent![1]) as StyledText[] | null) ?? [
+										{ text: "", style: { bold: false, italic: false } },
+									],
+								content =>
+									tab.editorContent![0].set(
+										tab.editorContent![1],
+										content ?? [{ text: "", style: { bold: false, italic: false } }],
+									)
+							}
+						/>
+
+						<!-- Scratchpad -->
+					{:else}
+						<Editor />
+					{/if}
 				{:else if tab.dataset?.isManual()}
 					<div style="display: {tab.id === selectedTabID ? 'block' : 'none'}">
 						{#if view === "hierarchy"}

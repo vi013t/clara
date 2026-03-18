@@ -6,7 +6,10 @@
 	import TrashIcon from "../icons/TrashIcon.svelte";
 	import Input from "../input/Input.svelte";
 
-	let { dataset, openEditor }: { dataset: ManualDataset; openEditor: (value: string) => void } = $props();
+	let {
+		dataset = $bindable(),
+		openEditor,
+	}: { dataset: ManualDataset; openEditor: (entryID: number, fieldName: string) => void } = $props();
 
 	let updateCounter = $state(0);
 
@@ -56,7 +59,11 @@
 			</div>
 			{#each rows as row}
 				<div class="cell">
-					<Input {openEditor} type={field.type} bind:value={() => row.get(field.name), value => row.set(field.name, value!)} />
+					<Input
+						openEditor={() => openEditor(row.id, field.name)}
+						type={field.type}
+						bind:value={() => row.get(field.name), value => row.set(field.name, value!)}
+					/>
 				</div>
 			{/each}
 			{#if index === 0}

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	import { onMount, untrack } from "svelte";
 	import BookIcon from "../icons/BookIcon.svelte";
 	import Select from "../input/Select.svelte";
 	import { getFonts } from "../../api/system.svelte";
@@ -10,25 +10,39 @@
 	import UnderlineIcon from "../icons/UnderlineIcon.svelte";
 	import LineSpacingIcon from "../icons/LineSpacingIcon.svelte";
 	import UndoIcon from "../icons/UndoIcon.svelte";
-	import PageIcon from "../icons/PageIcon.svelte";
 	import SunIcon from "../icons/SunIcon.svelte";
 	import MoonIcon from "../icons/MoonIcon.svelte";
 	import SaveIcon from "../icons/SaveIcon.svelte";
 
 	let {
 		title,
-		value = "",
+		doc = $bindable(),
 	}: {
 		title?: string;
-		value?: string;
+		doc?: StyledText[];
 	} = $props();
+
+	let internalDocument = $state(doc ?? [{ text: "", style: { bold: false, italic: false } }]);
+	if (internalDocument.length === 0) {
+		internalDocument = [{ text: "", style: { bold: false, italic: false } }];
+	}
+
+	$effect(() => {
+		doc = internalDocument;
+	});
+
+	$effect(() => {
+		if (doc !== undefined && doc !== internalDocument) {
+			internalDocument = doc;
+		}
+	});
 
 	type Style = {
 		bold: boolean;
 		italic: boolean;
 	};
 
-	type Part = {
+	export type StyledText = {
 		text: string;
 		style: Style;
 	};
@@ -45,7 +59,7 @@
 		return BookIcon;
 	}
 
-	function partToHTML(part: Part, index: number, addCursor: boolean = false): HTMLElement {
+	function partToHTML(part: StyledText, index: number, addCursor: boolean = false): HTMLElement {
 		let element = document.createElement("pre");
 		element.setAttribute("data-part-index", `${index}`);
 		element.addEventListener("mousedown", event => onPartClick(element, event));
@@ -69,8 +83,8 @@
 		return element;
 	}
 
-	let internalDocument: Part[] = $state([{ text: value, style: { bold: false, italic: false } }]);
 	let currentPartIndex = $state(0);
+	// svelte-ignore state_referenced_locally
 	let cursorPosition = $state(internalDocument[currentPartIndex].text.length);
 	let childElements = $derived(internalDocument.map((part, index) => partToHTML(part, index)));
 
@@ -79,7 +93,10 @@
 		for (let element of childElements) {
 			editor.appendChild(element);
 		}
-		editor.focus();
+
+		// untrack(() => {
+		// 	editor.focus();
+		// });
 	});
 
 	let cursorContentHTML = $derived.by(() => {
@@ -96,7 +113,7 @@
 	let editor: HTMLElement;
 	let cursorContent: HTMLElement;
 
-	function currentPart(): Part {
+	function currentPart(): StyledText {
 		return internalDocument[currentPartIndex];
 	}
 
@@ -198,7 +215,7 @@
 		internalDocument = internalDocument.filter((part, index) => part.text !== "" || index === 0);
 
 		// Merge adjacent parts with equivalent styles
-		let newDocument: Part[] = [];
+		let newDocument: StyledText[] = [];
 		let removedAmount = 0;
 		for (let index = 0; index < internalDocument.length - 1; index += 2) {
 			let first = internalDocument[index];
@@ -224,7 +241,7 @@
 
 		// End
 		if (currentPartIndex === internalDocument.length - 1 && cursorPosition === currentPart().text.length) {
-			const part: Part = {
+			const part: StyledText = {
 				text: "",
 				style,
 			};
@@ -235,7 +252,7 @@
 
 		// Beginning
 		else if (currentPartIndex === 0 && cursorPosition === 0) {
-			const part: Part = {
+			const part: StyledText = {
 				text: "",
 				style,
 			};
@@ -243,11 +260,11 @@
 			currentPartIndex = 0;
 			cursorPosition = 0;
 		} else {
-			let currentPartAfter: Part = {
+			let currentPartAfter: StyledText = {
 				text: currentPart().text.substring(cursorPosition),
 				style: structuredClone($state.snapshot(currentPart().style)),
 			};
-			let newPart: Part = {
+			let newPart: StyledText = {
 				text: "",
 				style,
 			};
@@ -300,7 +317,7 @@
 	let fontSize = $state("16");
 	let viewMode: "light" | "dark" = $state("dark");
 
-	$inspect(fontSize);
+	function save() {}
 </script>
 
 <svelte:document onkeydown={onDocumentKeydown} />
@@ -365,6 +382,8 @@
 		</div>
 	</div>
 	<div class="content">
+		<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div
 			class="editor"
 			bind:this={editor}
@@ -411,6 +430,10 @@
 		border-left: 1px solid #313244;
 		padding-right: 0.75rem;
 		padding-left: 1.1rem;
+
+		&:first-child {
+			border: none;
+		}
 
 		button {
 			padding: 0.25rem;

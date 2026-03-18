@@ -4,7 +4,6 @@
 	import ContextMenu from "../menus/ContextMenu.svelte";
 	import CircledPlusIcon from "../icons/CircledPlusIcon.svelte";
 	import CloseIcon from "../icons/CloseIcon.svelte";
-	import FilterIcon from "../icons/FilterIcon.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
 	import PlusIcon from "../icons/PlusIcon.svelte";
 	import SplitHorizontalIcon from "../icons/SplitHorizontalIcon.svelte";
@@ -16,7 +15,7 @@
 	import PencilIcon from "../icons/PencilIcon.svelte";
 
 	let {
-		tabs,
+		tabs = $bindable(),
 		background,
 		subpane,
 		split,
@@ -25,7 +24,6 @@
 		selectedTabID = $bindable(),
 		tabID = $bindable(),
 		view = $bindable(),
-		openEditor,
 	}: {
 		tabs: Tab[];
 		background: string;
@@ -36,7 +34,6 @@
 		selectedTabID: number;
 		tabID: number;
 		view: View;
-		openEditor: (value: string) => void;
 	} = $props();
 
 	let tabContextMenu: ContextMenu = $state(null!);
@@ -58,6 +55,16 @@
 			tabs.push({ dataset, component: null!, id: tabID++ });
 			selectedTabID = tabID - 1;
 		};
+	}
+
+	function createEditorTab() {
+		newTabContextMenu.close();
+		tabs.push({
+			dataset: null,
+			component: null!,
+			id: tabID++,
+		});
+		selectedTabID = tabID - 1;
 	}
 
 	function tabExists(id: number) {
@@ -171,12 +178,7 @@
 			<PlusIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 		</button>
 		<ContextMenu bind:this={newTabContextMenu} top="100%" left="0px">
-			<button
-				onmousedown={() => {
-					openEditor("");
-					newTabContextMenu.close();
-				}}
-			>
+			<button onmousedown={createEditorTab}>
 				<BookIcon stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
 				<span>Editor</span>
 			</button>
@@ -212,11 +214,6 @@
 			</button>
 		{/if}
 		<ContextMenu bind:this={paneSettingsMenu} top="100%" left="0px">
-			<button onclick={splitHorizontal}>
-				<FilterIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
-				<span>Filter</span>
-			</button>
-			<hr />
 			<button onclick={splitHorizontal}>
 				<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
 				<span>Split horizontally</span>

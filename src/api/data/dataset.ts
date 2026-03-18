@@ -1,3 +1,4 @@
+import type { StyledText } from "../../components/panels/Editor.svelte";
 import type { Icon } from "../components";
 import { getIconByName, getIconName } from "../icons.svelte";
 import type { Length, Measurement, Weight } from "./measurement";
@@ -7,7 +8,7 @@ export type ValueType = "number" | "short text" | "long text" | "length" | "weig
 type InputTypes = {
 	number: number;
 	"short text": string;
-	"long text": string;
+	"long text": StyledText[];
 	length: Measurement<Length>;
 	weight: Measurement<Weight>;
 };
@@ -26,6 +27,7 @@ type DatasetKind = "manual" | "generated";
 export class DataEntry {
 	private data: { id: number; Name: string } & { [key: string]: Value };
 	private static nextDataID = 0;
+	private static entries: { [key: number]: DataEntry } = {};
 
 	public constructor(name: string, values: { [key: string]: Value } = {}) {
 		this.data = {
@@ -33,6 +35,11 @@ export class DataEntry {
 			Name: name,
 			id: DataEntry.nextDataID++,
 		};
+		DataEntry.entries[this.id] = this;
+	}
+
+	public static fromID(id: number): DataEntry | null {
+		return DataEntry.entries[id] ?? null;
 	}
 
 	public get name(): string {

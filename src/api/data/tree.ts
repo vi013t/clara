@@ -37,6 +37,16 @@ export class TreeNode<T> {
 		node.parent = this;
 	}
 
+	public find(predicate: (data: T) => boolean): T | null {
+		if (predicate(this.data)) return this.data;
+		for (let child of this.children) {
+			let found = child.find(predicate);
+			if (found) return found;
+		}
+
+		return null;
+	}
+
 	public filter(predicate: (data: T) => boolean): void {
 		this.children_ = this.children.filter(child => predicate(child.data));
 	}

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { dfs, bfs, type Node } from "../../api/graph";
+	import { dfs, bfs, type Node } from "../../api/data/structure/graph.svelte";
 
 	let { graph }: { graph: Node } = $props();
 
@@ -31,12 +31,13 @@
 
 <section>
 	{#each nodes as node}
+		<!-- svelte-ignore a11y_consider_explicit_label -->
 		<button
 			style:--node-color={node.color}
 			class="node"
 			style:left="{node.position[0] + innerWidth / 2}px"
 			style:top="{node.position[1] + innerHeight / 2}px"
-			style:--text=""{node.text}""
+			style:--text="'{node.text}'"
 		></button>
 	{/each}
 	<svg bind:this={edges}></svg>

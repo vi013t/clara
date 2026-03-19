@@ -1,8 +1,8 @@
 <script lang="ts">
 	import RightArrow from "../icons/ArrowIcon.svelte";
-	import type { Icon } from "../../api/components";
+	import type { IconComponent } from "../../api/ui/icons.svelte";
 
-	export type ComplexOption = { name: string; icon?: Icon; color?: string; style?: string };
+	export type ComplexOption = { name: string; icon?: IconComponent; color?: string; style?: string };
 	export type SelectOption = string | ComplexOption;
 
 	let {
@@ -72,7 +72,7 @@
 	{#if children}
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<div onclick={onSelectClick} class="header" style:display="contents">
+		<div onmousedown={onSelectClick} class="header" style:display="contents">
 			{@render children()}
 		</div>
 	{:else}
@@ -182,6 +182,8 @@
 		transition:
 			max-height 0.1s,
 			opacity 0.1s step-end;
+		padding: 0.25rem;
+		gap: 0.25rem;
 
 		&.visible {
 			max-height: 10rem;
@@ -192,7 +194,7 @@
 		}
 
 		> * {
-			padding: 0.5rem;
+			padding: 0.25rem;
 			padding-left: 0.5rem;
 			color: #a6adc8;
 			background: #11111b;
@@ -202,9 +204,10 @@
 			gap: 0.5rem;
 			font-size: 0.85rem;
 			user-select: none;
+			border-radius: 0.25rem;
 
 			&:hover {
-				background-color: #1e1e2e;
+				background-color: #252634;
 			}
 		}
 	}

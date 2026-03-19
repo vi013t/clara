@@ -1,10 +1,14 @@
 <script lang="ts">
-	import { DataEntry, type ManualDataset } from "../../api/data/dataset";
-	import { valueTypeIcon } from "../../api/views";
+	import { DataEntry, type ManualDataset } from "../../api/data/dataset.svelte";
+	import { Attribute } from "../../api/data/attribute.svelte";
+	import CloseIcon from "../icons/CloseIcon.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
 	import PlusIcon from "../icons/PlusIcon.svelte";
+	import RenameIcon from "../icons/RenameIcon.svelte";
 	import TrashIcon from "../icons/TrashIcon.svelte";
 	import Input from "../input/Input.svelte";
+	import ContextMenu from "../menus/ContextMenu.svelte";
+	import FieldPropertiesPopup from "../popups/FieldPropertiesPopup.svelte";
 
 	let {
 		dataset = $bindable(),
@@ -12,22 +16,37 @@
 	}: { dataset: ManualDataset; openEditor: (entryID: number, fieldName: string) => void } = $props();
 
 	let updateCounter = $state(0);
+	let updateAttributes = $state(0);
 
 	let rows = $derived.by(() => {
 		updateCounter;
-		return dataset.data.dfsLeaves();
+		return dataset.data.ref().dfsLeaves();
 	});
 
 	function addRow() {
-		dataset.data.addChild(DataEntry.node("Unnamed Entry"));
+		dataset.data.ref().addChild(DataEntry.node(""));
 		updateCounter++;
+	}
+
+	function addColumn() {
+		dataset.fields.ref().push(new Attribute("Attribute", "Short text"));
+		updateAttributes++;
 	}
 
 	function remove(id: number) {
 		return function () {
-			dataset.data.filter(entry => entry.id !== id);
+			dataset.data.ref().filter(entry => entry.id !== id);
 			updateCounter++;
 		};
+	}
+
+	let fieldSettings: ContextMenu;
+	let fieldPropertiesPopup: FieldPropertiesPopup;
+	let editingAttribute: Attribute | null = $state(null);
+
+	function editAttribute(event: MouseEvent, field: Attribute) {
+		editingAttribute = field;
+		fieldSettings.openAtMouse(event);
 	}
 </script>
 
@@ -46,41 +65,70 @@
 				</button>
 			</div>
 		{/each}
-	</div>
-	{#each dataset.fields as field, index}
-		{@const Icon = valueTypeIcon(field.type)}
-		<div class="column">
-			<div class="cell">
-				<Icon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
-				{field.name}
-				<button>
-					<GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				</button>
-			</div>
-			{#each rows as row}
-				<div class="cell">
-					<Input
-						openEditor={() => openEditor(row.id, field.name)}
-						type={field.type}
-						bind:value={() => row.get(field.name), value => row.set(field.name, value!)}
-					/>
-				</div>
-			{/each}
-			{#if index === 0}
-				<button onmousedown={addRow}>
-					<PlusIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				</button>
-			{/if}
-		</div>
-	{/each}
-	<div class="column">
-		<div class="cell" style:width="fit-content" style:border="none">
-			<button>
-				<PlusIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+		<div class="new control cell">
+			<button onmousedown={addRow}>
+				<PlusIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
 			</button>
 		</div>
 	</div>
+	{#key updateAttributes}
+		{#each dataset.fields.ref() as field, index}
+			<div class="column">
+				<!-- svelte-ignore a11y_no_static_element_interactions -->
+				<div class="cell" oncontextmenu={event => fieldSettings.openAtMouse(event)}>
+					<field.icon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+					{field.name}
+					<button style="width: fit-content; margin-right: 0px;" onmousedown={event => editAttribute(event, field)}>
+						<GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+					</button>
+				</div>
+				{#each rows as row}
+					<div class="cell">
+						<Input
+							openEditor={() => openEditor(row.id, field.name)}
+							type={field.type}
+							bind:value={() => row.get(field.name), value => row.set(field.name, value!)}
+						/>
+					</div>
+				{/each}
+				<div class="new cell"></div>
+			</div>
+		{/each}
+	{/key}
+	<div class="column">
+		<button class="new header cell" onmousedown={addColumn}>
+			<PlusIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+			New
+		</button>
+		{#each rows}
+			<div class="new cell"></div>
+		{/each}
+		<div class="new cell"></div>
+	</div>
 </div>
+
+<ContextMenu bind:this={fieldSettings}>
+	<button>
+		<RenameIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+		Rename
+	</button>
+	<button
+		onmousedown={() => {
+			fieldPropertiesPopup.open();
+			fieldSettings.close();
+		}}
+	>
+		<GearIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+		Properties
+	</button>
+	<hr />
+	<button style:color="#f38ba8">
+		<CloseIcon stroke="#f38ba8" style="width: 1rem; height: 1rem;" />
+		Delete attribute
+	</button>
+</ContextMenu>
+
+<FieldPropertiesPopup bind:attribute={editingAttribute!} bind:this={fieldPropertiesPopup} />
 
 <style>
 	.columns {
@@ -88,11 +136,20 @@
 		position: relative;
 	}
 
+	.new.control.cell,
+	.new.header.cell {
+		background-color: #1e1e2e;
+	}
+
+	.new.cell {
+		background-color: #313244;
+	}
+
 	.column {
 		display: flex;
 		flex-direction: column;
 
-		button {
+		button:not(.new) {
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -108,7 +165,7 @@
 			}
 		}
 
-		&:first-child .cell {
+		&:first-child .cell:not(.new) {
 			background-color: #181825;
 		}
 	}
@@ -126,7 +183,7 @@
 		gap: 0.5rem;
 		color: #a6adc8;
 
-		&:first-child {
+		&:first-child:not(.new) {
 			background-color: #181825;
 			color: #cdd6f4;
 		}

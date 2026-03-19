@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { IconProps } from "../../api/components";
+	import type { IconProps } from "../../api/ui/icons.svelte";
 
 	let { stroke, ...attributes }: IconProps = $props();
 </script>
@@ -29,9 +29,24 @@
 			{stroke}
 			stroke-width="1.5"
 		></path>
-		<path d="M22.0004 15.4688C21.5165 15.1562 19.4197 14.375 18.6133 14.375" {stroke} stroke-width="1.5" stroke-linecap="round"></path>
-		<path d="M20.3871 17.9688C19.9033 17.6562 18.7742 16.875 17.9678 16.875" {stroke} stroke-width="1.5" stroke-linecap="round"></path>
+		<path
+			d="M22.0004 15.4688C21.5165 15.1562 19.4197 14.375 18.6133 14.375"
+			{stroke}
+			stroke-width="1.5"
+			stroke-linecap="round"
+		></path>
+		<path
+			d="M20.3871 17.9688C19.9033 17.6562 18.7742 16.875 17.9678 16.875"
+			{stroke}
+			stroke-width="1.5"
+			stroke-linecap="round"
+		></path>
 		<path d="M2 15.4688C2.48387 15.1562 4.58065 14.375 5.3871 14.375" {stroke} stroke-width="1.5" stroke-linecap="round"></path>
-		<path d="M3.61279 17.9688C4.09667 17.6562 5.2257 16.875 6.03215 16.875" {stroke} stroke-width="1.5" stroke-linecap="round"></path>
+		<path
+			d="M3.61279 17.9688C4.09667 17.6562 5.2257 16.875 6.03215 16.875"
+			{stroke}
+			stroke-width="1.5"
+			stroke-linecap="round"
+		></path>
 	</g>
 </svg>

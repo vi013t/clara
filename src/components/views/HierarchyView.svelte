@@ -1,32 +1,33 @@
 <script lang="ts">
-	import type { Icon } from "../../api/components";
+	import type { IconComponent } from "../../api/ui/icons.svelte";
 	import ContextMenu from "../menus/ContextMenu.svelte";
 	import ArrowIcon from "../icons/ArrowIcon.svelte";
 	import PackageIcon from "../icons/PackageIcon.svelte";
-	import TreeView from "./HierarchyView.svelte";
+	import HierarchyView from "./HierarchyView.svelte";
 	import CircledPlusIcon from "../icons/CircledPlusIcon.svelte";
-	import TreeIcon from "../icons/TreeIcon.svelte";
 	import TrashIcon from "../icons/TrashIcon.svelte";
 	import RenameIcon from "../icons/RenameIcon.svelte";
-	import type { DataEntry } from "../../api/data/dataset";
-	import type { TreeNode } from "../../api/data/tree";
+	import type { DataEntry } from "../../api/data/dataset.svelte";
+	import type { TreeNode } from "../../api/data/structure/tree.svelte";
 
 	let {
 		tree,
 		LeafIcon,
 		hideRoot = false,
 		subtree = false,
+		demo = false,
 		rightClick = onRightClick,
 	}: {
 		tree: TreeNode<DataEntry>;
-		LeafIcon: Icon;
+		LeafIcon: IconComponent;
 		hideRoot?: boolean;
 		subtree?: boolean;
+		demo?: boolean;
 		rightClick?: (event: MouseEvent) => void;
 	} = $props();
 
 	// svelte-ignore state_referenced_locally
-	let expanded = $state(hideRoot);
+	let expanded = $state(hideRoot || demo);
 
 	function toggle(event: MouseEvent) {
 		if (event.button !== 0) return;
@@ -47,52 +48,53 @@
 	let menuTop: string = $state("");
 	let menuLeft: string = $state("");
 	let rightClickMenu: ContextMenu | null = $state(null);
+	let nodeElement: HTMLElement;
 
 	function onRightClick(event: MouseEvent) {
 		event.preventDefault();
-		menuTop = `${event.y}px`;
-		menuLeft = `${event.offsetX + 20}px`;
+		menuTop = `${event.clientY - nodeElement.getBoundingClientRect().top}px`;
+		menuLeft = `${event.clientX - nodeElement.getBoundingClientRect().left}px`;
 		console.log(menuTop, menuLeft);
 		rightClickMenu!.open();
 	}
 </script>
 
-{#if !hideRoot || subtree}
-	<button class="node" onmousedown={toggle} oncontextmenu={rightClick}>
-		{#if tree.isBranch}
-			<PackageIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-		{:else}
-			<LeafIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-		{/if}
-		<span
-			class="node-name"
-			contenteditable
-			bind:textContent={tree.data.name}
-			onkeypress={onNameKeypress}
-			spellcheck="false"
-		></span>
-		{#if tree.isBranch}
-			<ArrowIcon
-				stroke="var(--arrow)"
-				style="width: 1rem; transition: rotate 0.1s; height: 1rem; rotate: {expanded ? '180deg' : '90deg'};"
-			/>
-		{/if}
-	</button>
-{/if}
+<section bind:this={nodeElement}>
+	{#if !hideRoot || subtree}
+		<button class="node" onmousedown={toggle} oncontextmenu={rightClick}>
+			{#if tree.isBranch}
+				<PackageIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+			{:else}
+				<LeafIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+			{/if}
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<span
+				class="node-name"
+				contenteditable
+				bind:textContent={tree.data.name}
+				onkeypress={onNameKeypress}
+				spellcheck="false"
+			></span>
+			{#if tree.isBranch}
+				<ArrowIcon
+					stroke="var(--arrow)"
+					style="width: 1rem; transition: rotate 0.1s; height: 1rem; rotate: {expanded ? '180deg' : '90deg'};"
+				/>
+			{/if}
+		</button>
+	{/if}
 
-{#if tree.children.length !== 0}
-	<ul
-		class={{ expanded }}
-		style:border-left={hideRoot ? "none" : "1px solid #45475a"}
-		style:margin-top={subtree ? "0px" : "0.5rem"}
-	>
-		{#each tree.children as child (child.data.id)}
-			<li><TreeView tree={child} {LeafIcon} subtree {rightClick} /></li>
-		{/each}
-	</ul>
-{/if}
-
-{#if !subtree}
+	{#if tree.ref_children.length !== 0}
+		<ul
+			class={{ expanded }}
+			style:border-left={hideRoot ? "none" : "1px solid #45475a"}
+			style:margin-top={subtree || !expanded ? "0px" : "0.5rem"}
+		>
+			{#each tree.ref_children as child (child.data.id)}
+				<li><HierarchyView {demo} tree={child} {LeafIcon} subtree {rightClick} /></li>
+			{/each}
+		</ul>
+	{/if}
 	<ContextMenu left={menuLeft} top={menuTop} bind:this={rightClickMenu}>
 		<button>
 			<CircledPlusIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
@@ -112,9 +114,15 @@
 			<span style="color: #f38ba8;">Delete</span>
 		</button>
 	</ContextMenu>
-{/if}
+</section>
 
 <style>
+	section {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+	}
+
 	li {
 		padding-left: 1.25rem;
 	}

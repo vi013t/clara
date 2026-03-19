@@ -13,19 +13,18 @@
 	import SunIcon from "../icons/SunIcon.svelte";
 	import MoonIcon from "../icons/MoonIcon.svelte";
 	import SaveIcon from "../icons/SaveIcon.svelte";
+	import { DocumentContent, Style, StyledText } from "../../api/data/attribute.svelte";
+	import type { Container } from "../../api/util/Clone.svelte";
 
 	let {
 		title,
 		doc = $bindable(),
 	}: {
 		title?: string;
-		doc?: StyledText[];
+		doc?: DocumentContent;
 	} = $props();
 
-	let internalDocument = $state(doc ?? [{ text: "", style: { bold: false, italic: false } }]);
-	if (internalDocument.length === 0) {
-		internalDocument = [{ text: "", style: { bold: false, italic: false } }];
-	}
+	let internalDocument = $state(doc ?? new DocumentContent());
 
 	$effect(() => {
 		doc = internalDocument;
@@ -37,20 +36,6 @@
 		}
 	});
 
-	type Style = {
-		bold: boolean;
-		italic: boolean;
-	};
-
-	export type StyledText = {
-		text: string;
-		style: Style;
-	};
-
-	function stylesAreEqual(style1: Style, style2: Style): boolean {
-		return style1.bold === style2.bold && style1.italic === style2.italic;
-	}
-
 	export function getTitle() {
 		return title;
 	}
@@ -59,52 +44,29 @@
 		return BookIcon;
 	}
 
-	function partToHTML(part: StyledText, index: number, addCursor: boolean = false): HTMLElement {
-		let element = document.createElement("pre");
-		element.setAttribute("data-part-index", `${index}`);
-		element.addEventListener("mousedown", event => onPartClick(element, event));
-
-		let html = "";
-		if (part.style.bold) html += "<b>";
-
-		for (let character of part.text) {
-			if (character === "\n") {
-				html += "<br>";
-			} else {
-				html += `<span class="character">${character}</span>`;
-			}
-		}
-
-		if (part.style.bold) html += "</b>";
-
-		if (addCursor) html += "<span class='cursor'>|</span>";
-		element.innerHTML = html;
-
-		return element;
-	}
-
 	let currentPartIndex = $state(0);
 	// svelte-ignore state_referenced_locally
-	let cursorPosition = $state(internalDocument[currentPartIndex].text.length);
-	let childElements = $derived(internalDocument.map((part, index) => partToHTML(part, index)));
+	let cursorPosition = $state(internalDocument.partAtIndex(currentPartIndex).ref().text.length);
+	let childElements = $derived(
+		internalDocument.toHTML().map(element => {
+			element.addEventListener("mousedown", event => onPartClick(element, event));
+			return element;
+		}),
+	);
 
 	$effect(() => {
 		editor.innerHTML = "";
 		for (let element of childElements) {
 			editor.appendChild(element);
 		}
-
-		// untrack(() => {
-		// 	editor.focus();
-		// });
 	});
 
 	let cursorContentHTML = $derived.by(() => {
 		let html = "";
 		internalDocument.some((part, index) => {
-			let partClone = structuredClone($state.snapshot(part));
+			let partClone = part.clone();
 			if (index === currentPartIndex) partClone.text = partClone.text.substring(0, cursorPosition);
-			html += partToHTML(partClone, index, index === internalDocument.length - 1).outerHTML;
+			html += partClone.toHTML(index, index === internalDocument.partCount() - 1).outerHTML;
 			return index === currentPartIndex;
 		});
 		return html;
@@ -113,12 +75,12 @@
 	let editor: HTMLElement;
 	let cursorContent: HTMLElement;
 
-	function currentPart(): StyledText {
-		return internalDocument[currentPartIndex];
+	function currentPart(): Container<StyledText> {
+		return internalDocument.partAtIndex(currentPartIndex);
 	}
 
-	function currentStyle(): Style {
-		return internalDocument[currentPartIndex].style;
+	function currentStyle(): Container<Style> {
+		return internalDocument.partAtIndex(currentPartIndex).ref().style;
 	}
 
 	function moveCursor(amount: number) {
@@ -126,23 +88,24 @@
 
 		while (cursorPosition < 0 && currentPartIndex > 0) {
 			currentPartIndex--;
-			cursorPosition = currentPart().text.length - cursorPosition;
+			cursorPosition = currentPart().ref().text.length - cursorPosition;
 		}
 
-		while (cursorPosition > currentPart().text.length && currentPartIndex < internalDocument.length - 2) {
-			const oldPartLength = currentPart().text.length;
+		while (cursorPosition > currentPart().ref().text.length && currentPartIndex < internalDocument.partCount() - 2) {
+			const oldPartLength = currentPart().ref().text.length;
 			currentPartIndex++;
 			cursorPosition = cursorPosition - oldPartLength;
 		}
 
 		if (currentPartIndex === 0) cursorPosition = Math.max(0, cursorPosition);
-		if (currentPartIndex === internalDocument.length - 1) cursorPosition = Math.min(cursorPosition, currentPart().text.length);
+		if (currentPartIndex === internalDocument.partCount() - 1)
+			cursorPosition = Math.min(cursorPosition, currentPart().ref().text.length);
 	}
 
 	function typeAtCursor(text: string) {
-		let before = currentPart().text.substring(0, cursorPosition);
-		let after = currentPart().text.substring(cursorPosition);
-		internalDocument[currentPartIndex].text = before + text + after;
+		let before = currentPart().ref().text.substring(0, cursorPosition);
+		let after = currentPart().ref().text.substring(cursorPosition);
+		internalDocument.partAtIndex(currentPartIndex).ref().text = before + text + after;
 		cursorPosition += text.length;
 	}
 
@@ -172,9 +135,11 @@
 
 		if (event.key === "Backspace") {
 			if (cursorPosition !== 0 || currentPartIndex !== 0) {
-				let before = currentPart().text.substring(0, cursorPosition - 1);
-				let after = currentPart().text.substring(cursorPosition);
-				internalDocument[currentPartIndex].text = before + after;
+				let before = currentPart()
+					.ref()
+					.text.substring(0, cursorPosition - 1);
+				let after = currentPart().ref().text.substring(cursorPosition);
+				internalDocument.partAtIndex(currentPartIndex).ref().text = before + after;
 				moveCursor(-1);
 			}
 			return;
@@ -206,7 +171,7 @@
 
 	function cleanup() {
 		// Move cursor out of empty part (about to be removed)
-		while (currentPart().text === "" && currentPartIndex > 0) {
+		while (currentPart().ref().text === "" && currentPartIndex > 0) {
 			currentPartIndex--;
 			cursorPosition = 0;
 		}
@@ -215,62 +180,51 @@
 		internalDocument = internalDocument.filter((part, index) => part.text !== "" || index === 0);
 
 		// Merge adjacent parts with equivalent styles
-		let newDocument: StyledText[] = [];
+		let newDocument = new DocumentContent();
 		let removedAmount = 0;
-		for (let index = 0; index < internalDocument.length - 1; index += 2) {
-			let first = internalDocument[index];
-			let second = internalDocument[index + 1];
-			if (stylesAreEqual(first.style, second.style)) {
-				newDocument.push({
-					text: first.text + second.text,
-					style: first.style,
-				});
+		for (let index = 0; index < internalDocument.partCount() - 1; index += 2) {
+			let first = internalDocument.partAtIndex(index).ref();
+			let second = internalDocument.partAtIndex(index + 1).ref();
+			if (first.style.ref().equals(second.style.ref())) {
+				newDocument.addPart(new StyledText(first.text + second.text, first.style.clone()));
 				if (currentPartIndex >= index + 1) {
 					removedAmount++;
 				}
 			} else {
-				newDocument.push(first);
-				newDocument.push(second);
+				newDocument.addPart(first);
+				newDocument.addPart(second);
 			}
 		}
+		internalDocument = newDocument;
 	}
 
 	function toggleBold() {
-		const style = structuredClone($state.snapshot(currentStyle()));
-		style.bold = !style.bold;
+		const style = currentStyle().cloneContainer();
+		style.ref().bold = !style.ref().bold;
 
 		// End
-		if (currentPartIndex === internalDocument.length - 1 && cursorPosition === currentPart().text.length) {
-			const part: StyledText = {
-				text: "",
-				style,
-			};
-			internalDocument.push(part);
-			currentPartIndex = internalDocument.length - 1;
+		if (currentPartIndex === internalDocument.partCount() - 1 && cursorPosition === currentPart().ref().text.length) {
+			const part = new StyledText("", style.clone());
+			internalDocument.addPart(part);
+			currentPartIndex = internalDocument.partCount() - 1;
 			cursorPosition = 0;
 		}
 
 		// Beginning
 		else if (currentPartIndex === 0 && cursorPosition === 0) {
-			const part: StyledText = {
-				text: "",
-				style,
-			};
-			internalDocument.unshift(part);
+			const part = new StyledText("", style.clone());
+			internalDocument.prependPart(part);
 			currentPartIndex = 0;
 			cursorPosition = 0;
 		} else {
-			let currentPartAfter: StyledText = {
-				text: currentPart().text.substring(cursorPosition),
-				style: structuredClone($state.snapshot(currentPart().style)),
-			};
-			let newPart: StyledText = {
-				text: "",
-				style,
-			};
-			internalDocument[currentPartIndex].text = currentPart().text.substring(0, cursorPosition);
-			internalDocument.splice(currentPartIndex + 1, 0, newPart);
-			internalDocument.splice(currentPartIndex + 2, 0, currentPartAfter);
+			let currentPartAfter = new StyledText(
+				currentPart().ref().text.substring(cursorPosition),
+				currentPart().ref().style.clone(),
+			);
+			let newPart = new StyledText("", style.clone());
+			internalDocument.partAtIndex(currentPartIndex).ref().text = currentPart().ref().text.substring(0, cursorPosition);
+			internalDocument.addPartAtIndex(newPart, currentPartIndex + 1);
+			internalDocument.addPartAtIndex(currentPartAfter, currentPartIndex + 2);
 			currentPartIndex += 1;
 			cursorPosition = 0;
 		}
@@ -299,8 +253,8 @@
 	}
 
 	function onfocus() {
-		currentPartIndex = internalDocument.length - 1;
-		cursorPosition = currentPart().text.length;
+		currentPartIndex = internalDocument.partCount() - 1;
+		cursorPosition = currentPart().ref().text.length;
 	}
 
 	onMount(() => {

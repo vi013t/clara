@@ -1,3 +1,8 @@
+// yeah i hate me too
+
+import type { Cloneable } from "../util/Clone.svelte";
+import { empty } from "../util/utils.svelte";
+
 export abstract class MeasurementTypeInstance<
 	Standard extends Measurement<Self, Standard, Standard> = any,
 	Self extends MeasurementTypeInstance<Standard, Self> = any,
@@ -29,8 +34,8 @@ export abstract class Measurement<
 	Type extends MeasurementTypeInstance<Standard, Type>,
 	Standard extends Measurement<Type, Standard, Standard> = any,
 	Self extends Measurement<Type, Standard, Self> = any,
-> {
-	protected count_: number;
+> implements Cloneable<Self> {
+	protected count_: number = $state(empty());
 
 	public constructor(value: number) {
 		this.count_ = value;
@@ -39,6 +44,7 @@ export abstract class Measurement<
 	public abstract toStandard(): Standard;
 	public abstract type(): MeasurementType<Standard, Type>;
 	public abstract unit(): Unit<Type, Standard, Self>;
+	public abstract clone(): Self;
 
 	public to<T extends Measurement<Type, Standard, T>>(unit: Unit<Type, Standard, T>): T {
 		return unit.fromStandard(this.toStandard());
@@ -63,8 +69,12 @@ export class Length extends MeasurementTypeInstance<Meters, Length> {
 	}
 }
 
-export class Meters extends Measurement<Length, Meters, Meters> {
-	_meters = true;
+export class Meters extends Measurement<Length, Meters, Meters> implements Cloneable<Meters> {
+	private readonly _meters = true;
+
+	public clone(): Meters {
+		return new Meters(this.count);
+	}
 
 	public override type(): MeasurementType<Meters, Length> {
 		return Length;
@@ -87,8 +97,12 @@ export class Meters extends Measurement<Length, Meters, Meters> {
 	}
 }
 
-export class Kilometers extends Measurement<Length, Meters, Kilometers> {
-	_kilometers = true;
+export class Kilometers extends Measurement<Length, Meters, Kilometers> implements Cloneable<Kilometers> {
+	private readonly _kilometers = true;
+
+	public clone(): Kilometers {
+		return new Kilometers(this.count);
+	}
 
 	public override type(): MeasurementType<Meters, Length> {
 		return Length;
@@ -125,8 +139,12 @@ export class Weight extends MeasurementTypeInstance<Kilograms, Weight> {
 	}
 }
 
-export class Kilograms extends Measurement<Weight, Kilograms, Kilograms> {
-	_kilograms = true;
+export class Kilograms extends Measurement<Weight, Kilograms, Kilograms> implements Cloneable<Kilograms> {
+	private readonly _kilograms = true;
+
+	public clone(): Kilograms {
+		return new Kilograms(this.count);
+	}
 
 	public override type(): MeasurementType<Kilograms, Weight> {
 		return Weight;
@@ -149,8 +167,12 @@ export class Kilograms extends Measurement<Weight, Kilograms, Kilograms> {
 	}
 }
 
-export class Grams extends Measurement<Weight, Kilograms, Grams> {
-	_grams = true;
+export class Grams extends Measurement<Weight, Kilograms, Grams> implements Cloneable<Grams> {
+	private readonly _grams = true;
+
+	public clone(): Grams {
+		return new Grams(this.count);
+	}
 
 	public override type(): MeasurementType<Kilograms, Weight> {
 		return Weight;

@@ -14,10 +14,15 @@
 	import { open as chooseFile } from "@tauri-apps/plugin-dialog";
 	import { Project, type BackendProject } from "../../api/project.svelte";
 	import ProjectSettingsPopup from "../popups/ProjectSettingsPopup.svelte";
+	import ManualPopup from "../popups/ManualPopup.svelte";
+	import SettingsPopup from "../popups/SettingsPopup.svelte";
 
 	let projectMenu: ContextMenu;
+
 	let projectSettingsPopup: ProjectSettingsPopup;
 	let newProjectPopup: NewProjectPopup;
+	let manualPopup: ManualPopup;
+	let settingsPopup: SettingsPopup;
 
 	function typeTitle(event: KeyboardEvent) {
 		if (event.key === "Enter") {
@@ -105,10 +110,10 @@
 				</button>
 			</ContextMenu>
 		</div>
-		<button>
+		<button onmousedown={() => settingsPopup.open()}>
 			<GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 		</button>
-		<button>
+		<button onmousedown={() => manualPopup.open()}>
 			<QuestionMarkIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 		</button>
 	</div>
@@ -132,6 +137,8 @@
 
 <NewProjectPopup bind:this={newProjectPopup} />
 <ProjectSettingsPopup bind:this={projectSettingsPopup} />
+<ManualPopup bind:this={manualPopup} />
+<SettingsPopup bind:this={settingsPopup} />
 
 <style>
 	nav {

@@ -2,16 +2,15 @@
 	import Navbar from "../components/panels/Navbar.svelte";
 	import Pane from "../components/pane/Pane.svelte";
 	import StatusBar from "../components/StatusBar.svelte";
+	import { pressHotkey } from "../api/userdata/action.svelte";
 </script>
+
+<svelte:document onkeydown={pressHotkey} />
 
 <main>
 	<Navbar />
 	<div>
-		<Pane width="600" height="1080px" background="#181825" split="horizontal">
-			<Pane subpane width="1200px" split="horizontal" editor>
-				<Pane subpane editor />
-			</Pane>
-		</Pane>
+		<Pane background="#181825" />
 		<StatusBar />
 	</div>
 </main>

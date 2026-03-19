@@ -2,10 +2,10 @@
 	import type { Snippet } from "svelte";
 
 	let {
-		left,
+		left = $bindable(),
 		right,
 		bottom,
-		top,
+		top = $bindable(),
 		children,
 	}: {
 		left?: string;
@@ -40,6 +40,13 @@
 		transitionTimer = setTimeout(() => {
 			doneTransitioning = true;
 		}, 100);
+	}
+
+	export function openAtMouse(event: MouseEvent) {
+		event.preventDefault();
+		top = `${event.clientY - domElement!.offsetParent!.getBoundingClientRect().top}px`;
+		left = `${event.clientX - domElement!.offsetParent!.getBoundingClientRect().left}px`;
+		open();
 	}
 
 	export function close() {

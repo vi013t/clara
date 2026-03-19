@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { ManualDataset } from "../../api/data/dataset.svelte";
 	import { Project } from "../../api/project.svelte";
+	import DatasetEditor from "../editors/DatasetEditor.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
 	import PlusIcon from "../icons/PlusIcon.svelte";
 	import SpreadsheetIcon from "../icons/SpreadsheetIcon.svelte";
@@ -33,22 +35,16 @@
 		</div>
 		<div class="content">
 			<h1>Datasets</h1>
-			<div class="datasets">
-				{#each Project.get().datasets as dataset}
-					<div class="dataset">
-						<div class="dataset-info">
-							<div class="dataset-header">
-								<dataset.icon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-								<span>{dataset.name}</span>
-							</div>
-							<p>{dataset.description ?? ""}</p>
-						</div>
-						<button>
-							<TrashIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-						</button>
-					</div>
-				{/each}
-			</div>
+			{#each Project.get().database.ref().datasets.ref() as dataset, index}
+				{#if dataset.ref().isManual()}
+					<DatasetEditor
+						bind:dataset={
+							() => Project.get().database.ref().datasets.ref()[index].ref() as ManualDataset,
+							value => Project.get().database.ref().datasets.ref()[index].overwrite(value)
+						}
+					/>
+				{/if}
+			{/each}
 			<button class="add-dataset">
 				<PlusIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 			</button>
@@ -61,6 +57,7 @@
 		width: 100%;
 		height: 100%;
 		display: flex;
+		overflow-y: auto;
 
 		.content {
 			padding: 1rem;
@@ -69,7 +66,7 @@
 			padding-right: 3rem;
 			display: flex;
 			flex-direction: column;
-			gap: 0.25rem;
+			gap: 1rem;
 
 			h1 {
 				font-weight: 700;
@@ -109,68 +106,6 @@
 				}
 			}
 		}
-	}
-
-	.datasets {
-		background-color: #181825;
-		border-radius: 0.5rem;
-	}
-
-	.dataset {
-		color: #cdd6f4;
-		padding: 1rem;
-		border-radius: 0.5rem;
-		display: flex;
-		align-items: center;
-		width: 100%;
-		gap: 0.5rem;
-		position: relative;
-
-		&:not(:last-child)::after {
-			content: "";
-			position: absolute;
-			top: 100%;
-			left: 50%;
-			transform: translateX(-50%);
-			height: 1px;
-			width: calc(100% - 2rem);
-			background-color: #313244;
-		}
-
-		> *:last-child {
-			margin-left: auto;
-		}
-
-		button {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			--stroke: #a6adc8;
-			padding: 0.25rem;
-			border-radius: 0.25rem;
-
-			&:hover {
-				background-color: #b4befe;
-				--stroke: #181825;
-			}
-		}
-	}
-
-	.dataset-info {
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-
-		p {
-			color: #a6adc8;
-			font-size: 0.8rem;
-		}
-	}
-
-	.dataset-header {
-		align-items: center;
-		display: flex;
-		gap: 0.5rem;
 	}
 
 	.add-dataset {

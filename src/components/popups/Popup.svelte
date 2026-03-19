@@ -50,7 +50,7 @@
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <div
 	class="background"
-	onclick={clickBackground}
+	onmousedown={clickBackground}
 	style:background-color={visible ? "rgba(0, 0, 0, 50%)" : "rgba(0, 0, 0, 0%)"}
 	style:pointer-events={visible ? "auto" : "none"}
 	role="combobox"

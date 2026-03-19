@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { views, type View } from "../../api/views";
+	import { views, type View } from "../../api/data/structure/views.svelte";
 	import ContextMenu from "../menus/ContextMenu.svelte";
 	import CircledPlusIcon from "../icons/CircledPlusIcon.svelte";
 	import CloseIcon from "../icons/CloseIcon.svelte";
@@ -10,9 +10,10 @@
 	import type { Tab } from "./Pane.svelte";
 	import RenameIcon from "../icons/RenameIcon.svelte";
 	import { Project } from "../../api/project.svelte";
-	import type { Dataset } from "../../api/data/dataset";
+	import type { Dataset } from "../../api/data/dataset.svelte";
 	import BookIcon from "../icons/BookIcon.svelte";
 	import PencilIcon from "../icons/PencilIcon.svelte";
+	import { refs } from "../../api/util/Clone.svelte";
 
 	let {
 		tabs = $bindable(),
@@ -55,16 +56,6 @@
 			tabs.push({ dataset, component: null!, id: tabID++ });
 			selectedTabID = tabID - 1;
 		};
-	}
-
-	function createEditorTab() {
-		newTabContextMenu.close();
-		tabs.push({
-			dataset: null,
-			component: null!,
-			id: tabID++,
-		});
-		selectedTabID = tabID - 1;
 	}
 
 	function tabExists(id: number) {
@@ -156,7 +147,7 @@
 
 <div class="tabs" bind:this={tabline}>
 	{#each tabs as tab, index (tab.id)}
-		{@const Icon = tab.dataset?.icon ?? PencilIcon}
+		{@const Icon = tab.editorContent ? PencilIcon : tab.dataset?.icon}
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div
@@ -167,8 +158,11 @@
 			onmousedown={clickTab(tab.id)}
 			oncontextmenu={rightClickTab(tab.id)}
 		>
-			<span><Icon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" /> {tab.dataset?.name ?? "Editor"}</span>
-			<button onclick={closeTab(tab.id)}>
+			<span>
+				<Icon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+				{tab.editorContent ? "Editor" : (tab.dataset?.name ?? "Empty")}
+			</span>
+			<button onmousedown={closeTab(tab.id)}>
 				<CloseIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 			</button>
 		</div>
@@ -178,19 +172,14 @@
 			<PlusIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 		</button>
 		<ContextMenu bind:this={newTabContextMenu} top="100%" left="0px">
-			<button onmousedown={createEditorTab}>
-				<BookIcon stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
-				<span>Editor</span>
-			</button>
-			<hr />
-			{#each Project.get().datasets.filter(dataset => dataset.isManual()) as dataset}
+			{#each refs(Project.get().database.ref().manual()) as dataset}
 				<button onmousedown={createTab(dataset)}>
 					<dataset.icon stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
 					<span>{dataset.name}</span>
 				</button>
 			{/each}
 			<hr />
-			{#each Project.get().datasets.filter(dataset => dataset.isGenerated()) as dataset}
+			{#each refs(Project.get().database.ref().generated()) as dataset}
 				<button onmousedown={createTab(dataset)}>
 					<dataset.icon stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
 					<span>{dataset.name}</span>
@@ -209,21 +198,21 @@
 			<GearIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 		</button>
 		{#if subpane || split}
-			<button onclick={closePane}>
+			<button onmousedown={closePane}>
 				<CloseIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 			</button>
 		{/if}
 		<ContextMenu bind:this={paneSettingsMenu} top="100%" left="0px">
-			<button onclick={splitHorizontal}>
+			<button onmousedown={splitHorizontal}>
 				<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
 				<span>Split horizontally</span>
 			</button>
-			<button onclick={splitVertical}>
+			<button onmousedown={splitVertical}>
 				<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem; rotate: 90deg;" />
 				<span>Split vertically</span>
 			</button>
 			<hr />
-			<button disabled={!subpane && !split} onclick={closePane}>
+			<button disabled={!subpane && !split} onmousedown={closePane}>
 				<CloseIcon stroke={subpane || split ? "#f38ba8" : "#6c7086"} style="width: 0.85rem; height: 0.85rem;" />
 				<span style="color: {subpane || split ? '#f38ba8' : '#6c7086'}">Close pane</span>
 			</button>
@@ -232,7 +221,15 @@
 </div>
 
 <ContextMenu bind:this={tabContextMenu} top={tabContextMenuTop} left={tabContextMenuLeft}>
-	{#each Project.get().datasets as dataset}
+	{#each refs(Project.get().database.ref().manual()) as dataset}
+		{@const disabled = dataset.name === currentTab().dataset?.name}
+		<button onmousedown={changeDataset(dataset)} {disabled}>
+			<dataset.icon stroke={disabled ? "#6c7086" : "#cdd6f4"} style="width: 0.9rem; height: 0.9rem;" />
+			<span>{dataset.name}</span>
+		</button>
+	{/each}
+	<hr />
+	{#each refs(Project.get().database.ref().generated()) as dataset}
 		{@const disabled = dataset.name === currentTab().dataset?.name}
 		<button onmousedown={changeDataset(dataset)} {disabled}>
 			<dataset.icon stroke={disabled ? "#6c7086" : "#cdd6f4"} style="width: 0.9rem; height: 0.9rem;" />
@@ -249,6 +246,10 @@
 		{/each}
 		<hr />
 	{/if}
+	<button>
+		<CircledPlusIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem; margin-left: 0.15rem;" />
+		<span>New dataset</span>
+	</button>
 	<button>
 		<RenameIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
 		<span>Rename tab</span>

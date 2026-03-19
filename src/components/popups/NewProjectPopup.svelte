@@ -5,7 +5,9 @@
 	import Select from "../input/Select.svelte";
 	import Popup from "./Popup.svelte";
 	import { open as chooseFile } from "@tauri-apps/plugin-dialog";
-	import { frameworks, Project, type Framework } from "../../api/project.svelte";
+	import { Project } from "../../api/project.svelte";
+	import { Template } from "../../api/userdata/template.svelte";
+	import { refs } from "../../api/util/Clone.svelte";
 
 	let popup: Popup;
 
@@ -15,9 +17,9 @@
 
 	let location: string = $state(localStorage.getItem("books-folder") ?? "");
 	let name: string = $state("");
-	let framework: Framework = $state(frameworks.basic);
-	let manualDatasets = $derived(framework.datasets().filter(dataset => dataset.isManual()));
-	let generatedDatasets = $derived(framework.datasets().filter(dataset => dataset.isGenerated()));
+	let template: Template = $state(Template.all[0]);
+	let manualDatasets = $derived(template.database.ref().manual());
+	let generatedDatasets = $derived(template.database.ref().generated());
 
 	let startedTypingLocation = $state(false);
 	let startedTypingName = $state(false);
@@ -76,19 +78,18 @@
 			new Project({
 				name,
 				location,
-				framework,
-				datasets: framework.datasets(),
+				database: template.database.clone(),
 			}),
 		);
 
-		await invoke("new_project", { location, name, framework: framework.name });
+		await invoke("new_project", { location, name, template: template.name });
 		popup.close();
 	}
 
 	function reset() {
 		location = localStorage.getItem("books-folder") ?? "";
 		name = "";
-		framework = frameworks.basic;
+		template = Template.all[0];
 	}
 </script>
 
@@ -141,13 +142,13 @@
 		<div class="template">
 			<div>
 				<h2>Template</h2>
-				<div class="frameworks">
+				<div class="templates">
 					<div class="select">
 						<Select
 							width="calc(100% - 1.75rem)"
-							options={Object.values(frameworks).map(framework => ({ name: framework.name, icon: framework.icon }))}
+							options={Object.values(Template.all).map(template => ({ name: template.name, icon: template.icon }))}
 							bind:value={
-								() => framework.name, choice => (framework = Object.values(frameworks).find(other => other.name === choice)!)
+								() => template.name, choice => (template = Object.values(Template.all).find(other => other.name === choice)!)
 							}
 						/>
 						<button>
@@ -157,13 +158,13 @@
 				</div>
 			</div>
 
-			<p>{framework.description}</p>
+			<p>{template.description}</p>
 
 			<div>
 				<h2>Datasets</h2>
 				<div>
 					<div class="datasets">
-						{#each manualDatasets as dataset, index}
+						{#each refs(manualDatasets) as dataset, index}
 							<div class="dataset">
 								<div class="header">
 									<dataset.icon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
@@ -187,7 +188,7 @@
 				<h2>Generated Datasets</h2>
 				<div>
 					<div class="datasets">
-						{#each generatedDatasets as dataset, index}
+						{#each refs(generatedDatasets) as dataset, index}
 							<div class="dataset">
 								<div class="header">
 									<dataset.icon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
@@ -286,7 +287,7 @@
 		}
 	}
 
-	.frameworks {
+	.templates {
 		width: 100%;
 		display: flex;
 		flex-direction: column;

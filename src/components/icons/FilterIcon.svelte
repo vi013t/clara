@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { IconProps } from "../../api/components";
+	import type { IconProps } from "../../api/ui/icons.svelte";
 
 	let { stroke, ...attributes }: IconProps = $props();
 </script>

@@ -1,13 +1,15 @@
 <script lang="ts">
 	import { invoke } from "@tauri-apps/api/core";
 	import FolderIcon from "../icons/FolderIcon.svelte";
-	import PlusIcon from "../icons/PlusIcon.svelte";
 	import Select from "../input/Select.svelte";
 	import Popup from "./Popup.svelte";
 	import { open as chooseFile } from "@tauri-apps/plugin-dialog";
 	import { Project } from "../../api/project.svelte";
 	import { Template } from "../../api/userdata/template.svelte";
 	import { refs } from "../../api/util/Clone.svelte";
+	import GearIcon from "../icons/GearIcon.svelte";
+	import SettingsPopup from "./SettingsPopup.svelte";
+	import { userData } from "../../api/userdata/cache.svelte";
 
 	let popup: Popup;
 
@@ -15,9 +17,11 @@
 		popup.open();
 	}
 
-	let location: string = $state(localStorage.getItem("books-folder") ?? "");
+	let settingsPopup: SettingsPopup;
+
+	let location: string = $state("");
 	let name: string = $state("");
-	let template: Template = $state(Template.all[0]);
+	let template: Template = $state(userData().templates[0]);
 	let manualDatasets = $derived(template.database.ref().manual());
 	let generatedDatasets = $derived(template.database.ref().generated());
 
@@ -56,7 +60,6 @@
 		// Directory Chosen
 		if (typeof selected === "string") {
 			location = selected;
-			localStorage.setItem("books-folder", location);
 		}
 
 		// No directory chosen
@@ -74,22 +77,27 @@
 			return;
 		}
 
-		Project.set(
-			new Project({
-				name,
-				location,
-				database: template.database.clone(),
-			}),
-		);
+		let currentProject = Project.get();
+		if (currentProject) await invoke("save_project", { project: currentProject.toBackend() });
 
-		await invoke("new_project", { location, name, template: template.name });
-		popup.close();
+		let project = new Project({
+			name,
+			location,
+			database: template.database.clone(),
+		});
+
+		Project.set(project);
+		let backendProject = project.toBackend();
+
+		await invoke("new_project", { project: backendProject });
+
+		popup?.close();
 	}
 
 	function reset() {
-		location = localStorage.getItem("books-folder") ?? "";
+		location = "";
 		name = "";
-		template = Template.all[0];
+		template = userData().templates[0];
 	}
 </script>
 
@@ -146,13 +154,15 @@
 					<div class="select">
 						<Select
 							width="calc(100% - 1.75rem)"
-							options={Object.values(Template.all).map(template => ({ name: template.name, icon: template.icon }))}
-							bind:value={
-								() => template.name, choice => (template = Object.values(Template.all).find(other => other.name === choice)!)
-							}
+							options={userData().templates.map(template => ({ name: template.name, icon: template.icon }))}
+							bind:value={() => template.name, choice => (template = userData().templates.find(other => other.name === choice)!)}
 						/>
 						<button>
-							<PlusIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+							<GearIcon
+								stroke="var(--stroke)"
+								style="width: 1rem; height: 1rem;"
+								onmousedown={() => settingsPopup.open("templates")}
+							/>
 						</button>
 					</div>
 				</div>
@@ -212,6 +222,8 @@
 		<button class={["create-button", hasErrors && "disabled"]} onmousedown={createProject}>Create</button>
 	</section>
 </Popup>
+
+<SettingsPopup bind:this={settingsPopup} />
 
 <style>
 	.create-button {

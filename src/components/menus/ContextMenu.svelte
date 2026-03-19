@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
+	import { onMount, type Snippet } from "svelte";
+	import { parseJsonText } from "typescript";
 
 	let {
 		left = $bindable(),
@@ -12,6 +13,7 @@
 		top?: string;
 		bottom?: string;
 		right?: string;
+		submenu?: boolean;
 		children: Snippet;
 	} = $props();
 
@@ -34,6 +36,10 @@
 
 	export function open() {
 		if (!doneTransitioning) return;
+		forceOpen();
+	}
+
+	export function forceOpen() {
 		doneTransitioning = false;
 		visible = true;
 		if (transitionTimer) clearTimeout(transitionTimer);
@@ -51,6 +57,10 @@
 
 	export function close() {
 		if (!doneTransitioning) return;
+		forceClose();
+	}
+
+	export function forceClose() {
 		doneTransitioning = false;
 		visible = false;
 		if (transitionTimer) clearTimeout(transitionTimer);
@@ -75,12 +85,76 @@
 		if (doneTransitioning && !visible) return "closing";
 		return "closed";
 	}
+
+	let mouseInside = $state(false);
+
+	function cursorIsInBox(
+		mouseX: number,
+		mouseY: number,
+		box: DOMRect,
+		{ padLeft, padRight, padTop, padBottom }: { padLeft?: number; padRight?: number; padTop?: number; padBottom?: number } = {},
+	) {
+		return (
+			mouseX >= box.left - (padLeft ?? 0) &&
+			mouseX <= box.right + (padRight ?? 0) &&
+			mouseY >= box.top - (padTop ?? 0) &&
+			mouseY <= box.bottom + (padBottom ?? 0)
+		);
+	}
+
+	onMount(() => {
+		let parentMenu = domElement!.parentElement!.closest(".context-menu");
+		if (!parentMenu) return;
+
+		left = `${parentMenu.getBoundingClientRect().width}px`;
+		top = `${domElement!.parentElement!.getBoundingClientRect().top - domElement!.offsetParent!.getBoundingClientRect().top - 4}px`;
+
+		domElement!.parentElement!.addEventListener("mouseenter", event => {
+			if (parentMenu.matches(".open")) {
+				forceOpen();
+			}
+		});
+
+		document.addEventListener("mousemove", event => {
+			const parentRect = domElement!.parentElement!.getBoundingClientRect();
+			const insideParent = cursorIsInBox(event.clientX, event.clientY, parentRect, { padRight: 10 });
+
+			console.table({
+				mouseX: event.clientX,
+				mouseY: event.clientY,
+				rectTop: parentRect.top,
+				rectBottom: parentRect.bottom,
+				rectLeft: parentRect.left,
+				rectRight: parentRect.right,
+				isInside: insideParent,
+			});
+
+			if (
+				!cursorIsInBox(event.clientX, event.clientY, parentRect, { padRight: 5 }) &&
+				!cursorIsInBox(event.clientX, event.clientY, domElement!.getBoundingClientRect())
+			) {
+				forceClose();
+			} else {
+				forceOpen();
+			}
+		});
+	});
 </script>
 
 <svelte:document {onmousedown} />
 <svelte:window bind:innerWidth />
 
-<section bind:this={domElement} style:top style:bottom style:right style:left>
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<section
+	onmouseenter={() => (mouseInside = true)}
+	onmouseleave={() => (mouseInside = false)}
+	class={["context-menu", visible && "open"]}
+	bind:this={domElement}
+	style:top
+	style:bottom
+	style:right
+	style:left
+>
 	<div
 		class="inner"
 		style:scale={visible ? "100%" : "0%"}
@@ -123,11 +197,12 @@
 				font-size: 0.8rem;
 				border-radius: 0.25rem;
 
-				&[disabled] {
+				&[disabled],
+				:global(&.disabled) {
 					color: #6c7086;
 				}
 
-				&:not([disabled]):hover {
+				:global(&:not([disabled], .disabled):hover) {
 					background-color: #252634;
 				}
 			}

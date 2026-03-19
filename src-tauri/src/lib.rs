@@ -6,33 +6,83 @@ pub fn run() {
 		.plugin(tauri_plugin_opener::init())
 		.plugin(tauri_plugin_dialog::init())
 		.plugin(tauri_plugin_fs::init())
-		.invoke_handler(tauri::generate_handler![new_project, read_project, get_fonts, save_user_settings, load_user_settings])
+		.invoke_handler(tauri::generate_handler![
+			new_project,
+			read_project,
+			get_fonts,
+			save_user_settings,
+			load_user_settings,
+			save_project
+		])
 		.run(tauri::generate_context!())
 		.expect("error while running tauri application");
 }
 
-#[derive(serde::Serialize, serde::Deserialize, PartialEq, Eq)]
-struct Project {
-	location: String,
-	name: String,
-	framework: String,
-}
-
-trait Bincodable: Sized
+trait BinaryData: Sized
 where
 	Self: for<'a> serde::Deserialize<'a>,
 	Self: serde::Serialize,
 {
-	fn to_bytes(&self) -> bincode::Result<Vec<u8>> {
-		bincode::serialize(self)
+	fn to_bytes(&self) -> Result<Vec<u8>, String> {
+		rmp_serde::to_vec(self).map_err(|e| e.to_string())
 	}
 
-	fn from_bytes(bytes: &[u8]) -> bincode::Result<Self> {
-		bincode::deserialize(bytes)
+	fn from_bytes(bytes: &[u8]) -> Result<Self, String> {
+		rmp_serde::from_slice(bytes).map_err(|e| e.to_string())
 	}
 }
 
-impl Bincodable for Project {}
+#[derive(serde::Serialize, serde::Deserialize, PartialEq, Eq)]
+struct Project {
+	name: String,
+	location: String,
+	database: Database,
+}
+impl BinaryData for Project {}
+
+type Database = Vec<Dataset>;
+
+#[derive(serde::Serialize, serde::Deserialize, PartialEq, Eq)]
+#[serde(tag = "kind")]
+enum Dataset {
+	#[serde(rename = "manual")]
+	ManualDataset(ManualDataset),
+
+	#[serde(rename = "generated")]
+	GeneratedDataset(GeneratedDataset),
+}
+
+#[derive(serde::Serialize, serde::Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+struct ManualDataset {
+	name: String,
+	icon_name: String,
+	data: TreeNode,
+	fields: Vec<Attribute>,
+	description: String,
+}
+
+#[derive(serde::Serialize, serde::Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+struct GeneratedDataset {
+	name: String,
+	icon_name: String,
+	description: String,
+}
+
+#[derive(serde::Serialize, serde::Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+struct TreeNode {
+	children: Vec<TreeNode>,
+	data: serde_json::Value,
+	is_branch: bool,
+}
+
+#[derive(serde::Serialize, serde::Deserialize, PartialEq, Eq)]
+struct Attribute {
+	name: String,
+	r#type: String,
+}
 
 #[tauri::command]
 async fn read_project(path: String) -> Result<Project, String> {
@@ -60,22 +110,29 @@ async fn read_project(path: String) -> Result<Project, String> {
 		return Err("No project file found in selected location".to_owned());
 	};
 	let bytes = std::fs::read(project_file).map_err(|_| "Error reading project file")?;
-	Project::from_bytes(&bytes).map_err(|_| "Error deserializing project".to_owned())
+	Project::from_bytes(&bytes).map_err(|error| format!("Error deserializing project: {error}"))
 }
 
 #[tauri::command]
-async fn new_project(location: String, name: String, framework: String) -> Result<(), String> {
-	let path = std::path::Path::new(&location).join(&name);
+async fn new_project(project: Project) -> Result<(), String> {
+	let path = std::path::Path::new(&project.location).join(&project.name);
 	std::fs::create_dir_all(&path).map_err(|_| "Error creating project directory".to_owned())?;
 	std::fs::create_dir_all(path.join("assets")).map_err(|_| "Error creating assets directory".to_owned())?;
-	let project = Project {
-		location,
-		name: name.clone(),
-		framework,
-	};
-	std::fs::write(path.join(format!("{name}.wlfr")), project.to_bytes().map_err(|_| "Error serializing project".to_owned())?)
-		.map_err(|_| "Error creating project file".to_owned())?;
+	std::fs::write(
+		path.join(format!("{}.wlfr", project.name)),
+		project.to_bytes().map_err(|_| "Error serializing project".to_owned())?,
+	)
+	.map_err(|_| "Error creating project file".to_owned())?;
 	Ok(())
+}
+
+#[tauri::command]
+async fn save_project(project: Project) -> Result<(), String> {
+	std::fs::write(
+		std::path::Path::new(&project.location).join(format!("{}.wlfr", project.name)),
+		project.to_bytes().map_err(|_| "Error serializing project".to_owned())?,
+	)
+	.map_err(|_| "Error writing to project file".to_owned())
 }
 
 #[tauri::command]
@@ -90,43 +147,12 @@ async fn get_fonts() -> Vec<String> {
 	fonts
 }
 
-type DataRow = std::collections::HashMap<String, serde_json::Value>;
-
-#[derive(serde::Serialize, serde::Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct DataRowTreeNode {
-	parent: Option<Box<DataRowTreeNode>>,
-	children: Vec<DataRowTreeNode>,
-	data: DataRow,
-	is_group: bool,
-}
-
-#[derive(serde::Serialize, serde::Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct Field {
-	name: String,
-	value_type: String,
-}
-
-#[derive(serde::Serialize, serde::Deserialize)]
-struct ManualDataset {
-	name: String,
-	icon: String,
-	data: DataRowTreeNode,
-	fields: Vec<Field>,
-	description: Option<String>,
-}
-
-#[derive(serde::Serialize, serde::Deserialize)]
-enum Dataset {
-	Manual(ManualDataset),
-}
-
-#[derive(serde::Serialize, serde::Deserialize)]
+#[derive(serde::Serialize, serde::Deserialize, PartialEq, Eq)]
 struct Template {
 	dataset: Dataset,
 	name: String,
 	description: String,
+	icon: String,
 }
 
 #[derive(serde::Serialize, serde::Deserialize)]
@@ -134,7 +160,7 @@ struct UserSettings {
 	templates: Vec<Template>,
 }
 
-impl Bincodable for UserSettings {}
+impl BinaryData for UserSettings {}
 
 #[tauri::command]
 fn save_user_settings(user_settings: UserSettings) -> Result<(), String> {
@@ -143,11 +169,14 @@ fn save_user_settings(user_settings: UserSettings) -> Result<(), String> {
 	};
 
 	let storage_dir = project_dirs.config_dir();
-	std::fs::create_dir_all(storage_dir).map_err(|_| "Error creating config directory".to_owned())?;
+	std::fs::create_dir_all(storage_dir).map_err(|error| format!("Error creating config directory: {error}"))?;
 
 	let user_settings_file = storage_dir.join("settings.wd");
-	std::fs::write(user_settings_file, user_settings.to_bytes().map_err(|_| "Error serializing user settings".to_owned())?)
-		.map_err(|_| "Error writing to settings file.".to_owned())?;
+	std::fs::write(
+		user_settings_file,
+		user_settings.to_bytes().map_err(|error| format!("Error serializing user settings: {error}"))?,
+	)
+	.map_err(|_| "Error writing to settings file.".to_owned())?;
 
 	Ok(())
 }

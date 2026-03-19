@@ -51,11 +51,7 @@
 	let nodeElement: HTMLElement;
 
 	function onRightClick(event: MouseEvent) {
-		event.preventDefault();
-		menuTop = `${event.clientY - nodeElement.getBoundingClientRect().top}px`;
-		menuLeft = `${event.clientX - nodeElement.getBoundingClientRect().left}px`;
-		console.log(menuTop, menuLeft);
-		rightClickMenu!.open();
+		rightClickMenu!.openAtMouse(event);
 	}
 </script>
 

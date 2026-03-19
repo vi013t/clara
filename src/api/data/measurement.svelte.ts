@@ -1,6 +1,7 @@
 // yeah i hate me too
 
 import type { Cloneable } from "../util/Clone.svelte";
+import type { Serialize } from "../util/serialize.svelte";
 import { empty } from "../util/utils.svelte";
 
 export abstract class MeasurementTypeInstance<
@@ -18,6 +19,7 @@ export type MeasurementType<
 	units(): Unit<Instance, Standard, any>[];
 	standard(): Unit<Instance, Standard, Standard>;
 	of<Output extends Measurement<Instance, Standard, Output>>(value: number, unit: Unit<Instance, Standard, Output>): Output;
+	name(): string;
 };
 
 export type Unit<
@@ -30,15 +32,38 @@ export type Unit<
 	abbreviation(): string;
 };
 
+export type BackendMeasurement = {
+	count: number;
+	units: string;
+};
+
 export abstract class Measurement<
 	Type extends MeasurementTypeInstance<Standard, Type>,
 	Standard extends Measurement<Type, Standard, Standard> = any,
 	Self extends Measurement<Type, Standard, Self> = any,
-> implements Cloneable<Self> {
+>
+	implements Cloneable<Self>, Serialize<BackendMeasurement>
+{
 	protected count_: number = $state(empty());
 
 	public constructor(value: number) {
 		this.count_ = value;
+	}
+
+	public toBackend(): BackendMeasurement {
+		return {
+			count: this.count,
+			units: this.unit().abbreviation(),
+		};
+	}
+
+	public static fromBackend<
+		Type extends MeasurementTypeInstance<Standard, Type>,
+		Standard extends Measurement<Type, Standard, Standard> = any,
+		Self extends Measurement<Type, Standard, Self> = any,
+	>(measurement: BackendMeasurement): Measurement<Type, Standard, Self> {
+		const builder = units[measurement.units as "m"];
+		return new builder(measurement.count) as unknown as Measurement<Type, Standard, Self>;
 	}
 
 	public abstract toStandard(): Standard;
@@ -66,6 +91,10 @@ export class Length extends MeasurementTypeInstance<Meters, Length> {
 
 	public static standard(): Unit<Length, Meters, Meters> {
 		return Meters;
+	}
+
+	public static name(): string {
+		return "length";
 	}
 }
 
@@ -137,6 +166,10 @@ export class Weight extends MeasurementTypeInstance<Kilograms, Weight> {
 	public static standard(): Unit<Length, Kilograms, Kilograms> {
 		return Kilograms;
 	}
+
+	public static name(): string {
+		return "weight";
+	}
 }
 
 export class Kilograms extends Measurement<Weight, Kilograms, Kilograms> implements Cloneable<Kilograms> {
@@ -194,3 +227,10 @@ export class Grams extends Measurement<Weight, Kilograms, Grams> implements Clon
 		return "g";
 	}
 }
+
+const units = {
+	m: Meters,
+	km: Kilometers,
+	kg: Kilograms,
+	g: Grams,
+} as const satisfies { [key: string]: Unit<any, any, any> };

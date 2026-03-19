@@ -11,3 +11,12 @@
 export function empty(): any {
 	return null;
 }
+
+export function mapValues<Input, Output>(
+	obj: { [key: string | number | symbol]: Input },
+	map: (input: Input) => Output,
+): { [key: string | number | symbol]: Output } {
+	return Object.entries(obj)
+		.map(([key, value]) => ({ [key]: map(value) }))
+		.reduce((accumulator, current) => ({ ...accumulator, ...current }));
+}

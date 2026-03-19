@@ -11,9 +11,10 @@
 	import RenameIcon from "../icons/RenameIcon.svelte";
 	import { Project } from "../../api/project.svelte";
 	import type { Dataset } from "../../api/data/dataset.svelte";
-	import BookIcon from "../icons/BookIcon.svelte";
 	import PencilIcon from "../icons/PencilIcon.svelte";
 	import { refs } from "../../api/util/Clone.svelte";
+	import EyeIcon from "../icons/EyeIcon.svelte";
+	import ArrowIcon from "../icons/ArrowIcon.svelte";
 
 	let {
 		tabs = $bindable(),
@@ -24,7 +25,6 @@
 		isMasterPaneAlive = $bindable(),
 		selectedTabID = $bindable(),
 		tabID = $bindable(),
-		view = $bindable(),
 	}: {
 		tabs: Tab[];
 		background: string;
@@ -34,12 +34,9 @@
 		isMasterPaneAlive: boolean;
 		selectedTabID: number;
 		tabID: number;
-		view: View;
 	} = $props();
 
 	let tabContextMenu: ContextMenu = $state(null!);
-	let tabContextMenuLeft = $state("0px");
-	let tabContextMenuTop = $state("0px");
 	let rightClickedTab = $state(0);
 	let newTabContextMenu: ContextMenu = $state(null!);
 	let paneSettingsMenu: ContextMenu = $state(null!);
@@ -50,10 +47,19 @@
 		onclose();
 	}
 
-	function createTab(dataset: Dataset) {
+	function createTab(dataset: Dataset, view?: View) {
 		return function () {
 			newTabContextMenu.close();
-			tabs.push({ dataset, component: null!, id: tabID++ });
+			tabs.push({ dataset, component: null!, view: view ?? "hierarchy", id: tabID++ });
+			selectedTabID = tabID - 1;
+		};
+	}
+
+	function createSplit(dataset: Dataset, view?: View) {
+		return function () {
+			newTabContextMenu.close();
+			split = "horizontal";
+			tabs.push({ dataset, component: null!, view: view ?? "hierarchy", id: tabID++ });
 			selectedTabID = tabID - 1;
 		};
 	}
@@ -77,11 +83,7 @@
 		return function (event: MouseEvent) {
 			event.preventDefault();
 			rightClickedTab = id;
-			const pane = tabline!.closest(".pane") as HTMLElement;
-			const paneRect = pane.getBoundingClientRect();
-			tabContextMenuLeft = `${event.clientX - paneRect.left}px`;
-			tabContextMenuTop = `${event.clientY - paneRect.top}px`;
-			tabContextMenu.open();
+			tabContextMenu.openAtMouse(event);
 		};
 	}
 
@@ -112,8 +114,12 @@
 	function setView(name: View) {
 		return function () {
 			tabContextMenu.close();
-			view = name;
+			currentTab().view = name;
 		};
+	}
+
+	function currentView(): View {
+		return currentTab().view;
 	}
 
 	let tabline: HTMLElement | null = $state(null);
@@ -172,14 +178,14 @@
 			<PlusIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 		</button>
 		<ContextMenu bind:this={newTabContextMenu} top="100%" left="0px">
-			{#each refs(Project.get().database.ref().manual()) as dataset}
+			{#each refs(Project.get()!.database.ref().manual()) as dataset}
 				<button onmousedown={createTab(dataset)}>
 					<dataset.icon stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
 					<span>{dataset.name}</span>
 				</button>
 			{/each}
 			<hr />
-			{#each refs(Project.get().database.ref().generated()) as dataset}
+			{#each refs(Project.get()!.database.ref().generated()) as dataset}
 				<button onmousedown={createTab(dataset)}>
 					<dataset.icon stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
 					<span>{dataset.name}</span>
@@ -202,7 +208,7 @@
 				<CloseIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 			</button>
 		{/if}
-		<ContextMenu bind:this={paneSettingsMenu} top="100%" left="0px">
+		<ContextMenu top="100%" left="0px">
 			<button onmousedown={splitHorizontal}>
 				<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
 				<span>Split horizontally</span>
@@ -220,8 +226,8 @@
 	</div>
 </div>
 
-<ContextMenu bind:this={tabContextMenu} top={tabContextMenuTop} left={tabContextMenuLeft}>
-	{#each refs(Project.get().database.ref().manual()) as dataset}
+<ContextMenu bind:this={tabContextMenu}>
+	{#each refs(Project.get()!.database.ref().manual()) as dataset}
 		{@const disabled = dataset.name === currentTab().dataset?.name}
 		<button onmousedown={changeDataset(dataset)} {disabled}>
 			<dataset.icon stroke={disabled ? "#6c7086" : "#cdd6f4"} style="width: 0.9rem; height: 0.9rem;" />
@@ -229,7 +235,7 @@
 		</button>
 	{/each}
 	<hr />
-	{#each refs(Project.get().database.ref().generated()) as dataset}
+	{#each refs(Project.get()!.database.ref().generated()) as dataset}
 		{@const disabled = dataset.name === currentTab().dataset?.name}
 		<button onmousedown={changeDataset(dataset)} {disabled}>
 			<dataset.icon stroke={disabled ? "#6c7086" : "#cdd6f4"} style="width: 0.9rem; height: 0.9rem;" />
@@ -238,11 +244,40 @@
 	{/each}
 	<hr />
 	{#if currentTab().dataset}
-		{#each Object.entries(views) as [name, info]}
-			<button disabled={view === name} onmousedown={setView(name as View)}>
-				<info.icon stroke={view === name ? "#6c7086" : "#cdd6f4"} style="width: 1rem; height: 1rem;" />
+		{#each Object.entries(views) as [name, info], index}
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<div class={[currentView() === name && "disabled"]} onmousedown={setView(name as View)}>
+				<info.icon stroke={currentView() === name ? "#6c7086" : "#cdd6f4"} style="width: 1rem; height: 1rem;" />
 				<span>View as {name}</span>
-			</button>
+
+				{#if currentView() !== name && index == 1}
+					<ArrowIcon stroke="#a6adc8" style="width: 1rem; height: 1rem; rotate: 90deg; margin-left: auto;" />
+					<ContextMenu>
+						<button>
+							<EyeIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+							<span>In this tab</span>
+						</button>
+						<hr />
+						<button>
+							<SplitHorizontalIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+							<span>In horizontal split</span>
+						</button>
+						<button>
+							<SplitHorizontalIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem; rotate: 90deg;" />
+							<span>In vertical split</span>
+						</button>
+						<hr />
+						<button>
+							<PlusIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+							<span>In new tab</span>
+						</button>
+						<button>
+							<PlusIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+							<span>In new tab to the left</span>
+						</button>
+					</ContextMenu>
+				{/if}
+			</div>
 		{/each}
 		<hr />
 	{/if}

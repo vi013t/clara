@@ -1,8 +1,17 @@
 import type { Cloneable } from "../../util/Clone.svelte";
+import type { Serialize } from "../../util/serialize.svelte";
 import { empty } from "../../util/utils.svelte";
 
-export class TreeNode<T extends Cloneable<T>> implements Cloneable<TreeNode<T>> {
-	private parent?: TreeNode<T> = $state(empty());
+export type BackendTreeNode<Bytes> = {
+	children: BackendTreeNode<Bytes>[];
+	isBranch: boolean;
+	data: Bytes;
+};
+
+export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
+	implements Cloneable<TreeNode<T, Bytes>>, Serialize<BackendTreeNode<Bytes>>
+{
+	private parent?: TreeNode<T, Bytes> = $state(empty());
 	private children_: TreeNode<T>[] = $state(empty());
 	private isBranch_: boolean = $state(empty());
 
@@ -68,5 +77,24 @@ export class TreeNode<T extends Cloneable<T>> implements Cloneable<TreeNode<T>> 
 
 	public get ref_children(): TreeNode<T>[] {
 		return this.children_;
+	}
+
+	public toBackend(): BackendTreeNode<Bytes> {
+		return {
+			data: this.data.toBackend(),
+			children: this.ref_children.map(child => child.toBackend()),
+			isBranch: this.isBranch,
+		};
+	}
+
+	public static fromBackend<T extends Serialize<Bytes> & Cloneable<T>, Bytes>(
+		node: BackendTreeNode<Bytes>,
+		fromBackend: (bytes: Bytes) => T,
+	): TreeNode<T> {
+		return new TreeNode(
+			fromBackend(node.data),
+			node.children.map(child => TreeNode.fromBackend(child, fromBackend)),
+			node.isBranch,
+		);
 	}
 }

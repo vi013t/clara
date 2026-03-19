@@ -16,6 +16,7 @@
 	import ProjectSettingsPopup from "../popups/ProjectSettingsPopup.svelte";
 	import ManualPopup from "../popups/ManualPopup.svelte";
 	import SettingsPopup from "../popups/SettingsPopup.svelte";
+	import LittleButton from "../widgets/LittleButton.svelte";
 
 	let projectMenu: ContextMenu;
 
@@ -44,55 +45,35 @@
 		const appWindow = getCurrentWindow();
 		appWindow.toggleMaximize();
 	}
-
-	async function openProject(path: string) {
-		const selected = await chooseFile({
-			directory: true,
-			multiple: false,
-			title: "Select a directory",
-		});
-
-		// Directory Chosen
-		if (typeof selected === "string") {
-			const project = await invoke<BackendProject>("open_project", { selected });
-			Project.set(Project.fromBackend(project));
-		}
-
-		// No directory chosen
-		else {
-			console.log("No directory selected");
-		}
-	}
 </script>
 
 <nav>
 	<div>
 		<div class="wrapper">
-			<button onmousedown={() => projectMenu.toggle()}>
-				<FolderIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-			</button>
+			<LittleButton Icon={FolderIcon} onmousedown={() => projectMenu.toggle()} />
 			<ContextMenu bind:this={projectMenu} top="120%" left="0px">
 				<button
 					onmousedown={() => {
 						projectSettingsPopup.open();
 						projectMenu.close();
 					}}
+					disabled={!Project.get()}
 				>
 					<GearIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
 					<span>Project settings</span>
 				</button>
-				<button>
+				<button disabled={!Project.get()}>
 					<SaveIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
 					<span>Save project</span>
 				</button>
-				<button>
+				<button disabled={!Project.get()}>
 					<SaveIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
 					<span>Save project as...</span>
 				</button>
 
 				<hr />
 
-				<button>
+				<button onmousedown={() => Project.open()}>
 					<FolderIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
 					<span>
 						Open project
@@ -110,33 +91,27 @@
 				</button>
 			</ContextMenu>
 		</div>
-		<button onmousedown={() => settingsPopup.open()}>
-			<GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-		</button>
-		<button onmousedown={() => manualPopup.open()}>
-			<QuestionMarkIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-		</button>
+		<LittleButton Icon={GearIcon} onmousedown={() => settingsPopup.open()} />
+		<LittleButton Icon={QuestionMarkIcon} onmousedown={() => manualPopup.open()} />
 	</div>
 
-	<div>
-		<input onkeydown={typeTitle} bind:value={() => Project.get().name, name => (Project.get().name = name)} />
-	</div>
+	{#if Project.get()}
+		<div>
+			<input onkeydown={typeTitle} bind:value={() => Project.get()!.name, name => (Project.get()!.name = name)} />
+		</div>
+	{/if}
 
 	<div>
-		<button onmousedown={minimize}>
-			<DashIcon stroke="var(--stroke)" style="width: 0.75rem; height: 0.75rem;" />
-		</button>
-		<button onmousedown={maximize}>
-			<MinimizeIcon stroke="var(--stroke)" style="width: 0.75rem; height: 0.75rem;" />
-		</button>
-		<button class="close" onmousedown={close}>
-			<CloseIcon stroke="var(--stroke)" style="width: 0.75rem; height: 0.75rem;" />
-		</button>
+		<LittleButton Icon={DashIcon} onmousedown={minimize} iconScale={0.85} />
+		<LittleButton Icon={MinimizeIcon} onmousedown={maximize} iconScale={0.85} />
+		<LittleButton Icon={CloseIcon} onmousedown={close} accent="#f38ba8" iconScale={0.85} />
 	</div>
 </nav>
 
 <NewProjectPopup bind:this={newProjectPopup} />
-<ProjectSettingsPopup bind:this={projectSettingsPopup} />
+{#if Project.get()}
+	<ProjectSettingsPopup bind:this={projectSettingsPopup} />
+{/if}
 <ManualPopup bind:this={manualPopup} />
 <SettingsPopup bind:this={settingsPopup} />
 
@@ -186,15 +161,6 @@
 					color: #181825;
 					--stroke: #181825;
 				}
-			}
-		}
-
-		.close {
-			--stroke: #f38ba8;
-
-			&:hover {
-				background-color: #f38ba8;
-				--stroke: #181825;
 			}
 		}
 	}

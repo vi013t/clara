@@ -1,14 +1,27 @@
 import { Project } from "../project.svelte";
 import { getIconByName, getIconName, type IconComponent, type IconName } from "../ui/icons.svelte";
+import { userData } from "../userdata/cache.svelte";
 import { Template } from "../userdata/template.svelte";
 import { Container, type Cloneable } from "../util/Clone.svelte";
-import { empty } from "../util/utils.svelte";
-import { PrimitiveAttribute, type Attribute, type AttributeValue } from "./attribute.svelte";
-import { TreeNode } from "./structure/tree.svelte";
+import type { Serialize } from "../util/serialize.svelte";
+import { empty, mapValues } from "../util/utils.svelte";
+import {
+	Attribute,
+	attributeValueFromBackend,
+	PrimitiveAttribute,
+	type AttributeValue,
+	type BackendAttribute,
+	type BackendAttributeValue,
+} from "./attribute.svelte";
+import { TreeNode, type BackendTreeNode } from "./structure/tree.svelte";
 
 type DatasetKind = "manual" | "generated";
 
-export class DataEntry implements Cloneable<DataEntry> {
+export type BackendDataEntry = {
+	data: { [key: string]: BackendAttributeValue };
+};
+
+export class DataEntry implements Cloneable<DataEntry>, Serialize<BackendDataEntry> {
 	private data: { [key: string]: AttributeValue } = $state(empty());
 
 	private static nextDataID = 0;
@@ -18,17 +31,35 @@ export class DataEntry implements Cloneable<DataEntry> {
 		this.data = {
 			...values,
 			Name: new PrimitiveAttribute(name),
-			id: new PrimitiveAttribute(DataEntry.nextDataID++),
+			id: new PrimitiveAttribute(DataEntry.nextID()),
 		};
 		DataEntry.entries[this.id] = this;
+	}
+
+	private static nextID() {
+		while (DataEntry.fromID(this.nextDataID)) {
+			this.nextDataID++;
+		}
+		return this.nextDataID;
+	}
+
+	toBackend(): BackendDataEntry {
+		return {
+			data: mapValues(this.data, value => value.toBackend()),
+		};
+	}
+
+	public static fromBackend(entry: BackendDataEntry): DataEntry {
+		return new DataEntry(
+			entry.data.Name as string,
+			mapValues(entry.data, value => attributeValueFromBackend(value)),
+		);
 	}
 
 	clone(): DataEntry {
 		return new DataEntry(
 			this.name,
-			Object.entries(this.data)
-				.map(([key, value]) => ({ [key]: value.clone() }))
-				.reduce((accumulator, current) => ({ ...accumulator, ...current })),
+			mapValues(this.data, value => value.clone()),
 		);
 	}
 
@@ -40,8 +71,12 @@ export class DataEntry implements Cloneable<DataEntry> {
 		return (this.data.Name as PrimitiveAttribute<string>).value;
 	}
 
+	public set name(name: string) {
+		this.data.Name = new PrimitiveAttribute(name);
+	}
+
 	public get id(): number {
-		return (this.data.Name as PrimitiveAttribute<number>).value;
+		return (this.data.id as PrimitiveAttribute<number>).value;
 	}
 
 	public get(key: string): AttributeValue | null {
@@ -140,12 +175,15 @@ export abstract class Dataset<Kind extends DatasetKind = DatasetKind> {
 	}
 
 	public database(): Container<Database> {
-		for (let dataset of Project.get().database.ref().datasets.ref()) {
-			if (dataset.ref().id === this.id) {
-				return Project.get().database;
+		let project = Project.get();
+		if (project) {
+			for (let dataset of project.database.ref().datasets.ref()) {
+				if (dataset.ref().id === this.id) {
+					return project.database;
+				}
 			}
 		}
-		for (let database of Template.all.map(template => template.database)) {
+		for (let database of userData().templates.map(template => template.database)) {
 			for (let dataset of database.ref().datasets.ref()) {
 				if (dataset.ref().id === this.id) {
 					return database;
@@ -162,8 +200,8 @@ export abstract class Dataset<Kind extends DatasetKind = DatasetKind> {
 				name: dataset.name,
 				icon: getIconByName(dataset.iconName)!,
 				description: dataset.description,
-				fields: dataset.fields,
-				data: dataset.data,
+				fields: dataset.fields.map(field => Attribute.fromBackend(field)),
+				data: TreeNode.fromBackend(dataset.data, data => DataEntry.fromBackend(data)),
 			}) as unknown as Dataset<Kind>;
 		}
 
@@ -202,9 +240,9 @@ export class ManualDataset extends Dataset<"manual"> {
 			kind: "manual",
 			name: this.name,
 			iconName: getIconName(this.icon),
-			description: this.description,
-			fields: this.fields.ref(),
-			data: this.data.ref(),
+			description: this.description ?? "",
+			fields: this.fields.ref().map(field => field.toBackend()),
+			data: this.data.ref().toBackend(),
 		};
 	}
 
@@ -236,7 +274,7 @@ export class GeneratedDataset extends Dataset<"generated"> {
 			kind: "generated",
 			name: this.name,
 			iconName: getIconName(this.icon),
-			description: this.description,
+			description: this.description ?? "",
 		};
 	}
 }
@@ -267,6 +305,14 @@ export class Database implements Cloneable<Database> {
 	public deleteDataset(dataset: Dataset): void {
 		this.datasets.overwrite(this.datasets.ref().filter(other => other.ref().id !== dataset.id));
 	}
+
+	public toBackend(): BackendDatabase {
+		return this.datasets.ref().map(dataset => dataset.ref().toBackend());
+	}
+
+	public static fromBackend(database: BackendDatabase): Database {
+		return new Database(...database.map(dataset => Dataset.fromBackend(dataset)));
+	}
 }
 
 export type BackendDatabase = BackendDataset[];
@@ -275,16 +321,16 @@ export type BackendManualDataset = {
 	kind: "manual";
 	name: string;
 	iconName: IconName;
-	data: TreeNode<DataEntry>;
-	fields: Attribute[];
-	description?: string;
+	data: BackendTreeNode<BackendDataEntry>;
+	fields: BackendAttribute[];
+	description: string;
 };
 
 export type BackendGeneratedDataset = {
 	kind: "generated";
 	name: string;
 	iconName: IconName;
-	description?: string;
+	description: string;
 };
 
 export type BackendDataset<Kind extends DatasetKind = DatasetKind> = Kind extends "manual"

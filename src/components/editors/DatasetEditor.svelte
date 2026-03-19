@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { ManualDataset } from "../../api/data/dataset.svelte";
+	import ConfirmationPopup from "../popups/ConfirmationPopup.svelte";
 	import HierarchyView from "../views/HierarchyView.svelte";
 	import SpreadsheetView from "../views/SpreadsheetView.svelte";
 
@@ -7,6 +8,12 @@
 
 	function deleteDataset() {
 		dataset.delete();
+	}
+
+	let confirmDeletePopup: ConfirmationPopup;
+
+	function confirmDelete() {
+		confirmDeletePopup.open();
 	}
 </script>
 
@@ -32,8 +39,12 @@
 		<SpreadsheetView {dataset} openEditor={() => {}} />
 	</div>
 
-	<button class="delete" onmousedown={deleteDataset}>Delete</button>
+	<button class="delete" onmousedown={confirmDelete}>Delete</button>
 </div>
+
+<ConfirmationPopup bind:this={confirmDeletePopup} title="Delete '{dataset.name}' dataset?" onconfirm={deleteDataset}>
+	<p>All entries in this dataset will be deleted.</p>
+</ConfirmationPopup>
 
 <style>
 	.delete {

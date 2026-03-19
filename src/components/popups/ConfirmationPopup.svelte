@@ -47,6 +47,13 @@
 			font-size: 1rem;
 			margin-left: auto;
 			margin-right: auto;
+			margin-bottom: 0.5rem;
+		}
+
+		:global(p) {
+			color: #a6adc8;
+			font-size: 0.85rem;
+			text-align: center;
 		}
 	}
 
@@ -54,6 +61,7 @@
 		display: flex;
 		width: 100%;
 		justify-content: space-between;
+		margin-top: 1rem;
 
 		button {
 			display: flex;

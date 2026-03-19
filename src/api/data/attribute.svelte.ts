@@ -7,11 +7,13 @@ import TextIcon from "../../components/icons/TextIcon.svelte";
 import WeightScaleIcon from "../../components/icons/WeightScaleIcon.svelte";
 import { Project } from "../project.svelte";
 import type { ManualDataset } from "./dataset.svelte";
-import { Length, Measurement, Weight } from "./measurement.svelte";
+import { Length, Measurement, Weight, type BackendMeasurement } from "./measurement.svelte";
 import { Template } from "../userdata/template.svelte";
 import type { IconComponent } from "../ui/icons.svelte";
 import { Container, type Cloneable } from "../util/Clone.svelte";
 import { empty } from "../util/utils.svelte";
+import type { Serialize } from "../util/serialize.svelte";
+import { userData } from "../userdata/cache.svelte";
 
 const fieldValueTypes = [
 	{
@@ -101,12 +103,29 @@ export class StyledText implements Cloneable<StyledText> {
 	}
 }
 
-export class DocumentContent implements Cloneable<DocumentContent> {
+export type BackendDocumentContent = {
+	parts: { text: string; style: { bold: boolean; italic: boolean } }[];
+};
+
+export class DocumentContent implements Cloneable<DocumentContent>, Serialize<BackendDocumentContent> {
 	private parts: StyledText[] = $state(empty());
 
 	public constructor(parts?: StyledText[]) {
 		this.parts = parts ?? [];
 		if (this.parts.length < 1) this.parts = [new StyledText("", new Style({ bold: false, italic: false }))];
+	}
+
+	public toBackend(): BackendDocumentContent {
+		return {
+			parts: this.parts.map(part => ({
+				text: part.text,
+				style: { bold: part.style.ref().bold, italic: part.style.ref().italic },
+			})),
+		};
+	}
+
+	public static fromBackend(doc: BackendDocumentContent): DocumentContent {
+		return new DocumentContent(doc.parts.map(part => new StyledText(part.text, part.style)));
 	}
 
 	public addPart(part: StyledText) {
@@ -156,11 +175,28 @@ type AttributeTypes = {
 
 export type AttributeValue = AttributeTypes[keyof AttributeTypes];
 
-export class PrimitiveAttribute<T> implements Cloneable<PrimitiveAttribute<T>> {
+export function attributeValueFromBackend(value: BackendAttributeValue): AttributeValue {
+	if (typeof value === "string") return new PrimitiveAttribute(value);
+	if (typeof value === "number") return new PrimitiveAttribute(value);
+	if ("units" in value) return Measurement.fromBackend(value);
+	return DocumentContent.fromBackend(value);
+}
+
+export type BackendAttributeValue = string | number | BackendMeasurement | BackendDocumentContent;
+
+export class PrimitiveAttribute<T> implements Cloneable<PrimitiveAttribute<T>>, Serialize<T> {
 	value: T = $state(empty());
 
 	public constructor(value: T) {
 		this.value = value;
+	}
+
+	public toBackend(): T {
+		return this.value;
+	}
+
+	public static fromBackend<T>(value: T): PrimitiveAttribute<T> {
+		return new PrimitiveAttribute(value);
 	}
 
 	public clone(): PrimitiveAttribute<T> {
@@ -168,7 +204,12 @@ export class PrimitiveAttribute<T> implements Cloneable<PrimitiveAttribute<T>> {
 	}
 }
 
-export class Attribute {
+export type BackendAttribute = {
+	name: string;
+	type: AttributeType;
+};
+
+export class Attribute implements Serialize<BackendAttribute> {
 	public name: string = $state(empty());
 	public type: AttributeType = $state(empty());
 	private id_: number = $state(empty());
@@ -181,6 +222,17 @@ export class Attribute {
 		this.id_ = Attribute.fieldID++;
 	}
 
+	toBackend(): BackendAttribute {
+		return {
+			name: this.name,
+			type: this.type,
+		};
+	}
+
+	public static fromBackend(attribute: BackendAttribute): Attribute {
+		return new Attribute(attribute.name, attribute.type);
+	}
+
 	public get id() {
 		return this.id_;
 	}
@@ -190,18 +242,23 @@ export class Attribute {
 	}
 
 	public get dataset(): Container<ManualDataset> {
-		for (let dataset of Project.get().database.ref().datasets.ref()) {
-			let set = dataset.ref();
-			if (set.isManual()) {
-				for (let field of set.fields.ref()) {
-					if (field.id === this.id) {
-						return new Container(set);
+		const project = Project.get();
+		if (project) {
+			for (let dataset of project.database.ref().datasets.ref()) {
+				let set = dataset.ref();
+				if (set.isManual()) {
+					for (let field of set.fields.ref()) {
+						if (field.id === this.id) {
+							return new Container(set);
+						}
 					}
 				}
 			}
 		}
 
-		for (let dataset of Template.all.map(template => template.database.ref().datasets.ref()).flat()) {
+		for (let dataset of userData()
+			.templates.map(template => template.database.ref().datasets.ref())
+			.flat()) {
 			let set = dataset.ref();
 			if (set.isManual()) {
 				for (let field of set.fields.ref()) {

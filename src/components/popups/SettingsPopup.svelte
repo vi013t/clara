@@ -8,15 +8,16 @@
 	import KeyboardKeyIcon from "../icons/KeyboardKeyIcon.svelte";
 	import PackageIcon from "../icons/PackageIcon.svelte";
 	import ArrowIcon from "../icons/ArrowIcon.svelte";
-	import HierarchyView from "../views/HierarchyView.svelte";
-	import SpreadsheetView from "../views/SpreadsheetView.svelte";
 	import { Template } from "../../api/userdata/template.svelte";
 	import DatasetEditor from "../editors/DatasetEditor.svelte";
 	import { ManualDataset } from "../../api/data/dataset.svelte";
+	import { flip } from "svelte/animate";
+	import { userData } from "../../api/userdata/cache.svelte";
 
 	let popup: Popup;
 
-	export function open() {
+	export function open(viewName?: string) {
+		if (viewName) view = viewName;
 		popup.open();
 	}
 
@@ -74,7 +75,7 @@
 
 			<h1>Presets</h1>
 
-			<button onmousedown={setView("templates")}>
+			<button class={[view === "templates" && "selected"]} onmousedown={setView("templates")}>
 				<PackageIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 				<span>Templates</span>
 			</button>
@@ -89,8 +90,9 @@
 		</div>
 		<div class="content">
 			{#if view === "templates"}
+				<h1 style="margin-top: 1rem;">Templates</h1>
 				<div class="templates">
-					{#each Template.all as template}
+					{#each userData().templates as template}
 						{@const manualDatasets = template.database.ref().manual()}
 						{@const generatedDatasets = template.database.ref().generated()}
 
@@ -115,15 +117,18 @@
 						</div>
 
 						<h2>Datasets</h2>
-						{#each editingTemplate.database.ref().datasets.ref() as dataset, index}
-							{#if dataset.ref().isManual()}
+						{#each editingTemplate.database
+							.ref()
+							.datasets.ref()
+							.filter(dataset => dataset.ref().isManual()) as dataset, index (dataset.ref().id)}
+							<div animate:flip={{ duration: 200 }}>
 								<DatasetEditor
 									bind:dataset={
 										() => editingTemplate!.database.ref().datasets.ref()[index].ref() as ManualDataset,
 										value => editingTemplate!.database.ref().datasets.ref()[index].overwrite(value)
 									}
 								/>
-							{/if}
+							</div>
 						{/each}
 					</div>
 				{/if}
@@ -278,11 +283,16 @@
 				padding-left: 0.5rem;
 				width: 100%;
 				border-radius: 0.25rem;
-				--stroke: #cdd6f4;
+				color: #bac2de;
+				--stroke: #bac2de;
 
 				&:hover {
 					background-color: #b4befe;
 					--stroke: #181825;
+				}
+
+				&.selected:not(:hover) {
+					background-color: #313244;
 				}
 
 				span {

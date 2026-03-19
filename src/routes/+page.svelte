@@ -3,16 +3,22 @@
 	import Pane from "../components/pane/Pane.svelte";
 	import StatusBar from "../components/StatusBar.svelte";
 	import { pressHotkey } from "../api/userdata/action.svelte";
+	import { Project } from "../api/project.svelte";
+	import NoProject from "../components/NoProject.svelte";
 </script>
 
 <svelte:document onkeydown={pressHotkey} />
 
 <main>
 	<Navbar />
-	<div>
-		<Pane background="#181825" />
-		<StatusBar />
-	</div>
+	{#if Project.get()}
+		<div>
+			<Pane background="#181825" />
+			<StatusBar />
+		</div>
+	{:else}
+		<NoProject />
+	{/if}
 </main>
 
 <style>

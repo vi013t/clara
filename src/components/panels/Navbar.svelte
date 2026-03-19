@@ -17,6 +17,8 @@
 	import ManualPopup from "../popups/ManualPopup.svelte";
 	import SettingsPopup from "../popups/SettingsPopup.svelte";
 	import LittleButton from "../widgets/LittleButton.svelte";
+	import ArrowIcon from "../icons/ArrowIcon.svelte";
+	import ClockIcon from "../icons/ClockIcon.svelte";
 
 	let projectMenu: ContextMenu;
 
@@ -45,6 +47,11 @@
 		const appWindow = getCurrentWindow();
 		appWindow.toggleMaximize();
 	}
+
+	function openProject() {
+		projectMenu.close();
+		Project.open();
+	}
 </script>
 
 <nav>
@@ -52,42 +59,51 @@
 		<div class="wrapper">
 			<LittleButton Icon={FolderIcon} onmousedown={() => projectMenu.toggle()} />
 			<ContextMenu bind:this={projectMenu} top="120%" left="0px">
-				<button
-					onmousedown={() => {
-						projectSettingsPopup.open();
-						projectMenu.close();
-					}}
-					disabled={!Project.get()}
-				>
-					<GearIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-					<span>Project settings</span>
-				</button>
-				<button disabled={!Project.get()}>
-					<SaveIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-					<span>Save project</span>
-				</button>
-				<button disabled={!Project.get()}>
-					<SaveIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-					<span>Save project as...</span>
-				</button>
+				<!-- svelte-ignore a11y_no_static_element_interactions -->
+				<div onmousedown={() => Project.open()} class={["cm-button"]}>
+					<FolderIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+					<span>Open project</span>
 
-				<hr />
-
-				<button onmousedown={() => Project.open()}>
-					<FolderIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-					<span>
-						Open project
-						<span></span>
-					</span>
-				</button>
+					<ArrowIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem; rotate: 90deg; margin-left: auto;" />
+					<ContextMenu>
+						<button>
+							<ClockIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+							<span>Recent</span>
+						</button>
+						<button onmousedown={openProject}>
+							<FolderIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+							<span>Browse</span>
+						</button>
+					</ContextMenu>
+				</div>
 				<button
 					onmousedown={() => {
 						newProjectPopup.open();
 						projectMenu.close();
 					}}
 				>
-					<CircledPlusIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+					<CircledPlusIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 					<span>New project</span>
+				</button>
+				<hr />
+				<!-- svelte-ignore a11y_no_static_element_interactions -->
+				<div
+					onmousedown={() => {
+						projectSettingsPopup.open();
+						projectMenu.close();
+					}}
+					class={["cm-button", !Project.get() && "disabled"]}
+				>
+					<GearIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+					<span>Project settings</span>
+				</div>
+				<button disabled={!Project.get()}>
+					<SaveIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+					<span>Save project</span>
+				</button>
+				<button disabled={!Project.get()}>
+					<SaveIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+					<span>Save project as...</span>
 				</button>
 			</ContextMenu>
 		</div>
@@ -147,41 +163,22 @@
 					background-color: rgba(200, 200, 255, 10%);
 				}
 			}
+		}
+	}
 
-			> button {
-				color: #cdd6f4;
-				display: flex;
-				border-radius: 0.25rem;
-				font-size: 0.8rem;
-				padding: 0.25rem;
-				--stroke: #cdd6f4;
+	button,
+	.cm-button {
+		--stroke: #cdd6f4;
+		cursor: pointer;
 
-				&:hover {
-					background-color: #b4befe;
-					color: #181825;
-					--stroke: #181825;
-				}
-			}
+		&[disabled],
+		&.disabled {
+			--stroke: #6c7086;
 		}
 	}
 
 	.wrapper {
 		position: relative;
 		height: 100%;
-
-		> button {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			--stroke: #cdd6f4;
-			padding: 0.25rem;
-			border-radius: 0.25rem;
-			color: var(--stroke);
-
-			&:hover {
-				--stroke: #181825;
-				background-color: #b4befe;
-			}
-		}
 	}
 </style>

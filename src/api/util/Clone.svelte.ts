@@ -1,4 +1,4 @@
-import { empty } from "./utils.svelte";
+import { assignedLater } from "./utils.svelte";
 
 export interface Cloneable<T> {
 	clone(): T;
@@ -7,7 +7,7 @@ export interface Cloneable<T> {
 export interface Immutable<T> extends Cloneable<T> {}
 
 export class ImmutableContainer<T extends Cloneable<T> | Cloneable<any>[]> {
-	protected data: T = $state(empty());
+	protected data: T = $state(assignedLater());
 
 	public constructor(data: T) {
 		this.data = data;

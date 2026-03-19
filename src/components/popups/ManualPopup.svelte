@@ -23,11 +23,12 @@
 
 	let popup: Popup;
 
-	export function open() {
+	let view = $state("introduction");
+
+	export function open(viewName?: string) {
+		if (viewName) view = viewName;
 		popup.open();
 	}
-
-	let view = $state("introduction");
 
 	function reset() {}
 

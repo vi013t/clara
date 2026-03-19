@@ -1,22 +1,31 @@
 <script lang="ts" module>
-	export type SerializedPane = {
-		split: "horizontal" | "vertical" | undefined;
-		childData: SerializedPane | null;
+	export type PaneTree = PaneTreeLeaf | PaneTreeBranch;
+
+	export type PaneTreeLeaf = {
+		tabs: TabList;
 	};
+
+	export type PaneTreeBranch = (
+		| {
+				split: "horizontal";
+				width: number;
+		  }
+		| { split: "vertical"; height: number }
+	) & { childPane: PaneTree } & PaneTreeLeaf;
 </script>
 
 <script lang="ts">
 	import Pane from "./Pane.svelte";
 	import TreeView from "../views/HierarchyView.svelte";
-	import { type View } from "../../api/data/structure/views.svelte";
+	import { type View } from "../../api/ui/views.svelte";
 	import SpreadsheetView from "../views/SpreadsheetView.svelte";
-	import { onMount, type Snippet } from "svelte";
 	import Tabline from "./Tabline.svelte";
 	import { DataEntry, type Dataset } from "../../api/data/dataset.svelte";
 	import Editor from "../panels/Editor.svelte";
 	import { onActionRequested } from "../../api/userdata/action.svelte";
 	import ManualPopup from "../popups/ManualPopup.svelte";
 	import { DocumentContent } from "../../api/data/attribute.svelte";
+	import { DataTab, EditorTab, TabList } from "../../api/ui/tab.svelte";
 
 	let {
 		width = "500px",
@@ -25,7 +34,6 @@
 		subpane = false,
 		split = undefined,
 		onclose = () => {},
-		serializationData,
 	}: {
 		width?: string;
 		height?: string;
@@ -33,17 +41,12 @@
 		subpane?: boolean;
 		split?: "horizontal" | "vertical";
 		onclose?: () => void;
-		serializationData?: SerializedPane;
 	} = $props();
 
 	let dragging = $state("none");
 
-	// svelte-ignore state_referenced_locally
-	let datasets: Dataset[] = $state([]);
-	export type Tab = { id: number; dataset?: Dataset; component: TreeView; editorContent?: [DataEntry, string]; view: View };
-	let tabID = $state(0);
-	let tabs: Tab[] = $state([{ id: tabID++, component: null!, view: "hierarchy" }]);
 	let selectedTabID = $state(0);
+	let tabline = $state(new TabList());
 
 	function drag(side: string) {
 		return function () {
@@ -70,35 +73,12 @@
 	let isMasterPaneAlive = $state(true);
 
 	function openEditor(entryID: number, fieldName: string) {
-		tabs.push({ id: tabID++, component: null!, editorContent: [DataEntry.fromID(entryID)!, fieldName], view: "graph" });
-		selectedTabID = tabID - 1;
+		let tab = new EditorTab(DataEntry.fromID(entryID)!.get(fieldName));
+		tabline.appendTab(tab);
+		selectedTabID = tab.id;
 	}
-
-	onActionRequested("New Tab", () => {
-		tabs.push({ id: tabID++, component: null!, view: "hierarchy" });
-	});
 
 	let childPane: Pane | null = $state(null);
-
-	export function serialize(): SerializedPane {
-		let childData = childPane?.serialize() ?? null;
-		return {
-			split,
-			childData,
-		};
-	}
-
-	export function deserialize(data: SerializedPane) {
-		split = data.split;
-		if (data.childData) childPane!.deserialize(data.childData);
-	}
-
-	onMount(() => {
-		if (serializationData) {
-			deserialize(serializationData);
-		}
-	});
-
 	let manualPopup: ManualPopup;
 </script>
 
@@ -116,18 +96,22 @@
 		style:height={split === "vertical" ? masterHeight : "100%"}
 		style:width={split === "horizontal" ? masterWidth : "100%"}
 	>
-		<Tabline bind:isMasterPaneAlive bind:tabID bind:selectedTabID bind:tabs {background} {split} {subpane} {onclose} />
+		<Tabline bind:isMasterPaneAlive bind:selectedTabID bind:tabs={tabline} {background} {split} {subpane} {onclose} />
 		<div class="content" style:background>
-			{#each tabs as tab, index (tab.id)}
-				{#if tab.editorContent && tab.id === selectedTabID}
-					<!-- Editing a field -->
-					<Editor
-						bind:doc={
-							() => (tab.editorContent![0].get(tab.editorContent![1]) as DocumentContent | null) ?? new DocumentContent(),
-							content => tab.editorContent![0].set(tab.editorContent![1], content ?? new DocumentContent())
-						}
-					/>
-				{:else if !tab.dataset}
+			{#each tabline.tabs as tab, index (tab.id)}
+				{#if tab instanceof EditorTab && tab.id === selectedTabID}
+					<Editor bind:doc={tab.content} />
+				{:else if tab instanceof DataTab}
+					{#if tab.dataset.isManual()}
+						<div style="display: {tab.id === selectedTabID ? 'block' : 'none'}">
+							{#if tab.view === "hierarchy"}
+								<TreeView hideRoot tree={tab.dataset.data.ref()} LeafIcon={tab.dataset.icon} />
+							{:else if tab.view === "spreadsheet"}
+								<SpreadsheetView {openEditor} dataset={tab.dataset} />
+							{/if}
+						</div>
+					{/if}
+				{:else}
 					<div class="no-dataset">
 						<p>This tab has no dataset opened. Open an existing one now or create a new one to open.</p>
 						<div>
@@ -135,14 +119,6 @@
 							<button>Create dataset</button>
 						</div>
 						<button onmousedown={() => manualPopup.open()}>What the heck's a dataset?</button>
-					</div>
-				{:else if tab.dataset.isManual()}
-					<div style="display: {tab.id === selectedTabID ? 'block' : 'none'}">
-						{#if tab.view === "hierarchy"}
-							<TreeView hideRoot tree={tab.dataset.data.ref()} bind:this={tabs[index].component} LeafIcon={tab.dataset.icon} />
-						{:else if tab.view === "spreadsheet"}
-							<SpreadsheetView {openEditor} dataset={tab.dataset} />
-						{/if}
 					</div>
 				{/if}
 			{/each}

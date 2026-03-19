@@ -3,14 +3,14 @@ import { Database, type BackendDatabase } from "../data/dataset.svelte";
 import { getIconByName, getIconName, type IconComponent, type IconName } from "../ui/icons.svelte";
 import { Container } from "../util/Clone.svelte";
 import type { Serialize } from "../util/serialize.svelte";
-import { empty } from "../util/utils.svelte";
+import { assignedLater } from "../util/utils.svelte";
 
 export class ProjectBase {
-	name: string = $state(empty());
-	database: Container<Database> = $state(empty());
-	description?: string = $state(empty());
-	icon: IconComponent = $state(empty());
-	id: number = $state(empty());
+	name: string = $state(assignedLater());
+	database: Container<Database> = $state(assignedLater());
+	description?: string = $state(assignedLater());
+	icon: IconComponent = $state(assignedLater());
+	id: number = $state(assignedLater());
 
 	private static projectID = 0;
 

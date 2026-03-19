@@ -1,66 +1,66 @@
-export type Node = {
-	olderSiblings: Node[];
-	youngerSiblings: Node[];
-	text: string;
-	color: string;
-	position: [number, number];
-};
+import { assignedLater } from "../../util/utils.svelte";
 
-export function node(rootText: string, position: [number, number] = [0, 0]): Node {
-	return {
-		olderSiblings: [],
-		youngerSiblings: [],
-		text: rootText,
-		color: "#b4befe",
-		position,
-	};
-}
+export class GraphNode<T> {
+	public readonly olderSiblings: readonly GraphNode<T>[] = $state(assignedLater());
+	private readonly youngerSiblings: readonly GraphNode<T>[] = $state(assignedLater());
+	public data: T = $state(assignedLater());
 
-export function linearGraph(...nodes: { text: string; position: [number, number] }[]): Node {
-	let currentNode: Node = node(nodes[0].text, nodes[0].position);
-	let firstNode = currentNode;
-	nodes.forEach(nodeData => {
-		const newNode = node(nodeData.text, nodeData.position);
-		newNode.youngerSiblings.push(currentNode);
-		currentNode.olderSiblings.push(newNode);
-		currentNode = newNode;
-	});
-	return firstNode;
-}
-
-export function dfs(start: Node, visit: (node: Node) => void) {
-	const stack: Node[] = [start];
-	const visited = new Set<Node>();
-
-	while (stack.length > 0) {
-		const node = stack.pop()!;
-
-		if (visited.has(node)) continue;
-
-		visited.add(node);
-		visit(node);
-
-		for (const neighbor of node.olderSiblings) {
-			stack.push(neighbor);
-		}
+	private constructor(olderSiblings: GraphNode<T>[], youngerSiblings: GraphNode<T>[], data: T) {
+		this.olderSiblings = olderSiblings;
+		this.youngerSiblings = youngerSiblings;
+		this.data = data;
 	}
-}
 
-export function bfs(start: Node, visit: (node: Node) => void) {
-	const queue: Node[] = [start];
-	const visited = new Set<Node>();
+	public static create<T>(data: T): GraphNode<T> {
+		return new GraphNode([], [], data);
+	}
 
-	visited.add(start);
+	public static linear<T>(...nodes: T[]): GraphNode<T> {
+		let currentNode = GraphNode.create(nodes[0]);
+		let firstNode = currentNode;
+		nodes.forEach(node => {
+			const newNode = GraphNode.create(node);
+			(newNode.youngerSiblings as any).push(currentNode);
+			(currentNode.olderSiblings as any).push(newNode);
+			currentNode = newNode;
+		});
+		return firstNode;
+	}
 
-	while (queue.length > 0) {
-		const node = queue.shift()!;
-		visit(node);
+	public dfs(): T[] {
+		const stack: GraphNode<T>[] = [this];
+		const visited: GraphNode<T>[] = [];
 
-		for (const neighbor of node.olderSiblings) {
-			if (!visited.has(neighbor)) {
-				visited.add(neighbor);
-				queue.push(neighbor);
+		while (stack.length > 0) {
+			const node = stack.pop()!;
+
+			if (visited.includes(node)) continue;
+			visited.push(node);
+
+			for (const neighbor of node.olderSiblings) {
+				stack.push(neighbor);
 			}
 		}
+
+		return visited.map(node => node.data);
+	}
+
+	public bfs(): T[] {
+		const queue: GraphNode<T>[] = [this];
+		const visited: GraphNode<T>[] = [];
+
+		while (queue.length > 0) {
+			const node = queue.shift()!;
+			visited.push(node);
+
+			for (const neighbor of node.olderSiblings) {
+				if (!visited.includes(neighbor)) {
+					visited.push(neighbor);
+					queue.push(neighbor);
+				}
+			}
+		}
+
+		return visited.map(node => node.data);
 	}
 }

@@ -1,6 +1,6 @@
 import type { Cloneable } from "../../util/Clone.svelte";
 import type { Serialize } from "../../util/serialize.svelte";
-import { empty } from "../../util/utils.svelte";
+import { assignedLater } from "../../util/utils.svelte";
 
 export type BackendTreeNode<Bytes> = {
 	children: BackendTreeNode<Bytes>[];
@@ -11,9 +11,9 @@ export type BackendTreeNode<Bytes> = {
 export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	implements Cloneable<TreeNode<T, Bytes>>, Serialize<BackendTreeNode<Bytes>>
 {
-	private parent?: TreeNode<T, Bytes> = $state(empty());
-	private children_: TreeNode<T>[] = $state(empty());
-	private isBranch_: boolean = $state(empty());
+	private parent?: TreeNode<T, Bytes> = $state(assignedLater());
+	private children_: TreeNode<T>[] = $state(assignedLater());
+	private isBranch_: boolean = $state(assignedLater());
 
 	data: T;
 

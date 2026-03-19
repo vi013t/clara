@@ -97,6 +97,8 @@
 	function reset() {
 		location = "";
 		name = "";
+		startedTypingLocation = false;
+		startedTypingName = false;
 		template = userData().templates[0];
 	}
 </script>

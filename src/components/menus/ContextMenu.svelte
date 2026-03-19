@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount, type Snippet } from "svelte";
-	import { parseJsonText } from "typescript";
 
 	let {
 		left = $bindable(),
@@ -102,15 +101,14 @@
 		);
 	}
 
+	// Handle submenus
 	onMount(() => {
 		let parentMenu = domElement!.parentElement!.closest(".context-menu");
 		if (!parentMenu) return;
-
-		left = `${parentMenu.getBoundingClientRect().width}px`;
-		top = `${domElement!.parentElement!.getBoundingClientRect().top - domElement!.offsetParent!.getBoundingClientRect().top - 4}px`;
-
 		domElement!.parentElement!.addEventListener("mouseenter", event => {
-			if (parentMenu.matches(".open")) {
+			if (parentMenu.matches(".open") && !domElement!.parentElement!.matches(".disabled")) {
+				left = `${parentMenu.getBoundingClientRect().width}px`;
+				top = `${domElement!.parentElement!.getBoundingClientRect().top - domElement!.offsetParent!.getBoundingClientRect().top - 10}px`;
 				forceOpen();
 			}
 		});
@@ -118,23 +116,17 @@
 		document.addEventListener("mousemove", event => {
 			const parentRect = domElement!.parentElement!.getBoundingClientRect();
 			const insideParent = cursorIsInBox(event.clientX, event.clientY, parentRect, { padRight: 10 });
+			const insideThis = visible && cursorIsInBox(event.clientX, event.clientY, domElement!.getBoundingClientRect());
+			const disabled = domElement!.parentElement!.classList.contains("disabled");
+			const insideChildMenu = Array.from(domElement!.querySelectorAll<HTMLElement>(".context-menu.open")).some(submenu =>
+				cursorIsInBox(event.clientX, event.clientY, submenu.getBoundingClientRect(), { padLeft: 10 }),
+			);
 
-			console.table({
-				mouseX: event.clientX,
-				mouseY: event.clientY,
-				rectTop: parentRect.top,
-				rectBottom: parentRect.bottom,
-				rectLeft: parentRect.left,
-				rectRight: parentRect.right,
-				isInside: insideParent,
-			});
-
-			if (
-				!cursorIsInBox(event.clientX, event.clientY, parentRect, { padRight: 5 }) &&
-				!cursorIsInBox(event.clientX, event.clientY, domElement!.getBoundingClientRect())
-			) {
+			if ((!insideThis && !insideParent && !insideChildMenu) || disabled) {
 				forceClose();
 			} else {
+				left = `${parentMenu.getBoundingClientRect().width}px`;
+				top = `${domElement!.parentElement!.getBoundingClientRect().top - domElement!.offsetParent!.getBoundingClientRect().top - 10}px`;
 				forceOpen();
 			}
 		});

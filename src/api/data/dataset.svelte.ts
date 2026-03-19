@@ -4,7 +4,7 @@ import { userData } from "../userdata/cache.svelte";
 import { Template } from "../userdata/template.svelte";
 import { Container, type Cloneable } from "../util/Clone.svelte";
 import type { Serialize } from "../util/serialize.svelte";
-import { empty, mapValues } from "../util/utils.svelte";
+import { assignedLater, mapValues } from "../util/utils.svelte";
 import {
 	Attribute,
 	attributeValueFromBackend,
@@ -22,7 +22,7 @@ export type BackendDataEntry = {
 };
 
 export class DataEntry implements Cloneable<DataEntry>, Serialize<BackendDataEntry> {
-	private data: { [key: string]: AttributeValue } = $state(empty());
+	private data: { [key: string]: AttributeValue } = $state(assignedLater());
 
 	private static nextDataID = 0;
 	private static entries: { [key: number]: DataEntry } = {};
@@ -79,8 +79,8 @@ export class DataEntry implements Cloneable<DataEntry>, Serialize<BackendDataEnt
 		return (this.data.id as PrimitiveAttribute<number>).value;
 	}
 
-	public get(key: string): AttributeValue | null {
-		return this.data[key] ?? null;
+	public get<T extends AttributeValue | null>(key: string): T {
+		return (this.data[key] ?? null) as T;
 	}
 
 	public set(key: string, value: AttributeValue): void {
@@ -102,12 +102,12 @@ export class DataEntry implements Cloneable<DataEntry>, Serialize<BackendDataEnt
 }
 
 export abstract class Dataset<Kind extends DatasetKind = DatasetKind> {
-	public name: string = $state(empty());
-	public icon: IconComponent = $state(empty());
-	public description?: string = $state(empty());
+	public name: string = $state(assignedLater());
+	public icon: IconComponent = $state(assignedLater());
+	public description?: string = $state(assignedLater());
 
-	public readonly id: number = $state(empty());
-	public readonly kind: Kind = $state(empty());
+	public readonly id: number = $state(assignedLater());
+	public readonly kind: Kind = $state(assignedLater());
 
 	private static datasetID = 0;
 
@@ -214,8 +214,8 @@ export abstract class Dataset<Kind extends DatasetKind = DatasetKind> {
 }
 
 export class ManualDataset extends Dataset<"manual"> {
-	public fields: Container<Attribute[]> = $state(empty());
-	public data: Container<TreeNode<DataEntry>> = $state(empty());
+	public fields: Container<Attribute[]> = $state(assignedLater());
+	public data: Container<TreeNode<DataEntry>> = $state(assignedLater());
 
 	public constructor({
 		name,
@@ -280,8 +280,8 @@ export class GeneratedDataset extends Dataset<"generated"> {
 }
 
 export class Database implements Cloneable<Database> {
-	public readonly datasets: Container<Container<Dataset>[]> = $state(empty());
-	public readonly id = $state(empty());
+	public readonly datasets: Container<Container<Dataset>[]> = $state(assignedLater());
+	public readonly id = $state(assignedLater());
 
 	private static databaseID = 0;
 

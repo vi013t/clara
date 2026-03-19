@@ -1,19 +1,12 @@
 <script lang="ts">
-	import { dfs, bfs, type Node } from "../../api/data/structure/graph.svelte";
+	import type { DataEntry } from "../../api/data/dataset.svelte";
+	import { GraphNode } from "../../api/data/structure/graph.svelte";
+	import { assignedLater } from "../../api/util/utils.svelte";
 
-	let { graph }: { graph: Node } = $props();
+	let { graph }: { graph: GraphNode<DataEntry> } = $props();
 
-	let edges: SVGElement = null!;
-
-	let nodes: Node[] = $derived.by(() => {
-		let nodes: Node[] = [];
-		dfs(graph, node => nodes.push(node));
-		return nodes;
-	});
-
-	$effect(() => {
-		bfs(graph, node => node.olderSiblings.forEach(sibling => createEdge(node.position, sibling.position)));
-	});
+	let edges = assignedLater<SVGElement>();
+	let nodes = $derived(graph.dfs());
 
 	function createEdge(pos1: [number, number], pos2: [number, number]) {
 		const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
@@ -33,11 +26,11 @@
 	{#each nodes as node}
 		<!-- svelte-ignore a11y_consider_explicit_label -->
 		<button
-			style:--node-color={node.color}
 			class="node"
-			style:left="{node.position[0] + innerWidth / 2}px"
-			style:top="{node.position[1] + innerHeight / 2}px"
-			style:--text="'{node.text}'"
+			// style:left="{node.position[0] + innerWidth / 2}px"
+			// style:top="{node.position[1] + innerHeight / 2}px"
+			// style:--text="'{node.text}'"
+			// style:--node-color={node.color}
 		></button>
 	{/each}
 	<svg bind:this={edges}></svg>

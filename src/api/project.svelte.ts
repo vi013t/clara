@@ -1,11 +1,11 @@
 import { invoke } from "@tauri-apps/api/core";
 import { Database, type BackendDatabase } from "./data/dataset.svelte";
 import { ProjectBase } from "./userdata/template.svelte";
-import { empty } from "./util/utils.svelte";
+import { assignedLater } from "./util/utils.svelte";
 import { open } from "@tauri-apps/plugin-dialog";
 
 export class Project extends ProjectBase {
-	private location: string = $state(empty());
+	private location: string = $state(assignedLater());
 
 	public constructor({ name, location, database }: { name: string; location: string; database: Database }) {
 		super({ name, database });

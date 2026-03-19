@@ -2,7 +2,7 @@
 
 import type { Cloneable } from "../util/Clone.svelte";
 import type { Serialize } from "../util/serialize.svelte";
-import { empty } from "../util/utils.svelte";
+import { assignedLater } from "../util/utils.svelte";
 
 export abstract class MeasurementTypeInstance<
 	Standard extends Measurement<Self, Standard, Standard> = any,
@@ -44,7 +44,7 @@ export abstract class Measurement<
 >
 	implements Cloneable<Self>, Serialize<BackendMeasurement>
 {
-	protected count_: number = $state(empty());
+	protected count_: number = $state(assignedLater());
 
 	public constructor(value: number) {
 		this.count_ = value;

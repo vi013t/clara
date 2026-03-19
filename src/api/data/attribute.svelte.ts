@@ -11,7 +11,7 @@ import { Length, Measurement, Weight, type BackendMeasurement } from "./measurem
 import { Template } from "../userdata/template.svelte";
 import type { IconComponent } from "../ui/icons.svelte";
 import { Container, type Cloneable } from "../util/Clone.svelte";
-import { empty } from "../util/utils.svelte";
+import { assignedLater } from "../util/utils.svelte";
 import type { Serialize } from "../util/serialize.svelte";
 import { userData } from "../userdata/cache.svelte";
 
@@ -49,8 +49,8 @@ const fieldValueTypes = [
 export type AttributeType = typeof fieldValueTypes extends (infer T)[] ? (T extends { name: string } ? T["name"] : never) : never;
 
 export class Style implements Cloneable<Style> {
-	bold: boolean = $state(empty());
-	italic: boolean = $state(empty());
+	bold: boolean = $state(assignedLater());
+	italic: boolean = $state(assignedLater());
 
 	public constructor({ bold, italic }: { bold: boolean; italic: boolean }) {
 		this.bold = bold;
@@ -67,8 +67,8 @@ export class Style implements Cloneable<Style> {
 }
 
 export class StyledText implements Cloneable<StyledText> {
-	text: string = $state(empty());
-	public readonly style: Container<Style> = $state(empty());
+	text: string = $state(assignedLater());
+	public readonly style: Container<Style> = $state(assignedLater());
 
 	public constructor(text: string, style: { bold?: boolean; italic?: boolean }) {
 		this.text = text;
@@ -108,7 +108,7 @@ export type BackendDocumentContent = {
 };
 
 export class DocumentContent implements Cloneable<DocumentContent>, Serialize<BackendDocumentContent> {
-	private parts: StyledText[] = $state(empty());
+	private parts: StyledText[] = $state(assignedLater());
 
 	public constructor(parts?: StyledText[]) {
 		this.parts = parts ?? [];
@@ -185,7 +185,7 @@ export function attributeValueFromBackend(value: BackendAttributeValue): Attribu
 export type BackendAttributeValue = string | number | BackendMeasurement | BackendDocumentContent;
 
 export class PrimitiveAttribute<T> implements Cloneable<PrimitiveAttribute<T>>, Serialize<T> {
-	value: T = $state(empty());
+	value: T = $state(assignedLater());
 
 	public constructor(value: T) {
 		this.value = value;
@@ -210,9 +210,9 @@ export type BackendAttribute = {
 };
 
 export class Attribute implements Serialize<BackendAttribute> {
-	public name: string = $state(empty());
-	public type: AttributeType = $state(empty());
-	private id_: number = $state(empty());
+	public name: string = $state(assignedLater());
+	public type: AttributeType = $state(assignedLater());
+	private id_: number = $state(assignedLater());
 
 	private static fieldID = 0;
 

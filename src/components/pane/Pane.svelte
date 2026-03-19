@@ -26,6 +26,8 @@
 	import ManualPopup from "../popups/ManualPopup.svelte";
 	import { DocumentContent } from "../../api/data/attribute.svelte";
 	import { DataTab, EditorTab, TabList } from "../../api/ui/tab.svelte";
+	import GraphView from "../views/GraphView.svelte";
+	import { GraphNode } from "../../api/data/structure/graph.svelte";
 
 	let {
 		width = "500px",
@@ -103,11 +105,13 @@
 					<Editor bind:doc={tab.content} />
 				{:else if tab instanceof DataTab}
 					{#if tab.dataset.isManual()}
-						<div style="display: {tab.id === selectedTabID ? 'block' : 'none'}">
+						<div class="view-container" style="display: {tab.id === selectedTabID ? 'block' : 'none'}">
 							{#if tab.view === "hierarchy"}
 								<TreeView hideRoot tree={tab.dataset.data.ref()} LeafIcon={tab.dataset.icon} />
 							{:else if tab.view === "spreadsheet"}
 								<SpreadsheetView {openEditor} dataset={tab.dataset} />
+							{:else if tab.view === "graph"}
+								<GraphView graph={GraphNode.create("Node 1", GraphNode.create("Node 2").withPosition([100, 0]))} />
 							{/if}
 						</div>
 					{/if}
@@ -138,6 +142,11 @@
 <ManualPopup bind:this={manualPopup} />
 
 <style>
+	.view-container {
+		width: 100%;
+		height: 100%;
+	}
+
 	.no-dataset {
 		display: flex;
 		align-items: center;

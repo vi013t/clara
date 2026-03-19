@@ -1,44 +1,76 @@
 <script lang="ts">
-	import type { DataEntry } from "../../api/data/dataset.svelte";
+	import { onMount } from "svelte";
 	import { GraphNode } from "../../api/data/structure/graph.svelte";
+	import { Point2D, type Point2DLike } from "../../api/math/matrix.svelte";
 	import { assignedLater } from "../../api/util/utils.svelte";
+	import CameraView from "./CameraView.svelte";
 
-	let { graph }: { graph: GraphNode<DataEntry> } = $props();
+	let { graph }: { graph: GraphNode<any> } = $props();
 
-	let edges = assignedLater<SVGElement>();
 	let nodes = $derived(graph.dfs());
+	let edges = $derived(graph.edges());
+	let edgeElements = $derived(edges.map(edge => createEdge(edge.from.position, edge.to.position)));
 
-	function createEdge(pos1: [number, number], pos2: [number, number]) {
+	function createEdge(pos1: Point2DLike, pos2: Point2DLike) {
+		let point1 = new Point2D(pos1);
+		let point2 = new Point2D(pos2);
+
 		const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-		line.setAttribute("x1", `${pos1[0] + innerWidth / 2}`);
-		line.setAttribute("y1", `${pos1[1] + innerHeight / 2}`);
-		line.setAttribute("x2", `${pos2[0] + innerWidth / 2}`);
-		line.setAttribute("y2", `${pos2[1] + innerHeight / 2}`);
+
+		line.setAttribute("x1", `${point1.x}`);
+		line.setAttribute("y1", `${point1.y}`);
+		line.setAttribute("x2", `${point2.x}`);
+		line.setAttribute("y2", `${point2.y}`);
 		line.setAttribute("stroke", "#888888");
 		line.setAttribute("stroke-width", "2");
 
-		edges.appendChild(line);
 		return line;
 	}
+
+	$effect(() => {
+		// const rect = edgesSVG.getBoundingClientRect();
+
+		// edgesSVG.setAttribute("viewBox", `${-rect.width / 2} ${-rect.height / 2} ${rect.width} ${rect.height}`);
+
+		edgesSVG.innerHTML = "";
+		for (let child of edgeElements) {
+			edgesSVG.appendChild(child);
+		}
+	});
+
+	let edgesSVG = $state(assignedLater<SVGElement>());
+
+	onMount(() => {
+		let parentBox = edgesSVG.parentElement!.parentElement!.getBoundingClientRect();
+		edgesSVG.style.width = `${parentBox.width}px`;
+		edgesSVG.style.height = `${parentBox.height}px`;
+	});
 </script>
 
-<section>
-	{#each nodes as node}
-		<!-- svelte-ignore a11y_consider_explicit_label -->
-		<button
-			class="node"
-			// style:left="{node.position[0] + innerWidth / 2}px"
-			// style:top="{node.position[1] + innerHeight / 2}px"
-			// style:--text="'{node.text}'"
-			// style:--node-color={node.color}
-		></button>
-	{/each}
-	<svg bind:this={edges}></svg>
+<section class="graph">
+	<CameraView>
+		{#each nodes as node}
+			<!-- svelte-ignore a11y_consider_explicit_label -->
+			<button
+				class="node"
+				style:left="{node.position.x}px"
+				style:top="{node.position.y}px"
+				style:--text="'{node.data.name}'"
+			></button>
+		{/each}
+
+		<svg bind:this={edgesSVG}></svg>
+	</CameraView>
 </section>
 
 <style>
+	section {
+		width: 100%;
+		height: 100%;
+	}
+
 	.node {
-		background-color: var(--node-color);
+		background-color: #f38ba8;
 		width: 1rem;
 		height: 1rem;
 		overflow: visible;
@@ -64,12 +96,5 @@
 		width: 100%;
 		height: 100%;
 		pointer-events: none;
-	}
-
-	section {
-		position: relative;
-		overflow: hidden;
-		width: 100%;
-		height: 100%;
 	}
 </style>

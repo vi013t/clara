@@ -1,18 +1,27 @@
+import { Point2D, type Point2DLike } from "../../math/matrix.svelte";
 import { assignedLater } from "../../util/utils.svelte";
 
-export class GraphNode<T> {
-	public readonly olderSiblings: readonly GraphNode<T>[] = $state(assignedLater());
-	private readonly youngerSiblings: readonly GraphNode<T>[] = $state(assignedLater());
-	public data: T = $state(assignedLater());
+type GraphEdge<T> = { from: GraphNode<T>; to: GraphNode<T> };
 
-	private constructor(olderSiblings: GraphNode<T>[], youngerSiblings: GraphNode<T>[], data: T) {
-		this.olderSiblings = olderSiblings;
-		this.youngerSiblings = youngerSiblings;
+export class GraphNode<T> {
+	public readonly targetNodes: readonly GraphNode<T>[] = $state(assignedLater());
+	private readonly sourceNodes: readonly GraphNode<T>[] = $state(assignedLater());
+	public data: T = $state(assignedLater());
+	public position: Point2D = $state(Point2D.origin());
+
+	private constructor(targetNodes: GraphNode<T>[], sourceNodes: GraphNode<T>[], data: T) {
+		this.targetNodes = targetNodes;
+		this.sourceNodes = sourceNodes;
 		this.data = data;
 	}
 
-	public static create<T>(data: T): GraphNode<T> {
-		return new GraphNode([], [], data);
+	public static create<T>(data: T, ...targetNodes: GraphNode<T>[]): GraphNode<T> {
+		return new GraphNode(targetNodes, [], data);
+	}
+
+	public withPosition(position: Point2DLike): GraphNode<T> {
+		this.position = new Point2D(position);
+		return this;
 	}
 
 	public static linear<T>(...nodes: T[]): GraphNode<T> {
@@ -20,14 +29,14 @@ export class GraphNode<T> {
 		let firstNode = currentNode;
 		nodes.forEach(node => {
 			const newNode = GraphNode.create(node);
-			(newNode.youngerSiblings as any).push(currentNode);
-			(currentNode.olderSiblings as any).push(newNode);
+			(newNode.sourceNodes as any).push(currentNode);
+			(currentNode.targetNodes as any).push(newNode);
 			currentNode = newNode;
 		});
 		return firstNode;
 	}
 
-	public dfs(): T[] {
+	public dfs(): GraphNode<T>[] {
 		const stack: GraphNode<T>[] = [this];
 		const visited: GraphNode<T>[] = [];
 
@@ -37,12 +46,18 @@ export class GraphNode<T> {
 			if (visited.includes(node)) continue;
 			visited.push(node);
 
-			for (const neighbor of node.olderSiblings) {
+			for (const neighbor of node.targetNodes) {
 				stack.push(neighbor);
 			}
 		}
 
-		return visited.map(node => node.data);
+		return visited;
+	}
+
+	public edges(): GraphEdge<T>[] {
+		let nodes = this.dfs();
+		let edges = nodes.map(node => node.targetNodes.map(target => ({ from: node, to: target }))).flat();
+		return edges;
 	}
 
 	public bfs(): T[] {
@@ -53,7 +68,7 @@ export class GraphNode<T> {
 			const node = queue.shift()!;
 			visited.push(node);
 
-			for (const neighbor of node.olderSiblings) {
+			for (const neighbor of node.targetNodes) {
 				if (!visited.includes(neighbor)) {
 					visited.push(neighbor);
 					queue.push(neighbor);

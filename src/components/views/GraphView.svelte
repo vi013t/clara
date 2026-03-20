@@ -26,8 +26,7 @@
 	let nodeRadius = 8;
 
 	function center() {
-		let center = Point2D.average(nodes.map(node => node.center));
-		camera.moveTo(center);
+		camera.moveTo([0, 0]);
 		camera.setScale(1);
 	}
 
@@ -104,34 +103,32 @@
 
 <section class="graph">
 	<CameraView bind:camera>
-		{#each nodes as branch}
+		{#each branches as branch}
 			{#if !branch.isRoot}
 				<div
 					class="group"
 					style:left="{branch.center.x}px"
 					style:top="{branch.center.y}px"
-					style:width="{branch.size.x}px"
-					style:height="{branch.size.y}px"
+					style:width="{branch.size}px"
+					style:height="{branch.size}px"
 					style:--text="'{branch.data.name}'"
 					style:border-width="{cameraScale}px"
-					style:font-size="{branch.size.y / 20}px"
+					style:font-size="{branch.size / 40}px"
 				></div>
 			{/if}
 		{/each}
-		<!-- {#each leaves as leaf}
+		{#each leaves as leaf}
+			<!-- svelte-ignore a11y_consider_explicit_label -->
 			<button
 				onmousedown={() => (clickedNode = leaf)}
 				class="node"
 				style:cursor={clickedNode === leaf ? "move" : "pointer"}
 				style:background-color={clickedNode === leaf ? "#f38ba8" : "#b4befe"}
 				style:--text="'{leaf.data.name}'"
-				style:font-size="{cameraScale * 15}px"
-				style:width="{cameraScale * 16}px"
-				style:height="{cameraScale * 16}px"
-				style:left="{leaf.box.left}px"
-				style:top="{leaf.box.top}px"
+				style:left="{leaf.center.x}px"
+				style:top="{leaf.center.y}px"
 			></button>
-		{/each} -->
+		{/each}
 
 		<svg bind:this={edgesSVG}></svg>
 	</CameraView>
@@ -148,6 +145,7 @@
 		transform: translate(-50%, -50%);
 		width: calc(var(--radius) * 2);
 		height: calc(var(--radius) * 2);
+		border-radius: 50%;
 		border: 1px solid #313244;
 
 		&::after {
@@ -183,8 +181,8 @@
 	}
 
 	.node {
-		width: 1rem;
-		height: 1rem;
+		width: 20px;
+		height: 20px;
 		overflow: visible;
 		border-radius: 50%;
 		position: absolute;

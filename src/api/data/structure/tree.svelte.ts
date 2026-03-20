@@ -17,7 +17,7 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	private children_: TreeNode<T>[] = $state(assignedLater());
 	private isGroup_: boolean = $state(assignedLater());
 
-	private size_ = $state(assignedLater<Point2D>());
+	private diameter = $state(assignedLater<number>());
 	private center_ = $state(assignedLater<Point2D>());
 
 	public data: T = $state(assignedLater());
@@ -27,17 +27,21 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 		if (isGroup === undefined) isGroup = children.length !== 0;
 		this.data = data;
 		this.children_ = children;
-		this.ref_children.forEach(child => (child.parent = this));
+		this.refChildren.forEach(child => (child.parent = this));
 		this.isGroup_ = isGroup;
 	}
 
 	public findChildOrThis(predicate: (node: TreeNode<T>) => any): TreeNode<T> | null {
 		if (predicate(this)) return this;
-		return this.ref_children.find(child => child.findChildOrThis(predicate)) ?? null;
+		return this.refChildren.find(child => child.findChildOrThis(predicate)) ?? null;
 	}
 
 	public find(predicate: (node: TreeNode<T>) => any): TreeNode<T> | null {
 		return this.root().findChildOrThis(predicate);
+	}
+
+	public get siblingCountIncludingMe() {
+		return this.parent?.children_.length ?? 1;
 	}
 
 	public index(): number | null {
@@ -45,59 +49,103 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 		return this.parent.children_.indexOf(this);
 	}
 
-	private generateSizes(): void {
-		const leafSize = 100;
+	private calculateSize(): void {
+		this.refChildren.forEach(child => child.calculateSize());
 
 		if (this.isLeaf) {
-			this.size_ = new Point2D(leafSize, leafSize);
+			this.diameter = 0;
 			return;
 		}
 
-		this.ref_children.forEach(child => child.generateSizes());
-		let maxChildHeight = max(...this.ref_children.map(child => child.size_.y));
-		this.size_ = Point2D.sum(...this.ref_children.map(child => new Point2D(child.size_.x, 0))).plus([
-			TreeNode.padding * (this.ref_children.length + 1),
-			maxChildHeight + 2 * TreeNode.padding,
-		]);
+		if (this.hasOnlyLeaves) {
+			this.diameter = this.refChildren.length * 100 + 500;
+			return;
+		}
+
+		if (this.refChildren.length === 1) {
+			this.diameter = this.refChildren[0].diameter + TreeNode.padding;
+			return;
+		}
+
+		if (this.refChildren.length === 2) {
+			let littleD = max(...this.refChildren.map(child => child.diameter));
+			this.diameter = littleD * 2;
+			return;
+		}
+
+		let littleR = max(...this.refChildren.map(child => child.diameter / 2));
+		let bigR = littleR * (1 + 1 / Math.sin(Math.PI / this.refChildren.length));
+
+		this.diameter = bigR * 2;
 	}
 
-	private generatePositions(): void {
-		if (!this.size_) this.root().generateSizes();
+	private calculateCenter(): void {
+		if (!this.diameter) this.root().calculateSize();
 
-		let point;
-
-		// root
 		if (!this.parent) {
-			point = new Point2D(0, 0);
+			this.center_ = Point2D.origin();
+			this.refChildren.forEach(child => child.calculateCenter());
+			return;
 		}
 
-		// first child
-		else if (this.index() === 0) {
-			point = this.parent.center_.minus([this.parent.size.x / 2, 0]).plus([TreeNode.padding + this.size_.x / 2, 0]);
+		if (this.hasNoSiblings) {
+			this.center_ = this.parent.center_;
+			this.refChildren.forEach(child => child.calculateCenter());
+			return;
 		}
 
-		// nth child
-		else {
-			let previous = this.parent.ref_children[this.index()! - 1];
-			point = previous.center_.plus([previous.size_.x / 2, 0]).plus([TreeNode.padding + this.size_.x / 2, 0]);
+		if (this.isPartOfHedge) {
+			let radius = this.parent.diameter / 4;
+			let angle = (this.index()! * (2 * Math.PI)) / this.siblingCountIncludingMe;
+			this.center_ = Point2D.polar(radius, angle).plus(this.parent.center_);
+			this.refChildren.forEach(child => child.calculateCenter());
+			return;
 		}
 
-		this.center_ = point;
-		this.ref_children.forEach(child => child.generatePositions());
+		if (this.siblingCountIncludingMe === 2) {
+			let bigR = this.parent.diameter / 2;
+			let littleR = this.parent.diameter / 4;
+			let radius = bigR - littleR;
+			let angle = (this.index()! * (2 * Math.PI)) / this.siblingCountIncludingMe;
+			this.center_ = Point2D.polar(radius, angle).plus(this.parent.center_);
+			this.refChildren.forEach(child => child.calculateCenter());
+			return;
+		}
+
+		let bigR = this.parent.diameter / 2;
+		let littleR =
+			(bigR * Math.sin(Math.PI / this.siblingCountIncludingMe)) / (1 + Math.sin(Math.PI / this.siblingCountIncludingMe));
+		let radius = bigR - littleR;
+		let angle = (this.index()! * (2 * Math.PI)) / this.siblingCountIncludingMe;
+		this.center_ = Point2D.polar(radius, angle).plus(this.parent.center_);
+
+		this.refChildren.forEach(child => child.calculateCenter());
+	}
+
+	public get hasOnlyLeaves() {
+		return this.refChildren.every(child => child.isLeaf);
+	}
+
+	public get isPartOfHedge() {
+		return this.siblingsIncludingMe.every(sibling => sibling.isLeaf);
+	}
+
+	public get siblingsIncludingMe() {
+		return this.parent?.refChildren ?? [this];
 	}
 
 	public get center() {
-		if (!this.center_) this.root().generatePositions();
+		if (!this.center_) this.root().calculateCenter();
 		return this.center_;
 	}
 
-	public get position(): Point2D {
-		return this.center.minus(this.size.dividedBy(2));
+	public get hasNoSiblings() {
+		return !this.parent || this.siblingsIncludingMe.length === 1;
 	}
 
 	public get size() {
-		if (!this.size_) this.root().generateSizes();
-		return this.size_;
+		if (!this.diameter) this.root().calculateSize();
+		return this.diameter;
 	}
 
 	public root() {
@@ -111,19 +159,19 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	}
 
 	public get height(): number {
-		return 1 + this.ref_children.map(child => child.height).reduce((max, height) => Math.max(max, height), 0);
+		return 1 + this.refChildren.map(child => child.height).reduce((max, height) => Math.max(max, height), 0);
 	}
 
 	public map<Output extends Cloneable<Output> & Serialize<any>>(mapper: (node: TreeNode<T>) => Output): TreeNode<Output> {
 		const tree = new TreeNode(mapper(this), []);
-		this.ref_children.forEach(child => tree.addChild(child.map(mapper)));
+		this.refChildren.forEach(child => tree.addChild(child.map(mapper)));
 		return tree;
 	}
 
 	public clone(): TreeNode<T> {
 		return new TreeNode(
 			this.data.clone(),
-			this.ref_children.map(child => child.clone()),
+			this.refChildren.map(child => child.clone()),
 			this.isGroup_,
 		);
 	}
@@ -131,7 +179,7 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	public dfs(): TreeNode<T>[] {
 		let visited: TreeNode<T>[] = [];
 		visited.push(this);
-		this.ref_children.forEach(child => {
+		this.refChildren.forEach(child => {
 			visited = [...visited, ...child.dfs()];
 		});
 		return visited;
@@ -140,7 +188,7 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	public dfsLeaves(): T[] {
 		let visited: T[] = [];
 		if (!this.isGroup) visited.push(this.data);
-		this.ref_children.forEach(child => {
+		this.refChildren.forEach(child => {
 			let childLeaves = child.dfsLeaves();
 			visited = [...visited, ...childLeaves];
 		});
@@ -148,12 +196,12 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	}
 
 	public addChild(node: TreeNode<T>): void {
-		this.ref_children.push(node);
+		this.refChildren.push(node);
 		node.parent = this;
 	}
 
 	public filter(predicate: (data: T) => boolean): void {
-		this.children_ = this.ref_children.filter(child => predicate(child.data));
+		this.children_ = this.refChildren.filter(child => predicate(child.data));
 	}
 
 	public get isGroup() {
@@ -161,7 +209,7 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	}
 
 	public get isLeaf() {
-		return this.ref_children.length === 0;
+		return this.refChildren.length === 0;
 	}
 
 	public get isBranch() {
@@ -172,14 +220,14 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 		return !this.isGroup;
 	}
 
-	public get ref_children(): TreeNode<T>[] {
+	public get refChildren(): TreeNode<T>[] {
 		return this.children_;
 	}
 
 	public toBackend(): BackendTreeNode<Bytes> {
 		return {
 			data: this.data.toBackend(),
-			children: this.ref_children.map(child => child.toBackend()),
+			children: this.refChildren.map(child => child.toBackend()),
 			isBranch: this.isGroup,
 		};
 	}

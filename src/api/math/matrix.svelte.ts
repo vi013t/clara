@@ -125,6 +125,10 @@ export class Point2D {
 			.dividedBy(points.length);
 	}
 
+	public static polar(radius: number, angle: number): Point2D {
+		return new Point2D(radius * Math.cos(angle), radius * Math.sin(angle));
+	}
+
 	public static sum(...pointLikes: Point2DLike[]): Point2D {
 		let points = pointLikes.map(point => new Point2D(point));
 		return points.reduce((total, current) => total.plus(current), Point2D.origin());

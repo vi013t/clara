@@ -257,4 +257,30 @@ export function userData(): UserData {
 
 export function saveUserData() {}
 
-let sessionData = $state();
+export type SessionData = {
+	lastProjectPath: string | null;
+};
+
+let sessionData: SessionData = $state(loadSessionData());
+
+function loadSessionData(): SessionData {
+	return JSON.parse(
+		localStorage.getItem("session-data") ??
+			JSON.stringify({
+				lastProjectPath: null,
+			}),
+	);
+}
+
+function saveSessionData() {
+	localStorage.setItem("session-data", JSON.stringify(sessionData));
+}
+
+export function cache(values: Partial<SessionData>) {
+	sessionData = { ...sessionData, ...values };
+	saveSessionData();
+}
+
+export function getFromCache<Key extends keyof SessionData>(key: Key): SessionData[Key] {
+	return sessionData[key];
+}

@@ -3,8 +3,7 @@ import { Database, type BackendDatabase } from "./data/dataset.svelte";
 import { ProjectBase } from "./userdata/template.svelte";
 import { assignedLater } from "./util/utils.svelte";
 import { open } from "@tauri-apps/plugin-dialog";
-
-let currentProject: Project | null = $state(null);
+import { cache, getFromCache } from "./userdata/cache.svelte";
 
 export class Project extends ProjectBase {
 	private location: string = $state(assignedLater());
@@ -16,6 +15,7 @@ export class Project extends ProjectBase {
 
 	public static set(project: Project): void {
 		currentProject = project;
+		cache({ lastProjectPath: project.location });
 	}
 
 	public static get(): Project | null {
@@ -36,6 +36,12 @@ export class Project extends ProjectBase {
 			location: this.location,
 			database: this.database.ref().toBackend(),
 		};
+	}
+
+	public static async openFromLocation(location: string) {
+		const backendProject = await invoke<BackendProject>("read_project", { path: location });
+		const project = Project.fromBackend(backendProject);
+		Project.set(project);
 	}
 
 	public static async open() {
@@ -72,3 +78,7 @@ export type BackendProject = {
 	location: string;
 	database: BackendDatabase;
 };
+
+let currentProject: Project | null = $state(null);
+let path = getFromCache("lastProjectPath");
+if (path) Project.openFromLocation(path);

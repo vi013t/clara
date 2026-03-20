@@ -28,6 +28,7 @@
 		height: 100%;
 		gap: 2rem;
 		flex-direction: column;
+		background-color: #11111b;
 
 		p {
 			color: #a6adb8;

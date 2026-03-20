@@ -83,13 +83,13 @@
 		</button>
 	{/if}
 
-	{#if tree.ref_children.length !== 0}
+	{#if tree.refChildren.length !== 0}
 		<ul
 			class={{ expanded }}
 			style:border-left={hideRoot ? "none" : "1px solid #45475a"}
 			style:margin-top={subtree || !expanded ? "0px" : "0.5rem"}
 		>
-			{#each tree.ref_children as child (child.data.id)}
+			{#each tree.refChildren as child (child.data.id)}
 				<li><HierarchyView {demo} tree={child} {LeafIcon} subtree {rightClick} /></li>
 			{/each}
 		</ul>

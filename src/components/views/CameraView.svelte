@@ -7,7 +7,7 @@
 	let mouseDown = $state(false);
 
 	function zoom(event: WheelEvent) {
-		const rect = (event.target as HTMLElement).getBoundingClientRect();
+		const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
 		const clientCursor = {
 			x: event.clientX - (rect.left + rect.width / 2),
 			y: event.clientY - (rect.top + rect.height / 2),

@@ -1,9 +1,16 @@
-# writing-app
+# Wallflower
 
 A free software application for screenwriting, novel writing, etc.
 
-## Terminology
+## Installation
 
-- **Pane** - A resizeable window section that may contain multiple tabs
-- **Tab** - A panel displayed within a pane
-- **View** - A way to visualize data in a tab
+### Building from source
+
+You can build and launch the app from source yourself:
+
+```bash
+git clone https://github.com/vi013t/wallflower.git
+cd wallflower
+npm install
+npm run tauri build
+```

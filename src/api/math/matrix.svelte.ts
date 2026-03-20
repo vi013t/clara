@@ -113,6 +113,38 @@ export class Point2D {
 		}
 	}
 
+	public plus(other: Point2DLike): Point2D {
+		let point = new Point2D(other);
+		return new Point2D(this.x + point.x, this.y + point.y);
+	}
+
+	public static average(points: Point2DLike[]): Point2D {
+		return points
+			.map(point => new Point2D(point))
+			.reduce((accumulator, current) => accumulator.plus(current), Point2D.origin())
+			.dividedBy(points.length);
+	}
+
+	public static sum(...pointLikes: Point2DLike[]): Point2D {
+		let points = pointLikes.map(point => new Point2D(point));
+		return points.reduce((total, current) => total.plus(current), Point2D.origin());
+	}
+
+	public dividedBy(other: Point2DLike | number): Point2D {
+		let point = typeof other === "object" ? new Point2D(other) : new Point2D([other, other]);
+		return new Point2D(this.x / point.x, this.y / point.y);
+	}
+
+	public distanceTo(other: Point2DLike): number {
+		let point = new Point2D(other);
+		return Math.sqrt(Math.pow(point.x - this.x, 2) + Math.pow(point.y - this.y, 2));
+	}
+
+	public minus(other: Point2DLike): Point2D {
+		let point = new Point2D(other);
+		return new Point2D(this.x - point.x, this.y - point.y);
+	}
+
 	public static origin(): Point2D {
 		return new Point2D(0, 0);
 	}

@@ -8,7 +8,7 @@ import { assignedLater } from "../util/utils.svelte";
 export class ProjectBase {
 	name: string = $state(assignedLater());
 	database: Container<Database> = $state(assignedLater());
-	description?: string = $state(assignedLater());
+	description: string = $state(assignedLater());
 	icon: IconComponent = $state(assignedLater());
 	id: number = $state(assignedLater());
 
@@ -17,7 +17,7 @@ export class ProjectBase {
 	public constructor({
 		name,
 		database,
-		description = undefined,
+		description = "",
 		icon = BookIcon,
 	}: {
 		name: string;

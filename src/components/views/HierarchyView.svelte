@@ -9,6 +9,7 @@
 	import RenameIcon from "../icons/RenameIcon.svelte";
 	import type { DataEntry } from "../../api/data/dataset.svelte";
 	import type { TreeNode } from "../../api/data/structure/tree.svelte";
+	import { Project } from "../../api/project.svelte";
 
 	let {
 		tree,
@@ -25,6 +26,8 @@
 		demo?: boolean;
 		rightClick?: (event: MouseEvent) => void;
 	} = $props();
+
+	console.log($state.snapshot(Project.get()?.toBackend().database));
 
 	// svelte-ignore state_referenced_locally
 	let expanded = $state(hideRoot || demo);
@@ -58,7 +61,7 @@
 <section bind:this={nodeElement}>
 	{#if !hideRoot || subtree}
 		<button class="node" onmousedown={toggle} oncontextmenu={rightClick}>
-			{#if tree.isBranch}
+			{#if tree.isGroup}
 				<PackageIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 			{:else}
 				<LeafIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
@@ -71,7 +74,7 @@
 				onkeypress={onNameKeypress}
 				spellcheck="false"
 			></span>
-			{#if tree.isBranch}
+			{#if tree.isGroup}
 				<ArrowIcon
 					stroke="var(--arrow)"
 					style="width: 1rem; transition: rotate 0.1s; height: 1rem; rotate: {expanded ? '180deg' : '90deg'};"

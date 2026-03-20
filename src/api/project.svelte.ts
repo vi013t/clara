@@ -4,6 +4,8 @@ import { ProjectBase } from "./userdata/template.svelte";
 import { assignedLater } from "./util/utils.svelte";
 import { open } from "@tauri-apps/plugin-dialog";
 
+let currentProject: Project | null = $state(null);
+
 export class Project extends ProjectBase {
 	private location: string = $state(assignedLater());
 
@@ -45,8 +47,9 @@ export class Project extends ProjectBase {
 
 		// Directory Chosen
 		if (typeof selected === "string") {
-			const project = await invoke<BackendProject>("read_project", { path: selected });
-			Project.set(Project.fromBackend(project));
+			const backendProject = await invoke<BackendProject>("read_project", { path: selected });
+			const project = Project.fromBackend(backendProject);
+			Project.set(project);
 		}
 
 		// No directory chosen
@@ -69,5 +72,3 @@ export type BackendProject = {
 	location: string;
 	database: BackendDatabase;
 };
-
-let currentProject: Project | null = $state(null);

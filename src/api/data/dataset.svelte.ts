@@ -1,19 +1,20 @@
 import { Project } from "../project.svelte";
 import { getIconByName, getIconName, type IconComponent, type IconName } from "../ui/icons.svelte";
 import { userData } from "../userdata/cache.svelte";
-import { Template } from "../userdata/template.svelte";
 import { Container, type Cloneable } from "../util/Clone.svelte";
 import type { Serialize } from "../util/serialize.svelte";
 import { assignedLater, mapValues } from "../util/utils.svelte";
 import {
 	Attribute,
 	attributeValueFromBackend,
+	PrimitiveArrayAttribute,
 	PrimitiveAttribute,
 	type AttributeValue,
 	type BackendAttribute,
 	type BackendAttributeValue,
 } from "./attribute.svelte";
 import { TreeNode, type BackendTreeNode } from "./structure/tree.svelte";
+import { Point2D } from "../math/matrix.svelte";
 
 type DatasetKind = "manual" | "generated";
 
@@ -235,6 +236,13 @@ export class ManualDataset extends Dataset<"manual"> {
 		this.fields = new Container(fields);
 	}
 
+	public attributes<T extends AttributeValue>(attribute: Attribute): T[] {
+		return this.data
+			.ref()
+			.dfsLeaves()
+			.map(entry => entry.get(attribute.name));
+	}
+
 	public toBackend(): BackendManualDataset {
 		return {
 			kind: "manual",
@@ -312,6 +320,41 @@ export class Database implements Cloneable<Database> {
 
 	public static fromBackend(database: BackendDatabase): Database {
 		return new Database(...database.map(dataset => Dataset.fromBackend(dataset)));
+	}
+
+	public relations(): { from: number; to: number; type: string }[] {
+		let edges = [];
+		for (let dataset of this.datasets.ref().filter(set => set.ref().isManual())) {
+			let manual = dataset.ref() as ManualDataset;
+
+			let fieldNames = [];
+			for (let field of manual.fields.ref()) {
+				if (field.type === "Entry") {
+					fieldNames.push(field.name);
+				}
+			}
+
+			for (let entry of manual.data.ref().dfsLeaves()) {
+				for (let fieldName of fieldNames) {
+					let targets = entry.get<PrimitiveArrayAttribute<number>>(fieldName).values;
+					for (let id of targets) {
+						edges.push({ from: entry.id, to: id, type: fieldName });
+					}
+				}
+			}
+		}
+
+		return edges;
+	}
+
+	public asTree(): TreeNode<DataEntry> {
+		return DataEntry.node(
+			"Root",
+			this.datasets
+				.ref()
+				.filter(set => set.ref().isManual())
+				.map(dataset => (dataset.ref() as ManualDataset).data.ref()),
+		);
 	}
 }
 

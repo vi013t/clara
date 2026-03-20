@@ -8,7 +8,6 @@ import WeightScaleIcon from "../../components/icons/WeightScaleIcon.svelte";
 import { Project } from "../project.svelte";
 import type { ManualDataset } from "./dataset.svelte";
 import { Length, Measurement, Weight, type BackendMeasurement } from "./measurement.svelte";
-import { Template } from "../userdata/template.svelte";
 import type { IconComponent } from "../ui/icons.svelte";
 import { Container, type Cloneable } from "../util/Clone.svelte";
 import { assignedLater } from "../util/utils.svelte";
@@ -171,18 +170,40 @@ type AttributeTypes = {
 	"long text": DocumentContent;
 	length: Measurement<Length>;
 	weight: Measurement<Weight>;
+	entry: PrimitiveArrayAttribute<number>;
 };
 
 export type AttributeValue = AttributeTypes[keyof AttributeTypes];
 
+export class PrimitiveArrayAttribute<T> implements Cloneable<PrimitiveArrayAttribute<T>>, Serialize<T[]> {
+	values: T[] = $state(assignedLater());
+
+	public constructor(value: T[]) {
+		this.values = value;
+	}
+
+	public toBackend(): T[] {
+		return this.values;
+	}
+
+	public static fromBackend<T>(value: T[]): PrimitiveArrayAttribute<T> {
+		return new PrimitiveArrayAttribute(value);
+	}
+
+	public clone(): PrimitiveArrayAttribute<T> {
+		return new PrimitiveArrayAttribute([...this.values]);
+	}
+}
+
 export function attributeValueFromBackend(value: BackendAttributeValue): AttributeValue {
 	if (typeof value === "string") return new PrimitiveAttribute(value);
 	if (typeof value === "number") return new PrimitiveAttribute(value);
+	if (Array.isArray(value)) return new PrimitiveArrayAttribute<number>(value.map(inner => inner as number));
 	if ("units" in value) return Measurement.fromBackend(value);
 	return DocumentContent.fromBackend(value);
 }
 
-export type BackendAttributeValue = string | number | BackendMeasurement | BackendDocumentContent;
+export type BackendAttributeValue = string | number | BackendMeasurement | BackendDocumentContent | BackendAttributeValue[];
 
 export class PrimitiveAttribute<T> implements Cloneable<PrimitiveAttribute<T>>, Serialize<T> {
 	value: T = $state(assignedLater());

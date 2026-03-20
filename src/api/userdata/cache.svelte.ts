@@ -32,7 +32,7 @@ export function userData(): UserData {
 							name: "Plot Events",
 							icon: BookIcon,
 							description: "The events of this story. The actual scene prose exists here.",
-							data: DataEntry.node("Plot Events"),
+							data: DataEntry.node("Plot Events", [], false),
 							fields: [
 								new Attribute("Name", "Short text"),
 								new Attribute("Script", "Long text"),
@@ -43,14 +43,14 @@ export function userData(): UserData {
 							name: "Characters",
 							icon: PersonIcon,
 							description: "The characters of this story.",
-							data: DataEntry.node("Characters"),
+							data: DataEntry.node("Characters", [], false),
 							fields: [new Attribute("Name", "Short text")],
 						}),
 						Dataset.create({
 							name: "Locations",
 							icon: LocationIcon,
 							description: "The locations in this story.",
-							data: DataEntry.node("Locations"),
+							data: DataEntry.node("Locations", [], false),
 							fields: [new Attribute("Name", "Short text")],
 						}),
 						Dataset.generated({
@@ -110,7 +110,7 @@ export function userData(): UserData {
 							name: "Locations",
 							icon: LocationIcon,
 							description: "The locations in this story.",
-							data: DataEntry.node("Locations"),
+							data: DataEntry.node("Locations", [], false),
 							fields: [new Attribute("Name", "Short text")],
 						}),
 						Dataset.generated({
@@ -161,6 +161,92 @@ export function userData(): UserData {
 					icon: BlankPageIcon,
 					description: "A blank project with no datasets. This is not recommended for first time users; Use Basic instead.",
 					database: new Database(),
+				}),
+				new Template({
+					name: "Test",
+					icon: BookIcon,
+					description: "Dev testing",
+					database: new Database(
+						Dataset.create({
+							name: "Plot Events",
+							icon: ParagraphIcon,
+							description: "The events of this story. The actual scene prose exists here.",
+							data: DataEntry.node("Plot Events", [
+								DataEntry.node("Act I", [
+									DataEntry.node("Hook", [DataEntry.node("Chapter 1", [DataEntry.node("Scene 1")])]),
+									DataEntry.node("Inciting Incident", [], false),
+									DataEntry.node("First Plot Point", [], false),
+								]),
+								DataEntry.node("Act II", [
+									DataEntry.node("First Pinch Point", [], false),
+									DataEntry.node("Midpoint", [], false),
+									DataEntry.node("Second Pinch Point", [], false),
+								]),
+								DataEntry.node("Act III", [
+									DataEntry.node("Third Plot Point", [], false),
+									DataEntry.node("Climax", [], false),
+									DataEntry.node("Resolution", [], false),
+								]),
+							]),
+							fields: [
+								new Attribute("Name", "Short text"),
+								new Attribute("Script", "Long text"),
+								new Attribute("Notes", "Long text"),
+							],
+						}),
+						Dataset.create({
+							name: "Characters",
+							icon: PersonIcon,
+							description: "The characters of this story.",
+							data: DataEntry.node(
+								"Characters",
+								[
+									DataEntry.node("Main Characters", [DataEntry.node("Harry"), DataEntry.node("Hermione"), DataEntry.node("Ron")]),
+									DataEntry.node("Side Characters", [
+										DataEntry.node("Professors", [
+											DataEntry.node("Snape"),
+											DataEntry.node("Dumbledore"),
+											DataEntry.node("Quirrel"),
+											DataEntry.node("Remus"),
+										]),
+										DataEntry.node("Students", [
+											DataEntry.node("Neville"),
+											DataEntry.node("Seamus"),
+											DataEntry.node("Ginny"),
+											DataEntry.node("Fred"),
+											DataEntry.node("George"),
+										]),
+										DataEntry.node("Villains", [
+											DataEntry.node("Voldemort"),
+											DataEntry.node("Lucius"),
+											DataEntry.node("Dementors"),
+										]),
+									]),
+								],
+								false,
+							),
+							fields: [
+								new Attribute("Name", "Short text"),
+								new Attribute("Gender", "Short text"),
+								new Attribute("Sexuality", "Short text"),
+								new Attribute("Height", "Length"),
+								new Attribute("Weight", "Weight"),
+								new Attribute("Partner", "Short text"),
+							],
+						}),
+						Dataset.create({
+							name: "Locations",
+							icon: LocationIcon,
+							description: "The locations in this story.",
+							data: DataEntry.node("Locations", [], false),
+							fields: [new Attribute("Name", "Short text")],
+						}),
+						Dataset.generated({
+							name: "Manuscript",
+							icon: BookIcon,
+							description: "The entire combined project manuscript.",
+						}),
+					),
 				}),
 			],
 		};

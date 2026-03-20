@@ -31,7 +31,7 @@
 
 	<h3>Values</h3>
 	<div class="tree">
-		<HierarchyView tree={dataset.data.ref()} LeafIcon={dataset.icon} />
+		<!-- <HierarchyView tree={dataset.data.ref()} LeafIcon={dataset.icon} /> -->
 	</div>
 
 	<h3>Data</h3>

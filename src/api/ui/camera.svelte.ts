@@ -15,6 +15,10 @@ export class Camera {
 		return this.transformation.inverse;
 	}
 
+	public getWorldSpaceOrigin(): Point2D {
+		return this.project(Point2D.origin());
+	}
+
 	public project(point: Point2DLike): Point2D {
 		return this.viewMatrix.timesPoint(point);
 	}
@@ -70,23 +74,15 @@ export class Camera {
 		const p = new Point2D(pivot);
 		const rotationMatrix = Matrix3x3.rotation(angle);
 
-		// 1. Get the current camera position (translation)
-		// Assuming your translation matrix represents the camera's position in world space
 		const currentPos = new Point2D([this.translation.values[0][2], this.translation.values[1][2]]);
-
-		// 2. Calculate the vector from pivot to camera
 		const offset = { x: currentPos.x - p.x, y: currentPos.y - p.y };
-
-		// 3. Rotate that offset vector
 		const rotatedOffset = rotationMatrix.timesPoint(offset);
 
-		// 4. Update translation to the new pivoted position
 		this.translation = Matrix3x3.translation({
 			x: p.x + rotatedOffset.x,
 			y: p.y + rotatedOffset.y,
 		});
 
-		// 5. Update the internal rotation state
 		this.rotate(angle);
 	}
 

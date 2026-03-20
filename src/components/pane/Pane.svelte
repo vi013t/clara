@@ -16,18 +16,14 @@
 
 <script lang="ts">
 	import Pane from "./Pane.svelte";
-	import TreeView from "../views/HierarchyView.svelte";
-	import { type View } from "../../api/ui/views.svelte";
+	import HierarchyView from "../views/HierarchyView.svelte";
 	import SpreadsheetView from "../views/SpreadsheetView.svelte";
 	import Tabline from "./Tabline.svelte";
-	import { DataEntry, type Dataset } from "../../api/data/dataset.svelte";
+	import { DataEntry } from "../../api/data/dataset.svelte";
 	import Editor from "../panels/Editor.svelte";
-	import { onActionRequested } from "../../api/userdata/action.svelte";
 	import ManualPopup from "../popups/ManualPopup.svelte";
-	import { DocumentContent } from "../../api/data/attribute.svelte";
 	import { DataTab, EditorTab, TabList } from "../../api/ui/tab.svelte";
 	import GraphView from "../views/GraphView.svelte";
-	import { GraphNode } from "../../api/data/structure/graph.svelte";
 
 	let {
 		width = "500px",
@@ -82,6 +78,8 @@
 
 	let childPane: Pane | null = $state(null);
 	let manualPopup: ManualPopup;
+
+	let tab = $derived(tabline.getTabByID(selectedTabID));
 </script>
 
 <svelte:document onmouseup={stopDrag} {onmousemove} />
@@ -100,32 +98,30 @@
 	>
 		<Tabline bind:isMasterPaneAlive bind:selectedTabID bind:tabs={tabline} {background} {split} {subpane} {onclose} />
 		<div class="content" style:background>
-			{#each tabline.tabs as tab, index (tab.id)}
-				{#if tab instanceof EditorTab && tab.id === selectedTabID}
-					<Editor bind:doc={tab.content} />
-				{:else if tab instanceof DataTab}
-					{#if tab.dataset.isManual()}
-						<div class="view-container" style="display: {tab.id === selectedTabID ? 'block' : 'none'}">
-							{#if tab.view === "hierarchy"}
-								<TreeView hideRoot tree={tab.dataset.data.ref()} LeafIcon={tab.dataset.icon} />
-							{:else if tab.view === "spreadsheet"}
-								<SpreadsheetView {openEditor} dataset={tab.dataset} />
-							{:else if tab.view === "graph"}
-								<GraphView graph={GraphNode.create("Node 1", GraphNode.create("Node 2").withPosition([100, 0]))} />
-							{/if}
-						</div>
-					{/if}
-				{:else}
-					<div class="no-dataset">
-						<p>This tab has no dataset opened. Open an existing one now or create a new one to open.</p>
-						<div>
-							<button>Open dataset</button>
-							<button>Create dataset</button>
-						</div>
-						<button onmousedown={() => manualPopup.open()}>What the heck's a dataset?</button>
+			{#if tab instanceof EditorTab && tab.id === selectedTabID}
+				<Editor bind:doc={tab.content} />
+			{:else if tab instanceof DataTab}
+				{#if tab.dataset.isManual()}
+					<div class="view-container" style="display: {tab.id === selectedTabID ? 'block' : 'none'}">
+						{#if tab.view === "hierarchy"}
+							<HierarchyView hideRoot tree={tab.dataset.data.ref()} LeafIcon={tab.dataset.icon} />
+						{:else if tab.view === "spreadsheet"}
+							<SpreadsheetView {openEditor} dataset={tab.dataset} />
+						{:else if tab.view === "graph"}
+							<GraphView />
+						{/if}
 					</div>
 				{/if}
-			{/each}
+			{:else}
+				<div class="no-dataset">
+					<p>This tab has no dataset opened. Open an existing one now or create a new one to open.</p>
+					<div>
+						<button>Open dataset</button>
+						<button>Create dataset</button>
+					</div>
+					<button onmousedown={() => manualPopup.open()}>What the heck's a dataset?</button>
+				</div>
+			{/if}
 		</div>
 
 		<!-- svelte-ignore a11y_no_static_element_interactions -->

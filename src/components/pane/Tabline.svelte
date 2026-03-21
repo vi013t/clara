@@ -1,21 +1,21 @@
 <script lang="ts">
 	import { onMount } from "svelte";
+	import type { Dataset } from "../../api/data/dataset.svelte";
+	import { Project } from "../../api/project.svelte";
+	import { DataTab, EditorTab, Tab, type TabList } from "../../api/ui/tab.svelte";
 	import { views, type View } from "../../api/ui/views.svelte";
-	import ContextMenu from "../menus/ContextMenu.svelte";
+	import { refs } from "../../api/util/Clone.svelte";
+	import ArrowIcon from "../icons/ArrowIcon.svelte";
 	import CircledPlusIcon from "../icons/CircledPlusIcon.svelte";
 	import CloseIcon from "../icons/CloseIcon.svelte";
-	import GearIcon from "../icons/GearIcon.svelte";
-	import PlusIcon from "../icons/PlusIcon.svelte";
-	import SplitHorizontalIcon from "../icons/SplitHorizontalIcon.svelte";
-	import RenameIcon from "../icons/RenameIcon.svelte";
-	import { Project } from "../../api/project.svelte";
-	import type { Dataset } from "../../api/data/dataset.svelte";
-	import PencilIcon from "../icons/PencilIcon.svelte";
-	import { refs } from "../../api/util/Clone.svelte";
 	import EyeIcon from "../icons/EyeIcon.svelte";
-	import ArrowIcon from "../icons/ArrowIcon.svelte";
+	import GearIcon from "../icons/GearIcon.svelte";
+	import PencilIcon from "../icons/PencilIcon.svelte";
+	import PlusIcon from "../icons/PlusIcon.svelte";
+	import RenameIcon from "../icons/RenameIcon.svelte";
+	import SplitHorizontalIcon from "../icons/SplitHorizontalIcon.svelte";
 	import SpreadsheetIcon from "../icons/SpreadsheetIcon.svelte";
-	import { DataTab, EditorTab, Tab, type TabList } from "../../api/ui/tab.svelte";
+	import ContextMenu from "../menus/ContextMenu.svelte";
 
 	let {
 		tabs = $bindable(),
@@ -128,6 +128,8 @@
 
 	function changeDataset(dataset: Dataset, view?: View) {
 		return function () {
+			dataset.data.ref().thanksgivingDinner();
+			dataset.data.ref().cutOff();
 			if (currentTab() instanceof DataTab) {
 				currentTab<DataTab>().dataset = dataset;
 			} else {
@@ -135,6 +137,7 @@
 				tabs.replace(currentTab().id, newTab);
 				selectedTabID = newTab.id;
 			}
+
 			if (view) setView(view)();
 			tabContextMenu.close();
 		};
@@ -231,35 +234,35 @@
 								<info.icon stroke={"#cdd6f4"} style="width: 1rem; height: 1rem;" />
 								<span>As {viewName}</span>
 
-								<ArrowIcon stroke={"#cdd6f4"} style="width: 1rem; height: 1rem; rotate: 90deg; margin-left: auto;" />
+								<ArrowIcon style="width: 1rem; height: 1rem; rotate: 90deg; margin-left: auto;" />
 								<ContextMenu>
 									<button>
-										<EyeIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+										<EyeIcon />
 										<span>In this tab</span>
 									</button>
 									<button>
-										<PlusIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+										<PlusIcon />
 										<span>In new tab</span>
 									</button>
 									<button>
-										<PlusIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+										<PlusIcon />
 										<span>In new tab to the left</span>
 									</button>
 									<hr />
 									<button>
-										<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+										<SplitHorizontalIcon />
 										<span>In split right</span>
 									</button>
 									<button>
-										<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+										<SplitHorizontalIcon />
 										<span>In split left</span>
 									</button>
 									<button>
-										<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem; rotate: 90deg;" />
+										<SplitHorizontalIcon style="rotate: 90deg;" />
 										<span>In split bottom</span>
 									</button>
 									<button>
-										<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem; rotate: 90deg;" />
+										<SplitHorizontalIcon style="rotate: 90deg;" />
 										<span>In split top</span>
 									</button>
 								</ContextMenu>

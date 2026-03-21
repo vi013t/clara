@@ -1,22 +1,22 @@
 <script lang="ts">
 	import { getCurrentWindow } from "@tauri-apps/api/window";
-	import ContextMenu from "../menus/ContextMenu.svelte";
-	import CircledPlusIcon from "../icons/CircledPlusIcon.svelte";
-	import CloseIcon from "../icons/CloseIcon.svelte";
-	import DashIcon from "../icons/DashIcon.svelte";
-	import FolderIcon from "../icons/FolderIcon.svelte";
-	import GearIcon from "../icons/GearIcon.svelte";
-	import MinimizeIcon from "../icons/MinimizeIcon.svelte";
-	import QuestionMarkIcon from "../icons/QuestionMarkIcon.svelte";
-	import SaveIcon from "../icons/SaveIcon.svelte";
-	import NewProjectPopup from "../popups/NewProjectPopup.svelte";
-	import { Project } from "../../api/project.svelte";
-	import ProjectSettingsPopup from "../popups/ProjectSettingsPopup.svelte";
-	import ManualPopup from "../popups/ManualPopup.svelte";
-	import SettingsPopup from "../popups/SettingsPopup.svelte";
-	import LittleButton from "../widgets/LittleButton.svelte";
-	import ArrowIcon from "../icons/ArrowIcon.svelte";
-	import ClockIcon from "../icons/ClockIcon.svelte";
+	import { Project } from "../api/project.svelte";
+	import ArrowIcon from "./icons/ArrowIcon.svelte";
+	import CircledPlusIcon from "./icons/CircledPlusIcon.svelte";
+	import ClockIcon from "./icons/ClockIcon.svelte";
+	import CloseIcon from "./icons/CloseIcon.svelte";
+	import DashIcon from "./icons/DashIcon.svelte";
+	import FolderIcon from "./icons/FolderIcon.svelte";
+	import GearIcon from "./icons/GearIcon.svelte";
+	import MinimizeIcon from "./icons/MinimizeIcon.svelte";
+	import QuestionMarkIcon from "./icons/QuestionMarkIcon.svelte";
+	import SaveIcon from "./icons/SaveIcon.svelte";
+	import ContextMenu from "./menus/ContextMenu.svelte";
+	import ManualPopup from "./popups/ManualPopup.svelte";
+	import NewProjectPopup from "./popups/NewProjectPopup.svelte";
+	import ProjectSettingsPopup from "./popups/ProjectSettingsPopup.svelte";
+	import SettingsPopup from "./popups/SettingsPopup.svelte";
+	import LittleButton from "./widgets/LittleButton.svelte";
 
 	let projectMenu: ContextMenu;
 
@@ -116,9 +116,9 @@
 	{/if}
 
 	<div>
-		<LittleButton Icon={DashIcon} onmousedown={minimize} iconScale={0.85} />
-		<LittleButton Icon={MinimizeIcon} onmousedown={maximize} iconScale={0.85} />
-		<LittleButton Icon={CloseIcon} onmousedown={close} accent="#f38ba8" iconScale={0.85} />
+		<LittleButton Icon={DashIcon} onmousedown={minimize} scale={0.85} />
+		<LittleButton Icon={MinimizeIcon} onmousedown={maximize} scale={0.85} />
+		<LittleButton Icon={CloseIcon} onmousedown={close} accent="#f38ba8" scale={0.85} />
 	</div>
 </nav>
 

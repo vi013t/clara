@@ -1,8 +1,10 @@
 <script lang="ts">
-	let { stroke, ...attributes } = $props();
+	let { stroke = "currentcolor", scale = 1, ...attributes } = $props();
 </script>
 
 <svg
+	style:width="{scale}rem"
+	style:height="{scale}rem"
 	{...attributes}
 	style:scale="130%"
 	fill={stroke}

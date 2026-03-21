@@ -6,6 +6,7 @@ import { assignedLater } from "../../util/utils.svelte";
 export class GraphOutline<T extends Shape> {
 	public shape = $state(assignedLater<T>());
 	public color = $state(Color.black);
+	public isVisible = $state(true);
 
 	private constructor(shape: T, color: Color) {
 		this.shape = shape;

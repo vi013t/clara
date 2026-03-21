@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { AttributeContext, AttributeType, AttributeValue, PrimitiveAttribute } from "../../api/data/attribute.svelte";
 	import { Length, Measurement } from "../../api/data/measurement.svelte";
-	import ColorPaletteIcon from "../icons/ColorPaletteIcon.svelte";
 	import ColorPicker from "./ColorPicker.svelte";
 	import LongTextInput from "./LongTextInput.svelte";
 	import MeasurementInput from "./MeasurementInput.svelte";

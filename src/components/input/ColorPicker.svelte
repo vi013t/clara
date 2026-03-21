@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { mouse } from "../util/InputHandler.svelte";
-	import { Color } from "../../api/ui/color.svelte";
 	import { clamp } from "../../api/math/arrays.svelte";
+	import { Color } from "../../api/ui/color.svelte";
 	import PlusIcon from "../icons/PlusIcon.svelte";
-	import ContextMenu from "../menus/ContextMenu.svelte";
 	import TrashIcon from "../icons/TrashIcon.svelte";
-	import ConfirmationPopup from "../popups/ConfirmationPopup.svelte";
+	import ContextMenu from "../menus/ContextMenu.svelte";
+	import { mouse } from "../util/InputHandler.svelte";
 
 	let {
 		value = $bindable(null),
@@ -22,7 +21,7 @@
 	let hueBox: HTMLElement;
 
 	export function open() {
-		let position = mouse().getRelativePosition(popup);
+		let position = mouse().relativeTo(popup);
 		left = `${position.x}px`;
 		top = `${position.y}px`;
 		visible = true;

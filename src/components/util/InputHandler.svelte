@@ -4,7 +4,6 @@
 	class Mouse {
 		private client_ = $state(Point2D.origin());
 		private offset_ = $state(Point2D.origin());
-		private absolute_ = $state(Point2D.origin());
 		private leftClicking_ = $state(false);
 		private rightClicking_ = $state(false);
 		private middleClicking_ = $state(false);
@@ -33,7 +32,7 @@
 			return this.offset_;
 		}
 
-		public getRelativePosition(element: HTMLElement): Point2D {
+		public relativeTo(element: HTMLElement): Point2D {
 			if (!element.offsetParent) return Point2D.origin();
 			return new Point2D(
 				this.client.x - element!.offsetParent.getBoundingClientRect().left,

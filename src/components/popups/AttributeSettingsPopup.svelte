@@ -1,16 +1,9 @@
 <script lang="ts">
 	import { fieldValueTypes, type Attribute } from "../../api/data/attribute.svelte";
-	import CalendarIcon from "../icons/CalendarIcon.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
-	import GraphIcon from "../icons/GraphIcon.svelte";
 	import ItalicIcon from "../icons/ItalicIcon.svelte";
-	import NumberSignIcon from "../icons/NumberSignIcon.svelte";
-	import ParagraphIcon from "../icons/ParagraphIcon.svelte";
 	import PrivacyIcon from "../icons/PrivacyIcon.svelte";
-	import RulerIcon from "../icons/RulerIcon.svelte";
 	import SpreadsheetIcon from "../icons/SpreadsheetIcon.svelte";
-	import TextIcon from "../icons/TextIcon.svelte";
-	import WeightScaleIcon from "../icons/WeightScaleIcon.svelte";
 	import Input from "../input/Input.svelte";
 	import Select from "../input/Select.svelte";
 	import ConfirmationPopup from "./ConfirmationPopup.svelte";
@@ -23,9 +16,16 @@
 	let popup: Popup;
 
 	let confirmDeletePopup: ConfirmationPopup;
+	let confirmUnlockTypePopup: ConfirmationPopup;
+	let unlockType = $state(() => {});
 
 	export function open() {
 		popup.open();
+	}
+
+	function onunlock(unlock: () => void) {
+		unlockType = unlock;
+		confirmUnlockTypePopup.open();
 	}
 </script>
 
@@ -58,7 +58,9 @@
 				<input bind:value={attribute.name} />
 
 				<h2>Type</h2>
-				<Select width="100%" options={fieldValueTypes} bind:value={attribute.type} />
+				<div class="type">
+					<Select {onunlock} locked width="100%" options={fieldValueTypes} bind:value={attribute.type} />
+				</div>
 
 				<h2>Default</h2>
 				<Input context="settings" background="#181825" type={attribute.type} value={null} openEditor={() => {}} />
@@ -78,12 +80,23 @@
 	<p>All entries that have values in this field will have the value deleted.</p>
 </ConfirmationPopup>
 
+<ConfirmationPopup bind:this={confirmUnlockTypePopup} title="Change type?" onconfirm={unlockType}>
+	<p>Changing the type of this attribute will delete all entries' data for this attribute.</p>
+</ConfirmationPopup>
+
 <style>
 	.content {
 		padding: 2rem;
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
+	}
+
+	.type {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+		margin-right: 2.5rem;
 	}
 
 	.title {

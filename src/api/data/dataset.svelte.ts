@@ -100,7 +100,7 @@ export class DataEntry implements Cloneable<DataEntry>, Serialize<BackendDataEnt
 }
 
 export class Dataset {
-	public fields: Container<Attribute[]> = $state(assignedLater());
+	public attributes: Container<Attribute[]> = $state(assignedLater());
 	public data: Container<TreeNode<DataEntry>> = $state(assignedLater());
 	public name: string = $state(assignedLater());
 	public icon: IconComponent = $state(assignedLater());
@@ -127,11 +127,11 @@ export class Dataset {
 		this.icon = icon;
 		this.description = description;
 		this.data = new Container(data);
-		this.fields = new Container(fields);
+		this.attributes = new Container(fields);
 		this.id = Dataset.datasetID++;
 	}
 
-	public attributes<T extends AttributeValue>(attribute: Attribute): T[] {
+	public values<T extends AttributeValue>(attribute: Attribute): T[] {
 		return this.data
 			.ref()
 			.dfsLeaves()
@@ -143,20 +143,20 @@ export class Dataset {
 			name: this.name,
 			iconName: getIconName(this.icon),
 			description: this.description ?? "",
-			fields: this.fields.ref().map(field => field.toBackend()),
+			fields: this.attributes.ref().map(field => field.toBackend()),
 			data: this.data.ref().toBackend(),
 		};
 	}
 
 	public deleteField(id: number) {
-		this.fields.overwrite(this.fields.ref().filter(other => other.id !== id));
+		this.attributes.overwrite(this.attributes.ref().filter(other => other.id !== id));
 	}
 
 	public clone(): Dataset {
 		return new Dataset({
 			name: this.name,
 			icon: this.icon,
-			fields: this.fields.clone(),
+			fields: this.attributes.clone(),
 			data: this.data.clone(),
 		});
 	}
@@ -229,7 +229,7 @@ export class Database implements Cloneable<Database> {
 			let ref = dataset.ref() as Dataset;
 
 			let fieldNames = [];
-			for (let field of ref.fields.ref()) {
+			for (let field of ref.attributes.ref()) {
 				if (field.type === "Entry") {
 					fieldNames.push(field.name);
 				}

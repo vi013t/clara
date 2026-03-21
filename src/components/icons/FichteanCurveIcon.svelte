@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { IconProps } from "../../api/ui/icons.svelte";
 
-	let { stroke, ...attributes }: IconProps = $props();
+	let { stroke = "currentcolor", scale = 1, ...attributes }: IconProps = $props();
 </script>
 
-<div {...attributes} style:--stroke={stroke}>
+<div style:width="{scale}rem" style:height="{scale}rem" {...attributes} style:--stroke={stroke}>
 	<svg
 		fill-rule="evenodd"
 		clip-rule="evenodd"

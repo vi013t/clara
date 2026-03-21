@@ -114,9 +114,28 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	}
 
 	private setColors() {
-		if (!this.parent) this.outline_.color = Color.hex("#181825");
-		else this.outline_.color = this.parent.outline_.color.darken(2);
+		if (!this.parent) {
+			this.outline_.color = Color.hex("#181825");
+			this.outline_.isVisible = false;
+		} else this.outline_.color = this.parent.outline_.color.darken(2);
 		this.children.forEach(child => child.setColors());
+	}
+
+	/**
+	 * Makes all nodes visible, assembling them all together again.
+	 */
+	public thanksgivingDinner() {
+		this.root()
+			.dfs()
+			.forEach(node => (node.outline.isVisible = true));
+	}
+
+	public cutOff() {
+		console.log(this.parent);
+		this.root()
+			.dfs()
+			.filter(node => node !== this && !node.isDescendantOf(this))
+			.forEach(node => (node.outline.isVisible = false));
 	}
 
 	public shift(amount: Point2DLike) {

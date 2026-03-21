@@ -5,13 +5,13 @@
 	let {
 		Icon,
 		accent = "#b4befe",
-		iconScale = 1,
+		scale = 1,
 		...attributes
-	}: { Icon: IconComponent; accent?: string; iconScale?: number } & HTMLAttributes<HTMLButtonElement> = $props();
+	}: { Icon: IconComponent; accent?: string; scale?: number } & HTMLAttributes<HTMLButtonElement> = $props();
 </script>
 
 <button {...attributes} style:--accent={accent}>
-	<Icon stroke="var(--stroke)" style="width: {iconScale}rem; height: {iconScale}rem;" />
+	<Icon stroke="var(--stroke)" style="width: {scale}rem; height: {scale}rem;" />
 </button>
 
 <style>
@@ -24,6 +24,9 @@
 		font-size: 0.8rem;
 		padding: 0.25rem;
 		--stroke: #cdd6f4;
+		flex-shrink: 0;
+		width: fit-content;
+		height: fit-content;
 
 		&:hover {
 			background-color: var(--accent);

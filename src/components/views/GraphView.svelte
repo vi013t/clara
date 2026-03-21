@@ -1,32 +1,32 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { Point2D, type Point2DLike } from "../../api/math/matrix.svelte";
-	import { assignedLater } from "../../api/util/utils.svelte";
-	import CameraView from "./CameraView.svelte";
-	import { Camera } from "../../api/ui/camera.svelte";
-	import LittleButton from "../widgets/LittleButton.svelte";
-	import GearIcon from "../icons/GearIcon.svelte";
-	import ReticleIcon from "../icons/ReticleIcon.svelte";
-	import type { TreeNode } from "../../api/data/graph/tree.svelte";
-	import { Project } from "../../api/project.svelte";
 	import type { DataEntry } from "../../api/data/dataset.svelte";
-	import ContextMenu from "../menus/ContextMenu.svelte";
+	import type { TreeNode } from "../../api/data/graph/tree.svelte";
+	import { Point2D, type Point2DLike } from "../../api/math/matrix.svelte";
+	import { Project } from "../../api/project.svelte";
+	import { Camera } from "../../api/ui/camera.svelte";
+	import { assignedLater } from "../../api/util/utils.svelte";
+	import ArrowIcon from "../icons/ArrowIcon.svelte";
+	import ColorPaletteIcon from "../icons/ColorPaletteIcon.svelte";
 	import EyeIcon from "../icons/EyeIcon.svelte";
+	import GearIcon from "../icons/GearIcon.svelte";
 	import HexagonIcon from "../icons/HexagonIcon.svelte";
-	import RenameIcon from "../icons/RenameIcon.svelte";
-	import TrashIcon from "../icons/TrashIcon.svelte";
 	import PackageIcon from "../icons/PackageIcon.svelte";
 	import PlusIcon from "../icons/PlusIcon.svelte";
-	import ArrowIcon from "../icons/ArrowIcon.svelte";
+	import RenameIcon from "../icons/RenameIcon.svelte";
+	import ReticleIcon from "../icons/ReticleIcon.svelte";
 	import ScaleIcon from "../icons/ScaleIcon.svelte";
 	import SpreadsheetIcon from "../icons/SpreadsheetIcon.svelte";
+	import TrashIcon from "../icons/TrashIcon.svelte";
 	import TreeIcon from "../icons/TreeIcon.svelte";
-	import ColorPaletteIcon from "../icons/ColorPaletteIcon.svelte";
+	import ContextMenu from "../menus/ContextMenu.svelte";
+	import LittleButton from "../widgets/LittleButton.svelte";
+	import CameraView from "./CameraView.svelte";
 
 	let tree = Project.get()!.database.ref().asTree();
 	let nodes = $derived(tree.dfs());
-	let leaves = $derived(nodes.filter(node => node.isItem));
-	let branches = $derived(nodes.filter(node => node.isGroup));
+	let items = $derived(nodes.filter(node => node.isItem));
+	let groups = $derived(nodes.filter(node => node.isGroup));
 
 	let edges = $derived(Project.get()!.database.ref().relations());
 	let edgeElements = $derived(
@@ -110,12 +110,14 @@
 
 		let delta: [number, number] = [event.movementX * camera.getScale().x, event.movementY * camera.getScale().y];
 
-		// Make sure the node being moved isnt trying to escape its parent
+		// Make sure the node being moved doesn't intersect a sibling (cousin, technically)
 		delta = clickedNode.getCollisionConstrainedShift(delta);
 
-		// Make sure the node being moved doesn't intersect a sibling (cousin, technically)
-		const parentCircle = clickedNode.parent!.outline.shape;
-		delta = clickedNode.outline.shape.getConstrainedShift(delta, parentCircle, 2);
+		// Make sure the node being moved isnt trying to escape its parent
+		if (clickedNode.parent?.outline.isVisible) {
+			const parentCircle = clickedNode.parent!.outline.shape;
+			delta = clickedNode.outline.shape.getConstrainedShift(delta, parentCircle, 2);
+		}
 
 		// 3. Apply the final "safe" movement
 		if (delta[0] !== 0 || delta[1] !== 0) {
@@ -128,43 +130,48 @@
 
 	let canPan = $derived(!clickedNode);
 	let groupContextMenu: ContextMenu;
+	tree.outline;
 </script>
 
 <svelte:document onmouseup={() => (clickedNode = null)} {onmousemove} />
 
 <section class="graph">
 	<CameraView bind:camera {canPan}>
-		{#each branches as branch}
-			{#if !branch.isRoot}
-				<!-- svelte-ignore a11y_no_static_element_interactions -->
+		{#each groups as group}
+			{#if group.outline.isVisible}
 				<div
-					class={["group", clickedNode === branch && "active"]}
-					style:left="{branch.outline.shape.center.x}px"
-					style:top="{branch.outline.shape.center.y}px"
-					style:width="{branch.outline.shape.radius * 2}px"
-					style:height="{branch.outline.shape.radius * 2}px"
+					class={["group", clickedNode === group && "active"]}
+					style:left="{group.outline.shape.center.x}px"
+					style:top="{group.outline.shape.center.y}px"
+					style:width="{group.outline.shape.radius * 2}px"
+					style:height="{group.outline.shape.radius * 2}px"
 					style:border-width="{cameraScale}px"
-					style:font-size="{0.05 * branch.outline.shape.radius}px"
-					style:background-color={`${branch.outline.color}`}
+					style:font-size="{0.05 * group.outline.shape.radius}px"
+					style:background-color={`${group.outline.color}`}
 				>
-					<span oncontextmenu={event => groupContextMenu.openAtMouse(event)} onmousedown={() => (clickedNode = branch)}>
-						{branch.data.name}
+					<span
+						tabindex="0"
+						role="tree"
+						oncontextmenu={event => groupContextMenu.openAtMouse(event)}
+						onmousedown={() => (clickedNode = group)}
+					>
+						{group.data.name}
 					</span>
 				</div>
 			{/if}
 		{/each}
-		{#each leaves as leaf}
-			<!-- svelte-ignore a11y_consider_explicit_label -->
+		{#each items as item}
 			<button
-				onmousedown={() => (clickedNode = leaf)}
+				aria-label="Node"
+				onmousedown={() => (clickedNode = item)}
 				class="node"
-				style:background-color={clickedNode === leaf ? "#f38ba8" : undefined}
-				style:--text="'{leaf.data.name}'"
-				style:left="{leaf.outline.shape.center.x}px"
-				style:top="{leaf.outline.shape.center.y}px"
-				style:width="{leaf.outline.shape.radius * 2}px"
-				style:height="{leaf.outline.shape.radius * 2}px"
-				style:font-size="{leaf.outline.shape.radius * 2}px"
+				style:background-color={clickedNode === item ? "#f38ba8" : undefined}
+				style:--text="'{item.data.name}'"
+				style:left="{item.outline.shape.center.x}px"
+				style:top="{item.outline.shape.center.y}px"
+				style:width="{item.outline.shape.radius * 2}px"
+				style:height="{item.outline.shape.radius * 2}px"
+				style:font-size="{item.outline.shape.radius * 2}px"
 			></button>
 		{/each}
 

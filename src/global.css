@@ -53,3 +53,7 @@ body {
 *:not([contenteditble], textarea, input) {
 	user-select: none;
 }
+
+svg {
+	color: inherit;
+}

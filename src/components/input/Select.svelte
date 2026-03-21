@@ -1,20 +1,26 @@
 <script lang="ts">
-	import RightArrow from "../icons/ArrowIcon.svelte";
 	import type { IconComponent } from "../../api/ui/icons.svelte";
+	import RightArrow from "../icons/ArrowIcon.svelte";
+	import LockIcon from "../icons/LockIcon.svelte";
+	import UnlockedIcon from "../icons/UnlockedIcon.svelte";
+	import LittleButton from "../widgets/LittleButton.svelte";
 
 	export type ComplexOption = { name: string; icon?: IconComponent; color?: string; style?: string };
 	export type SelectOption = string | ComplexOption;
 
 	let {
 		options,
-		onSelect = () => {},
+		locked = false,
+		lockable = undefined,
+		onunlock = (unlock: () => void) => {
+			unlock();
+		},
 		itemOverride,
 		value = $bindable(),
 		title = undefined,
 		children,
 		width = "20rem",
 		height = "fit-content",
-		locked,
 		additionalButtonText,
 		additionalButtonClick,
 		isError,
@@ -25,19 +31,23 @@
 		value?: SelectOption;
 		width?: string;
 		height?: string;
+		lockable?: boolean;
 		itemOverride?: string;
 		emptyText?: string;
-		onSelect?: (value: string) => void;
 		options: SelectOption[];
 		title?: string;
 		children?: () => any;
 		noarrow?: boolean;
 		locked?: boolean;
+		onunlock?: (unlock: () => void) => void;
 		additionalButtonText?: string;
 		additionalButtonClick?: (event: MouseEvent) => void;
 		isError?: boolean;
 		[key: string]: unknown;
 	} = $props();
+
+	// svelte-ignore state_referenced_locally
+	if (lockable === undefined) lockable = locked;
 
 	let optionsVisible = $state(false);
 
@@ -45,7 +55,6 @@
 		return function () {
 			optionsVisible = false;
 			value = option;
-			onSelect(option);
 		};
 	}
 
@@ -61,49 +70,80 @@
 			optionsVisible = false;
 		}
 	}
+
+	function unlock() {
+		locked = false;
+	}
+
+	function toggleLocked() {
+		console.log("toggle", locked);
+		if (!locked) {
+			locked = true;
+			return;
+		}
+
+		console.log("calling onunlock");
+		onunlock(unlock);
+	}
 </script>
 
 <svelte:document onmousedown={clickDocument} />
 
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-<div bind:this={element} class="select" {...rest} style:width>
+<div style:cursor={locked ? "not-allowed" : "pointer"} bind:this={element} class="select" {...rest} style:width>
 	<!-- Select Button -->
 
-	{#if children}
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
-		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<div onmousedown={onSelectClick} class="header" style:display="contents">
-			{@render children()}
-		</div>
-	{:else}
-		<button style:height onmousedown={onSelectClick} class="header" style:outline={isError ? "2px solid var(--red)" : "none"}>
-			{#if title}
-				{title}
-			{:else if value}
-				{@const option = options.find(
-					option => typeof option !== "string" && option.name === (typeof value === "string" ? value : value!.name),
-				) as ComplexOption | undefined}
-				{#if option}
-					{#if option.icon}
-						<option.icon stroke={option.color ?? "#a6adc8"} style="width: 1rem; height: 1rem;" />
+	<div class="input">
+		{#if children}
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<div style:cursor={locked ? "not-allowed" : "pointer"} onmousedown={onSelectClick} class="header" style:display="contents">
+				{@render children()}
+			</div>
+		{:else}
+			<button
+				style:height
+				onmousedown={onSelectClick}
+				class="header"
+				style:cursor={locked ? "not-allowed" : "pointer"}
+				style:outline={isError ? "2px solid var(--red)" : "none"}
+			>
+				{#if title}
+					{title}
+				{:else if value}
+					{@const option = options.find(
+						option => typeof option !== "string" && option.name === (typeof value === "string" ? value : value!.name),
+					) as ComplexOption | undefined}
+					{#if option}
+						{#if option.icon}
+							<option.icon stroke={option.color ?? "#a6adc8"} style="width: 1rem; height: 1rem;" />
+						{/if}
+						<span style={option.style ?? ""}>{option.name}</span>
+					{:else}
+						{value}
 					{/if}
-					<span style={option.style ?? ""}>{option.name}</span>
 				{:else}
-					{value}
+					{emptyText}
 				{/if}
-			{:else}
-				{emptyText}
-			{/if}
-			{#if !noarrow}
-				<RightArrow
-					stroke="#b4befe"
-					style="width: 1rem; height: 1rem; margin-left: auto; transform: rotate({optionsVisible
-						? '180deg'
-						: '90deg'}); transition: transform 0.1s;"
-				/>
-			{/if}
-		</button>
-	{/if}
+				{#if !noarrow}
+					<RightArrow
+						stroke="#b4befe"
+						style="width: 1rem; height: 1rem; margin-left: auto; transform: rotate({optionsVisible
+							? '180deg'
+							: '90deg'}); transition: transform 0.1s;"
+					/>
+				{/if}
+			</button>
+		{/if}
+		{#if lockable}
+			<LittleButton
+				onmousedown={toggleLocked}
+				scale={1.5}
+				style="border: 1px solid #313244;"
+				Icon={locked ? LockIcon : UnlockedIcon}
+			/>
+		{/if}
+	</div>
 
 	<!-- Options -->
 	<div class={["options", optionsVisible && "visible"]}>
@@ -141,12 +181,17 @@
 
 <style>
 	.select {
-		cursor: pointer;
-		border-radius: 0.25rem;
-		padding: 0.5rem;
 		position: relative;
 		background-color: #181825;
 		border: 1px solid #313244;
+	}
+
+	.input {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		border-radius: 0.25rem;
 	}
 
 	div,

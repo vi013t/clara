@@ -1,10 +1,10 @@
 <script>
-	import Navbar from "../components/panels/Navbar.svelte";
+	import { Project } from "../api/project.svelte";
+	import { pressHotkey } from "../api/userdata/action.svelte";
+	import Navbar from "../components/Navbar.svelte";
+	import NoProject from "../components/NoProject.svelte";
 	import Pane from "../components/pane/Pane.svelte";
 	import StatusBar from "../components/StatusBar.svelte";
-	import { pressHotkey } from "../api/userdata/action.svelte";
-	import { Project } from "../api/project.svelte";
-	import NoProject from "../components/NoProject.svelte";
 	import InputHandler from "../components/util/InputHandler.svelte";
 </script>
 

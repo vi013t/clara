@@ -1,4 +1,5 @@
 import CalendarIcon from "../../components/icons/CalendarIcon.svelte";
+import ColorPaletteIcon from "../../components/icons/ColorPaletteIcon.svelte";
 import GraphIcon from "../../components/icons/GraphIcon.svelte";
 import NumberSignIcon from "../../components/icons/NumberSignIcon.svelte";
 import ParagraphIcon from "../../components/icons/ParagraphIcon.svelte";
@@ -6,14 +7,13 @@ import RulerIcon from "../../components/icons/RulerIcon.svelte";
 import TextIcon from "../../components/icons/TextIcon.svelte";
 import WeightScaleIcon from "../../components/icons/WeightScaleIcon.svelte";
 import { Project } from "../project.svelte";
+import type { IconComponent } from "../ui/icons.svelte";
+import { userData } from "../userdata/cache.svelte";
+import { Container, type Cloneable } from "../util/Clone.svelte";
+import type { Serialize } from "../util/serialize.svelte";
+import { assignedLater } from "../util/utils.svelte";
 import type { Dataset } from "./dataset.svelte";
 import { Length, Measurement, Weight, type BackendMeasurement } from "./measurement.svelte";
-import type { IconComponent } from "../ui/icons.svelte";
-import { Container, type Cloneable } from "../util/Clone.svelte";
-import { assignedLater } from "../util/utils.svelte";
-import type { Serialize } from "../util/serialize.svelte";
-import { userData } from "../userdata/cache.svelte";
-import ColorPaletteIcon from "../../components/icons/ColorPaletteIcon.svelte";
 
 export const fieldValueTypes = [
 	{
@@ -274,7 +274,7 @@ export class Attribute implements Serialize<BackendAttribute> {
 		if (project) {
 			for (let dataset of project.database.ref().datasets.ref()) {
 				let set = dataset.ref();
-				for (let field of set.fields.ref()) {
+				for (let field of set.values.ref()) {
 					if (field.id === this.id) {
 						return new Container(set);
 					}
@@ -286,7 +286,7 @@ export class Attribute implements Serialize<BackendAttribute> {
 			.templates.map(template => template.database.ref().datasets.ref())
 			.flat()) {
 			let set = dataset.ref();
-			for (let field of set.fields.ref()) {
+			for (let field of set.values.ref()) {
 				if (field.id === this.id) {
 					return new Container(set);
 				}

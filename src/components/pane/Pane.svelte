@@ -15,15 +15,15 @@
 </script>
 
 <script lang="ts">
-	import Pane from "./Pane.svelte";
+	import { DataEntry } from "../../api/data/dataset.svelte";
+	import { DataTab, EditorTab, TabList } from "../../api/ui/tab.svelte";
+	import ManualPopup from "../popups/ManualPopup.svelte";
+	import GraphView from "../views/GraphView.svelte";
 	import HierarchyView from "../views/HierarchyView.svelte";
 	import SpreadsheetView from "../views/SpreadsheetView.svelte";
+	import Editor from "./Editor.svelte";
+	import Pane from "./Pane.svelte";
 	import Tabline from "./Tabline.svelte";
-	import { DataEntry } from "../../api/data/dataset.svelte";
-	import Editor from "../panels/Editor.svelte";
-	import ManualPopup from "../popups/ManualPopup.svelte";
-	import { DataTab, EditorTab, TabList } from "../../api/ui/tab.svelte";
-	import GraphView from "../views/GraphView.svelte";
 
 	let {
 		width = "500px",

@@ -1,10 +1,12 @@
 <script lang="ts">
 	import type { IconProps } from "../../api/ui/icons.svelte";
 
-	let { stroke, ...attributes }: IconProps = $props();
+	let { stroke = "currentcolor", scale = 1, ...attributes }: IconProps = $props();
 </script>
 
 <svg
+	style:width="{scale}rem"
+	style:height="{scale}rem"
 	{...attributes}
 	fill={stroke}
 	viewBox="0 0 36 36"

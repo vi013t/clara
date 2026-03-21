@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { DataEntry, type Dataset } from "../../api/data/dataset.svelte";
 	import { Attribute } from "../../api/data/attribute.svelte";
+	import { DataEntry, type Dataset } from "../../api/data/dataset.svelte";
 	import CloseIcon from "../icons/CloseIcon.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
 	import PlusIcon from "../icons/PlusIcon.svelte";
@@ -27,7 +27,7 @@
 	}
 
 	function addColumn() {
-		dataset.fields.ref().push(new Attribute("Attribute", "Short text"));
+		dataset.attributes.ref().push(new Attribute("Attribute", "Short text"));
 		updateAttributes++;
 	}
 
@@ -70,7 +70,7 @@
 		</div>
 	</div>
 	{#key updateAttributes}
-		{#each dataset.fields.ref() as field, index}
+		{#each dataset.attributes.ref() as field, index}
 			<div class="column">
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div class="cell" oncontextmenu={event => fieldSettings.openAtMouse(event)}>

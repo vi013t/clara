@@ -50,7 +50,7 @@
 
 	export function openAtMouse(event?: MouseEvent) {
 		event?.preventDefault();
-		let position = mouse().getRelativePosition(domElement!);
+		let position = mouse().relativeTo(domElement!);
 		left = `${position.x}px`;
 		top = `${position.y}px`;
 		open();
@@ -117,7 +117,8 @@
 		});
 
 		document.addEventListener("mousemove", event => {
-			const parentRect = domElement!.parentElement!.getBoundingClientRect();
+			const parentRect = domElement?.parentElement?.getBoundingClientRect();
+			if (!parentRect) return;
 			const insideParent = cursorIsInBox(event.clientX, event.clientY, parentRect, { padRight: 10 });
 			const insideThis = visible && cursorIsInBox(event.clientX, event.clientY, domElement!.getBoundingClientRect());
 			const disabled = domElement!.parentElement!.classList.contains("disabled");

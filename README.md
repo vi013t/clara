@@ -9,8 +9,5 @@ A free software application for screenwriting, novel writing, etc.
 You can build and launch the app from source yourself:
 
 ```bash
-git clone https://github.com/vi013t/wallflower.git
-cd wallflower
-npm install
-npm run tauri build
+git clone https://github.com/vi013t/wallflower.git && cd wallflower && make build
 ```

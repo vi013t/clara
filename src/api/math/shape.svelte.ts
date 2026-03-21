@@ -1,7 +1,105 @@
+import type { Cloneable } from "../util/Clone.svelte";
 import { assignedLater } from "../util/utils.svelte";
+import { clamp } from "./arrays.svelte";
 import { Point2D, type Point2DLike } from "./matrix.svelte";
 
-export class Rectangle {
+interface ShapeBase<T extends ShapeBase<T>> extends Cloneable<T> {
+	overlaps(other: Shape, padding?: number): boolean;
+	contains(other: Shape, padding?: number): boolean;
+}
+
+export type Shape = Rectangle | Circle;
+
+export class Circle implements ShapeBase<Circle> {
+	public radius = $state(assignedLater<number>());
+	public center = $state(assignedLater<Point2D>());
+
+	public constructor(radius: number, center: Point2D) {
+		this.radius = radius;
+		this.center = center;
+	}
+
+	public clone(): Circle {
+		return new Circle(this.radius, this.center.clone());
+	}
+
+	public getConstrainedShift(desiredShift: [number, number], parent: Circle, padding: number = 0): [number, number] {
+		const [dx, dy] = desiredShift;
+
+		// 1. Where does the circle *want* to go?
+		const targetX = this.center.x + dx;
+		const targetY = this.center.y + dy;
+
+		// 2. What is the maximum allowed distance from the parent's center?
+		const maxSafeDistance = parent.radius - this.radius - padding;
+
+		// Safety check: if padding makes the safe area negative, no movement allowed
+		if (maxSafeDistance <= 0) return [0, 0];
+
+		// 3. How far will the target center be from the parent's center?
+		const distX = targetX - parent.center.x;
+		const distY = targetY - parent.center.y;
+		const distanceToParentCenter = Math.hypot(distX, distY);
+
+		// 4. If the target is within the safe zone, allow the full movement!
+		if (distanceToParentCenter <= maxSafeDistance) {
+			return [dx, dy];
+		}
+
+		// 5. If it overshoots, snap it exactly to the curved boundary edge.
+		// We find the angle from the parent center to the target point,
+		// and project our center exactly 'maxSafeDistance' away along that angle.
+		const angle = Math.atan2(distY, distX);
+
+		const constrainedX = parent.center.x + Math.cos(angle) * maxSafeDistance;
+		const constrainedY = parent.center.y + Math.sin(angle) * maxSafeDistance;
+
+		// Return the actual delta we are allowed to move
+		return [constrainedX - this.center.x, constrainedY - this.center.y];
+	}
+
+	public overlaps(other: Shape, padding: number = 0): boolean {
+		if (other instanceof Circle) {
+			const threshold = this.radius + other.radius - padding;
+			return this.center.distanceTo(other.center) < threshold;
+		}
+
+		// Rectangle logic: Clamp center to rectangle bounds
+		const closest = new Point2D(clamp(this.center.x, other.left, other.right), clamp(this.center.y, other.top, other.bottom));
+		const distance = this.center.distanceTo(closest);
+
+		// Subtract padding from radius threshold
+		return distance <= this.radius - padding;
+	}
+
+	public contains(other: Shape, padding: number = 0): boolean {
+		const safeRadius = this.radius - padding;
+
+		if (safeRadius < 0) return false; // Padding is larger than the circle itself
+
+		if (other instanceof Circle) {
+			const distance = this.center.distanceTo(other.center);
+			// The inner circle's edge (distance + radius) must be within our safe radius
+			return distance + other.radius <= safeRadius;
+		}
+
+		// Rectangle: Check if all four corners are within the safe radius
+		const corners = [
+			new Point2D(other.left, other.top),
+			new Point2D(other.right, other.top),
+			new Point2D(other.left, other.bottom),
+			new Point2D(other.right, other.bottom),
+		];
+
+		return corners.every(corner => this.center.distanceTo(corner) <= safeRadius);
+	}
+
+	public static unit(): Circle {
+		return new Circle(0, Point2D.origin());
+	}
+}
+
+export class Rectangle implements ShapeBase<Rectangle> {
 	public left = $state(assignedLater<number>());
 	public top = $state(assignedLater<number>());
 	public width = $state(assignedLater<number>());
@@ -14,9 +112,48 @@ export class Rectangle {
 		this.height = height;
 	}
 
+	public clone(): Rectangle {
+		return new Rectangle(this.left, this.top, this.width, this.height);
+	}
+
+	public overlaps(other: Shape, padding: number = 0): boolean {
+		if (other instanceof Circle) {
+			return other.overlaps(this, padding);
+		}
+
+		return (
+			this.left < other.right - padding &&
+			this.right > other.left + padding &&
+			this.top < other.bottom - padding &&
+			this.bottom > other.top + padding
+		);
+	}
+
 	public static squareFromCenter(center: Point2DLike, radius: number): Rectangle {
 		let centerPoint = new Point2D(center);
 		return new Rectangle(centerPoint.x - radius, centerPoint.y - radius, radius * 2, radius * 2);
+	}
+
+	public contains(other: Shape, padding: number = 0): boolean {
+		const innerLeft = this.left + padding;
+		const innerRight = this.right - padding;
+		const innerTop = this.top + padding;
+		const innerBottom = this.bottom - padding;
+
+		// Ensure the padded box isn't inverted
+		if (innerLeft > innerRight || innerTop > innerBottom) return false;
+
+		if (other instanceof Circle) {
+			// The circle's extents (center +/- radius) must be within our padded bounds
+			return (
+				other.center.x - other.radius >= innerLeft &&
+				other.center.x + other.radius <= innerRight &&
+				other.center.y - other.radius >= innerTop &&
+				other.center.y + other.radius <= innerBottom
+			);
+		}
+
+		return other.left >= innerLeft && other.right <= innerRight && other.top >= innerTop && other.bottom <= innerBottom;
 	}
 
 	public static fromXYWH({ x, y, width, height }: { x: number; y: number; width: number; height: number }): Rectangle {

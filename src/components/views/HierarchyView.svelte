@@ -8,7 +8,7 @@
 	import TrashIcon from "../icons/TrashIcon.svelte";
 	import RenameIcon from "../icons/RenameIcon.svelte";
 	import type { DataEntry } from "../../api/data/dataset.svelte";
-	import type { TreeNode } from "../../api/data/structure/tree.svelte";
+	import type { TreeNode } from "../../api/data/graph/tree.svelte";
 	import { Project } from "../../api/project.svelte";
 
 	let {

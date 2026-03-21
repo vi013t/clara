@@ -66,9 +66,7 @@ export class Project extends ProjectBase {
 
 	public static async save(): Promise<void> {
 		let project = Project.get();
-		if (!project) return;
-
-		const bytes = project.toBackend();
+		const bytes = project!.toBackend();
 		await invoke("save_project", { project: bytes });
 	}
 }

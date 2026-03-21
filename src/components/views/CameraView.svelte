@@ -2,7 +2,11 @@
 	import type { Snippet } from "svelte";
 	import { Camera } from "../../api/ui/camera.svelte";
 
-	let { children, camera = $bindable(new Camera()) }: { children: Snippet; camera?: Camera } = $props();
+	let {
+		children,
+		camera = $bindable(new Camera()),
+		canPan = true,
+	}: { children: Snippet; camera?: Camera; canPan?: boolean } = $props();
 
 	let mouseDown = $state(false);
 
@@ -21,21 +25,18 @@
 	let outer: HTMLElement;
 
 	function pan(event: MouseEvent) {
-		if (!mouseDown) return;
+		if (!canPan || !mouseDown) return;
 
 		camera.shift([-event.movementX * camera.getScale().x, -event.movementY * camera.getScale().y]);
 	}
 
-	function onmousedown(event: MouseEvent) {
-		let element = event.target as HTMLElement;
-		mouseDown = !element.closest(".node");
-	}
+	let cursor = $derived(mouseDown ? "grabbing" : "grab");
 </script>
 
-<svelte:document {onmousedown} onmouseup={() => (mouseDown = false)} />
+<svelte:document onmousedown={() => (mouseDown = true)} onmouseup={() => (mouseDown = false)} />
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<section bind:this={outer} class="outer" onwheel={zoom} onmousemove={pan}>
+<section bind:this={outer} class="outer" onwheel={zoom} onmousemove={pan} style:cursor>
 	<div class="inner" style:transform={camera.transformCSS}>
 		{@render children()}
 	</div>
@@ -48,7 +49,6 @@
 		width: 100%;
 		height: 100%;
 		touch-action: none;
-		cursor: grab;
 	}
 
 	.inner {

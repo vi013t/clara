@@ -13,7 +13,7 @@ import {
 	type BackendAttribute,
 	type BackendAttributeValue,
 } from "./attribute.svelte";
-import { TreeNode, type BackendTreeNode } from "./structure/tree.svelte";
+import { TreeNode, type BackendTreeNode } from "./graph/tree.svelte";
 
 export type BackendDataEntry = {
 	data: { [key: string]: BackendAttributeValue };

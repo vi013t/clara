@@ -126,7 +126,7 @@
 		}px`;
 	});
 
-	function changeDataset(dataset: Dataset) {
+	function changeDataset(dataset: Dataset, view?: View) {
 		return function () {
 			if (currentTab() instanceof DataTab) {
 				currentTab<DataTab>().dataset = dataset;
@@ -135,6 +135,7 @@
 				tabs.replace(currentTab().id, newTab);
 				selectedTabID = newTab.id;
 			}
+			if (view) setView(view)();
 			tabContextMenu.close();
 		};
 	}
@@ -194,7 +195,7 @@
 				<CloseIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 			</button>
 		{/if}
-		<ContextMenu top="100%" left="0px">
+		<ContextMenu top="100%" right="0.25rem" bind:this={paneSettingsMenu}>
 			<button onmousedown={splitHorizontal}>
 				<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
 				<span>Split horizontally</span>
@@ -225,10 +226,10 @@
 					<span>{dataset.name}</span>
 
 					<ContextMenu>
-						{#each Object.entries(views) as [name, info]}
-							<div onmousedown={setView(name as View)}>
+						{#each Object.entries(views) as [viewName, info]}
+							<div onmousedown={changeDataset(dataset, viewName as View)}>
 								<info.icon stroke={"#cdd6f4"} style="width: 1rem; height: 1rem;" />
-								<span>As {name}</span>
+								<span>As {viewName}</span>
 
 								<ArrowIcon stroke={"#cdd6f4"} style="width: 1rem; height: 1rem; rotate: 90deg; margin-left: auto;" />
 								<ContextMenu>
@@ -268,7 +269,6 @@
 					</ContextMenu>
 				</div>
 			{/each}
-			<hr />
 		</ContextMenu>
 	</button>
 	<button>

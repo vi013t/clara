@@ -5,9 +5,12 @@
 	import { pressHotkey } from "../api/userdata/action.svelte";
 	import { Project } from "../api/project.svelte";
 	import NoProject from "../components/NoProject.svelte";
+	import InputHandler from "../components/util/InputHandler.svelte";
 </script>
 
 <svelte:document onkeydown={pressHotkey} />
+
+<InputHandler />
 
 <main>
 	<Navbar />

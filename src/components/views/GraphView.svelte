@@ -7,9 +7,21 @@
 	import LittleButton from "../widgets/LittleButton.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
 	import ReticleIcon from "../icons/ReticleIcon.svelte";
-	import type { TreeNode } from "../../api/data/structure/tree.svelte";
+	import type { TreeNode } from "../../api/data/graph/tree.svelte";
 	import { Project } from "../../api/project.svelte";
 	import type { DataEntry } from "../../api/data/dataset.svelte";
+	import ContextMenu from "../menus/ContextMenu.svelte";
+	import EyeIcon from "../icons/EyeIcon.svelte";
+	import HexagonIcon from "../icons/HexagonIcon.svelte";
+	import RenameIcon from "../icons/RenameIcon.svelte";
+	import TrashIcon from "../icons/TrashIcon.svelte";
+	import PackageIcon from "../icons/PackageIcon.svelte";
+	import PlusIcon from "../icons/PlusIcon.svelte";
+	import ArrowIcon from "../icons/ArrowIcon.svelte";
+	import ScaleIcon from "../icons/ScaleIcon.svelte";
+	import SpreadsheetIcon from "../icons/SpreadsheetIcon.svelte";
+	import TreeIcon from "../icons/TreeIcon.svelte";
+	import ColorPaletteIcon from "../icons/ColorPaletteIcon.svelte";
 
 	let tree = Project.get()!.database.ref().asTree();
 	let nodes = $derived(tree.dfs());
@@ -20,8 +32,8 @@
 	let edgeElements = $derived(
 		edges.map(edge =>
 			createEdge(
-				tree.find(node => node.data.id === edge.from)!.outline.center,
-				tree.find(node => node.data.id === edge.to)!.outline.center,
+				tree.find(node => node.data.id === edge.from)!.outline.shape.center,
+				tree.find(node => node.data.id === edge.to)!.outline.shape.center,
 			),
 		),
 	);
@@ -30,7 +42,7 @@
 
 	function center() {
 		camera.moveTo([0, 0]);
-		camera.setScale(1);
+		camera.setScale(8);
 	}
 
 	function createEdge(pos1: Point2DLike, pos2: Point2DLike) {
@@ -95,29 +107,50 @@
 
 	function onmousemove(event: MouseEvent) {
 		if (!clickedNode) return;
-		// clickedNode.box.left += event.movementX * camera.getScale().x;
-		// clickedNode.box.top += event.movementY * camera.getScale().y;
+
+		let delta: [number, number] = [event.movementX * camera.getScale().x, event.movementY * camera.getScale().y];
+
+		// Make sure the node being moved isnt trying to escape its parent
+		delta = clickedNode.getCollisionConstrainedShift(delta);
+
+		// Make sure the node being moved doesn't intersect a sibling (cousin, technically)
+		const parentCircle = clickedNode.parent!.outline.shape;
+		delta = clickedNode.outline.shape.getConstrainedShift(delta, parentCircle, 2);
+
+		// 3. Apply the final "safe" movement
+		if (delta[0] !== 0 || delta[1] !== 0) {
+			clickedNode.shift(delta);
+		}
 	}
 
 	let cameraScale = $derived(camera.getScale().x);
+	center();
+
+	let canPan = $derived(!clickedNode);
+	let groupContextMenu: ContextMenu;
 </script>
 
 <svelte:document onmouseup={() => (clickedNode = null)} {onmousemove} />
 
 <section class="graph">
-	<CameraView bind:camera>
+	<CameraView bind:camera {canPan}>
 		{#each branches as branch}
 			{#if !branch.isRoot}
+				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div
-					class="group"
-					style:left="{branch.outline.center.x}px"
-					style:top="{branch.outline.center.y}px"
-					style:width="{branch.outline.radius * 2}px"
-					style:height="{branch.outline.radius * 2}px"
-					style:--text="'{branch.data.name}'"
+					class={["group", clickedNode === branch && "active"]}
+					style:left="{branch.outline.shape.center.x}px"
+					style:top="{branch.outline.shape.center.y}px"
+					style:width="{branch.outline.shape.radius * 2}px"
+					style:height="{branch.outline.shape.radius * 2}px"
 					style:border-width="{cameraScale}px"
-					style:font-size="{0.05 * branch.outline.radius}px"
-				></div>
+					style:font-size="{0.05 * branch.outline.shape.radius}px"
+					style:background-color={`${branch.outline.color}`}
+				>
+					<span oncontextmenu={event => groupContextMenu.openAtMouse(event)} onmousedown={() => (clickedNode = branch)}>
+						{branch.data.name}
+					</span>
+				</div>
 			{/if}
 		{/each}
 		{#each leaves as leaf}
@@ -125,14 +158,13 @@
 			<button
 				onmousedown={() => (clickedNode = leaf)}
 				class="node"
-				style:cursor={clickedNode === leaf ? "move" : "pointer"}
-				style:background-color={clickedNode === leaf ? "#f38ba8" : "#b4befe"}
+				style:background-color={clickedNode === leaf ? "#f38ba8" : undefined}
 				style:--text="'{leaf.data.name}'"
-				style:left="{leaf.outline.center.x}px"
-				style:top="{leaf.outline.center.y}px"
-				style:width="{leaf.outline.radius * 2}px"
-				style:height="{leaf.outline.radius * 2}px"
-				style:font-size="{leaf.outline.radius * 2}px"
+				style:left="{leaf.outline.shape.center.x}px"
+				style:top="{leaf.outline.shape.center.y}px"
+				style:width="{leaf.outline.shape.radius * 2}px"
+				style:height="{leaf.outline.shape.radius * 2}px"
+				style:font-size="{leaf.outline.shape.radius * 2}px"
 			></button>
 		{/each}
 
@@ -144,9 +176,83 @@
 	</div>
 </section>
 
+<ContextMenu bind:this={groupContextMenu}>
+	<button>
+		<RenameIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<span>Rename group</span>
+	</button>
+	<button>
+		<PackageIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<span>Add subgroup</span>
+	</button>
+	<button>
+		<PlusIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<span>Add item</span>
+	</button>
+	<button>
+		<SpreadsheetIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<span>Open in view</span>
+		<ArrowIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem; margin-left: auto; rotate: 90deg;" />
+		<ContextMenu>
+			<button>
+				<TreeIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+				<span>Hierarchy</span>
+			</button>
+			<button>
+				<SpreadsheetIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+				<span>Spreadsheet</span>
+			</button>
+		</ContextMenu>
+	</button>
+	<hr />
+	<button>
+		<ReticleIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<span>Focus</span>
+	</button>
+	<button>
+		<ColorPaletteIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<span>Change color</span>
+	</button>
+	<div>
+		<HexagonIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<span>Change shape</span>
+		<ArrowIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem; margin-left: auto; rotate: 90deg;" />
+		<ContextMenu>
+			<button>
+				<HexagonIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+				<span>Circle</span>
+			</button>
+			<button>
+				<HexagonIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+				<span>Rectangle</span>
+			</button>
+		</ContextMenu>
+	</div>
+	<button>
+		<ScaleIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<span>Resize outline</span>
+	</button>
+	<button>
+		<EyeIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<span>Hide outline</span>
+	</button>
+	<button>
+		<EyeIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<span>Hide group</span>
+	</button>
+	<button>
+		<EyeIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<span>Hide others</span>
+	</button>
+	<hr />
+	<button>
+		<TrashIcon stroke="#f38ba8" style="width: 1.2rem; height: 1.2rem;" />
+		<span style:color="#f38ba8">Delete group</span>
+	</button>
+</ContextMenu>
+
 <style>
 	.group {
-		background-color: rgba(0, 0, 0, 20%);
 		position: absolute;
 		transform: translate(-50%, -50%);
 		width: calc(var(--radius) * 2);
@@ -154,8 +260,18 @@
 		border: 1px solid #313244;
 		border-radius: 50%;
 
-		&::after {
-			content: var(--text);
+		&:has(span:hover),
+		&.active {
+			border: 1px solid #f38ba8;
+
+			span {
+				color: #f38ba8;
+				width: fit-content;
+			}
+		}
+
+		span {
+			cursor: move;
 			white-space: nowrap;
 			top: 2%;
 			left: 50%;
@@ -193,7 +309,8 @@
 		display: flex;
 		justify-content: center;
 		transform: translate(-50%, -50%);
-		z-index: 99;
+		background-color: #b4befe;
+		cursor: move;
 
 		&::after {
 			content: var(--text);
@@ -201,6 +318,10 @@
 			top: 125%;
 			position: absolute;
 			color: #a6adc8;
+		}
+
+		&:hover {
+			background-color: #f38ba8;
 		}
 	}
 

@@ -1,3 +1,4 @@
+import type { Cloneable } from "../util/Clone.svelte";
 import { assignedLater } from "../util/utils.svelte";
 
 type InternalMatrix = readonly [
@@ -92,7 +93,7 @@ export class Matrix3x3 {
 
 export type Point2DLike = { x: number; y: number } | [number, number] | Point2D;
 
-export class Point2D {
+export class Point2D implements Cloneable<Point2D> {
 	public readonly x: number = $state(assignedLater());
 	public readonly y: number = $state(assignedLater());
 
@@ -111,6 +112,10 @@ export class Point2D {
 			this.x = x;
 			this.y = y!;
 		}
+	}
+
+	public clone(): Point2D {
+		return new Point2D(this);
 	}
 
 	public plus(other: Point2DLike): Point2D {
@@ -163,6 +168,19 @@ export class Point2D {
 	public distanceTo(other: Point2DLike): number {
 		let point = new Point2D(other);
 		return Math.sqrt(Math.pow(point.x - this.x, 2) + Math.pow(point.y - this.y, 2));
+	}
+
+	public squared(): Point2D {
+		return this.times(this);
+	}
+
+	public times(other: Point2DLike): Point2D {
+		let point = new Point2D(other);
+		return new Point2D(this.x * point.x, this.y * point.y);
+	}
+
+	public distanceSquared(other: Point2DLike): number {
+		return Math.pow(this.distanceTo(other), 2);
 	}
 
 	public minus(other: Point2DLike): Point2D {

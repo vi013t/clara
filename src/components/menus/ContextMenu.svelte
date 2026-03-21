@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount, type Snippet } from "svelte";
+	import { mouse } from "../util/InputHandler.svelte";
 
 	let {
 		left = $bindable(),
@@ -49,8 +50,9 @@
 
 	export function openAtMouse(event: MouseEvent) {
 		event.preventDefault();
-		top = `${event.clientY - domElement!.offsetParent!.getBoundingClientRect().top}px`;
-		left = `${event.clientX - domElement!.offsetParent!.getBoundingClientRect().left}px`;
+		let position = mouse().getRelativePosition(domElement!);
+		left = `${position.x}px`;
+		top = `${position.y}px`;
 		open();
 	}
 
@@ -105,6 +107,7 @@
 	onMount(() => {
 		let parentMenu = domElement!.parentElement!.closest(".context-menu");
 		if (!parentMenu) return;
+
 		domElement!.parentElement!.addEventListener("mouseenter", event => {
 			if (parentMenu.matches(".open") && !domElement!.parentElement!.matches(".disabled")) {
 				left = `${parentMenu.getBoundingClientRect().width}px`;

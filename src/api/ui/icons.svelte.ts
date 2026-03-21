@@ -23,6 +23,7 @@ import GayIcon from "../../components/icons/GayIcon.svelte";
 import GearIcon from "../../components/icons/GearIcon.svelte";
 import GraphIcon from "../../components/icons/GraphIcon.svelte";
 import HeterosexualIcon from "../../components/icons/HeterosexualIcon.svelte";
+import HexagonIcon from "../../components/icons/HexagonIcon.svelte";
 import HomosexualIcon from "../../components/icons/HomosexualIcon.svelte";
 import IOIcon from "../../components/icons/IOIcon.svelte";
 import ItalicIcon from "../../components/icons/ItalicIcon.svelte";
@@ -102,6 +103,7 @@ const icons = [
 	{ name: "GayIcon", categories: [], component: GayIcon },
 	{ name: "GearIcon", categories: [], component: GearIcon },
 	{ name: "GraphIcon", categories: [], component: GraphIcon },
+	{ name: "HexagonIcon", categories: [], component: HexagonIcon },
 	{ name: "HeterosexualIcon", categories: [], component: HeterosexualIcon },
 	{ name: "HomosexualIcon", categories: [], component: HomosexualIcon },
 	{ name: "IOIcon", categories: [], component: IOIcon },

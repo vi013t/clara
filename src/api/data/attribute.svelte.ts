@@ -6,7 +6,7 @@ import RulerIcon from "../../components/icons/RulerIcon.svelte";
 import TextIcon from "../../components/icons/TextIcon.svelte";
 import WeightScaleIcon from "../../components/icons/WeightScaleIcon.svelte";
 import { Project } from "../project.svelte";
-import type { ManualDataset } from "./dataset.svelte";
+import type { Dataset } from "./dataset.svelte";
 import { Length, Measurement, Weight, type BackendMeasurement } from "./measurement.svelte";
 import type { IconComponent } from "../ui/icons.svelte";
 import { Container, type Cloneable } from "../util/Clone.svelte";
@@ -262,16 +262,14 @@ export class Attribute implements Serialize<BackendAttribute> {
 		return new Attribute(this.name, this.type);
 	}
 
-	public get dataset(): Container<ManualDataset> {
+	public get dataset(): Container<Dataset> {
 		const project = Project.get();
 		if (project) {
 			for (let dataset of project.database.ref().datasets.ref()) {
 				let set = dataset.ref();
-				if (set.isManual()) {
-					for (let field of set.fields.ref()) {
-						if (field.id === this.id) {
-							return new Container(set);
-						}
+				for (let field of set.fields.ref()) {
+					if (field.id === this.id) {
+						return new Container(set);
 					}
 				}
 			}
@@ -281,11 +279,9 @@ export class Attribute implements Serialize<BackendAttribute> {
 			.templates.map(template => template.database.ref().datasets.ref())
 			.flat()) {
 			let set = dataset.ref();
-			if (set.isManual()) {
-				for (let field of set.fields.ref()) {
-					if (field.id === this.id) {
-						return new Container(set);
-					}
+			for (let field of set.fields.ref()) {
+				if (field.id === this.id) {
+					return new Container(set);
 				}
 			}
 		}

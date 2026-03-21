@@ -89,7 +89,7 @@
 			</button>
 			<button>
 				<IOIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Generated Datasets</span>
+				<span>Generated Attributes</span>
 			</button>
 			<button>
 				<ParagraphIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
@@ -178,7 +178,7 @@
 					have separate groups for different friend groups. That might look something like this:
 				</p>
 
-				<!-- <div class="tree">
+				<div class="tree">
 					<HierarchyView
 						demo
 						tree={DataEntry.node("Characters", [
@@ -190,7 +190,7 @@
 						])}
 						LeafIcon={PersonIcon}
 					/>
-				</div> -->
+				</div>
 
 				<p>
 					This is called the <i>hierarchy view.</i>

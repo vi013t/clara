@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DataEntry, type ManualDataset } from "../../api/data/dataset.svelte";
+	import { DataEntry, type Dataset } from "../../api/data/dataset.svelte";
 	import { Attribute } from "../../api/data/attribute.svelte";
 	import CloseIcon from "../icons/CloseIcon.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
@@ -10,10 +10,8 @@
 	import ContextMenu from "../menus/ContextMenu.svelte";
 	import FieldPropertiesPopup from "../popups/FieldPropertiesPopup.svelte";
 
-	let {
-		dataset = $bindable(),
-		openEditor,
-	}: { dataset: ManualDataset; openEditor: (entryID: number, fieldName: string) => void } = $props();
+	let { dataset = $bindable(), openEditor }: { dataset: Dataset; openEditor: (entryID: number, fieldName: string) => void } =
+		$props();
 
 	let updateCounter = $state(0);
 	let updateAttributes = $state(0);

@@ -28,7 +28,7 @@ export function userData(): UserData {
 					icon: BookIcon,
 					description: "A basic, opinionated setup with minimal scaffolding.",
 					database: new Database(
-						Dataset.create({
+						new Dataset({
 							name: "Plot Events",
 							icon: BookIcon,
 							description: "The events of this story. The actual scene prose exists here.",
@@ -39,24 +39,19 @@ export function userData(): UserData {
 								new Attribute("Notes", "Long text"),
 							],
 						}),
-						Dataset.create({
+						new Dataset({
 							name: "Characters",
 							icon: PersonIcon,
 							description: "The characters of this story.",
 							data: DataEntry.node("Characters", [], false),
 							fields: [new Attribute("Name", "Short text")],
 						}),
-						Dataset.create({
+						new Dataset({
 							name: "Locations",
 							icon: LocationIcon,
 							description: "The locations in this story.",
 							data: DataEntry.node("Locations", [], false),
 							fields: [new Attribute("Name", "Short text")],
-						}),
-						Dataset.generated({
-							name: "Manuscript",
-							icon: BookIcon,
-							description: "The entire combined project manuscript.",
 						}),
 					),
 				}),
@@ -65,7 +60,7 @@ export function userData(): UserData {
 					icon: TheaterIcon,
 					description: "A basic, opinionated setup with minimal scaffolding.",
 					database: new Database(
-						Dataset.create({
+						new Dataset({
 							name: "Plot Events",
 							icon: ParagraphIcon,
 							description: "The events of this story. The actual scene prose exists here.",
@@ -92,7 +87,7 @@ export function userData(): UserData {
 								new Attribute("Notes", "Long text"),
 							],
 						}),
-						Dataset.create({
+						new Dataset({
 							name: "Characters",
 							icon: PersonIcon,
 							description: "The characters of this story.",
@@ -106,17 +101,12 @@ export function userData(): UserData {
 								new Attribute("Partner", "Short text"),
 							],
 						}),
-						Dataset.create({
+						new Dataset({
 							name: "Locations",
 							icon: LocationIcon,
 							description: "The locations in this story.",
 							data: DataEntry.node("Locations", [], false),
 							fields: [new Attribute("Name", "Short text")],
-						}),
-						Dataset.generated({
-							name: "Manuscript",
-							icon: BookIcon,
-							description: "The entire combined project manuscript.",
 						}),
 					),
 				}),
@@ -167,7 +157,7 @@ export function userData(): UserData {
 					icon: BookIcon,
 					description: "Dev testing",
 					database: new Database(
-						Dataset.create({
+						new Dataset({
 							name: "Plot Events",
 							icon: ParagraphIcon,
 							description: "The events of this story. The actual scene prose exists here.",
@@ -194,7 +184,7 @@ export function userData(): UserData {
 								new Attribute("Notes", "Long text"),
 							],
 						}),
-						Dataset.create({
+						new Dataset({
 							name: "Characters",
 							icon: PersonIcon,
 							description: "The characters of this story.",
@@ -234,17 +224,12 @@ export function userData(): UserData {
 								new Attribute("Partner", "Short text"),
 							],
 						}),
-						Dataset.create({
+						new Dataset({
 							name: "Locations",
 							icon: LocationIcon,
 							description: "The locations in this story.",
 							data: DataEntry.node("Locations", [], false),
 							fields: [new Attribute("Name", "Short text")],
-						}),
-						Dataset.generated({
-							name: "Manuscript",
-							icon: BookIcon,
-							description: "The entire combined project manuscript.",
 						}),
 					),
 				}),

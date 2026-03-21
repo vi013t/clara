@@ -43,30 +43,12 @@ impl BinaryData for Project {}
 type Database = Vec<Dataset>;
 
 #[derive(serde::Serialize, serde::Deserialize, PartialEq, Eq)]
-#[serde(tag = "kind")]
-enum Dataset {
-	#[serde(rename = "manual")]
-	ManualDataset(ManualDataset),
-
-	#[serde(rename = "generated")]
-	GeneratedDataset(GeneratedDataset),
-}
-
-#[derive(serde::Serialize, serde::Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
-struct ManualDataset {
+struct Dataset {
 	name: String,
 	icon_name: String,
 	data: TreeNode,
 	fields: Vec<Attribute>,
-	description: String,
-}
-
-#[derive(serde::Serialize, serde::Deserialize, PartialEq, Eq)]
-#[serde(rename_all = "camelCase")]
-struct GeneratedDataset {
-	name: String,
-	icon_name: String,
 	description: String,
 }
 

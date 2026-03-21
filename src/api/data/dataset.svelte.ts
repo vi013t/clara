@@ -14,9 +14,6 @@ import {
 	type BackendAttributeValue,
 } from "./attribute.svelte";
 import { TreeNode, type BackendTreeNode } from "./structure/tree.svelte";
-import { Point2D } from "../math/matrix.svelte";
-
-type DatasetKind = "manual" | "generated";
 
 export type BackendDataEntry = {
 	data: { [key: string]: BackendAttributeValue };
@@ -102,74 +99,67 @@ export class DataEntry implements Cloneable<DataEntry>, Serialize<BackendDataEnt
 	}
 }
 
-export abstract class Dataset<Kind extends DatasetKind = DatasetKind> {
+export class Dataset {
+	public fields: Container<Attribute[]> = $state(assignedLater());
+	public data: Container<TreeNode<DataEntry>> = $state(assignedLater());
 	public name: string = $state(assignedLater());
 	public icon: IconComponent = $state(assignedLater());
 	public description?: string = $state(assignedLater());
 
 	public readonly id: number = $state(assignedLater());
-	public readonly kind: Kind = $state(assignedLater());
 
 	private static datasetID = 0;
 
-	protected constructor({
-		kind,
+	public constructor({
 		name,
 		icon,
+		data,
+		fields,
 		description = undefined,
 	}: {
-		kind: Kind;
 		name: string;
+		data: TreeNode<DataEntry>;
+		fields: Attribute[];
 		icon: IconComponent;
 		description?: string;
 	}) {
-		this.kind = kind;
 		this.name = name;
 		this.icon = icon;
 		this.description = description;
+		this.data = new Container(data);
+		this.fields = new Container(fields);
 		this.id = Dataset.datasetID++;
 	}
 
-	public static create(data: {
-		name: string;
-		data: TreeNode<DataEntry>;
-		icon: IconComponent;
-		fields: Attribute[];
-		description?: string;
-	}): ManualDataset {
-		return new ManualDataset(data);
+	public attributes<T extends AttributeValue>(attribute: Attribute): T[] {
+		return this.data
+			.ref()
+			.dfsLeaves()
+			.map(entry => entry.get(attribute.name));
 	}
 
-	public static generated(data: { name: string; icon: IconComponent; description?: string }): GeneratedDataset {
-		return new GeneratedDataset(data);
+	public toBackend(): BackendDataset {
+		return {
+			name: this.name,
+			iconName: getIconName(this.icon),
+			description: this.description ?? "",
+			fields: this.fields.ref().map(field => field.toBackend()),
+			data: this.data.ref().toBackend(),
+		};
 	}
 
-	public isGenerated(): this is GeneratedDataset {
-		return this.kind === "generated";
+	public deleteField(id: number) {
+		this.fields.overwrite(this.fields.ref().filter(other => other.id !== id));
 	}
 
-	public isManual(): this is ManualDataset {
-		return this.kind === "manual";
+	public clone(): Dataset {
+		return new Dataset({
+			name: this.name,
+			icon: this.icon,
+			fields: this.fields.clone(),
+			data: this.data.clone(),
+		});
 	}
-
-	public ifManual<Return>(callback: (set: ManualDataset) => Return): Return | null {
-		if (this.isManual()) {
-			return callback(this);
-		}
-
-		return null;
-	}
-
-	public ifGenerated<Return>(callback: (set: GeneratedDataset) => Return): Return | null {
-		if (this.isGenerated()) {
-			return callback(this);
-		}
-
-		return null;
-	}
-
-	public abstract toBackend(): BackendDataset<Kind>;
-	public abstract clone(): Dataset<Kind>;
 
 	public delete(): void {
 		this.database().ref().deleteDataset(this);
@@ -195,95 +185,14 @@ export abstract class Dataset<Kind extends DatasetKind = DatasetKind> {
 		throw `Internal Error: Dataset "${this.name}" does not belong to a database.`;
 	}
 
-	public static fromBackend<Kind extends DatasetKind = DatasetKind>(dataset: BackendDataset<Kind>): Dataset<Kind> {
-		if (dataset.kind === "manual") {
-			return Dataset.create({
-				name: dataset.name,
-				icon: getIconByName(dataset.iconName)!,
-				description: dataset.description,
-				fields: dataset.fields.map(field => Attribute.fromBackend(field)),
-				data: TreeNode.fromBackend(dataset.data, data => DataEntry.fromBackend(data)),
-			}) as unknown as Dataset<Kind>;
-		}
-
-		return Dataset.generated({
+	public static fromBackend(dataset: BackendDataset): Dataset {
+		return new Dataset({
 			name: dataset.name,
 			icon: getIconByName(dataset.iconName)!,
 			description: dataset.description,
-		}) as unknown as Dataset<Kind>;
-	}
-}
-
-export class ManualDataset extends Dataset<"manual"> {
-	public fields: Container<Attribute[]> = $state(assignedLater());
-	public data: Container<TreeNode<DataEntry>> = $state(assignedLater());
-
-	public constructor({
-		name,
-		icon,
-		data,
-		fields,
-		description = undefined,
-	}: {
-		name: string;
-		data: TreeNode<DataEntry>;
-		fields: Attribute[];
-		icon: IconComponent;
-		description?: string;
-	}) {
-		super({ kind: "manual", name, icon, description });
-		this.data = new Container(data);
-		this.fields = new Container(fields);
-	}
-
-	public attributes<T extends AttributeValue>(attribute: Attribute): T[] {
-		return this.data
-			.ref()
-			.dfsLeaves()
-			.map(entry => entry.get(attribute.name));
-	}
-
-	public toBackend(): BackendManualDataset {
-		return {
-			kind: "manual",
-			name: this.name,
-			iconName: getIconName(this.icon),
-			description: this.description ?? "",
-			fields: this.fields.ref().map(field => field.toBackend()),
-			data: this.data.ref().toBackend(),
-		};
-	}
-
-	public deleteField(id: number) {
-		this.fields.overwrite(this.fields.ref().filter(other => other.id !== id));
-	}
-
-	public clone(): ManualDataset {
-		return new ManualDataset({
-			name: this.name,
-			icon: this.icon,
-			fields: this.fields.clone(),
-			data: this.data.clone(),
+			fields: dataset.fields.map(field => Attribute.fromBackend(field)),
+			data: TreeNode.fromBackend(dataset.data, data => DataEntry.fromBackend(data)),
 		});
-	}
-}
-
-export class GeneratedDataset extends Dataset<"generated"> {
-	public constructor({ name, icon, description = undefined }: { name: string; icon: IconComponent; description?: string }) {
-		super({ kind: "generated", name, icon, description });
-	}
-
-	public clone(): GeneratedDataset {
-		return new GeneratedDataset({ name: this.name, icon: this.icon, description: this.description });
-	}
-
-	public toBackend(): BackendGeneratedDataset {
-		return {
-			kind: "generated",
-			name: this.name,
-			iconName: getIconName(this.icon),
-			description: this.description ?? "",
-		};
 	}
 }
 
@@ -302,14 +211,6 @@ export class Database implements Cloneable<Database> {
 		return new Database(...this.datasets.clone().map(dataset => dataset.clone()));
 	}
 
-	public manual(): Container<ManualDataset>[] {
-		return this.datasets.ref().filter(dataset => dataset.ref().isManual()) as unknown as Container<ManualDataset>[];
-	}
-
-	public generated(): Container<GeneratedDataset>[] {
-		return this.datasets.ref().filter(dataset => dataset.ref().isGenerated()) as unknown as Container<GeneratedDataset>[];
-	}
-
 	public deleteDataset(dataset: Dataset): void {
 		this.datasets.overwrite(this.datasets.ref().filter(other => other.ref().id !== dataset.id));
 	}
@@ -324,17 +225,17 @@ export class Database implements Cloneable<Database> {
 
 	public relations(): { from: number; to: number; type: string }[] {
 		let edges = [];
-		for (let dataset of this.datasets.ref().filter(set => set.ref().isManual())) {
-			let manual = dataset.ref() as ManualDataset;
+		for (let dataset of this.datasets.ref()) {
+			let ref = dataset.ref() as Dataset;
 
 			let fieldNames = [];
-			for (let field of manual.fields.ref()) {
+			for (let field of ref.fields.ref()) {
 				if (field.type === "Entry") {
 					fieldNames.push(field.name);
 				}
 			}
 
-			for (let entry of manual.data.ref().dfsLeaves()) {
+			for (let entry of ref.data.ref().dfsLeaves()) {
 				for (let fieldName of fieldNames) {
 					let targets = entry.get<PrimitiveArrayAttribute<number>>(fieldName).values;
 					for (let id of targets) {
@@ -350,32 +251,17 @@ export class Database implements Cloneable<Database> {
 	public asTree(): TreeNode<DataEntry> {
 		return DataEntry.node(
 			"Root",
-			this.datasets
-				.ref()
-				.filter(set => set.ref().isManual())
-				.map(dataset => (dataset.ref() as ManualDataset).data.ref()),
+			this.datasets.ref().map(dataset => (dataset.ref() as Dataset).data.ref()),
 		);
 	}
 }
 
 export type BackendDatabase = BackendDataset[];
 
-export type BackendManualDataset = {
-	kind: "manual";
+export type BackendDataset = {
 	name: string;
 	iconName: IconName;
 	data: BackendTreeNode<BackendDataEntry>;
 	fields: BackendAttribute[];
 	description: string;
 };
-
-export type BackendGeneratedDataset = {
-	kind: "generated";
-	name: string;
-	iconName: IconName;
-	description: string;
-};
-
-export type BackendDataset<Kind extends DatasetKind = DatasetKind> = Kind extends "manual"
-	? BackendManualDataset
-	: BackendGeneratedDataset;

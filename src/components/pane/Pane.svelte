@@ -101,17 +101,15 @@
 			{#if tab instanceof EditorTab && tab.id === selectedTabID}
 				<Editor bind:doc={tab.content} />
 			{:else if tab instanceof DataTab}
-				{#if tab.dataset.isManual()}
-					<div class="view-container" style="display: {tab.id === selectedTabID ? 'block' : 'none'}">
-						{#if tab.view === "hierarchy"}
-							<HierarchyView hideRoot tree={tab.dataset.data.ref()} LeafIcon={tab.dataset.icon} />
-						{:else if tab.view === "spreadsheet"}
-							<SpreadsheetView {openEditor} dataset={tab.dataset} />
-						{:else if tab.view === "graph"}
-							<GraphView />
-						{/if}
-					</div>
-				{/if}
+				<div class="view-container" style="display: {tab.id === selectedTabID ? 'block' : 'none'}">
+					{#if tab.view === "hierarchy"}
+						<HierarchyView hideRoot tree={tab.dataset.data.ref()} LeafIcon={tab.dataset.icon} />
+					{:else if tab.view === "spreadsheet"}
+						<SpreadsheetView {openEditor} dataset={tab.dataset} />
+					{:else if tab.view === "graph"}
+						<GraphView />
+					{/if}
+				</div>
 			{:else}
 				<div class="no-dataset">
 					<p>This tab has no dataset opened. Open an existing one now or create a new one to open.</p>

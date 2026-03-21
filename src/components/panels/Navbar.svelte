@@ -10,9 +10,7 @@
 	import QuestionMarkIcon from "../icons/QuestionMarkIcon.svelte";
 	import SaveIcon from "../icons/SaveIcon.svelte";
 	import NewProjectPopup from "../popups/NewProjectPopup.svelte";
-	import { invoke } from "@tauri-apps/api/core";
-	import { open as chooseFile } from "@tauri-apps/plugin-dialog";
-	import { Project, type BackendProject } from "../../api/project.svelte";
+	import { Project } from "../../api/project.svelte";
 	import ProjectSettingsPopup from "../popups/ProjectSettingsPopup.svelte";
 	import ManualPopup from "../popups/ManualPopup.svelte";
 	import SettingsPopup from "../popups/SettingsPopup.svelte";

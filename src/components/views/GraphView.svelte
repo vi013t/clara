@@ -19,7 +19,10 @@
 	let edges = $derived(Project.get()!.database.ref().relations());
 	let edgeElements = $derived(
 		edges.map(edge =>
-			createEdge(tree.find(node => node.data.id === edge.from)!.center, tree.find(node => node.data.id === edge.to)!.center),
+			createEdge(
+				tree.find(node => node.data.id === edge.from)!.outline.center,
+				tree.find(node => node.data.id === edge.to)!.outline.center,
+			),
 		),
 	);
 
@@ -107,13 +110,13 @@
 			{#if !branch.isRoot}
 				<div
 					class="group"
-					style:left="{branch.center.x}px"
-					style:top="{branch.center.y}px"
-					style:width="{branch.size}px"
-					style:height="{branch.size}px"
+					style:left="{branch.outline.center.x}px"
+					style:top="{branch.outline.center.y}px"
+					style:width="{branch.outline.radius * 2}px"
+					style:height="{branch.outline.radius * 2}px"
 					style:--text="'{branch.data.name}'"
 					style:border-width="{cameraScale}px"
-					style:font-size="{branch.size / 40}px"
+					style:font-size="{0.05 * branch.outline.radius}px"
 				></div>
 			{/if}
 		{/each}
@@ -125,8 +128,11 @@
 				style:cursor={clickedNode === leaf ? "move" : "pointer"}
 				style:background-color={clickedNode === leaf ? "#f38ba8" : "#b4befe"}
 				style:--text="'{leaf.data.name}'"
-				style:left="{leaf.center.x}px"
-				style:top="{leaf.center.y}px"
+				style:left="{leaf.outline.center.x}px"
+				style:top="{leaf.outline.center.y}px"
+				style:width="{leaf.outline.radius * 2}px"
+				style:height="{leaf.outline.radius * 2}px"
+				style:font-size="{leaf.outline.radius * 2}px"
 			></button>
 		{/each}
 
@@ -145,8 +151,8 @@
 		transform: translate(-50%, -50%);
 		width: calc(var(--radius) * 2);
 		height: calc(var(--radius) * 2);
-		border-radius: 50%;
 		border: 1px solid #313244;
+		border-radius: 50%;
 
 		&::after {
 			content: var(--text);
@@ -181,8 +187,6 @@
 	}
 
 	.node {
-		width: 20px;
-		height: 20px;
 		overflow: visible;
 		border-radius: 50%;
 		position: absolute;

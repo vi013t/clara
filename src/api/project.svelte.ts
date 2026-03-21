@@ -15,7 +15,7 @@ export class Project extends ProjectBase {
 
 	public static set(project: Project): void {
 		currentProject = project;
-		cache({ lastProjectPath: project.location });
+		cache({ lastProjectPath: `${project.location}/${project.name}` });
 	}
 
 	public static get(): Project | null {

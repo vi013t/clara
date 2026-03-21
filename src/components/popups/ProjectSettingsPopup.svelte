@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { flip } from "svelte/animate";
-	import { ManualDataset } from "../../api/data/dataset.svelte";
+	import { Dataset } from "../../api/data/dataset.svelte";
 	import { Project } from "../../api/project.svelte";
 	import DatasetEditor from "../editors/DatasetEditor.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
@@ -36,14 +36,11 @@
 		</div>
 		<div class="content">
 			<h1>Datasets</h1>
-			{#each Project.get()!
-				.database.ref()
-				.datasets.ref()
-				.filter(dataset => dataset.ref().isManual()) as dataset, index (dataset.ref().id)}
+			{#each Project.get()!.database.ref().datasets.ref() as dataset, index (dataset.ref().id)}
 				<div animate:flip={{ duration: 200 }}>
 					<DatasetEditor
 						bind:dataset={
-							() => Project.get()!.database.ref().datasets.ref()[index].ref() as ManualDataset,
+							() => Project.get()!.database.ref().datasets.ref()[index].ref() as Dataset,
 							value => Project.get()!.database.ref().datasets.ref()[index].overwrite(value)
 						}
 					/>

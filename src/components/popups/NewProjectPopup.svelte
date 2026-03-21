@@ -22,8 +22,7 @@
 	let location: string = $state("");
 	let name: string = $state("");
 	let template: Template = $state(userData().templates[0]);
-	let manualDatasets = $derived(template.database.ref().manual());
-	let generatedDatasets = $derived(template.database.ref().generated());
+	let datasets = $derived(template.database.ref().datasets.ref());
 
 	let startedTypingLocation = $state(false);
 	let startedTypingName = $state(false);
@@ -176,7 +175,7 @@
 				<h2>Datasets</h2>
 				<div>
 					<div class="datasets">
-						{#each refs(manualDatasets) as dataset, index}
+						{#each refs(datasets) as dataset, index}
 							<div class="dataset">
 								<div class="header">
 									<dataset.icon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
@@ -184,31 +183,7 @@
 								</div>
 								<p>{dataset.description}</p>
 							</div>
-							{#if index !== manualDatasets.length - 1}
-								<hr />
-							{/if}
-						{:else}
-							<div class="dataset">
-								<h2 class="header">None</h2>
-							</div>
-						{/each}
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<h2>Generated Datasets</h2>
-				<div>
-					<div class="datasets">
-						{#each refs(generatedDatasets) as dataset, index}
-							<div class="dataset">
-								<div class="header">
-									<dataset.icon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
-									<h2>{dataset.name}</h2>
-								</div>
-								<p>{dataset.description}</p>
-							</div>
-							{#if index !== generatedDatasets.length - 1}
+							{#if index !== datasets.length - 1}
 								<hr />
 							{/if}
 						{:else}

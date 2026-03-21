@@ -171,14 +171,7 @@
 			<PlusIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 		</button>
 		<ContextMenu bind:this={newTabContextMenu} top="100%" left="0px">
-			{#each refs(Project.get()!.database.ref().manual()) as dataset}
-				<button onmousedown={createTab(dataset)}>
-					<dataset.icon stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
-					<span>{dataset.name}</span>
-				</button>
-			{/each}
-			<hr />
-			{#each refs(Project.get()!.database.ref().generated()) as dataset}
+			{#each refs(Project.get()!.database.ref().datasets.ref()) as dataset}
 				<button onmousedown={createTab(dataset)}>
 					<dataset.icon stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
 					<span>{dataset.name}</span>
@@ -225,7 +218,7 @@
 		<span>Open dataset</span>
 
 		<ContextMenu>
-			{#each refs(Project.get()!.database.ref().manual()) as dataset}
+			{#each refs(Project.get()!.database.ref().datasets.ref()) as dataset}
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div onmousedown={changeDataset(dataset)}>
 					<dataset.icon stroke={"#cdd6f4"} style="width: 0.9rem; height: 0.9rem;" />
@@ -276,12 +269,6 @@
 				</div>
 			{/each}
 			<hr />
-			{#each refs(Project.get()!.database.ref().generated()) as dataset}
-				<button onmousedown={changeDataset(dataset)}>
-					<dataset.icon stroke={"#cdd6f4"} style="width: 0.9rem; height: 0.9rem;" />
-					<span>{dataset.name}</span>
-				</button>
-			{/each}
 		</ContextMenu>
 	</button>
 	<button>

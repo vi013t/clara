@@ -1,14 +1,24 @@
-import { max } from "../../math/arrays.svelte";
-import { Point2D } from "../../math/matrix.svelte";
+import Point from "../../../components/Point.svelte";
+import { Matrix3x3, Point2D, type Point2DLike } from "../../math/matrix.svelte";
+import { getPrettyPacking } from "../../math/shape.svelte";
 import type { Cloneable } from "../../util/Clone.svelte";
 import type { Serialize } from "../../util/serialize.svelte";
 import { assignedLater } from "../../util/utils.svelte";
+
+type CircleOutline = { kind: "circle"; radius: number; center: Point2D };
+type RectangleOutline = { kind: "rectangle"; width: number; height: number; center: Point2D };
+type GroupOutline = CircleOutline | RectangleOutline;
+import { packSiblings, packEnclose, type PackCircle } from "d3-hierarchy";
 
 export type BackendTreeNode<Bytes> = {
 	children: BackendTreeNode<Bytes>[];
 	isBranch: boolean;
 	data: Bytes;
 };
+
+interface PackedChild<T extends Cloneable<T> & Serialize<any>> extends PackCircle {
+	childRef: TreeNode<T>;
+}
 
 export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	implements Cloneable<TreeNode<T, Bytes>>, Serialize<BackendTreeNode<Bytes>>
@@ -17,23 +27,21 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	private children_: TreeNode<T>[] = $state(assignedLater());
 	private isGroup_: boolean = $state(assignedLater());
 
-	private diameter = $state(assignedLater<number>());
-	private center_ = $state(assignedLater<Point2D>());
-
 	public data: T = $state(assignedLater());
-	private static readonly padding = 50;
+
+	private outline_: { radius: number; center: Point2D } = $state(assignedLater<{ radius: number; center: Point2D }>());
 
 	public constructor(data: T, children: TreeNode<T>[], isGroup?: boolean) {
 		if (isGroup === undefined) isGroup = children.length !== 0;
 		this.data = data;
 		this.children_ = children;
-		this.refChildren.forEach(child => (child.parent = this));
+		this.children.forEach(child => (child.parent = this));
 		this.isGroup_ = isGroup;
 	}
 
 	public findChildOrThis(predicate: (node: TreeNode<T>) => any): TreeNode<T> | null {
 		if (predicate(this)) return this;
-		return this.refChildren.find(child => child.findChildOrThis(predicate)) ?? null;
+		return this.children.find(child => child.findChildOrThis(predicate)) ?? null;
 	}
 
 	public find(predicate: (node: TreeNode<T>) => any): TreeNode<T> | null {
@@ -44,108 +52,99 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 		return this.parent?.children_.length ?? 1;
 	}
 
-	public index(): number | null {
+	public get index(): number | null {
 		if (!this.parent) return null;
 		return this.parent.children_.indexOf(this);
 	}
 
-	private calculateSize(): void {
-		this.refChildren.forEach(child => child.calculateSize());
+	private calculateIntrinsicSize(): number {
+		this.children.forEach(child => child.calculateIntrinsicSize());
 
-		if (this.isLeaf) {
-			this.diameter = 0;
-			return;
+		if (this.isItem) {
+			this.outline_ = { radius: 15, center: Point2D.origin() };
+		} else if (this.hasOnlyItems) {
+			this.outline_ = { radius: this.children.length * 75 + 150, center: Point2D.origin() };
+		} else if (this.hasOnlyChild) {
+			this.outline_ = { radius: this.children[0].outline_.radius + 20, center: Point2D.origin() };
+		} else {
+			const maxChildRadius = Math.max(...this.children.map(c => c.outline_.radius));
+			const { parentRadius } = getPrettyPacking(this.children.length, maxChildRadius);
+			this.outline_ = { radius: parentRadius, center: Point2D.origin() };
 		}
-
-		if (this.hasOnlyLeaves) {
-			this.diameter = this.refChildren.length * 100 + 500;
-			return;
-		}
-
-		if (this.refChildren.length === 1) {
-			this.diameter = this.refChildren[0].diameter + TreeNode.padding;
-			return;
-		}
-
-		if (this.refChildren.length === 2) {
-			let littleD = max(...this.refChildren.map(child => child.diameter));
-			this.diameter = littleD * 2;
-			return;
-		}
-
-		let littleR = max(...this.refChildren.map(child => child.diameter / 2));
-		let bigR = littleR * (1 + 1 / Math.sin(Math.PI / this.refChildren.length));
-
-		this.diameter = bigR * 2;
+		return this.outline_.radius;
 	}
 
-	private calculateCenter(): void {
-		if (!this.diameter) this.root().calculateSize();
+	private applyLayout(targetRadius: number, parentCenter: Point2D) {
+		const scaleFactor = targetRadius / this.outline_.radius;
+		this.outline_.radius = targetRadius;
 
 		if (!this.parent) {
-			this.center_ = Point2D.origin();
-			this.refChildren.forEach(child => child.calculateCenter());
-			return;
+			this.outline_.center = Point2D.origin();
+		} else if (this.isPartOfItemHedge) {
+			const dist = this.parent.outline_.radius * 0.6;
+			const angle = (this.index! * (2 * Math.PI)) / this.siblingCountIncludingMe;
+			this.outline_.center = Point2D.polar(dist, angle).plus(parentCenter);
+		} else if (this.isOnlyChild) {
+			this.outline_.center = parentCenter;
+		} else {
+			const siblingMax = Math.max(...this.siblingsIncludingMe.map(s => s.outline_.radius));
+			const { circles } = getPrettyPacking(this.siblingCountIncludingMe, siblingMax);
+			this.outline_.center = parentCenter.plus(circles[this.index!]);
 		}
 
-		if (this.hasNoSiblings) {
-			this.center_ = this.parent.center_;
-			this.refChildren.forEach(child => child.calculateCenter());
-			return;
-		}
+		const maxChildRadius = this.children.length > 0 ? Math.max(...this.children.map(c => c.outline_.radius)) * scaleFactor : 0;
 
-		if (this.isPartOfHedge) {
-			let radius = this.parent.diameter / 4;
-			let angle = (this.index()! * (2 * Math.PI)) / this.siblingCountIncludingMe;
-			this.center_ = Point2D.polar(radius, angle).plus(this.parent.center_);
-			this.refChildren.forEach(child => child.calculateCenter());
-			return;
-		}
-
-		if (this.siblingCountIncludingMe === 2) {
-			let bigR = this.parent.diameter / 2;
-			let littleR = this.parent.diameter / 4;
-			let radius = bigR - littleR;
-			let angle = (this.index()! * (2 * Math.PI)) / this.siblingCountIncludingMe;
-			this.center_ = Point2D.polar(radius, angle).plus(this.parent.center_);
-			this.refChildren.forEach(child => child.calculateCenter());
-			return;
-		}
-
-		let bigR = this.parent.diameter / 2;
-		let littleR =
-			(bigR * Math.sin(Math.PI / this.siblingCountIncludingMe)) / (1 + Math.sin(Math.PI / this.siblingCountIncludingMe));
-		let radius = bigR - littleR;
-		let angle = (this.index()! * (2 * Math.PI)) / this.siblingCountIncludingMe;
-		this.center_ = Point2D.polar(radius, angle).plus(this.parent.center_);
-
-		this.refChildren.forEach(child => child.calculateCenter());
+		this.children.forEach(child => {
+			child.applyLayout(maxChildRadius, this.outline_.center);
+		});
 	}
 
 	public get hasOnlyLeaves() {
-		return this.refChildren.every(child => child.isLeaf);
+		return this.children.every(child => child.isLeaf);
 	}
 
-	public get isPartOfHedge() {
-		return this.siblingsIncludingMe.every(sibling => sibling.isLeaf);
+	public get hasOnlyItems() {
+		return this.children.every(child => child.isItem);
+	}
+
+	public get hasOnlyGroups() {
+		return this.children.every(child => child.isGroup);
+	}
+
+	public get isPartOfItemHedge() {
+		return this.siblingsIncludingMe.every(sibling => sibling.isItem);
+	}
+
+	public get isOnlyChild() {
+		return this.siblingCountIncludingMe === 1;
+	}
+
+	public get hasChildren() {
+		return this.children.length > 0;
+	}
+
+	public get hasOnlyChild() {
+		return this.children.length === 1;
 	}
 
 	public get siblingsIncludingMe() {
-		return this.parent?.refChildren ?? [this];
+		return this.parent?.children ?? [this];
 	}
 
-	public get center() {
-		if (!this.center_) this.root().calculateCenter();
-		return this.center_;
+	public get previousSibling(): TreeNode<T> | null {
+		return this.parent && this.index! > 0 ? this.parent?.children[this.index! - 1] : null;
 	}
 
-	public get hasNoSiblings() {
-		return !this.parent || this.siblingsIncludingMe.length === 1;
+	private ensureLayout(): void {
+		if (this.outline_) return;
+		const root = this.root();
+		const rootRadius = root.calculateIntrinsicSize();
+		root.applyLayout(rootRadius, Point2D.origin());
 	}
 
-	public get size() {
-		if (!this.diameter) this.root().calculateSize();
-		return this.diameter;
+	public get outline() {
+		this.ensureLayout();
+		return this.outline_;
 	}
 
 	public root() {
@@ -159,19 +158,19 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	}
 
 	public get height(): number {
-		return 1 + this.refChildren.map(child => child.height).reduce((max, height) => Math.max(max, height), 0);
+		return 1 + this.children.map(child => child.height).reduce((max, height) => Math.max(max, height), 0);
 	}
 
 	public map<Output extends Cloneable<Output> & Serialize<any>>(mapper: (node: TreeNode<T>) => Output): TreeNode<Output> {
 		const tree = new TreeNode(mapper(this), []);
-		this.refChildren.forEach(child => tree.addChild(child.map(mapper)));
+		this.children.forEach(child => tree.addChild(child.map(mapper)));
 		return tree;
 	}
 
 	public clone(): TreeNode<T> {
 		return new TreeNode(
 			this.data.clone(),
-			this.refChildren.map(child => child.clone()),
+			this.children.map(child => child.clone()),
 			this.isGroup_,
 		);
 	}
@@ -179,7 +178,7 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	public dfs(): TreeNode<T>[] {
 		let visited: TreeNode<T>[] = [];
 		visited.push(this);
-		this.refChildren.forEach(child => {
+		this.children.forEach(child => {
 			visited = [...visited, ...child.dfs()];
 		});
 		return visited;
@@ -188,7 +187,7 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	public dfsLeaves(): T[] {
 		let visited: T[] = [];
 		if (!this.isGroup) visited.push(this.data);
-		this.refChildren.forEach(child => {
+		this.children.forEach(child => {
 			let childLeaves = child.dfsLeaves();
 			visited = [...visited, ...childLeaves];
 		});
@@ -196,12 +195,12 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	}
 
 	public addChild(node: TreeNode<T>): void {
-		this.refChildren.push(node);
+		this.children.push(node);
 		node.parent = this;
 	}
 
 	public filter(predicate: (data: T) => boolean): void {
-		this.children_ = this.refChildren.filter(child => predicate(child.data));
+		this.children_ = this.children.filter(child => predicate(child.data));
 	}
 
 	public get isGroup() {
@@ -209,7 +208,7 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	}
 
 	public get isLeaf() {
-		return this.refChildren.length === 0;
+		return this.children.length === 0;
 	}
 
 	public get isBranch() {
@@ -220,14 +219,14 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 		return !this.isGroup;
 	}
 
-	public get refChildren(): TreeNode<T>[] {
+	public get children(): TreeNode<T>[] {
 		return this.children_;
 	}
 
 	public toBackend(): BackendTreeNode<Bytes> {
 		return {
 			data: this.data.toBackend(),
-			children: this.refChildren.map(child => child.toBackend()),
+			children: this.children.map(child => child.toBackend()),
 			isBranch: this.isGroup,
 		};
 	}

@@ -34,6 +34,7 @@
 
 <svelte:document {onmousedown} onmouseup={() => (mouseDown = false)} />
 
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <section bind:this={outer} class="outer" onwheel={zoom} onmousemove={pan}>
 	<div class="inner" style:transform={camera.transformCSS}>
 		{@render children()}

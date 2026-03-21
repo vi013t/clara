@@ -93,8 +93,8 @@ export class Matrix3x3 {
 export type Point2DLike = { x: number; y: number } | [number, number] | Point2D;
 
 export class Point2D {
-	public x: number = $state(assignedLater());
-	public y: number = $state(assignedLater());
+	public readonly x: number = $state(assignedLater());
+	public readonly y: number = $state(assignedLater());
 
 	public constructor(x: number, y: number);
 	public constructor(point: Point2DLike);
@@ -118,6 +118,17 @@ export class Point2D {
 		return new Point2D(this.x + point.x, this.y + point.y);
 	}
 
+	public equals(other: Point2DLike): boolean {
+		let point = new Point2D(other);
+		return this.x == point.x && this.y == point.y;
+	}
+
+	public moveAwayFrom(point: Point2DLike, distance: number): Point2D {
+		let center = new Point2D(point);
+		let radius = this.distanceTo(center);
+		return new Point2D(this.x + (distance * (this.x - center.x)) / radius, this.y + (distance * (this.y - center.y)) / radius);
+	}
+
 	public static average(points: Point2DLike[]): Point2D {
 		return points
 			.map(point => new Point2D(point))
@@ -127,6 +138,16 @@ export class Point2D {
 
 	public static polar(radius: number, angle: number): Point2D {
 		return new Point2D(radius * Math.cos(angle), radius * Math.sin(angle));
+	}
+
+	public polar(): { radius: number; angle: number } {
+		return { radius: this.distanceTo(Point2D.origin()), angle: Math.atan(this.y / this.x) };
+	}
+
+	public polarRelativeTo(center: Point2D): { radius: number; angle: number } {
+		let angle = Math.atan((this.y - center.y) / (this.x - center.x));
+		let radius = this.distanceTo(center);
+		return { radius, angle };
 	}
 
 	public static sum(...pointLikes: Point2DLike[]): Point2D {

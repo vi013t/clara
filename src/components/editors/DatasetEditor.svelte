@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { ManualDataset } from "../../api/data/dataset.svelte";
+	import type { Dataset } from "../../api/data/dataset.svelte";
 	import ConfirmationPopup from "../popups/ConfirmationPopup.svelte";
 	import HierarchyView from "../views/HierarchyView.svelte";
 	import SpreadsheetView from "../views/SpreadsheetView.svelte";
 
-	let { dataset = $bindable() }: { dataset: ManualDataset } = $props();
+	let { dataset = $bindable() }: { dataset: Dataset } = $props();
 
 	function deleteDataset() {
 		dataset.delete();

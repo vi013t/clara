@@ -27,8 +27,6 @@
 		rightClick?: (event: MouseEvent) => void;
 	} = $props();
 
-	console.log($state.snapshot(Project.get()?.toBackend().database));
-
 	// svelte-ignore state_referenced_locally
 	let expanded = $state(hideRoot || demo);
 
@@ -83,13 +81,13 @@
 		</button>
 	{/if}
 
-	{#if tree.refChildren.length !== 0}
+	{#if tree.children.length !== 0}
 		<ul
 			class={{ expanded }}
 			style:border-left={hideRoot ? "none" : "1px solid #45475a"}
 			style:margin-top={subtree || !expanded ? "0px" : "0.5rem"}
 		>
-			{#each tree.refChildren as child (child.data.id)}
+			{#each tree.children as child (child.data.id)}
 				<li><HierarchyView {demo} tree={child} {LeafIcon} subtree {rightClick} /></li>
 			{/each}
 		</ul>

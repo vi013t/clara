@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PrimitiveAttribute } from "../../api/data/attribute.svelte";
+	import { PrimitiveAttribute, type AttributeContext } from "../../api/data/attribute.svelte";
 
 	let { value = $bindable(), background = "transparent" }: { value: PrimitiveAttribute<string> | null; background?: string } =
 		$props();
@@ -18,7 +18,7 @@
 <style>
 	input {
 		width: 100%;
-		padding: 0.25rem;
+		padding: 0.5rem;
 		color: #a6adc8;
 
 		&:hover {

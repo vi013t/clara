@@ -234,34 +234,33 @@
 								<ArrowIcon stroke={"#cdd6f4"} style="width: 1rem; height: 1rem; rotate: 90deg; margin-left: auto;" />
 								<ContextMenu>
 									<button>
-										<EyeIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+										<EyeIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
 										<span>In this tab</span>
 									</button>
-									<hr />
 									<button>
-										<SplitHorizontalIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-										<span>In split right</span>
-									</button>
-									<button>
-										<SplitHorizontalIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-										<span>In split left</span>
-									</button>
-									<button>
-										<SplitHorizontalIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem; rotate: 90deg;" />
-										<span>In split bottom</span>
-									</button>
-									<button>
-										<SplitHorizontalIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem; rotate: 90deg;" />
-										<span>In split top</span>
-									</button>
-									<hr />
-									<button>
-										<PlusIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+										<PlusIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
 										<span>In new tab</span>
 									</button>
 									<button>
-										<PlusIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+										<PlusIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
 										<span>In new tab to the left</span>
+									</button>
+									<hr />
+									<button>
+										<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+										<span>In split right</span>
+									</button>
+									<button>
+										<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+										<span>In split left</span>
+									</button>
+									<button>
+										<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem; rotate: 90deg;" />
+										<span>In split bottom</span>
+									</button>
+									<button>
+										<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem; rotate: 90deg;" />
+										<span>In split top</span>
 									</button>
 								</ContextMenu>
 							</div>
@@ -274,6 +273,48 @@
 	<button>
 		<EyeIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem; margin-left: 0.15rem;" />
 		<span>Open view</span>
+		<ContextMenu>
+			{#each Object.entries(views) as [viewName, info]}
+				<!-- svelte-ignore a11y_no_static_element_interactions -->
+				<div onmousedown={setView(viewName as View)}>
+					<info.icon stroke={"#cdd6f4"} style="width: 1rem; height: 1rem;" />
+					<span style:text-transform="capitalize">{viewName}</span>
+
+					<ArrowIcon stroke={"#cdd6f4"} style="width: 1rem; height: 1rem; rotate: 90deg; margin-left: auto;" />
+					<ContextMenu>
+						<button>
+							<EyeIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+							<span>In this tab</span>
+						</button>
+						<button>
+							<PlusIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+							<span>In new tab</span>
+						</button>
+						<button>
+							<PlusIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+							<span>In new tab to the left</span>
+						</button>
+						<hr />
+						<button>
+							<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+							<span>In split right</span>
+						</button>
+						<button>
+							<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+							<span>In split left</span>
+						</button>
+						<button>
+							<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem; rotate: 90deg;" />
+							<span>In split bottom</span>
+						</button>
+						<button>
+							<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem; rotate: 90deg;" />
+							<span>In split top</span>
+						</button>
+					</ContextMenu>
+				</div>
+			{/each}
+		</ContextMenu>
 	</button>
 	<hr />
 	<button>

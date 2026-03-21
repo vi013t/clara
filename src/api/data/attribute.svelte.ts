@@ -13,8 +13,9 @@ import { Container, type Cloneable } from "../util/Clone.svelte";
 import { assignedLater } from "../util/utils.svelte";
 import type { Serialize } from "../util/serialize.svelte";
 import { userData } from "../userdata/cache.svelte";
+import ColorPaletteIcon from "../../components/icons/ColorPaletteIcon.svelte";
 
-const fieldValueTypes = [
+export const fieldValueTypes = [
 	{
 		name: "Short text",
 		icon: TextIcon,
@@ -34,6 +35,10 @@ const fieldValueTypes = [
 	{
 		name: "Date",
 		icon: CalendarIcon,
+	},
+	{
+		name: "Color",
+		icon: ColorPaletteIcon,
 	},
 	{
 		name: "Length",
@@ -204,6 +209,8 @@ export function attributeValueFromBackend(value: BackendAttributeValue): Attribu
 }
 
 export type BackendAttributeValue = string | number | BackendMeasurement | BackendDocumentContent | BackendAttributeValue[];
+
+export type AttributeContext = "settings" | "spreadsheet";
 
 export class PrimitiveAttribute<T> implements Cloneable<PrimitiveAttribute<T>>, Serialize<T> {
 	value: T = $state(assignedLater());

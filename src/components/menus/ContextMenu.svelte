@@ -48,8 +48,8 @@
 		}, 100);
 	}
 
-	export function openAtMouse(event: MouseEvent) {
-		event.preventDefault();
+	export function openAtMouse(event?: MouseEvent) {
+		event?.preventDefault();
 		let position = mouse().getRelativePosition(domElement!);
 		left = `${position.x}px`;
 		top = `${position.y}px`;

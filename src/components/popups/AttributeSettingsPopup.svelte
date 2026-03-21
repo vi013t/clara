@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Attribute } from "../../api/data/attribute.svelte";
+	import { fieldValueTypes, type Attribute } from "../../api/data/attribute.svelte";
 	import CalendarIcon from "../icons/CalendarIcon.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
 	import GraphIcon from "../icons/GraphIcon.svelte";
@@ -58,22 +58,10 @@
 				<input bind:value={attribute.name} />
 
 				<h2>Type</h2>
-				<Select
-					width="100%"
-					options={[
-						{ name: "Short text", icon: TextIcon },
-						{ name: "Long text", icon: ParagraphIcon },
-						{ name: "Number", icon: NumberSignIcon },
-						{ name: "Entry", icon: GraphIcon },
-						{ name: "Date", icon: CalendarIcon },
-						{ name: "Length", icon: RulerIcon },
-						{ name: "Weight", icon: WeightScaleIcon },
-					]}
-					value={attribute.type}
-				/>
+				<Select width="100%" options={fieldValueTypes} bind:value={attribute.type} />
 
 				<h2>Default</h2>
-				<Input background="#181825" type={attribute.type} value={null} openEditor={() => {}} />
+				<Input context="settings" background="#181825" type={attribute.type} value={null} openEditor={() => {}} />
 			</div>
 		</section>
 	{/if}

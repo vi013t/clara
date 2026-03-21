@@ -8,7 +8,7 @@
 	import TrashIcon from "../icons/TrashIcon.svelte";
 	import Input from "../input/Input.svelte";
 	import ContextMenu from "../menus/ContextMenu.svelte";
-	import FieldPropertiesPopup from "../popups/FieldPropertiesPopup.svelte";
+	import FieldPropertiesPopup from "../popups/AttributeSettingsPopup.svelte";
 
 	let { dataset = $bindable(), openEditor }: { dataset: Dataset; openEditor: (entryID: number, fieldName: string) => void } =
 		$props();
@@ -83,6 +83,7 @@
 				{#each rows as row}
 					<div class="cell">
 						<Input
+							context="spreadsheet"
 							openEditor={() => openEditor(row.id, field.name)}
 							type={field.type}
 							bind:value={() => row.get(field.name), value => row.set(field.name, value!)}
@@ -175,8 +176,8 @@
 		align-items: center;
 		padding-left: 0.5rem;
 		padding-right: 0.5rem;
-		border-right: 1px solid #45475a;
-		border-bottom: 1px solid #45475a;
+		border-right: 1px solid #313244;
+		border-bottom: 1px solid #313244;
 		font-size: 0.85rem;
 		gap: 0.5rem;
 		color: #a6adc8;

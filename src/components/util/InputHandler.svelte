@@ -33,19 +33,11 @@
 			return this.offset_;
 		}
 
-		/**
-		 * Returns the coordinates of the mouse relative to it's nearest positioned ancestor.
-		 * For example, if you want to open a menu with `position: absolute` directly on the
-		 * mouse, these are the coordinates to use.
-		 */
-		public get absolute(): Point2D {
-			return this.absolute_;
-		}
-
 		public getRelativePosition(element: HTMLElement): Point2D {
+			if (!element.offsetParent) return Point2D.origin();
 			return new Point2D(
-				this.client.x - element!.offsetParent!.getBoundingClientRect().left,
-				this.client.y - element!.offsetParent!.getBoundingClientRect().top,
+				this.client.x - element!.offsetParent.getBoundingClientRect().left,
+				this.client.y - element!.offsetParent.getBoundingClientRect().top,
 			);
 		}
 
@@ -98,9 +90,9 @@
 		}, 200);
 
 		// onmove events
-		((mouseState as any).handlers as { event: string; callback: () => void }[])
+		((mouseState as any).handlers as { event: string; callback: (event: MouseEvent) => void }[])
 			.filter(handler => handler.event === "move")
-			.forEach(handler => handler.callback());
+			.forEach(handler => handler.callback(event));
 	}
 
 	function onmousedown(event: MouseEvent) {
@@ -108,9 +100,9 @@
 		if (event.button === 1) (mouseState as any).rightClicking_ = true;
 		if (event.button === 2) (mouseState as any).middleClicking_ = true;
 
-		((mouseState as any).handlers as { event: string; callback: () => void }[])
+		((mouseState as any).handlers as { event: string; callback: (event: MouseEvent) => void }[])
 			.filter(handler => handler.event === "mousedown")
-			.forEach(handler => handler.callback());
+			.forEach(handler => handler.callback(event));
 
 		clickedElement = event.target as HTMLElement;
 		(mouseState as any).absolute_ = new Point2D(
@@ -129,9 +121,9 @@
 			(mouseState as any).middleClicking_ = false;
 		}
 
-		((mouseState as any).handlers as { event: string; callback: () => void }[])
+		((mouseState as any).handlers as { event: string; callback: (event: MouseEvent) => void }[])
 			.filter(handler => handler.event === "mouseup")
-			.forEach(handler => handler.callback());
+			.forEach(handler => handler.callback(event));
 	}
 </script>
 

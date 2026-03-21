@@ -1,4 +1,5 @@
 import { assignedLater } from "../util/utils.svelte";
+import namer from "color-namer";
 
 type BuildRange<N extends number, Acc extends number[] = []> = Acc["length"] extends N
 	? Acc[number]
@@ -49,6 +50,36 @@ export class Color {
 
 	public clone() {
 		return new Color(this.red, this.green, this.blue);
+	}
+
+	public get name(): string {
+		return Object.values(namer(this.hex))
+			.map(nameList => ({ name: nameList[0].name, distance: nameList[0].distance }))
+			.toSorted((a, b) => a.distance - b.distance)[0].name;
+	}
+
+	public get hue() {
+		return this.hsl.h;
+	}
+
+	public get saturation() {
+		return this.hsl.s;
+	}
+
+	public get lightness() {
+		return this.hsl.l;
+	}
+
+	public get value() {
+		return this.hsv.v;
+	}
+
+	public static tryHex(color: string): Color | null {
+		try {
+			return Color.hex(color);
+		} catch (error) {
+			return null;
+		}
 	}
 
 	public static hex(color: string): Color {

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Attribute } from "../../api/data/attribute.svelte";
-	import { DataEntry, type Dataset } from "../../api/data/dataset.svelte";
+	import { AttributeDefinition, DocumentContent as EditorDocument } from "../../api/data/attribute/attribute.svelte";
+	import { Item, type Group } from "../../api/data/database.svelte";
 	import CloseIcon from "../icons/CloseIcon.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
 	import PlusIcon from "../icons/PlusIcon.svelte";
@@ -10,39 +10,38 @@
 	import ContextMenu from "../menus/ContextMenu.svelte";
 	import FieldPropertiesPopup from "../popups/AttributeSettingsPopup.svelte";
 
-	let { dataset = $bindable(), openEditor }: { dataset: Dataset; openEditor: (entryID: number, fieldName: string) => void } =
-		$props();
+	let { group = $bindable(), openEditor }: { group: Group; openEditor: (content: EditorDocument) => void } = $props();
 
 	let updateCounter = $state(0);
 	let updateAttributes = $state(0);
 
-	let rows = $derived.by(() => {
+	let bottomGroups = $derived.by(() => {
 		updateCounter;
-		return dataset.data.ref().dfsLeaves();
+		return group.dfsYoungParents();
 	});
 
 	function addRow() {
-		dataset.data.ref().addChild(DataEntry.node(""));
+		group.addChild(new Item("New Item"));
 		updateCounter++;
 	}
 
 	function addColumn() {
-		dataset.attributes.ref().push(new Attribute("Attribute", "Short text"));
+		group.addNewAttributeDefinition(AttributeDefinition.basic("Attribute", "Short text"));
 		updateAttributes++;
 	}
 
-	function remove(id: number) {
+	function removeItem(item: Item) {
 		return function () {
-			dataset.data.ref().filter(entry => entry.id !== id);
+			group.removeItem(item);
 			updateCounter++;
 		};
 	}
 
 	let fieldSettings: ContextMenu;
 	let fieldPropertiesPopup: FieldPropertiesPopup;
-	let editingAttribute: Attribute | null = $state(null);
+	let editingAttribute: AttributeDefinition | null = $state(null);
 
-	function editAttribute(event: MouseEvent, field: Attribute) {
+	function editAttribute(event: MouseEvent, field: AttributeDefinition) {
 		editingAttribute = field;
 		fieldSettings.openAtMouse(event);
 	}
@@ -56,12 +55,14 @@
 			</button>
 		</div>
 
-		{#each rows as row}
-			<div class="control cell">
-				<button onmousedown={remove(row.id)}>
-					<TrashIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
-				</button>
-			</div>
+		{#each bottomGroups as group}
+			{#each group.children as item}
+				<div class="control cell">
+					<button onmousedown={removeItem(item as Item)}>
+						<TrashIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+					</button>
+				</div>
+			{/each}
 		{/each}
 		<div class="new control cell">
 			<button onmousedown={addRow}>
@@ -70,25 +71,30 @@
 		</div>
 	</div>
 	{#key updateAttributes}
-		{#each dataset.attributes.ref() as field, index}
+		{#each group.attributes as attribute, index}
 			<div class="column">
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div class="cell" oncontextmenu={event => fieldSettings.openAtMouse(event)}>
-					<field.icon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
-					{field.name}
-					<button style="width: fit-content; margin-right: 0px;" onmousedown={event => editAttribute(event, field)}>
+					<attribute.icon.component stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+					{attribute.name}
+					<button style="width: fit-content; margin-right: 0px;" onmousedown={event => editAttribute(event, attribute)}>
 						<GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 					</button>
 				</div>
-				{#each rows as row}
-					<div class="cell">
-						<Input
-							context="spreadsheet"
-							openEditor={() => openEditor(row.id, field.name)}
-							type={field.type}
-							bind:value={() => row.get(field.name), value => row.set(field.name, value!)}
-						/>
-					</div>
+				{#each bottomGroups as group}
+					{#each group.children as item}
+						<div class="cell">
+							<Input
+								context="spreadsheet"
+								{openEditor}
+								type={attribute.type}
+								bind:value={
+									() => (item as Item).getAttributeValue(attribute.name),
+									value => (item as Item).overwriteAttributeValue(attribute.name, value!)
+								}
+							/>
+						</div>
+					{/each}
 				{/each}
 				<div class="new cell"></div>
 			</div>
@@ -99,8 +105,10 @@
 			<PlusIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
 			New
 		</button>
-		{#each rows}
-			<div class="new cell"></div>
+		{#each bottomGroups as group}
+			{#each group.children as item}
+				<div class="new cell"></div>
+			{/each}
 		{/each}
 		<div class="new cell"></div>
 	</div>
@@ -127,7 +135,7 @@
 	</button>
 </ContextMenu>
 
-<FieldPropertiesPopup bind:attribute={editingAttribute!} bind:this={fieldPropertiesPopup} />
+<FieldPropertiesPopup bind:attribute={editingAttribute!} bind:this={fieldPropertiesPopup} owner={group} />
 
 <style>
 	.columns {

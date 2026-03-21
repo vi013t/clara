@@ -1,45 +1,20 @@
-import { Point2D, type Point2DLike } from "../../math/matrix.svelte";
-import { Circle, getPrettyPacking } from "../../math/shape.svelte";
-import { Color } from "../../ui/color.svelte";
-import type { Cloneable } from "../../util/Clone.svelte";
-import type { Serialize } from "../../util/serialize.svelte";
-import { assignedLater } from "../../util/utils.svelte";
-import { GraphOutline } from "./graph.svelte";
+import { Point2D, type Point2DLike } from "../math/matrix.svelte";
+import { Circle, getPrettyPacking } from "../math/shape.svelte";
+import { Color } from "../ui/color.svelte";
+import { assignedLater } from "../util/utils.svelte";
+import { GraphOutline } from "./database.svelte";
 
-export type BackendTreeNode<Bytes> = {
-	children: BackendTreeNode<Bytes>[];
-	isBranch: boolean;
-	data: Bytes;
-};
+let nextID = 0;
 
-export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
-	implements Cloneable<TreeNode<T, Bytes>>, Serialize<BackendTreeNode<Bytes>>
-{
-	private parent_?: TreeNode<T, Bytes> = $state(assignedLater());
-	private children_: TreeNode<T>[] = $state(assignedLater());
-	private isGroup_: boolean = $state(assignedLater());
-
-	public data: T = $state(assignedLater());
-
-	private outline_ = $state(assignedLater<GraphOutline<Circle>>());
-
+export abstract class TreeNode<Branch extends TreeBranch<Branch, Leaf>, Leaf extends TreeLeaf<Branch, Leaf>> {
 	private static paddingMultiplier = 1.1;
 
-	public constructor(data: T, children: TreeNode<T>[], isGroup?: boolean) {
-		if (isGroup === undefined) isGroup = children.length !== 0;
-		this.data = data;
-		this.children_ = children;
-		this.children.forEach(child => (child.parent_ = this));
-		this.isGroup_ = isGroup;
-	}
+	private parent_?: Branch = $state(assignedLater());
+	private outline_ = $state(assignedLater<GraphOutline<Circle>>());
+	public readonly id: number;
 
-	public findChildOrThis(predicate: (node: TreeNode<T>) => any): TreeNode<T> | null {
-		if (predicate(this)) return this;
-		return this.children.find(child => child.findChildOrThis(predicate)) ?? null;
-	}
-
-	public find(predicate: (node: TreeNode<T>) => any): TreeNode<T> | null {
-		return this.root().findChildOrThis(predicate);
+	public constructor() {
+		this.id = nextID++;
 	}
 
 	public get parent() {
@@ -47,20 +22,20 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	}
 
 	public get siblingCountIncludingMe() {
-		return this.parent?.children_.length ?? 1;
+		return this.parent?.children.length ?? 1;
 	}
 
 	public get index(): number | null {
 		if (!this.parent) return null;
-		return this.parent.children_.indexOf(this);
+		return this.parent.children.indexOf(this.self);
 	}
 
 	private calculateIntrinsicSize(): number {
 		this.children.forEach(child => child.calculateIntrinsicSize());
 
-		if (this.isItem) {
+		if (this.isLeaf()) {
 			this.outline_ = GraphOutline.originCircle(15);
-		} else if (this.hasOnlyItems) {
+		} else if (this.isntGrandparent) {
 			this.outline_ = GraphOutline.originCircle(this.children.length * 75 + 150);
 		} else if (this.hasOnlyChild) {
 			this.outline_ = GraphOutline.originCircle(this.children[0].outline_.shape.radius * TreeNode.paddingMultiplier);
@@ -79,7 +54,7 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 
 		if (!this.parent) {
 			this.outline_.shape.center = Point2D.origin();
-		} else if (this.isPartOfItemHedge) {
+		} else if (this.hasNoChildrenOrNiblings) {
 			const dist = this.parent.outline_.shape.radius * 0.6;
 			const angle = (this.index! * (2 * Math.PI)) / this.siblingCountIncludingMe;
 			this.outline_.shape.center = Point2D.polar(dist, angle).plus(parentCenter);
@@ -131,10 +106,9 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 	}
 
 	public cutOff() {
-		console.log(this.parent);
 		this.root()
 			.dfs()
-			.filter(node => node !== this && !node.isDescendantOf(this))
+			.filter(node => node !== this.self && !node.isDescendantOf(this.self))
 			.forEach(node => (node.outline.isVisible = false));
 	}
 
@@ -149,20 +123,20 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 		this.children.forEach(child => child.clearLayoutCache());
 	}
 
-	public get hasOnlyLeaves() {
+	public get hasOnlyLeaves(): boolean {
 		return this.children.every(child => child.isLeaf);
 	}
 
-	public get hasOnlyItems() {
-		return this.children.every(child => child.isItem);
+	public get isntGrandparent(): boolean {
+		return this.children.every(child => child.isLeaf());
 	}
 
-	public get hasOnlyGroups() {
-		return this.children.every(child => child.isGroup);
+	public get hasNoGrandchildren(): boolean {
+		return this.children.every(child => child.isBranch());
 	}
 
-	public get isPartOfItemHedge() {
-		return this.siblingsIncludingMe.every(sibling => sibling.isItem);
+	public get hasNoChildrenOrNiblings(): boolean {
+		return this.siblingsIncludingMe.every(sibling => sibling.isLeaf());
 	}
 
 	public get isOnlyChild() {
@@ -177,11 +151,11 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 		return this.children.length === 1;
 	}
 
-	public get siblingsIncludingMe() {
-		return this.parent?.children ?? [this];
+	public get siblingsIncludingMe(): readonly (Branch | Leaf)[] {
+		return this.parent?.children ?? [this.self];
 	}
 
-	public get previousSibling(): TreeNode<T> | null {
+	public get previousSibling(): Branch | Leaf | null {
 		return this.parent && this.index! > 0 ? this.parent?.children[this.index! - 1] : null;
 	}
 
@@ -196,8 +170,8 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 		return this.outline_;
 	}
 
-	public root() {
-		let root: TreeNode<T> = this;
+	public root(): Branch | Leaf {
+		let root: Branch | Leaf = this.self;
 		while (root.parent) root = root.parent;
 		return root;
 	}
@@ -257,13 +231,13 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 		return [dx, dy];
 	}
 
-	public get cousins() {
+	public get cousins(): (Branch | Leaf)[] {
 		return this.root()
 			.dfs()
-			.filter(node => node !== this && !node.isDescendantOf(this) && !this.isDescendantOf(node));
+			.filter(node => node !== this.self && !node.isDescendantOf(this.self) && !this.isDescendantOf(node));
 	}
 
-	public isDescendantOf(other: TreeNode<T>): boolean {
+	public isDescendantOf(other: Branch | Leaf): boolean {
 		if (!this.parent) return false;
 		if (this.parent === other) return true;
 		return this.parent.isDescendantOf(other);
@@ -277,84 +251,95 @@ export class TreeNode<T extends Cloneable<T> & Serialize<Bytes>, Bytes = any>
 		return 1 + this.children.map(child => child.height).reduce((max, height) => Math.max(max, height), 0);
 	}
 
-	public map<Output extends Cloneable<Output> & Serialize<any>>(mapper: (node: TreeNode<T>) => Output): TreeNode<Output> {
-		const tree = new TreeNode(mapper(this), []);
-		this.children.forEach(child => tree.addChild(child.map(mapper)));
-		return tree;
+	public isLeaf(): this is Leaf {
+		return this.children.length === 0;
 	}
 
-	public clone(): TreeNode<T> {
-		return new TreeNode(
-			this.data.clone(),
-			this.children.map(child => child.clone()),
-			this.isGroup_,
-		);
+	public isBranch(): this is Branch {
+		return !this.isLeaf();
 	}
 
-	public dfs(): TreeNode<T>[] {
-		let visited: TreeNode<T>[] = [];
-		visited.push(this);
+	public dfs(): (Branch | Leaf)[] {
+		let visited: (Branch | Leaf)[] = [];
+		visited.push(this.self);
 		this.children.forEach(child => {
 			visited = [...visited, ...child.dfs()];
 		});
 		return visited;
 	}
 
-	public dfsLeaves(): T[] {
-		let visited: T[] = [];
-		if (!this.isGroup) visited.push(this.data);
+	public dfsLeaves(): Leaf[] {
+		let visited: Leaf[] = [];
+		if (this.isLeaf()) visited.push(this);
 		this.children.forEach(child => {
-			let childLeaves = child.dfsLeaves();
+			let childLeaves = child.isBranch() ? child.dfsLeaves() : [child];
 			visited = [...visited, ...childLeaves];
 		});
 		return visited;
 	}
 
-	public addChild(node: TreeNode<T>): void {
-		this.children.push(node);
-		node.parent_ = this;
+	public dfsYoungParents(): Branch[] {
+		let visited: Branch[] = [];
+		if (this.isBranch() && this.children[0].isLeaf()) visited.push(this);
+		this.children.forEach(child => {
+			let childLeaves = child.isBranch() ? child.dfsYoungParents() : [];
+			visited = [...visited, ...childLeaves];
+		});
+		return visited;
 	}
 
-	public filter(predicate: (data: T) => boolean): void {
-		this.children_ = this.children.filter(child => predicate(child.data));
+	public abstract get children(): readonly (Branch | Leaf)[];
+	public abstract get self(): Branch | Leaf;
+}
+
+export abstract class TreeLeaf<Branch extends TreeBranch<Branch, Leaf>, Leaf extends TreeLeaf<Branch, Leaf>> extends TreeNode<
+	Branch,
+	Leaf
+> {
+	_treeLeaf = undefined;
+
+	public get children(): readonly (Branch | Leaf)[] {
+		return [];
 	}
 
-	public get isGroup() {
-		return this.isGroup_;
+	public get self(): Leaf {
+		return this as unknown as Leaf;
+	}
+}
+
+export abstract class TreeBranch<Branch extends TreeBranch<Branch, Leaf>, Leaf extends TreeLeaf<Branch, Leaf>> extends TreeNode<
+	Branch,
+	Leaf
+> {
+	public leaves: Leaf[] = $state(assignedLater());
+	public branches: Branch[] = $state(assignedLater());
+
+	public constructor(...children: (Branch | Leaf)[]) {
+		super();
+		this.branches = children.filter(child => child.isBranch());
+		this.leaves = children.filter(child => child.isLeaf());
 	}
 
-	public get isLeaf() {
-		return this.children.length === 0;
+	public addChild(child: Branch | Leaf) {
+		if (child.isLeaf()) this.leaves.push(child);
+		else this.branches.push(child);
 	}
 
-	public get isBranch() {
-		return !this.isLeaf;
+	public filterChildrenInPlace(predicate: (node: Branch | Leaf) => any): void {
+		this.leaves = this.leaves.filter(predicate);
+		this.branches = this.branches.filter(predicate);
 	}
 
-	public get isItem() {
-		return !this.isGroup;
+	/**
+	 * Note that this *creates a new array each time, so mutating the array itself will not
+	 * affect this tree*. The items within the returned array *are* references to nodes in
+	 * this tree, and mutating them will affect this tree.
+	 */
+	public get children(): readonly (Branch | Leaf)[] {
+		return [...this.leaves, ...this.branches];
 	}
 
-	public get children(): TreeNode<T>[] {
-		return this.children_;
-	}
-
-	public toBackend(): BackendTreeNode<Bytes> {
-		return {
-			data: this.data.toBackend(),
-			children: this.children.map(child => child.toBackend()),
-			isBranch: this.isGroup,
-		};
-	}
-
-	public static fromBackend<T extends Serialize<Bytes> & Cloneable<T>, Bytes>(
-		node: BackendTreeNode<Bytes>,
-		fromBackend: (bytes: Bytes) => T,
-	): TreeNode<T> {
-		return new TreeNode(
-			fromBackend(node.data),
-			node.children.map(child => TreeNode.fromBackend(child, fromBackend)),
-			node.isBranch,
-		);
+	public get self(): Branch {
+		return this as unknown as Branch;
 	}
 }

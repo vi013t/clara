@@ -1,6 +1,12 @@
 <script lang="ts">
-	import type { AttributeContext, AttributeType, AttributeValue, PrimitiveAttribute } from "../../api/data/attribute.svelte";
-	import { Length, Measurement } from "../../api/data/measurement.svelte";
+	import type {
+		AttributeContext,
+		AttributeType,
+		AttributeValue,
+		DocumentContent,
+		PrimitiveAttribute,
+	} from "../../api/data/attribute/attribute.svelte";
+	import { Length, Measurement } from "../../api/data/attribute/measurement.svelte";
 	import ColorPicker from "./ColorPicker.svelte";
 	import LongTextInput from "./LongTextInput.svelte";
 	import MeasurementInput from "./MeasurementInput.svelte";
@@ -16,7 +22,7 @@
 		context: AttributeContext;
 		type: AttributeType;
 		value: AttributeValue | null;
-		openEditor: () => void;
+		openEditor: (doc: DocumentContent) => void;
 		background?: string;
 	} = $props();
 </script>
@@ -26,7 +32,7 @@
 {:else if type === "Short text"}
 	<ShortTextInput {background} bind:value={value as PrimitiveAttribute<string> | null} />
 {:else if type === "Long text"}
-	<LongTextInput bind:value={value as PrimitiveAttribute<string> | null} {context} {openEditor} />
+	<LongTextInput bind:value={value as DocumentContent} {context} {openEditor} />
 {:else if type === "Color"}
 	<ColorPicker />
 {/if}

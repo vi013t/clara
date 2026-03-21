@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Measurement, MeasurementType } from "../../api/data/measurement.svelte";
+	import type { Measurement, MeasurementType } from "../../api/data/attribute/measurement.svelte";
 	import TransferIcon from "../icons/TransferIcon.svelte";
 
 	let { value = $bindable(), type }: { value: Measurement<any> | null; type: MeasurementType<any> } = $props();

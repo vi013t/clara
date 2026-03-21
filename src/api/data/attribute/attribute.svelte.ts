@@ -1,18 +1,16 @@
-import CalendarIcon from "../../components/icons/CalendarIcon.svelte";
-import ColorPaletteIcon from "../../components/icons/ColorPaletteIcon.svelte";
-import GraphIcon from "../../components/icons/GraphIcon.svelte";
-import NumberSignIcon from "../../components/icons/NumberSignIcon.svelte";
-import ParagraphIcon from "../../components/icons/ParagraphIcon.svelte";
-import RulerIcon from "../../components/icons/RulerIcon.svelte";
-import TextIcon from "../../components/icons/TextIcon.svelte";
-import WeightScaleIcon from "../../components/icons/WeightScaleIcon.svelte";
-import { Project } from "../project.svelte";
-import type { IconComponent } from "../ui/icons.svelte";
-import { userData } from "../userdata/cache.svelte";
-import { Container, type Cloneable } from "../util/Clone.svelte";
-import type { Serialize } from "../util/serialize.svelte";
-import { assignedLater } from "../util/utils.svelte";
-import type { Dataset } from "./dataset.svelte";
+import CalendarIcon from "../../../components/icons/CalendarIcon.svelte";
+import ColorPaletteIcon from "../../../components/icons/ColorPaletteIcon.svelte";
+import GraphIcon from "../../../components/icons/GraphIcon.svelte";
+import NumberSignIcon from "../../../components/icons/NumberSignIcon.svelte";
+import ParagraphIcon from "../../../components/icons/ParagraphIcon.svelte";
+import RulerIcon from "../../../components/icons/RulerIcon.svelte";
+import TextIcon from "../../../components/icons/TextIcon.svelte";
+import WeightScaleIcon from "../../../components/icons/WeightScaleIcon.svelte";
+import { getIcon, type Icon, type IconComponent } from "../../ui/icons.svelte";
+import { Container, type Cloneable } from "../../util/Clone.svelte";
+import type { Serialize } from "../../util/serialize.svelte";
+import { assignedLater } from "../../util/utils.svelte";
+import type { Group } from "../database.svelte";
 import { Length, Measurement, Weight, type BackendMeasurement } from "./measurement.svelte";
 
 export const fieldValueTypes = [
@@ -29,7 +27,7 @@ export const fieldValueTypes = [
 		icon: NumberSignIcon,
 	},
 	{
-		name: "Entry",
+		name: "Item",
 		icon: GraphIcon,
 	},
 	{
@@ -179,6 +177,13 @@ type AttributeTypes = {
 };
 
 export type AttributeValue = AttributeTypes[keyof AttributeTypes];
+export type AttributeLike = AttributeValue | number | string;
+
+export function attributeValue(like: AttributeLike): AttributeValue {
+	if (typeof like === "number") return new PrimitiveAttribute<number>(like);
+	if (typeof like === "string") return new PrimitiveAttribute<string>(like);
+	return like;
+}
 
 export class PrimitiveArrayAttribute<T> implements Cloneable<PrimitiveArrayAttribute<T>>, Serialize<T[]> {
 	values: T[] = $state(assignedLater());
@@ -237,17 +242,18 @@ export type BackendAttribute = {
 	type: AttributeType;
 };
 
-export class Attribute implements Serialize<BackendAttribute> {
+export class AttributeDefinition implements Serialize<BackendAttribute> {
 	public name: string = $state(assignedLater());
 	public type: AttributeType = $state(assignedLater());
 	private id_: number = $state(assignedLater());
+	public group = $state(assignedLater<Group>());
 
 	private static fieldID = 0;
 
-	public constructor(name: string, type: AttributeType) {
+	private constructor(name: string, type: AttributeType) {
 		this.name = name;
 		this.type = type;
-		this.id_ = Attribute.fieldID++;
+		this.id_ = AttributeDefinition.fieldID++;
 	}
 
 	toBackend(): BackendAttribute {
@@ -257,50 +263,23 @@ export class Attribute implements Serialize<BackendAttribute> {
 		};
 	}
 
-	public static fromBackend(attribute: BackendAttribute): Attribute {
-		return new Attribute(attribute.name, attribute.type);
+	public static fromBackend(attribute: BackendAttribute): AttributeDefinition {
+		return new AttributeDefinition(attribute.name, attribute.type);
 	}
 
 	public get id() {
 		return this.id_;
 	}
 
-	public clone(): Attribute {
-		return new Attribute(this.name, this.type);
+	public clone(): AttributeDefinition {
+		return new AttributeDefinition(this.name, this.type);
 	}
 
-	public get dataset(): Container<Dataset> {
-		const project = Project.get();
-		if (project) {
-			for (let dataset of project.database.ref().datasets.ref()) {
-				let set = dataset.ref();
-				for (let field of set.values.ref()) {
-					if (field.id === this.id) {
-						return new Container(set);
-					}
-				}
-			}
-		}
-
-		for (let dataset of userData()
-			.templates.map(template => template.database.ref().datasets.ref())
-			.flat()) {
-			let set = dataset.ref();
-			for (let field of set.values.ref()) {
-				if (field.id === this.id) {
-					return new Container(set);
-				}
-			}
-		}
-
-		throw `Internal error: Field "${this.name}" is not part of a dataset.`;
+	public static basic(name: string, type: AttributeType): AttributeDefinition {
+		return new AttributeDefinition(name, type);
 	}
 
-	public get icon(): IconComponent {
-		return fieldValueTypes.find(type => type.name === this.type)!.icon;
-	}
-
-	public delete(): void {
-		this.dataset.ref().deleteField(this.id);
+	public get icon(): Icon {
+		return getIcon(fieldValueTypes.find(type => type.name === this.type)!.icon);
 	}
 }

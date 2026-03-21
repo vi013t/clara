@@ -1,15 +1,14 @@
 <script lang="ts">
 	import { invoke } from "@tauri-apps/api/core";
+	import { open as chooseFile } from "@tauri-apps/plugin-dialog";
+	import type { Database } from "../../api/data/database.svelte";
+	import { Project } from "../../api/project.svelte";
+	import { userData } from "../../api/userdata/cache.svelte";
 	import FolderIcon from "../icons/FolderIcon.svelte";
+	import GearIcon from "../icons/GearIcon.svelte";
 	import Select from "../input/Select.svelte";
 	import Popup from "./Popup.svelte";
-	import { open as chooseFile } from "@tauri-apps/plugin-dialog";
-	import { Project } from "../../api/project.svelte";
-	import { Template } from "../../api/userdata/template.svelte";
-	import { refs } from "../../api/util/Clone.svelte";
-	import GearIcon from "../icons/GearIcon.svelte";
 	import SettingsPopup from "./SettingsPopup.svelte";
-	import { userData } from "../../api/userdata/cache.svelte";
 
 	let popup: Popup;
 
@@ -21,8 +20,7 @@
 
 	let location: string = $state("");
 	let name: string = $state("");
-	let template: Template = $state(userData().templates[0]);
-	let datasets = $derived(template.database.ref().datasets.ref());
+	let template: Database = $state(userData().templates[0]);
 
 	let startedTypingLocation = $state(false);
 	let startedTypingName = $state(false);
@@ -82,7 +80,7 @@
 		let project = new Project({
 			name,
 			location,
-			database: template.database.clone(),
+			database: template, // CLONE HERE
 		});
 
 		Project.set(project);
@@ -155,7 +153,7 @@
 					<div class="select">
 						<Select
 							width="calc(100% - 1.75rem)"
-							options={userData().templates.map(template => ({ name: template.name, icon: template.icon }))}
+							options={userData().templates.map(template => ({ name: template.name, icon: template.icon.component }))}
 							bind:value={() => template.name, choice => (template = userData().templates.find(other => other.name === choice)!)}
 						/>
 						<button>
@@ -172,27 +170,7 @@
 			<p>{template.description}</p>
 
 			<div>
-				<h2>Datasets</h2>
-				<div>
-					<div class="datasets">
-						{#each refs(datasets) as dataset, index}
-							<div class="dataset">
-								<div class="header">
-									<dataset.icon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
-									<h2>{dataset.name}</h2>
-								</div>
-								<p>{dataset.description}</p>
-							</div>
-							{#if index !== datasets.length - 1}
-								<hr />
-							{/if}
-						{:else}
-							<div class="dataset">
-								<h2 class="header">None</h2>
-							</div>
-						{/each}
-					</div>
-				</div>
+				<h2>Groups &amp; Items</h2>
 			</div>
 		</div>
 
@@ -244,36 +222,8 @@
 		right: 0.25rem;
 	}
 
-	.dataset {
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-
-		.header {
-			display: flex;
-			gap: 0.5rem;
-			align-items: center;
-		}
-	}
-
 	.error {
 		color: #f38ba8;
-	}
-
-	.datasets {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		width: 100%;
-		background-color: #181825;
-		padding: 1rem;
-		border-radius: 0.5rem;
-
-		hr {
-			background-color: #313244;
-			width: 100%;
-			height: 1px;
-		}
 	}
 
 	.templates {

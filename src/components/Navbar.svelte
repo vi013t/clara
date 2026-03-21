@@ -25,12 +25,6 @@
 	let manualPopup: ManualPopup;
 	let settingsPopup: SettingsPopup;
 
-	function typeTitle(event: KeyboardEvent) {
-		if (event.key === "Enter") {
-			(event.target as HTMLElement).blur();
-		}
-	}
-
 	function close() {
 		const appWindow = getCurrentWindow();
 		appWindow.close();
@@ -111,7 +105,7 @@
 
 	{#if Project.get()}
 		<div>
-			<input onkeydown={typeTitle} bind:value={() => Project.get()!.name, name => (Project.get()!.name = name)} />
+			{Project.get()!.database.name}
 		</div>
 	{/if}
 
@@ -146,20 +140,6 @@
 
 			&:last-child {
 				gap: 0.5rem;
-			}
-
-			input {
-				color: #a6adc8;
-				border-radius: 0.25rem;
-				padding: 0.25rem;
-				font-size: 0.75rem;
-				text-align: center;
-				width: 30rem;
-
-				&:hover,
-				&:focus {
-					background-color: rgba(200, 200, 255, 10%);
-				}
 			}
 		}
 	}

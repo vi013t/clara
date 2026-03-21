@@ -1,8 +1,8 @@
 // yeah i hate me too
 
-import type { Cloneable } from "../util/Clone.svelte";
-import type { Serialize } from "../util/serialize.svelte";
-import { assignedLater } from "../util/utils.svelte";
+import type { Cloneable } from "../../util/Clone.svelte";
+import type { Serialize } from "../../util/serialize.svelte";
+import { assignedLater } from "../../util/utils.svelte";
 
 export abstract class MeasurementTypeInstance<
 	Standard extends Measurement<Self, Standard, Standard> = any,

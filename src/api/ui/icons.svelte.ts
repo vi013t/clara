@@ -164,10 +164,13 @@ export type IconComponent = typeof icons extends (infer T)[]
 
 export type Icon = { name: IconName; categories: IconCategory[]; component: IconComponent };
 
-export function getIconByName(name: IconName): IconComponent {
-	return icons.find(icon => icon.name === name)!.component;
-}
+/**
+ * An object that can be used to identify a singular unqiue icon.
+ */
+export type IconIdentifier = IconName | IconComponent | Icon;
 
-export function getIconName(component: IconComponent): IconName {
-	return icons.find(icon => icon.component === component)!.name;
+export function getIcon(identifier: IconIdentifier): Icon {
+	if (typeof identifier === "string") return icons.find(icon => icon.name === identifier)!;
+	if ("name" in identifier) return icons.find(icon => icon.name === identifier.name)!;
+	return icons.find(icon => icon.component === identifier)!;
 }

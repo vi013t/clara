@@ -1,6 +1,5 @@
-import type { Component } from "svelte";
-import { DocumentContent } from "../data/attribute.svelte";
-import type { Dataset } from "../data/dataset.svelte";
+import { DocumentContent } from "../data/attribute/attribute.svelte";
+import type { Group } from "../data/database.svelte";
 import { assignedLater } from "../util/utils.svelte";
 import type { View } from "./views.svelte";
 
@@ -14,13 +13,13 @@ export class Tab {
 	}
 }
 
-export class DataTab extends Tab {
-	public dataset = $state(assignedLater<Dataset>());
+export class GroupTab extends Tab {
+	public group = $state(assignedLater<Group>());
 	public view: View = $state("hierarchy");
 
-	public constructor(dataset: Dataset) {
+	public constructor(group: Group) {
 		super();
-		this.dataset = dataset;
+		this.group = group;
 	}
 }
 

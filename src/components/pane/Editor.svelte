@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { onMount, untrack } from "svelte";
-	import BookIcon from "../icons/BookIcon.svelte";
-	import Select from "../input/Select.svelte";
+	import { onMount } from "svelte";
+	import { DocumentContent, Style, StyledText } from "../../api/data/attribute/attribute.svelte";
 	import { getFonts } from "../../api/system.svelte";
-	import DashIcon from "../icons/DashIcon.svelte";
-	import PlusIcon from "../icons/PlusIcon.svelte";
-	import BoldIcon from "../icons/BoldIcon.svelte";
-	import ItalicIcon from "../icons/ItalicIcon.svelte";
-	import UnderlineIcon from "../icons/UnderlineIcon.svelte";
-	import LineSpacingIcon from "../icons/LineSpacingIcon.svelte";
-	import UndoIcon from "../icons/UndoIcon.svelte";
-	import SunIcon from "../icons/SunIcon.svelte";
-	import MoonIcon from "../icons/MoonIcon.svelte";
-	import SaveIcon from "../icons/SaveIcon.svelte";
-	import { DocumentContent, Style, StyledText } from "../../api/data/attribute.svelte";
 	import type { Container } from "../../api/util/Clone.svelte";
+	import BoldIcon from "../icons/BoldIcon.svelte";
+	import BookIcon from "../icons/BookIcon.svelte";
+	import DashIcon from "../icons/DashIcon.svelte";
+	import ItalicIcon from "../icons/ItalicIcon.svelte";
+	import LineSpacingIcon from "../icons/LineSpacingIcon.svelte";
+	import MoonIcon from "../icons/MoonIcon.svelte";
+	import PlusIcon from "../icons/PlusIcon.svelte";
+	import SaveIcon from "../icons/SaveIcon.svelte";
+	import SunIcon from "../icons/SunIcon.svelte";
+	import UnderlineIcon from "../icons/UnderlineIcon.svelte";
+	import UndoIcon from "../icons/UndoIcon.svelte";
+	import Select from "../input/Select.svelte";
 
 	let {
 		title,

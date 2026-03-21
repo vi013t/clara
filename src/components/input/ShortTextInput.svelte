@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PrimitiveAttribute, type AttributeContext } from "../../api/data/attribute.svelte";
+	import { PrimitiveAttribute } from "../../api/data/attribute/attribute.svelte";
 
 	let { value = $bindable(), background = "transparent" }: { value: PrimitiveAttribute<string> | null; background?: string } =
 		$props();

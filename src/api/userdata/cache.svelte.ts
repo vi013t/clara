@@ -1,21 +1,20 @@
-import { Database } from "../data/dataset.svelte";
-import BookIcon from "../../components/icons/BookIcon.svelte";
-import { DataEntry, Dataset } from "../data/dataset.svelte";
-import PersonIcon from "../../components/icons/PersonIcon.svelte";
-import LocationIcon from "../../components/icons/LocationIcon.svelte";
-import TheaterIcon from "../../components/icons/TheaterIcon.svelte";
-import ParagraphIcon from "../../components/icons/ParagraphIcon.svelte";
-import SwordIcon from "../../components/icons/SwordIcon.svelte";
-import CatIcon from "../../components/icons/CatIcon.svelte";
-import PyramidIcon from "../../components/icons/PyramidIcon.svelte";
-import WheelIcon from "../../components/icons/WheelIcon.svelte";
-import FichteanCurveIcon from "../../components/icons/FichteanCurveIcon.svelte";
-import SevenPointStructureIcon from "../../components/icons/SevenPointStructureIcon.svelte";
 import BlankPageIcon from "../../components/icons/BlankPageIcon.svelte";
-import { Attribute } from "../data/attribute.svelte";
-import { Template } from "./template.svelte";
+import BookIcon from "../../components/icons/BookIcon.svelte";
+import CatIcon from "../../components/icons/CatIcon.svelte";
+import FichteanCurveIcon from "../../components/icons/FichteanCurveIcon.svelte";
+import GearIcon from "../../components/icons/GearIcon.svelte";
+import LocationIcon from "../../components/icons/LocationIcon.svelte";
+import ParagraphIcon from "../../components/icons/ParagraphIcon.svelte";
+import PersonIcon from "../../components/icons/PersonIcon.svelte";
+import PyramidIcon from "../../components/icons/PyramidIcon.svelte";
+import SevenPointStructureIcon from "../../components/icons/SevenPointStructureIcon.svelte";
+import SwordIcon from "../../components/icons/SwordIcon.svelte";
+import TheaterIcon from "../../components/icons/TheaterIcon.svelte";
+import WheelIcon from "../../components/icons/WheelIcon.svelte";
+import { AttributeDefinition } from "../data/attribute/attribute.svelte";
+import { Group, Item, type Database } from "../data/database.svelte";
 
-type UserData = { templates: Template[] };
+type UserData = { templates: Database[] };
 
 let storedUserData: UserData | null = $state(null);
 
@@ -23,216 +22,158 @@ export function userData(): UserData {
 	if (!storedUserData) {
 		storedUserData = {
 			templates: [
-				new Template({
-					name: "Basic",
-					icon: BookIcon,
-					description: "A basic, opinionated setup with minimal scaffolding.",
-					database: new Database(
-						new Dataset({
-							name: "Plot Events",
-							icon: BookIcon,
-							description: "The events of this story. The actual scene prose exists here.",
-							data: DataEntry.node("Plot Events", [], false),
-							fields: [
-								new Attribute("Name", "Short text"),
-								new Attribute("Script", "Long text"),
-								new Attribute("Notes", "Long text"),
-							],
-						}),
-						new Dataset({
-							name: "Characters",
-							icon: PersonIcon,
-							description: "The characters of this story.",
-							data: DataEntry.node("Characters", [], false),
-							fields: [new Attribute("Name", "Short text")],
-						}),
-						new Dataset({
-							name: "Locations",
-							icon: LocationIcon,
-							description: "The locations in this story.",
-							data: DataEntry.node("Locations", [], false),
-							fields: [new Attribute("Name", "Short text")],
-						}),
-					),
-				}),
-				new Template({
-					name: "Three Act Structure",
-					icon: TheaterIcon,
-					description: "A basic, opinionated setup with minimal scaffolding.",
-					database: new Database(
-						new Dataset({
+				new Group(
+					{
+						name: "Basic",
+						icon: BookIcon,
+						description: "A basic, opinionated setup with minimal scaffolding.",
+					},
+					new Group({
+						name: "Plot Events",
+						icon: BookIcon,
+						description: "The events of this story. The actual scene prose exists here.",
+					}),
+					new Group({
+						name: "Characters",
+						icon: PersonIcon,
+						description: "The characters of this story.",
+					}),
+					new Group({
+						name: "Locations",
+						icon: LocationIcon,
+						description: "The locations in this story.",
+						attributes: [AttributeDefinition.basic("Name", "Short text")],
+					}),
+				),
+				new Group(
+					{
+						name: "Three Act Structure",
+						icon: TheaterIcon,
+						description: "A basic, opinionated setup with minimal scaffolding.",
+					},
+					new Group(
+						{
 							name: "Plot Events",
 							icon: ParagraphIcon,
 							description: "The events of this story. The actual scene prose exists here.",
-							data: DataEntry.node("Plot Events", [
-								DataEntry.node("Act I", [
-									DataEntry.node("Hook", [DataEntry.node("Chapter 1", [DataEntry.node("Scene 1")])]),
-									DataEntry.node("Inciting Incident", [], false),
-									DataEntry.node("First Plot Point", [], false),
-								]),
-								DataEntry.node("Act II", [
-									DataEntry.node("First Pinch Point", [], false),
-									DataEntry.node("Midpoint", [], false),
-									DataEntry.node("Second Pinch Point", [], false),
-								]),
-								DataEntry.node("Act III", [
-									DataEntry.node("Third Plot Point", [], false),
-									DataEntry.node("Climax", [], false),
-									DataEntry.node("Resolution", [], false),
-								]),
-							]),
-							fields: [
-								new Attribute("Name", "Short text"),
-								new Attribute("Script", "Long text"),
-								new Attribute("Notes", "Long text"),
+							attributes: [
+								AttributeDefinition.basic("Name", "Short text"),
+								AttributeDefinition.basic("Script", "Long text"),
+								AttributeDefinition.basic("Notes", "Long text"),
 							],
-						}),
-						new Dataset({
+						},
+						new Group(
+							{ name: "Act I" },
+							new Group("Hook", new Group(new Group("Chapter 1", new Item("Scene 1")))),
+							new Group("Inciting Incident"),
+							new Group("First Plot Point"),
+						),
+						new Group({ name: "Act II" }, new Group("First Pinch Point"), new Group("Midpoint"), new Group("Second Pinch Point")),
+						new Group({ name: "Act III" }, new Group("Third Plot Point"), new Group("Climax"), new Group("Resolution")),
+						new Group({
 							name: "Characters",
 							icon: PersonIcon,
 							description: "The characters of this story.",
-							data: DataEntry.node("Characters", [], false),
-							fields: [
-								new Attribute("Name", "Short text"),
-								new Attribute("Gender", "Short text"),
-								new Attribute("Sexuality", "Short text"),
-								new Attribute("Height", "Length"),
-								new Attribute("Weight", "Weight"),
-								new Attribute("Partner", "Short text"),
+							attributes: [
+								AttributeDefinition.basic("Name", "Short text"),
+								AttributeDefinition.basic("Gender", "Short text"),
+								AttributeDefinition.basic("Sexuality", "Short text"),
+								AttributeDefinition.basic("Height", "Length"),
+								AttributeDefinition.basic("Partner", "Item"),
 							],
 						}),
-						new Dataset({
+						new Group({
 							name: "Locations",
 							icon: LocationIcon,
 							description: "The locations in this story.",
-							data: DataEntry.node("Locations", [], false),
-							fields: [new Attribute("Name", "Short text")],
+							attributes: [AttributeDefinition.basic("Name", "Short text")],
 						}),
 					),
-				}),
-				new Template({
+				),
+				new Group({
 					name: "Hero's Journey",
 					icon: SwordIcon,
 					description: "A book outlined with the Hero's Journey structure.",
-					database: new Database(),
 				}),
-				new Template({
+				new Group({
 					name: "Save the Cat",
 					icon: CatIcon,
 					description: "A book outlined with the Hero's Journey structure.",
-					database: new Database(),
 				}),
-				new Template({
+				new Group({
 					name: "Freytag's Pyramid",
 					icon: PyramidIcon,
 					description: "A book outlined with the Hero's Journey structure.",
-					database: new Database(),
 				}),
-				new Template({
+				new Group({
 					name: "Story Wheel",
 					icon: WheelIcon,
 					description: "A book outlined with the Hero's Journey structure.",
-					database: new Database(),
 				}),
-				new Template({
+				new Group({
 					name: "Fichtean Curve",
 					icon: FichteanCurveIcon,
 					description: "A book outlined with the Hero's Journey structure.",
-					database: new Database(),
 				}),
-				new Template({
+				new Group({
 					name: "Seven Point Story Structure",
 					icon: SevenPointStructureIcon,
 					description: "A book outlined with the Hero's Journey structure.",
-					database: new Database(),
 				}),
-				new Template({
+				new Group({
 					name: "Blank",
 					icon: BlankPageIcon,
 					description: "A blank project with no datasets. This is not recommended for first time users; Use Basic instead.",
-					database: new Database(),
 				}),
-				new Template({
-					name: "Test",
-					icon: BookIcon,
-					description: "Dev testing",
-					database: new Database(
-						new Dataset({
+				new Group(
+					{
+						name: "Dev",
+						icon: GearIcon,
+						description: "dev testing",
+					},
+					new Group(
+						{
 							name: "Plot Events",
 							icon: ParagraphIcon,
 							description: "The events of this story. The actual scene prose exists here.",
-							data: DataEntry.node("Plot Events", [
-								DataEntry.node("Act I", [
-									DataEntry.node("Hook", [DataEntry.node("Chapter 1", [DataEntry.node("Scene 1")])]),
-									DataEntry.node("Inciting Incident", [], false),
-									DataEntry.node("First Plot Point", [], false),
-								]),
-								DataEntry.node("Act II", [
-									DataEntry.node("First Pinch Point", [], false),
-									DataEntry.node("Midpoint", [], false),
-									DataEntry.node("Second Pinch Point", [], false),
-								]),
-								DataEntry.node("Act III", [
-									DataEntry.node("Third Plot Point", [], false),
-									DataEntry.node("Climax", [], false),
-									DataEntry.node("Resolution", [], false),
-								]),
-							]),
-							fields: [
-								new Attribute("Name", "Short text"),
-								new Attribute("Script", "Long text"),
-								new Attribute("Notes", "Long text"),
+							attributes: [
+								AttributeDefinition.basic("Name", "Short text"),
+								AttributeDefinition.basic("Script", "Long text"),
+								AttributeDefinition.basic("Notes", "Long text"),
 							],
-						}),
-						new Dataset({
-							name: "Characters",
-							icon: PersonIcon,
-							description: "The characters of this story.",
-							data: DataEntry.node(
-								"Characters",
-								[
-									DataEntry.node("Main Characters", [DataEntry.node("Harry"), DataEntry.node("Hermione"), DataEntry.node("Ron")]),
-									DataEntry.node("Side Characters", [
-										DataEntry.node("Professors", [
-											DataEntry.node("Snape"),
-											DataEntry.node("Dumbledore"),
-											DataEntry.node("Quirrel"),
-											DataEntry.node("Remus"),
-										]),
-										DataEntry.node("Students", [
-											DataEntry.node("Neville"),
-											DataEntry.node("Seamus"),
-											DataEntry.node("Ginny"),
-											DataEntry.node("Fred"),
-											DataEntry.node("George"),
-										]),
-										DataEntry.node("Villains", [
-											DataEntry.node("Voldemort"),
-											DataEntry.node("Lucius"),
-											DataEntry.node("Dementors"),
-										]),
-									]),
+						},
+						new Group(
+							{ name: "Act I" },
+							new Group("Hook", new Group(new Group("Chapter 1", new Item("Scene 1")))),
+							new Group("Inciting Incident"),
+							new Group("First Plot Point"),
+						),
+						new Group({ name: "Act II" }, new Group("First Pinch Point"), new Group("Midpoint"), new Group("Second Pinch Point")),
+						new Group({ name: "Act III" }, new Group("Third Plot Point"), new Group("Climax"), new Group("Resolution")),
+						new Group(
+							{
+								name: "Characters",
+								icon: PersonIcon,
+								description: "The characters of this story.",
+								attributes: [
+									AttributeDefinition.basic("Name", "Short text"),
+									AttributeDefinition.basic("Gender", "Short text"),
+									AttributeDefinition.basic("Sexuality", "Short text"),
+									AttributeDefinition.basic("Height", "Length"),
+									AttributeDefinition.basic("Partner", "Item"),
 								],
-								false,
-							),
-							fields: [
-								new Attribute("Name", "Short text"),
-								new Attribute("Gender", "Short text"),
-								new Attribute("Sexuality", "Short text"),
-								new Attribute("Height", "Length"),
-								new Attribute("Weight", "Weight"),
-								new Attribute("Partner", "Short text"),
-							],
-						}),
-						new Dataset({
+							},
+							new Group("Main Characters"),
+							new Group("Main Characters"),
+						),
+						new Group({
 							name: "Locations",
 							icon: LocationIcon,
 							description: "The locations in this story.",
-							data: DataEntry.node("Locations", [], false),
-							fields: [new Attribute("Name", "Short text")],
+							attributes: [AttributeDefinition.basic("Name", "Short text")],
 						}),
 					),
-				}),
+				),
 			],
 		};
 	}

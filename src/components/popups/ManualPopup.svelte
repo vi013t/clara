@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DataEntry } from "../../api/data/dataset.svelte";
+	import icon from "../../assets/images/icon.png";
 	import BugIcon from "../icons/BugIcon.svelte";
 	import DiceIcon from "../icons/DiceIcon.svelte";
 	import GraphIcon from "../icons/GraphIcon.svelte";
@@ -9,7 +9,6 @@
 	import PageIcon from "../icons/PageIcon.svelte";
 	import ParagraphIcon from "../icons/ParagraphIcon.svelte";
 	import PencilIcon from "../icons/PencilIcon.svelte";
-	import PersonIcon from "../icons/PersonIcon.svelte";
 	import PlugIcon from "../icons/PlugIcon.svelte";
 	import PrivacyIcon from "../icons/PrivacyIcon.svelte";
 	import RulerIcon from "../icons/RulerIcon.svelte";
@@ -17,9 +16,7 @@
 	import SproutIcon from "../icons/SproutIcon.svelte";
 	import TreeIcon from "../icons/TreeIcon.svelte";
 	import VersionControlIcon from "../icons/VersionControlIcon.svelte";
-	import HierarchyView from "../views/HierarchyView.svelte";
 	import Popup from "./Popup.svelte";
-	import icon from "../../assets/images/icon.png";
 
 	let popup: Popup;
 
@@ -56,9 +53,9 @@
 				<TreeIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 				<span>Interface</span>
 			</button>
-			<button onmousedown={setView("datasets")}>
+			<button onmousedown={setView("groups")}>
 				<SpreadsheetIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Datasets</span>
+				<span>Groups</span>
 			</button>
 			<button onmousedown={setView("templates")}>
 				<PackageIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
@@ -158,57 +155,17 @@
 					You can think of a pane like a window&mdash; It's its own little workspace with tabs and settings. Panes are divided into
 					multiple
 					<i>tabs</i>
-					. Each tab holds one dataset or editor&mdash;don't worry about those right now, we'll talk more about that later. Panes can
+					. Each tab holds one group or editor&mdash;don't worry about those right now, we'll talk more about that later. Panes can
 					be infinitely split horizontally or vertically into more panes.
 				</p>
-			{:else if view === "datasets"}
-				<h1>Datasets</h1>
-
-				<p>
-					The heart of Wallflower projects are <i>datasets.</i>
-					Datasets are, well, sets of data. You can think of it as a list of things. For example, most standard Wallflower projects
-					will have datasets for characters, plot events, and locations.
-				</p>
-
-				<p>
-					Datasets are represented as a <i>tree.</i>
-					This just means that your items can be grouped together, and your groups can be grouped together, and those groups can be
-					grouped together, and&mdash;well, you get the point. This helps keep things organized. For example, lets say we have a Characters
-					dataset. We might make separate groups for main characters and side characters. Within our side characters group, we might
-					have separate groups for different friend groups. That might look something like this:
-				</p>
-
-				<div class="tree">
-					<HierarchyView
-						demo
-						tree={DataEntry.node("Characters", [
-							DataEntry.node("Main Characters", [DataEntry.node("Harry"), DataEntry.node("Hermione"), DataEntry.node("Ron")]),
-							DataEntry.node("Side Characters", [
-								DataEntry.node("Professors", [DataEntry.node("Dumbledore"), DataEntry.node("Snape")]),
-								DataEntry.node("Students", [DataEntry.node("Seamus"), DataEntry.node("Neville"), DataEntry.node("Draco")]),
-							]),
-						])}
-						LeafIcon={PersonIcon}
-					/>
-				</div>
-
-				<p>
-					This is called the <i>hierarchy view.</i>
-					We'll talk more about views in the next section, but they're basically just different ways of displaying the same data.
-				</p>
-
-				<p>
-					There's a lot of datasets you'll find yourself using over and over&mdash;characters, events, locations, etc. To assist
-					with this, Wallflower comes with <i>templates</i>
-					that have prebuilt dataset outlines. You can also create and save your own templates with your personal workflows. We'll talk
-					more about templates later.
-				</p>
+			{:else if view === "groups"}
+				<h1>Groups</h1>
 
 				<h1>Attributes &amp; Entries</h1>
 
 				<p>
-					Datasets hold <i>entries.</i>
-					An entry is just a thing in the dataset. For example, in our characters dataset, "Harry", "Ron", and "Snape" are all entries.
+					Groups hold <i>items.</i>
+					An entry is just a thing in the group. For example, in our characters group, "Harry", "Ron", and "Snape" are all entries.
 					"Main Characters" and "Professors", for example, are
 					<i>not</i>
 					entries&mdash;they're groups. The difference is that entries hold data attached to them called
@@ -824,12 +781,6 @@
 </Popup>
 
 <style>
-	.tree {
-		margin-left: auto;
-		margin-right: auto;
-		width: 50%;
-	}
-
 	.title {
 		border-bottom: 1px solid #313244;
 		padding-bottom: 1rem;

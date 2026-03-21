@@ -1,26 +1,22 @@
 <script lang="ts">
-	import type { IconComponent } from "../../api/ui/icons.svelte";
-	import ContextMenu from "../menus/ContextMenu.svelte";
-	import ArrowIcon from "../icons/ArrowIcon.svelte";
-	import PackageIcon from "../icons/PackageIcon.svelte";
-	import HierarchyView from "./HierarchyView.svelte";
-	import CircledPlusIcon from "../icons/CircledPlusIcon.svelte";
-	import TrashIcon from "../icons/TrashIcon.svelte";
-	import RenameIcon from "../icons/RenameIcon.svelte";
-	import type { DataEntry } from "../../api/data/dataset.svelte";
-	import type { TreeNode } from "../../api/data/graph/tree.svelte";
+	import type { Node } from "../../api/data/database.svelte";
 	import { Project } from "../../api/project.svelte";
+	import ArrowIcon from "../icons/ArrowIcon.svelte";
+	import CircledPlusIcon from "../icons/CircledPlusIcon.svelte";
+	import PackageIcon from "../icons/PackageIcon.svelte";
+	import RenameIcon from "../icons/RenameIcon.svelte";
+	import TrashIcon from "../icons/TrashIcon.svelte";
+	import ContextMenu from "../menus/ContextMenu.svelte";
+	import HierarchyView from "./HierarchyView.svelte";
 
 	let {
 		tree,
-		LeafIcon,
 		hideRoot = false,
 		subtree = false,
 		demo = false,
 		rightClick = onRightClick,
 	}: {
-		tree: TreeNode<DataEntry>;
-		LeafIcon: IconComponent;
+		tree?: Node;
 		hideRoot?: boolean;
 		subtree?: boolean;
 		demo?: boolean;
@@ -29,6 +25,8 @@
 
 	// svelte-ignore state_referenced_locally
 	let expanded = $state(hideRoot || demo);
+	// svelte-ignore state_referenced_locally
+	if (!tree) tree = Project.get()!.database;
 
 	function toggle(event: MouseEvent) {
 		if (event.button !== 0) return;
@@ -59,20 +57,14 @@
 <section bind:this={nodeElement}>
 	{#if !hideRoot || subtree}
 		<button class="node" onmousedown={toggle} oncontextmenu={rightClick}>
-			{#if tree.isGroup}
+			{#if tree.isBranch()}
 				<PackageIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 			{:else}
-				<LeafIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+				<tree.icon.component stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 			{/if}
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<span
-				class="node-name"
-				contenteditable
-				bind:textContent={tree.data.name}
-				onkeypress={onNameKeypress}
-				spellcheck="false"
-			></span>
-			{#if tree.isGroup}
+			<span class="node-name" contenteditable bind:textContent={tree.name} onkeypress={onNameKeypress} spellcheck="false"></span>
+			{#if tree.isBranch()}
 				<ArrowIcon
 					stroke="var(--arrow)"
 					style="width: 1rem; transition: rotate 0.1s; height: 1rem; rotate: {expanded ? '180deg' : '90deg'};"
@@ -87,8 +79,8 @@
 			style:border-left={hideRoot ? "none" : "1px solid #45475a"}
 			style:margin-top={subtree || !expanded ? "0px" : "0.5rem"}
 		>
-			{#each tree.children as child (child.data.id)}
-				<li><HierarchyView {demo} tree={child} {LeafIcon} subtree {rightClick} /></li>
+			{#each tree.children as child (child.id)}
+				<li><HierarchyView {demo} tree={child} subtree {rightClick} /></li>
 			{/each}
 		</ul>
 	{/if}

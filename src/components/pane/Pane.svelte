@@ -15,8 +15,9 @@
 </script>
 
 <script lang="ts">
-	import { DataEntry } from "../../api/data/dataset.svelte";
-	import { DataTab, EditorTab, TabList } from "../../api/ui/tab.svelte";
+	import type { DocumentContent } from "../../api/data/attribute/attribute.svelte";
+
+	import { EditorTab, GroupTab, TabList } from "../../api/ui/tab.svelte";
 	import ManualPopup from "../popups/ManualPopup.svelte";
 	import GraphView from "../views/GraphView.svelte";
 	import HierarchyView from "../views/HierarchyView.svelte";
@@ -70,8 +71,8 @@
 	}
 	let isMasterPaneAlive = $state(true);
 
-	function openEditor(entryID: number, fieldName: string) {
-		let tab = new EditorTab(DataEntry.fromID(entryID)!.get(fieldName));
+	function openEditor(content: DocumentContent) {
+		let tab = new EditorTab(content);
 		tabline.appendTab(tab);
 		selectedTabID = tab.id;
 	}
@@ -100,12 +101,12 @@
 		<div class="content" style:background>
 			{#if tab instanceof EditorTab && tab.id === selectedTabID}
 				<Editor bind:doc={tab.content} />
-			{:else if tab instanceof DataTab}
+			{:else if tab instanceof GroupTab}
 				<div class="view-container" style="display: {tab.id === selectedTabID ? 'block' : 'none'}">
 					{#if tab.view === "hierarchy"}
-						<HierarchyView hideRoot tree={tab.dataset.data.ref()} LeafIcon={tab.dataset.icon} />
+						<HierarchyView hideRoot />
 					{:else if tab.view === "spreadsheet"}
-						<SpreadsheetView {openEditor} dataset={tab.dataset} />
+						<SpreadsheetView {openEditor} group={tab.group} />
 					{:else if tab.view === "graph"}
 						<GraphView />
 					{/if}

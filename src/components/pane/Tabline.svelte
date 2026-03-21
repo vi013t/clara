@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import type { Dataset } from "../../api/data/dataset.svelte";
+	import type { Group } from "../../api/data/database.svelte";
 	import { Project } from "../../api/project.svelte";
-	import { DataTab, EditorTab, Tab, type TabList } from "../../api/ui/tab.svelte";
+	import { EditorTab, GroupTab, Tab, type TabList } from "../../api/ui/tab.svelte";
 	import { views, type View } from "../../api/ui/views.svelte";
-	import { refs } from "../../api/util/Clone.svelte";
 	import ArrowIcon from "../icons/ArrowIcon.svelte";
 	import CircledPlusIcon from "../icons/CircledPlusIcon.svelte";
 	import CloseIcon from "../icons/CloseIcon.svelte";
@@ -46,10 +45,10 @@
 		onclose();
 	}
 
-	function createTab(dataset: Dataset, view?: View) {
+	function createTab(group: Group, view?: View) {
 		return function () {
 			newTabContextMenu.close();
-			let tab = new DataTab(dataset);
+			let tab = new GroupTab(group);
 			tabs.appendTab(tab);
 			selectedTabID = tab.id;
 		};
@@ -101,12 +100,12 @@
 	function setView(name: View) {
 		return function () {
 			tabContextMenu.close();
-			currentTab<DataTab>().view = name;
+			currentTab<GroupTab>().view = name;
 		};
 	}
 
 	function currentView(): View {
-		return currentTab<DataTab>().view;
+		return currentTab<GroupTab>().view;
 	}
 
 	let tabline: HTMLElement | null = $state(null);
@@ -126,14 +125,14 @@
 		}px`;
 	});
 
-	function changeDataset(dataset: Dataset, view?: View) {
+	function changeTabGroup(group: Group, view?: View) {
 		return function () {
-			dataset.data.ref().thanksgivingDinner();
-			dataset.data.ref().cutOff();
-			if (currentTab() instanceof DataTab) {
-				currentTab<DataTab>().dataset = dataset;
+			group.thanksgivingDinner();
+			group.cutOff();
+			if (currentTab() instanceof GroupTab) {
+				currentTab<GroupTab>().group = group;
 			} else {
-				let newTab = new DataTab(dataset);
+				let newTab = new GroupTab(group);
 				tabs.replace(currentTab().id, newTab);
 				selectedTabID = newTab.id;
 			}
@@ -150,7 +149,7 @@
 
 <div class="tabs" bind:this={tabline}>
 	{#each tabs.tabs as tab, index (tab.id)}
-		{@const Icon = tab instanceof EditorTab ? PencilIcon : tab instanceof DataTab ? tab.dataset.icon : undefined}
+		{@const Icon = tab instanceof EditorTab ? PencilIcon : tab instanceof GroupTab ? tab.group.icon.component : undefined}
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div
@@ -163,7 +162,7 @@
 		>
 			<span>
 				<Icon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-				{tab instanceof EditorTab ? "Editor" : tab instanceof DataTab ? tab.dataset.name : "Empty"}
+				{tab instanceof EditorTab ? "Editor" : tab instanceof GroupTab ? tab.group.name : "Empty"}
 			</span>
 			<button onmousedown={closeTab(tab.id)}>
 				<CloseIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
@@ -175,10 +174,10 @@
 			<PlusIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 		</button>
 		<ContextMenu bind:this={newTabContextMenu} top="100%" left="0px">
-			{#each refs(Project.get()!.database.ref().datasets.ref()) as dataset}
-				<button onmousedown={createTab(dataset)}>
-					<dataset.icon stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
-					<span>{dataset.name}</span>
+			{#each Project.get()!.database.children.filter(child => child.isBranch()) as group}
+				<button onmousedown={createTab(group)}>
+					<group.icon.component stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
+					<span>{group.name}</span>
 				</button>
 			{/each}
 			<hr />
@@ -222,15 +221,15 @@
 		<span>Open dataset</span>
 
 		<ContextMenu>
-			{#each refs(Project.get()!.database.ref().datasets.ref()) as dataset}
+			{#each Project.get()!.database.children.filter(child => child.isBranch()) as group}
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
-				<div onmousedown={changeDataset(dataset)}>
-					<dataset.icon stroke={"#cdd6f4"} style="width: 0.9rem; height: 0.9rem;" />
-					<span>{dataset.name}</span>
+				<div onmousedown={changeTabGroup(group)}>
+					<group.icon.component stroke={"#cdd6f4"} style="width: 0.9rem; height: 0.9rem;" />
+					<span>{group.name}</span>
 
 					<ContextMenu>
 						{#each Object.entries(views) as [viewName, info]}
-							<div onmousedown={changeDataset(dataset, viewName as View)}>
+							<div onmousedown={changeTabGroup(group, viewName as View)}>
 								<info.icon stroke={"#cdd6f4"} style="width: 1rem; height: 1rem;" />
 								<span>As {viewName}</span>
 

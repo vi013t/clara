@@ -1,32 +1,16 @@
 <script lang="ts">
-	import { PrimitiveAttribute, type AttributeContext } from "../../api/data/attribute.svelte";
+	import { DocumentContent, type AttributeContext } from "../../api/data/attribute/attribute.svelte";
 
 	let {
 		openEditor,
 		context,
 		value = $bindable(),
-	}: { value: PrimitiveAttribute<string> | null; context: AttributeContext; openEditor: () => void } = $props();
+	}: { value: DocumentContent; context: AttributeContext; openEditor: (doc: DocumentContent) => void } = $props();
 </script>
 
-{#if context === "settings"}
-	<textarea
-		bind:value={() => value?.value, content => (value = content ? new PrimitiveAttribute<string>(content) : null)}
-	></textarea>
-{/if}
-<button class={{ "settings-button": context === "settings" }} onmousedown={openEditor}>Open in Editor</button>
+<button class={{ "settings-button": context === "settings" }} onmousedown={() => openEditor(value)}>Open in Editor</button>
 
 <style>
-	textarea {
-		background-color: #181825;
-		resize: none;
-		width: 100%;
-		height: 10rem;
-		margin-bottom: 1rem;
-		padding: 0.5rem;
-		color: #cdd6f4;
-		border-radius: 0.25rem;
-	}
-
 	.settings-button {
 		width: fit-content;
 		padding: 0.5rem;

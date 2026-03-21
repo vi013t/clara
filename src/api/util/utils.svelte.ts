@@ -20,3 +20,13 @@ export function mapValues<Input, Output>(
 		.map(([key, value]) => ({ [key]: map(value) }))
 		.reduce((accumulator, current) => ({ ...accumulator, ...current }));
 }
+
+export function todo(task?: string): never {
+	throw `Unimplemented task` + (task ? `: ${task}` : "");
+}
+
+export type Fields<T, Base = object> = {
+	[K in Exclude<keyof T, keyof Base> as T[K] extends Function ? never : K]: T[K];
+};
+
+export type Optional<Base, Values extends keyof Base> = Omit<Base, Values> & Partial<Pick<Base, Values>>;

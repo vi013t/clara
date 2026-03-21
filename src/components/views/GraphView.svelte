@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import type { DataEntry } from "../../api/data/dataset.svelte";
-	import type { TreeNode } from "../../api/data/graph/tree.svelte";
+	import type { Node } from "../../api/data/database.svelte";
 	import { Point2D, type Point2DLike } from "../../api/math/matrix.svelte";
 	import { Project } from "../../api/project.svelte";
 	import { Camera } from "../../api/ui/camera.svelte";
@@ -23,20 +22,20 @@
 	import LittleButton from "../widgets/LittleButton.svelte";
 	import CameraView from "./CameraView.svelte";
 
-	let tree = Project.get()!.database.ref().asTree();
+	let tree = Project.get()!.database;
 	let nodes = $derived(tree.dfs());
-	let items = $derived(nodes.filter(node => node.isItem));
-	let groups = $derived(nodes.filter(node => node.isGroup));
+	let items = $derived(nodes.filter(node => node.isLeaf()));
+	let groups = $derived(nodes.filter(node => node.isBranch()));
 
-	let edges = $derived(Project.get()!.database.ref().relations());
-	let edgeElements = $derived(
-		edges.map(edge =>
-			createEdge(
-				tree.find(node => node.data.id === edge.from)!.outline.shape.center,
-				tree.find(node => node.data.id === edge.to)!.outline.shape.center,
-			),
-		),
-	);
+	// let edges = $derived(Project.get()!.database.relations());
+	// let edgeElements = $derived(
+	// 	edges.map(edge =>
+	// 		createEdge(
+	// 			tree.find(node => node.data.id === edge.from)!.outline.shape.center,
+	// 			tree.find(node => node.data.id === edge.to)!.outline.shape.center,
+	// 		),
+	// 	),
+	// );
 
 	let nodeRadius = 8;
 
@@ -88,9 +87,9 @@
 		defs.appendChild(marker);
 		edgesSVG.appendChild(defs);
 
-		for (let child of edgeElements.flat()) {
-			edgesSVG.appendChild(child);
-		}
+		// for (let child of edgeElements.flat()) {
+		// 	edgesSVG.appendChild(child);
+		// }
 	});
 
 	let edgesSVG = $state(assignedLater<SVGElement>());
@@ -101,7 +100,7 @@
 		edgesSVG.style.height = `${parentBox.height}px`;
 	});
 
-	let clickedNode: TreeNode<DataEntry> | null = $state(null);
+	let clickedNode: Node | null = $state(null);
 
 	let camera = $state(new Camera());
 
@@ -155,7 +154,7 @@
 						oncontextmenu={event => groupContextMenu.openAtMouse(event)}
 						onmousedown={() => (clickedNode = group)}
 					>
-						{group.data.name}
+						{group.name}
 					</span>
 				</div>
 			{/if}
@@ -166,7 +165,7 @@
 				onmousedown={() => (clickedNode = item)}
 				class="node"
 				style:background-color={clickedNode === item ? "#f38ba8" : undefined}
-				style:--text="'{item.data.name}'"
+				style:--text="'{item.attributes.name}'"
 				style:left="{item.outline.shape.center.x}px"
 				style:top="{item.outline.shape.center.y}px"
 				style:width="{item.outline.shape.radius * 2}px"

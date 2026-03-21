@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { fieldValueTypes, type Attribute } from "../../api/data/attribute.svelte";
+	import { fieldValueTypes, type AttributeDefinition } from "../../api/data/attribute/attribute.svelte";
+	import type { Group } from "../../api/data/database.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
 	import ItalicIcon from "../icons/ItalicIcon.svelte";
 	import PrivacyIcon from "../icons/PrivacyIcon.svelte";
@@ -9,7 +10,7 @@
 	import ConfirmationPopup from "./ConfirmationPopup.svelte";
 	import Popup from "./Popup.svelte";
 
-	let { attribute = $bindable() }: { attribute: Attribute | null } = $props();
+	let { owner, attribute = $bindable() }: { owner: Group; attribute: AttributeDefinition | null } = $props();
 
 	function reset() {}
 
@@ -73,7 +74,7 @@
 	bind:this={confirmDeletePopup}
 	title="Delete field?"
 	onconfirm={() => {
-		attribute!.delete();
+		owner.deleteAttributeDefinition(attribute!);
 		close();
 	}}
 >

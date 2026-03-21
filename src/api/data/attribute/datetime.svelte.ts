@@ -1,4 +1,4 @@
-import { assignedLater } from "../util/utils.svelte";
+import { assignedLater } from "../../util/utils.svelte";
 
 const months = [
 	"january",

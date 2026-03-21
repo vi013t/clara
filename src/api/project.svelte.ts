@@ -1,21 +1,21 @@
 import { invoke } from "@tauri-apps/api/core";
-import { Database, type BackendDatabase } from "./data/dataset.svelte";
-import { ProjectBase } from "./userdata/template.svelte";
-import { assignedLater } from "./util/utils.svelte";
 import { open } from "@tauri-apps/plugin-dialog";
+import type { Database } from "./data/database.svelte";
 import { cache, getFromCache } from "./userdata/cache.svelte";
+import { assignedLater, todo } from "./util/utils.svelte";
 
-export class Project extends ProjectBase {
-	private location: string = $state(assignedLater());
+export class Project {
+	private location = $state(assignedLater<string>());
+	public database = $state(assignedLater<Database>());
 
-	public constructor({ name, location, database }: { name: string; location: string; database: Database }) {
-		super({ name, database });
+	public constructor({ location, database }: { name: string; location: string; database: Database }) {
 		this.location = location;
+		this.database = database;
 	}
 
 	public static set(project: Project): void {
 		currentProject = project;
-		cache({ lastProjectPath: `${project.location}/${project.name}` });
+		cache({ lastProjectPath: `${project.location}/${project.database.name}` });
 	}
 
 	public static get(): Project | null {
@@ -23,19 +23,11 @@ export class Project extends ProjectBase {
 	}
 
 	public static fromBackend(project: BackendProject): Project {
-		return new Project({
-			name: project.name,
-			location: project.location,
-			database: Database.fromBackend(project.database),
-		});
+		todo("deserialize project");
 	}
 
 	public toBackend(): BackendProject {
-		return {
-			name: this.name,
-			location: this.location,
-			database: this.database.ref().toBackend(),
-		};
+		todo("serialize project");
 	}
 
 	public static async openFromLocation(location: string) {
@@ -74,7 +66,6 @@ export class Project extends ProjectBase {
 export type BackendProject = {
 	name: string;
 	location: string;
-	database: BackendDatabase;
 };
 
 let currentProject: Project | null = $state(null);

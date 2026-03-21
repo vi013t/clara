@@ -1,18 +1,15 @@
 <script lang="ts">
-	import Popup from "./Popup.svelte";
+	import type { Database } from "../../api/data/database.svelte";
+	import { userData } from "../../api/userdata/cache.svelte";
+	import ArrowIcon from "../icons/ArrowIcon.svelte";
 	import ColorPaletteIcon from "../icons/ColorPaletteIcon.svelte";
-	import GearIcon from "../icons/GearIcon.svelte";
 	import DiceIcon from "../icons/DiceIcon.svelte";
-	import ParagraphIcon from "../icons/ParagraphIcon.svelte";
-	import PlugIcon from "../icons/PlugIcon.svelte";
+	import GearIcon from "../icons/GearIcon.svelte";
 	import KeyboardKeyIcon from "../icons/KeyboardKeyIcon.svelte";
 	import PackageIcon from "../icons/PackageIcon.svelte";
-	import ArrowIcon from "../icons/ArrowIcon.svelte";
-	import { Template } from "../../api/userdata/template.svelte";
-	import DatasetEditor from "../editors/DatasetEditor.svelte";
-	import { Dataset } from "../../api/data/dataset.svelte";
-	import { flip } from "svelte/animate";
-	import { userData } from "../../api/userdata/cache.svelte";
+	import ParagraphIcon from "../icons/ParagraphIcon.svelte";
+	import PlugIcon from "../icons/PlugIcon.svelte";
+	import Popup from "./Popup.svelte";
 
 	let popup: Popup;
 
@@ -40,9 +37,9 @@
 		};
 	}
 
-	let editingTemplate: Template | null = $state(null);
+	let editingTemplate: Database | null = $state(null);
 
-	function editTemplate(template: Template) {
+	function editTemplate(template: Database) {
 		return function () {
 			editingTemplate = template;
 			setView("template-editor")();
@@ -108,22 +105,12 @@
 						<h2>Name</h2>
 						<div class="name">
 							<button>
-								<editingTemplate.icon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+								<editingTemplate.icon.component stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 							</button>
 							<input bind:value={editingTemplate.name} />
 						</div>
 
-						<h2>Datasets</h2>
-						{#each editingTemplate.database.ref().datasets.ref() as dataset, index (dataset.ref().id)}
-							<div animate:flip={{ duration: 200 }}>
-								<DatasetEditor
-									bind:dataset={
-										() => editingTemplate!.database.ref().datasets.ref()[index].ref() as Dataset,
-										value => editingTemplate!.database.ref().datasets.ref()[index].overwrite(value)
-									}
-								/>
-							</div>
-						{/each}
+						<h2>Groups &amp; Items</h2>
 					</div>
 				{/if}
 			{/if}

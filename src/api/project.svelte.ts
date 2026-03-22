@@ -69,5 +69,3 @@ export type BackendProject = {
 };
 
 let currentProject: Project | null = $state(null);
-let path = getFromCache("lastProjectPath");
-if (path) Project.openFromLocation(path);

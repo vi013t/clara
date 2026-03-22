@@ -9,6 +9,7 @@
 	import Select from "../input/Select.svelte";
 	import Popup from "./Popup.svelte";
 	import SettingsPopup from "./SettingsPopup.svelte";
+	import { asyncFn } from "../../api/errors.svelte";
 
 	let popup: Popup;
 
@@ -45,51 +46,57 @@
 		startedTypingLocation = true;
 	}
 
-	async function pickLocation() {
-		const selected = await chooseFile({
-			directory: true,
-			multiple: false,
-			title: "Select a directory",
-		});
+	const pickLocation = asyncFn(
+		async function pickLocation() {
+			const selected = await chooseFile({
+				directory: true,
+				multiple: false,
+				title: "Select a directory",
+			});
 
-		startedTypingLocation = true;
+			startedTypingLocation = true;
 
-		// Directory Chosen
-		if (typeof selected === "string") {
-			location = selected;
-		}
+			// Directory Chosen
+			if (typeof selected === "string") {
+				location = selected;
+			}
 
-		// No directory chosen
-		else {
-			console.log("No directory selected");
-		}
-	}
+			// No directory chosen
+			else {
+				console.log("No directory selected");
+			}
+		},
+		import.meta.url,
+	);
 
 	let hasErrors = $derived(!!nameError || !!locationError);
 	let triedToCreate = $state(false);
 
-	async function createProject() {
-		if (hasErrors) {
-			triedToCreate = true;
-			return;
-		}
+	const createProject = asyncFn(
+		async function createProject() {
+			if (hasErrors) {
+				triedToCreate = true;
+				return;
+			}
 
-		let currentProject = Project.get();
-		if (currentProject) await invoke("save_project", { project: currentProject.toBackend() });
+			let currentProject = Project.get();
+			if (currentProject) await invoke("save_project", { project: currentProject.toBackend() });
 
-		let project = new Project({
-			name,
-			location,
-			database: template, // CLONE HERE
-		});
+			let project = new Project({
+				name,
+				location,
+				database: template, // CLONE HERE
+			});
 
-		Project.set(project);
-		let backendProject = project.toBackend();
+			Project.set(project);
+			let backendProject = project.toBackend();
 
-		await invoke("new_project", { project: backendProject });
+			await invoke("new_project", { project: backendProject });
 
-		popup?.close();
-	}
+			popup?.close();
+		},
+		import.meta.url,
+	);
 
 	function reset() {
 		location = "";

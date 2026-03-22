@@ -70,6 +70,11 @@ import WordCountIcon from "../../components/icons/WordCountIcon.svelte";
 
 import type { Component } from "svelte";
 import type { SVGAttributes } from "svelte/elements";
+import { Debug } from "../util/log";
+import LockIcon from "../../components/icons/LockIcon.svelte";
+import ScaleIcon from "../../components/icons/ScaleIcon.svelte";
+import UnlockedIcon from "../../components/icons/UnlockedIcon.svelte";
+import ReticleIcon from "../../components/icons/ReticleIcon.svelte";
 
 export type IconProps = { stroke?: string; scale?: number } & SVGAttributes<EventTarget>;
 
@@ -113,6 +118,7 @@ const icons = [
 	{ name: "LicenseIcon", categories: [], component: LicenseIcon },
 	{ name: "LineSpacingIcon", categories: [], component: LineSpacingIcon },
 	{ name: "LocationIcon", categories: [], component: LocationIcon },
+	{ name: "LockIcon", categories: [], component: LockIcon },
 	{ name: "MarkdownIcon", categories: [], component: MarkdownIcon },
 	{ name: "MinimizeIcon", categories: [], component: MinimizeIcon },
 	{ name: "MoonIcon", categories: [], component: MoonIcon },
@@ -129,8 +135,10 @@ const icons = [
 	{ name: "PyramidIcon", categories: [], component: PyramidIcon },
 	{ name: "QuestionMarkIcon", categories: [], component: QuestionMarkIcon },
 	{ name: "RenameIcon", categories: [], component: RenameIcon },
+	{ name: "ReticleIcon", categories: [], component: ReticleIcon },
 	{ name: "RulerIcon", categories: [], component: RulerIcon },
 	{ name: "SaveIcon", categories: [], component: SaveIcon },
+	{ name: "ScaleIcon", categories: [], component: ScaleIcon },
 	{ name: "SevenPointStructureIcon", categories: [], component: SevenPointStructureIcon },
 	{ name: "SplitHorizontalIcon", categories: [], component: SplitHorizontalIcon },
 	{ name: "SpreadsheetIcon", categories: [], component: SpreadsheetIcon },
@@ -144,6 +152,7 @@ const icons = [
 	{ name: "TreeIcon", categories: [], component: TreeIcon },
 	{ name: "UnderlineIcon", categories: [], component: UnderlineIcon },
 	{ name: "UndoIcon", categories: [], component: UndoIcon },
+	{ name: "UnlockedIcon", categories: [], component: UnlockedIcon },
 	{ name: "VersionControlIcon", categories: [], component: VersionControlIcon },
 	{ name: "WeightScaleIcon", categories: [], component: WeightScaleIcon },
 	{ name: "WheelIcon", categories: [], component: WheelIcon },
@@ -171,6 +180,33 @@ export type IconIdentifier = IconName | IconComponent | Icon;
 
 export function getIcon(identifier: IconIdentifier): Icon {
 	if (typeof identifier === "string") return icons.find(icon => icon.name === identifier)!;
-	if ("name" in identifier) return icons.find(icon => icon.name === identifier.name)!;
+	if ("categories" in identifier) return icons.find(icon => icon.name === identifier.name)!;
 	return icons.find(icon => icon.component === identifier)!;
+}
+
+Debug.test(getIcon("GearIcon"), "Can get gear icon by name.", import.meta.url);
+Debug.test(getIcon(GearIcon), "Can get gear icon by component.", import.meta.url);
+
+// Ensure all icons are registered
+const modules = import.meta.glob("../../components/icons/*.svelte", { eager: true });
+for (const path in modules) {
+	let component = (modules[path] as { default: Component }).default;
+	const iconName = path
+		.split("/")
+		.pop()!
+		.replace(/\.svelte$/, "");
+	if (!getIcon(iconName as IconName)) {
+		if (iconName === "UnregisteredIcon") {
+			Debug.success(
+				`The icon "UnregisteredIcon" has not been registered. This icon is not used and acts as a test that registry validation correctly detects unregistered icons.`,
+				import.meta.url,
+			);
+		} else {
+			Debug.warn(
+				`The icon "${iconName}" has not been registered. This may cause issues if the icon is used. Adding a default registry entry for it.`,
+				import.meta.url,
+			);
+			icons.push({ name: iconName as IconName, categories: [], component: component as IconComponent } as any);
+		}
+	}
 }

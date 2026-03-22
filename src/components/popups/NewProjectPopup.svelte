@@ -79,19 +79,18 @@
 				return;
 			}
 
-			let currentProject = Project.get();
-			if (currentProject) await invoke("save_project", { project: currentProject.toBackend() });
+			// let currentProject = Project.get();
+			// if (currentProject) await invoke("save_project", { project: currentProject.serialize() });
 
 			let project = new Project({
-				name,
 				location,
-				database: template, // CLONE HERE
+				database: template, // todo: clone this
 			});
 
 			Project.set(project);
-			let backendProject = project.toBackend();
+			let serializedProject = project.serialize();
 
-			await invoke("new_project", { project: backendProject });
+			await invoke("new_project", { project: serializedProject });
 
 			popup?.close();
 		},

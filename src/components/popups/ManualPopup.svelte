@@ -189,7 +189,7 @@
 
 				<p>
 					Generally you'll be editing your attributes in the <i>spreadsheet view.</i>
-					One notable exception to this is any long text data with formatting like bold and italics, which can be edited in the
+					One notable exception to this is any longText data with formatting like bold and italics, which can be edited in the
 					<i>editor</i>
 					panel. This is where your actual writing will take place.
 				</p>

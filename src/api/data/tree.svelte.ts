@@ -11,9 +11,22 @@ export abstract class TreeNode<Branch extends TreeBranch<Branch, Leaf>, Leaf ext
 
 	private parent_?: Branch = $state(assignedLater());
 	private outline_ = $state(assignedLater<GraphOutline<Circle>>());
+
+	/**
+	 * A unique numeric ID for this tree node. Some notes on this:
+	 *
+	 * - Every tree node has a unique ID, **except tree nodes from differen't trees**. Tree nodes from
+	 * different trees **may or may not** have the same ID.
+	 * - IDs tell you nothing about the structure or data of the node&mdash;the node with ID
+	 * 0 is not necessarily the root, for example, and a node with ID 1 is not necessarily its child
+	 * - IDs are not reused when nodes are deleted in the current implementation. The ID of a deleted
+	 * node remains a null pointer forever.
+	 * - No IDs are guaranteed to exist&mdash;Just because you have a reference to a node of ID 12 doesn't
+	 * mean there exists one with ID 11.
+	 */
 	public readonly id: number;
 
-	public constructor() {
+	protected constructor() {
 		this.id = nextID++;
 	}
 
@@ -88,12 +101,12 @@ export abstract class TreeNode<Branch extends TreeBranch<Branch, Leaf>, Leaf ext
 		this.applyLayout(targetRadius, startCenter);
 	}
 
-	private setColors() {
+	public resetColors() {
 		if (!this.parent) {
 			this.outline_.color = Color.hex("#181825");
 			this.outline_.isVisible = false;
 		} else this.outline_.color = this.parent.outline_.color.darken(2);
-		this.children.forEach(child => child.setColors());
+		this.children.forEach(child => (child as unknown as TreeNode<Branch, Leaf>).resetColors());
 	}
 
 	/**
@@ -162,7 +175,7 @@ export abstract class TreeNode<Branch extends TreeBranch<Branch, Leaf>, Leaf ext
 	private generateOutline(): void {
 		if (this.outline_) return;
 		this.root().resetLayout();
-		this.root().setColors();
+		this.root().resetColors();
 	}
 
 	public get outline(): GraphOutline<Circle> {
@@ -251,13 +264,8 @@ export abstract class TreeNode<Branch extends TreeBranch<Branch, Leaf>, Leaf ext
 		return 1 + this.children.map(child => child.height).reduce((max, height) => Math.max(max, height), 0);
 	}
 
-	public isLeaf(): this is Leaf {
-		return this.children.length === 0;
-	}
-
-	public isBranch(): this is Branch {
-		return !this.isLeaf();
-	}
+	public abstract isLeaf(): this is Leaf;
+	public abstract isBranch(): this is Branch;
 
 	public dfs(): (Branch | Leaf)[] {
 		let visited: (Branch | Leaf)[] = [];
@@ -273,6 +281,16 @@ export abstract class TreeNode<Branch extends TreeBranch<Branch, Leaf>, Leaf ext
 		if (this.isLeaf()) visited.push(this);
 		this.children.forEach(child => {
 			let childLeaves = child.isBranch() ? child.dfsLeaves() : [child];
+			visited = [...visited, ...childLeaves];
+		});
+		return visited;
+	}
+
+	public dfsBranches(): Branch[] {
+		let visited: Branch[] = [];
+		if (this.isBranch()) visited.push(this);
+		this.children.forEach(child => {
+			let childLeaves = child.isBranch() ? child.dfsBranches() : [];
 			visited = [...visited, ...childLeaves];
 		});
 		return visited;
@@ -305,6 +323,14 @@ export abstract class TreeLeaf<Branch extends TreeBranch<Branch, Leaf>, Leaf ext
 	public get self(): Leaf {
 		return this as unknown as Leaf;
 	}
+
+	public isLeaf(): this is Leaf {
+		return true;
+	}
+
+	public isBranch(): this is Branch {
+		return false;
+	}
 }
 
 export abstract class TreeBranch<Branch extends TreeBranch<Branch, Leaf>, Leaf extends TreeLeaf<Branch, Leaf>> extends TreeNode<
@@ -314,7 +340,7 @@ export abstract class TreeBranch<Branch extends TreeBranch<Branch, Leaf>, Leaf e
 	public leaves: Leaf[] = $state(assignedLater());
 	public branches: Branch[] = $state(assignedLater());
 
-	public constructor(...children: (Branch | Leaf)[]) {
+	protected constructor(...children: (Branch | Leaf)[]) {
 		super();
 		this.branches = children.filter(child => child.isBranch());
 		this.leaves = children.filter(child => child.isLeaf());
@@ -341,5 +367,13 @@ export abstract class TreeBranch<Branch extends TreeBranch<Branch, Leaf>, Leaf e
 
 	public get self(): Branch {
 		return this as unknown as Branch;
+	}
+
+	public isLeaf(): this is Leaf {
+		return false;
+	}
+
+	public isBranch(): this is Branch {
+		return true;
 	}
 }

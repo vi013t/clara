@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AttributeDefinition, DocumentContent as EditorDocument } from "../../api/data/attribute/attribute.svelte";
+	import { AttributeDefinition, RichText as EditorDocument } from "../../api/data/attribute/attribute.svelte";
 	import { Item, type Group } from "../../api/data/database.svelte";
 	import CloseIcon from "../icons/CloseIcon.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
@@ -26,7 +26,7 @@
 	}
 
 	function addColumn() {
-		group.addNewAttributeDefinition(AttributeDefinition.basic("Attribute", "Short text"));
+		group.addNewAttributeDefinition(AttributeDefinition.basic("Attribute", "shortText"));
 		updateAttributes++;
 	}
 
@@ -71,7 +71,7 @@
 		</div>
 	</div>
 	{#key updateAttributes}
-		{#each group.attributes as attribute, index}
+		{#each group.attributeDefinitions as attribute}
 			<div class="column">
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div class="cell" oncontextmenu={event => fieldSettings.openAtMouse(event)}>

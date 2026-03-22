@@ -15,7 +15,7 @@
 </script>
 
 <script lang="ts">
-	import type { DocumentContent } from "../../api/data/attribute/attribute.svelte";
+	import type { RichText } from "../../api/data/attribute/attribute.svelte";
 
 	import { EditorTab, GroupTab, TabList } from "../../api/ui/tab.svelte";
 	import ManualPopup from "../popups/ManualPopup.svelte";
@@ -71,7 +71,7 @@
 	}
 	let isMasterPaneAlive = $state(true);
 
-	function openEditor(content: DocumentContent) {
+	function openEditor(content: RichText) {
 		let tab = new EditorTab(content);
 		tabline.appendTab(tab);
 		selectedTabID = tab.id;

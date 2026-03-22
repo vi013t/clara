@@ -3,6 +3,7 @@
 import type { Cloneable } from "../../util/Clone.svelte";
 import type { Serialize } from "../../util/serialize.svelte";
 import { assignedLater } from "../../util/utils.svelte";
+import type { AttributeTypeName, AttributeTypes, SerializedAttributeValue } from "./attribute.svelte";
 
 export abstract class MeasurementTypeInstance<
 	Standard extends Measurement<Self, Standard, Standard> = any,
@@ -32,7 +33,7 @@ export type Unit<
 	abbreviation(): string;
 };
 
-export type BackendMeasurement = {
+export type SerializedMeasurement = {
 	count: number;
 	units: string;
 };
@@ -41,27 +42,28 @@ export abstract class Measurement<
 	Type extends MeasurementTypeInstance<Standard, Type>,
 	Standard extends Measurement<Type, Standard, Standard> = any,
 	Self extends Measurement<Type, Standard, Self> = any,
->
-	implements Cloneable<Self>, Serialize<BackendMeasurement>
-{
+> implements Serialize<SerializedAttributeValue> {
 	protected count_: number = $state(assignedLater());
 
 	public constructor(value: number) {
 		this.count_ = value;
 	}
 
-	public toBackend(): BackendMeasurement {
+	public serialize(): SerializedAttributeValue {
 		return {
-			count: this.count,
-			units: this.unit().abbreviation(),
+			type: this.type().name() as "length", // will make this typesafe later just tired of all the so-called type masturbation rn
+			[this.type().name() as "length"]: {
+				count: this.count,
+				units: this.unit().abbreviation(),
+			},
 		};
 	}
 
-	public static fromBackend<
+	public static deserialize<
 		Type extends MeasurementTypeInstance<Standard, Type>,
 		Standard extends Measurement<Type, Standard, Standard> = any,
 		Self extends Measurement<Type, Standard, Self> = any,
-	>(measurement: BackendMeasurement): Measurement<Type, Standard, Self> {
+	>(measurement: SerializedMeasurement): Measurement<Type, Standard, Self> {
 		const builder = units[measurement.units as "m"];
 		return new builder(measurement.count) as unknown as Measurement<Type, Standard, Self>;
 	}

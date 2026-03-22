@@ -6,49 +6,14 @@ import ParagraphIcon from "../../../components/icons/ParagraphIcon.svelte";
 import RulerIcon from "../../../components/icons/RulerIcon.svelte";
 import TextIcon from "../../../components/icons/TextIcon.svelte";
 import WeightScaleIcon from "../../../components/icons/WeightScaleIcon.svelte";
+import { todo, unreachable } from "../../errors.svelte";
 import { getIcon, type Icon, type IconComponent } from "../../ui/icons.svelte";
 import { Container, type Cloneable } from "../../util/Clone.svelte";
 import type { Serialize } from "../../util/serialize.svelte";
 import { assignedLater } from "../../util/utils.svelte";
 import type { Group } from "../database.svelte";
-import { Length, Measurement, Weight, type BackendMeasurement } from "./measurement.svelte";
-
-export const fieldValueTypes = [
-	{
-		name: "Short text",
-		icon: TextIcon,
-	},
-	{
-		name: "Long text",
-		icon: ParagraphIcon,
-	},
-	{
-		name: "Number",
-		icon: NumberSignIcon,
-	},
-	{
-		name: "Item",
-		icon: GraphIcon,
-	},
-	{
-		name: "Date",
-		icon: CalendarIcon,
-	},
-	{
-		name: "Color",
-		icon: ColorPaletteIcon,
-	},
-	{
-		name: "Length",
-		icon: RulerIcon,
-	},
-	{
-		name: "Weight",
-		icon: WeightScaleIcon,
-	},
-] as const satisfies { name: string; icon: IconComponent }[];
-
-export type AttributeType = typeof fieldValueTypes extends (infer T)[] ? (T extends { name: string } ? T["name"] : never) : never;
+import { DateTime } from "./datetime.svelte";
+import { Length, Measurement, Weight, type SerializedMeasurement } from "./measurement.svelte";
 
 export class Style implements Cloneable<Style> {
 	bold: boolean = $state(assignedLater());
@@ -105,11 +70,11 @@ export class StyledText implements Cloneable<StyledText> {
 	}
 }
 
-export type BackendDocumentContent = {
+export type SerializedRichText = {
 	parts: { text: string; style: { bold: boolean; italic: boolean } }[];
 };
 
-export class DocumentContent implements Cloneable<DocumentContent>, Serialize<BackendDocumentContent> {
+export class RichText implements Cloneable<RichText>, Serialize<SerializedAttributeValue> {
 	private parts: StyledText[] = $state(assignedLater());
 
 	public constructor(parts?: StyledText[]) {
@@ -117,17 +82,20 @@ export class DocumentContent implements Cloneable<DocumentContent>, Serialize<Ba
 		if (this.parts.length < 1) this.parts = [new StyledText("", new Style({ bold: false, italic: false }))];
 	}
 
-	public toBackend(): BackendDocumentContent {
+	public serialize(): SerializedAttributeValue {
 		return {
-			parts: this.parts.map(part => ({
-				text: part.text,
-				style: { bold: part.style.ref().bold, italic: part.style.ref().italic },
-			})),
+			type: "longText",
+			longText: {
+				parts: this.parts.map(part => ({
+					text: part.text,
+					style: { bold: part.style.ref().bold, italic: part.style.ref().italic },
+				})),
+			},
 		};
 	}
 
-	public static fromBackend(doc: BackendDocumentContent): DocumentContent {
-		return new DocumentContent(doc.parts.map(part => new StyledText(part.text, part.style)));
+	public static deserialize(doc: SerializedRichText): RichText {
+		return new RichText(doc.parts.map(part => new StyledText(part.text, part.style)));
 	}
 
 	public addPart(part: StyledText) {
@@ -142,8 +110,8 @@ export class DocumentContent implements Cloneable<DocumentContent>, Serialize<Ba
 		this.parts.unshift(part);
 	}
 
-	public clone(): DocumentContent {
-		return new DocumentContent();
+	public clone(): RichText {
+		return new RichText();
 	}
 
 	public partAtIndex(index: number): Container<StyledText> {
@@ -159,7 +127,7 @@ export class DocumentContent implements Cloneable<DocumentContent>, Serialize<Ba
 	}
 
 	public filter(predicate: (part: StyledText, index: number) => unknown) {
-		return new DocumentContent(this.parts.map(part => part.clone()).filter(predicate));
+		return new RichText(this.parts.map(part => part.clone()).filter(predicate));
 	}
 
 	public partCount(): number {
@@ -167,36 +135,47 @@ export class DocumentContent implements Cloneable<DocumentContent>, Serialize<Ba
 	}
 }
 
-type AttributeTypes = {
-	number: PrimitiveAttribute<number>;
-	"short text": PrimitiveAttribute<string>;
-	"long text": DocumentContent;
-	length: Measurement<Length>;
-	weight: Measurement<Weight>;
-	entry: PrimitiveArrayAttribute<number>;
-};
-
 export type AttributeValue = AttributeTypes[keyof AttributeTypes];
 export type AttributeLike = AttributeValue | number | string;
 
-export function attributeValue(like: AttributeLike): AttributeValue {
-	if (typeof like === "number") return new PrimitiveAttribute<number>(like);
-	if (typeof like === "string") return new PrimitiveAttribute<string>(like);
-	return like;
+export function deserializeAttributeValue(value: SerializedAttributeValue): AttributeValue {
+	switch (value.type) {
+		case "number":
+			return new PrimitiveAttributeValue<number>("number", value.number);
+		case "color":
+			return new PrimitiveAttributeValue<string>("color", value.color);
+		case "shortText":
+			return new PrimitiveAttributeValue<string>("shortText", value.shortText);
+		case "longText":
+			return RichText.deserialize(value.longText);
+		case "length":
+			return Measurement.deserialize(value.length);
+		case "weight":
+			return Measurement.deserialize(value.weight);
+		case "date":
+			todo();
+		case "entries":
+			return new PrimitiveArrayAttribute<number>(value.entries);
+	}
 }
 
-export class PrimitiveArrayAttribute<T> implements Cloneable<PrimitiveArrayAttribute<T>>, Serialize<T[]> {
+export class PrimitiveArrayAttribute<T extends number>
+	implements Cloneable<PrimitiveArrayAttribute<T>>, Serialize<SerializedAttributeValue>
+{
 	values: T[] = $state(assignedLater());
 
 	public constructor(value: T[]) {
 		this.values = value;
 	}
 
-	public toBackend(): T[] {
-		return this.values;
+	public serialize(): SerializedAttributeValue {
+		return {
+			type: "entries",
+			entries: this.values,
+		};
 	}
 
-	public static fromBackend<T>(value: T[]): PrimitiveArrayAttribute<T> {
+	public static deserialize<T extends number>(value: T[]): PrimitiveArrayAttribute<T> {
 		return new PrimitiveArrayAttribute(value);
 	}
 
@@ -205,81 +184,158 @@ export class PrimitiveArrayAttribute<T> implements Cloneable<PrimitiveArrayAttri
 	}
 }
 
-export function attributeValueFromBackend(value: BackendAttributeValue): AttributeValue {
-	if (typeof value === "string") return new PrimitiveAttribute(value);
-	if (typeof value === "number") return new PrimitiveAttribute(value);
-	if (Array.isArray(value)) return new PrimitiveArrayAttribute<number>(value.map(inner => inner as number));
-	if ("units" in value) return Measurement.fromBackend(value);
-	return DocumentContent.fromBackend(value);
-}
-
-export type BackendAttributeValue = string | number | BackendMeasurement | BackendDocumentContent | BackendAttributeValue[];
-
 export type AttributeContext = "settings" | "spreadsheet";
 
-export class PrimitiveAttribute<T> implements Cloneable<PrimitiveAttribute<T>>, Serialize<T> {
+export class PrimitiveAttributeValue<T extends string | number> implements Serialize<SerializedAttributeValue> {
 	value: T = $state(assignedLater());
+	readonly type: AttributeTypeName;
 
-	public constructor(value: T) {
+	public constructor(type: AttributeTypeName, value: T) {
+		this.type = type;
 		this.value = value;
 	}
 
-	public toBackend(): T {
-		return this.value;
-	}
-
-	public static fromBackend<T>(value: T): PrimitiveAttribute<T> {
-		return new PrimitiveAttribute(value);
-	}
-
-	public clone(): PrimitiveAttribute<T> {
-		return new PrimitiveAttribute(this.value);
+	public serialize(): SerializedAttributeValue {
+		return { type: this.type, [this.type]: this.value } as any;
 	}
 }
 
-export type BackendAttribute = {
+export type SerializedAttributeDefinition = {
 	name: string;
-	type: AttributeType;
+	type: AttributeTypeName;
+	id: number;
+	groupId: number;
 };
 
-export class AttributeDefinition implements Serialize<BackendAttribute> {
+export type AttributeDefinitionBuilder = (group: Group) => AttributeDefinition;
+
+export class AttributeDefinition implements Serialize<SerializedAttributeDefinition> {
 	public name: string = $state(assignedLater());
-	public type: AttributeType = $state(assignedLater());
+	public type: AttributeTypeName = $state(assignedLater());
 	private id_: number = $state(assignedLater());
 	public group = $state(assignedLater<Group>());
 
-	private static fieldID = 0;
+	private static nextID = 0;
 
-	private constructor(name: string, type: AttributeType) {
+	private constructor(name: string, type: AttributeTypeName, group: Group, id?: number) {
 		this.name = name;
 		this.type = type;
-		this.id_ = AttributeDefinition.fieldID++;
+		this.group = group;
+		this.id_ = id ?? AttributeDefinition.nextID++;
 	}
 
-	toBackend(): BackendAttribute {
+	public serialize(): SerializedAttributeDefinition {
 		return {
 			name: this.name,
 			type: this.type,
+			id: this.id_,
+			groupId: this.group.id,
 		};
 	}
 
-	public static fromBackend(attribute: BackendAttribute): AttributeDefinition {
-		return new AttributeDefinition(attribute.name, attribute.type);
+	public static deserialize(attribute: SerializedAttributeDefinition, group: Group): AttributeDefinition {
+		if (AttributeDefinition.nextID <= attribute.id) AttributeDefinition.nextID = attribute.id + 1;
+		return new AttributeDefinition(attribute.name, attribute.type as AttributeTypeName, null!);
 	}
 
 	public get id() {
 		return this.id_;
 	}
 
-	public clone(): AttributeDefinition {
-		return new AttributeDefinition(this.name, this.type);
-	}
-
-	public static basic(name: string, type: AttributeType): AttributeDefinition {
-		return new AttributeDefinition(name, type);
+	public static basic(name: string, type: AttributeTypeName): AttributeDefinitionBuilder {
+		return (group: Group) => new AttributeDefinition(name, type, group);
 	}
 
 	public get icon(): Icon {
-		return getIcon(fieldValueTypes.find(type => type.name === this.type)!.icon);
+		return getIcon(attributeTypes.find(type => type.name === this.type)!.icon);
 	}
 }
+
+export const attributeTypes = [
+	{
+		name: "shortText",
+		icon: TextIcon,
+	},
+	{
+		name: "longText",
+		icon: ParagraphIcon,
+	},
+	{
+		name: "number",
+		icon: NumberSignIcon,
+	},
+	{
+		name: "entries",
+		icon: GraphIcon,
+	},
+	{
+		name: "date",
+		icon: CalendarIcon,
+	},
+	{
+		name: "color",
+		icon: ColorPaletteIcon,
+	},
+	{
+		name: "length",
+		icon: RulerIcon,
+	},
+	{
+		name: "weight",
+		icon: WeightScaleIcon,
+	},
+] as const satisfies {
+	name: string;
+	icon: IconComponent;
+}[];
+
+export type AttributeTypes = {
+	number: PrimitiveAttributeValue<number>;
+	shortText: PrimitiveAttributeValue<string>;
+	color: PrimitiveAttributeValue<string>;
+	longText: RichText;
+	length: Measurement<Length>;
+	weight: Measurement<Weight>;
+	entries: PrimitiveArrayAttribute<number>;
+	date: DateTime;
+};
+
+export type SerializedAttributeValue =
+	| {
+			type: "number";
+			number: number;
+	  }
+	| {
+			type: "shortText";
+			shortText: string;
+	  }
+	| {
+			type: "date";
+			date: DateTime;
+	  }
+	| {
+			type: "color";
+			color: string;
+	  }
+	| {
+			type: "longText";
+			longText: SerializedRichText;
+	  }
+	| {
+			type: "length";
+			length: SerializedMeasurement;
+	  }
+	| {
+			type: "weight";
+			weight: SerializedMeasurement;
+	  }
+	| {
+			type: "entries";
+			entries: number[];
+	  };
+
+export type AttributeTypeName = typeof attributeTypes extends (infer T)[]
+	? T extends { name: string }
+		? T["name"]
+		: never
+	: never;

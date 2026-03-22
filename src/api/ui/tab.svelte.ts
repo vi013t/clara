@@ -1,4 +1,4 @@
-import { DocumentContent } from "../data/attribute/attribute.svelte";
+import { RichText } from "../data/attribute/attribute.svelte";
 import type { Group } from "../data/database.svelte";
 import { assignedLater } from "../util/utils.svelte";
 import type { View } from "./views.svelte";
@@ -24,9 +24,9 @@ export class GroupTab extends Tab {
 }
 
 export class EditorTab extends Tab {
-	public content: DocumentContent = $state(assignedLater());
+	public content: RichText = $state(assignedLater());
 
-	public constructor(content: DocumentContent) {
+	public constructor(content: RichText) {
 		super();
 		this.content = content;
 	}

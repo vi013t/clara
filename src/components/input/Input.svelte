@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type {
 		AttributeContext,
-		AttributeType,
+		AttributeTypeName,
 		AttributeValue,
-		DocumentContent,
-		PrimitiveAttribute,
+		RichText,
+		PrimitiveAttributeValue,
 	} from "../../api/data/attribute/attribute.svelte";
 	import { Length, Measurement } from "../../api/data/attribute/measurement.svelte";
 	import ColorPicker from "./ColorPicker.svelte";
@@ -20,19 +20,19 @@
 		background = "transparent",
 	}: {
 		context: AttributeContext;
-		type: AttributeType;
+		type: AttributeTypeName;
 		value: AttributeValue | null;
-		openEditor: (doc: DocumentContent) => void;
+		openEditor: (doc: RichText) => void;
 		background?: string;
 	} = $props();
 </script>
 
 {#if type === "Length"}
 	<MeasurementInput type={Length} bind:value={value as Measurement<any> | null} />
-{:else if type === "Short text"}
-	<ShortTextInput {background} bind:value={value as PrimitiveAttribute<string> | null} />
-{:else if type === "Long text"}
-	<LongTextInput bind:value={value as DocumentContent} {context} {openEditor} />
+{:else if type === "shortText"}
+	<ShortTextInput {background} bind:value={value as PrimitiveAttributeValue<string> | null} />
+{:else if type === "longText"}
+	<LongTextInput bind:value={value as RichText} {context} {openEditor} />
 {:else if type === "Color"}
 	<ColorPicker />
 {/if}

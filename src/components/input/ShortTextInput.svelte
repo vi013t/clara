@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { PrimitiveAttribute } from "../../api/data/attribute/attribute.svelte";
+	import { PrimitiveAttributeValue } from "../../api/data/attribute/attribute.svelte";
 
-	let { value = $bindable(), background = "transparent" }: { value: PrimitiveAttribute<string> | null; background?: string } =
-		$props();
+	let {
+		value = $bindable(),
+		background = "transparent",
+	}: { value: PrimitiveAttributeValue<string> | null; background?: string } = $props();
 
 	function typeKey(event: KeyboardEvent) {
 		if (event.key === "Enter") (event.target as HTMLElement).blur();
@@ -10,7 +12,7 @@
 </script>
 
 <input
-	bind:value={() => value?.value, content => (value = content ? new PrimitiveAttribute<string>(content) : null)}
+	bind:value={() => value?.value, content => (value = content ? new PrimitiveAttributeValue<string>(content) : null)}
 	onkeydown={typeKey}
 	style:background
 />

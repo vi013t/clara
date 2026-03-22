@@ -12,21 +12,27 @@ export function assignedLater<T = any>(): T {
 	return null as T;
 }
 
-export function mapValues<Input, Output>(
-	obj: { [key: string | number | symbol]: Input },
-	map: (input: Input) => Output,
-): { [key: string | number | symbol]: Output } {
-	return Object.entries(obj)
-		.map(([key, value]) => ({ [key]: map(value) }))
-		.reduce((accumulator, current) => ({ ...accumulator, ...current }));
+export type ObjectKey = string | number | symbol;
+
+export namespace Objects {
+	export function mapValues<Input, Output>(
+		obj: { [key: ObjectKey]: Input },
+		map: (input: Input) => Output,
+	): { [key: string | number | symbol]: Output } {
+		return Object.entries(obj)
+			.map(([key, value]) => ({ [key]: map(value) }))
+			.reduce((accumulator, current) => ({ ...accumulator, ...current }));
+	}
+
+	export function mapEntries<InputKey extends string, InputValue, OutputKey extends ObjectKey, OutputValue>(
+		obj: Record<InputKey, InputValue>,
+		map: (inputKey: InputKey, inputValue: InputValue) => [OutputKey, OutputValue],
+	): Record<OutputKey, OutputValue> {
+		return Object.entries<InputValue>(obj)
+			.map(([inputKey, inputValue]) => map(inputKey as InputKey, inputValue))
+			.reduce((object, [outputKey, outputValue]) => ({ ...object, ...{ [outputKey]: outputValue } }), {}) as Record<
+			OutputKey,
+			OutputValue
+		>;
+	}
 }
-
-export function todo(task?: string): never {
-	throw `Unimplemented task` + (task ? `: ${task}` : "");
-}
-
-export type Fields<T, Base = object> = {
-	[K in Exclude<keyof T, keyof Base> as T[K] extends Function ? never : K]: T[K];
-};
-
-export type Optional<Base, Values extends keyof Base> = Omit<Base, Values> & Partial<Pick<Base, Values>>;

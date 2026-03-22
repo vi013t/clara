@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { fieldValueTypes, type AttributeDefinition } from "../../api/data/attribute/attribute.svelte";
+	import { attributeTypes, type AttributeDefinition } from "../../api/data/attribute/attribute.svelte";
 	import type { Group } from "../../api/data/database.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
 	import ItalicIcon from "../icons/ItalicIcon.svelte";
@@ -60,7 +60,7 @@
 
 				<h2>Type</h2>
 				<div class="type">
-					<Select {onunlock} locked width="100%" options={fieldValueTypes} bind:value={attribute.type} />
+					<Select {onunlock} locked width="100%" options={attributeTypes} bind:value={attribute.type} />
 				</div>
 
 				<h2>Default</h2>

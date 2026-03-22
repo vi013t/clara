@@ -1,14 +1,16 @@
 import { invoke } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
-import type { Database } from "./data/database.svelte";
+import { Group, type Database, type SerializedDatabase } from "./data/database.svelte";
 import { cache, getFromCache } from "./userdata/cache.svelte";
-import { assignedLater, todo } from "./util/utils.svelte";
+import { assignedLater } from "./util/utils.svelte";
+import type { Serialize } from "./util/serialize.svelte";
+import { todo } from "./errors.svelte";
 
-export class Project {
+export class Project implements Serialize<SerializedProject> {
 	private location = $state(assignedLater<string>());
 	public database = $state(assignedLater<Database>());
 
-	public constructor({ location, database }: { name: string; location: string; database: Database }) {
+	public constructor({ location, database }: { location: string; database: Database }) {
 		this.location = location;
 		this.database = database;
 	}
@@ -22,17 +24,23 @@ export class Project {
 		return currentProject;
 	}
 
-	public static fromBackend(project: BackendProject): Project {
-		todo("deserialize project");
+	public static deserialize(project: SerializedProject): Project {
+		return new Project({
+			location: project.location,
+			database: Group.deserializeDatabase(project.database),
+		});
 	}
 
-	public toBackend(): BackendProject {
-		todo("serialize project");
+	public serialize(): SerializedProject {
+		return {
+			location: this.location,
+			database: this.database.serializeAsDatabase(),
+		};
 	}
 
 	public static async openFromLocation(location: string) {
-		const backendProject = await invoke<BackendProject>("read_project", { path: location });
-		const project = Project.fromBackend(backendProject);
+		const serializedProject = await invoke<SerializedProject>("read_project", { path: location });
+		const project = Project.deserialize(serializedProject);
 		Project.set(project);
 	}
 
@@ -45,8 +53,8 @@ export class Project {
 
 		// Directory Chosen
 		if (typeof selected === "string") {
-			const backendProject = await invoke<BackendProject>("read_project", { path: selected });
-			const project = Project.fromBackend(backendProject);
+			const serializedProject = await invoke<SerializedProject>("read_project", { path: selected });
+			const project = Project.deserialize(serializedProject);
 			Project.set(project);
 		}
 
@@ -58,14 +66,14 @@ export class Project {
 
 	public static async save(): Promise<void> {
 		let project = Project.get();
-		const bytes = project!.toBackend();
+		const bytes = project!.serialize();
 		await invoke("save_project", { project: bytes });
 	}
 }
 
-export type BackendProject = {
-	name: string;
+export type SerializedProject = {
 	location: string;
+	database: SerializedDatabase;
 };
 
 let currentProject: Project | null = $state(null);

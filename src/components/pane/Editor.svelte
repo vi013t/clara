@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { DocumentContent, Style, StyledText } from "../../api/data/attribute/attribute.svelte";
+	import { RichText, Style, StyledText } from "../../api/data/attribute/attribute.svelte";
 	import { getFonts } from "../../api/system.svelte";
 	import type { Container } from "../../api/util/Clone.svelte";
 	import BoldIcon from "../icons/BoldIcon.svelte";
@@ -21,10 +21,10 @@
 		doc = $bindable(),
 	}: {
 		title?: string;
-		doc?: DocumentContent;
+		doc?: RichText;
 	} = $props();
 
-	let internalDocument = $state(doc ?? new DocumentContent());
+	let internalDocument = $state(doc ?? new RichText());
 
 	$effect(() => {
 		doc = internalDocument;
@@ -180,7 +180,7 @@
 		internalDocument = internalDocument.filter((part, index) => part.text !== "" || index === 0);
 
 		// Merge adjacent parts with equivalent styles
-		let newDocument = new DocumentContent();
+		let newDocument = new RichText();
 		let removedAmount = 0;
 		for (let index = 0; index < internalDocument.partCount() - 1; index += 2) {
 			let first = internalDocument.partAtIndex(index).ref();

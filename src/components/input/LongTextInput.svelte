@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { DocumentContent, type AttributeContext } from "../../api/data/attribute/attribute.svelte";
+	import { RichText, type AttributeContext } from "../../api/data/attribute/attribute.svelte";
 
 	let {
 		openEditor,
 		context,
 		value = $bindable(),
-	}: { value: DocumentContent; context: AttributeContext; openEditor: (doc: DocumentContent) => void } = $props();
+	}: { value: RichText; context: AttributeContext; openEditor: (doc: RichText) => void } = $props();
 </script>
 
 <button class={{ "settings-button": context === "settings" }} onmousedown={() => openEditor(value)}>Open in Editor</button>

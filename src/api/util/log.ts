@@ -7,12 +7,15 @@ export namespace Debug {
 		dark: string = "#33425b",
 	) {
 		let args = [
-			`%c${severity}:%c\n%c${message}${url ? ` %cAt ${Debug.path(url)}` : ""}`,
+			`%c${severity}:%c\n%c${message}${url ? ` %c\n%cAt ${Debug.path(url)}` : ""}`,
 			`color: ${bright}; background: ${dark}; padding: 8px; border-radius: 5px; margin-top: 4px; font-weight: bold; margin-bottom: 8px;`,
 			"",
 			`color: ${bright}; background: ${dark}; padding: 16px; border-radius: 5px; margin-bottom: 8px;`,
 		];
-		if (url) args.push("color: #b7d2fe; background: #33425b; padding: 8px; border-radius: 5px; margin-bottom: 16px;");
+		if (url) {
+			args.push("");
+			args.push("color: #b7d2fe; background: #33425b; padding: 8px; border-radius: 5px; margin-bottom: 16px;");
+		}
 		console.log(...args);
 	}
 
@@ -62,6 +65,6 @@ export namespace Debug {
 	}
 
 	export function path(url: string): string {
-		return /^.+(\/src.+?)\?/.exec(url)![1];
+		return /^.+(\/src.+?)(\?|:)/.exec(url)?.[1] ?? url;
 	}
 }

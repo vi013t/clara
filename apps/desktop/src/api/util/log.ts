@@ -6,6 +6,7 @@ export namespace Debug {
 		bright: string = "#b7d2fe",
 		dark: string = "#33425b",
 	) {
+		if (import.meta.env.PROD) return;
 		let args = [
 			`%c${severity}:%c\n%c${message}${url ? ` %c\n%cAt ${Debug.path(url)}` : ""}`,
 			`color: ${bright}; background: ${dark}; padding: 8px; border-radius: 5px; margin-top: 4px; font-weight: bold; margin-bottom: 8px;`,
@@ -20,6 +21,7 @@ export namespace Debug {
 	}
 
 	export function errors(errors: string[]): void {
+		if (import.meta.env.PROD) return;
 		let log = "%c!! ERROR !!%c";
 		let css: string[] = [
 			`color: #f38ba8; background: #4e3534; padding: 8px; border-radius: 5px; margin-top: 4px; font-weight: bold; margin-bottom: 8px;`,
@@ -66,5 +68,10 @@ export namespace Debug {
 
 	export function path(url: string): string {
 		return /^.+(\/src.+?)(\?|:)/.exec(url)?.[1] ?? url;
+	}
+
+	export function log(...args: unknown[]): void {
+		if (import.meta.env.PROD) return;
+		console.log(...args);
 	}
 }

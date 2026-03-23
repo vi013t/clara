@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { Color } from "../../api/data/attribute/color.svelte";
 	import { clamp } from "../../api/math/arrays.svelte";
-	import { Color } from "../../api/ui/color.svelte";
 	import PlusIcon from "../icons/PlusIcon.svelte";
 	import TrashIcon from "../icons/TrashIcon.svelte";
 	import ContextMenu from "../menus/ContextMenu.svelte";

@@ -1,4 +1,4 @@
-import { RichText } from "../data/attribute/attribute.svelte";
+import type { RichText } from "../data/attribute/richtext.svelte";
 import type { Group } from "../data/database.svelte";
 import { assignedLater } from "../util/utils.svelte";
 import type { View } from "./views.svelte";

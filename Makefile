@@ -5,13 +5,15 @@ NPM=bun
 make: build
 
 dev:
-	$(NPM) run tauri dev
+	$(NPM) run dev
 
 build:
 	$(NPM) install
-	$(NPM) run tauri build
+	$(NPM) run build
 
 clean:
 	rm node_modules -rf
-	rm src-tauri/target -rf
+	rm apps/desktop/node_modules -rf
+	rm packages/api/node_modules -rf
+	rm apps/desktop/src-tauri/target -rf
 	rm build -rf

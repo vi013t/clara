@@ -15,13 +15,13 @@ export function assignedLater<T = any>(): T {
 export type ObjectKey = string | number | symbol;
 
 export namespace Objects {
-	export function mapValues<Input, Output>(
-		obj: { [key: ObjectKey]: Input },
-		map: (input: Input) => Output,
-	): { [key: string | number | symbol]: Output } {
+	export function mapValues<InputValue, OutputValue, InputKey extends ObjectKey, OutputKey extends ObjectKey>(
+		obj: Record<InputKey, InputValue>,
+		map: (input: InputValue) => OutputValue,
+	): Record<OutputKey, OutputValue> {
 		return Object.entries(obj)
-			.map(([key, value]) => ({ [key]: map(value) }))
-			.reduce((accumulator, current) => ({ ...accumulator, ...current }));
+			.map(([key, value]) => ({ [key]: map(value as InputValue) }))
+			.reduce((accumulator, current) => ({ ...accumulator, ...current })) as Record<OutputKey, OutputValue>;
 	}
 
 	export function mapEntries<InputKey extends string, InputValue, OutputKey extends ObjectKey, OutputValue>(
@@ -35,4 +35,8 @@ export namespace Objects {
 			OutputValue
 		>;
 	}
+}
+
+export interface From<Input, Output> {
+	from(value: Input): Output;
 }

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { RichText, type AttributeContext } from "../../api/data/attribute/attribute.svelte";
+	import type { AttributeContext } from "../../api/data/attribute/attributetype.svelte";
+	import type { RichText } from "../../api/data/attribute/richtext.svelte";
 
 	let {
 		openEditor,

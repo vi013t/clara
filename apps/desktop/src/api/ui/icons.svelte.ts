@@ -75,6 +75,7 @@ import LockIcon from "../../components/icons/LockIcon.svelte";
 import ScaleIcon from "../../components/icons/ScaleIcon.svelte";
 import UnlockedIcon from "../../components/icons/UnlockedIcon.svelte";
 import ReticleIcon from "../../components/icons/ReticleIcon.svelte";
+import StartupIcon from "../../components/icons/StartupIcon.svelte";
 
 export type IconProps = { stroke?: string; scale?: number } & SVGAttributes<EventTarget>;
 
@@ -143,6 +144,7 @@ const icons = [
 	{ name: "SplitHorizontalIcon", categories: [], component: SplitHorizontalIcon },
 	{ name: "SpreadsheetIcon", categories: [], component: SpreadsheetIcon },
 	{ name: "SproutIcon", categories: [], component: SproutIcon },
+	{ name: "StartupIcon", categories: [], component: StartupIcon },
 	{ name: "SunIcon", categories: [], component: SunIcon },
 	{ name: "SwordIcon", categories: [], component: SwordIcon },
 	{ name: "TextIcon", categories: [], component: TextIcon },
@@ -178,6 +180,13 @@ export type Icon = { name: IconName; categories: IconCategory[]; component: Icon
  */
 export type IconIdentifier = IconName | IconComponent | Icon;
 
+/**
+ * Gets an icon from an `IconIdentifier`.
+ *
+ * @param identifier A unique identifier for the icon.
+ *
+ * @returns The icon data.
+ */
 export function getIcon(identifier: IconIdentifier): Icon {
 	if (typeof identifier === "string") return icons.find(icon => icon.name === identifier)!;
 	if ("categories" in identifier) return icons.find(icon => icon.name === identifier.name)!;

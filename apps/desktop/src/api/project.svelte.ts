@@ -4,6 +4,7 @@ import { Group, type Database, type SerializedDatabase } from "./data/database.s
 import { cache } from "./userdata/cache.svelte";
 import { assignedLater } from "./util/utils.svelte";
 import type { Serialize } from "./util/serialize.svelte";
+import { Debug } from "./util/log";
 
 export class Project implements Serialize<SerializedProject> {
 	private location = $state(assignedLater<string>());
@@ -16,6 +17,8 @@ export class Project implements Serialize<SerializedProject> {
 
 	public static set(project: Project): void {
 		currentProject = project;
+		Debug.info("Set new project:");
+		Debug.log(`${project.database}`);
 		cache({ lastProjectPath: `${project.location}/${project.database.name}` });
 	}
 
@@ -26,14 +29,14 @@ export class Project implements Serialize<SerializedProject> {
 	public static deserialize(project: SerializedProject): Project {
 		return new Project({
 			location: project.location,
-			database: Group.deserializeDatabase(project.database),
+			database: Group.deserialize(project.database),
 		});
 	}
 
 	public serialize(): SerializedProject {
 		return {
 			location: this.location,
-			database: this.database.serializeAsDatabase(),
+			database: this.database.serialize(),
 		};
 	}
 

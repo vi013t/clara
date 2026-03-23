@@ -62,13 +62,13 @@ pub struct AttributeDefinition {
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
 #[serde(rename_all = "camelCase", tag = "type")]
 pub enum AttributeValue {
-	Number { number: f64 },
-	Color { color: String },
-	ShortText { short_text: String },
-	LongText { long_text: RichText },
-	Length { length: Measurement },
-	Weight { weight: Measurement },
-	Entries { entries: Vec<Id> },
+	Number { value: f64 },
+	Color { value: String },
+	ShortText { value: String },
+	LongText { value: RichText },
+	Length { value: Measurement },
+	Weight { value: Measurement },
+	Entries { value: Vec<Id> },
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]

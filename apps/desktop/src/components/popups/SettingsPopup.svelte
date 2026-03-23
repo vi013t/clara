@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { PrimitiveAttributeValue } from "../../api/data/attribute/attribute.svelte";
 	import type { Database } from "../../api/data/database.svelte";
 	import { userData } from "../../api/userdata/cache.svelte";
 	import ArrowIcon from "../icons/ArrowIcon.svelte";
@@ -10,6 +9,7 @@
 	import PackageIcon from "../icons/PackageIcon.svelte";
 	import ParagraphIcon from "../icons/ParagraphIcon.svelte";
 	import PlugIcon from "../icons/PlugIcon.svelte";
+	import StartupIcon from "../icons/StartupIcon.svelte";
 	import Input from "../input/Input.svelte";
 	import Select from "../input/Select.svelte";
 	import Popup from "./Popup.svelte";
@@ -69,7 +69,7 @@
 				<span>Hotkeys</span>
 			</button>
 			<button onmousedown={setView("introduction")}>
-				<KeyboardKeyIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+				<StartupIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 				<span>Startup</span>
 			</button>
 			<button onmousedown={setView("introduction")}>
@@ -91,6 +91,8 @@
 				<ParagraphIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 				<span>Suggestions</span>
 			</button>
+
+			<h1>Plugins</h1>
 		</div>
 		<div class="content">
 			{#if view === "appearance"}

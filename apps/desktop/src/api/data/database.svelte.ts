@@ -1,19 +1,18 @@
 import BookIcon from "../../components/icons/BookIcon.svelte";
 import { Point2D } from "../math/matrix.svelte";
 import { Circle, type Shape } from "../math/shape.svelte";
-import { Color } from "../ui/color.svelte";
 import { getIcon, type Icon, type IconIdentifier, type IconName } from "../ui/icons.svelte";
 import type { Serialize } from "../util/serialize.svelte";
 import { assignedLater, Objects } from "../util/utils.svelte";
 import {
 	AttributeDefinition,
-	deserializeAttributeValue,
-	PrimitiveAttributeValue,
 	type AttributeDefinitionBuilder,
-	type AttributeValue,
 	type SerializedAttributeDefinition,
-	type SerializedAttributeValue,
-} from "./attribute/attribute.svelte";
+} from "./attribute/attributedef.svelte";
+import { AttributeType } from "./attribute/attributetype.svelte";
+import { AttributeValue, type SerializedAttributeValue } from "./attribute/attributevalue.svelte";
+import { Color } from "./attribute/color.svelte";
+import { StringAttribute } from "./attribute/primitive.svelte";
 import { TreeBranch, TreeLeaf } from "./tree.svelte";
 
 export class GraphOutline<T extends Shape> {
@@ -45,16 +44,19 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 
 	public constructor(value: Record<string, AttributeValue | null> | string) {
 		super();
-		this.attributes = typeof value === "string" ? { name: new PrimitiveAttributeValue<string>("shortText", value) } : value;
+		this.attributes = typeof value === "string" ? { name: new StringAttribute(value) } : value;
 	}
 
 	public serialize(): SerializedItem {
-		return { id: this.id, attributes: Objects.mapValues(this.attributes, attribute => attribute?.serialize() ?? null) };
+		return {
+			id: this.id,
+			attributes: Objects.mapValues(this.attributes, attribute => (attribute ? AttributeValue.serialize(attribute) : null)),
+		};
 	}
 
 	public static deserializeUnsafe(item: SerializedItem): Item {
 		let created = new Item(
-			Objects.mapValues(item.attributes, attribute => (attribute ? deserializeAttributeValue(attribute) : null)),
+			Objects.mapValues(item.attributes, attribute => (attribute ? AttributeValue.deserialize(attribute) : null)),
 		);
 		(created as any).id = item.id;
 		return created;
@@ -86,14 +88,26 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 	}
 
 	public get name(): string {
-		return (this.attributes.name as PrimitiveAttributeValue<string>).value;
+		return (this.attributes.name as StringAttribute).value;
+	}
+
+	public toString(): string {
+		return `Item[ ${this.name} ]`;
+	}
+
+	public dfsGroups(): Group[] {
+		return [];
+	}
+
+	public dfsItems(): Item[] {
+		return [this];
 	}
 }
 
-export class Group extends TreeBranch<Group, Item> implements Serialize<SerializedGroup> {
+export class Group extends TreeBranch<Group, Item> implements Serialize<SerializedDatabase> {
 	public name = $state(assignedLater<string>());
 	public description = $state(assignedLater<string>());
-	public attributes_ = $state(assignedLater<AttributeDefinition[] | "inherit">());
+	private attributes_ = $state(assignedLater<AttributeDefinition[] | "inherit">());
 
 	private icon_ = $state(assignedLater<Icon | "inherit">());
 
@@ -117,10 +131,12 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 		if (typeof arg === "object") {
 			if (!arg.attributes || arg.attributes === "inherit") this.attributes_ = "inherit";
 			else this.attributes_ = arg.attributes.map(attribute => attribute(this));
+		} else {
+			this.attributes_ = "inherit";
 		}
 	}
 
-	serialize(): SerializedGroup {
+	private serializeStandalone(): SerializedGroup {
 		return {
 			id: this.id,
 			children: this.children.map(child => child.id),
@@ -135,12 +151,16 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 		};
 	}
 
+	/**
+	 * Returns the icon associated with this group. If this group is set to inherit its icon from
+	 * its parent, the parent icon is returned.
+	 */
 	public get icon(): Icon {
 		if (this.isRoot) return getIcon(BookIcon);
 		if (this.icon_ === "inherit") {
 			return this.parent!.icon;
 		} else {
-			return this.icon;
+			return this.icon_;
 		}
 	}
 
@@ -167,15 +187,30 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 		return this.attributes_.find(attribute => attribute.name === name) ?? null;
 	}
 
+	/**
+	 * Defines a new attribute definition for this group. If an attribute definition with the same
+	 * name as the one provided already exists on this group, an error is thrown. If you intend to
+	 * do so, use `overwriteAttributeDefinition()`.
+	 *
+	 * @param builder The attribute builder. Generally you'll get one of these from a static method
+	 * on `AttributeDefinition`.
+	 */
 	public addNewAttributeDefinition(builder: AttributeDefinitionBuilder): void {
+		// This group inherits attributes
 		if (this.attributes_ === "inherit") {
+			// This is the root - even if it "inherits" we add it to the root
 			if (this.isRoot) {
 				let attribute = builder(this);
 				this.attributes_ = [attribute];
 				return;
 			}
+
+			// If not, we inherit attributes from the parent, so this actually gets passed up to the parent
 			this.parent!.addNewAttributeDefinition(builder);
-		} else {
+		}
+
+		// This group uses it's own attributes - doesn't inherit
+		else {
 			let attribute = builder(this);
 			if (this.getAttributeDefinition(attribute.name)) {
 				throw `Duplicate attribute: Attempted to add the attribute "${attribute.name}", but the attribute already exists. If this was intentional, use overwriteAttribute().`;
@@ -221,18 +256,27 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 		this.filterChildrenInPlace(child => child !== item);
 	}
 
-	public serializeAsDatabase(): SerializedDatabase {
+	public serialize(): SerializedDatabase {
 		return {
 			groups: this.root()
-				.dfsBranches()
-				.map(group => group.serialize()),
+				.dfsGroups()
+				.map(group => group.serializeStandalone()),
 			items: this.root()
-				.dfsLeaves()
+				.dfsItems()
 				.map(item => item.serialize()),
 			root: this.root().id,
 		};
 	}
 
+	/**
+	 * Deserializes this group without building it into a tree with others. The returned node
+	 * **has no children or parent assigned**. This is used internally in `deserialize()` before
+	 * the tree is built.
+	 *
+	 * @param group The serialized group passed from the Rust backend
+	 *
+	 * @returns A deserialized group object, isolated without being part of a tree.
+	 */
 	private static deserializeUnsafe(group: SerializedGroup): Group {
 		let created = new Group({
 			name: group.name,
@@ -249,7 +293,7 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 		return created;
 	}
 
-	public static deserializeDatabase(database: SerializedDatabase): Database {
+	public static deserialize(database: SerializedDatabase): Database {
 		const groups = database.groups.map(group => Group.deserializeUnsafe(group));
 		const items = database.items.map(item => Item.deserializeUnsafe(item));
 
@@ -280,6 +324,33 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 
 		const root = groups.find(group => group.id === database.root)!;
 		return root;
+	}
+
+	public toString(): string {
+		let items = this.children
+			.map(child => child.toString().split("\n"))
+			.flat()
+			.map(line => `\t${line}`)
+			.join("\n");
+		return `${this.name} {\n${items}\n}`;
+	}
+
+	public dfsGroups(): Group[] {
+		let visited: Group[] = [this];
+		this.children.forEach(child => {
+			let childLeaves = child instanceof Group ? child.dfsGroups() : [];
+			visited = [...visited, ...childLeaves];
+		});
+		return visited;
+	}
+
+	public dfsItems(): Item[] {
+		let visited: Item[] = [];
+		this.children.forEach(child => {
+			let childLeaves = child instanceof Item ? [child] : child.dfsItems();
+			visited = [...visited, ...childLeaves];
+		});
+		return visited;
 	}
 }
 

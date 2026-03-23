@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { attributeTypes, type AttributeDefinition } from "../../api/data/attribute/attribute.svelte";
+	import type { AttributeDefinition } from "../../api/data/attribute/attributedef.svelte";
+	import { AttributeType, attributeTypes } from "../../api/data/attribute/attributetype.svelte";
 	import type { Group } from "../../api/data/database.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
 	import ItalicIcon from "../icons/ItalicIcon.svelte";
@@ -60,11 +61,11 @@
 
 				<h2>Type</h2>
 				<div class="type">
-					<Select {onunlock} locked width="100%" options={attributeTypes} bind:value={attribute.type} />
+					<Select {onunlock} locked width="100%" options={AttributeType.names()} bind:value={attribute.type.name} />
 				</div>
 
 				<h2>Default</h2>
-				<Input context="settings" background="#181825" type={attribute.type} value={null} openEditor={() => {}} />
+				<Input context="settings" background="#181825" type={attribute.type.name} value={null} openEditor={() => {}} />
 			</div>
 		</section>
 	{/if}

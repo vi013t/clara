@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { AttributeDefinition, RichText as EditorDocument } from "../../api/data/attribute/attribute.svelte";
+	import { AttributeDefinition } from "../../api/data/attribute/attributedef.svelte";
+	import type { RichText } from "../../api/data/attribute/richtext.svelte";
 	import { Item, type Group } from "../../api/data/database.svelte";
 	import CloseIcon from "../icons/CloseIcon.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
@@ -10,7 +11,7 @@
 	import ContextMenu from "../menus/ContextMenu.svelte";
 	import FieldPropertiesPopup from "../popups/AttributeSettingsPopup.svelte";
 
-	let { group = $bindable(), openEditor }: { group: Group; openEditor: (content: EditorDocument) => void } = $props();
+	let { group = $bindable(), openEditor }: { group: Group; openEditor: (content: RichText) => void } = $props();
 
 	let updateCounter = $state(0);
 	let updateAttributes = $state(0);
@@ -75,7 +76,7 @@
 			<div class="column">
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div class="cell" oncontextmenu={event => fieldSettings.openAtMouse(event)}>
-					<attribute.icon.component stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+					<attribute.type.icon.component stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
 					{attribute.name}
 					<button style="width: fit-content; margin-right: 0px;" onmousedown={event => editAttribute(event, attribute)}>
 						<GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
@@ -87,7 +88,7 @@
 							<Input
 								context="spreadsheet"
 								{openEditor}
-								type={attribute.type}
+								type={attribute.type.name}
 								bind:value={
 									() => (item as Item).getAttributeValue(attribute.name),
 									value => (item as Item).overwriteAttributeValue(attribute.name, value!)

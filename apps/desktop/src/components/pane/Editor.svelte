@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { RichText, Style, StyledText } from "../../api/data/attribute/attribute.svelte";
 	import { getFonts } from "../../api/system.svelte";
 	import type { Container } from "../../api/util/Clone.svelte";
 	import BoldIcon from "../icons/BoldIcon.svelte";
@@ -15,6 +14,7 @@
 	import UnderlineIcon from "../icons/UnderlineIcon.svelte";
 	import UndoIcon from "../icons/UndoIcon.svelte";
 	import Select from "../input/Select.svelte";
+	import { RichText, Style, StyledText } from "../../api/data/attribute/richtext.svelte";
 
 	let {
 		title,

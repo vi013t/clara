@@ -1,6 +1,7 @@
 use directories::ProjectDirs;
 mod project;
 use crate::project::{new_project, read_project, save_project, Database};
+mod test;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {

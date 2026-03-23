@@ -11,7 +11,7 @@ import SevenPointStructureIcon from "../../components/icons/SevenPointStructureI
 import SwordIcon from "../../components/icons/SwordIcon.svelte";
 import TheaterIcon from "../../components/icons/TheaterIcon.svelte";
 import WheelIcon from "../../components/icons/WheelIcon.svelte";
-import { AttributeDefinition } from "../data/attribute/attribute.svelte";
+import { AttributeDefinition } from "../data/attribute/attributedef.svelte";
 import { Group, Item, type Database } from "../data/database.svelte";
 
 type UserData = { templates: Database[] };
@@ -150,29 +150,29 @@ export function userData(): UserData {
 						),
 						new Group({ name: "Act II" }, new Group("First Pinch Point"), new Group("Midpoint"), new Group("Second Pinch Point")),
 						new Group({ name: "Act III" }, new Group("Third Plot Point"), new Group("Climax"), new Group("Resolution")),
-						new Group(
-							{
-								name: "Characters",
-								icon: PersonIcon,
-								description: "The characters of this story.",
-								attributes: [
-									AttributeDefinition.basic("Name", "shortText"),
-									AttributeDefinition.basic("Gender", "shortText"),
-									AttributeDefinition.basic("Sexuality", "shortText"),
-									AttributeDefinition.basic("Height", "length"),
-									AttributeDefinition.basic("Partner", "entries"),
-								],
-							},
-							new Group("Main Characters"),
-							new Group("Main Characters"),
-						),
-						new Group({
-							name: "Locations",
-							icon: LocationIcon,
-							description: "The locations in this story.",
-							attributes: [AttributeDefinition.basic("Name", "shortText")],
-						}),
 					),
+					new Group(
+						{
+							name: "Characters",
+							icon: PersonIcon,
+							description: "The characters of this story.",
+							attributes: [
+								AttributeDefinition.basic("Name", "shortText"),
+								AttributeDefinition.basic("Gender", "shortText"),
+								AttributeDefinition.basic("Sexuality", "shortText"),
+								AttributeDefinition.basic("Height", "length"),
+								AttributeDefinition.basic("Partner", "entries"),
+							],
+						},
+						new Group("Main Characters"),
+						new Group("Side Characters"),
+					),
+					new Group({
+						name: "Locations",
+						icon: LocationIcon,
+						description: "The locations in this story.",
+						attributes: [AttributeDefinition.basic("Name", "shortText")],
+					}),
 				),
 			],
 		};

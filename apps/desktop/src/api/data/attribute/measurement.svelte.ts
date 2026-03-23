@@ -3,7 +3,6 @@
 import type { Cloneable } from "../../util/Clone.svelte";
 import type { Serialize } from "../../util/serialize.svelte";
 import { assignedLater } from "../../util/utils.svelte";
-import type { AttributeTypeName, AttributeTypes, SerializedAttributeValue } from "./attribute.svelte";
 
 export abstract class MeasurementTypeInstance<
 	Standard extends Measurement<Self, Standard, Standard> = any,
@@ -42,20 +41,17 @@ export abstract class Measurement<
 	Type extends MeasurementTypeInstance<Standard, Type>,
 	Standard extends Measurement<Type, Standard, Standard> = any,
 	Self extends Measurement<Type, Standard, Self> = any,
-> implements Serialize<SerializedAttributeValue> {
+> implements Serialize<SerializedMeasurement> {
 	protected count_: number = $state(assignedLater());
 
 	public constructor(value: number) {
 		this.count_ = value;
 	}
 
-	public serialize(): SerializedAttributeValue {
+	public serialize(): SerializedMeasurement {
 		return {
-			type: this.type().name() as "length", // will make this typesafe later just tired of all the so-called type masturbation rn
-			[this.type().name() as "length"]: {
-				count: this.count,
-				units: this.unit().abbreviation(),
-			},
+			count: this.count,
+			units: this.unit().abbreviation(),
 		};
 	}
 

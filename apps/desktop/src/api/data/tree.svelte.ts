@@ -1,7 +1,7 @@
 import { Point2D, type Point2DLike } from "../math/matrix.svelte";
 import { Circle, getPrettyPacking } from "../math/shape.svelte";
-import { Color } from "../ui/color.svelte";
 import { assignedLater } from "../util/utils.svelte";
+import { Color } from "./attribute/color.svelte";
 import { GraphOutline } from "./database.svelte";
 
 let nextID = 0; // TODO: ensure this doesnt get fricked when deserializing

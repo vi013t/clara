@@ -48,7 +48,7 @@
 			return this.isDragging_;
 		}
 
-		public onClick(callback: (event: MouseEvent) => any) {
+		public onLeftClick(callback: (event: MouseEvent) => any) {
 			this.handlers.push({ event: "mousedown", callback });
 		}
 

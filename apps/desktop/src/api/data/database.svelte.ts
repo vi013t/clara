@@ -2,6 +2,7 @@ import BookIcon from "../../components/icons/BookIcon.svelte";
 import { Point2D } from "../math/matrix.svelte";
 import { Circle, type Shape } from "../math/shape.svelte";
 import { getIcon, type Icon, type IconIdentifier, type IconName } from "../ui/icons.svelte";
+import type { Cloneable } from "../util/Clone.svelte";
 import type { Serialize } from "../util/serialize.svelte";
 import { assignedLater, Objects } from "../util/utils.svelte";
 import {
@@ -9,7 +10,6 @@ import {
 	type AttributeDefinitionBuilder,
 	type SerializedAttributeDefinition,
 } from "./attribute/attributedef.svelte";
-import { AttributeType } from "./attribute/attributetype.svelte";
 import { AttributeValue, type SerializedAttributeValue } from "./attribute/attributevalue.svelte";
 import { Color } from "./attribute/color.svelte";
 import { StringAttribute } from "./attribute/primitive.svelte";
@@ -39,12 +39,16 @@ export type SerializedItem = {
 	id: number;
 };
 
-export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedItem> {
+export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedItem>, Cloneable<Item> {
 	public attributes = $state(assignedLater<Record<string, AttributeValue | null>>());
 
 	public constructor(value: Record<string, AttributeValue | null> | string) {
 		super();
-		this.attributes = typeof value === "string" ? { name: new StringAttribute(value) } : value;
+		this.attributes = typeof value === "string" ? { Name: new StringAttribute(value) } : value;
+	}
+
+	public clone(): Item {
+		return new Item(Objects.mapValues(this.attributes, attribute => attribute?.clone() ?? null));
 	}
 
 	public serialize(): SerializedItem {
@@ -73,6 +77,14 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 		this.attributes[name] = value;
 	}
 
+	public setName(name: string): void {
+		this.addNewOrOverwriteAttributeValue("Name", new StringAttribute(name));
+	}
+
+	public addNewOrOverwriteAttributeValue(name: string, value: AttributeValue | null) {
+		this.attributes[name] = value;
+	}
+
 	public addNewAttributeValue(name: string, value: AttributeValue | null) {
 		if (this.getAttributeValue(name)) {
 			throw `Invalid attribute additoin: Attempted to overwrite the attribute "${name}" on an item, but no such attribute exists. If this was intentional, use addNewAttributeValue().`;
@@ -88,7 +100,7 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 	}
 
 	public get name(): string {
-		return (this.attributes.name as StringAttribute).value;
+		return (this.attributes.Name as StringAttribute).value;
 	}
 
 	public toString(): string {
@@ -104,7 +116,7 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 	}
 }
 
-export class Group extends TreeBranch<Group, Item> implements Serialize<SerializedDatabase> {
+export class Group extends TreeBranch<Group, Item> implements Serialize<SerializedDatabase>, Cloneable<Group> {
 	public name = $state(assignedLater<string>());
 	public description = $state(assignedLater<string>());
 	private attributes_ = $state(assignedLater<AttributeDefinition[] | "inherit">());
@@ -117,7 +129,7 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 					name: string;
 					description?: string;
 					icon?: IconIdentifier | "inherit";
-					attributes?: AttributeDefinitionBuilder[] | "inherit";
+					attributes?: (AttributeDefinitionBuilder | AttributeDefinition)[] | "inherit";
 			  }
 			| string,
 		...children: (Group | Item)[]
@@ -130,10 +142,19 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 
 		if (typeof arg === "object") {
 			if (!arg.attributes || arg.attributes === "inherit") this.attributes_ = "inherit";
-			else this.attributes_ = arg.attributes.map(attribute => attribute(this));
+			else this.attributes_ = arg.attributes.map(attribute => (typeof attribute === "function" ? attribute(this) : attribute));
 		} else {
 			this.attributes_ = "inherit";
 		}
+	}
+
+	public clone(): Group {
+		return new Group({
+			name: this.name,
+			description: this.description,
+			icon: this.icon_,
+			attributes: this.attributes_ === "inherit" ? "inherit" : this.attributes_.map(definition => definition.clone()),
+		});
 	}
 
 	private serializeStandalone(): SerializedGroup {
@@ -242,7 +263,7 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 	public get attributeDefinitions(): readonly AttributeDefinition[] {
 		if (this.attributes_ === "inherit") {
 			if (this.isRoot) {
-				this.attributes_ = [];
+				this.attributes_ = [AttributeDefinition.basic("Name", "shortText")(this)];
 				return this.attributes_;
 			}
 
@@ -351,6 +372,14 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 			visited = [...visited, ...childLeaves];
 		});
 		return visited;
+	}
+
+	public get directItemChildren(): Item[] {
+		return this.children.filter(child => child instanceof Item);
+	}
+
+	public setName(name: string): void {
+		this.name = name;
 	}
 }
 

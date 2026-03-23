@@ -7,6 +7,7 @@
 		right,
 		bottom,
 		top = $bindable(),
+		onclose = () => {},
 		children,
 	}: {
 		left?: string;
@@ -14,6 +15,7 @@
 		bottom?: string;
 		right?: string;
 		submenu?: boolean;
+		onclose?: () => void;
 		children: Snippet;
 	} = $props();
 
@@ -64,6 +66,7 @@
 	export function forceClose() {
 		doneTransitioning = false;
 		visible = false;
+		onclose();
 		if (transitionTimer) clearTimeout(transitionTimer);
 		transitionTimer = setTimeout(() => {
 			doneTransitioning = true;

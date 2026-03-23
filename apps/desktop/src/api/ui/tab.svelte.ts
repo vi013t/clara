@@ -1,5 +1,6 @@
 import type { RichText } from "../data/attribute/richtext.svelte";
 import type { Group } from "../data/database.svelte";
+import { Project } from "../project.svelte";
 import { assignedLater } from "../util/utils.svelte";
 import type { View } from "./views.svelte";
 
@@ -33,7 +34,7 @@ export class EditorTab extends Tab {
 }
 
 export class TabList {
-	public tabs: Tab[] = $state([new Tab()]);
+	public tabs: Tab[] = $state([new GroupTab(Project.get()!.database)]);
 
 	public appendTab(tab: Tab) {
 		this.tabs.push(tab);

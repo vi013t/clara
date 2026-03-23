@@ -7,6 +7,7 @@ import RulerIcon from "../../../components/icons/RulerIcon.svelte";
 import TextIcon from "../../../components/icons/TextIcon.svelte";
 import WeightScaleIcon from "../../../components/icons/WeightScaleIcon.svelte";
 import { getIcon, type Icon, type IconIdentifier } from "../../ui/icons.svelte";
+import type { Cloneable } from "../../util/Clone.svelte";
 import type { Serialize, Serialized, Serializer } from "../../util/serialize.svelte";
 import type { AttributeValue } from "./attributevalue.svelte";
 import { Color } from "./color.svelte";
@@ -17,18 +18,18 @@ import { RichText } from "./richtext.svelte";
 
 export type AttributeContext = "settings" | "spreadsheet" | "none";
 
-type InternalAttributeType<
+interface InternalAttributeType<
 	Name extends string = any,
 	Frontend extends Serialize<Backend> = any,
 	Backend = Serialized<Frontend>,
-> = {
+> extends Cloneable<InternalAttributeType> {
 	icon: Icon;
 	name: Name;
 	type: any;
 
 	serialize(deserialized: Frontend): Backend;
 	deserialize(serialized: Backend): Frontend;
-};
+}
 
 export type AttributeType<
 	Name extends AttributeTypeName = AttributeTypeName,
@@ -52,6 +53,10 @@ function attributeType<Frontend extends Serialize<Backend>, Backend, const Name 
 
 		deserialize(value: Backend): Frontend {
 			return type.deserialize(value);
+		},
+
+		clone() {
+			return this; // AttributeTypes are immutable
 		},
 	};
 }

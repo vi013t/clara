@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import type { Group } from "../../api/data/database.svelte";
-	import { Project } from "../../api/project.svelte";
 	import { EditorTab, GroupTab, Tab, type TabList } from "../../api/ui/tab.svelte";
 	import { views, type View } from "../../api/ui/views.svelte";
 	import ArrowIcon from "../icons/ArrowIcon.svelte";
-	import CircledPlusIcon from "../icons/CircledPlusIcon.svelte";
 	import CloseIcon from "../icons/CloseIcon.svelte";
 	import EyeIcon from "../icons/EyeIcon.svelte";
 	import GearIcon from "../icons/GearIcon.svelte";
@@ -13,14 +11,14 @@
 	import PlusIcon from "../icons/PlusIcon.svelte";
 	import RenameIcon from "../icons/RenameIcon.svelte";
 	import SplitHorizontalIcon from "../icons/SplitHorizontalIcon.svelte";
-	import SpreadsheetIcon from "../icons/SpreadsheetIcon.svelte";
 	import ContextMenu from "../menus/ContextMenu.svelte";
+	import ReticleIcon from "../icons/ReticleIcon.svelte";
 
 	let {
 		tabs = $bindable(),
 		background,
 		subpane,
-		split,
+		split = $bindable(),
 		onclose,
 		isMasterPaneAlive = $bindable(),
 		selectedTabID = $bindable(),
@@ -36,7 +34,6 @@
 
 	let tabContextMenu: ContextMenu = $state(null!);
 	let rightClickedTab = $state(0);
-	let newTabContextMenu: ContextMenu = $state(null!);
 	let paneSettingsMenu: ContextMenu = $state(null!);
 	let newTabButton: HTMLElement = $state(null!);
 
@@ -45,13 +42,11 @@
 		onclose();
 	}
 
-	function createTab(group: Group, view?: View) {
-		return function () {
-			newTabContextMenu.close();
-			let tab = new GroupTab(group);
-			tabs.appendTab(tab);
-			selectedTabID = tab.id;
-		};
+	function createTab(group?: Group, view?: View) {
+		let tab = new GroupTab(group ?? (currentTab() as GroupTab).group);
+		if (view) tab.view = view;
+		tabs.appendTab(tab);
+		selectedTabID = tab.id;
 	}
 
 	function currentTab<T extends Tab>(): T {
@@ -170,22 +165,9 @@
 		</div>
 	{/each}
 	<div class="new-tab-wrapper" bind:this={newTabContainer} style:left="calc(min({tabWidth}, 13rem) * {tabs.count()})">
-		<button class="new-tab" onmousedown={() => newTabContextMenu.toggle()} bind:this={newTabButton}>
+		<button class="new-tab" onmousedown={() => createTab()} bind:this={newTabButton}>
 			<PlusIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 		</button>
-		<ContextMenu bind:this={newTabContextMenu} top="100%" left="0px">
-			{#each Project.get()!.database.children.filter(child => child.isBranch()) as group}
-				<button onmousedown={createTab(group)}>
-					<group.icon.component stroke="#cdd6f4" style="width: 0.9rem; height: 0.9rem;" />
-					<span>{group.name}</span>
-				</button>
-			{/each}
-			<hr />
-			<button>
-				<CircledPlusIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-				<span>New Dataset</span>
-			</button>
-		</ContextMenu>
 	</div>
 
 	<div class="controls" bind:this={controls}>
@@ -217,64 +199,8 @@
 
 <ContextMenu bind:this={tabContextMenu}>
 	<button>
-		<SpreadsheetIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem; margin-left: 0.15rem;" />
-		<span>Open dataset</span>
-
-		<ContextMenu>
-			{#each Project.get()!.database.children.filter(child => child.isBranch()) as group}
-				<!-- svelte-ignore a11y_no_static_element_interactions -->
-				<div onmousedown={changeTabGroup(group)}>
-					<group.icon.component stroke={"#cdd6f4"} style="width: 0.9rem; height: 0.9rem;" />
-					<span>{group.name}</span>
-
-					<ContextMenu>
-						{#each Object.entries(views) as [viewName, info]}
-							<div onmousedown={changeTabGroup(group, viewName as View)}>
-								<info.icon stroke={"#cdd6f4"} style="width: 1rem; height: 1rem;" />
-								<span>As {viewName}</span>
-
-								<ArrowIcon style="width: 1rem; height: 1rem; rotate: 90deg; margin-left: auto;" />
-								<ContextMenu>
-									<button>
-										<EyeIcon />
-										<span>In this tab</span>
-									</button>
-									<button>
-										<PlusIcon />
-										<span>In new tab</span>
-									</button>
-									<button>
-										<PlusIcon />
-										<span>In new tab to the left</span>
-									</button>
-									<hr />
-									<button>
-										<SplitHorizontalIcon />
-										<span>In split right</span>
-									</button>
-									<button>
-										<SplitHorizontalIcon />
-										<span>In split left</span>
-									</button>
-									<button>
-										<SplitHorizontalIcon style="rotate: 90deg;" />
-										<span>In split bottom</span>
-									</button>
-									<button>
-										<SplitHorizontalIcon style="rotate: 90deg;" />
-										<span>In split top</span>
-									</button>
-								</ContextMenu>
-							</div>
-						{/each}
-					</ContextMenu>
-				</div>
-			{/each}
-		</ContextMenu>
-	</button>
-	<button>
 		<EyeIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem; margin-left: 0.15rem;" />
-		<span>Open view</span>
+		<span>Switch view</span>
 		<ContextMenu>
 			{#each Object.entries(views) as [viewName, info]}
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -285,32 +211,32 @@
 					<ArrowIcon stroke={"#cdd6f4"} style="width: 1rem; height: 1rem; rotate: 90deg; margin-left: auto;" />
 					<ContextMenu>
 						<button>
-							<EyeIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+							<ReticleIcon />
 							<span>In this tab</span>
 						</button>
 						<button>
-							<PlusIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+							<PlusIcon />
 							<span>In new tab</span>
 						</button>
 						<button>
-							<PlusIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+							<ArrowIcon style="rotate: 270deg;" />
 							<span>In new tab to the left</span>
 						</button>
 						<hr />
 						<button>
-							<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+							<SplitHorizontalIcon />
 							<span>In split right</span>
 						</button>
 						<button>
-							<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+							<SplitHorizontalIcon />
 							<span>In split left</span>
 						</button>
 						<button>
-							<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem; rotate: 90deg;" />
+							<SplitHorizontalIcon />
 							<span>In split bottom</span>
 						</button>
 						<button>
-							<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem; rotate: 90deg;" />
+							<SplitHorizontalIcon />
 							<span>In split top</span>
 						</button>
 					</ContextMenu>

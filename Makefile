@@ -14,6 +14,6 @@ build:
 clean:
 	rm node_modules -rf
 	rm apps/desktop/node_modules -rf
-	rm packages/api/node_modules -rf
+	rm apps/desktop/build -rf
 	rm apps/desktop/src-tauri/target -rf
-	rm build -rf
+	rm packages/api/node_modules -rf

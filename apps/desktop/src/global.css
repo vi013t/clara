@@ -12,6 +12,7 @@
 	flex-shrink: 0;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
+	color: inherit;
 }
 
 b,

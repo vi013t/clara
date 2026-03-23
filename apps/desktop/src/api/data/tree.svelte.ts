@@ -102,10 +102,8 @@ export abstract class TreeNode<Branch extends TreeBranch<Branch, Leaf>, Leaf ext
 	}
 
 	public resetColors() {
-		if (!this.parent) {
-			this.outline_.color = Color.hex("#181825");
-			this.outline_.isVisible = false;
-		} else this.outline_.color = this.parent.outline_.color.darken(2);
+		if (!this.parent) this.outline_.color = Color.hex("#181825");
+		else this.outline_.color = this.parent.outline_.color.darken(2);
 		this.children.forEach(child => (child as unknown as TreeNode<Branch, Leaf>).resetColors());
 	}
 
@@ -306,6 +304,23 @@ export abstract class TreeNode<Branch extends TreeBranch<Branch, Leaf>, Leaf ext
 		return visited;
 	}
 
+	public get branchChildren(): Branch[] {
+		return this.children.filter(child => child.isBranch());
+	}
+
+	public get leafChildren(): Leaf[] {
+		return this.children.filter(child => child.isLeaf());
+	}
+
+	public get sortedChildren(): (Branch | Leaf)[] {
+		return [...this.branchChildren, ...this.leafChildren];
+	}
+
+	public delete() {
+		if (!this.parent) throw new Error("Attempted to delete tree root");
+		this.parent.deleteChild(this.self);
+	}
+
 	public abstract get children(): readonly (Branch | Leaf)[];
 	public abstract get self(): Branch | Leaf;
 }
@@ -370,5 +385,10 @@ export abstract class TreeBranch<Branch extends TreeBranch<Branch, Leaf>, Leaf e
 
 	public isBranch(): this is Branch {
 		return true;
+	}
+
+	public deleteChild(child: Branch | Leaf): void {
+		this.leaves = this.leaves.filter(leaf => leaf.id !== child.id);
+		this.branches = this.branches.filter(branch => branch.id !== child.id);
 	}
 }

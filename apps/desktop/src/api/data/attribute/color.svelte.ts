@@ -1,6 +1,7 @@
 import namer from "color-namer";
 import { assignedLater } from "../../util/utils.svelte";
 import type { Serialize } from "../../util/serialize.svelte";
+import type { Cloneable } from "../../util/Clone.svelte";
 
 type BuildRange<N extends number, Acc extends number[] = []> = Acc["length"] extends N
 	? Acc[number]
@@ -12,7 +13,7 @@ type Byte = Range<0, 256>;
 
 export type ToColor = Color | [Byte, Byte, Byte] | string | { r: Byte; g: Byte; b: Byte };
 
-export class Color implements Serialize<string> {
+export class Color implements Serialize<string>, Cloneable<Color> {
 	public red = $state(assignedLater<Byte>());
 	public green = $state(assignedLater<Byte>());
 	public blue = $state(assignedLater<Byte>());

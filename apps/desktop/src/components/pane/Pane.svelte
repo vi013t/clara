@@ -14,10 +14,14 @@
 	) & { childPane: PaneTree } & PaneTreeLeaf;
 </script>
 
+<!-- svelte-ignore state_referenced_locally -->
 <script lang="ts">
-	import type { RichText } from "../../api/data/attribute/attribute.svelte";
+	import type { RichText } from "../../api/data/attribute/richtext.svelte";
+	import { Group } from "../../api/data/database.svelte";
+	import { Project } from "../../api/project.svelte";
 
 	import { EditorTab, GroupTab, TabList } from "../../api/ui/tab.svelte";
+	import Select from "../input/Select.svelte";
 	import ManualPopup from "../popups/ManualPopup.svelte";
 	import GraphView from "../views/GraphView.svelte";
 	import HierarchyView from "../views/HierarchyView.svelte";
@@ -44,8 +48,8 @@
 
 	let dragging = $state("none");
 
-	let selectedTabID = $state(0);
 	let tabline = $state(new TabList());
+	let selectedTabID = $state(tabline.tabs[0].id);
 
 	function drag(side: string) {
 		return function () {
@@ -97,28 +101,19 @@
 		style:height={split === "vertical" ? masterHeight : "100%"}
 		style:width={split === "horizontal" ? masterWidth : "100%"}
 	>
-		<Tabline bind:isMasterPaneAlive bind:selectedTabID bind:tabs={tabline} {background} {split} {subpane} {onclose} />
+		<Tabline bind:isMasterPaneAlive bind:selectedTabID bind:split bind:tabs={tabline} {background} {subpane} {onclose} />
 		<div class="content" style:background>
 			{#if tab instanceof EditorTab && tab.id === selectedTabID}
 				<Editor bind:doc={tab.content} />
 			{:else if tab instanceof GroupTab}
 				<div class="view-container" style="display: {tab.id === selectedTabID ? 'block' : 'none'}">
 					{#if tab.view === "hierarchy"}
-						<HierarchyView hideRoot />
+						<HierarchyView />
 					{:else if tab.view === "spreadsheet"}
 						<SpreadsheetView {openEditor} group={tab.group} />
 					{:else if tab.view === "graph"}
 						<GraphView />
 					{/if}
-				</div>
-			{:else}
-				<div class="no-dataset">
-					<p>This tab has no entry opened. Open an existing one now or create a new one to open.</p>
-					<div>
-						<button>Open entry</button>
-						<button>Create entry</button>
-					</div>
-					<button onmousedown={() => manualPopup.open("entries")}>What the heck's an entry?</button>
 				</div>
 			{/if}
 		</div>
@@ -130,7 +125,7 @@
 	</section>
 
 	{#if split}
-		<Pane bind:this={childPane} subpane onclose={() => (split = undefined)} />
+		<Pane bind:this={childPane} background="#1e1e2e" subpane onclose={() => (split = undefined)} />
 	{/if}
 </section>
 
@@ -140,55 +135,7 @@
 	.view-container {
 		width: 100%;
 		height: 100%;
-	}
-
-	.no-dataset {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-		gap: 2rem;
-		flex-direction: column;
-
-		p {
-			color: #a6adb8;
-			font-size: 0.85rem;
-		}
-
-		> button {
-			color: #89b4fa;
-			font-style: italic;
-			font-size: 0.85rem;
-
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-
-		div {
-			display: flex;
-			gap: 2rem;
-
-			> button {
-				border-radius: 0.25rem;
-				width: 10rem;
-				padding: 0.5rem;
-				color: #181825;
-				background-image: linear-gradient(to bottom right, #b4befe, #89b4fa);
-				box-shadow: 0px 0px 0.25rem black;
-				font-size: 0.85rem;
-				transition: scale 0.1s;
-
-				&:last-child {
-					background-image: linear-gradient(to bottom right, #94e2d5, #a6e3a1);
-				}
-
-				&:hover {
-					scale: 105%;
-				}
-			}
-		}
+		padding: 1rem;
 	}
 
 	.pane-wrapper {
@@ -204,7 +151,6 @@
 	}
 
 	.content {
-		background-color: #1e1e2e;
 		border-top: 1px solid #313244;
 		flex-grow: 1;
 	}

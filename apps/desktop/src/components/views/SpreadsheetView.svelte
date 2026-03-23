@@ -16,11 +16,6 @@
 	let updateCounter = $state(0);
 	let updateAttributes = $state(0);
 
-	let bottomGroups = $derived.by(() => {
-		updateCounter;
-		return group.dfsYoungParents();
-	});
-
 	function addRow() {
 		group.addChild(new Item("New Item"));
 		updateCounter++;
@@ -46,6 +41,8 @@
 		editingAttribute = field;
 		fieldSettings.openAtMouse(event);
 	}
+
+	group.attributeDefinitions;
 </script>
 
 <div class="columns">
@@ -56,14 +53,12 @@
 			</button>
 		</div>
 
-		{#each bottomGroups as group}
-			{#each group.children as item}
-				<div class="control cell">
-					<button onmousedown={removeItem(item as Item)}>
-						<TrashIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
-					</button>
-				</div>
-			{/each}
+		{#each group.children as item}
+			<div class="control cell">
+				<button onmousedown={removeItem(item as Item)}>
+					<TrashIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+				</button>
+			</div>
 		{/each}
 		<div class="new control cell">
 			<button onmousedown={addRow}>
@@ -82,20 +77,18 @@
 						<GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 					</button>
 				</div>
-				{#each bottomGroups as group}
-					{#each group.children as item}
-						<div class="cell">
-							<Input
-								context="spreadsheet"
-								{openEditor}
-								type={attribute.type.name}
-								bind:value={
-									() => (item as Item).getAttributeValue(attribute.name),
-									value => (item as Item).overwriteAttributeValue(attribute.name, value!)
-								}
-							/>
-						</div>
-					{/each}
+				{#each group.directItemChildren as item}
+					<div class="cell">
+						<Input
+							context="spreadsheet"
+							{openEditor}
+							type={attribute.type.name}
+							bind:value={
+								() => item.getAttributeValue(attribute.name),
+								value => item.addNewOrOverwriteAttributeValue(attribute.name, value!)
+							}
+						/>
+					</div>
 				{/each}
 				<div class="new cell"></div>
 			</div>
@@ -106,10 +99,8 @@
 			<PlusIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
 			New
 		</button>
-		{#each bottomGroups as group}
-			{#each group.children as item}
-				<div class="new cell"></div>
-			{/each}
+		{#each group.children as item}
+			<div class="new cell"></div>
 		{/each}
 		<div class="new cell"></div>
 	</div>

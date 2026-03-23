@@ -76,6 +76,8 @@
 	const createProject = asyncFn(
 		async function createProject() {
 			if (hasErrors) {
+				startedTypingLocation = true;
+				startedTypingName = true;
 				triedToCreate = true;
 				return;
 			}
@@ -83,9 +85,12 @@
 			// let currentProject = Project.get();
 			// if (currentProject) await invoke("save_project", { project: currentProject.serialize() });
 
+			let database = template.clone();
+			database.name = name;
+
 			let project = new Project({
 				location,
-				database: template, // todo: clone this
+				database,
 			});
 
 			Project.set(project);
@@ -179,7 +184,7 @@
 			<div>
 				<h2>Entries</h2>
 				<div class="tree">
-					<HierarchyView hideRoot tree={template} />
+					<HierarchyView hideRoot entry={template} />
 				</div>
 			</div>
 		</div>

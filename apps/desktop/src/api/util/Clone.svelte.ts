@@ -1,12 +1,17 @@
 import { assignedLater } from "./utils.svelte";
 
-export interface Cloneable<T> {
+export interface Cloneable<T extends Cloneable<T>> {
+	/**
+	 * Creates a deep clone of this value.
+	 *
+	 * Any objects that store some sort of unique ID will **not have the same ID as the cloned object**.
+	 *
+	 * Objects which are immutable may just return themselves.
+	 */
 	clone(): T;
 }
 
-export interface Immutable<T> extends Cloneable<T> {}
-
-export class ImmutableContainer<T extends Cloneable<T> | Cloneable<any>[]> {
+export class ImmutableContainer<T extends Cloneable<T>> {
 	protected data: T = $state(assignedLater());
 
 	public constructor(data: T) {
@@ -53,7 +58,7 @@ export class ImmutableContainer<T extends Cloneable<T> | Cloneable<any>[]> {
  * all `Container` instances are const or readonly. This way, callers must explicitly state that they
  * are overwriting the original value, not a clone. `ImmutableContainer` also exists without this method.
  */
-export class Container<T extends Cloneable<T> | Cloneable<any>[]> extends ImmutableContainer<T> {
+export class Container<T extends Cloneable<T>> extends ImmutableContainer<T> {
 	public overwrite(data: T): void {
 		this.data = data;
 	}

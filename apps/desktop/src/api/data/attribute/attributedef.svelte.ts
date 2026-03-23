@@ -1,4 +1,5 @@
 import { getIcon, type Icon } from "../../ui/icons.svelte";
+import type { Cloneable } from "../../util/Clone.svelte";
 import type { Serialize } from "../../util/serialize.svelte";
 import { assignedLater } from "../../util/utils.svelte";
 import type { Group } from "../database.svelte";
@@ -13,7 +14,7 @@ export type SerializedAttributeDefinition = {
 
 export type AttributeDefinitionBuilder = (group: Group) => AttributeDefinition;
 
-export class AttributeDefinition implements Serialize<SerializedAttributeDefinition> {
+export class AttributeDefinition implements Serialize<SerializedAttributeDefinition>, Cloneable<AttributeDefinition> {
 	public name = $state(assignedLater<string>());
 	public type = $state(assignedLater<AttributeType>());
 	private id_ = $state(assignedLater<number>());
@@ -26,6 +27,10 @@ export class AttributeDefinition implements Serialize<SerializedAttributeDefinit
 		this.type = type;
 		this.group = group;
 		this.id_ = id ?? AttributeDefinition.nextID++;
+	}
+
+	public clone(): AttributeDefinition {
+		return new AttributeDefinition(this.name, this.type, this.group);
 	}
 
 	public serialize(): SerializedAttributeDefinition {

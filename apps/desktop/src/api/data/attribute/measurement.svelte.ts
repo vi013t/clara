@@ -41,7 +41,9 @@ export abstract class Measurement<
 	Type extends MeasurementTypeInstance<Standard, Type>,
 	Standard extends Measurement<Type, Standard, Standard> = any,
 	Self extends Measurement<Type, Standard, Self> = any,
-> implements Serialize<SerializedMeasurement> {
+>
+	implements Serialize<SerializedMeasurement>, Cloneable<Measurement<Type, Standard, Self>>
+{
 	protected count_: number = $state(assignedLater());
 
 	public constructor(value: number) {

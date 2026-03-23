@@ -67,9 +67,14 @@ declare module '$env/static/private' {
 	export const LANG: string;
 	export const LOCALAPPDATA: string;
 	export const LOGONSERVER: string;
+	export const MAKEFLAGS: string;
+	export const MAKELEVEL: string;
+	export const MAKE_TERMERR: string;
+	export const MAKE_TERMOUT: string;
 	export const MANPAGER: string;
 	export const MANPATH: string;
 	export const MANWIDTH: string;
+	export const MFLAGS: string;
 	export const MINGW_CHOST: string;
 	export const MINGW_PACKAGE_PREFIX: string;
 	export const MINGW_PREFIX: string;
@@ -123,6 +128,7 @@ declare module '$env/static/private' {
 	export const SYSTEMROOT: string;
 	export const TAURI_CLI_VERBOSITY: string;
 	export const TAURI_ENV_ARCH: string;
+	export const TAURI_ENV_DEBUG: string;
 	export const TAURI_ENV_FAMILY: string;
 	export const TAURI_ENV_PLATFORM: string;
 	export const TAURI_ENV_PLATFORM_VERSION: string;
@@ -260,9 +266,14 @@ declare module '$env/dynamic/private' {
 		LANG: string;
 		LOCALAPPDATA: string;
 		LOGONSERVER: string;
+		MAKEFLAGS: string;
+		MAKELEVEL: string;
+		MAKE_TERMERR: string;
+		MAKE_TERMOUT: string;
 		MANPAGER: string;
 		MANPATH: string;
 		MANWIDTH: string;
+		MFLAGS: string;
 		MINGW_CHOST: string;
 		MINGW_PACKAGE_PREFIX: string;
 		MINGW_PREFIX: string;
@@ -316,6 +327,7 @@ declare module '$env/dynamic/private' {
 		SYSTEMROOT: string;
 		TAURI_CLI_VERBOSITY: string;
 		TAURI_ENV_ARCH: string;
+		TAURI_ENV_DEBUG: string;
 		TAURI_ENV_FAMILY: string;
 		TAURI_ENV_PLATFORM: string;
 		TAURI_ENV_PLATFORM_VERSION: string;

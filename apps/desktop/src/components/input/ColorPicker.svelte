@@ -37,7 +37,7 @@
 	let huePicker: HTMLElement = null!;
 	let opener: HTMLElement;
 
-	mouse().onClick(event => {
+	mouse().onLeftClick(event => {
 		if (!event.composedPath().includes(popup) && !event.composedPath().includes(opener)) {
 			hide();
 		}

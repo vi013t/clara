@@ -23,9 +23,8 @@
 	import CameraView from "./CameraView.svelte";
 
 	let tree = Project.get()!.database;
-	let nodes = $derived(tree.dfs());
-	let items = $derived(nodes.filter(node => node.isLeaf()));
-	let groups = $derived(nodes.filter(node => node.isBranch()));
+	let items = $derived(tree.dfsItems());
+	let groups = $derived(tree.dfsGroups());
 
 	// let edges = $derived(Project.get()!.database.relations());
 	// let edgeElements = $derived(

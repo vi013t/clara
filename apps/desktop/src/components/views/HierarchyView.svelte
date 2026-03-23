@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Node } from "../../api/data/database.svelte";
+	import { Group, Item, type Node } from "../../api/data/database.svelte";
 	import { Project } from "../../api/project.svelte";
 	import ArrowIcon from "../icons/ArrowIcon.svelte";
 	import CircledPlusIcon from "../icons/CircledPlusIcon.svelte";
@@ -10,23 +10,21 @@
 	import HierarchyView from "./HierarchyView.svelte";
 
 	let {
-		tree,
+		entry,
 		hideRoot = false,
 		subtree = false,
 		demo = false,
-		rightClick = onRightClick,
 	}: {
-		tree?: Node;
+		entry?: Node;
 		hideRoot?: boolean;
 		subtree?: boolean;
 		demo?: boolean;
-		rightClick?: (event: MouseEvent) => void;
 	} = $props();
 
 	// svelte-ignore state_referenced_locally
 	let expanded = $state(hideRoot || demo);
 	// svelte-ignore state_referenced_locally
-	if (!tree) tree = Project.get()!.database;
+	if (!entry) entry = Project.get()!.database;
 
 	function toggle(event: MouseEvent) {
 		if (event.button !== 0) return;
@@ -48,23 +46,64 @@
 	let menuLeft: string = $state("");
 	let rightClickMenu: ContextMenu | null = $state(null);
 	let nodeElement: HTMLElement;
+	let clickedNode = $state(false);
 
 	function onRightClick(event: MouseEvent) {
+		clickedNode = true;
 		rightClickMenu!.openAtMouse(event);
+	}
+
+	function newGroup() {
+		(entry as Group).addChild(new Group("New Group"));
+		rightClickMenu?.close();
+		expanded = true;
+	}
+
+	function newItem() {
+		(entry as Group).addChild(new Item("New Item"));
+		rightClickMenu?.close();
+		expanded = true;
+	}
+
+	let name: HTMLSpanElement | null = $state(null);
+
+	function rename() {
+		rightClickMenu?.close();
+		if (!name) return;
+
+		name.focus();
+		const selection = window.getSelection();
+		const range = document.createRange();
+		range.selectNodeContents(name);
+		range.collapse(false);
+		selection?.removeAllRanges();
+		selection?.addRange(range);
+	}
+
+	function deleteEntry() {
+		entry!.delete();
 	}
 </script>
 
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <section bind:this={nodeElement}>
 	{#if !hideRoot || subtree}
-		<button class="node" onmousedown={toggle} oncontextmenu={rightClick}>
-			{#if tree.isBranch()}
+		<button oncontextmenu={onRightClick} class={["node", clickedNode && "active"]} onmousedown={toggle}>
+			{#if entry.isBranch()}
 				<PackageIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 			{:else}
-				<tree.icon.component stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+				<entry.icon.component stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
 			{/if}
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<span class="node-name" contenteditable bind:textContent={tree.name} onkeypress={onNameKeypress} spellcheck="false"></span>
-			{#if tree.isBranch()}
+			<span
+				class="node-name"
+				contenteditable
+				bind:textContent={() => entry.name, name => entry.setName(name)}
+				onkeypress={onNameKeypress}
+				spellcheck="false"
+				bind:this={name}
+			></span>
+			{#if entry.isBranch()}
 				<ArrowIcon
 					stroke="var(--arrow)"
 					style="width: 1rem; transition: rotate 0.1s; height: 1rem; rotate: {expanded ? '180deg' : '90deg'};"
@@ -73,37 +112,44 @@
 		</button>
 	{/if}
 
-	{#if tree.children.length !== 0}
+	{#if entry.children.length !== 0}
 		<ul
 			class={{ expanded }}
 			style:border-left={hideRoot ? "none" : "1px solid #45475a"}
 			style:margin-top={subtree || !expanded ? "0px" : "0.5rem"}
 		>
-			{#each tree.children as child (child.id)}
-				<li style:padding-left={hideRoot && tree.isRoot ? "0px" : "1.25rem"}>
-					<HierarchyView {demo} {hideRoot} tree={child} subtree {rightClick} />
+			{#each entry.sortedChildren as child (child.id)}
+				<li style:padding-left={hideRoot && entry.isRoot ? "0px" : "1.25rem"}>
+					<HierarchyView {demo} {hideRoot} entry={child} subtree />
 				</li>
 			{/each}
 		</ul>
 	{/if}
-	<ContextMenu left={menuLeft} top={menuTop} bind:this={rightClickMenu}>
-		<button>
-			<CircledPlusIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-			Create new item
-		</button>
-		<button>
-			<PackageIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-			Create new group
-		</button>
-		<hr />
-		<button>
-			<RenameIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
-			<span>Rename</span>
-		</button>
-		<button>
-			<TrashIcon stroke="#f38ba8" style="width: 0.85rem; height: 0.85rem;" />
-			<span style="color: #f38ba8;">Delete</span>
-		</button>
+
+	<ContextMenu onclose={() => (clickedNode = false)} left={menuLeft} top={menuTop} bind:this={rightClickMenu}>
+		{#if entry.isBranch()}
+			<button onmousedown={newItem}>
+				<CircledPlusIcon scale={0.85} />
+				Create new item
+			</button>
+			<button onmousedown={newGroup}>
+				<PackageIcon scale={0.85} />
+				Create new group
+			</button>
+			{#if !entry.isRoot}
+				<hr />
+			{/if}
+		{/if}
+		{#if !entry.isRoot}
+			<button onmousedown={rename}>
+				<RenameIcon scale={0.85} />
+				<span>Rename</span>
+			</button>
+			<button onmousedown={deleteEntry}>
+				<TrashIcon stroke="#f38ba8" scale={0.85} />
+				<span style="color: #f38ba8;">Delete</span>
+			</button>
+		{/if}
 	</ContextMenu>
 </section>
 
@@ -116,7 +162,6 @@
 
 	ul {
 		list-style-type: none;
-		overflow: hidden;
 
 		&:not(.expanded) {
 			max-height: 0px;
@@ -160,7 +205,8 @@
 			}
 		}
 
-		&:hover {
+		&:hover,
+		&.active {
 			--stroke: #181825;
 			background-color: #b4befe;
 			--arrow: #181825;

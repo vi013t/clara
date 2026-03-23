@@ -6,7 +6,6 @@
 	import IOIcon from "../icons/IOIcon.svelte";
 	import LicenseIcon from "../icons/LicenseIcon.svelte";
 	import PackageIcon from "../icons/PackageIcon.svelte";
-	import PageIcon from "../icons/PageIcon.svelte";
 	import ParagraphIcon from "../icons/ParagraphIcon.svelte";
 	import PencilIcon from "../icons/PencilIcon.svelte";
 	import PlugIcon from "../icons/PlugIcon.svelte";
@@ -17,10 +16,11 @@
 	import TreeIcon from "../icons/TreeIcon.svelte";
 	import VersionControlIcon from "../icons/VersionControlIcon.svelte";
 	import Popup from "./Popup.svelte";
+	import Sidebar from "./Sidebar.svelte";
 
 	let popup: Popup;
 
-	let view = $state("introduction");
+	let view = $state("Introduction");
 
 	export function open(viewName?: string) {
 		if (viewName) view = viewName;
@@ -28,126 +28,56 @@
 	}
 
 	function reset() {}
-
-	function setView(viewName: string) {
-		return function () {
-			view = viewName;
-		};
-	}
 </script>
 
 <Popup {reset} bind:this={popup}>
 	<div class="popup">
-		<div class="sidebar">
-			<h1 class="title">
-				<img src={icon} alt="wallflower" />
-				Wallflower Manual
-			</h1>
-			<h1>The essentials</h1>
+		<Sidebar
+			bind:view
+			title={{ text: "Wallflower Manual", icon }}
+			sections={{
+				"The essentials": [
+					["Introduction", SproutIcon],
+					["Interface", TreeIcon],
+					["Entries", SpreadsheetIcon],
+					["Templates", PackageIcon],
+					["View", GraphIcon],
+					["The Editor", PencilIcon],
+				],
+				"Advanced": [
+					["Measurements & Units", RulerIcon],
+					["Randomization", DiceIcon],
+					["Generated Attributes", IOIcon],
+					["Suggestions", ParagraphIcon],
+					["Plugins", PlugIcon],
+				],
+				"Development": [
+					["Plugin Development", PlugIcon],
+					["Bug Reporting", BugIcon],
+					["Contributing", VersionControlIcon],
+				],
+				"Legal": [
+					["License", LicenseIcon],
+					["Privacy Policy", PrivacyIcon],
+				],
+			}}
+		/>
 
-			<button onmousedown={setView("introduction")}>
-				<SproutIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Introduction</span>
-			</button>
-			<button onmousedown={setView("interface")}>
-				<TreeIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Interface</span>
-			</button>
-			<button onmousedown={setView("groups")}>
-				<SpreadsheetIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Entries</span>
-			</button>
-			<button onmousedown={setView("templates")}>
-				<PackageIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Templates</span>
-			</button>
-			<button>
-				<GraphIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Views</span>
-			</button>
-			<button>
-				<PencilIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>The Editor</span>
-			</button>
-			<button>
-				<PageIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Manuscript</span>
-			</button>
-
-			<h1>Advanced</h1>
-
-			<button>
-				<RulerIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Measurements &amp; Units</span>
-			</button>
-			<button>
-				<DiceIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Randomization</span>
-			</button>
-			<button>
-				<IOIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Generated Attributes</span>
-			</button>
-			<button>
-				<ParagraphIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Suggestions</span>
-			</button>
-			<button>
-				<PlugIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Plugins</span>
-			</button>
-
-			<h1>Development</h1>
-
-			<button>
-				<PlugIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Plugin Development</span>
-			</button>
-			<button>
-				<BugIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Bug Reporting</span>
-			</button>
-			<button>
-				<VersionControlIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Contributing</span>
-			</button>
-
-			<h1>Legal</h1>
-			<button onmousedown={setView("license")}>
-				<LicenseIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>License</span>
-			</button>
-			<button>
-				<PrivacyIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Privacy Policy</span>
-			</button>
-		</div>
 		<div class="content">
-			{#if view === "introduction"}
+			{#if view === "Introduction"}
 				<h1>Introduction</h1>
 
 				<p>Welcome to Wallflower!</p>
 
 				<p>
-					Wallflower is a data editor designed for novel writing. Wallflower lets you keep track of your characters, scenes,
-					locations, and more, and visualize how they all connect to one another. You can write scenes independently in their own
-					documents, and automatically join them all into a full manuscript. Additionally, Wallflower comes with a bunch of little
-					utilities for novel writing&mdash;name generators, structure templates, randomizers, location mapping, and more.
-				</p>
-
-				<p>
-					Technically, Wallflower can be used to hold any kind of data&mdash;not just novels. That being said, it's designed for
-					long-form novel writing, and works best as a tool for that.
-				</p>
-				<p>
-					Wallflower has always been and will always be a <i>completely free tool.</i>
-					Writing is beautiful, and I refuse to be exploitative or predatory in an artisic industry that's already overly bureaucratized.
+					Wallflower is a <i>data editor and visualizer</i>
+					.
 				</p>
 
 				<div class="nav-buttons">
 					<button class="next">Next</button>
 				</div>
-			{:else if view === "interface"}
+			{:else if view === "Interface"}
 				<h1>Interface</h1>
 
 				<p>
@@ -158,7 +88,7 @@
 					. Each tab holds one group or editor&mdash;don't worry about those right now, we'll talk more about that later. Panes can
 					be infinitely split horizontally or vertically into more panes.
 				</p>
-			{:else if view === "entries"}
+			{:else if view === "Entries"}
 				<h1>Groups</h1>
 
 				<h1>Attributes &amp; Items</h1>
@@ -175,7 +105,7 @@
 					<i>editor</i>
 					panel. This is where your actual writing will take place.
 				</p>
-			{:else if view === "license"}
+			{:else if view === "License"}
 				<h1>License</h1>
 
 				<p>
@@ -763,18 +693,6 @@
 </Popup>
 
 <style>
-	.title {
-		border-bottom: 1px solid #313244;
-		padding-bottom: 1rem;
-		display: flex;
-		gap: 1rem;
-
-		img {
-			width: 1rem;
-			height: 1rem;
-		}
-	}
-
 	.nav-buttons {
 		display: flex;
 		margin-top: auto;
@@ -858,40 +776,6 @@
 		ul,
 		li {
 			color: #a6adc8;
-		}
-
-		.sidebar {
-			height: 100%;
-			width: 15rem;
-			border-right: 1px solid #313244;
-			display: flex;
-			flex-direction: column;
-			gap: 0.25rem;
-			padding: 1rem;
-
-			h1:not(:first-child) {
-				margin-top: 1rem;
-			}
-
-			button {
-				display: flex;
-				align-items: center;
-				gap: 0.5rem;
-				padding: 0.25rem;
-				padding-left: 0.5rem;
-				width: 100%;
-				border-radius: 0.25rem;
-				--stroke: #cdd6f4;
-
-				&:hover {
-					background-color: #b4befe;
-					--stroke: #181825;
-				}
-
-				span {
-					color: var(--stroke);
-				}
-			}
 		}
 	}
 </style>

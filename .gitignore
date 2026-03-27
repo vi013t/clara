@@ -1,11 +1,24 @@
+# os
 .DS_Store
+
+# frontend stuff
 node_modules
 /.svelte-kit
-/package
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# environment stuffs
 .env
 .env.*
 !.env.example
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
+
+# editor garbage
 /.vscode
+
+# build folders
 build/
+target/
+dist/
+
+# separate projects
+/packages/plugins

@@ -1,6 +1,6 @@
 # Wallflower
 
-A free software application for screenwriting, novel writing, etc.
+An app for data visualization.
 
 ## Installation
 

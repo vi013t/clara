@@ -2,8 +2,9 @@
 	"name": "wallflower",
 	"private": true,
 	"workspaces": [
-		"apps/*",
-		"packages/*"
+		"packages/api",
+		"packages/app",
+		"packages/plugins/*"
 	],
 	"scripts": {
 		"dev": "bun run --filter wallflower tauri dev",

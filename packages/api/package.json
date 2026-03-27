@@ -1,7 +1,116 @@
 {
 	"name": "@wallflower/api",
 	"version": "0.0.1",
-	"main": "./src/index.ts",
-	"types": "./src/index.ts",
-	"type": "module"
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build && npm run prepack",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"prepack": "svelte-kit sync && svelte-package && publint",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"sideEffects": [
+		"**/*.css"
+	],
+	"svelte": "./dist/index.svelte.js",
+	"types": "./dist/index.svelte.d.ts",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.svelte.d.ts",
+			"svelte": "./dist/index.svelte.js",
+			"default": "./dist/index.svelte.js"
+		},
+		"./event": {
+			"types": "./dist/event/index.svelte.d.ts",
+			"svelte": "./dist/event/index.svelte.js",
+			"default": "./dist/event/index.svelte.js"
+		},
+		"./plugin": {
+			"types": "./dist/plugin/index.svelte.d.ts",
+			"svelte": "./dist/plugin/index.svelte.js",
+			"default": "./dist/plugin/index.svelte.js"
+		},
+		"./project": {
+			"types": "./dist/project.svelte.d.ts",
+			"svelte": "./dist/project.svelte.js",
+			"default": "./dist/project.svelte.js"
+		},
+		"./icons": {
+			"types": "./dist/ui/icons.svelte.d.ts",
+			"svelte": "./dist/ui/icons.svelte.js",
+			"default": "./dist/ui/icons.svelte.js"
+		},
+		"./camera": {
+			"types": "./dist/ui/camera.svelte.d.ts",
+			"svelte": "./dist/ui/camera.svelte.js",
+			"default": "./dist/ui/camera.svelte.js"
+		},
+		"./math": {
+			"types": "./dist/math/index.svelte.d.ts",
+			"svelte": "./dist/math/index.svelte.js",
+			"default": "./dist/math/index.svelte.js"
+		},
+		"./database": {
+			"types": "./dist/data/database.svelte.d.ts",
+			"svelte": "./dist/data/database.svelte.js",
+			"default": "./dist/data/database.svelte.js"
+		},
+		"./attribute": {
+			"types": "./dist/data/attribute/index.svelte.d.ts",
+			"svelte": "./dist/data/attribute/index.svelte.js",
+			"default": "./dist/data/attribute/index.svelte.js"
+		},
+		"./utils": {
+			"types": "./dist/util/index.svelte.d.ts",
+			"svelte": "./dist/util/index.svelte.js",
+			"default": "./dist/util/index.svelte.js"
+		},
+		"./components": {
+			"types": "./dist/components/index.svelte.d.ts",
+			"svelte": "./dist/components/index.svelte.js",
+			"default": "./dist/components/index.svelte.js"
+		},
+		"./system": {
+			"types": "./dist/system.svelte.d.ts",
+			"svelte": "./dist/system.svelte.js",
+			"default": "./dist/system.svelte.js"
+		},
+		"./ui": {
+			"types": "./dist/ui/index.svelte.d.ts",
+			"svelte": "./dist/ui/index.svelte.js",
+			"default": "./dist/ui/index.svelte.js"
+		},
+		"./userdata": {
+			"types": "./dist/userdata/index.svelte.d.ts",
+			"svelte": "./dist/userdata/index.svelte.js",
+			"default": "./dist/userdata/index.svelte.js"
+		}
+	},
+	"peerDependencies": {
+		"svelte": "^5.0.0"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^7.0.0",
+		"@sveltejs/kit": "^2.50.2",
+		"@sveltejs/package": "^2.5.7",
+		"@sveltejs/vite-plugin-svelte": "^6.2.4",
+		"publint": "^0.3.17",
+		"svelte": "^5.54.0",
+		"svelte-check": "^4.4.2",
+		"typescript": "^5.9.3",
+		"vite": "^7.3.1"
+	},
+	"keywords": [
+		"svelte"
+	],
+	"dependencies": {
+		"color-namer": "^1.4.0"
+	}
 }

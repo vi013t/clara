@@ -1,0 +1,32 @@
+<script lang="ts">
+	import type { IconProps } from "../../ui/icons.svelte";
+
+	let { stroke = "currentcolor", scale = 1, ...attributes }: IconProps = $props();
+</script>
+
+<svg
+	style:width="{scale}rem"
+	style:height="{scale}rem"
+	{...attributes}
+	fill={stroke}
+	height="200px"
+	width="200px"
+	version="1.1"
+	id="Layer_1"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	viewBox="0 0 511.998 511.998"
+	xml:space="preserve"
+>
+	<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+	<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+	<g id="SVGRepo_iconCarrier">
+		<g>
+			<g>
+				<path
+					d="M256.001,0c-141.159,0-256,114.84-256,255.998s114.84,256,255.998,256s255.998-114.841,255.998-256S397.16,0,256.001,0z M95.292,129.984l100.153,100.153H53.327C58.081,192.661,73.027,158.318,95.292,129.984z M53.323,281.833h142.151L95.292,382.016 C73.022,353.674,58.074,319.32,53.323,281.833z M230.154,458.678c-36.563-4.637-70.135-18.984-98.063-40.354l98.063-98.065 V458.678z M230.154,191.741l-98.063-98.065c27.928-21.37,61.5-35.719,98.063-40.354V191.741z M458.675,230.139H320.274 l98.049-98.049C439.692,160.013,454.038,193.58,458.675,230.139z M281.848,53.322c37.483,4.752,71.83,19.701,100.169,41.969 L281.848,195.46V53.322z M281.848,458.678V316.54l100.167,100.169C353.678,438.977,319.329,453.925,281.848,458.678z M418.323,379.91l-98.077-98.079H458.68C454.045,318.401,439.695,351.978,418.323,379.91z"
+				></path>
+			</g>
+		</g>
+	</g>
+</svg>

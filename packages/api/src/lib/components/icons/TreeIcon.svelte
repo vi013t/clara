@@ -1,0 +1,28 @@
+<script lang="ts">
+	import type { IconProps } from "../../ui/icons.svelte";
+
+	let { stroke = "currentcolor", scale = 1, ...attributes }: IconProps = $props();
+</script>
+
+<svg
+	style:width="{scale}rem"
+	style:height="{scale}rem"
+	{...attributes}
+	viewBox="0 0 48 48"
+	xmlns="http://www.w3.org/2000/svg"
+	fill={stroke}
+>
+	<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+	<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+	<g id="SVGRepo_iconCarrier">
+		<title>tree-structure</title>
+		<g id="Layer_2" data-name="Layer 2">
+			<g id="invisible_box" data-name="invisible box"><rect width="48" height="48" fill="none"></rect></g>
+			<g id="Q3_icons" data-name="Q3 icons">
+				<path
+					d="M26,30H42a2,2,0,0,0,2-2V20a2,2,0,0,0-2-2H26a2,2,0,0,0-2,2v2H16V14h6a2,2,0,0,0,2-2V4a2,2,0,0,0-2-2H6A2,2,0,0,0,4,4v8a2,2,0,0,0,2,2h6V40a2,2,0,0,0,2,2H24v2a2,2,0,0,0,2,2H42a2,2,0,0,0,2-2V36a2,2,0,0,0-2-2H26a2,2,0,0,0-2,2v2H16V26h8v2A2,2,0,0,0,26,30Zm2-8H40v4H28ZM8,6H20v4H8ZM28,38H40v4H28Z"
+				></path>
+			</g>
+		</g>
+	</g>
+</svg>

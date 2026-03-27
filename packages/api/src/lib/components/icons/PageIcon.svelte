@@ -1,0 +1,26 @@
+<script lang="ts">
+	import type { IconProps } from "../../ui/icons.svelte";
+
+	let { stroke = "currentcolor", scale = 1, ...attributes }: IconProps = $props();
+</script>
+
+<svg
+	style:width="{scale}rem"
+	style:height="{scale}rem"
+	{...attributes}
+	viewBox="0 0 24 24"
+	fill="none"
+	xmlns="http://www.w3.org/2000/svg"
+>
+	<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+	<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+	<g id="SVGRepo_iconCarrier">
+		<path
+			d="M8 13H14M8 17H16M13 3H5V21H19V9M13 3H14L19 8V9M13 3V7C13 8 14 9 15 9H19"
+			{stroke}
+			stroke-width="1.5"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		></path>
+	</g>
+</svg>

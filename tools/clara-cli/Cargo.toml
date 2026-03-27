@@ -1,0 +1,10 @@
+[package]
+name = "clara-cli"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = { version = "4.6.0", features = ["derive"] }
+clara-api = { path = "../clara-api"}
+colored = "3.1.1"
+dialoguer = "0.12.0"

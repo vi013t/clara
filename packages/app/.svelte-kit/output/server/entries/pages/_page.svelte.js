@@ -4,6 +4,12 @@ import { open } from "@tauri-apps/plugin-dialog";
 import { a2 as attributes, a as attr, a3 as stringify, a4 as attr_style, a5 as attr_class, a6 as clsx, a7 as bind_props, a1 as derived, e as escape_html, a8 as ensure_array_like, a9 as await_block } from "../../chunks/index.js";
 import namer from "color-namer";
 import { getCurrentWindow } from "@tauri-apps/api/window";
+const api = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  get startPlugins() {
+    return startPlugins;
+  }
+}, Symbol.toStringTag, { value: "Module" }));
 function html(value) {
   var html2 = String(value ?? "");
   var open2 = "<!---->";
@@ -74,6 +80,13 @@ var Objects;
   }
   Objects2.mapEntries = mapEntries;
 })(Objects || (Objects = {}));
+const utils = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  get Objects() {
+    return Objects;
+  },
+  assignedLater
+}, Symbol.toStringTag, { value: "Module" }));
 class Matrix3x3 {
   values = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
   constructor(values) {
@@ -236,6 +249,9 @@ class Point2D {
   static origin() {
     return new Point2D(0, 0);
   }
+}
+function sum(...values) {
+  return values.reduce((total, value) => total + value, 0);
 }
 function clamp(value, minimum, maximum) {
   return Math.min(maximum, Math.max(value, minimum));
@@ -2861,6 +2877,85 @@ for (const path in modules) {
     }
   }
 }
+const icons$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  ArrowIcon,
+  AsexualIcon,
+  BisexualIcon,
+  BlankPageIcon,
+  BoldIcon,
+  BookIcon,
+  BugIcon,
+  CalendarIcon,
+  CatIcon,
+  CharacterCountIcon,
+  CircledPlusIcon,
+  ClockIcon,
+  CloseIcon,
+  ColorPaletteIcon,
+  DashIcon,
+  DiceIcon,
+  EllipsisIcon,
+  EyeIcon,
+  FichteanCurveIcon,
+  FilterIcon,
+  FolderIcon,
+  GayIcon,
+  GearIcon,
+  GraphIcon,
+  HeterosexualIcon,
+  HexagonIcon,
+  HomosexualIcon,
+  IOIcon,
+  ItalicIcon,
+  KeyboardKeyIcon,
+  LesbianIcon,
+  LicenseIcon,
+  LineSpacingIcon,
+  LocationIcon,
+  LockIcon,
+  MarkdownIcon,
+  MinimizeIcon,
+  MoonIcon,
+  NumberSignIcon,
+  PackageIcon,
+  PageIcon,
+  PansexualIcon,
+  ParagraphIcon,
+  PencilIcon,
+  PersonIcon,
+  PlugIcon,
+  PlusIcon,
+  PrivacyIcon,
+  PyramidIcon,
+  QuestionMarkIcon,
+  RenameIcon,
+  ReticleIcon,
+  RulerIcon,
+  SaveIcon,
+  ScaleIcon,
+  SevenPointStructureIcon,
+  SplitHorizontalIcon,
+  SpreadsheetIcon,
+  SproutIcon,
+  StartupIcon,
+  SunIcon,
+  SwordIcon,
+  TextIcon,
+  TheaterIcon,
+  TransferIcon,
+  TrashIcon,
+  TreeIcon,
+  UnderlineIcon,
+  UndoIcon,
+  UnlockedIcon,
+  VersionControlIcon,
+  WeightScaleIcon,
+  WheelIcon,
+  WordCountIcon,
+  getIcon,
+  icons
+}, Symbol.toStringTag, { value: "Module" }));
 class Color {
   red = assignedLater();
   green = assignedLater();
@@ -3571,9 +3666,9 @@ class AttributeDefinition {
       groupId: this.group.id
     };
   }
-  static deserialize(attribute, group) {
-    if (AttributeDefinition.nextID <= attribute.id) AttributeDefinition.nextID = attribute.id + 1;
-    const definition = new AttributeDefinition(attribute.name, AttributeType.fromName(attribute.type), null);
+  static deserialize(attribute2, group) {
+    if (AttributeDefinition.nextID <= attribute2.id) AttributeDefinition.nextID = attribute2.id + 1;
+    const definition = new AttributeDefinition(attribute2.name, AttributeType.fromName(attribute2.type), null);
     definition.group = group;
     return definition;
   }
@@ -3913,16 +4008,16 @@ class Item extends TreeLeaf {
     this.attributes = typeof value === "string" ? { Name: new StringAttribute(value) } : value;
   }
   clone() {
-    return new Item(Objects.mapValues(this.attributes, (attribute) => attribute?.clone() ?? null));
+    return new Item(Objects.mapValues(this.attributes, (attribute2) => attribute2?.clone() ?? null));
   }
   serialize() {
     return {
       id: this.id,
-      attributes: Objects.mapValues(this.attributes, (attribute) => attribute ? AttributeValue.serialize(attribute) : null)
+      attributes: Objects.mapValues(this.attributes, (attribute2) => attribute2 ? AttributeValue.serialize(attribute2) : null)
     };
   }
   static deserializeUnsafe(item) {
-    let created = new Item(Objects.mapValues(item.attributes, (attribute) => attribute ? AttributeValue.deserialize(attribute) : null));
+    let created = new Item(Objects.mapValues(item.attributes, (attribute2) => attribute2 ? AttributeValue.deserialize(attribute2) : null));
     created.id = item.id;
     return created;
   }
@@ -3979,7 +4074,7 @@ class Group extends TreeBranch {
     this.icon_ = icon2 === "inherit" ? "inherit" : getIcon(icon2);
     if (typeof arg === "object") {
       if (!arg.attributes || arg.attributes === "inherit") this.attributes_ = "inherit";
-      else this.attributes_ = arg.attributes.map((attribute) => typeof attribute === "function" ? attribute(this) : attribute);
+      else this.attributes_ = arg.attributes.map((attribute2) => typeof attribute2 === "function" ? attribute2(this) : attribute2);
     } else {
       this.attributes_ = "inherit";
     }
@@ -4001,7 +4096,7 @@ class Group extends TreeBranch {
       iconName: this.icon_ === "inherit" ? "inherit" : getIcon(this.icon).name,
       attributes: this.attributes_ === "inherit" ? { type: "inherit" } : {
         type: "own",
-        own: this.attributes_.map((attribute) => attribute.serialize())
+        own: this.attributes_.map((attribute2) => attribute2.serialize())
       }
     };
   }
@@ -4017,23 +4112,23 @@ class Group extends TreeBranch {
       return this.icon_;
     }
   }
-  deleteAttributeDefinition(attribute) {
-    if (!this.getAttributeDefinition(attribute.name)) {
-      throw `Error deleting attribute: Attempted to delete the attribute "${attribute}", but no such attribute exists on this object.`;
+  deleteAttributeDefinition(attribute2) {
+    if (!this.getAttributeDefinition(attribute2.name)) {
+      throw `Error deleting attribute: Attempted to delete the attribute "${attribute2}", but no such attribute exists on this object.`;
     }
     if (this.attributes_ === "inherit") {
       if (this.isRoot) return;
-      this.parent.deleteAttributeDefinition(attribute);
+      this.parent.deleteAttributeDefinition(attribute2);
       return;
     }
-    this.attributes_ = this.attributes_.filter((other) => other !== attribute);
+    this.attributes_ = this.attributes_.filter((other) => other !== attribute2);
   }
   getAttributeDefinition(name) {
     if (this.attributes_ === "inherit") {
       if (this.isRoot) return null;
       return this.parent.getAttributeDefinition(name);
     }
-    return this.attributes_.find((attribute) => attribute.name === name) ?? null;
+    return this.attributes_.find((attribute2) => attribute2.name === name) ?? null;
   }
   /**
    * Defines a new attribute definition for this group. If an attribute definition with the same
@@ -4046,35 +4141,35 @@ class Group extends TreeBranch {
   addNewAttributeDefinition(builder) {
     if (this.attributes_ === "inherit") {
       if (this.isRoot) {
-        let attribute = builder(this);
-        this.attributes_ = [attribute];
+        let attribute2 = builder(this);
+        this.attributes_ = [attribute2];
         return;
       }
       this.parent.addNewAttributeDefinition(builder);
     } else {
-      let attribute = builder(this);
-      if (this.getAttributeDefinition(attribute.name)) {
-        throw `Duplicate attribute: Attempted to add the attribute "${attribute.name}", but the attribute already exists. If this was intentional, use overwriteAttribute().`;
+      let attribute2 = builder(this);
+      if (this.getAttributeDefinition(attribute2.name)) {
+        throw `Duplicate attribute: Attempted to add the attribute "${attribute2.name}", but the attribute already exists. If this was intentional, use overwriteAttribute().`;
       }
-      this.attributes_.push(attribute);
+      this.attributes_.push(attribute2);
     }
   }
   overwriteAttributeDefinition(builder) {
     if (this.attributes_ === "inherit") {
       if (this.isRoot) {
-        let attribute2 = builder(this);
-        this.attributes_ = [attribute2];
+        let attribute3 = builder(this);
+        this.attributes_ = [attribute3];
         return;
       }
       this.parent?.overwriteAttributeDefinition(builder);
       return;
     }
-    let attribute = builder(this);
-    let newAttributes = this.attributes_.filter((other) => other.name !== attribute.name);
+    let attribute2 = builder(this);
+    let newAttributes = this.attributes_.filter((other) => other.name !== attribute2.name);
     if (newAttributes.length === this.attributes_.length) {
-      throw `Invalid attribute overwrite: Attempted to overwrite the attribute "${attribute.name}", but no such attribute exists. If this was intentional, use addNewAttribute().`;
+      throw `Invalid attribute overwrite: Attempted to overwrite the attribute "${attribute2.name}", but no such attribute exists. If this was intentional, use addNewAttribute().`;
     }
-    this.attributes_.push(attribute);
+    this.attributes_.push(attribute2);
   }
   get attributeDefinitions() {
     if (this.attributes_ === "inherit") {
@@ -4113,17 +4208,17 @@ class Group extends TreeBranch {
       attributes: "inherit"
     });
     if (group.attributes.type !== "inherit") {
-      created.attributes_ = group.attributes.own.map((attribute) => AttributeDefinition.deserialize(attribute, created));
+      created.attributes_ = group.attributes.own.map((attribute2) => AttributeDefinition.deserialize(attribute2, created));
     }
     created.id = group.id;
     return created;
   }
-  static deserialize(database) {
-    const groups = database.groups.map((group) => Group.deserializeUnsafe(group));
-    const items = database.items.map((item) => Item.deserializeUnsafe(item));
+  static deserialize(database2) {
+    const groups = database2.groups.map((group) => Group.deserializeUnsafe(group));
+    const items = database2.items.map((item) => Item.deserializeUnsafe(item));
     for (let groupIndex = 0; groupIndex < groups.length; groupIndex++) {
       let group = groups[groupIndex];
-      let serializedGroup = database.groups[groupIndex];
+      let serializedGroup = database2.groups[groupIndex];
       for (let childIndex = 0; childIndex < serializedGroup.children.length; childIndex++) {
         let childID = serializedGroup.children[childIndex];
         let itemChild = items.find((item) => item.id === childID);
@@ -4139,7 +4234,7 @@ class Group extends TreeBranch {
         throw new Error(`Error deserializing database: The group "${group.name}" was serialized as having a child of ID = ${childID}, but no item with that ID exists on the serialized database object.`);
       }
     }
-    const root = groups.find((group) => group.id === database.root);
+    const root = groups.find((group) => group.id === database2.root);
     return root;
   }
   toString() {
@@ -4171,6 +4266,12 @@ ${items}
     this.name = name;
   }
 }
+const database = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  GraphOutline,
+  Group,
+  Item
+}, Symbol.toStringTag, { value: "Module" }));
 let storedUserData = null;
 function userData() {
   if (!storedUserData) {
@@ -4180,51 +4281,19 @@ function userData() {
           name: "Blank",
           icon: BlankPageIcon,
           description: "A blank project with no datasets. This is not recommended for first time users; Use Basic instead."
-        }),
-        new Group(
-          { name: "Dev", icon: GearIcon, description: "dev testing" },
-          new Group(
-            {
-              name: "Plot Events",
-              icon: ParagraphIcon,
-              description: "The events of this story. The actual scene prose exists here.",
-              attributes: [
-                AttributeDefinition.basic("Name", "shortText"),
-                AttributeDefinition.basic("Script", "longText"),
-                AttributeDefinition.basic("Notes", "longText")
-              ]
-            },
-            new Group({ name: "Act I" }, new Group("Hook", new Group(new Group("Chapter 1", new Item("Scene 1")))), new Group("Inciting Incident"), new Group("First Plot Point")),
-            new Group({ name: "Act II" }, new Group("First Pinch Point"), new Group("Midpoint"), new Group("Second Pinch Point")),
-            new Group({ name: "Act III" }, new Group("Third Plot Point"), new Group("Climax"), new Group("Resolution"))
-          ),
-          new Group(
-            {
-              name: "Characters",
-              icon: PersonIcon,
-              description: "The characters of this story.",
-              attributes: [
-                AttributeDefinition.basic("Name", "shortText"),
-                AttributeDefinition.basic("Gender", "shortText"),
-                AttributeDefinition.basic("Sexuality", "shortText"),
-                AttributeDefinition.basic("Height", "length"),
-                AttributeDefinition.basic("Partner", "entries")
-              ]
-            },
-            new Group("Main Characters"),
-            new Group("Side Characters")
-          ),
-          new Group({
-            name: "Locations",
-            icon: LocationIcon,
-            description: "The locations in this story.",
-            attributes: [AttributeDefinition.basic("Name", "shortText")]
-          })
-        )
+        })
       ]
     };
   }
   return storedUserData;
+}
+function serializeUserData() {
+  return {
+    templates: userData().templates.map((template) => template.serialize())
+  };
+}
+async function saveUserData() {
+  await invoke("save_user_data", { data: serializeUserData() });
 }
 let sessionData = loadSessionData();
 function loadSessionData() {
@@ -4237,26 +4306,36 @@ function cache(values) {
   sessionData = { ...sessionData, ...values };
   saveSessionData();
 }
+function getFromCache(key) {
+  return sessionData[key];
+}
+const userdata = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  cache,
+  getFromCache,
+  saveUserData,
+  userData
+}, Symbol.toStringTag, { value: "Module" }));
 class Project {
   location = assignedLater();
   database = assignedLater();
-  constructor({ location, database }) {
+  constructor({ location, database: database2 }) {
     this.location = location;
-    this.database = database;
+    this.database = database2;
   }
-  static set(project) {
-    currentProject = project;
+  static set(project2) {
+    currentProject = project2;
     cache({
-      lastProjectPath: `${project.location}/${project.database.name}`
+      lastProjectPath: `${project2.location}/${project2.database.name}`
     });
   }
   static get() {
     return currentProject;
   }
-  static deserialize(project) {
+  static deserialize(project2) {
     return new Project({
-      location: project.location,
-      database: Group.deserialize(project.database)
+      location: project2.location,
+      database: Group.deserialize(project2.database)
     });
   }
   serialize() {
@@ -4264,8 +4343,8 @@ class Project {
   }
   static async openFromLocation(location) {
     const serializedProject = await invoke("read_project", { path: location });
-    const project = Project.deserialize(serializedProject);
-    Project.set(project);
+    const project2 = Project.deserialize(serializedProject);
+    Project.set(project2);
   }
   static async open() {
     const selected = await open({
@@ -4275,19 +4354,32 @@ class Project {
     });
     if (typeof selected === "string") {
       const serializedProject = await invoke("read_project", { path: selected });
-      const project = Project.deserialize(serializedProject);
-      Project.set(project);
+      const project2 = Project.deserialize(serializedProject);
+      Project.set(project2);
     } else {
       console.log("No directory selected");
     }
   }
   static async save() {
-    let project = Project.get();
-    const bytes = project.serialize();
+    let project2 = Project.get();
+    const bytes = project2.serialize();
     await invoke("save_project", { project: bytes });
   }
 }
 let currentProject = null;
+const project = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  Project
+}, Symbol.toStringTag, { value: "Module" }));
+const math = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  Circle,
+  Matrix3x3,
+  Point2D,
+  Rectangle,
+  clamp,
+  sum
+}, Symbol.toStringTag, { value: "Module" }));
 let Mouse$1 = class Mouse {
   client_ = Point2D.origin();
   offset_ = Point2D.origin();
@@ -4375,8 +4467,8 @@ function ContextMenu$1($$renderer, $$props) {
         100
       );
     }
-    function openAtMouse(event) {
-      event?.preventDefault();
+    function openAtMouse(event2) {
+      event2?.preventDefault();
       let position = mouse$1().relativeTo(domElement);
       left = `${position.x}px`;
       top = `${position.y}px`;
@@ -5400,14 +5492,18 @@ class Camera {
     this.scale(factorPoint);
   }
 }
+const camera = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  Camera
+}, Symbol.toStringTag, { value: "Module" }));
 function CameraView($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
-    let { children, camera = new Camera(), canPan = true } = $$props;
+    let { children, camera: camera2 = new Camera(), canPan = true } = $$props;
     let cursor = derived(() => "grab");
-    $$renderer2.push(`<section class="outer svelte-19ttu1f"${attr_style("", { cursor })}><div class="inner svelte-19ttu1f"${attr_style("", { transform: camera.transformCSS })}>`);
+    $$renderer2.push(`<section class="outer svelte-19ttu1f"${attr_style("", { cursor })}><div class="inner svelte-19ttu1f"${attr_style("", { transform: camera2.transformCSS })}>`);
     children($$renderer2);
     $$renderer2.push(`<!----></div></section>`);
-    bind_props($$props, { camera });
+    bind_props($$props, { camera: camera2 });
   });
 }
 function GraphView($$renderer, $$props) {
@@ -5416,12 +5512,12 @@ function GraphView($$renderer, $$props) {
     let items = derived(() => tree.dfsItems());
     let groups = derived(() => tree.dfsGroups());
     function center() {
-      camera.moveTo([0, 0]);
-      camera.setScale(8);
+      camera2.moveTo([0, 0]);
+      camera2.setScale(8);
     }
     let clickedNode = null;
-    let camera = new Camera();
-    let cameraScale = derived(() => camera.getScale().x);
+    let camera2 = new Camera();
+    let cameraScale = derived(() => camera2.getScale().x);
     center();
     let canPan = derived(() => !clickedNode);
     tree.outline;
@@ -5432,10 +5528,10 @@ function GraphView($$renderer, $$props) {
       CameraView($$renderer3, {
         canPan: canPan(),
         get camera() {
-          return camera;
+          return camera2;
         },
         set camera($$value) {
-          camera = $$value;
+          camera2 = $$value;
           $$settled = false;
         },
         children: ($$renderer4) => {
@@ -5558,6 +5654,31 @@ function GraphView($$renderer, $$props) {
     $$renderer2.subsume($$inner_renderer);
   });
 }
+const attribute = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  AttributeDefinition,
+  get AttributeType() {
+    return AttributeType;
+  },
+  get AttributeValue() {
+    return AttributeValue;
+  },
+  Color,
+  DateTime,
+  Kilograms,
+  Length,
+  Measurement,
+  Meters,
+  NumberAttribute,
+  PrimitiveArrayAttributeValue,
+  PrimitiveAttributeValue,
+  RichText,
+  StringAttribute,
+  Style,
+  StyledText,
+  Weight,
+  attributeTypes
+}, Symbol.toStringTag, { value: "Module" }));
 class Mouse2 {
   client_ = Point2D.origin();
   offset_ = Point2D.origin();
@@ -5649,8 +5770,8 @@ function ContextMenu($$renderer, $$props) {
         100
       );
     }
-    function openAtMouse(event) {
-      event?.preventDefault();
+    function openAtMouse(event2) {
+      event2?.preventDefault();
       let position = mouse().relativeTo(domElement);
       left = `${position.x}px`;
       top = `${position.y}px`;
@@ -5702,6 +5823,12 @@ function ContextMenu($$renderer, $$props) {
     });
   });
 }
+const components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  ContextMenu,
+  InputHandler,
+  mouse
+}, Symbol.toStringTag, { value: "Module" }));
 function ColorPicker($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     let { value = null } = $$props;
@@ -5720,8 +5847,8 @@ function ColorPicker($$renderer, $$props) {
       visible = false;
     }
     let opener;
-    mouse().onLeftClick((event) => {
-      if (!event.composedPath().includes(popup) && !event.composedPath().includes(opener)) {
+    mouse().onLeftClick((event2) => {
+      if (!event2.composedPath().includes(popup) && !event2.composedPath().includes(opener)) {
         hide();
       }
     });
@@ -5905,7 +6032,7 @@ function ConfirmationPopup($$renderer, $$props) {
 }
 function AttributeSettingsPopup($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
-    let { owner, attribute = void 0 } = $$props;
+    let { owner, attribute: attribute2 = void 0 } = $$props;
     function reset() {
     }
     let popup;
@@ -5925,27 +6052,27 @@ function AttributeSettingsPopup($$renderer, $$props) {
       Popup($$renderer3, {
         reset,
         children: ($$renderer4) => {
-          if (attribute) {
+          if (attribute2) {
             $$renderer4.push("<!--[0-->");
             $$renderer4.push(`<section class="svelte-8jivgt"><div class="sidebar svelte-8jivgt"><h1 class="title svelte-8jivgt">`);
             SpreadsheetIcon($$renderer4, { stroke: "#cdd6f4", style: "width: 1rem; height: 1rem;" });
-            $$renderer4.push(`<!----> ${escape_html(attribute.name)}</h1> <button class="svelte-8jivgt">`);
+            $$renderer4.push(`<!----> ${escape_html(attribute2.name)}</h1> <button class="svelte-8jivgt">`);
             GearIcon($$renderer4, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" });
             $$renderer4.push(`<!----> <span class="svelte-8jivgt">General</span></button> <button class="svelte-8jivgt">`);
             ItalicIcon($$renderer4, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" });
             $$renderer4.push(`<!----> <span class="svelte-8jivgt">Formatting</span></button> <button class="svelte-8jivgt">`);
             PrivacyIcon($$renderer4, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" });
-            $$renderer4.push(`<!----> <span class="svelte-8jivgt">Restrictions</span></button> <button class="svelte-8jivgt">Delete field</button></div> <div class="content svelte-8jivgt"><h2 class="svelte-8jivgt">Name</h2> <input${attr("value", attribute.name)} class="svelte-8jivgt"/> <h2 class="svelte-8jivgt">Type</h2> <div class="type svelte-8jivgt">`);
+            $$renderer4.push(`<!----> <span class="svelte-8jivgt">Restrictions</span></button> <button class="svelte-8jivgt">Delete field</button></div> <div class="content svelte-8jivgt"><h2 class="svelte-8jivgt">Name</h2> <input${attr("value", attribute2.name)} class="svelte-8jivgt"/> <h2 class="svelte-8jivgt">Type</h2> <div class="type svelte-8jivgt">`);
             Select($$renderer4, {
               onunlock,
               locked: true,
               width: "100%",
               options: AttributeType.names(),
               get value() {
-                return attribute.type.name;
+                return attribute2.type.name;
               },
               set value($$value) {
-                attribute.type.name = $$value;
+                attribute2.type.name = $$value;
                 $$settled = false;
               }
             });
@@ -5953,7 +6080,7 @@ function AttributeSettingsPopup($$renderer, $$props) {
             Input($$renderer4, {
               context: "settings",
               background: "#181825",
-              type: attribute.type.name,
+              type: attribute2.type.name,
               value: null,
               openEditor: () => {
               }
@@ -5970,7 +6097,7 @@ function AttributeSettingsPopup($$renderer, $$props) {
       ConfirmationPopup($$renderer3, {
         title: "Delete field?",
         onconfirm: () => {
-          owner.deleteAttributeDefinition(attribute);
+          owner.deleteAttributeDefinition(attribute2);
           close();
         },
         children: ($$renderer4) => {
@@ -5995,7 +6122,7 @@ function AttributeSettingsPopup($$renderer, $$props) {
       $$render_inner($$inner_renderer);
     } while (!$$settled);
     $$renderer2.subsume($$inner_renderer);
-    bind_props($$props, { attribute, open: open2 });
+    bind_props($$props, { attribute: attribute2, open: open2 });
   });
 }
 function SpreadsheetView($$renderer, $$props) {
@@ -6023,29 +6150,29 @@ function SpreadsheetView($$renderer, $$props) {
         $$renderer3.push(`<!--[-->`);
         const each_array_1 = ensure_array_like(group.attributeDefinitions);
         for (let $$index_2 = 0, $$length = each_array_1.length; $$index_2 < $$length; $$index_2++) {
-          let attribute = each_array_1[$$index_2];
+          let attribute2 = each_array_1[$$index_2];
           $$renderer3.push(`<div class="column svelte-1o9pa1e"><div class="cell svelte-1o9pa1e">`);
-          if (attribute.type.icon.component) {
+          if (attribute2.type.icon.component) {
             $$renderer3.push("<!--[-->");
-            attribute.type.icon.component($$renderer3, { stroke: "#cdd6f4", style: "width: 1rem; height: 1rem;" });
+            attribute2.type.icon.component($$renderer3, { stroke: "#cdd6f4", style: "width: 1rem; height: 1rem;" });
             $$renderer3.push("<!--]-->");
           } else {
             $$renderer3.push("<!--[!-->");
             $$renderer3.push("<!--]-->");
           }
-          $$renderer3.push(` ${escape_html(attribute.name)} <button style="width: fit-content; margin-right: 0px;" class="svelte-1o9pa1e">`);
+          $$renderer3.push(` ${escape_html(attribute2.name)} <button style="width: fit-content; margin-right: 0px;" class="svelte-1o9pa1e">`);
           GearIcon($$renderer3, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" });
           $$renderer3.push(`<!----></button></div> <!--[-->`);
           const each_array_2 = ensure_array_like(group.directItemChildren);
           for (let $$index_1 = 0, $$length2 = each_array_2.length; $$index_1 < $$length2; $$index_1++) {
             let item = each_array_2[$$index_1];
-            var bind_get = () => item.getAttributeValue(attribute.name);
-            var bind_set = (value) => item.addNewOrOverwriteAttributeValue(attribute.name, value);
+            var bind_get = () => item.getAttributeValue(attribute2.name);
+            var bind_set = (value) => item.addNewOrOverwriteAttributeValue(attribute2.name, value);
             $$renderer3.push(`<div class="cell svelte-1o9pa1e">`);
             Input($$renderer3, {
               context: "spreadsheet",
               openEditor,
-              type: attribute.type.name,
+              type: attribute2.type.name,
               get value() {
                 return bind_get();
               },
@@ -6110,6 +6237,11 @@ async function getFonts() {
   if (fonts.length === 0) await loadFonts();
   return fonts;
 }
+const system = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  getFonts,
+  loadFonts
+}, Symbol.toStringTag, { value: "Module" }));
 function Editor($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     let { title, doc = void 0 } = $$props;
@@ -6270,6 +6402,15 @@ const views = {
   spreadsheet: { icon: SpreadsheetIcon },
   timeline: { icon: ClockIcon }
 };
+const ui = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  EditorTab,
+  GroupTab,
+  Tab,
+  TabList,
+  getIcon,
+  views
+}, Symbol.toStringTag, { value: "Module" }));
 function Tabline($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     let {
@@ -6581,8 +6722,111 @@ function StatusBar($$renderer) {
   });
   $$renderer.push(`<!----></div></section>`);
 }
+function on(target, name, callback) {
+}
+const event = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  on
+}, Symbol.toStringTag, { value: "Module" }));
+function plugin(plugin2) {
+  return plugin2;
+}
+const plugin$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  plugin
+}, Symbol.toStringTag, { value: "Module" }));
+function attachPluginData() {
+  globalThis.__CLARA_API__ = {
+    api,
+    event,
+    plugin: plugin$1,
+    project,
+    icons: icons$1,
+    camera,
+    math,
+    database,
+    attribute,
+    utils,
+    components,
+    system,
+    ui,
+    userdata
+  };
+}
+const isWindows = navigator.userAgent.includes("Windows");
+const scheme = isWindows ? "http://plugin.localhost/" : "plugin://localhost/";
+let importMap = {
+  "@clara/api/": `${scheme}virtual/`,
+  "@clara/api/api": `${scheme}virtual/api.js`,
+  "@clara/api/event": `${scheme}virtual/event.js`,
+  "@clara/api/plugin": `${scheme}virtual/plugin.js`,
+  "@clara/api/project": `${scheme}virtual/project.js`,
+  "@clara/api/icons": `${scheme}virtual/icons.js`,
+  "@clara/api/camera": `${scheme}virtual/camera.js`,
+  "@clara/api/math": `${scheme}virtual/math.js`,
+  "@clara/api/database": `${scheme}virtual/database.js`,
+  "@clara/api/attribute": `${scheme}virtual/attribute.js`,
+  "@clara/api/utils": `${scheme}virtual/utils.js`,
+  "@clara/api/components": `${scheme}virtual/components.js`,
+  "@clara/api/system": `${scheme}virtual/system.js`,
+  "@clara/api/ui": `${scheme}virtual/ui.js`,
+  "@clara/api/userdata": `${scheme}virtual/userdata.js`
+};
+var __rewriteRelativeImportExtension = function(path, preserveJsx) {
+  if (typeof path === "string" && /^\.\.?\//.test(path)) {
+    return path.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+?)?)\.([cm]?)ts$/i, function(m, tsx, d, ext, cm) {
+      return tsx ? preserveJsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m : d + ext + "." + cm.toLowerCase() + "js";
+    });
+  }
+  return path;
+};
+async function loadPlugin(absolutePluginPath) {
+  const isWindows2 = navigator.userAgent.includes("Windows");
+  const scheme2 = isWindows2 ? "http://plugin.localhost/" : "plugin://localhost/";
+  const sanitizedPath = absolutePluginPath.replace(/^\/+/, "");
+  const moduleUrl = `${scheme2}${sanitizedPath}`;
+  try {
+    const userPlugin = await import(__rewriteRelativeImportExtension(`${moduleUrl}?t=${Date.now()}`, true));
+    return userPlugin.default;
+  } catch (error) {
+    console.error(`Failed to load ES6 plugin at ${moduleUrl}:`, error);
+    return Promise.resolve(null);
+  }
+}
+function createImportMap() {
+  const map = document.createElement("script");
+  map.type = "importmap";
+  map.textContent = JSON.stringify({ imports: importMap });
+  document.head.appendChild(map);
+}
+async function loadPlugins() {
+  const pluginNames = (await invoke("get_plugins", {})).map((plugin2) => {
+    let path = plugin2;
+    if (plugin2.startsWith("\\\\?\\")) path = path.slice(4);
+    path = path.replace(/\\/g, "/");
+    return path;
+  });
+  console.log(`Loading plugins: ${pluginNames} (${pluginNames.length})`);
+  const plugins = (await Promise.all(pluginNames.map((plugin2) => loadPlugin(plugin2)))).filter((plugin2) => plugin2 !== null);
+  plugins.forEach((plugin2) => {
+    console.log(`Loaded plugin "${plugin2.name}".`);
+    plugin2.onLoad?.({
+      settings: {
+        get() {
+          return null;
+        }
+      }
+    });
+  });
+}
+async function startPlugins() {
+  attachPluginData();
+  createImportMap();
+  loadPlugins();
+}
 function _page($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
+    startPlugins();
     InputHandler($$renderer2);
     $$renderer2.push(`<!----> <main class="svelte-1uha8ag">`);
     Navbar($$renderer2);

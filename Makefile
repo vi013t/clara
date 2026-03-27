@@ -35,6 +35,7 @@ build-plugins: build-api
 	done
 
 clean:
+	rm generated
 	rm -rf node_modules bun.lock bun.lockb
 	rm -rf **/node_modules **/bun.lock **/bun.lockb
 	rm -rf **/dist **/build **/src-tauri/target

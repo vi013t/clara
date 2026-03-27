@@ -1,0 +1,3 @@
+struct CommandLineArguments {}
+
+fn main() {}

@@ -18,7 +18,7 @@ pub fn get_plugins() -> Result<Vec<String>, String> {
 	Ok(plugins)
 }
 
-const PLUGIN_API: &str = include_str!("../../../../generated/plugin.js");
+include!(concat!(env!("OUT_DIR"), "/generated_api_map.rs"));
 
 pub fn register_plugin_uri_scheme_protocol(request: Request<Vec<u8>>) -> Response<Vec<u8>> {
 	let uri = request.uri().to_string();
@@ -32,11 +32,7 @@ pub fn register_plugin_uri_scheme_protocol(request: Request<Vec<u8>>) -> Respons
 
 	if path.starts_with("virtual/") {
 		let submodule = path.replace("virtual/", "");
-
-		let js_content = match submodule.as_str() {
-			"plugin.js" => Some(PLUGIN_API),
-			_ => None,
-		};
+		let js_content = get_virtual_api!(submodule.as_str());
 
 		if let Some(content) = js_content {
 			return Response::builder()

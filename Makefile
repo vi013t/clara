@@ -38,5 +38,5 @@ clean:
 	rm generated
 	rm -rf node_modules bun.lock bun.lockb
 	rm -rf **/node_modules **/bun.lock **/bun.lockb
-	rm -rf **/dist **/build **/src-tauri/target
+	rm -rf **/dist **/build **/target
 	bun pm cache rm

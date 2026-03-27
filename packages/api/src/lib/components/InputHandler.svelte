@@ -53,6 +53,10 @@
 			this.handlers.push({ event: "mousedown", callback });
 		}
 
+		public onMove(callback: (event: MouseEvent) => any) {
+			this.handlers.push({ event: "move", callback });
+		}
+
 		public onClickAndRelease(callback: (event: MouseEvent) => any) {
 			this.handlers.push({ event: "click", callback });
 		}

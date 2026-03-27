@@ -184,7 +184,7 @@
 		for (let index = 0; index < internalDocument.partCount() - 1; index += 2) {
 			let first = internalDocument.partAtIndex(index);
 			let second = internalDocument.partAtIndex(index + 1);
-			if (first.style.ref().equals(second.style.ref())) {
+			if (first.style.equals(second.style)) {
 				newDocument.addPart(new StyledText(first.text + second.text, first.style.clone()));
 				if (currentPartIndex >= index + 1) {
 					removedAmount++;

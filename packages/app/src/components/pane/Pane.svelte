@@ -1,19 +1,12 @@
 <script lang="ts" module>
 	import { EditorTab, GroupTab, TabList } from "@clara/api/ui";
 
-	export type PaneTree = PaneTreeLeaf | PaneTreeBranch;
+	export type PaneTree = PaneSplit & { childPane: PaneTree | null; tabline: TabList };
 
-	export type PaneTreeLeaf = {
-		tabs: TabList;
+	export type PaneSplit = {
+		split: "horizontal" | "vertical" | "none";
+		percent: number;
 	};
-
-	export type PaneTreeBranch = (
-		| {
-				split: "horizontal";
-				width: number;
-		  }
-		| { split: "vertical"; height: number }
-	) & { childPane: PaneTree } & PaneTreeLeaf;
 </script>
 
 <!-- svelte-ignore state_referenced_locally -->
@@ -26,27 +19,24 @@
 	import Pane from "./Pane.svelte";
 	import Tabline from "./Tabline.svelte";
 	import type { RichText } from "@clara/api/attribute";
+	import { mouse } from "../../../../api/src/lib/components/InputHandler.svelte";
+	import { clamp } from "@clara/api/math";
 
 	let {
-		width = "500px",
-		height = "1000px",
 		background = "#1e1e2e",
 		subpane = false,
-		split = undefined,
+		tree = $bindable({ split: "none", percent: 0, childPane: null, tabline: new TabList() }),
 		onclose = () => {},
 	}: {
-		width?: string;
-		height?: string;
 		background?: string;
 		subpane?: boolean;
-		split?: "horizontal" | "vertical";
+		tree?: PaneTree;
 		onclose?: () => void;
 	} = $props();
 
 	let dragging = $state("none");
 
-	let tabline = $state(new TabList());
-	let selectedTabID = $state(tabline.tabs[0].id);
+	let selectedTabID = $state(tree.tabline.tabs[0].id);
 
 	function drag(side: string) {
 		return function () {
@@ -54,51 +44,58 @@
 		};
 	}
 
-	function stopDrag() {
+	let wrapper: HTMLElement | null = $state(null);
+
+	mouse().onRelease(() => {
 		dragging = "none";
-	}
+	});
 
-	// svelte-ignore state_referenced_locally
-	let masterHeight = $state(`${parseInt(height) / 2}px`);
-	// svelte-ignore state_referenced_locally
-	let masterWidth = $state(`${parseInt(width) / 2}px`);
+	mouse().onMove(event => {
+		if (!wrapper || tree.split === "none") return;
 
-	function onmousemove(event: MouseEvent) {
+		console.log("dragging");
+
 		if (dragging === "right") {
-			masterWidth = `${parseInt(masterWidth) + event.movementX}px`;
+			const combinedWidth = wrapper.getBoundingClientRect().width;
+			const paneWidth = combinedWidth * tree.percent;
+			const newWidth = paneWidth + event.movementX;
+			const newPercent = newWidth / combinedWidth;
+			tree.percent = clamp(newPercent, 0.05, 0.95);
 		} else if (dragging === "bottom") {
-			masterHeight = `${parseInt(masterHeight) + event.movementY}px`;
+			const combinedHeight = wrapper.getBoundingClientRect().height;
+			const paneHeight = combinedHeight * tree.percent;
+			const newHeight = paneHeight + event.movementY;
+			const newPercent = newHeight / combinedHeight;
+			tree.percent = clamp(newPercent, 0.05, 0.95);
 		}
-	}
+	});
+
 	let isMasterPaneAlive = $state(true);
 
 	function openEditor(content: RichText) {
 		let tab = new EditorTab(content);
-		tabline.appendTab(tab);
+		tree.tabline.appendTab(tab);
 		selectedTabID = tab.id;
 	}
 
 	let childPane: Pane | null = $state(null);
 	let manualPopup: ManualPopup;
 
-	let tab = $derived(tabline.getTabByID(selectedTabID));
+	let tab = $derived(tree.tabline.getTabByID(selectedTabID));
 </script>
-
-<svelte:document onmouseup={stopDrag} {onmousemove} />
 
 <section
 	class={{ "pane-wrapper": true }}
-	style:flex-direction={split === "horizontal" ? "row" : "column"}
 	style:flex-grow={subpane ? "1" : undefined}
+	style:grid-template-columns={tree.split !== "none" ? `${tree.percent}fr ${1 - tree.percent}fr` : "1fr"}
+	bind:this={wrapper}
 >
 	<section
 		class="pane"
 		style:max-width={isMasterPaneAlive ? "100vmax" : "0px"}
 		style:max-height={isMasterPaneAlive ? "100vmax" : "0px"}
-		style:height={split === "vertical" ? masterHeight : "100%"}
-		style:width={split === "horizontal" ? masterWidth : "100%"}
 	>
-		<Tabline bind:isMasterPaneAlive bind:selectedTabID bind:split bind:tabs={tabline} {background} {subpane} {onclose} />
+		<Tabline bind:isMasterPaneAlive bind:selectedTabID bind:tree {background} {subpane} {onclose} />
 		<div class="content" style:background>
 			{#if tab instanceof EditorTab && tab.id === selectedTabID}
 				<Editor bind:doc={tab.content} />
@@ -115,14 +112,17 @@
 			{/if}
 		</div>
 
-		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<div onmousedown={drag("right")} class={{ drag: true, right: true, dragging: dragging === "right" }}></div>
-		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<div onmousedown={drag("bottom")} class={{ drag: true, bottom: true, dragging: dragging === "bottom" }}></div>
+		{#if tree.split === "horizontal"}
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<div onmousedown={drag("right")} class={{ drag: true, right: true, dragging: dragging === "right" }}></div>
+		{:else if tree.split === "vertical"}
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<div onmousedown={drag("bottom")} class={{ drag: true, bottom: true, dragging: dragging === "bottom" }}></div>
+		{/if}
 	</section>
 
-	{#if split}
-		<Pane bind:this={childPane} background="#1e1e2e" subpane onclose={() => (split = undefined)} />
+	{#if tree.split !== "none"}
+		<Pane bind:this={childPane} background="#1e1e2e" subpane onclose={() => (tree.split = "none")} bind:tree={tree.childPane!} />
 	{/if}
 </section>
 
@@ -136,8 +136,8 @@
 	}
 
 	.pane-wrapper {
-		display: flex;
 		height: 100%;
+		display: grid;
 	}
 
 	.pane {

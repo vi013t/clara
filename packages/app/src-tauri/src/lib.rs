@@ -1,8 +1,7 @@
-use directories::ProjectDirs;
 mod project;
 use crate::{
 	plugin::{get_plugins, register_plugin_uri_scheme_protocol},
-	project::{new_project, read_project, save_project, Database},
+	project::{new_project, read_project, save_project},
 	userdata::save_user_data,
 };
 mod plugin;
@@ -19,8 +18,6 @@ pub fn run() {
 			new_project,
 			read_project,
 			get_fonts,
-			save_user_settings,
-			load_user_settings,
 			save_project,
 			save_user_data,
 			get_plugins

@@ -55,10 +55,12 @@ declare module '$env/static/private' {
 	export const DISPLAY: string;
 	export const DriverData: string;
 	export const EDITOR: string;
-	export const EFC_5720_1592913036: string;
+	export const EFC_7444_1262719628: string;
+	export const EFC_7444_1592913036: string;
+	export const EFC_7444_2283032206: string;
+	export const EFC_7444_2775293581: string;
+	export const EFC_7444_3789132940: string;
 	export const EXEPATH: string;
-	export const FPS_BROWSER_APP_PROFILE_STRING: string;
-	export const FPS_BROWSER_USER_PROFILE_STRING: string;
 	export const GIT_ASKPASS: string;
 	export const GOPATH: string;
 	export const HOME: string;
@@ -130,6 +132,7 @@ declare module '$env/static/private' {
 	export const SYSTEMROOT: string;
 	export const TAURI_CLI_VERBOSITY: string;
 	export const TAURI_ENV_ARCH: string;
+	export const TAURI_ENV_DEBUG: string;
 	export const TAURI_ENV_FAMILY: string;
 	export const TAURI_ENV_PLATFORM: string;
 	export const TAURI_ENV_PLATFORM_VERSION: string;
@@ -255,10 +258,12 @@ declare module '$env/dynamic/private' {
 		DISPLAY: string;
 		DriverData: string;
 		EDITOR: string;
-		EFC_5720_1592913036: string;
+		EFC_7444_1262719628: string;
+		EFC_7444_1592913036: string;
+		EFC_7444_2283032206: string;
+		EFC_7444_2775293581: string;
+		EFC_7444_3789132940: string;
 		EXEPATH: string;
-		FPS_BROWSER_APP_PROFILE_STRING: string;
-		FPS_BROWSER_USER_PROFILE_STRING: string;
 		GIT_ASKPASS: string;
 		GOPATH: string;
 		HOME: string;
@@ -330,6 +335,7 @@ declare module '$env/dynamic/private' {
 		SYSTEMROOT: string;
 		TAURI_CLI_VERBOSITY: string;
 		TAURI_ENV_ARCH: string;
+		TAURI_ENV_DEBUG: string;
 		TAURI_ENV_FAMILY: string;
 		TAURI_ENV_PLATFORM: string;
 		TAURI_ENV_PLATFORM_VERSION: string;

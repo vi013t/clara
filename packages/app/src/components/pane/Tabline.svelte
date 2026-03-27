@@ -12,21 +12,21 @@
 		ReticleIcon,
 		SplitHorizontalIcon,
 	} from "@clara/api/icons";
-	import { EditorTab, GroupTab, Tab, views, type TabList, type View } from "@clara/api/ui";
+	import { EditorTab, GroupTab, Tab, TabList, views, type View } from "@clara/api/ui";
 	import { onMount } from "svelte";
+	import type { PaneTree } from "./Pane.svelte";
+	import { TreeLeaf } from "../../../../api/dist/data/tree.svelte";
 	let {
-		tabs = $bindable(),
 		background,
 		subpane,
-		split = $bindable(),
+		tree = $bindable(),
 		onclose,
 		isMasterPaneAlive = $bindable(),
 		selectedTabID = $bindable(),
 	}: {
-		tabs: TabList;
 		background: string;
 		subpane: boolean;
-		split: "vertical" | "horizontal" | undefined;
+		tree: PaneTree;
 		onclose: () => void;
 		isMasterPaneAlive: boolean;
 		selectedTabID: number;
@@ -45,18 +45,18 @@
 	function createTab(group?: Group, view?: View) {
 		let tab = new GroupTab(group ?? (currentTab() as GroupTab).group);
 		if (view) tab.view = view;
-		tabs.appendTab(tab);
+		tree.tabline.appendTab(tab);
 		selectedTabID = tab.id;
 	}
 
 	function currentTab<T extends Tab>(): T {
-		return tabs.getTabByID(selectedTabID) as T;
+		return tree.tabline.getTabByID(selectedTabID) as T;
 	}
 
 	function clickTab(id: number) {
 		return function (event: MouseEvent) {
 			if (event.button !== 0) return;
-			if (tabs.tabExists(id)) selectedTabID = id;
+			if (tree.tabline.tabExists(id)) selectedTabID = id;
 		};
 	}
 
@@ -71,11 +71,11 @@
 	function closeTab(id: number) {
 		return function () {
 			if (selectedTabID === id) {
-				let index = tabs.indexOfID(id);
-				selectedTabID = tabs.getTabByIndex(index === 0 ? index + 1 : index - 1).id;
+				let index = tree.tabline.indexOfID(id);
+				selectedTabID = tree.tabline.getTabByIndex(index === 0 ? index + 1 : index - 1).id;
 			}
-			tabs.deleteTab(id);
-			if (tabs.isEmpty()) {
+			tree.tabline.deleteTab(id);
+			if (tree.tabline.isEmpty()) {
 				isMasterPaneAlive = false;
 				onclose();
 			}
@@ -83,12 +83,26 @@
 	}
 
 	function splitHorizontal() {
-		split = "horizontal";
+		tree.split = "horizontal";
+		tree.percent = 0.5;
+		tree.childPane = {
+			split: "none",
+			percent: 0,
+			tabline: new TabList(),
+			childPane: null,
+		};
 		paneSettingsMenu.close();
 	}
 
 	function splitVertical() {
-		split = "vertical";
+		tree.split = "vertical";
+		tree.percent = 0.5;
+		tree.childPane = {
+			split: "none",
+			percent: 0,
+			tabline: new TabList(),
+			childPane: null,
+		};
 		paneSettingsMenu.close();
 	}
 
@@ -116,7 +130,7 @@
 				controls.getBoundingClientRect().width -
 				newTabContainer.getBoundingClientRect().width -
 				16) /
-			tabs.count()
+			tree.tabline.count()
 		}px`;
 	});
 
@@ -128,7 +142,7 @@
 				currentTab<GroupTab>().group = group;
 			} else {
 				let newTab = new GroupTab(group);
-				tabs.replace(currentTab().id, newTab);
+				tree.tabline.replace(currentTab().id, newTab);
 				selectedTabID = newTab.id;
 			}
 
@@ -143,7 +157,7 @@
 </script>
 
 <div class="tabs" bind:this={tabline}>
-	{#each tabs.tabs as tab, index (tab.id)}
+	{#each tree.tabline.tabs as tab, index (tab.id)}
 		{@const Icon = tab instanceof EditorTab ? PencilIcon : tab instanceof GroupTab ? tab.group.icon.component : undefined}
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -164,7 +178,7 @@
 			</button>
 		</div>
 	{/each}
-	<div class="new-tab-wrapper" bind:this={newTabContainer} style:left="calc(min({tabWidth}, 13rem) * {tabs.count()})">
+	<div class="new-tab-wrapper" bind:this={newTabContainer} style:left="calc(min({tabWidth}, 13rem) * {tree.tabline.count()})">
 		<button class="new-tab" onmousedown={() => createTab()} bind:this={newTabButton}>
 			<PlusIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 		</button>
@@ -174,7 +188,7 @@
 		<button onmousedown={() => paneSettingsMenu.toggle()}>
 			<GearIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 		</button>
-		{#if subpane || split}
+		{#if subpane || tree.split !== "none"}
 			<button onmousedown={closePane}>
 				<CloseIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
 			</button>
@@ -189,9 +203,9 @@
 				<span>Split vertically</span>
 			</button>
 			<hr />
-			<button disabled={!subpane && !split} onmousedown={closePane}>
-				<CloseIcon stroke={subpane || split ? "#f38ba8" : "#6c7086"} scale={0.85} />
-				<span style="color: {subpane || split ? '#f38ba8' : '#6c7086'}">Close pane</span>
+			<button disabled={!subpane && tree.split === "none"} onmousedown={closePane}>
+				<CloseIcon stroke={subpane || tree.split !== "none" ? "#f38ba8" : "#6c7086"} scale={0.85} />
+				<span style="color: {subpane || tree.split !== 'none' ? '#f38ba8' : '#6c7086'}">Close pane</span>
 			</button>
 		</ContextMenu>
 	</div>
@@ -251,9 +265,9 @@
 	</button>
 
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
-	<div class={[!subpane && !split && "disabled"]} onmousedown={() => closeTab(rightClickedTab)}>
-		<CloseIcon stroke={subpane || split ? "#f38ba8" : "#6c7086"} style="width: 0.85rem; height: 0.85rem;" />
-		<span style="color: {subpane || split ? '#f38ba8' : '#6c7086'}">Close tab</span>
+	<div class={[!subpane && tree.split === "none" && "disabled"]} onmousedown={() => closeTab(rightClickedTab)}>
+		<CloseIcon stroke={subpane || tree.split !== "none" ? "#f38ba8" : "#6c7086"} style="width: 0.85rem; height: 0.85rem;" />
+		<span style="color: {subpane || tree.split !== 'none' ? '#f38ba8' : '#6c7086'}">Close tab</span>
 		<ContextMenu>
 			<button>
 				<CloseIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />

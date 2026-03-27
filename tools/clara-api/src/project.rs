@@ -136,7 +136,7 @@ pub fn read_project(path: String) -> Result<Project, String> {
         let Some(extension_string) = extension.to_str() else {
             continue;
         };
-        if extension_string == "wlfr" {
+        if extension_string == "clara" {
             project_file = Some(file.path());
             break;
         }

@@ -22,4 +22,5 @@ tauri-plugin-dialog = "2.6.0"
 tauri-plugin-fs = "2.4.5"
 urlencoding = "2.1.3"
 clara-api = { path = "../../../tools/clara-api"}
+font-enumeration = "0.9.0"
 

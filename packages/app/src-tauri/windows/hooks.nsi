@@ -1,3 +1,3 @@
 !macro NSIS_HOOK_POSTINSTALL
-  ${registerExtension} "$INSTDIR\Clara.exe" ".wlfr" "Clara.File"
+  ${registerExtension} "$INSTDIR\Clara.exe" ".clara" "Clara.File"
 !macroend

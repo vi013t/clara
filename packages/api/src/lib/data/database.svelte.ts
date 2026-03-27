@@ -149,12 +149,15 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 	}
 
 	public clone(): Group {
-		return new Group({
-			name: this.name,
-			description: this.description,
-			icon: this.icon_,
-			attributes: this.attributes_ === "inherit" ? "inherit" : this.attributes_.map(definition => definition.clone()),
-		});
+		return new Group(
+			{
+				name: this.name,
+				description: this.description,
+				icon: this.icon_,
+				attributes: this.attributes_ === "inherit" ? "inherit" : this.attributes_.map(definition => definition.clone()),
+			},
+			...this.children,
+		);
 	}
 
 	private serializeStandalone(): SerializedGroup {

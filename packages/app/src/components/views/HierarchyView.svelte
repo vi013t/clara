@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Project } from "@clara/api/project";
 	import { Group, Item, type Node } from "@clara/api/database";
-	import ContextMenu from "../../../../api/src/lib/components/menus/ContextMenu.svelte";
 	import HierarchyView from "./HierarchyView.svelte";
 	import { ArrowIcon, CircledPlusIcon, PackageIcon, RenameIcon, TrashIcon } from "@clara/api/icons";
+	import { ContextMenu } from "@clara/api/components";
 
 	let {
 		entry,
@@ -109,11 +109,7 @@
 	{/if}
 
 	{#if entry.children.length !== 0}
-		<ul
-			class={{ expanded }}
-			style:border-left={hideRoot ? "none" : "1px solid #45475a"}
-			style:margin-top={subtree || !expanded ? "0px" : "0.5rem"}
-		>
+		<ul class={{ expanded }} style:border-left={hideRoot ? "none" : "1px solid #45475a"}>
 			{#each entry.sortedChildren as child (child.id)}
 				<li style:padding-left={hideRoot && entry.isRoot ? "0px" : "1.25rem"}>
 					<HierarchyView {demo} {hideRoot} entry={child} subtree />
@@ -158,6 +154,7 @@
 
 	ul {
 		list-style-type: none;
+		overflow: hidden;
 
 		&:not(.expanded) {
 			max-height: 0px;
@@ -174,7 +171,6 @@
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		margin-bottom: 0.25rem;
 		position: relative;
 		padding: 0.25rem;
 		padding-left: 0.5rem;

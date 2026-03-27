@@ -86,6 +86,8 @@
 
 			let database = template.clone();
 			database.name = name;
+			console.log(template);
+			console.log(database);
 
 			let project = new Project({
 				location,

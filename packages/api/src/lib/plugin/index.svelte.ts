@@ -6,16 +6,18 @@ type Settings<Names extends string> = {
 	get(name: Names): Setting<Names>;
 };
 
-type ClaraPlugin<SettingNames extends string> = {
+export type ClaraPlugin<SettingNames extends string> = {
 	name: string;
 	description: string;
-	settings: Setting<SettingNames>[];
-	init(info: PluginInfo<SettingNames>): void;
+	settings?: Setting<SettingNames>[];
+	onLoad?(info: PluginInfo<SettingNames>): void;
+	onInstall?(info: PluginInfo<SettingNames>): void;
 };
 
 type PluginInfo<SettingNames extends string> = {
-	files: string;
 	settings: Settings<SettingNames>;
 };
 
-export function plugin<const SettingNames extends string>(plugin: ClaraPlugin<SettingNames>): void {}
+export function plugin<const SettingNames extends string>(plugin: ClaraPlugin<SettingNames>): ClaraPlugin<SettingNames> {
+	return plugin;
+}

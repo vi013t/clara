@@ -1,24 +1,24 @@
 {
   "../../node_modules/@sveltejs/kit/src/runtime/client/entry.js": {
-    "file": "_app/immutable/entry/start.DUXBKWkJ.js",
+    "file": "_app/immutable/entry/start.DoBM616l.js",
     "name": "entry/start",
     "src": "../../node_modules/@sveltejs/kit/src/runtime/client/entry.js",
     "isEntry": true,
     "imports": [
-      "_DnAHTneN.js"
+      "_DgmH74kW.js"
     ]
   },
   ".svelte-kit/generated/client-optimized/app.js": {
-    "file": "_app/immutable/entry/app.ClWiF_3A.js",
+    "file": "_app/immutable/entry/app.BwiXPH7J.js",
     "name": "entry/app",
     "src": ".svelte-kit/generated/client-optimized/app.js",
     "isEntry": true,
     "imports": [
-      "_BKlAdfIx.js",
-      "_CqL83fI8.js",
-      "_BkpD4Td4.js",
-      "_DSF6hJv0.js",
-      "_B9rAUB3Z.js"
+      "_cqX1MtS0.js",
+      "_D-u8wt_n.js",
+      "_DwzWcyEo.js",
+      "_Dpba3mj_.js",
+      "_3rtwB7gb.js"
     ],
     "dynamicImports": [
       ".svelte-kit/generated/client-optimized/nodes/0.js",
@@ -27,128 +27,128 @@
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/0.js": {
-    "file": "_app/immutable/nodes/0.OEX6_Gqd.js",
+    "file": "_app/immutable/nodes/0.DM0XTMHX.js",
     "name": "nodes/0",
     "src": ".svelte-kit/generated/client-optimized/nodes/0.js",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_BkpD4Td4.js",
-      "_BKlAdfIx.js",
-      "_6sds28cC.js"
+      "_DwzWcyEo.js",
+      "_cqX1MtS0.js",
+      "_D9Ptw1rF.js"
     ],
     "assets": [
       "_app/immutable/assets/global.BpKzfteG.css"
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/1.js": {
-    "file": "_app/immutable/nodes/1.DSX5ZscU.js",
+    "file": "_app/immutable/nodes/1.D3b6bOOG.js",
     "name": "nodes/1",
     "src": ".svelte-kit/generated/client-optimized/nodes/1.js",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_BkpD4Td4.js",
-      "_C_9qFXfU.js",
-      "_BKlAdfIx.js",
-      "_CqL83fI8.js",
-      "_DnAHTneN.js"
+      "_DwzWcyEo.js",
+      "_BnCUpRLZ.js",
+      "_cqX1MtS0.js",
+      "_D-u8wt_n.js",
+      "_DgmH74kW.js"
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/2.js": {
-    "file": "_app/immutable/nodes/2.BSiUDRil.js",
+    "file": "_app/immutable/nodes/2.QTHK7joM.js",
     "name": "nodes/2",
     "src": ".svelte-kit/generated/client-optimized/nodes/2.js",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_BkpD4Td4.js",
-      "_BKlAdfIx.js",
-      "_B9rAUB3Z.js",
-      "_6sds28cC.js",
-      "_C_9qFXfU.js",
-      "_CqL83fI8.js",
-      "_DSF6hJv0.js",
-      "_DD5MlUUo.js"
+      "_DwzWcyEo.js",
+      "_cqX1MtS0.js",
+      "_3rtwB7gb.js",
+      "_D9Ptw1rF.js",
+      "_BnCUpRLZ.js",
+      "_D-u8wt_n.js",
+      "_Dpba3mj_.js",
+      "_Dz56NASM.js"
     ],
     "css": [
-      "_app/immutable/assets/2.DjW1E7fc.css"
+      "_app/immutable/assets/2.CzEME_t2.css"
     ],
     "assets": [
-      "_app/immutable/assets/icon.CsvkJIeS.png"
+      "_app/immutable/assets/icon.BdoT_wQe.png"
     ]
   },
-  "C:/Users/violet/LocalDrive/Coding/writing-app/packages/app/src/global.css": {
+  "C:/Users/violet/LocalDrive/Coding/clara/packages/app/src/global.css": {
     "file": "_app/immutable/assets/global.BpKzfteG.css",
-    "src": "C:/Users/violet/LocalDrive/Coding/writing-app/packages/app/src/global.css"
+    "src": "C:/Users/violet/LocalDrive/Coding/clara/packages/app/src/global.css"
   },
-  "_6sds28cC.js": {
-    "file": "_app/immutable/chunks/6sds28cC.js",
-    "name": "attributes",
-    "imports": [
-      "_BKlAdfIx.js",
-      "_DD5MlUUo.js",
-      "_BkpD4Td4.js"
-    ]
-  },
-  "_B9rAUB3Z.js": {
-    "file": "_app/immutable/chunks/B9rAUB3Z.js",
+  "_3rtwB7gb.js": {
+    "file": "_app/immutable/chunks/3rtwB7gb.js",
     "name": "props",
     "imports": [
-      "_BKlAdfIx.js",
-      "_DD5MlUUo.js"
+      "_cqX1MtS0.js",
+      "_Dz56NASM.js"
     ]
   },
-  "_BKlAdfIx.js": {
-    "file": "_app/immutable/chunks/BKlAdfIx.js",
-    "name": "runtime"
-  },
-  "_BkpD4Td4.js": {
-    "file": "_app/immutable/chunks/BkpD4Td4.js",
-    "name": "disclose-version",
-    "imports": [
-      "_BKlAdfIx.js"
-    ]
-  },
-  "_C_9qFXfU.js": {
-    "file": "_app/immutable/chunks/C_9qFXfU.js",
+  "_BnCUpRLZ.js": {
+    "file": "_app/immutable/chunks/BnCUpRLZ.js",
     "name": "legacy",
     "imports": [
-      "_BKlAdfIx.js"
+      "_cqX1MtS0.js"
     ]
   },
-  "_CqL83fI8.js": {
-    "file": "_app/immutable/chunks/CqL83fI8.js",
+  "_D-u8wt_n.js": {
+    "file": "_app/immutable/chunks/D-u8wt_n.js",
     "name": "render",
     "imports": [
-      "_BKlAdfIx.js",
-      "_BkpD4Td4.js"
+      "_cqX1MtS0.js",
+      "_DwzWcyEo.js"
     ]
   },
-  "_DD5MlUUo.js": {
-    "file": "_app/immutable/chunks/DD5MlUUo.js",
-    "name": "branches",
+  "_D9Ptw1rF.js": {
+    "file": "_app/immutable/chunks/D9Ptw1rF.js",
+    "name": "attributes",
     "imports": [
-      "_BKlAdfIx.js"
+      "_cqX1MtS0.js",
+      "_Dz56NASM.js",
+      "_DwzWcyEo.js"
     ]
   },
-  "_DSF6hJv0.js": {
-    "file": "_app/immutable/chunks/DSF6hJv0.js",
-    "name": "index-client",
-    "imports": [
-      "_BKlAdfIx.js"
-    ]
-  },
-  "_DnAHTneN.js": {
-    "file": "_app/immutable/chunks/DnAHTneN.js",
+  "_DgmH74kW.js": {
+    "file": "_app/immutable/chunks/DgmH74kW.js",
     "name": "entry",
     "imports": [
-      "_BKlAdfIx.js",
-      "_DSF6hJv0.js"
+      "_cqX1MtS0.js",
+      "_Dpba3mj_.js"
     ]
   },
+  "_Dpba3mj_.js": {
+    "file": "_app/immutable/chunks/Dpba3mj_.js",
+    "name": "index-client",
+    "imports": [
+      "_cqX1MtS0.js"
+    ]
+  },
+  "_DwzWcyEo.js": {
+    "file": "_app/immutable/chunks/DwzWcyEo.js",
+    "name": "disclose-version",
+    "imports": [
+      "_cqX1MtS0.js"
+    ]
+  },
+  "_Dz56NASM.js": {
+    "file": "_app/immutable/chunks/Dz56NASM.js",
+    "name": "branches",
+    "imports": [
+      "_cqX1MtS0.js"
+    ]
+  },
+  "_cqX1MtS0.js": {
+    "file": "_app/immutable/chunks/cqX1MtS0.js",
+    "name": "runtime"
+  },
   "src/assets/images/icon.png": {
-    "file": "_app/immutable/assets/icon.CsvkJIeS.png",
+    "file": "_app/immutable/assets/icon.BdoT_wQe.png",
     "src": "src/assets/images/icon.png"
   }
 }

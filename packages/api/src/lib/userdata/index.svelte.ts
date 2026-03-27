@@ -1,6 +1,7 @@
 import { AttributeDefinition } from "$lib/data/attribute/definition.svelte";
 import { Group, Item, type Database } from "$lib/data/database.svelte";
 import { BlankPageIcon, GearIcon, LocationIcon, ParagraphIcon, PersonIcon } from "$lib/ui/icons.svelte";
+import { invoke } from "@tauri-apps/api/core";
 
 type UserData = { templates: Database[] };
 
@@ -71,7 +72,9 @@ export function userData(): UserData {
 	return storedUserData;
 }
 
-export function saveUserData() {}
+export async function saveUserData() {
+	await invoke("save_user_data", { data: userData() });
+}
 
 export type SessionData = {
 	lastProjectPath: string | null;

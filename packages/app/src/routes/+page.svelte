@@ -7,12 +7,15 @@
 	import Pane from "../components/pane/Pane.svelte";
 	import StatusBar from "../components/StatusBar.svelte";
 	import { InputHandler } from "@clara/api/components";
+	import { loadPlugins } from "@clara/api";
 
 	$effect(() => {
 		if (errors().length > 0) {
 			Debug.errors(errors());
 		}
 	});
+
+	loadPlugins();
 </script>
 
 <InputHandler />

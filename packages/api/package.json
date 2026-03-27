@@ -111,6 +111,10 @@
 		"svelte"
 	],
 	"dependencies": {
-		"color-namer": "^1.4.0"
+		"@tauri-apps/api": "^2.10.1",
+		"color-namer": "^1.4.0",
+		"fs": "^0.0.1-security",
+		"path": "^0.12.7",
+		"url": "^0.11.4"
 	}
 }

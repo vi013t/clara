@@ -47,9 +47,9 @@
       "_internal.js"
     ]
   },
-  "C:/Users/violet/LocalDrive/Coding/writing-app/packages/app/src/global.css": {
+  "C:/Users/violet/LocalDrive/Coding/clara/packages/app/src/global.css": {
     "file": "_app/immutable/assets/global.Dmdlhigz.css",
-    "src": "C:/Users/violet/LocalDrive/Coding/writing-app/packages/app/src/global.css"
+    "src": "C:/Users/violet/LocalDrive/Coding/clara/packages/app/src/global.css"
   },
   "_environment.js": {
     "file": "chunks/environment.js",
@@ -99,7 +99,7 @@
     "name": "utils"
   },
   "src/assets/images/icon.png": {
-    "file": "_app/immutable/assets/icon.CsvkJIeS.png",
+    "file": "_app/immutable/assets/icon.BdoT_wQe.png",
     "src": "src/assets/images/icon.png"
   },
   "src/routes/+layout.svelte": {
@@ -129,10 +129,10 @@
       "_index.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.jwoAfkCu.css"
+      "_app/immutable/assets/_page.DGxFS_Tx.css"
     ],
     "assets": [
-      "_app/immutable/assets/icon.CsvkJIeS.png"
+      "_app/immutable/assets/icon.BdoT_wQe.png"
     ]
   }
 }

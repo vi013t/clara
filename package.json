@@ -9,5 +9,8 @@
 	"scripts": {
 		"dev": "bun run --filter clara tauri dev",
 		"build": "bun run --filter clara tauri build"
+	},
+	"dependencies": {
+		"@types/node": "^25.5.0"
 	}
 }

@@ -1,11 +1,17 @@
 use directories::ProjectDirs;
 mod project;
-use crate::project::{new_project, read_project, save_project, Database};
-mod test;
+use crate::{
+	plugin::{get_plugins, register_plugin_uri_scheme_protocol},
+	project::{new_project, read_project, save_project, Database},
+	userdata::save_user_data,
+};
+mod plugin;
+mod userdata;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
 	tauri::Builder::default()
+		.register_uri_scheme_protocol("plugin", |_app, request| register_plugin_uri_scheme_protocol(request))
 		.plugin(tauri_plugin_opener::init())
 		.plugin(tauri_plugin_dialog::init())
 		.plugin(tauri_plugin_fs::init())
@@ -15,7 +21,9 @@ pub fn run() {
 			get_fonts,
 			save_user_settings,
 			load_user_settings,
-			save_project
+			save_project,
+			save_user_data,
+			get_plugins
 		])
 		.run(tauri::generate_context!())
 		.expect("error while running tauri application");

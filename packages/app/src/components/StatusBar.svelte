@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ContextMenu from "../../../api/src/lib/components/menus/ContextMenu.svelte";
-	import { SaveIcon, CharacterCountIcon, WordCountIcon } from "@wallflower/api/icons";
+	import { SaveIcon, CharacterCountIcon, WordCountIcon } from "@clara/api/icons";
 
 	let wordCountMenu: ContextMenu;
 </script>

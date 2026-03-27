@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { GearIcon } from "@wallflower/api/icons";
+	import { GearIcon } from "@clara/api/icons";
 	import Popup from "./Popup.svelte";
 
 	let popup: Popup;

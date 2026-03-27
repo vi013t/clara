@@ -1,8 +1,8 @@
 {
 	"$schema": "https://schema.tauri.app/config/2",
-	"productName": "Wallflower",
+	"productName": "Clara",
 	"version": "0.1.0",
-	"identifier": "wallflower",
+	"identifier": "clara",
 	"build": {
 		"beforeDevCommand": "bun run dev",
 		"devUrl": "http://localhost:1420",
@@ -12,7 +12,7 @@
 	"app": {
 		"windows": [
 			{
-				"title": "Wallflower",
+				"title": "Clara",
 				"width": 800,
 				"height": 600,
 				"decorations": false,
@@ -30,8 +30,8 @@
 		"fileAssociations": [
 			{
 				"ext": ["wlfr"],
-				"name": "Wallflower project file",
-				"description": "A Wallflower project file.",
+				"name": "Clara project file",
+				"description": "A Clara project file.",
 				"role": "Editor"
 			}
 		],

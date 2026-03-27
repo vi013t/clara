@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-	import { CloseIcon } from "@wallflower/api/icons";
+	import { CloseIcon } from "@clara/api/icons";
 
 	import type { Snippet } from "svelte";
 

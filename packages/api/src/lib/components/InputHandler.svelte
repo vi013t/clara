@@ -1,6 +1,6 @@
 <script module lang="ts">
-	import { Point2D } from "@wallflower/api/math";
-	import { assignedLater } from "@wallflower/api/utils";
+	import { Point2D } from "@clara/api/math";
+	import { assignedLater } from "@clara/api/utils";
 
 	class Mouse {
 		private client_ = $state(Point2D.origin());

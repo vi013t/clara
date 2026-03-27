@@ -1,4 +1,4 @@
-# Wallflower
+# Clara
 
 An app for data visualization.
 
@@ -9,5 +9,5 @@ An app for data visualization.
 You can build and launch the app from source yourself:
 
 ```bash
-git clone https://github.com/vi013t/wallflower.git && cd wallflower && make build
+git clone https://github.com/vi013t/clara.git && cd clara && make build
 ```

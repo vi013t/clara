@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Measurement, MeasurementType } from "@wallflower/api/attribute";
-	import { TransferIcon } from "@wallflower/api/icons";
+	import type { Measurement, MeasurementType } from "@clara/api/attribute";
+	import { TransferIcon } from "@clara/api/icons";
 
 	let { value = $bindable(), type }: { value: Measurement<any> | null; type: MeasurementType<any> } = $props();
 

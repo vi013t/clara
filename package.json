@@ -1,5 +1,5 @@
 {
-	"name": "wallflower",
+	"name": "clara",
 	"private": true,
 	"workspaces": [
 		"packages/api",
@@ -7,7 +7,7 @@
 		"packages/plugins/*"
 	],
 	"scripts": {
-		"dev": "bun run --filter wallflower tauri dev",
-		"build": "bun run --filter wallflower tauri build"
+		"dev": "bun run --filter clara tauri dev",
+		"build": "bun run --filter clara tauri build"
 	}
 }

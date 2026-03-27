@@ -15,7 +15,7 @@
 		SproutIcon,
 		TreeIcon,
 		VersionControlIcon,
-	} from "@wallflower/api/icons";
+	} from "@clara/api/icons";
 	import icon from "../../assets/images/icon.png";
 	import Popup from "./Popup.svelte";
 	import Sidebar from "./Sidebar.svelte";
@@ -36,7 +36,7 @@
 	<div class="popup">
 		<Sidebar
 			bind:view
-			title={{ text: "Wallflower Manual", icon }}
+			title={{ text: "Clara Manual", icon }}
 			sections={{
 				"The essentials": [
 					["Introduction", SproutIcon],
@@ -69,10 +69,10 @@
 			{#if view === "Introduction"}
 				<h1>Introduction</h1>
 
-				<p>Welcome to Wallflower!</p>
+				<p>Welcome to Clara!</p>
 
 				<p>
-					Wallflower is a <i>data editor and visualizer</i>
+					Clara is a <i>data editor and visualizer</i>
 					.
 				</p>
 
@@ -83,7 +83,7 @@
 				<h1>Interface</h1>
 
 				<p>
-					Wallflower is divided into <i>panes.</i>
+					Clara is divided into <i>panes.</i>
 					You can think of a pane like a window&mdash; It's its own little workspace with tabs and settings. Panes are divided into
 					multiple
 					<i>tabs</i>
@@ -111,7 +111,7 @@
 				<h1>License</h1>
 
 				<p>
-					The Wallflower project is FOSS and licensed under the <i>Attribution-NonCommercial-ShareAlike 4.0 International</i>
+					The Clara project is FOSS and licensed under the <i>Attribution-NonCommercial-ShareAlike 4.0 International</i>
 					license. The TL;DR is, you can copy, redistribute, and modify the code as much as you'd like, as long as it's:
 				</p>
 
@@ -133,7 +133,7 @@
 
 				<p>
 					That's pretty much it. I'd like to think it's mostly common sense&mdash;credit me, don't sell my work, and don't let
-					others sell your work. Wallflower was designed to be a free community tool for all to use, and I will not see it made
+					others sell your work. Clara was designed to be a free community tool for all to use, and I will not see it made
 					predatory.
 				</p>
 

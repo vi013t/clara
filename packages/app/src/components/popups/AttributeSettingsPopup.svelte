@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { Group } from "@wallflower/api/database";
+	import type { Group } from "@clara/api/database";
 	import Input from "../input/Input.svelte";
 	import Select from "../input/Select.svelte";
 	import ConfirmationPopup from "./ConfirmationPopup.svelte";
 	import Popup from "./Popup.svelte";
-	import { AttributeType, type AttributeDefinition } from "@wallflower/api/attribute";
-	import { GearIcon, ItalicIcon, PrivacyIcon, SpreadsheetIcon } from "@wallflower/api/icons";
+	import { AttributeType, type AttributeDefinition } from "@clara/api/attribute";
+	import { GearIcon, ItalicIcon, PrivacyIcon, SpreadsheetIcon } from "@clara/api/icons";
 
 	let { owner, attribute = $bindable() }: { owner: Group; attribute: AttributeDefinition | null } = $props();
 

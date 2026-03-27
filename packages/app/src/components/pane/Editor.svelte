@@ -13,9 +13,9 @@
 		SunIcon,
 		UnderlineIcon,
 		UndoIcon,
-	} from "@wallflower/api/icons";
-	import { RichText, Style, StyledText } from "@wallflower/api/attribute";
-	import { getFonts } from "@wallflower/api/system";
+	} from "@clara/api/icons";
+	import { RichText, Style, StyledText } from "@clara/api/attribute";
+	import { getFonts } from "@clara/api/system";
 
 	let {
 		title,

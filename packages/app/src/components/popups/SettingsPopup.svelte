@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Database } from "@wallflower/api/database";
+	import type { Database } from "@clara/api/database";
 	import Select from "../input/Select.svelte";
 	import Popup from "./Popup.svelte";
 	import {
@@ -12,8 +12,8 @@
 		ParagraphIcon,
 		PlugIcon,
 		StartupIcon,
-	} from "@wallflower/api/icons";
-	import { userData } from "@wallflower/api/userdata";
+	} from "@clara/api/icons";
+	import { userData } from "@clara/api/userdata";
 
 	let popup: Popup;
 
@@ -102,14 +102,14 @@
 					<div class="option">
 						<div class="left">
 							<h2>Theme</h2>
-							<p>Set the color theme for Wallflower.</p>
+							<p>Set the color theme for Clara.</p>
 						</div>
 						<Select style="background: #1e1e2e;" options={["Catppuccin Mocha"]} value="Catppuccin Mocha" />
 					</div>
 					<div class="option">
 						<div class="left">
 							<h2>UI Scale</h2>
-							<p>Set the color theme for Wallflower.</p>
+							<p>Set the color theme for Clara.</p>
 						</div>
 						<input />
 					</div>

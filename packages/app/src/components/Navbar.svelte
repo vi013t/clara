@@ -1,22 +1,22 @@
 <script lang="ts">
 	import { getCurrentWindow } from "@tauri-apps/api/window";
-	import { ArrowIcon } from "@wallflower/api/icons";
-	import { CircledPlusIcon } from "@wallflower/api/icons";
-	import { ClockIcon } from "@wallflower/api/icons";
-	import { CloseIcon } from "@wallflower/api/icons";
-	import { DashIcon } from "@wallflower/api/icons";
-	import { FolderIcon } from "@wallflower/api/icons";
-	import { GearIcon } from "@wallflower/api/icons";
-	import { MinimizeIcon } from "@wallflower/api/icons";
-	import { QuestionMarkIcon } from "@wallflower/api/icons";
-	import { SaveIcon } from "@wallflower/api/icons";
+	import { ArrowIcon } from "@clara/api/icons";
+	import { CircledPlusIcon } from "@clara/api/icons";
+	import { ClockIcon } from "@clara/api/icons";
+	import { CloseIcon } from "@clara/api/icons";
+	import { DashIcon } from "@clara/api/icons";
+	import { FolderIcon } from "@clara/api/icons";
+	import { GearIcon } from "@clara/api/icons";
+	import { MinimizeIcon } from "@clara/api/icons";
+	import { QuestionMarkIcon } from "@clara/api/icons";
+	import { SaveIcon } from "@clara/api/icons";
 	import ContextMenu from "../../../api/src/lib/components/menus/ContextMenu.svelte";
 	import ManualPopup from "./popups/ManualPopup.svelte";
 	import NewProjectPopup from "./popups/NewProjectPopup.svelte";
 	import ProjectSettingsPopup from "./popups/ProjectSettingsPopup.svelte";
 	import SettingsPopup from "./popups/SettingsPopup.svelte";
 	import LittleButton from "./widgets/LittleButton.svelte";
-	import { Project } from "@wallflower/api/project";
+	import { Project } from "@clara/api/project";
 
 	let projectMenu: ContextMenu;
 

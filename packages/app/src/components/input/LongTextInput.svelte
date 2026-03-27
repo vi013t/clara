@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { AttributeContext, RichText } from "@wallflower/api/attribute";
+	import type { AttributeContext, RichText } from "@clara/api/attribute";
 
 	let {
 		openEditor,

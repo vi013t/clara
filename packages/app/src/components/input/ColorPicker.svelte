@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Color } from "@wallflower/api/attribute";
-	import { clamp } from "@wallflower/api/math";
-	import { PlusIcon, TrashIcon } from "@wallflower/api/icons";
-	import { ContextMenu } from "@wallflower/api/components";
-	import { mouse } from "@wallflower/api/components";
+	import { Color } from "@clara/api/attribute";
+	import { clamp } from "@clara/api/math";
+	import { PlusIcon, TrashIcon } from "@clara/api/icons";
+	import { ContextMenu } from "@clara/api/components";
+	import { mouse } from "@clara/api/components";
 
 	let {
 		value = $bindable(null),

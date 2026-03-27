@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
-	import { Camera } from "@wallflower/api/camera";
+	import { Camera } from "@clara/api/camera";
 
 	let {
 		children,

@@ -6,7 +6,7 @@ type Settings<Names extends string> = {
 	get(name: Names): Setting<Names>;
 };
 
-type WallflowerPlugin<SettingNames extends string> = {
+type ClaraPlugin<SettingNames extends string> = {
 	name: string;
 	description: string;
 	settings: Setting<SettingNames>[];
@@ -18,4 +18,4 @@ type PluginInfo<SettingNames extends string> = {
 	settings: Settings<SettingNames>;
 };
 
-export function plugin<const SettingNames extends string>(plugin: WallflowerPlugin<SettingNames>): void {}
+export function plugin<const SettingNames extends string>(plugin: ClaraPlugin<SettingNames>): void {}

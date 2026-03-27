@@ -1,5 +1,5 @@
 {
-	"name": "@wallflower/api",
+	"name": "@clara/api",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev",

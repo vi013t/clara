@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { StringAttribute } from "@wallflower/api/attribute";
+	import { StringAttribute } from "@clara/api/attribute";
 
 	let { value = $bindable(), background = "transparent" }: { value: StringAttribute | null; background?: string } = $props();
 

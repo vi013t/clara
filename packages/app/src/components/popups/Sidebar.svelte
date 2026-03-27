@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { IconComponent } from "@wallflower/api/icons";
+	import type { IconComponent } from "@clara/api/icons";
 
 	let {
 		view = $bindable(),

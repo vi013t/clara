@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Project } from "@wallflower/api/project";
+	import { Project } from "@clara/api/project";
 	import ManualPopup from "./popups/ManualPopup.svelte";
 	import NewProjectPopup from "./popups/NewProjectPopup.svelte";
 

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { errors } from "../api/errors.svelte";
-	import { Project } from "@wallflower/api/project";
+	import { Project } from "@clara/api/project";
 	import { Debug } from "../api/log";
 	import Navbar from "../components/Navbar.svelte";
 	import NoProject from "../components/NoProject.svelte";
 	import Pane from "../components/pane/Pane.svelte";
 	import StatusBar from "../components/StatusBar.svelte";
-	import { InputHandler } from "@wallflower/api/components";
+	import { InputHandler } from "@clara/api/components";
 
 	$effect(() => {
 		if (errors().length > 0) {

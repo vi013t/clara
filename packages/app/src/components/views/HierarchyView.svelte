@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Project } from "@wallflower/api/project";
-	import { Group, Item, type Node } from "@wallflower/api/database";
+	import { Project } from "@clara/api/project";
+	import { Group, Item, type Node } from "@clara/api/database";
 	import ContextMenu from "../../../../api/src/lib/components/menus/ContextMenu.svelte";
 	import HierarchyView from "./HierarchyView.svelte";
-	import { ArrowIcon, CircledPlusIcon, PackageIcon, RenameIcon, TrashIcon } from "@wallflower/api/icons";
+	import { ArrowIcon, CircledPlusIcon, PackageIcon, RenameIcon, TrashIcon } from "@clara/api/icons";
 
 	let {
 		entry,

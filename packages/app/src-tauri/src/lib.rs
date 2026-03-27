@@ -56,7 +56,7 @@ impl BinaryData for UserSettings {}
 
 #[tauri::command]
 fn save_user_settings(user_settings: UserSettings) -> Result<(), String> {
-	let Some(project_dirs) = ProjectDirs::from("", "", "Wallflower") else {
+	let Some(project_dirs) = ProjectDirs::from("", "", "Clara") else {
 		return Err("Error finding home environment".to_owned());
 	};
 
@@ -75,7 +75,7 @@ fn save_user_settings(user_settings: UserSettings) -> Result<(), String> {
 
 #[tauri::command]
 fn load_user_settings() -> Result<UserSettings, String> {
-	let Some(project_dirs) = ProjectDirs::from("", "", "Wallflower") else {
+	let Some(project_dirs) = ProjectDirs::from("", "", "Clara") else {
 		return Err("Error finding home environment".to_owned());
 	};
 

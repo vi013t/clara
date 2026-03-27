@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import { EditorTab, GroupTab, TabList } from "@wallflower/api/ui";
+	import { EditorTab, GroupTab, TabList } from "@clara/api/ui";
 
 	export type PaneTree = PaneTreeLeaf | PaneTreeBranch;
 
@@ -25,7 +25,7 @@
 	import Editor from "./Editor.svelte";
 	import Pane from "./Pane.svelte";
 	import Tabline from "./Tabline.svelte";
-	import type { RichText } from "@wallflower/api/attribute";
+	import type { RichText } from "@clara/api/attribute";
 
 	let {
 		width = "500px",

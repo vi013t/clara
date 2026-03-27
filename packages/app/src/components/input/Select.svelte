@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ArrowIcon, LockIcon, UnlockedIcon, type IconComponent } from "@wallflower/api/icons";
+	import { ArrowIcon, LockIcon, UnlockedIcon, type IconComponent } from "@clara/api/icons";
 	import LittleButton from "../widgets/LittleButton.svelte";
 
 	export type ComplexOption = { name: string; icon?: IconComponent; color?: string; style?: string };

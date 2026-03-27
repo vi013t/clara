@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { HTMLAttributes } from "svelte/elements";
-	import type { IconComponent } from "@wallflower/api/icons";
+	import type { IconComponent } from "@clara/api/icons";
 
 	let {
 		Icon,

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { ContextMenu } from "@wallflower/api/components";
-	import type { Group } from "@wallflower/api/database";
+	import { ContextMenu } from "@clara/api/components";
+	import type { Group } from "@clara/api/database";
 	import {
 		ArrowIcon,
 		CloseIcon,
@@ -11,8 +11,8 @@
 		RenameIcon,
 		ReticleIcon,
 		SplitHorizontalIcon,
-	} from "@wallflower/api/icons";
-	import { EditorTab, GroupTab, Tab, views, type TabList, type View } from "@wallflower/api/ui";
+	} from "@clara/api/icons";
+	import { EditorTab, GroupTab, Tab, views, type TabList, type View } from "@clara/api/ui";
 	import { onMount } from "svelte";
 	let {
 		tabs = $bindable(),

@@ -7,7 +7,7 @@
 <svelte:head>
 	<link href={globalCss} rel="stylesheet" />
 	<link href="/favicon.png" rel="icon" />
-	<title>Wallflower</title>
+	<title>Clara</title>
 </svelte:head>
 
 {@render children()}

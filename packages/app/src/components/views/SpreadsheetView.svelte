@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { TrashIcon, PlusIcon, GearIcon, RenameIcon, CloseIcon } from "@wallflower/api/icons";
-	import { AttributeDefinition } from "@wallflower/api/attribute";
-	import type { RichText } from "@wallflower/api/attribute";
-	import { Item, type Group } from "@wallflower/api/database";
+	import { TrashIcon, PlusIcon, GearIcon, RenameIcon, CloseIcon } from "@clara/api/icons";
+	import { AttributeDefinition } from "@clara/api/attribute";
+	import type { RichText } from "@clara/api/attribute";
+	import { Item, type Group } from "@clara/api/database";
 	import Input from "../input/Input.svelte";
 	import ContextMenu from "../../../../api/src/lib/components/menus/ContextMenu.svelte";
 	import FieldPropertiesPopup from "../popups/AttributeSettingsPopup.svelte";

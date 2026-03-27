@@ -8,7 +8,7 @@
 		StringAttribute,
 		type AttributeContext,
 		type AttributeTypeName,
-	} from "@wallflower/api/attribute";
+	} from "@clara/api/attribute";
 	import ColorPicker from "./ColorPicker.svelte";
 	import LongTextInput from "./LongTextInput.svelte";
 	import MeasurementInput from "./MeasurementInput.svelte";

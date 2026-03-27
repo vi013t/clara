@@ -6,10 +6,10 @@
 	import SettingsPopup from "./SettingsPopup.svelte";
 	import { asyncFn } from "../../api/errors.svelte";
 	import HierarchyView from "../views/HierarchyView.svelte";
-	import type { Database } from "@wallflower/api/database";
-	import { Project } from "@wallflower/api/project";
-	import { FolderIcon, GearIcon } from "@wallflower/api/icons";
-	import { userData } from "@wallflower/api/userdata";
+	import type { Database } from "@clara/api/database";
+	import { Project } from "@clara/api/project";
+	import { FolderIcon, GearIcon } from "@clara/api/icons";
+	import { userData } from "@clara/api/userdata";
 
 	let popup: Popup;
 

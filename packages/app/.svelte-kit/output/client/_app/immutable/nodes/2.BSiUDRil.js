@@ -1,19 +1,11092 @@
-import{c as ka,a as B,m as de,f as J,o as xt,j as Ct,g as ue,d as Nt,t as Gn}from"../chunks/BkpD4Td4.js";import{aQ as Vl,a_ as G1,b1 as z1,h as At,K as Pr,b2 as jl,J as fo,a as kn,b3 as Ko,L as $l,Y as Wn,_ as io,aa as Zn,G as Gl,X as Er,U as H1,b4 as q1,b5 as N1,aA as W1,E as ea,aX as Z1,aC as Ht,b6 as Y1,l as s,b as oo,b7 as U1,s as K1,ax as J1,b8 as X1,b9 as Q1,ba as e0,ae as go,ak as t0,e as Nn,a6 as zl,af as n0,c as Ea,bb as Jt,at as r0,r as Hl,p as ql,bc as Ba,bd as a0,ac as i0,m as o0,d as s0,a5 as Hn,a8 as Nl,be as Wl,bf as l0,x as $,H as h0,bg as c0,ag as u0,a9 as d0,aI as m0,bh as f0,bi as g0,bj as p0,aD as v0,i as b0,D as Zl,bk as x0,aH as C0,aq as _e,aE as L,ar as F,B as x,z as f,A as m,v as mt,y as ft,aj as Rt,aF as Se,bl as _0,w as ze,bm as so,Z as Fe,g as Br,bn as Yn}from"../chunks/BKlAdfIx.js";import{p as k,r as se,b as Ve,i as Qe,c as Xt}from"../chunks/B9rAUB3Z.js";import{b as le,S as he,a as re,c as Ge,s as tr,d as vt,e as bt,r as ln}from"../chunks/6sds28cC.js";import{i as Yl}from"../chunks/C_9qFXfU.js";import{s as ut}from"../chunks/CqL83fI8.js";import{o as sa}from"../chunks/DSF6hJv0.js";import{B as Ul}from"../chunks/DD5MlUUo.js";const w0=[];function y0(a,e=!1,t=!1){return Ur(a,new Map,"",w0,null,t)}function Ur(a,e,t,n,i=null,r=!1){if(typeof a=="object"&&a!==null){var o=e.get(a);if(o!==void 0)return o;if(a instanceof Map)return new Map(a);if(a instanceof Set)return new Set(a);if(Vl(a)){var h=Array(a.length);e.set(a,h),i!==null&&e.set(i,h);for(var u=0;u<a.length;u+=1){var v=a[u];u in a&&(h[u]=Ur(v,e,t,n,null,r))}return h}if(G1(a)===z1){h={},e.set(a,h),i!==null&&e.set(i,h);for(var b of Object.keys(a))h[b]=Ur(a[b],e,t,n,null,r);return h}if(a instanceof Date)return structuredClone(a);if(typeof a.toJSON=="function"&&!r)return Ur(a.toJSON(),e,t,n,a)}if(a instanceof EventTarget)return a;try{return structuredClone(a)}catch{return a}}const Jo=0,Xo=1,F0=2;function k0(a,e,t,n,i){At&&Pr();var r=jl(),o=Z1,h=r?ea(o):Ht(o,!1,!1),u=r?ea(o):Ht(o,!1,!1),v=new Ul(a);fo(()=>{var b=kn;b.deactivate();var y=e();b.activate();var C=!1;let S=At&&Ko(y)===(a.data===$l);if(S&&(Wn(io()),Zn(!1)),Ko(y)){var A=Y1(),P=!1;const D=R=>{if(!C){P=!0,A(!1),H1.ensure(),At&&Zn(!1);try{R()}finally{q1(!1),N1||W1()}}};y.then(R=>{D(()=>{Er(h,R),v.ensure(Xo,n&&(G=>n(G,h)))})},R=>{D(()=>{if(Er(u,R),v.ensure(F0,i&&(G=>i(G,u))),!i)throw u.v})}),At?v.ensure(Jo,t):Gl(()=>{P||D(()=>{v.ensure(Jo,t)})})}else Er(h,y),v.ensure(Xo,n&&(D=>n(D,h)));return S&&Zn(!0),()=>{C=!0}})}const E0=Symbol("NaN");function B0(a,e,t){At&&Pr();var n=new Ul(a),i=!jl();fo(()=>{var r=e();r!==r&&(r=E0),i&&r!==null&&typeof r=="object"&&(r={}),n.ensure(r,t)})}function Vt(a,e){return e}function S0(a,e,t){for(var n=[],i=e.length,r,o=e.length,h=0;h<i;h++){let y=e[h];ql(y,()=>{if(r){if(r.pending.delete(y),r.done.add(y),r.pending.size===0){var C=a.outrogroups;lo(a,go(r.done)),C.delete(r),C.size===0&&(a.outrogroups=null)}}else o-=1},!1)}if(o===0){var u=n.length===0&&t!==null;if(u){var v=t,b=v.parentNode;i0(b),b.append(v),a.items.clear()}lo(a,e,!u)}else r={pending:new Set(e),done:new Set},(a.outrogroups??=new Set).add(r)}function lo(a,e,t=!0){var n;if(a.pending.size>0){n=new Set;for(const o of a.pending.values())for(const h of o)n.add(a.items.get(h).e)}for(var i=0;i<e.length;i++){var r=e[i];if(n?.has(r)){r.f|=Jt;const o=document.createDocumentFragment();o0(r,o)}else s0(e[i],t)}}var Qo;function Lt(a,e,t,n,i,r=null){var o=a,h=new Map,u=(e&Wl)!==0;if(u){var v=a;o=At?Wn(Hn(v)):v.appendChild(Ea())}At&&Pr();var b=null,y=J1(()=>{var j=t();return Vl(j)?j:j==null?[]:go(j)}),C,S=new Map,A=!0;function P(j){(G.effect.f&r0)===0&&(G.pending.delete(j),G.fallback=b,A0(G,C,o,e,n),b!==null&&(C.length===0?(b.f&Jt)===0?Hl(b):(b.f^=Jt,yr(b,null,o)):ql(b,()=>{b=null})))}function D(j){G.pending.delete(j)}var R=fo(()=>{C=s(y);var j=C.length;let ne=!1;if(At){var M=t0(o)===$l;M!==(j===0)&&(o=io(),Wn(o),Zn(!1),ne=!0)}for(var ce=new Set,ve=kn,Y=K1(),U=0;U<j;U+=1){At&&Nn.nodeType===zl&&Nn.data===n0&&(o=Nn,ne=!0,Zn(!1));var N=C[U],ae=n(N,U),Z=A?null:h.get(ae);Z?(Z.v&&Er(Z.v,N),Z.i&&Er(Z.i,U),Y&&ve.unskip_effect(Z.e)):(Z=D0(h,A?o:Qo??=Ea(),N,ae,U,i,e,t),A||(Z.e.f|=Jt),h.set(ae,Z)),ce.add(ae)}if(j===0&&r&&!b&&(A?b=oo(()=>r(o)):(b=oo(()=>r(Qo??=Ea())),b.f|=Jt)),j>ce.size&&U1(),At&&j>0&&Wn(io()),!A)if(S.set(ve,ce),Y){for(const[ke,T]of h)ce.has(ke)||ve.skip_effect(T.e);ve.oncommit(P),ve.ondiscard(D)}else P(ve);ne&&Zn(!0),s(y)}),G={effect:R,items:h,pending:S,outrogroups:null,fallback:b};A=!1,At&&(o=Nn)}function wr(a){for(;a!==null&&(a.f&a0)===0;)a=a.next;return a}function A0(a,e,t,n,i){var r=(n&l0)!==0,o=e.length,h=a.items,u=wr(a.effect.first),v,b=null,y,C=[],S=[],A,P,D,R;if(r)for(R=0;R<o;R+=1)A=e[R],P=i(A,R),D=h.get(P).e,(D.f&Jt)===0&&(D.nodes?.a?.measure(),(y??=new Set).add(D));for(R=0;R<o;R+=1){if(A=e[R],P=i(A,R),D=h.get(P).e,a.outrogroups!==null)for(const N of a.outrogroups)N.pending.delete(D),N.done.delete(D);if((D.f&Jt)!==0)if(D.f^=Jt,D===u)yr(D,null,t);else{var G=b?b.next:u;D===a.effect.last&&(a.effect.last=D.prev),D.prev&&(D.prev.next=D.next),D.next&&(D.next.prev=D.prev),mn(a,b,D),mn(a,D,G),yr(D,G,t),b=D,C=[],S=[],u=wr(b.next);continue}if((D.f&Ba)!==0&&(Hl(D),r&&(D.nodes?.a?.unfix(),(y??=new Set).delete(D))),D!==u){if(v!==void 0&&v.has(D)){if(C.length<S.length){var j=S[0],ne;b=j.prev;var M=C[0],ce=C[C.length-1];for(ne=0;ne<C.length;ne+=1)yr(C[ne],j,t);for(ne=0;ne<S.length;ne+=1)v.delete(S[ne]);mn(a,M.prev,ce.next),mn(a,b,M),mn(a,ce,j),u=j,b=ce,R-=1,C=[],S=[]}else v.delete(D),yr(D,u,t),mn(a,D.prev,D.next),mn(a,D,b===null?a.effect.first:b.next),mn(a,b,D),b=D;continue}for(C=[],S=[];u!==null&&u!==D;)(v??=new Set).add(u),S.push(u),u=wr(u.next);if(u===null)continue}(D.f&Jt)===0&&C.push(D),b=D,u=wr(D.next)}if(a.outrogroups!==null){for(const N of a.outrogroups)N.pending.size===0&&(lo(a,go(N.done)),a.outrogroups?.delete(N));a.outrogroups.size===0&&(a.outrogroups=null)}if(u!==null||v!==void 0){var ve=[];if(v!==void 0)for(D of v)(D.f&Ba)===0&&ve.push(D);for(;u!==null;)(u.f&Ba)===0&&u!==a.fallback&&ve.push(u),u=wr(u.next);var Y=ve.length;if(Y>0){var U=(n&Wl)!==0&&o===0?t:null;if(r){for(R=0;R<Y;R+=1)ve[R].nodes?.a?.measure();for(R=0;R<Y;R+=1)ve[R].nodes?.a?.fix()}S0(a,ve,U)}}r&&Gl(()=>{if(y!==void 0)for(D of y)D.nodes?.a?.apply()})}function D0(a,e,t,n,i,r,o,h){var u=(o&Q1)!==0?(o&e0)===0?Ht(t,!1,!1):ea(t):null,v=(o&X1)!==0?ea(i):null;return{v:u,i:v,e:oo(()=>(r(e,u??t,v??i,h),()=>{a.delete(n)}))}}function yr(a,e,t){if(a.nodes)for(var n=a.nodes.start,i=a.nodes.end,r=e&&(e.f&Jt)===0?e.nodes.start:t;n!==null;){var o=Nl(n);if(r.before(n),n===i)return;n=o}}function mn(a,e,t){e===null?a.effect.first=t:e.next=t,t===null?a.effect.last=e:t.prev=e}function M0(a,e,t=!1,n=!1,i=!1,r=!1){var o=a,h="";if(t){var u=a;At&&(o=Wn(Hn(u)))}$(()=>{var v=h0;if(h===(h=e()??"")){At&&Pr();return}if(t&&!At){v.nodes=null,u.innerHTML=h,h!==""&&ka(Hn(u),u.lastChild);return}if(v.nodes!==null&&(c0(v.nodes.start,v.nodes.end),v.nodes=null),h!==""){if(At){Nn.data;for(var b=Pr(),y=b;b!==null&&(b.nodeType!==zl||b.data!=="");)y=b,b=Nl(b);if(b===null)throw u0(),d0;ka(Nn,y),o=Wn(b);return}var C=n?f0:i?g0:void 0,S=m0(n?"svg":i?"math":"template",C);S.innerHTML=h;var A=n||i?S:S.content;if(ka(Hn(A),A.lastChild),n||i)for(;Hn(A);)o.before(Hn(A));else o.before(A)}})}function hn(a,e,t=e){var n=new WeakSet;p0(a,"input",async i=>{var r=i?a.defaultValue:a.value;if(r=Sa(a)?Aa(r):r,t(r),kn!==null&&n.add(kn),await v0(),r!==(r=e())){var o=a.selectionStart,h=a.selectionEnd,u=a.value.length;if(a.value=r??"",h!==null){var v=a.value.length;o===h&&h===u&&v>u?(a.selectionStart=v,a.selectionEnd=v):(a.selectionStart=o,a.selectionEnd=Math.min(h,v))}}}),(At&&a.defaultValue!==a.value||b0(e)==null&&a.value)&&(t(Sa(a)?Aa(a.value):a.value),kn!==null&&n.add(kn)),Zl(()=>{var i=e();if(a===document.activeElement){var r=kn;if(n.has(r))return}Sa(a)&&i===Aa(a.value)||a.type==="date"&&!i&&!a.value||i!==a.value&&(a.value=i??"")})}function Sa(a){var e=a.type;return e==="number"||e==="range"}function Aa(a){return a===""?null:+a}function Kl(a,e,t,n=t){e.addEventListener("input",()=>{n(e[a])}),Zl(()=>{var i=t();if(e[a]!==i)if(i==null){var r=e[a];n(r)}else e[a]=i+""})}function Jl(a,e){x0(window,["resize"],()=>C0(()=>e(window[a])))}var ta;(a=>{function e(y,C=void 0,S="Info",A="#b7d2fe",P="#33425b"){}a.logColor=e;function t(y){}a.errors=t;function n(y,C){a.logColor(y,C,"Success","#a6e3a1","#344532")}a.success=n;function i(y,C){a.logColor(y,C,"Info","#b7d2fe","#33425b")}a.info=i;function r(y,C){a.logColor(y,C,"!! Warning !!","#f9e2af","#413c26")}a.warn=r;function o(y,C){a.logColor(y,C,"!! ERROR !!","#f38ba8","#4e3534")}a.error=o;function h(y,C,S,A="error"){y?a.success("Successful check: "+C,S):A==="error"?a.error("Failed check: "+C,S):a.warn("Failed check: "+C,S)}a.test=h;function u(y){return/([^\/\\]+)$/.exec(v(y))[1]}a.file=u;function v(y){return/^.+(\/src.+?)(\?|:)/.exec(y)?.[1]??y}a.path=v;function b(...y){}a.log=b})(ta||(ta={}));function L0(a){const e=a.trim().split(`
-`),t=[];let n="";e[0]&&!e[0].trim().startsWith("at ")&&(n=e.shift().trim());const i=/at\s+(?:(?<functionName>.+?)\s+\()?(?<path>.+?):(?<line>\d+):(?<column>\d+)\)?|at\s+(?<anonymousPath>.+?)$/;for(const r of e){const o=r.match(i);if(o){const{functionName:h,path:u,line:v,column:b,anonymousPath:y}=o.groups;let C=u||y||"",S=C;S=S.split("?")[0];const A=S.indexOf("/src/");A!==-1&&(S=S.substring(A+1)),t.push({functionName:h||(C.includes("<anonymous>")?"anonymous":"root"),file:S,line:v?parseInt(v,10):null,column:b?parseInt(b,10):null})}else if(r.includes("<anonymous>")){const h=r.match(/at\s+(.+?)\s+\(/);t.push({functionName:h?h[1]:"anonymous",file:"native",line:null,column:null})}}return{message:n,stack:t}}let Xl=_e([]);function es(a,e){return async function(...t){try{return await a(...t)}catch(n){let i=n instanceof Error?n.stack||n.message:String(n),r=`
-	at ${a.name||"anonymous"}`;e&&(r=`${r} in ${ta.file(e)}`);let o=L0(i),h=o.message+o.stack.map(u=>`
-	at ${u.functionName} in ${u.file} (line ${u.line??"_"}, column ${u.column??"_"})`).join("");h+=`
-When calling:${r}`,Xl.push(h)}}}function ts(){return Xl}function R0(a,e,t,n){if(typeof e=="function"?a!==e||!n:!e.has(a))throw new TypeError("Cannot read private member from an object whose class did not declare it");return t==="m"?n:t==="a"?n.call(a):n?n.value:e.get(a)}function P0(a,e,t,n,i){if(typeof e=="function"?a!==e||!0:!e.has(a))throw new TypeError("Cannot write private member to an object whose class did not declare it");return e.set(a,t),t}var Kr;const jt="__TAURI_TO_IPC_KEY__";function I0(a,e=!1){return window.__TAURI_INTERNALS__.transformCallback(a,e)}async function X(a,e={},t){return window.__TAURI_INTERNALS__.invoke(a,e,t)}class T0{get rid(){return R0(this,Kr,"f")}constructor(e){Kr.set(this,void 0),P0(this,Kr,e)}async close(){return X("plugin:resources|close",{rid:this.rid})}}Kr=new WeakMap;async function Ql(a={}){return typeof a=="object"&&Object.freeze(a),await X("plugin:dialog|open",{options:a})}function Ye(){return null}var Sr;(function(a){function e(n,i){return Object.entries(n).map(([r,o])=>({[r]:i(o)})).reduce((r,o)=>({...r,...o}))}a.mapValues=e;function t(n,i){return Object.entries(n).map(([r,o])=>i(r,o)).reduce((r,[o,h])=>({...r,[o]:h}),{})}a.mapEntries=t})(Sr||(Sr={}));class gt{#e=L(_e([[1,0,0],[0,1,0],[0,0,1]]));get values(){return s(this.#e)}set values(e){F(this.#e,e,!0)}constructor(e){e&&(this.values=e)}getScale(){let[[e,t,n],[i,r,o],[h,u,v]]=this.values;return new Ce(e,r)}static identity(){return new gt}times(e){let[[t,n,i],[r,o,h],[u,v,b]]=this.values,[[y,C,S],[A,P,D],[R,G,j]]=e.values;return new gt([[t*y+n*A+i*R,t*C+n*P+i*G,t*S+n*D+i*j],[r*y+o*A+h*R,r*C+o*P+h*G,r*S+o*D+h*j],[u*y+v*A+b*R,u*C+v*P+b*G,u*S+v*D+b*j]])}timesPoint(e){let{x:t,y:n}=new Ce(e),[[i,r,o],[h,u,v],[b,y,C]]=this.values;return new Ce({x:i*t+r*n+o,y:h*t+u*n+v})}get inverse(){let[[e,t,n],[i,r,o],[h,u,v]]=this.values;const b=1/this.determinant;return new gt([[(r*v-o*u)*b,(n*u-t*v)*b,(t*o-n*r)*b],[(o*h-i*v)*b,(e*v-n*h)*b,(n*i-e*o)*b],[(i*u-r*h)*b,(t*h-e*u)*b,(e*r-t*i)*b]])}get determinant(){let[[e,t,n],[i,r,o],[h,u,v]]=this.values;return e*(r*v-o*u)-t*(i*v-o*h)+n*(i*u-r*h)}static translation(e){let{x:t,y:n}=new Ce(e);return new gt([[1,0,t],[0,1,n],[0,0,1]])}static rotation(e){return new gt([[Math.cos(e),-Math.sin(e),0],[Math.sin(e),Math.cos(e),0],[0,0,1]])}static scale(e){let{x:t,y:n}=new Ce(typeof e=="object"?e:[e,e]);return new gt([[t,0,0],[0,n,0],[0,0,1]])}get css(){const[[e,t,n],[i,r,o],h]=this.values;return`matrix(${e}, ${i}, ${t}, ${r}, ${n}, ${o})`}}class Ce{#e=L(_e(Ye()));get x(){return s(this.#e)}set x(e){F(this.#e,e,!0)}#t=L(_e(Ye()));get y(){return s(this.#t)}set y(e){F(this.#t,e,!0)}constructor(e,t){typeof e=="object"?Array.isArray(e)?(this.x=e[0],this.y=e[1]):(this.x=e.x,this.y=e.y):(this.x=e,this.y=t)}clone(){return new Ce(this)}plus(e){let t=new Ce(e);return new Ce(this.x+t.x,this.y+t.y)}equals(e){let t=new Ce(e);return this.x==t.x&&this.y==t.y}moveAwayFrom(e,t){let n=new Ce(e),i=this.distanceTo(n);return new Ce(this.x+t*(this.x-n.x)/i,this.y+t*(this.y-n.y)/i)}static average(e){return e.map(t=>new Ce(t)).reduce((t,n)=>t.plus(n),Ce.origin()).dividedBy(e.length)}static polar(e,t){return new Ce(e*Math.cos(t),e*Math.sin(t))}polar(){return{radius:this.distanceTo(Ce.origin()),angle:Math.atan(this.y/this.x)}}polarRelativeTo(e){let t=Math.atan((this.y-e.y)/(this.x-e.x));return{radius:this.distanceTo(e),angle:t}}static sum(...e){return e.map(n=>new Ce(n)).reduce((n,i)=>n.plus(i),Ce.origin())}dividedBy(e){let t=typeof e=="object"?new Ce(e):new Ce([e,e]);return new Ce(this.x/t.x,this.y/t.y)}distanceTo(e){let t=new Ce(e);return Math.sqrt(Math.pow(t.x-this.x,2)+Math.pow(t.y-this.y,2))}squared(){return this.times(this)}times(e){let t=new Ce(e);return new Ce(this.x*t.x,this.y*t.y)}distanceSquared(e){return Math.pow(this.distanceTo(e),2)}minus(e){let t=new Ce(e);return new Ce(this.x-t.x,this.y-t.y)}static origin(){return new Ce(0,0)}}function En(a,e,t){return Math.min(t,Math.max(a,e))}class qt{#e=L(_e(Ye()));get radius(){return s(this.#e)}set radius(e){F(this.#e,e,!0)}#t=L(_e(Ye()));get center(){return s(this.#t)}set center(e){F(this.#t,e,!0)}constructor(e,t){this.radius=e,this.center=t}clone(){return new qt(this.radius,this.center.clone())}getConstrainedShift(e,t,n=0){const[i,r]=e,o=this.center.x+i,h=this.center.y+r,u=t.radius-this.radius-n;if(u<=0)return[0,0];const v=o-t.center.x,b=h-t.center.y;if(Math.hypot(v,b)<=u)return[i,r];const C=Math.atan2(b,v),S=t.center.x+Math.cos(C)*u,A=t.center.y+Math.sin(C)*u;return[S-this.center.x,A-this.center.y]}overlaps(e,t=0){if(e instanceof qt){const n=this.radius+e.radius-t;return this.center.distanceTo(e.center)<n}if(e instanceof Kt){const n=new Ce(En(this.center.x,e.left,e.right),En(this.center.y,e.top,e.bottom));return this.center.distanceTo(n)<=this.radius-t}return e.overlaps(this)}contains(e,t=0){const n=this.radius-t;return n<0?!1:e instanceof qt?this.center.distanceTo(e.center)+e.radius<=n:e instanceof Kt?[new Ce(e.left,e.top),new Ce(e.right,e.top),new Ce(e.left,e.bottom),new Ce(e.right,e.bottom)].every(r=>this.center.distanceTo(r)<=n):!1}static unit(){return new qt(0,Ce.origin())}static prettyPack(e,t){if(e<=0)return{circles:[],parentRadius:0};if(e===1)return{circles:[new Ce({x:0,y:0})],parentRadius:t};if(e===2)return{circles:[new Ce({x:-t,y:0}),new Ce({x:t,y:0})],parentRadius:2*t};let n=1/0,i=null;for(let o=e;o>=3;o--){const h=e-o,u=t*(1+1/Math.sin(Math.PI/o)),b=u-t-t;if(h>0){const y=qt.prettyPack(h,t);y.parentRadius<=b+1e-5&&u<n&&(n=u,i={m:o,coreResult:y})}else u<n&&(n=u,i={m:o,coreResult:{circles:[],parentRadius:0}})}if(!i){const o=e,h=t*(1+1/Math.sin(Math.PI/o));return{circles:ns(o,h-t),parentRadius:h}}return{circles:[...ns(i.m,n-t),...i.coreResult.circles],parentRadius:n}}}class Kt{#e=L(_e(Ye()));get left(){return s(this.#e)}set left(e){F(this.#e,e,!0)}#t=L(_e(Ye()));get top(){return s(this.#t)}set top(e){F(this.#t,e,!0)}#n=L(_e(Ye()));get width(){return s(this.#n)}set width(e){F(this.#n,e,!0)}#r=L(_e(Ye()));get height(){return s(this.#r)}set height(e){F(this.#r,e,!0)}constructor(e,t,n,i){this.left=e,this.top=t,this.width=n,this.height=i}clone(){return new Kt(this.left,this.top,this.width,this.height)}overlaps(e,t=0){return e instanceof qt?e.overlaps(this,t):e instanceof Kt?this.left<e.right-t&&this.right>e.left+t&&this.top<e.bottom-t&&this.bottom>e.top+t:e.overlaps(this)}static squareFromCenter(e,t){let n=new Ce(e);return new Kt(n.x-t,n.y-t,t*2,t*2)}contains(e,t=0){const n=this.left+t,i=this.right-t,r=this.top+t,o=this.bottom-t;return n>i||r>o?!1:e instanceof qt?e.center.x-e.radius>=n&&e.center.x+e.radius<=i&&e.center.y-e.radius>=r&&e.center.y+e.radius<=o:e instanceof Kt?e.left>=n&&e.right<=i&&e.top>=r&&e.bottom<=o:!1}static fromXYWH({x:e,y:t,width:n,height:i}){return new Kt(e,t,n,i)}shiftRight(e){this.left+=e}get center(){return new Ce([this.width/2+this.left,this.height/2+this.top])}get right(){return this.left+this.width}get bottom(){return this.top+this.height}get size(){return new Ce(this.width,this.height)}static around(e,t={}){let n={top:0,left:0,right:0,bottom:0,...t},i=Math.min(...e.map(u=>u.left))-n.left,r=Math.min(...e.map(u=>u.top))+n.top,o=Math.max(...e.map(u=>u.right))+n.right,h=Math.max(...e.map(u=>u.bottom))+n.bottom;return Kt.fromBounds({left:i,top:r,right:o,bottom:h})}static fromBounds({left:e,top:t,right:n,bottom:i}){return new Kt(e,t,n-e,i-t)}}function ns(a,e){const t=[];for(let n=0;n<a;n++){const i=n*2*Math.PI/a;t.push(new Ce({x:e*Math.cos(i),y:e*Math.sin(i)}))}return t}var O0=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"></path></g></svg>');function Qt(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=O0();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"fill",t())),B(a,r)}const V0=Object.freeze(Object.defineProperty({__proto__:null,default:Qt},Symbol.toStringTag,{value:"Module"}));var j0=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><rect x="2" y="12" width="20" height="3.5" fill="white"></rect><path d="M2 8.5H22V12H2V8.5Z" fill="#A3A3A3"></path><path d="M2 7C2 5.89543 2.89543 5 4 5H20C21.1046 5 22 5.89543 22 7V8.5H2V7Z" fill="#000000"></path><path d="M2 15.5H22V17C22 18.1046 21.1046 19 20 19H4C2.89543 19 2 18.1046 2 17V15.5Z" fill="#77187B"></path></g></svg>');function e1(a,e){k(e,"stroke",3,"currentcolor");let t=k(e,"scale",3,1),n=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var i=j0();le(i,()=>({...n,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${t()??""}rem`,height:`${t()??""}rem`}})),B(a,i)}const $0=Object.freeze(Object.defineProperty({__proto__:null,default:e1},Symbol.toStringTag,{value:"Module"}));var G0=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><rect x="2" y="9.67" width="20" height="4.67" fill="#6D5291"></rect><path d="M2 7C2 5.89543 2.89543 5 4 5H20C21.1046 5 22 5.89543 22 7V9.67H2V7Z" fill="#C62B6F"></path><path d="M2 14.34H22V17.01C22 18.1146 21.1046 19.01 20 19.01H4C2.89543 19.01 2 18.1146 2 17.01V14.34Z" fill="#1439A3"></path></g></svg>');function t1(a,e){k(e,"stroke",3,"currentcolor");let t=k(e,"scale",3,1),n=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var i=G0();le(i,()=>({...n,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${t()??""}rem`,height:`${t()??""}rem`}})),B(a,i)}const z0=Object.freeze(Object.defineProperty({__proto__:null,default:t1},Symbol.toStringTag,{value:"Module"}));var H0=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g><path class="st0" d="M411.626,0H222.754c-13.552,0-26.56,5.39-36.148,14.969L68.794,132.788 c-9.594,9.587-14.976,22.596-14.976,36.156v296.5c0,25.67,20.892,46.556,46.564,46.556h311.243 c25.664,0,46.556-20.886,46.556-46.556V46.542C458.182,20.878,437.289,0,411.626,0z M206.248,32.349v104.652 c0,11.313-4.402,15.722-15.715,15.722H85.881L206.248,32.349z M431.998,465.444c0,11.237-9.142,20.372-20.372,20.372H100.382 c-11.245,0-20.38-9.135-20.38-20.372V175.998h124.55c13.77,0,24.978-11.207,24.978-24.985V26.184h182.096 c11.23,0,20.372,9.127,20.372,20.358V465.444z"></path></g></g></svg>');function po(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=H0();le(r,()=>({...i,height:"200px",width:"200px",version:"1.1",id:"_x32_",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",viewBox:"0 0 512 512","xml:space":"preserve",fill:t(),stroke:t(),"stroke-width":"12.8",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o),u=f(h);let v;m(h),m(o),m(r),$(()=>v=Ge(u,"",v,{fill:t()})),B(a,r)}const q0=Object.freeze(Object.defineProperty({__proto__:null,default:po},Symbol.toStringTag,{value:"Module"}));var N0=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 1H8.625C11.0412 1 13 2.95875 13 5.375C13 6.08661 12.8301 6.75853 12.5287 7.35243C13.4313 8.15386 14 9.32301 14 10.625C14 13.0412 12.0412 15 9.625 15H2V1ZM5.5 9.75V11.5H9.625C10.1082 11.5 10.5 11.1082 10.5 10.625C10.5 10.1418 10.1082 9.75 9.625 9.75H5.5ZM5.5 6.25H8.625C9.10825 6.25 9.5 5.85825 9.5 5.375C9.5 4.89175 9.10825 4.5 8.625 4.5H5.5V6.25Z"></path></g></svg>');function vo(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=N0();le(r,()=>({...i,viewBox:"0 0 16 16",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"fill",t())),B(a,r)}const W0=Object.freeze(Object.defineProperty({__proto__:null,default:vo},Symbol.toStringTag,{value:"Module"}));var Z0=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M4 19V6.2C4 5.0799 4 4.51984 4.21799 4.09202C4.40973 3.71569 4.71569 3.40973 5.09202 3.21799C5.51984 3 6.0799 3 7.2 3H16.8C17.9201 3 18.4802 3 18.908 3.21799C19.2843 3.40973 19.5903 3.71569 19.782 4.09202C20 4.51984 20 5.0799 20 6.2V17H6C4.89543 17 4 17.8954 4 19ZM4 19C4 20.1046 4.89543 21 6 21H20M9 7H15M9 11H15M19 17V21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function bo(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Z0();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const Y0=Object.freeze(Object.defineProperty({__proto__:null,default:bo},Symbol.toStringTag,{value:"Module"}));var U0=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.47 5.777C6.64843 5.66548 6.82631 5.57017 7.00005 5.48867C7.00341 5.24634 7.03488 5.00375 7.08016 4.76601C7.15702 4.36251 7.31232 3.81288 7.63176 3.25386C8.30808 2.0703 9.63768 1 12 1C14.3623 1 15.6919 2.0703 16.3682 3.25386C16.6877 3.81288 16.843 4.36251 16.9198 4.76601C16.9651 5.00366 16.9966 5.24615 16.9999 5.48839C17.1737 5.56989 17.3516 5.66548 17.53 5.777C18.207 6.20012 18.8425 6.82582 19.2994 7.71927C19.7656 7.53233 20.2282 7.23 20.5429 6.7578C20.7966 6.3773 21 5.82502 21 5C21 4.44772 21.4477 4 22 4C22.5523 4 23 4.44772 23 5C23 6.17498 22.7034 7.1227 22.2071 7.8672C21.5676 8.82639 20.6756 9.34444 19.8991 9.63125C19.9646 10.0513 20 10.5067 20 11V12H22C22.5523 12 23 12.4477 23 13C23 13.5523 22.5523 14 22 14H20V15.5191C19.9891 15.8049 19.9498 16.088 19.9016 16.3697C20.6774 16.6566 21.5683 17.1746 22.2071 18.1328C22.7034 18.8773 23 19.825 23 21C23 21.5523 22.5523 22 22 22C21.4477 22 21 21.5523 21 21C21 20.175 20.7966 19.6227 20.5429 19.2422C20.2401 18.7879 19.8018 18.4912 19.3524 18.3025C19.2288 18.6068 19.0814 18.9213 18.9053 19.237C17.8448 21.1392 15.7816 23 12 23C8.2184 23 6.15524 21.1392 5.09465 19.237C4.91864 18.9213 4.77118 18.6068 4.6476 18.3025C4.19823 18.4912 3.75992 18.7879 3.45705 19.2422C3.20338 19.6227 3 20.175 3 21C3 21.5523 2.55228 22 2 22C1.44772 22 1 21.5523 1 21C1 19.825 1.29662 18.8773 1.79295 18.1328C2.43173 17.1746 3.32255 16.6566 4.09839 16.3697C4.05024 16.0885 4.0127 15.8043 4 15.5191V14H2C1.44772 14 1 13.5523 1 13C1 12.4477 1.44772 12 2 12H4V11C4 10.5067 4.0354 10.0513 4.10086 9.63125C3.3244 9.34444 2.43241 8.82639 1.79295 7.8672C1.29662 7.1227 1 6.17498 1 5C1 4.44772 1.44772 4 2 4C2.55228 4 3 4.44772 3 5C3 5.82502 3.20338 6.3773 3.45705 6.7578C3.77185 7.23 4.2344 7.53233 4.70063 7.71927C5.15748 6.82582 5.79302 6.20012 6.47 5.777ZM14.6318 4.24614C14.7804 4.50632 14.8709 4.77287 14.9251 5H9.07491C9.1291 4.77287 9.21957 4.50632 9.36824 4.24614C9.69192 3.6797 10.3623 3 12 3C13.6377 3 14.3081 3.6797 14.6318 4.24614ZM8.99671 7.00035C8.48495 7.02168 7.96106 7.20358 7.53 7.473C6.84294 7.90241 6 8.81983 6 11V15.4738C6.06537 16.4404 6.37182 17.4207 6.84149 18.263C7.5032 19.4498 8.69637 20.6688 11 20.943V7L8.99671 7.00035ZM13 7V20.943C15.3036 20.6688 16.4968 19.4498 17.1585 18.263C17.6282 17.4206 17.9346 16.4404 18 15.4738V11C18 8.81983 17.1571 7.90241 16.47 7.473C16.0389 7.20358 15.515 7.02168 15.0033 7.00035L13 7Z"></path></g></svg>');function xo(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=U0();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"fill",t())),B(a,r)}const K0=Object.freeze(Object.defineProperty({__proto__:null,default:xo},Symbol.toStringTag,{value:"Module"}));var J0=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3 9H21M17 13.0014L7 13M10.3333 17.0005L7 17M7 3V5M17 3V5M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function Co(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=J0();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const X0=Object.freeze(Object.defineProperty({__proto__:null,default:Co},Symbol.toStringTag,{value:"Module"}));var Q0=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M19.0993 10.6602C20.2113 11.9744 19.98 13.5815 19.9801 15C19.9801 18.9062 14.7132 20 12 20C9.28677 20 4.01994 18.9062 4.01994 15C4.01995 13.5815 3.78875 11.9744 4.90066 10.6602M19.0993 10.6602C18.9048 10.4303 18.6692 10.2094 18.384 10M19.0993 10.6602C19.7993 11.0634 19.9781 9.55469 19.9801 9.0625V7.18761C19.9801 5.56261 18.8629 5.00011 17.9053 5.00011C16.9477 5.00011 15.0324 6.5625 14.394 6.5625C13.6279 6.5625 13.4804 6.40636 12 6.40636C10.5197 6.40636 10.3721 6.5625 9.60601 6.5625C8.9676 6.5625 7.05236 5 6.09476 5C5.13715 5 4.01995 5.5625 4.01995 7.1875V9.0625C4.02188 9.55469 4.20072 11.0634 4.90066 10.6602M4.90066 10.6602C5.09519 10.4303 5.33082 10.2094 5.61599 10" stroke-width="1.5" stroke-linecap="round"></path><path d="M12.8258 16C12.8258 16.1726 12.4647 16.3125 12.0193 16.3125C11.574 16.3125 11.2129 16.1726 11.2129 16C11.2129 15.8274 11.574 15.6875 12.0193 15.6875C12.4647 15.6875 12.8258 15.8274 12.8258 16Z" stroke-width="1.5"></path><path d="M15.5 13.5938C15.5 14.0252 15.2834 14.375 15.0161 14.375C14.7489 14.375 14.5323 14.0252 14.5323 13.5938C14.5323 13.1623 14.7489 12.8125 15.0161 12.8125C15.2834 12.8125 15.5 13.1623 15.5 13.5938Z" stroke-width="1.5"></path><path d="M9.5 13.5938C9.5 14.0252 9.28336 14.375 9.01613 14.375C8.74889 14.375 8.53226 14.0252 8.53226 13.5938C8.53226 13.1623 8.74889 12.8125 9.01613 12.8125C9.28336 12.8125 9.5 13.1623 9.5 13.5938Z" stroke-width="1.5"></path><path d="M22.0004 15.4688C21.5165 15.1562 19.4197 14.375 18.6133 14.375" stroke-width="1.5" stroke-linecap="round"></path><path d="M20.3871 17.9688C19.9033 17.6562 18.7742 16.875 17.9678 16.875" stroke-width="1.5" stroke-linecap="round"></path><path d="M2 15.4688C2.48387 15.1562 4.58065 14.375 5.3871 14.375" stroke-width="1.5" stroke-linecap="round"></path><path d="M3.61279 17.9688C4.09667 17.6562 5.2257 16.875 6.03215 16.875" stroke-width="1.5" stroke-linecap="round"></path></g></svg>');function n1(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Q0();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o),u=x(h),v=x(u),b=x(v),y=x(b),C=x(y),S=x(C),A=x(S);m(o),m(r),$(()=>{re(h,"stroke",t()),re(u,"stroke",t()),re(v,"stroke",t()),re(b,"stroke",t()),re(y,"stroke",t()),re(C,"stroke",t()),re(S,"stroke",t()),re(A,"stroke",t())}),B(a,r)}const eh=Object.freeze(Object.defineProperty({__proto__:null,default:n1},Symbol.toStringTag,{value:"Module"}));var th=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title></title><path d="M158.25,38.5A9.91,9.91,0,0,0,144.75,53c12.5,12,20.5,28.5,20.5,47a64.87,64.87,0,0,1-65,65,10,10,0,0,0,0,20,84.93,84.93,0,0,0,85-85c-.5-24.5-10.5-46-27-61.5ZM34.75,100a64.87,64.87,0,0,1,65-65,10,10,0,0,0,0-20,84.88,84.88,0,0,0-61.5,143.5A9.91,9.91,0,0,0,52.75,145C41.75,133,34.75,117.5,34.75,100Zm85,32a10,10,0,0,0,19.5-4.5l-12-55.5c-2.5-12.5-14-22-27.5-22a28.87,28.87,0,0,0-28,22.5l-12,55.5a10.61,10.61,0,0,0,7.5,12,10.61,10.61,0,0,0,12-7.5l4-19.5h32l4.5,19ZM88.25,92.5,91.75,77a8.66,8.66,0,0,1,17,0l3.5,15.5Z"></path></g></svg>');function _o(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=th();le(r,()=>({...i,fill:t(),viewBox:"0 0 200 200","data-name":"Layer 1",id:"Layer_1",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}})),B(a,r)}const nh=Object.freeze(Object.defineProperty({__proto__:null,default:_o},Symbol.toStringTag,{value:"Module"}));var rh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>plus-circle</title><desc>Created with Sketch Beta.</desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Icon-Set" transform="translate(-464.000000, -1087.000000)"><path d="M480,1117 C472.268,1117 466,1110.73 466,1103 C466,1095.27 472.268,1089 480,1089 C487.732,1089 494,1095.27 494,1103 C494,1110.73 487.732,1117 480,1117 L480,1117 Z M480,1087 C471.163,1087 464,1094.16 464,1103 C464,1111.84 471.163,1119 480,1119 C488.837,1119 496,1111.84 496,1103 C496,1094.16 488.837,1087 480,1087 L480,1087 Z M486,1102 L481,1102 L481,1097 C481,1096.45 480.553,1096 480,1096 C479.447,1096 479,1096.45 479,1097 L479,1102 L474,1102 C473.447,1102 473,1102.45 473,1103 C473,1103.55 473.447,1104 474,1104 L479,1104 L479,1109 C479,1109.55 479.447,1110 480,1110 C480.553,1110 481,1109.55 481,1109 L481,1104 L486,1104 C486.553,1104 487,1103.55 487,1103 C487,1102.45 486.553,1102 486,1102 L486,1102 Z" id="plus-circle"></path></g></g></g></svg>');function la(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=rh();le(r,()=>({...i,viewBox:"0 0 32 32",version:"1.1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",fill:t(),[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=x(f(o),3),u=f(h);m(h),m(o),m(r),$(()=>re(u,"fill",t())),B(a,r)}const ah=Object.freeze(Object.defineProperty({__proto__:null,default:la},Symbol.toStringTag,{value:"Module"}));var ih=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 7V12H15M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function ha(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=ih();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const oh=Object.freeze(Object.defineProperty({__proto__:null,default:ha},Symbol.toStringTag,{value:"Module"}));var sh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z"></path></g></svg>');function It(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=sh();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"fill",t())),B(a,r)}const lh=Object.freeze(Object.defineProperty({__proto__:null,default:It},Symbol.toStringTag,{value:"Module"}));var hh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12.022,23a11.053,11.053,0,0,0,10.921-9.5,5.853,5.853,0,0,0-.577-3.5c-1.655-3.146-4.777-2.671-7.056-2.322-1.18.178-2.4.366-2.865-.035A2.416,2.416,0,0,1,12.02,6c0-2.683,0-5-3-5C3.753,1,1,6.534,1,12A11.023,11.023,0,0,0,12.022,23ZM9.016,3c.909,0,1,0,1,3a3.941,3.941,0,0,0,1.122,3.168c1.163,1,2.844.741,4.469.494,2.483-.379,4.061-.482,4.986,1.276a3.844,3.844,0,0,1,.363,2.293A9.024,9.024,0,0,1,3,12C3,8.382,4.6,3,9.016,3ZM5,7.5A1.5,1.5,0,1,1,6.5,9,1.5,1.5,0,0,1,5,7.5ZM4,12a1.5,1.5,0,1,1,1.5,1.5A1.5,1.5,0,0,1,4,12Zm3.5,3A1.5,1.5,0,1,1,6,16.5,1.5,1.5,0,0,1,7.5,15Zm8,3A3.5,3.5,0,1,0,12,14.5,3.5,3.5,0,0,0,15.5,18Zm0-5A1.5,1.5,0,1,1,14,14.5,1.5,1.5,0,0,1,15.5,13Z"></path></g></svg>');function jr(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=hh();le(r,()=>({...i,fill:t(),viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}})),B(a,r)}const ch=Object.freeze(Object.defineProperty({__proto__:null,default:jr},Symbol.toStringTag,{value:"Module"}));var uh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3 12L21 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function ca(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=uh();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const dh=Object.freeze(Object.defineProperty({__proto__:null,default:ca},Symbol.toStringTag,{value:"Module"}));var mh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>dice [#25]</title><desc>Created with Sketch.</desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Dribbble-Light-Preview" transform="translate(-180.000000, -8079.000000)"><g id="icons" transform="translate(56.000000, 160.000000)"><path d="M138,7927.1047 C136.896,7927.1047 136,7927.9997 136,7929.1047 C136,7930.2097 136.896,7931.1047 138,7931.1047 C139.104,7931.1047 140,7930.2097 140,7929.1047 C140,7927.9997 139.104,7927.1047 138,7927.1047 L138,7927.1047 Z M130,7927.1047 C128.896,7927.1047 128,7927.9997 128,7929.1047 C128,7930.2097 128.896,7931.1047 130,7931.1047 C131.104,7931.1047 132,7930.2097 132,7929.1047 C132,7927.9997 131.104,7927.1047 130,7927.1047 L130,7927.1047 Z M142,7921.9997 C142,7921.4477 141.552,7920.9997 141,7920.9997 L127,7920.9997 C126.448,7920.9997 126,7921.4477 126,7921.9997 L126,7935.9997 C126,7936.5527 126.448,7936.9997 127,7936.9997 L141,7936.9997 C141.552,7936.9997 142,7936.5527 142,7935.9997 L142,7921.9997 Z M144,7920.9997 L144,7936.9997 C144,7938.1047 143.104,7938.9997 142,7938.9997 L126,7938.9997 C124.896,7938.9997 124,7938.1047 124,7936.9997 L124,7920.9997 C124,7919.8957 124.896,7918.9997 126,7918.9997 L142,7918.9997 C143.104,7918.9997 144,7919.8957 144,7920.9997 L144,7920.9997 Z M130,7922.1047 C128.896,7922.1047 128,7922.9997 128,7924.1047 C128,7925.2097 128.896,7926.1047 130,7926.1047 C131.104,7926.1047 132,7925.2097 132,7924.1047 C132,7922.9997 131.104,7922.1047 130,7922.1047 L130,7922.1047 Z M130,7932.1047 C128.896,7932.1047 128,7932.9997 128,7934.1047 C128,7935.2097 128.896,7936.1047 130,7936.1047 C131.104,7936.1047 132,7935.2097 132,7934.1047 C132,7932.9997 131.104,7932.1047 130,7932.1047 L130,7932.1047 Z M138,7922.1047 C136.896,7922.1047 136,7922.9997 136,7924.1047 C136,7925.2097 136.896,7926.1047 138,7926.1047 C139.104,7926.1047 140,7925.2097 140,7924.1047 C140,7922.9997 139.104,7922.1047 138,7922.1047 L138,7922.1047 Z M140,7934.1047 C140,7935.2097 139.104,7936.1047 138,7936.1047 C136.896,7936.1047 136,7935.2097 136,7934.1047 C136,7932.9997 136.896,7932.1047 138,7932.1047 C139.104,7932.1047 140,7932.9997 140,7934.1047 L140,7934.1047 Z" id="dice-[#25]"></path></g></g></g></g></svg>');function ua(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=mh();le(r,()=>({...i,viewBox:"0 0 20 20",version:"1.1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",fill:t(),[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=x(f(o),3),u=f(h);m(h),m(o),m(r),$(()=>re(u,"fill",t())),B(a,r)}const fh=Object.freeze(Object.defineProperty({__proto__:null,default:ua},Symbol.toStringTag,{value:"Module"}));var gh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>ellipsis-filled</title><path d="M19.75 16c0 2.071-1.679 3.75-3.75 3.75s-3.75-1.679-3.75-3.75c0-2.071 1.679-3.75 3.75-3.75s3.75 1.679 3.75 3.75zM8.75 16c0 2.071-1.679 3.75-3.75 3.75s-3.75-1.679-3.75-3.75c0-2.071 1.679-3.75 3.75-3.75s3.75 1.679 3.75 3.75zM30.75 16c0 2.071-1.679 3.75-3.75 3.75s-3.75-1.679-3.75-3.75c0-2.071 1.679-3.75 3.75-3.75s3.75 1.679 3.75 3.75z"></path></g></svg>');function r1(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=gh();le(r,()=>({...i,fill:t(),viewBox:"0 0 32 32",version:"1.1",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}})),B(a,r)}const ph=Object.freeze(Object.defineProperty({__proto__:null,default:r1},Symbol.toStringTag,{value:"Module"}));var vh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M15.0007 12C15.0007 13.6569 13.6576 15 12.0007 15C10.3439 15 9.00073 13.6569 9.00073 12C9.00073 10.3431 10.3439 9 12.0007 9C13.6576 9 15.0007 10.3431 15.0007 12Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.0012 5C7.52354 5 3.73326 7.94288 2.45898 12C3.73324 16.0571 7.52354 19 12.0012 19C16.4788 19 20.2691 16.0571 21.5434 12C20.2691 7.94291 16.4788 5 12.0012 5Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function Un(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=vh();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o),u=x(h);m(o),m(r),$(()=>{re(h,"stroke",t()),re(u,"stroke",t())}),B(a,r)}const bh=Object.freeze(Object.defineProperty({__proto__:null,default:Un},Symbol.toStringTag,{value:"Module"}));var xh=J('<div><svg fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 32 32" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" stroke-width="1.6"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M8.622,4.953c0.022,-0.234 0.205,-0.424 0.443,-0.45c0.253,-0.028 0.487,0.139 0.543,0.388c0.378,1.695 1.642,3.338 3.556,3.002c0.329,-0.058 0.654,-0.223 0.907,-0.438c0.778,-0.661 1.189,-1.617 1.446,-2.583c0.064,-0.243 0.299,-0.4 0.548,-0.368c0.237,0.031 0.417,0.225 0.434,0.461c0.39,1.678 1.649,3.289 3.545,2.955c0.33,-0.058 0.654,-0.223 0.907,-0.438c0.778,-0.66 1.19,-1.617 1.446,-2.583c0.059,-0.222 0.263,-0.376 0.493,-0.371c0.231,0.004 0.428,0.166 0.478,0.391c0.379,1.695 1.643,3.338 3.556,3.001c0.33,-0.058 0.654,-0.223 0.907,-0.438c0.778,-0.66 1.19,-1.617 1.446,-2.583c0.071,-0.266 0.345,-0.425 0.612,-0.355c0.267,0.071 0.426,0.345 0.355,0.612c-0.308,1.161 -0.83,2.295 -1.765,3.089c-0.385,0.326 -0.88,0.572 -1.381,0.66c-1.943,0.342 -3.43,-0.818 -4.218,-2.393c-0.307,0.655 -0.719,1.255 -1.282,1.733c-0.384,0.326 -0.88,0.572 -1.381,0.66c-1.948,0.343 -3.437,-0.825 -4.224,-2.407c-0.306,0.65 -0.717,1.245 -1.275,1.719c-0.384,0.327 -0.88,0.572 -1.381,0.661c-1.938,0.341 -3.421,-0.812 -4.211,-2.38c-0.307,0.66 -0.722,1.266 -1.288,1.747c-0.385,0.326 -0.88,0.572 -1.381,0.66c-2.479,0.436 -4.215,-1.572 -4.706,-3.768c-0.06,-0.27 0.11,-0.537 0.379,-0.597c0.27,-0.061 0.537,0.109 0.597,0.379c0.379,1.695 1.643,3.338 3.556,3.001c0.33,-0.058 0.654,-0.223 0.907,-0.438c0.764,-0.648 1.174,-1.581 1.432,-2.529Z"></path></g></svg></div>');function a1(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=xh();le(r,()=>({...i,[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`,"--stroke":t()}}),void 0,void 0,void 0,"svelte-p1q4x9");var o=f(r),h=x(f(o),2),u=f(h);m(h),m(o),m(r),$(()=>{re(o,"stroke",t()),re(o,"fill",t()),Ge(u,`fill:${t()??""};`)}),B(a,r)}const Ch=Object.freeze(Object.defineProperty({__proto__:null,default:a1},Symbol.toStringTag,{value:"Module"}));var _h=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3 4.6C3 4.03995 3 3.75992 3.10899 3.54601C3.20487 3.35785 3.35785 3.20487 3.54601 3.10899C3.75992 3 4.03995 3 4.6 3H19.4C19.9601 3 20.2401 3 20.454 3.10899C20.6422 3.20487 20.7951 3.35785 20.891 3.54601C21 3.75992 21 4.03995 21 4.6V6.33726C21 6.58185 21 6.70414 20.9724 6.81923C20.9479 6.92127 20.9075 7.01881 20.8526 7.10828C20.7908 7.2092 20.7043 7.29568 20.5314 7.46863L14.4686 13.5314C14.2957 13.7043 14.2092 13.7908 14.1474 13.8917C14.0925 13.9812 14.0521 14.0787 14.0276 14.1808C14 14.2959 14 14.4182 14 14.6627V17L10 21V14.6627C10 14.4182 10 14.2959 9.97237 14.1808C9.94787 14.0787 9.90747 13.9812 9.85264 13.8917C9.7908 13.7908 9.70432 13.7043 9.53137 13.5314L3.46863 7.46863C3.29568 7.29568 3.2092 7.2092 3.14736 7.10828C3.09253 7.01881 3.05213 6.92127 3.02763 6.81923C3 6.70414 3 6.58185 3 6.33726V4.6Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function i1(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=_h();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`,scale:"80%"}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const wh=Object.freeze(Object.defineProperty({__proto__:null,default:i1},Symbol.toStringTag,{value:"Module"}));var yh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 5C1 3.34315 2.34315 2 4 2H8.43845C9.81505 2 11.015 2.93689 11.3489 4.27239L11.7808 6H13.5H20C21.6569 6 23 7.34315 23 9V19C23 20.6569 21.6569 22 20 22H4C2.34315 22 1 20.6569 1 19V10V9V5ZM3 9V10V19C3 19.5523 3.44772 20 4 20H20C20.5523 20 21 19.5523 21 19V9C21 8.44772 20.5523 8 20 8H13.5H11.7808H4C3.44772 8 3 8.44772 3 9ZM9.71922 6H4C3.64936 6 3.31278 6.06015 3 6.17071V5C3 4.44772 3.44772 4 4 4H8.43845C8.89732 4 9.2973 4.3123 9.40859 4.75746L9.71922 6Z"></path></g></svg>');function Kn(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=yh();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"fill",t())),B(a,r)}const Fh=Object.freeze(Object.defineProperty({__proto__:null,default:Kn},Symbol.toStringTag,{value:"Module"}));var kh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M2 7C2 5.89543 2.89543 5 4 5H20C21.1046 5 22 5.89543 22 7H2Z" fill="#058169"></path><rect x="2" y="7" width="20" height="2" fill="#23C0A5"></rect><rect x="2" y="9" width="20" height="2" fill="#8FD8BB"></rect><rect x="2" y="11" width="20" height="2" fill="#ECEDF2"></rect><rect x="2" y="13" width="20" height="2" fill="#73A4DE"></rect><rect x="2" y="15" width="20" height="2" fill="#4B44C5"></rect><path d="M2 17H22C22 18.1046 21.1046 19 20 19H4C2.89543 19 2 18.1046 2 17Z" fill="#3C1975"></path></g></svg>');function o1(a,e){k(e,"stroke",3,"currentcolor");let t=k(e,"scale",3,1),n=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var i=kh();le(i,()=>({...n,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${t()??""}rem`,height:`${t()??""}rem`}})),B(a,i)}const Eh=Object.freeze(Object.defineProperty({__proto__:null,default:o1},Symbol.toStringTag,{value:"Module"}));var Bh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0002 8C9.79111 8 8.00024 9.79086 8.00024 12C8.00024 14.2091 9.79111 16 12.0002 16C14.2094 16 16.0002 14.2091 16.0002 12C16.0002 9.79086 14.2094 8 12.0002 8ZM10.0002 12C10.0002 10.8954 10.8957 10 12.0002 10C13.1048 10 14.0002 10.8954 14.0002 12C14.0002 13.1046 13.1048 14 12.0002 14C10.8957 14 10.0002 13.1046 10.0002 12Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2867 0.5C9.88583 0.5 8.6461 1.46745 8.37171 2.85605L8.29264 3.25622C8.10489 4.20638 7.06195 4.83059 6.04511 4.48813L5.64825 4.35447C4.32246 3.90796 2.83873 4.42968 2.11836 5.63933L1.40492 6.83735C0.67773 8.05846 0.954349 9.60487 2.03927 10.5142L2.35714 10.7806C3.12939 11.4279 3.12939 12.5721 2.35714 13.2194L2.03927 13.4858C0.954349 14.3951 0.67773 15.9415 1.40492 17.1626L2.11833 18.3606C2.83872 19.5703 4.3225 20.092 5.64831 19.6455L6.04506 19.5118C7.06191 19.1693 8.1049 19.7935 8.29264 20.7437L8.37172 21.1439C8.6461 22.5325 9.88584 23.5 11.2867 23.5H12.7136C14.1146 23.5 15.3543 22.5325 15.6287 21.1438L15.7077 20.7438C15.8954 19.7936 16.9384 19.1693 17.9553 19.5118L18.3521 19.6455C19.6779 20.092 21.1617 19.5703 21.8821 18.3606L22.5955 17.1627C23.3227 15.9416 23.046 14.3951 21.9611 13.4858L21.6432 13.2194C20.8709 12.5722 20.8709 11.4278 21.6432 10.7806L21.9611 10.5142C23.046 9.60489 23.3227 8.05845 22.5955 6.83732L21.8821 5.63932C21.1617 4.42968 19.678 3.90795 18.3522 4.35444L17.9552 4.48814C16.9384 4.83059 15.8954 4.20634 15.7077 3.25617L15.6287 2.85616C15.3543 1.46751 14.1146 0.5 12.7136 0.5H11.2867ZM10.3338 3.24375C10.4149 2.83334 10.7983 2.5 11.2867 2.5H12.7136C13.2021 2.5 13.5855 2.83336 13.6666 3.24378L13.7456 3.64379C14.1791 5.83811 16.4909 7.09167 18.5935 6.38353L18.9905 6.24984C19.4495 6.09527 19.9394 6.28595 20.1637 6.66264L20.8771 7.86064C21.0946 8.22587 21.0208 8.69271 20.6764 8.98135L20.3586 9.24773C18.6325 10.6943 18.6325 13.3057 20.3586 14.7523L20.6764 15.0186C21.0208 15.3073 21.0946 15.7741 20.8771 16.1394L20.1637 17.3373C19.9394 17.714 19.4495 17.9047 18.9905 17.7501L18.5936 17.6164C16.4909 16.9082 14.1791 18.1618 13.7456 20.3562L13.6666 20.7562C13.5855 21.1666 13.2021 21.5 12.7136 21.5H11.2867C10.7983 21.5 10.4149 21.1667 10.3338 20.7562L10.2547 20.356C9.82113 18.1617 7.50931 16.9082 5.40665 17.6165L5.0099 17.7501C4.55092 17.9047 4.06104 17.714 3.83671 17.3373L3.1233 16.1393C2.9058 15.7741 2.97959 15.3073 3.32398 15.0186L3.64185 14.7522C5.36782 13.3056 5.36781 10.6944 3.64185 9.24779L3.32398 8.98137C2.97959 8.69273 2.9058 8.2259 3.1233 7.86067L3.83674 6.66266C4.06106 6.28596 4.55093 6.09528 5.0099 6.24986L5.40676 6.38352C7.50938 7.09166 9.82112 5.83819 10.2547 3.64392L10.3338 3.24375Z"></path></g></svg>');function Tt(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Bh();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o),u=x(h);m(o),m(r),$(()=>{re(h,"fill",t()),re(u,"fill",t())}),B(a,r)}const Sh=Object.freeze(Object.defineProperty({__proto__:null,default:Tt},Symbol.toStringTag,{value:"Module"}));var Ah=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>network</title><path d="M27 21.75c-0.795 0.004-1.538 0.229-2.169 0.616l0.018-0.010-2.694-2.449c0.724-1.105 1.154-2.459 1.154-3.913 0-1.572-0.503-3.027-1.358-4.212l0.015 0.021 3.062-3.062c0.57 0.316 1.249 0.503 1.971 0.508h0.002c2.347 0 4.25-1.903 4.25-4.25s-1.903-4.25-4.25-4.25c-2.347 0-4.25 1.903-4.25 4.25v0c0.005 0.724 0.193 1.403 0.519 1.995l-0.011-0.022-3.062 3.062c-1.147-0.84-2.587-1.344-4.144-1.344-0.868 0-1.699 0.157-2.467 0.443l0.049-0.016-0.644-1.17c0.726-0.757 1.173-1.787 1.173-2.921 0-2.332-1.891-4.223-4.223-4.223s-4.223 1.891-4.223 4.223c0 2.332 1.891 4.223 4.223 4.223 0.306 0 0.605-0.033 0.893-0.095l-0.028 0.005 0.642 1.166c-1.685 1.315-2.758 3.345-2.758 5.627 0 0.605 0.076 1.193 0.218 1.754l-0.011-0.049-0.667 0.283c-0.78-0.904-1.927-1.474-3.207-1.474-2.334 0-4.226 1.892-4.226 4.226s1.892 4.226 4.226 4.226c2.334 0 4.226-1.892 4.226-4.226 0-0.008-0-0.017-0-0.025v0.001c-0.008-0.159-0.023-0.307-0.046-0.451l0.003 0.024 0.667-0.283c1.303 2.026 3.547 3.349 6.1 3.349 1.703 0 3.268-0.589 4.503-1.574l-0.015 0.011 2.702 2.455c-0.258 0.526-0.41 1.144-0.414 1.797v0.001c0 2.347 1.903 4.25 4.25 4.25s4.25-1.903 4.25-4.25c0-2.347-1.903-4.25-4.25-4.25v0zM8.19 5c0-0.966 0.784-1.75 1.75-1.75s1.75 0.784 1.75 1.75c0 0.966-0.784 1.75-1.75 1.75v0c-0.966-0.001-1.749-0.784-1.75-1.75v-0zM5 22.42c-0.966-0.001-1.748-0.783-1.748-1.749s0.783-1.749 1.749-1.749c0.966 0 1.748 0.782 1.749 1.748v0c-0.001 0.966-0.784 1.749-1.75 1.75h-0zM27 3.25c0.966 0 1.75 0.784 1.75 1.75s-0.784 1.75-1.75 1.75c-0.966 0-1.75-0.784-1.75-1.75v0c0.001-0.966 0.784-1.749 1.75-1.75h0zM11.19 16c0-0.001 0-0.002 0-0.003 0-2.655 2.152-4.807 4.807-4.807 1.328 0 2.53 0.539 3.4 1.409l0.001 0.001 0.001 0.001c0.87 0.87 1.407 2.072 1.407 3.399 0 2.656-2.153 4.808-4.808 4.808s-4.808-2.153-4.808-4.808c0-0 0-0 0-0v0zM27 27.75c-0.966 0-1.75-0.784-1.75-1.75s0.784-1.75 1.75-1.75c0.966 0 1.75 0.784 1.75 1.75v0c-0.001 0.966-0.784 1.749-1.75 1.75h-0z"></path></g></svg>');function On(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Ah();le(r,()=>({...i,fill:t(),viewBox:"0 0 32 32",version:"1.1",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}})),B(a,r)}const Dh=Object.freeze(Object.defineProperty({__proto__:null,default:On},Symbol.toStringTag,{value:"Module"}));var Mh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g><g><path d="M13.684,24.416h-2.225v-2.102c4.412-0.796,7.753-4.655,7.753-9.282c0-1.251-0.239-2.445-0.685-3.538 c-0.486-0.183-1.004-0.281-1.539-0.281c-0.849,0-1.657,0.241-2.354,0.689c0.585,0.903,0.925,1.977,0.925,3.13 c0,3.184-2.587,5.773-5.771,5.773c-3.182,0-5.77-2.589-5.77-5.773c0-2.423,1.501-4.499,3.62-5.354 C8.07,7.001,8.579,6.365,9.161,5.784c0.794-0.793,1.69-1.451,2.661-1.96c-0.654-0.144-1.334-0.222-2.03-0.222 c-5.199,0-9.446,4.232-9.446,9.431c0,4.524,3.208,8.31,7.437,9.22v2.164H5.71c-1.011,0-1.831,0.829-1.831,1.838 c0,1.012,0.82,1.84,1.831,1.84h2.073v1.462c0,1.009,0.828,1.828,1.838,1.828c1.011,0,1.838-0.819,1.838-1.828v-1.462h2.225 c1.011,0,1.829-0.828,1.829-1.84C15.513,25.245,14.694,24.416,13.684,24.416z"></path><path d="M29.13,0c-0.084-0.004-5.847,0.062-5.847,0.062c-1.024,0.012-1.848,1.016-1.834,2.044 c0.013,1.018,0.843,1.996,1.857,1.996c0.006,0,0.016,0,0.024,0l1.073-0.177l-1.955,1.877c-1.594-1.108-3.479-1.753-5.459-1.753 c-2.559,0-4.965,0.977-6.775,2.786c-2.892,2.891-3.544,7.177-1.962,10.702c0.102,0.034,0.205,0.066,0.31,0.095 c0.349,0.095,0.709,0.146,1.068,0.158c0.052,0.002,0.105,0.003,0.158,0.003c0.882,0,1.742-0.245,2.492-0.709 c-1.703-2.294-1.517-5.558,0.564-7.64c1.106-1.107,2.579-1.718,4.146-1.718s3.039,0.61,4.146,1.718 c2.289,2.288,2.289,6.01,0,8.296c-0.844,0.846-1.902,1.401-3.054,1.616c-0.079,0.104-0.16,0.208-0.242,0.309 c-1.078,1.31-2.455,2.335-4.004,2.989c1.001,0.347,2.063,0.528,3.153,0.528c2.56,0,4.966-1.001,6.777-2.811 c3.248-3.249,3.783-8.269,1.385-11.981l2.209-2.092v1.299c0,1.026,0.812,1.859,1.838,1.859c1.027,0,1.84-0.833,1.84-1.859V1.844 C31.039,1.347,30.955,0.113,29.13,0z"></path></g></g></g></svg>');function s1(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Mh();le(r,()=>({...i,fill:t(),version:"1.1",id:"Capa_1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",viewBox:"0 0 31.385 31.385","xml:space":"preserve",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}})),B(a,r)}const Lh=Object.freeze(Object.defineProperty({__proto__:null,default:s1},Symbol.toStringTag,{value:"Module"}));var Rh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M2.46148 12.8001C2.29321 12.5087 2.20908 12.3629 2.17615 12.208C2.14701 12.0709 2.14701 11.9293 2.17615 11.7922C2.20908 11.6373 2.29321 11.4915 2.46148 11.2001L6.53772 4.13984C6.70598 3.8484 6.79011 3.70268 6.90782 3.5967C7.01196 3.50293 7.13465 3.43209 7.26793 3.38879C7.41856 3.33984 7.58683 3.33984 7.92336 3.33984H16.0758C16.4124 3.33984 16.5806 3.33984 16.7313 3.38879C16.8645 3.43209 16.9872 3.50293 17.0914 3.5967C17.2091 3.70268 17.2932 3.8484 17.4615 4.13984L21.5377 11.2001C21.706 11.4915 21.7901 11.6373 21.823 11.7922C21.8522 11.9293 21.8522 12.0709 21.823 12.208C21.7901 12.3629 21.706 12.5087 21.5377 12.8001L17.4615 19.8604C17.2932 20.1518 17.2091 20.2975 17.0914 20.4035C16.9872 20.4973 16.8645 20.5681 16.7313 20.6114C16.5806 20.6604 16.4124 20.6604 16.0758 20.6604H7.92336C7.58683 20.6604 7.41856 20.6604 7.26793 20.6114C7.13465 20.5681 7.01196 20.4973 6.90782 20.4035C6.79011 20.2975 6.70598 20.1518 6.53772 19.8604L2.46148 12.8001Z" stroke-width="2" stroke-linejoin="round"></path></g></svg>');function Ar(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Rh();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const Ph=Object.freeze(Object.defineProperty({__proto__:null,default:Ar},Symbol.toStringTag,{value:"Module"}));var Ih=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M2 7C2 5.89543 2.89543 5 4 5H20C21.1046 5 22 5.89543 22 7H2Z" fill="#FF575B"></path><rect x="2" y="7" width="20" height="2" fill="#FF8353"></rect><rect x="2" y="9" width="20" height="2" fill="#FABA2C"></rect><rect x="2" y="11" width="20" height="2" fill="#7AC74D"></rect><rect x="2" y="13" width="20" height="2" fill="#00B0FF"></rect><rect x="2" y="15" width="20" height="2" fill="#B99FE4"></rect><path d="M2 17H22C22 18.1046 21.1046 19 20 19H4C2.89543 19 2 18.1046 2 17Z" fill="#E39BD1"></path></g></svg>');function l1(a,e){k(e,"stroke",3,"currentcolor");let t=k(e,"scale",3,1),n=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var i=Ih();le(i,()=>({...n,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${t()??""}rem`,height:`${t()??""}rem`}})),B(a,i)}const Th=Object.freeze(Object.defineProperty({__proto__:null,default:l1},Symbol.toStringTag,{value:"Module"}));var Oh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>function-block</title><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Combined-Shape"><path d="M362.666667,85.3333333 L362.666333,234.666333 L426.666667,234.666667 L426.666667,277.333333 L362.666333,277.333333 L362.666667,426.666667 L149.333333,426.666667 L149.333333,341.333333 L85.3333333,341.333333 L85.3333333,298.666667 L149.333333,298.666333 L149.333333,213.333333 L85.3333333,213.333333 L85.3333333,170.666667 L149.333333,170.666333 L149.333333,85.3333333 L362.666667,85.3333333 Z M320,128 L192,128 L192,384 L320,384 L320,128 Z"></path></g></g></g></svg>');function wo(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Oh();le(r,()=>({...i,viewBox:"0 0 512 512",version:"1.1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",fill:t(),[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`,scale:"140%"}}));var o=x(f(r),2),h=x(f(o)),u=f(h);m(h),m(o),m(r),$(()=>re(u,"fill",t())),B(a,r)}const Vh=Object.freeze(Object.defineProperty({__proto__:null,default:wo},Symbol.toStringTag,{value:"Module"}));var jh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3L8 17m4-14H8m4 0h4M8 17H4m4 0h4"></path></g></svg>');function da(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=jh();le(r,()=>({...i,viewBox:"0 0 20 20",xmlns:"http://www.w3.org/2000/svg",fill:"none",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const $h=Object.freeze(Object.defineProperty({__proto__:null,default:da},Symbol.toStringTag,{value:"Module"}));var Gh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>hotkey_line</title><g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Development" transform="translate(-816.000000, 0.000000)" fill-rule="nonzero"><g id="hotkey_line" transform="translate(816.000000, 0.000000)"><path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z" id="MingCute" fill-rule="nonzero"></path><path d="M18,3 C19.597725,3 20.903664,4.24892392 20.9949075,5.82372764 L21,6 L21,18 C21,19.597725 19.7511226,20.903664 18.1762773,20.9949075 L18,21 L6,21 C4.40232321,21 3.09633941,19.7511226 3.00509271,18.1762773 L3,18 L3,6 C3,4.40232321 4.24892392,3.09633941 5.82372764,3.00509271 L6,3 L18,3 Z M15.2934,16.7076 C14.9018,16.895 14.4631,17 14,17 L5,17 L5,18 C5,18.5523 5.44772,19 6,19 L17.5858,19 L15.2934,16.7076 Z M18,5 L17,5 L17,14 C17,14.3859167 16.9270833,14.7548889 16.7943287,15.0937801 L16.7076,15.2934 L19,17.5858 L19,6 C19,5.48716857 18.613973,5.06449347 18.1166239,5.0067278 L18,5 Z M15,5 L6,5 C5.48716857,5 5.06449347,5.38604429 5.0067278,5.88337975 L5,6 L5,15 L14,15 C14.51285,15 14.9355092,14.613973 14.9932725,14.1166239 L15,14 L15,5 Z M9,7 C9.51283143,7 9.93550653,7.38604429 9.9932722,7.88337975 L10,8 L10,8.63148 L11.4453,7.66795 C11.9048,7.3616 12.5257,7.48577 12.8321,7.9453 C13.1165214,8.37200643 13.0297464,8.93782745 12.6479974,9.26176291 L12.5547,9.33205 L11.1778,10.25 L12.5547,11.1679 C13.0142,11.4743 13.1384,12.0952 12.8321,12.5547 C12.5475857,12.9813786 11.9918954,13.1189464 11.5460613,12.8911811 L11.4453,12.8321 L10,11.8685 L10,12 C10,12.5523 9.55228,13 9,13 C8.48716857,13 8.06449347,12.613973 8.0067278,12.1166239 L8,12 L8,8 C8,7.44772 8.44772,7 9,7 Z" id="形状"></path></g></g></g></g></svg>');function yo(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Gh();le(r,()=>({...i,viewBox:"0 0 24 24",version:"1.1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",fill:t(),[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=x(f(o)),u=f(h),v=f(u),b=x(f(v));m(v),m(u),m(h),m(o),m(r),$(()=>re(b,"fill",t())),B(a,r)}const zh=Object.freeze(Object.defineProperty({__proto__:null,default:yo},Symbol.toStringTag,{value:"Module"}));var Hh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M2 7C2 5.89543 2.89543 5 4 5H20C21.1046 5 22 5.89543 22 7H2Z" fill="#C53D1F"></path><rect x="2" y="7" width="20" height="2" fill="#E07C3D"></rect><rect x="2" y="9" width="20" height="2" fill="#F19E63"></rect><rect x="2" y="11" width="20" height="2" fill="#EEECEF"></rect><rect x="2" y="13" width="20" height="2" fill="#C46AA1"></rect><rect x="2" y="15" width="20" height="2" fill="#AA5C8E"></rect><path d="M2 17H22C22 18.1046 21.1046 19 20 19H4C2.89543 19 2 18.1046 2 17Z" fill="#961F60"></path></g></svg>');function h1(a,e){k(e,"stroke",3,"currentcolor");let t=k(e,"scale",3,1),n=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var i=Hh();le(i,()=>({...n,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${t()??""}rem`,height:`${t()??""}rem`}})),B(a,i)}const qh=Object.freeze(Object.defineProperty({__proto__:null,default:h1},Symbol.toStringTag,{value:"Module"}));var Nh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>license-line</title><path d="M32,6H4A2,2,0,0,0,2,8V28a2,2,0,0,0,2,2H19l.57-.7.93-1.14L20.41,28H4V8H32l0,8.56a8.41,8.41,0,0,1,2,1.81V8A2,2,0,0,0,32,6Z" class="clr-i-outline clr-i-outline-path-1"></path><rect x="7" y="12" width="17" height="1.6" class="clr-i-outline clr-i-outline-path-2"></rect><rect x="7" y="16" width="11" height="1.6" class="clr-i-outline clr-i-outline-path-3"></rect><rect x="7" y="23" width="10" height="1.6" class="clr-i-outline clr-i-outline-path-4"></rect><path d="M27.46,17.23a6.36,6.36,0,0,0-4.4,11l-1.94,2.37.9,3.61,3.66-4.46a6.26,6.26,0,0,0,3.55,0l3.66,4.46.9-3.61-1.94-2.37a6.36,6.36,0,0,0-4.4-11Zm0,10.68a4.31,4.31,0,1,1,4.37-4.31A4.35,4.35,0,0,1,27.46,27.91Z" class="clr-i-outline clr-i-outline-path-5"></path><rect x="0" y="0" width="36" height="36" fill-opacity="0"></rect></g></svg>');function Fo(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Nh();le(r,()=>({...i,fill:t(),viewBox:"0 0 36 36",version:"1.1",preserveAspectRatio:"xMidYMid meet",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}})),B(a,r)}const Wh=Object.freeze(Object.defineProperty({__proto__:null,default:Fo},Symbol.toStringTag,{value:"Module"}));var Zh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M10,8h11c0.6,0,1-0.4,1-1s-0.4-1-1-1H10C9.4,6,9,6.4,9,7S9.4,8,10,8z M5.7,15.3V8.7C5.9,8.9,6.1,9,6.3,9C6.6,9,6.8,8.9,7,8.8c0.4-0.4,0.5-1,0.1-1.4l-1.7-2C5.2,5.1,5,5,4.7,5S4.1,5.1,3.9,5.4l-1.7,2c-0.3,0.4-0.3,1,0.2,1.4c0.4,0.3,0.9,0.3,1.3,0v6.6c-0.4-0.3-0.9-0.4-1.3,0c-0.4,0.4-0.5,1-0.1,1.4l1.7,2C4.1,18.9,4.4,19,4.7,19s0.6-0.1,0.8-0.4l1.7-2c0.4-0.4,0.3-1.1-0.1-1.4C6.6,14.9,6,14.9,5.7,15.3z M21,11H10c-0.6,0-1,0.4-1,1s0.4,1,1,1h11c0.6,0,1-0.4,1-1S21.6,11,21,11z M21,16H10c-0.6,0-1,0.4-1,1s0.4,1,1,1h11c0.6,0,1-0.4,1-1S21.6,16,21,16z"></path></g></svg>');function ko(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Zh();le(r,()=>({...i,fill:t(),viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg","enable-background":"new 0 0 24 24",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`,scale:"130%"}})),B(a,r)}const Yh=Object.freeze(Object.defineProperty({__proto__:null,default:ko},Symbol.toStringTag,{value:"Module"}));var Uh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 21C15.5 17.4 19 14.1764 19 10.2C19 6.22355 15.866 3 12 3C8.13401 3 5 6.22355 5 10.2C5 14.1764 8.5 17.4 12 21Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function Eo(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Uh();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o),u=x(h);m(o),m(r),$(()=>{re(h,"stroke",t()),re(u,"stroke",t())}),B(a,r)}const Kh=Object.freeze(Object.defineProperty({__proto__:null,default:Eo},Symbol.toStringTag,{value:"Module"}));var Jh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M2 16C2 13.1716 2 11.7574 2.87868 10.8787C3.75736 10 5.17157 10 8 10H16C18.8284 10 20.2426 10 21.1213 10.8787C22 11.7574 22 13.1716 22 16C22 18.8284 22 20.2426 21.1213 21.1213C20.2426 22 18.8284 22 16 22H8C5.17157 22 3.75736 22 2.87868 21.1213C2 20.2426 2 18.8284 2 16Z" stroke-width="1.5"></path><path d="M12 14V18" stroke-width="1.5" stroke-linecap="round"></path><path d="M6 10V8C6 4.68629 8.68629 2 12 2C15.3137 2 18 4.68629 18 8V10" stroke-width="1.5" stroke-linecap="round"></path></g></svg>');function Bo(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Jh();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o),u=x(h),v=x(u);m(o),m(r),$(()=>{re(h,"stroke",t()),re(u,"stroke",t()),re(v,"stroke",t())}),B(a,r)}const Xh=Object.freeze(Object.defineProperty({__proto__:null,default:Bo},Symbol.toStringTag,{value:"Module"}));var Qh=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 8C0 5.79086 1.79086 4 4 4H20C22.2091 4 24 5.79086 24 8V16C24 18.2091 22.2091 20 20 20H4C1.79086 20 0 18.2091 0 16V8ZM4 6C2.89543 6 2 6.89543 2 8V16C2 17.1046 2.89543 18 4 18H20C21.1046 18 22 17.1046 22 16V8C22 6.89543 21.1046 6 20 6H4ZM5.68377 8.05132C6.09211 7.9152 6.54174 8.05566 6.8 8.4L9 11.3333L11.2 8.4C11.4583 8.05566 11.9079 7.9152 12.3162 8.05132C12.7246 8.18743 13 8.56957 13 9V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V12L9.8 13.6C9.61115 13.8518 9.31476 14 9 14C8.68524 14 8.38885 13.8518 8.2 13.6L7 12V15C7 15.5523 6.55228 16 6 16C5.44772 16 5 15.5523 5 15V9C5 8.56957 5.27543 8.18743 5.68377 8.05132ZM18 9C18 8.44772 17.5523 8 17 8C16.4477 8 16 8.44772 16 9V12.5858L15.7071 12.2929C15.3166 11.9024 14.6834 11.9024 14.2929 12.2929C13.9024 12.6834 13.9024 13.3166 14.2929 13.7071L16.2929 15.7071C16.6834 16.0976 17.3166 16.0976 17.7071 15.7071L19.7071 13.7071C20.0976 13.3166 20.0976 12.6834 19.7071 12.2929C19.3166 11.9024 18.6834 11.9024 18.2929 12.2929L18 12.5858V9Z"></path></g></svg>');function c1(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Qh();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"fill",t())),B(a,r)}const ec=Object.freeze(Object.defineProperty({__proto__:null,default:c1},Symbol.toStringTag,{value:"Module"}));var tc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M23 4C23 2.34315 21.6569 1 20 1H8C6.34315 1 5 2.34315 5 4V5H4C2.34315 5 1 6.34315 1 8V20C1 21.6569 2.34315 23 4 23H16C17.6569 23 19 21.6569 19 20V19H20C21.6569 19 23 17.6569 23 16V4ZM19 17H20C20.5523 17 21 16.5523 21 16V4C21 3.44772 20.5523 3 20 3H8C7.44772 3 7 3.44772 7 4V5H16C17.6569 5 19 6.34315 19 8V17ZM16 7C16.5523 7 17 7.44772 17 8V20C17 20.5523 16.5523 21 16 21H4C3.44772 21 3 20.5523 3 20V8C3 7.44772 3.44772 7 4 7H16Z"></path></g></svg>');function So(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=tc();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"fill",t())),B(a,r)}const nc=Object.freeze(Object.defineProperty({__proto__:null,default:So},Symbol.toStringTag,{value:"Module"}));var rc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3.32031 11.6835C3.32031 16.6541 7.34975 20.6835 12.3203 20.6835C16.1075 20.6835 19.3483 18.3443 20.6768 15.032C19.6402 15.4486 18.5059 15.6834 17.3203 15.6834C12.3497 15.6834 8.32031 11.654 8.32031 6.68342C8.32031 5.50338 8.55165 4.36259 8.96453 3.32996C5.65605 4.66028 3.32031 7.89912 3.32031 11.6835Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function Ao(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=rc();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const ac=Object.freeze(Object.defineProperty({__proto__:null,default:Ao},Symbol.toStringTag,{value:"Module"}));var ic=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M4 8H20M4 16H20M8 3V21M16 3V21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function Do(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=ic();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const oc=Object.freeze(Object.defineProperty({__proto__:null,default:Do},Symbol.toStringTag,{value:"Module"}));var sc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M10 13H14M19 9V20H5V9M19 9H5M19 9C19.5523 9 20 8.55228 20 8V5C20 4.44772 19.5523 4 19 4H5C4.44772 4 4 4.44772 4 5V8C4 8.55228 4.44772 9 5 9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function Dn(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=sc();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const lc=Object.freeze(Object.defineProperty({__proto__:null,default:Dn},Symbol.toStringTag,{value:"Module"}));var hc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M8 13H14M8 17H16M13 3H5V21H19V9M13 3H14L19 8V9M13 3V7C13 8 14 9 15 9H19" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function u1(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=hc();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const cc=Object.freeze(Object.defineProperty({__proto__:null,default:u1},Symbol.toStringTag,{value:"Module"}));var uc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><rect x="2" y="9.666" width="20" height="4.666" fill="#F9D949"></rect><path d="M2 7C2 5.89543 2.89543 5 4 5H20C21.1046 5 22 5.89543 22 7V9.666H2V7Z" fill="#EC408D"></path><path d="M2 14.332H22V16.998C22 18.1026 21.1046 18.998 20 18.998H4C2.89543 18.998 2 18.1026 2 16.998V14.332Z" fill="#3F93F6"></path></g></svg>');function d1(a,e){k(e,"stroke",3,"currentcolor");let t=k(e,"scale",3,1),n=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var i=uc();le(i,()=>({...n,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${t()??""}rem`,height:`${t()??""}rem`}})),B(a,i)}const dc=Object.freeze(Object.defineProperty({__proto__:null,default:d1},Symbol.toStringTag,{value:"Module"}));var mc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M2,12H5a1,1,0,0,0,0-2H4.635l.586-1.692H8.779L9.365,10H9a1,1,0,0,0,0,2h3a1,1,0,0,0,0-2h-.518L8.945,2.673A1,1,0,0,0,8,2H6a1,1,0,0,0-.945.673L2.518,10H2a1,1,0,0,0,0,2ZM6.712,4h.576l.8,2.308H5.913ZM23,4a1,1,0,0,1-1,1H15a1,1,0,0,1,0-2h7A1,1,0,0,1,23,4Zm0,6a1,1,0,0,1-1,1H15a1,1,0,0,1,0-2h7A1,1,0,0,1,23,10Zm0,5a1,1,0,0,1-1,1H2a1,1,0,0,1,0-2H22A1,1,0,0,1,23,15Zm0,6a1,1,0,0,1-1,1H2a1,1,0,0,1,0-2H22A1,1,0,0,1,23,21Z"></path></g></svg>');function nr(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=mc();le(r,()=>({...i,fill:t(),viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}})),B(a,r)}const fc=Object.freeze(Object.defineProperty({__proto__:null,default:nr},Symbol.toStringTag,{value:"Module"}));var gc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.265 4.16231L19.21 5.74531C19.3978 5.9283 19.5031 6.17982 19.5015 6.44201C19.5 6.70421 19.3919 6.9545 19.202 7.13531L17.724 8.93531L12.694 15.0723C12.6069 15.1749 12.4897 15.2473 12.359 15.2793L9.75102 15.8793C9.40496 15.8936 9.10654 15.6384 9.06702 15.2943L9.18902 12.7213C9.19806 12.5899 9.25006 12.4652 9.33702 12.3663L14.15 6.50131L15.845 4.43331C16.1743 3.98505 16.7938 3.86684 17.265 4.16231Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.5 18.2413C5.08579 18.2413 4.75 18.5771 4.75 18.9913C4.75 19.4056 5.08579 19.7413 5.5 19.7413V18.2413ZM19.2 19.7413C19.6142 19.7413 19.95 19.4056 19.95 18.9913C19.95 18.5771 19.6142 18.2413 19.2 18.2413V19.7413ZM14.8455 6.22062C14.6904 5.83652 14.2534 5.65082 13.8693 5.80586C13.4852 5.9609 13.2995 6.39796 13.4545 6.78206L14.8455 6.22062ZM17.8893 9.66991C18.2933 9.57863 18.5468 9.17711 18.4556 8.77308C18.3643 8.36904 17.9628 8.1155 17.5587 8.20678L17.8893 9.66991ZM5.5 19.7413H19.2V18.2413H5.5V19.7413ZM13.4545 6.78206C13.6872 7.35843 14.165 8.18012 14.8765 8.8128C15.6011 9.45718 16.633 9.95371 17.8893 9.66991L17.5587 8.20678C16.916 8.35198 16.3609 8.12551 15.8733 7.69189C15.3725 7.24656 15.0128 6.63526 14.8455 6.22062L13.4545 6.78206Z"></path></g></svg>');function ma(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=gc();le(r,()=>({...i,viewBox:"0 -0.5 25 25",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o),u=x(h);m(o),m(r),$(()=>{re(h,"stroke",t()),re(u,"fill",t())}),B(a,r)}const pc=Object.freeze(Object.defineProperty({__proto__:null,default:ma},Symbol.toStringTag,{value:"Module"}));var vc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>profile_round [#1342]</title><desc>Created with Sketch.</desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Dribbble-Light-Preview" transform="translate(-140.000000, -2159.000000)"><g id="icons" transform="translate(56.000000, 160.000000)"><path d="M100.562548,2016.99998 L87.4381713,2016.99998 C86.7317804,2016.99998 86.2101535,2016.30298 86.4765813,2015.66198 C87.7127655,2012.69798 90.6169306,2010.99998 93.9998492,2010.99998 C97.3837885,2010.99998 100.287954,2012.69798 101.524138,2015.66198 C101.790566,2016.30298 101.268939,2016.99998 100.562548,2016.99998 M89.9166645,2004.99998 C89.9166645,2002.79398 91.7489936,2000.99998 93.9998492,2000.99998 C96.2517256,2000.99998 98.0830339,2002.79398 98.0830339,2004.99998 C98.0830339,2007.20598 96.2517256,2008.99998 93.9998492,2008.99998 C91.7489936,2008.99998 89.9166645,2007.20598 89.9166645,2004.99998 M103.955674,2016.63598 C103.213556,2013.27698 100.892265,2010.79798 97.837022,2009.67298 C99.4560048,2008.39598 100.400241,2006.33098 100.053171,2004.06998 C99.6509769,2001.44698 97.4235996,1999.34798 94.7348224,1999.04198 C91.0232075,1998.61898 87.8750721,2001.44898 87.8750721,2004.99998 C87.8750721,2006.88998 88.7692896,2008.57398 90.1636971,2009.67298 C87.1074334,2010.79798 84.7871636,2013.27698 84.044024,2016.63598 C83.7745338,2017.85698 84.7789973,2018.99998 86.0539717,2018.99998 L101.945727,2018.99998 C103.221722,2018.99998 104.226185,2017.85698 103.955674,2016.63598" id="profile_round-[#1342]"></path></g></g></g></g></svg>');function Mo(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=vc();le(r,()=>({...i,viewBox:"0 0 20 20",version:"1.1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",fill:t(),[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`,scale:"80%"}}));var o=x(f(r),2),h=x(f(o),3),u=f(h);m(h),m(o),m(r),$(()=>re(u,"fill",t())),B(a,r)}const bc=Object.freeze(Object.defineProperty({__proto__:null,default:Mo},Symbol.toStringTag,{value:"Module"}));var xc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M17 9V12C17 14.7614 14.7614 17 12 17M7 9V12C7 14.7614 9.23858 17 12 17M12 17V21M8 3V6M16 3V6M5 9H19" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function Ir(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=xc();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const Cc=Object.freeze(Object.defineProperty({__proto__:null,default:Ir},Symbol.toStringTag,{value:"Module"}));var _c=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M4 12H20M12 4V20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function cn(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=_c();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const wc=Object.freeze(Object.defineProperty({__proto__:null,default:cn},Symbol.toStringTag,{value:"Module"}));var yc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M9 12L11 14L15 9.99999M20 12C20 16.4611 14.54 19.6937 12.6414 20.683C12.4361 20.79 12.3334 20.8435 12.191 20.8712C12.08 20.8928 11.92 20.8928 11.809 20.8712C11.6666 20.8435 11.5639 20.79 11.3586 20.683C9.45996 19.6937 4 16.4611 4 12V8.21759C4 7.41808 4 7.01833 4.13076 6.6747C4.24627 6.37113 4.43398 6.10027 4.67766 5.88552C4.9535 5.64243 5.3278 5.50207 6.0764 5.22134L11.4382 3.21067C11.6461 3.13271 11.75 3.09373 11.857 3.07827C11.9518 3.06457 12.0482 3.06457 12.143 3.07827C12.25 3.09373 12.3539 3.13271 12.5618 3.21067L17.9236 5.22134C18.6722 5.50207 19.0465 5.64243 19.3223 5.88552C19.566 6.10027 19.7537 6.37113 19.8692 6.6747C20 7.01833 20 7.41808 20 8.21759V12Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function fa(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=yc();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const Fc=Object.freeze(Object.defineProperty({__proto__:null,default:fa},Symbol.toStringTag,{value:"Module"}));var kc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M21 12L38 42H4L21 12Z" stroke-width="4" stroke-linejoin="round"></path><path d="M36.5 42H44L36 28L33 33" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M21 12L13 42" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function m1(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=kc();le(r,()=>({...i,viewBox:"0 0 48 48",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o),u=x(h),v=x(u);m(o),m(r),$(()=>{re(h,"stroke",t()),re(u,"stroke",t()),re(v,"stroke",t())}),B(a,r)}const Ec=Object.freeze(Object.defineProperty({__proto__:null,default:m1},Symbol.toStringTag,{value:"Module"}));var Bc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g id="Layer_2" data-name="Layer 2"><g id="invisible_box" data-name="invisible box"><rect width="48" height="48" fill="none"></rect></g><g id="Icons"><g><path d="M24.3,6A11.2,11.2,0,0,0,16,9.3a11,11,0,0,0-3.5,8.2,2.5,2.5,0,0,0,5,0,6.5,6.5,0,0,1,2-4.7A6.2,6.2,0,0,1,24.2,11a6.5,6.5,0,0,1,1,12.9,4.4,4.4,0,0,0-3.7,4.4v3.2a2.5,2.5,0,0,0,5,0V28.7a11.6,11.6,0,0,0,9-11.5A11.7,11.7,0,0,0,24.3,6Z"></path><circle cx="24" cy="39.5" r="2.5"></circle></g></g></g></g></svg>');function Lo(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Bc();le(r,()=>({...i,viewBox:"0 0 48 48",xmlns:"http://www.w3.org/2000/svg",fill:t(),[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}})),B(a,r)}const Sc=Object.freeze(Object.defineProperty({__proto__:null,default:Lo},Symbol.toStringTag,{value:"Module"}));var Ac=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M11.75 2C11.3358 2 11 2.33579 11 2.75C11 3.16421 11.3358 3.5 11.75 3.5H13.25V24.5H11.75C11.3358 24.5 11 24.8358 11 25.25C11 25.6642 11.3358 26 11.75 26H16.25C16.6642 26 17 25.6642 17 25.25C17 24.8358 16.6642 24.5 16.25 24.5H14.75V3.5H16.25C16.6642 3.5 17 3.16421 17 2.75C17 2.33579 16.6642 2 16.25 2H11.75Z"></path><path d="M6.25 6.01958H12.25V7.51958H6.25C5.2835 7.51958 4.5 8.30308 4.5 9.26958V18.7696C4.5 19.7361 5.2835 20.5196 6.25 20.5196H12.25V22.0196H6.25C4.45507 22.0196 3 20.5645 3 18.7696V9.26958C3 7.47465 4.45507 6.01958 6.25 6.01958Z"></path><path d="M21.75 20.5196H15.75V22.0196H21.75C23.5449 22.0196 25 20.5645 25 18.7696V9.26958C25 7.47465 23.5449 6.01958 21.75 6.01958H15.75V7.51958H21.75C22.7165 7.51958 23.5 8.30308 23.5 9.26958V18.7696C23.5 19.7361 22.7165 20.5196 21.75 20.5196Z"></path></g></svg>');function rr(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Ac();le(r,()=>({...i,viewBox:"0 0 28 28",fill:"none",xmlns:"http://www.w3.org/2000/svg",stroke:t(),"stroke-width":"0.28",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o),u=x(h),v=x(u);m(o),m(r),$(()=>{re(h,"fill",t()),re(u,"fill",t()),re(v,"fill",t())}),B(a,r)}const Dc=Object.freeze(Object.defineProperty({__proto__:null,default:rr},Symbol.toStringTag,{value:"Module"}));var Mc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,11H19.93A8,8,0,0,0,13,4.07V3a1,1,0,0,0-2,0V4.07A8,8,0,0,0,4.07,11H3a1,1,0,0,0,0,2H4.07A8,8,0,0,0,11,19.93V21a1,1,0,0,0,2,0V19.93A8,8,0,0,0,19.93,13H21a1,1,0,0,0,0-2Zm-4,2h.91A6,6,0,0,1,13,17.91V17a1,1,0,0,0-2,0v.91A6,6,0,0,1,6.09,13H7a1,1,0,0,0,0-2H6.09A6,6,0,0,1,11,6.09V7a1,1,0,0,0,2,0V6.09A6,6,0,0,1,17.91,11H17a1,1,0,0,0,0,2Zm-5-2a1,1,0,1,0,1,1A1,1,0,0,0,12,11Z"></path></g></svg>');function Tr(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Mc();le(r,()=>({...i,fill:t(),viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}})),B(a,r)}const Lc=Object.freeze(Object.defineProperty({__proto__:null,default:Tr},Symbol.toStringTag,{value:"Module"}));var Rc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.5563 1.41421C16.3374 0.633165 17.6037 0.633165 18.3848 1.41421L22.6274 5.65685C23.4085 6.4379 23.4085 7.70423 22.6274 8.48528L8.48527 22.6274C7.70422 23.4085 6.43789 23.4085 5.65684 22.6274L1.4142 18.3848C0.633153 17.6037 0.633154 16.3374 1.4142 15.5563L15.5563 1.41421ZM16.2634 3.53553C16.654 3.14501 17.2871 3.14501 17.6777 3.53553L20.5061 6.36396C20.8966 6.75449 20.8966 7.38765 20.5061 7.77817L19.799 7.07107C19.4085 6.68054 18.7753 6.68054 18.3848 7.07107C17.9942 7.46159 17.9942 8.09476 18.3848 8.48528L19.0919 9.19239L17.6777 10.6066L15.5563 8.48528C15.1658 8.09476 14.5326 8.09476 14.1421 8.48528C13.7516 8.87581 13.7516 9.50897 14.1421 9.89949L16.2634 12.0208L14.8492 13.435L14.1421 12.7279C13.7516 12.3374 13.1184 12.3374 12.7279 12.7279C12.3374 13.1184 12.3374 13.7516 12.7279 14.1421L13.435 14.8492L12.0208 16.2635L9.89948 14.1421C9.50896 13.7516 8.87579 13.7516 8.48527 14.1421C8.09475 14.5327 8.09475 15.1658 8.48527 15.5563L10.6066 17.6777L9.19238 19.0919L8.48527 18.3848C8.09475 17.9943 7.46158 17.9943 7.07106 18.3848C6.68053 18.7753 6.68053 19.4085 7.07106 19.799L7.77816 20.5061C7.38764 20.8966 6.75447 20.8966 6.36395 20.5061L3.53552 17.6777C3.145 17.2871 3.145 16.654 3.53552 16.2635L16.2634 3.53553Z"></path></g></svg>');function ga(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Rc();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"fill",t())),B(a,r)}const Pc=Object.freeze(Object.defineProperty({__proto__:null,default:ga},Symbol.toStringTag,{value:"Module"}));var Ic=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.1716 1C18.702 1 19.2107 1.21071 19.5858 1.58579L22.4142 4.41421C22.7893 4.78929 23 5.29799 23 5.82843V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H18.1716ZM4 3C3.44772 3 3 3.44772 3 4V20C3 20.5523 3.44772 21 4 21L5 21L5 15C5 13.3431 6.34315 12 8 12L16 12C17.6569 12 19 13.3431 19 15V21H20C20.5523 21 21 20.5523 21 20V6.82843C21 6.29799 20.7893 5.78929 20.4142 5.41421L18.5858 3.58579C18.2107 3.21071 17.702 3 17.1716 3H17V5C17 6.65685 15.6569 8 14 8H10C8.34315 8 7 6.65685 7 5V3H4ZM17 21V15C17 14.4477 16.5523 14 16 14L8 14C7.44772 14 7 14.4477 7 15L7 21L17 21ZM9 3H15V5C15 5.55228 14.5523 6 14 6H10C9.44772 6 9 5.55228 9 5V3Z"></path></g></svg>');function Qn(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Ic();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"fill",t())),B(a,r)}const Tc=Object.freeze(Object.defineProperty({__proto__:null,default:Qn},Symbol.toStringTag,{value:"Module"}));var Oc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M16 21H16.2C17.8802 21 18.7202 21 19.362 20.673C19.9265 20.3854 20.3854 19.9265 20.673 19.362C21 18.7202 21 17.8802 21 16.2V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3H7.8C6.11984 3 5.27976 3 4.63803 3.32698C4.07354 3.6146 3.6146 4.07354 3.32698 4.63803C3 5.27976 3 6.11984 3 7.8V8M11.5 12.5L17 7M17 7H12M17 7V12M6.2 21H8.8C9.9201 21 10.4802 21 10.908 20.782C11.2843 20.5903 11.5903 20.2843 11.782 19.908C12 19.4802 12 18.9201 12 17.8V15.2C12 14.0799 12 13.5198 11.782 13.092C11.5903 12.7157 11.2843 12.4097 10.908 12.218C10.4802 12 9.92011 12 8.8 12H6.2C5.0799 12 4.51984 12 4.09202 12.218C3.71569 12.4097 3.40973 12.7157 3.21799 13.092C3 13.5198 3 14.0799 3 15.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function Ro(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Oc();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const Vc=Object.freeze(Object.defineProperty({__proto__:null,default:Ro},Symbol.toStringTag,{value:"Module"}));var jc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g><path d="M467.138,231.502c-4.793,4.318-8.66,8.652-12.12,12.438c-5.186,5.719-9.459,10.067-13.497,12.63 c-2.029,1.304-3.992,2.252-6.296,2.948c-2.304,0.696-5,1.155-8.571,1.155c-3.63,0-6.356-0.482-8.689-1.185 c-4.022-1.252-7.238-3.297-11.142-6.786c-2.896-2.593-6-5.978-9.541-9.86c-5.319-5.786-11.63-12.852-20.802-18.83 c-4.578-2.963-9.874-5.571-15.801-7.348c-5.933-1.793-12.452-2.756-19.379-2.749c-7.037-0.007-13.653,0.985-19.653,2.83 c-10.564,3.222-18.868,9.008-25.209,14.756c-4.793,4.326-8.66,8.652-12.127,12.438c-5.178,5.719-9.452,10.067-13.482,12.63 c-2.03,1.304-3.993,2.252-6.297,2.948c-2.304,0.696-4.993,1.155-8.571,1.155c-3.63,0-6.348-0.482-8.682-1.185 c-4.015-1.252-7.23-3.297-11.134-6.778c-2.896-2.593-6-5.978-9.534-9.868c-5.326-5.778-11.63-12.852-20.809-18.83 c-4.57-2.963-9.874-5.571-15.801-7.348c-5.926-1.793-12.445-2.756-19.375-2.749c-7.034-0.007-13.649,0.985-19.649,2.83 c-10.56,3.222-18.864,9.016-25.202,14.756c-4.789,4.326-8.652,8.66-12.115,12.438c-5.175,5.726-9.453,10.067-13.483,12.63 c-2.03,1.304-3.989,2.252-6.289,2.948c-2.304,0.696-4.993,1.155-8.564,1.155c-3.63,0-6.352-0.482-8.678-1.185 c-4.019-1.252-7.237-3.297-11.142-6.778c-2.889-2.593-5.989-5.978-9.53-9.868c-5.323-5.778-11.63-12.852-20.801-18.83 c-4.575-2.963-9.875-5.571-15.804-7.348c-5.931-1.793-12.445-2.756-19.372-2.749v37.41c3.63,0.008,6.348,0.482,8.678,1.185 c4.023,1.252,7.237,3.297,11.142,6.778c2.892,2.593,5.993,5.986,9.53,9.868c5.323,5.778,11.63,12.852,20.805,18.83 c4.57,2.963,9.867,5.571,15.801,7.348c5.93,1.793,12.445,2.756,19.371,2.749c7.034,0.007,13.645-0.985,19.649-2.838 c10.564-3.215,18.864-9.008,25.206-14.749c4.789-4.326,8.652-8.66,12.116-12.438c5.17-5.726,9.452-10.067,13.482-12.638 c2.03-1.303,3.986-2.251,6.289-2.948c2.3-0.69,4.989-1.141,8.56-1.148c3.634,0.008,6.352,0.482,8.686,1.185 c4.015,1.252,7.237,3.297,11.142,6.778c2.889,2.593,5.985,5.986,9.526,9.868c5.327,5.778,11.63,12.852,20.809,18.83 c4.57,2.963,9.868,5.571,15.801,7.348c5.926,1.793,12.445,2.756,19.371,2.749c7.038,0.007,13.653-0.985,19.653-2.83 c10.564-3.222,18.869-9.008,25.209-14.756c4.793-4.326,8.66-8.652,12.119-12.438c5.186-5.719,9.46-10.06,13.49-12.63 c2.029-1.304,3.992-2.252,6.296-2.955c2.305-0.69,4.993-1.141,8.571-1.148c3.63,0.008,6.348,0.482,8.682,1.185 c4.022,1.252,7.244,3.297,11.149,6.778c2.888,2.593,5.992,5.986,9.534,9.868c5.319,5.778,11.63,12.852,20.809,18.83 c4.57,2.963,9.874,5.571,15.801,7.348c5.934,1.793,12.452,2.756,19.379,2.749c7.037,0.007,13.645-0.985,19.653-2.83 c10.564-3.222,18.868-9.008,25.209-14.756c4.793-4.326,8.66-8.652,12.12-12.431c5.186-5.726,9.46-10.067,13.497-12.638 c2.03-1.304,3.993-2.252,6.297-2.948c2.304-0.696,4.993-1.148,8.571-1.155v-37.41c-7.038-0.007-13.652,0.985-19.654,2.83 C481.776,219.968,473.479,225.754,467.138,231.502z"></path></g></g></svg>');function f1(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=jc();le(r,()=>({...i,height:"200px",width:"200px",version:"1.1",id:"_x32_",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",viewBox:"0 0 512 512","xml:space":"preserve",fill:t(),[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`,rotate:"-10deg"}}));var o=x(f(r),2),h=f(o),u=f(h);m(h),m(o),m(r),$(()=>re(u,"fill",t())),B(a,r)}const $c=Object.freeze(Object.defineProperty({__proto__:null,default:f1},Symbol.toStringTag,{value:"Module"}));var Gc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 4C4.34315 4 3 5.34315 3 7V17C3 18.6569 4.34315 20 6 20H18C19.6569 20 21 18.6569 21 17V7C21 5.34315 19.6569 4 18 4H6ZM5 7C5 6.44772 5.44772 6 6 6H11V18H6C5.44772 18 5 17.5523 5 17V7ZM13 18H18C18.5523 18 19 17.5523 19 17V7C19 6.44772 18.5523 6 18 6H13V18Z"></path></g></svg>');function gn(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Gc();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"fill",t())),B(a,r)}const zc=Object.freeze(Object.defineProperty({__proto__:null,default:gn},Symbol.toStringTag,{value:"Module"}));var Hc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 10V20M3 15L21 15M3 10H21M6.2 20H17.8C18.9201 20 19.4802 20 19.908 19.782C20.2843 19.5903 20.5903 19.2843 20.782 18.908C21 18.4802 21 17.9201 21 16.8V7.2C21 6.0799 21 5.51984 20.782 5.09202C20.5903 4.71569 20.2843 4.40973 19.908 4.21799C19.4802 4 18.9201 4 17.8 4H6.2C5.0799 4 4.51984 4 4.09202 4.21799C3.71569 4.40973 3.40973 4.71569 3.21799 5.09202C3 5.51984 3 6.07989 3 7.2V16.8C3 17.9201 3 18.4802 3.21799 18.908C3.40973 19.2843 3.71569 19.5903 4.09202 19.782C4.51984 20 5.07989 20 6.2 20Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function Mn(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Hc();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const qc=Object.freeze(Object.defineProperty({__proto__:null,default:Mn},Symbol.toStringTag,{value:"Module"}));var Nc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g id="grow"><g><path d="M16.9,24H7.2l-1-7H4v-2h7v-3.1c-1.9,0.3-3.8-0.2-5.2-1.4C4.1,9,3.6,6.8,4.4,4.8l0.2-0.4L5,4.3C7,3.6,9.4,4,11,5.2 c0-1.4,0.6-2.8,1.8-3.8l0,0c1.1-0.9,2.6-1.4,4-1.4c0.7,0,1.5,0.1,2.2,0.3l0.4,0.1l0.2,0.4c0.9,2,0.4,4.2-1.4,5.7 c-1.4,1.2-3.3,1.7-5.2,1.4V9c0,0.1,0,0.3,0,0.4V15h7v2h-2.1L16.9,24z M8.9,22h6.3l0.7-5H8.2L8.9,22z M6.1,6.1 c-0.3,1,0.1,2.1,1,2.9c1,0.9,2.5,1.2,3.8,0.9C11,9.7,11,9.5,11,9.3V9c0-0.8-0.4-1.5-1.1-2.1C8.9,6.1,7.5,5.8,6.1,6.1z M13.1,5.9 c1.4,0.3,2.8,0,3.8-0.9c0.9-0.8,1.3-1.9,1-2.9c-1.4-0.3-2.8,0-3.8,0.9l0,0C13.2,3.7,12.8,4.8,13.1,5.9z"></path></g></g></g></svg>');function Po(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Nc();le(r,()=>({...i,fill:t(),version:"1.1",id:"XMLID_125_",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",viewBox:"0 0 24 24","xml:space":"preserve",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}})),B(a,r)}const Wc=Object.freeze(Object.defineProperty({__proto__:null,default:Po},Symbol.toStringTag,{value:"Module"}));var Zc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M11 2C11 1.44772 11.4477 1 12 1C12.0161 1 12.0322 1.00038 12.0481 1.00114C12.0632 1.00051 12.0785 1.00026 12.0938 1.00039C14.1199 1.01765 16.1091 1.59455 17.8374 2.67665C19.8492 3.93625 21.3996 5.8128 22.2571 8.02608C23.1146 10.2394 23.2332 12.6706 22.5951 14.9569C21.9571 17.2431 20.5967 19.2616 18.717 20.711C16.8373 22.1604 14.5393 22.9629 12.1659 22.9988C9.79262 23.0346 7.47138 22.3017 5.54884 20.9097C3.6263 19.5177 2.2056 17.5411 1.49889 15.2752C0.891759 13.3285 0.839553 11.258 1.33799 9.29413C1.47385 8.75881 2.05308 8.48753 2.57385 8.67143C3.09462 8.85532 3.36505 9.4271 3.24007 9.96506C2.8794 11.5176 2.93657 13.1446 3.4147 14.6776C3.99248 16.5302 5.15399 18.1461 6.72579 19.2842C8.29758 20.4223 10.1953 21.0214 12.1357 20.9921C14.076 20.9629 15.9548 20.3068 17.4916 19.1218C19.0283 17.9368 20.1405 16.2866 20.6622 14.4174C21.1838 12.5483 21.0869 10.5606 20.3858 8.75108C19.6847 6.94158 18.4172 5.40739 16.7724 4.37759C15.6232 3.65806 14.3329 3.21174 13 3.06259V5C13 5.55229 12.5523 6 12 6C11.4477 6 11 5.55229 11 5V2Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M5.31205 3.92537C4.91543 3.66095 4.38731 3.71325 4.05025 4.05031C3.71318 4.38738 3.66089 4.9155 3.9253 5.31212L9.30753 13.3855C9.50568 13.6827 9.80929 14.101 10.283 14.3927C10.6282 14.6053 11.1764 14.8627 11.8475 14.871C12.5576 14.8799 13.2918 14.6077 13.9497 13.9498C14.6076 13.2919 14.8798 12.5577 14.871 11.8475C14.8626 11.1764 14.6053 10.6283 14.3927 10.2831C14.1009 9.80935 13.6826 9.50574 13.3854 9.30759L5.31205 3.92537ZM10.9716 12.2761L8.36291 8.36297L12.276 10.9717C12.5267 11.1388 12.6362 11.2449 12.6897 11.3319C12.7963 11.5049 12.8689 11.6951 12.8711 11.8724C12.8728 12.0107 12.8361 12.235 12.5355 12.5356C12.2349 12.8362 12.0106 12.8729 11.8723 12.8712C11.695 12.869 11.5048 12.7964 11.3318 12.6898C11.2448 12.6362 11.1388 12.5267 10.9716 12.2761Z"></path></g></svg>');function Io(a,e){let t=k(e,"stroke",3,"currentcolor");k(e,"scale",3,1);let n=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var i=Zc();le(i,()=>({...n,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg"}));var r=x(f(i),2),o=f(r),h=x(o);m(r),m(i),$(()=>{re(o,"fill",t()),re(h,"fill",t())}),B(a,i)}const Yc=Object.freeze(Object.defineProperty({__proto__:null,default:Io},Symbol.toStringTag,{value:"Module"}));var Uc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 3V4M12 20V21M4 12H3M6.31412 6.31412L5.5 5.5M17.6859 6.31412L18.5 5.5M6.31412 17.69L5.5 18.5001M17.6859 17.69L18.5 18.5001M21 12H20M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function To(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Uc();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const Kc=Object.freeze(Object.defineProperty({__proto__:null,default:To},Symbol.toStringTag,{value:"Module"}));var Jc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M19 1.48416e-05L23 0C23.2652 -9.53668e-07 23.5195 0.105355 23.7071 0.292891C23.8946 0.480426 24 0.73478 24 0.999997L24 5.00001C24 5.26523 23.8946 5.51958 23.7071 5.70712L11.9142 17.5L13.7071 19.2929C14.0976 19.6834 14.0976 20.3166 13.7071 20.7071C13.3166 21.0977 12.6834 21.0977 12.2929 20.7071L9.79289 18.2071L9.46376 17.878L5.9999 20.9955C6.00096 21.7635 5.70873 22.534 5.12132 23.1214C3.94975 24.293 2.05025 24.293 0.87868 23.1214C-0.292893 21.9498 -0.292893 20.0503 0.87868 18.8787C1.46607 18.2913 2.23647 17.9991 3.00451 18.0002L6.12202 14.5363L5.79287 14.2071L3.29289 11.7071C2.90237 11.3166 2.90237 10.6834 3.29289 10.2929C3.68342 9.90239 4.31658 9.90239 4.70711 10.2929L6.49998 12.0858L18.2929 0.292907C18.4804 0.105372 18.7348 1.57952e-05 19 1.48416e-05ZM7.91419 13.5L8.2071 13.7929L10.2071 15.7929L10.5 16.0858L22 4.5858L22 2L19.4142 2.00001L7.91419 13.5ZM7.53819 15.9524L5.00435 18.7678C5.0441 18.8035 5.08311 18.8405 5.12132 18.8787C5.15952 18.9169 5.19648 18.9559 5.23221 18.9957L8.04759 16.4618L7.53819 15.9524ZM3.20676 20.0214C2.88445 19.954 2.54009 20.0458 2.29289 20.293C1.90237 20.6835 1.90237 21.3166 2.29289 21.7072C2.68342 22.0977 3.31658 22.0977 3.70711 21.7072C3.95431 21.46 4.0461 21.1156 3.97862 20.7933C3.94032 20.6103 3.85075 20.4366 3.70711 20.293C3.56346 20.1493 3.3897 20.0597 3.20676 20.0214Z"></path></g></svg>');function g1(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Jc();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"fill",t())),B(a,r)}const Xc=Object.freeze(Object.defineProperty({__proto__:null,default:g1},Symbol.toStringTag,{value:"Module"}));var Qc=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 18L8 5H7L3 18M4.23077 14H10.7692M14.5 10C16 9 20 8 20 11.5C20 15 20 18 20 18M20 12.5C18.5 13 14 13 14 16C14 19 18.5 18 20 15.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function Oo(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Qc();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const eu=Object.freeze(Object.defineProperty({__proto__:null,default:Oo},Symbol.toStringTag,{value:"Module"}));var tu=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M206.86 245.15c-35.88 10.45-59.95 41.2-57.53 74.1 11.4-12.72 28.81-23.7 49.9-30.92l7.63-43.18zM95.81 295L64.08 115.49c-.29-1.62.28-2.62.24-2.65 57.76-32.06 123.12-49.01 189.01-49.01 1.61 0 3.23.17 4.85.19 13.95-13.47 31.73-22.83 51.59-26 18.89-3.02 38.05-4.55 57.18-5.32-9.99-13.95-24.48-24.23-41.77-27C301.27 1.89 277.24 0 253.32 0 176.66 0 101.02 19.42 33.2 57.06 9.03 70.48-3.92 98.48 1.05 126.58l31.73 179.51c14.23 80.52 136.33 142.08 204.45 142.08 3.59 0 6.75-.46 10.01-.8-13.52-17.08-28.94-40.48-39.5-67.58-47.61-12.98-106.06-51.62-111.93-84.79zm97.55-137.46c-.73-4.12-2.23-7.87-4.07-11.4-8.25 8.91-20.67 15.75-35.32 18.32-14.65 2.58-28.67.4-39.48-5.17-.52 3.94-.64 7.98.09 12.1 3.84 21.7 24.58 36.19 46.34 32.37 21.75-3.82 36.28-24.52 32.44-46.22zM606.8 120.9c-88.98-49.38-191.43-67.41-291.98-51.35-27.31 4.36-49.08 26.26-54.04 54.36l-31.73 179.51c-15.39 87.05 95.28 196.27 158.31 207.35 63.03 11.09 204.47-53.79 219.86-140.84l31.73-179.51c4.97-28.11-7.98-56.11-32.15-69.52zm-273.24 96.8c3.84-21.7 24.58-36.19 46.34-32.36 21.76 3.83 36.28 24.52 32.45 46.22-.73 4.12-2.23 7.87-4.07 11.4-8.25-8.91-20.67-15.75-35.32-18.32-14.65-2.58-28.67-.4-39.48 5.17-.53-3.95-.65-7.99.08-12.11zm70.47 198.76c-55.68-9.79-93.52-59.27-89.04-112.9 20.6 25.54 56.21 46.17 99.49 53.78 43.28 7.61 83.82.37 111.93-16.6-14.18 51.94-66.71 85.51-122.38 75.72zm130.3-151.34c-8.25-8.91-20.68-15.75-35.33-18.32-14.65-2.58-28.67-.4-39.48 5.17-.52-3.94-.64-7.98.09-12.1 3.84-21.7 24.58-36.19 46.34-32.37 21.75 3.83 36.28 24.52 32.45 46.22-.73 4.13-2.23 7.88-4.07 11.4z"></path></g></svg>');function p1(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=tu();le(r,()=>({...i,fill:t(),viewBox:"0 -64 640 640",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}})),B(a,r)}const nu=Object.freeze(Object.defineProperty({__proto__:null,default:p1},Symbol.toStringTag,{value:"Module"}));var ru=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>Transfer</title><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Transfer"><rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="24" height="24"></rect><path d="M19,7 L5,7 M20,17 L5,17" id="Shape" stroke-width="2" stroke-linecap="round"></path><path d="M16,3 L19.2929,6.29289 C19.6834,6.68342 19.6834,7.31658 19.2929,7.70711 L16,11" id="Path" stroke-width="2" stroke-linecap="round"></path><path d="M8,13 L4.70711,16.2929 C4.31658,16.6834 4.31658,17.3166 4.70711,17.7071 L8,21" id="Path" stroke-width="2" stroke-linecap="round"></path></g></g></g></svg>');function Vo(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=ru();le(r,()=>({...i,viewBox:"0 0 24 24",version:"1.1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",fill:t(),[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=x(f(o)),u=f(h),v=x(f(u)),b=x(v),y=x(b);m(u),m(h),m(o),m(r),$(()=>{re(v,"stroke",t()),re(b,"stroke",t()),re(y,"stroke",t())}),B(a,r)}const au=Object.freeze(Object.defineProperty({__proto__:null,default:Vo},Symbol.toStringTag,{value:"Module"}));var iu=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function Ln(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=iu();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const ou=Object.freeze(Object.defineProperty({__proto__:null,default:Ln},Symbol.toStringTag,{value:"Module"}));var su=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>tree-structure</title><g id="Layer_2" data-name="Layer 2"><g id="invisible_box" data-name="invisible box"><rect width="48" height="48" fill="none"></rect></g><g id="Q3_icons" data-name="Q3 icons"><path d="M26,30H42a2,2,0,0,0,2-2V20a2,2,0,0,0-2-2H26a2,2,0,0,0-2,2v2H16V14h6a2,2,0,0,0,2-2V4a2,2,0,0,0-2-2H6A2,2,0,0,0,4,4v8a2,2,0,0,0,2,2h6V40a2,2,0,0,0,2,2H24v2a2,2,0,0,0,2,2H42a2,2,0,0,0,2-2V36a2,2,0,0,0-2-2H26a2,2,0,0,0-2,2v2H16V26h8v2A2,2,0,0,0,26,30Zm2-8H40v4H28ZM8,6H20v4H8ZM28,38H40v4H28Z"></path></g></g></g></svg>');function $r(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=su();le(r,()=>({...i,viewBox:"0 0 48 48",xmlns:"http://www.w3.org/2000/svg",fill:t(),[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}})),B(a,r)}const lu=Object.freeze(Object.defineProperty({__proto__:null,default:$r},Symbol.toStringTag,{value:"Module"}));var hu=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M18 4V11C18 14.3137 15.3137 17 12 17C8.68629 17 6 14.3137 6 11V4M4 21H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');function jo(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=hu();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`,scale:"120%"}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"stroke",t())),B(a,r)}const cu=Object.freeze(Object.defineProperty({__proto__:null,default:jo},Symbol.toStringTag,{value:"Module"}));var uu=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.53033 3.46967C7.82322 3.76256 7.82322 4.23744 7.53033 4.53033L5.81066 6.25H15C18.1756 6.25 20.75 8.82436 20.75 12C20.75 15.1756 18.1756 17.75 15 17.75H8.00001C7.58579 17.75 7.25001 17.4142 7.25001 17C7.25001 16.5858 7.58579 16.25 8.00001 16.25H15C17.3472 16.25 19.25 14.3472 19.25 12C19.25 9.65279 17.3472 7.75 15 7.75H5.81066L7.53033 9.46967C7.82322 9.76256 7.82322 10.2374 7.53033 10.5303C7.23744 10.8232 6.76256 10.8232 6.46967 10.5303L3.46967 7.53033C3.17678 7.23744 3.17678 6.76256 3.46967 6.46967L6.46967 3.46967C6.76256 3.17678 7.23744 3.17678 7.53033 3.46967Z"></path></g></svg>');function na(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=uu();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"fill",t())),B(a,r)}const du=Object.freeze(Object.defineProperty({__proto__:null,default:na},Symbol.toStringTag,{value:"Module"}));var mu=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M2 16C2 13.1716 2 11.7574 2.87868 10.8787C3.75736 10 5.17157 10 8 10H16C18.8284 10 20.2426 10 21.1213 10.8787C22 11.7574 22 13.1716 22 16C22 18.8284 22 20.2426 21.1213 21.1213C20.2426 22 18.8284 22 16 22H8C5.17157 22 3.75736 22 2.87868 21.1213C2 20.2426 2 18.8284 2 16Z" stroke-width="1.5"></path><path d="M6 10V8C6 4.68629 8.68629 2 12 2C14.7958 2 17.1449 3.91216 17.811 6.5" stroke-width="1.5" stroke-linecap="round"></path><path d="M12 14V18" stroke-width="1.5" stroke-linecap="round"></path></g></svg>');function $o(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=mu();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o),u=x(h),v=x(u);m(o),m(r),$(()=>{re(h,"stroke",t()),re(u,"stroke",t()),re(v,"stroke",t())}),B(a,r)}const fu=Object.freeze(Object.defineProperty({__proto__:null,default:$o},Symbol.toStringTag,{value:"Module"}));var gu=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"></path></g></svg>');function pu(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=gu();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"fill",t())),B(a,r)}const vu=Object.freeze(Object.defineProperty({__proto__:null,default:pu},Symbol.toStringTag,{value:"Module"}));var bu=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 5C6 4.44772 6.44772 4 7 4C7.55228 4 8 4.44772 8 5C8 5.55228 7.55228 6 7 6C6.44772 6 6 5.55228 6 5ZM8 7.82929C9.16519 7.41746 10 6.30622 10 5C10 3.34315 8.65685 2 7 2C5.34315 2 4 3.34315 4 5C4 6.30622 4.83481 7.41746 6 7.82929V16.1707C4.83481 16.5825 4 17.6938 4 19C4 20.6569 5.34315 22 7 22C8.65685 22 10 20.6569 10 19C10 17.7334 9.21506 16.6501 8.10508 16.2101C8.45179 14.9365 9.61653 14 11 14H13C16.3137 14 19 11.3137 19 8V7.82929C20.1652 7.41746 21 6.30622 21 5C21 3.34315 19.6569 2 18 2C16.3431 2 15 3.34315 15 5C15 6.30622 15.8348 7.41746 17 7.82929V8C17 10.2091 15.2091 12 13 12H11C9.87439 12 8.83566 12.3719 8 12.9996V7.82929ZM18 6C18.5523 6 19 5.55228 19 5C19 4.44772 18.5523 4 18 4C17.4477 4 17 4.44772 17 5C17 5.55228 17.4477 6 18 6ZM6 19C6 18.4477 6.44772 18 7 18C7.55228 18 8 18.4477 8 19C8 19.5523 7.55228 20 7 20C6.44772 20 6 19.5523 6 19Z"></path></g></svg>');function Go(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=bu();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"fill",t())),B(a,r)}const xu=Object.freeze(Object.defineProperty({__proto__:null,default:Go},Symbol.toStringTag,{value:"Module"}));var Cu=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g><path d="M455.998,0.004H56.002C25.063,0.011,0.008,25.067,0,56.006v399.989c0.008,30.938,25.063,55.994,56.002,56.002 h399.997c30.938-0.008,55.994-25.063,56.002-56.002V56.006C511.993,25.067,486.937,0.011,455.998,0.004z M479.999,455.994 c-0.007,6.68-2.664,12.579-7.032,16.969c-4.39,4.367-10.289,7.024-16.969,7.032H56.002c-6.68-0.008-12.579-2.664-16.969-7.032 c-4.367-4.39-7.023-10.289-7.031-16.969V56.006c0.008-6.68,2.664-12.579,7.031-16.977c4.39-4.359,10.289-7.016,16.969-7.023 h399.997c6.68,0.007,12.579,2.664,16.969,7.023c4.367,4.398,7.024,10.297,7.032,16.977V455.994z"></path><path d="M128.012,119.101l26.391,76.783H270.86l16.352-67.947l9.938,2.031l9.93,2.015l-10.696,63.9h61.212 l26.392-76.783C346.612,96.577,302.83,83.6,256.008,83.6C209.178,83.6,165.388,96.577,128.012,119.101z"></path></g></g></svg>');function zo(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Cu();le(r,()=>({...i,height:"200px",width:"200px",version:"1.1",id:"_x32_",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",viewBox:"0 0 512 512","xml:space":"preserve",fill:t(),[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`,scale:"90%"}}));var o=x(f(r),2),h=f(o),u=f(h),v=x(u);m(h),m(o),m(r),$(()=>{re(u,"fill",t()),re(v,"fill",t())}),B(a,r)}const _u=Object.freeze(Object.defineProperty({__proto__:null,default:zo},Symbol.toStringTag,{value:"Module"}));var wu=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g><g><path d="M256.001,0c-141.159,0-256,114.84-256,255.998s114.84,256,255.998,256s255.998-114.841,255.998-256S397.16,0,256.001,0z M95.292,129.984l100.153,100.153H53.327C58.081,192.661,73.027,158.318,95.292,129.984z M53.323,281.833h142.151L95.292,382.016 C73.022,353.674,58.074,319.32,53.323,281.833z M230.154,458.678c-36.563-4.637-70.135-18.984-98.063-40.354l98.063-98.065 V458.678z M230.154,191.741l-98.063-98.065c27.928-21.37,61.5-35.719,98.063-40.354V191.741z M458.675,230.139H320.274 l98.049-98.049C439.692,160.013,454.038,193.58,458.675,230.139z M281.848,53.322c37.483,4.752,71.83,19.701,100.169,41.969 L281.848,195.46V53.322z M281.848,458.678V316.54l100.167,100.169C353.678,438.977,319.329,453.925,281.848,458.678z M418.323,379.91l-98.077-98.079H458.68C454.045,318.401,439.695,351.978,418.323,379.91z"></path></g></g></g></svg>');function v1(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=wu();le(r,()=>({...i,fill:t(),height:"200px",width:"200px",version:"1.1",id:"Layer_1",xmlns:"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink",viewBox:"0 0 511.998 511.998","xml:space":"preserve",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}})),B(a,r)}const yu=Object.freeze(Object.defineProperty({__proto__:null,default:v1},Symbol.toStringTag,{value:"Module"}));var Fu=de('<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H10C10.5523 23 11 22.5523 11 22C11 21.4477 10.5523 21 10 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM12.952 12.694C12.783 12.1682 12.2198 11.879 11.694 12.048C11.1682 12.217 10.879 12.7802 11.048 13.306L13.298 20.306C13.4309 20.7196 13.8156 21 14.25 21C14.6844 21 15.0691 20.7196 15.202 20.306L16.5 16.2679L17.798 20.306C17.9309 20.7196 18.3156 21 18.75 21C19.1844 21 19.5691 20.7196 19.702 20.306L21.952 13.306C22.121 12.7802 21.8318 12.217 21.306 12.048C20.7802 11.879 20.217 12.1682 20.048 12.694L18.75 16.7321L17.452 12.694C17.3191 12.2804 16.9344 12 16.5 12C16.0656 12 15.6809 12.2804 15.548 12.694L14.25 16.7321L12.952 12.694Z"></path></g></svg>');function Ho(a,e){let t=k(e,"stroke",3,"currentcolor"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","stroke","scale"]);var r=Fu();le(r,()=>({...i,viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",[he]:{width:`${n()??""}rem`,height:`${n()??""}rem`}}));var o=x(f(r),2),h=f(o);m(o),m(r),$(()=>re(h,"fill",t())),B(a,r)}const ku=Object.freeze(Object.defineProperty({__proto__:null,default:Ho},Symbol.toStringTag,{value:"Module"})),Jr=[{name:"ArrowIcon",categories:[],component:Qt},{name:"AsexualIcon",categories:[],component:e1},{name:"BisexualIcon",categories:[],component:t1},{name:"BlankPageIcon",categories:[],component:po},{name:"BoldIcon",categories:[],component:vo},{name:"BookIcon",categories:[],component:bo},{name:"BugIcon",categories:[],component:xo},{name:"CalendarIcon",categories:[],component:Co},{name:"CatIcon",categories:[],component:n1},{name:"CharacterCountIcon",categories:[],component:_o},{name:"CircledPlusIcon",categories:[],component:la},{name:"ClockIcon",categories:[],component:ha},{name:"CloseIcon",categories:[],component:It},{name:"ColorPaletteIcon",categories:[],component:jr},{name:"DashIcon",categories:[],component:ca},{name:"DiceIcon",categories:[],component:ua},{name:"EllipsisIcon",categories:[],component:r1},{name:"EyeIcon",categories:[],component:Un},{name:"FichteanCurveIcon",categories:[],component:a1},{name:"FilterIcon",categories:[],component:i1},{name:"FolderIcon",categories:[],component:Kn},{name:"GayIcon",categories:[],component:o1},{name:"GearIcon",categories:[],component:Tt},{name:"GraphIcon",categories:[],component:On},{name:"HexagonIcon",categories:[],component:Ar},{name:"HeterosexualIcon",categories:[],component:s1},{name:"HomosexualIcon",categories:[],component:l1},{name:"IOIcon",categories:[],component:wo},{name:"ItalicIcon",categories:[],component:da},{name:"KeyboardKeyIcon",categories:[],component:yo},{name:"LesbianIcon",categories:[],component:h1},{name:"LicenseIcon",categories:[],component:Fo},{name:"LineSpacingIcon",categories:[],component:ko},{name:"LocationIcon",categories:[],component:Eo},{name:"LockIcon",categories:[],component:Bo},{name:"MarkdownIcon",categories:[],component:c1},{name:"MinimizeIcon",categories:[],component:So},{name:"MoonIcon",categories:[],component:Ao},{name:"NumberSignIcon",categories:[],component:Do},{name:"PackageIcon",categories:[],component:Dn},{name:"PageIcon",categories:[],component:u1},{name:"PansexualIcon",categories:[],component:d1},{name:"ParagraphIcon",categories:[],component:nr},{name:"PencilIcon",categories:[],component:ma},{name:"PersonIcon",categories:[],component:Mo},{name:"PlugIcon",categories:[],component:Ir},{name:"PlusIcon",categories:[],component:cn},{name:"PrivacyIcon",categories:[],component:fa},{name:"PyramidIcon",categories:[],component:m1},{name:"QuestionMarkIcon",categories:[],component:Lo},{name:"RenameIcon",categories:[],component:rr},{name:"ReticleIcon",categories:[],component:Tr},{name:"RulerIcon",categories:[],component:ga},{name:"SaveIcon",categories:[],component:Qn},{name:"ScaleIcon",categories:[],component:Ro},{name:"SevenPointStructureIcon",categories:[],component:f1},{name:"SplitHorizontalIcon",categories:[],component:gn},{name:"SpreadsheetIcon",categories:[],component:Mn},{name:"SproutIcon",categories:[],component:Po},{name:"StartupIcon",categories:[],component:Io},{name:"SunIcon",categories:[],component:To},{name:"SwordIcon",categories:[],component:g1},{name:"TextIcon",categories:[],component:Oo},{name:"TheaterIcon",categories:[],component:p1},{name:"TransferIcon",categories:[],component:Vo},{name:"TrashIcon",categories:[],component:Ln},{name:"TreeIcon",categories:[],component:$r},{name:"UnderlineIcon",categories:[],component:jo},{name:"UndoIcon",categories:[],component:na},{name:"UnlockedIcon",categories:[],component:$o},{name:"VersionControlIcon",categories:[],component:Go},{name:"WeightScaleIcon",categories:[],component:zo},{name:"WheelIcon",categories:[],component:v1},{name:"WordCountIcon",categories:[],component:Ho}];function Bn(a){return typeof a=="string"?Jr.find(e=>e.name===a):"categories"in a?Jr.find(e=>e.name===a.name):Jr.find(e=>e.component===a)}const rs=Object.assign({"../components/icons/ArrowIcon.svelte":V0,"../components/icons/AsexualIcon.svelte":$0,"../components/icons/BisexualIcon.svelte":z0,"../components/icons/BlankPageIcon.svelte":q0,"../components/icons/BoldIcon.svelte":W0,"../components/icons/BookIcon.svelte":Y0,"../components/icons/BugIcon.svelte":K0,"../components/icons/CalendarIcon.svelte":X0,"../components/icons/CatIcon.svelte":eh,"../components/icons/CharacterCountIcon.svelte":nh,"../components/icons/CircledPlusIcon.svelte":ah,"../components/icons/ClockIcon.svelte":oh,"../components/icons/CloseIcon.svelte":lh,"../components/icons/ColorPaletteIcon.svelte":ch,"../components/icons/DashIcon.svelte":dh,"../components/icons/DiceIcon.svelte":fh,"../components/icons/EllipsisIcon.svelte":ph,"../components/icons/EyeIcon.svelte":bh,"../components/icons/FichteanCurveIcon.svelte":Ch,"../components/icons/FilterIcon.svelte":wh,"../components/icons/FolderIcon.svelte":Fh,"../components/icons/GayIcon.svelte":Eh,"../components/icons/GearIcon.svelte":Sh,"../components/icons/GraphIcon.svelte":Dh,"../components/icons/HeterosexualIcon.svelte":Lh,"../components/icons/HexagonIcon.svelte":Ph,"../components/icons/HomosexualIcon.svelte":Th,"../components/icons/IOIcon.svelte":Vh,"../components/icons/ItalicIcon.svelte":$h,"../components/icons/KeyboardKeyIcon.svelte":zh,"../components/icons/LesbianIcon.svelte":qh,"../components/icons/LicenseIcon.svelte":Wh,"../components/icons/LineSpacingIcon.svelte":Yh,"../components/icons/LocationIcon.svelte":Kh,"../components/icons/LockIcon.svelte":Xh,"../components/icons/MarkdownIcon.svelte":ec,"../components/icons/MinimizeIcon.svelte":nc,"../components/icons/MoonIcon.svelte":ac,"../components/icons/NumberSignIcon.svelte":oc,"../components/icons/PackageIcon.svelte":lc,"../components/icons/PageIcon.svelte":cc,"../components/icons/PansexualIcon.svelte":dc,"../components/icons/ParagraphIcon.svelte":fc,"../components/icons/PencilIcon.svelte":pc,"../components/icons/PersonIcon.svelte":bc,"../components/icons/PlugIcon.svelte":Cc,"../components/icons/PlusIcon.svelte":wc,"../components/icons/PrivacyIcon.svelte":Fc,"../components/icons/PyramidIcon.svelte":Ec,"../components/icons/QuestionMarkIcon.svelte":Sc,"../components/icons/RenameIcon.svelte":Dc,"../components/icons/ReticleIcon.svelte":Lc,"../components/icons/RulerIcon.svelte":Pc,"../components/icons/SaveIcon.svelte":Tc,"../components/icons/ScaleIcon.svelte":Vc,"../components/icons/SevenPointStructureIcon.svelte":$c,"../components/icons/SplitHorizontalIcon.svelte":zc,"../components/icons/SpreadsheetIcon.svelte":qc,"../components/icons/SproutIcon.svelte":Wc,"../components/icons/StartupIcon.svelte":Yc,"../components/icons/SunIcon.svelte":Kc,"../components/icons/SwordIcon.svelte":Xc,"../components/icons/TextIcon.svelte":eu,"../components/icons/TheaterIcon.svelte":nu,"../components/icons/TransferIcon.svelte":au,"../components/icons/TrashIcon.svelte":ou,"../components/icons/TreeIcon.svelte":lu,"../components/icons/UnderlineIcon.svelte":cu,"../components/icons/UndoIcon.svelte":du,"../components/icons/UnlockedIcon.svelte":fu,"../components/icons/UnregisteredIcon.svelte":vu,"../components/icons/VersionControlIcon.svelte":xu,"../components/icons/WeightScaleIcon.svelte":_u,"../components/icons/WheelIcon.svelte":yu,"../components/icons/WordCountIcon.svelte":ku});for(const a in rs){let e=rs[a].default;const t=a.split("/").pop().replace(/\.svelte$/,"");Bn(t)||t==="UnregisteredIcon"||Jr.push({name:t,categories:[],component:e})}function Eu(a){return a&&a.__esModule&&Object.prototype.hasOwnProperty.call(a,"default")?a.default:a}var Da={exports:{}},Fr={exports:{}},Bu=Fr.exports,as;function Su(){return as||(as=1,(function(a,e){(function(){var t,n,i,r,o,h,u,v,b,y,C,S,A,P,D,R,G,j,ne,M,ce,ve,Y,U,N,ae,Z,ke,T,V,H,we,be,Be,fe,K,ge,W,pe,Pe,ye,Te,Me,xe,Ie,Ue,nt,ie,je,Le,oe,it,lt,He,Ke,Xe,Dt,un,Cn,Wt,_n,wn,yn,St,en,$t,tn,ee,$e,ht,wt,Gt,Et,zr,nn,Mt,Fn,rt,ot,Zt,Hr,qr,zt=[].slice;rt=(function(){var l,c,d,g,p;for(l={},p="Boolean Number String Function Array Date RegExp Undefined Null".split(" "),g=0,c=p.length;g<c;g++)d=p[g],l["[object "+d+"]"]=d.toLowerCase();return function(_){var w;return w=Object.prototype.toString.call(_),l[w]||"object"}})(),nt=function(l,c,d){return c==null&&(c=0),d==null&&(d=1),l<c&&(l=c),l>d&&(l=d),l},ot=function(l){return l.length>=3?Array.prototype.slice.call(l):l[0]},ce=function(l){var c,d;for(l._clipped=!1,l._unclipped=l.slice(0),c=d=0;d<3;c=++d)c<3?((l[c]<0||l[c]>255)&&(l._clipped=!0),l[c]<0&&(l[c]=0),l[c]>255&&(l[c]=255)):c===3&&(l[c]<0&&(l[c]=0),l[c]>1&&(l[c]=1));return l._clipped||delete l._unclipped,l},r=Math.PI,Et=Math.round,Y=Math.cos,ke=Math.floor,Xe=Math.pow,ie=Math.log,nn=Math.sin,Mt=Math.sqrt,P=Math.atan2,oe=Math.max,A=Math.abs,u=r*2,o=r/3,n=r/180,h=180/r,M=function(){return arguments[0]instanceof t?arguments[0]:(function(l,c,d){d.prototype=l.prototype;var g=new d,p=l.apply(g,c);return Object(p)===p?p:g})(t,arguments,function(){})},M.default=M,S=[],a!==null&&a.exports!=null&&(a.exports=M),Gt=e!==null?e:this,Gt.chroma=M,M.version="1.4.1",C={},b=[],y=!1,t=(function(){function l(){var c,d,g,p,_,w,E,I,z;for(w=this,d=[],I=0,p=arguments.length;I<p;I++)c=arguments[I],c!=null&&d.push(c);if(d.length>1&&(E=d[d.length-1]),C[E]!=null)w._rgb=ce(C[E](ot(d.slice(0,-1))));else{for(y||(b=b.sort(function(te,Ae){return Ae.p-te.p}),y=!0),z=0,_=b.length;z<_&&(g=b[z],E=g.test.apply(g,d),!E);z++);E&&(w._rgb=ce(C[E].apply(C,d)))}w._rgb==null&&console.warn("unknown format: "+d),w._rgb==null&&(w._rgb=[0,0,0]),w._rgb.length===3&&w._rgb.push(1)}return l.prototype.toString=function(){return this.hex()},l})(),M._input=C;M.brewer=j={OrRd:["#fff7ec","#fee8c8","#fdd49e","#fdbb84","#fc8d59","#ef6548","#d7301f","#b30000","#7f0000"],PuBu:["#fff7fb","#ece7f2","#d0d1e6","#a6bddb","#74a9cf","#3690c0","#0570b0","#045a8d","#023858"],BuPu:["#f7fcfd","#e0ecf4","#bfd3e6","#9ebcda","#8c96c6","#8c6bb1","#88419d","#810f7c","#4d004b"],Oranges:["#fff5eb","#fee6ce","#fdd0a2","#fdae6b","#fd8d3c","#f16913","#d94801","#a63603","#7f2704"],BuGn:["#f7fcfd","#e5f5f9","#ccece6","#99d8c9","#66c2a4","#41ae76","#238b45","#006d2c","#00441b"],YlOrBr:["#ffffe5","#fff7bc","#fee391","#fec44f","#fe9929","#ec7014","#cc4c02","#993404","#662506"],YlGn:["#ffffe5","#f7fcb9","#d9f0a3","#addd8e","#78c679","#41ab5d","#238443","#006837","#004529"],Reds:["#fff5f0","#fee0d2","#fcbba1","#fc9272","#fb6a4a","#ef3b2c","#cb181d","#a50f15","#67000d"],RdPu:["#fff7f3","#fde0dd","#fcc5c0","#fa9fb5","#f768a1","#dd3497","#ae017e","#7a0177","#49006a"],Greens:["#f7fcf5","#e5f5e0","#c7e9c0","#a1d99b","#74c476","#41ab5d","#238b45","#006d2c","#00441b"],YlGnBu:["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"],Purples:["#fcfbfd","#efedf5","#dadaeb","#bcbddc","#9e9ac8","#807dba","#6a51a3","#54278f","#3f007d"],GnBu:["#f7fcf0","#e0f3db","#ccebc5","#a8ddb5","#7bccc4","#4eb3d3","#2b8cbe","#0868ac","#084081"],Greys:["#ffffff","#f0f0f0","#d9d9d9","#bdbdbd","#969696","#737373","#525252","#252525","#000000"],YlOrRd:["#ffffcc","#ffeda0","#fed976","#feb24c","#fd8d3c","#fc4e2a","#e31a1c","#bd0026","#800026"],PuRd:["#f7f4f9","#e7e1ef","#d4b9da","#c994c7","#df65b0","#e7298a","#ce1256","#980043","#67001f"],Blues:["#f7fbff","#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c","#08306b"],PuBuGn:["#fff7fb","#ece2f0","#d0d1e6","#a6bddb","#67a9cf","#3690c0","#02818a","#016c59","#014636"],Viridis:["#440154","#482777","#3f4a8a","#31678e","#26838f","#1f9d8a","#6cce5a","#b6de2b","#fee825"],Spectral:["#9e0142","#d53e4f","#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd","#5e4fa2"],RdYlGn:["#a50026","#d73027","#f46d43","#fdae61","#fee08b","#ffffbf","#d9ef8b","#a6d96a","#66bd63","#1a9850","#006837"],RdBu:["#67001f","#b2182b","#d6604d","#f4a582","#fddbc7","#f7f7f7","#d1e5f0","#92c5de","#4393c3","#2166ac","#053061"],PiYG:["#8e0152","#c51b7d","#de77ae","#f1b6da","#fde0ef","#f7f7f7","#e6f5d0","#b8e186","#7fbc41","#4d9221","#276419"],PRGn:["#40004b","#762a83","#9970ab","#c2a5cf","#e7d4e8","#f7f7f7","#d9f0d3","#a6dba0","#5aae61","#1b7837","#00441b"],RdYlBu:["#a50026","#d73027","#f46d43","#fdae61","#fee090","#ffffbf","#e0f3f8","#abd9e9","#74add1","#4575b4","#313695"],BrBG:["#543005","#8c510a","#bf812d","#dfc27d","#f6e8c3","#f5f5f5","#c7eae5","#80cdc1","#35978f","#01665e","#003c30"],RdGy:["#67001f","#b2182b","#d6604d","#f4a582","#fddbc7","#ffffff","#e0e0e0","#bababa","#878787","#4d4d4d","#1a1a1a"],PuOr:["#7f3b08","#b35806","#e08214","#fdb863","#fee0b6","#f7f7f7","#d8daeb","#b2abd2","#8073ac","#542788","#2d004b"],Set2:["#66c2a5","#fc8d62","#8da0cb","#e78ac3","#a6d854","#ffd92f","#e5c494","#b3b3b3"],Accent:["#7fc97f","#beaed4","#fdc086","#ffff99","#386cb0","#f0027f","#bf5b17","#666666"],Set1:["#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628","#f781bf","#999999"],Set3:["#8dd3c7","#ffffb3","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5","#ffed6f"],Dark2:["#1b9e77","#d95f02","#7570b3","#e7298a","#66a61e","#e6ab02","#a6761d","#666666"],Paired:["#a6cee3","#1f78b4","#b2df8a","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#ff7f00","#cab2d6","#6a3d9a","#ffff99","#b15928"],Pastel2:["#b3e2cd","#fdcdac","#cbd5e8","#f4cae4","#e6f5c9","#fff2ae","#f1e2cc","#cccccc"],Pastel1:["#fbb4ae","#b3cde3","#ccebc5","#decbe4","#fed9a6","#ffffcc","#e5d8bd","#fddaec","#f2f2f2"]},(function(){var l,c;c=[];for(l in j)c.push(j[l.toLowerCase()]=j[l]);return c})(),Zt={aliceblue:"#f0f8ff",antiquewhite:"#faebd7",aqua:"#00ffff",aquamarine:"#7fffd4",azure:"#f0ffff",beige:"#f5f5dc",bisque:"#ffe4c4",black:"#000000",blanchedalmond:"#ffebcd",blue:"#0000ff",blueviolet:"#8a2be2",brown:"#a52a2a",burlywood:"#deb887",cadetblue:"#5f9ea0",chartreuse:"#7fff00",chocolate:"#d2691e",coral:"#ff7f50",cornflower:"#6495ed",cornflowerblue:"#6495ed",cornsilk:"#fff8dc",crimson:"#dc143c",cyan:"#00ffff",darkblue:"#00008b",darkcyan:"#008b8b",darkgoldenrod:"#b8860b",darkgray:"#a9a9a9",darkgreen:"#006400",darkgrey:"#a9a9a9",darkkhaki:"#bdb76b",darkmagenta:"#8b008b",darkolivegreen:"#556b2f",darkorange:"#ff8c00",darkorchid:"#9932cc",darkred:"#8b0000",darksalmon:"#e9967a",darkseagreen:"#8fbc8f",darkslateblue:"#483d8b",darkslategray:"#2f4f4f",darkslategrey:"#2f4f4f",darkturquoise:"#00ced1",darkviolet:"#9400d3",deeppink:"#ff1493",deepskyblue:"#00bfff",dimgray:"#696969",dimgrey:"#696969",dodgerblue:"#1e90ff",firebrick:"#b22222",floralwhite:"#fffaf0",forestgreen:"#228b22",fuchsia:"#ff00ff",gainsboro:"#dcdcdc",ghostwhite:"#f8f8ff",gold:"#ffd700",goldenrod:"#daa520",gray:"#808080",green:"#008000",greenyellow:"#adff2f",grey:"#808080",honeydew:"#f0fff0",hotpink:"#ff69b4",indianred:"#cd5c5c",indigo:"#4b0082",ivory:"#fffff0",khaki:"#f0e68c",laserlemon:"#ffff54",lavender:"#e6e6fa",lavenderblush:"#fff0f5",lawngreen:"#7cfc00",lemonchiffon:"#fffacd",lightblue:"#add8e6",lightcoral:"#f08080",lightcyan:"#e0ffff",lightgoldenrod:"#fafad2",lightgoldenrodyellow:"#fafad2",lightgray:"#d3d3d3",lightgreen:"#90ee90",lightgrey:"#d3d3d3",lightpink:"#ffb6c1",lightsalmon:"#ffa07a",lightseagreen:"#20b2aa",lightskyblue:"#87cefa",lightslategray:"#778899",lightslategrey:"#778899",lightsteelblue:"#b0c4de",lightyellow:"#ffffe0",lime:"#00ff00",limegreen:"#32cd32",linen:"#faf0e6",magenta:"#ff00ff",maroon:"#800000",maroon2:"#7f0000",maroon3:"#b03060",mediumaquamarine:"#66cdaa",mediumblue:"#0000cd",mediumorchid:"#ba55d3",mediumpurple:"#9370db",mediumseagreen:"#3cb371",mediumslateblue:"#7b68ee",mediumspringgreen:"#00fa9a",mediumturquoise:"#48d1cc",mediumvioletred:"#c71585",midnightblue:"#191970",mintcream:"#f5fffa",mistyrose:"#ffe4e1",moccasin:"#ffe4b5",navajowhite:"#ffdead",navy:"#000080",oldlace:"#fdf5e6",olive:"#808000",olivedrab:"#6b8e23",orange:"#ffa500",orangered:"#ff4500",orchid:"#da70d6",palegoldenrod:"#eee8aa",palegreen:"#98fb98",paleturquoise:"#afeeee",palevioletred:"#db7093",papayawhip:"#ffefd5",peachpuff:"#ffdab9",peru:"#cd853f",pink:"#ffc0cb",plum:"#dda0dd",powderblue:"#b0e0e6",purple:"#800080",purple2:"#7f007f",purple3:"#a020f0",rebeccapurple:"#663399",red:"#ff0000",rosybrown:"#bc8f8f",royalblue:"#4169e1",saddlebrown:"#8b4513",salmon:"#fa8072",sandybrown:"#f4a460",seagreen:"#2e8b57",seashell:"#fff5ee",sienna:"#a0522d",silver:"#c0c0c0",skyblue:"#87ceeb",slateblue:"#6a5acd",slategray:"#708090",slategrey:"#708090",snow:"#fffafa",springgreen:"#00ff7f",steelblue:"#4682b4",tan:"#d2b48c",teal:"#008080",thistle:"#d8bfd8",tomato:"#ff6347",turquoise:"#40e0d0",violet:"#ee82ee",wheat:"#f5deb3",white:"#ffffff",whitesmoke:"#f5f5f5",yellow:"#ffff00",yellowgreen:"#9acd32"},M.colors=Zt,Te=function(){var l,c,d,g,p,_,w,E,I;return c=ot(arguments),p=c[0],l=c[1],d=c[2],E=(p+16)/116,w=isNaN(l)?E:E+l/500,I=isNaN(d)?E:E-d/200,E=i.Yn*Me(E),w=i.Xn*Me(w),I=i.Zn*Me(I),_=qr(3.2404542*w-1.5371385*E-.4985314*I),g=qr(-.969266*w+1.8760108*E+.041556*I),d=qr(.0556434*w-.2040259*E+1.0572252*I),[_,g,d,c.length>3?c[3]:1]},qr=function(l){return 255*(l<=.00304?12.92*l:1.055*Xe(l,1/2.4)-.055)},Me=function(l){return l>i.t1?l*l*l:i.t2*(l-i.t0)},i={Kn:18,Xn:.95047,Yn:1,Zn:1.08883,t0:.137931034,t1:.206896552,t2:.12841855,t3:.008856452},St=function(){var l,c,d,g,p,_,w,E;return g=ot(arguments),d=g[0],c=g[1],l=g[2],p=$e(d,c,l),_=p[0],w=p[1],E=p[2],[116*w-16,500*(_-w),200*(w-E)]},ht=function(l){return(l/=255)<=.04045?l/12.92:Xe((l+.055)/1.055,2.4)},Hr=function(l){return l>i.t3?Xe(l,1/3):l/i.t2+i.t0},$e=function(){var l,c,d,g,p,_,w;return g=ot(arguments),d=g[0],c=g[1],l=g[2],d=ht(d),c=ht(c),l=ht(l),p=Hr((.4124564*d+.3575761*c+.1804375*l)/i.Xn),_=Hr((.2126729*d+.7151522*c+.072175*l)/i.Yn),w=Hr((.0193339*d+.119192*c+.9503041*l)/i.Zn),[p,_,w]},M.lab=function(){return(function(l,c,d){d.prototype=l.prototype;var g=new d,p=l.apply(g,c);return Object(p)===p?p:g})(t,zt.call(arguments).concat(["lab"]),function(){})},C.lab=Te,t.prototype.lab=function(){return St(this._rgb)},D=function(l){var c,d,g,p,_,w,E,I,z,te,Ae;return l=(function(){var Q,q,me;for(me=[],q=0,Q=l.length;q<Q;q++)p=l[q],me.push(M(p));return me})(),l.length===2?(z=(function(){var Q,q,me;for(me=[],q=0,Q=l.length;q<Q;q++)p=l[q],me.push(p.lab());return me})(),_=z[0],w=z[1],c=function(Q){var q,me;return me=(function(){var Re,Ne;for(Ne=[],q=Re=0;Re<=2;q=++Re)Ne.push(_[q]+Q*(w[q]-_[q]));return Ne})(),M.lab.apply(M,me)}):l.length===3?(te=(function(){var Q,q,me;for(me=[],q=0,Q=l.length;q<Q;q++)p=l[q],me.push(p.lab());return me})(),_=te[0],w=te[1],E=te[2],c=function(Q){var q,me;return me=(function(){var Re,Ne;for(Ne=[],q=Re=0;Re<=2;q=++Re)Ne.push((1-Q)*(1-Q)*_[q]+2*(1-Q)*Q*w[q]+Q*Q*E[q]);return Ne})(),M.lab.apply(M,me)}):l.length===4?(Ae=(function(){var Q,q,me;for(me=[],q=0,Q=l.length;q<Q;q++)p=l[q],me.push(p.lab());return me})(),_=Ae[0],w=Ae[1],E=Ae[2],I=Ae[3],c=function(Q){var q,me;return me=(function(){var Re,Ne;for(Ne=[],q=Re=0;Re<=2;q=++Re)Ne.push((1-Q)*(1-Q)*(1-Q)*_[q]+3*(1-Q)*(1-Q)*Q*w[q]+3*(1-Q)*Q*Q*E[q]+Q*Q*Q*I[q]);return Ne})(),M.lab.apply(M,me)}):l.length===5&&(d=D(l.slice(0,3)),g=D(l.slice(2,5)),c=function(Q){return Q<.5?d(Q*2):g((Q-.5)*2)}),c},M.bezier=function(l){var c;return c=D(l),c.scale=function(){return M.scale(c)},c},M.cubehelix=function(l,c,d,g,p){var _,w,E;return l==null&&(l=300),c==null&&(c=-1.5),d==null&&(d=1),g==null&&(g=1),p==null&&(p=[0,1]),_=0,rt(p)==="array"?w=p[1]-p[0]:(w=0,p=[p,p]),E=function(I){var z,te,Ae,Q,q,me,Re,Ne,De;return z=u*((l+120)/360+c*I),Re=Xe(p[0]+w*I,g),me=_!==0?d[0]+I*_:d,te=me*Re*(1-Re)/2,Q=Y(z),De=nn(z),Ne=Re+te*(-.14861*Q+1.78277*De),q=Re+te*(-.29227*Q-.90649*De),Ae=Re+te*(1.97294*Q),M(ce([Ne*255,q*255,Ae*255,1]))},E.start=function(I){return I==null?l:(l=I,E)},E.rotations=function(I){return I==null?c:(c=I,E)},E.gamma=function(I){return I==null?g:(g=I,E)},E.hue=function(I){return I==null?d:(d=I,rt(d)==="array"?(_=d[1]-d[0],_===0&&(d=d[1])):_=0,E)},E.lightness=function(I){return I==null?p:(rt(I)==="array"?(p=I,w=I[1]-I[0]):(p=[I,I],w=0),E)},E.scale=function(){return M.scale(E)},E.hue(d),E},M.random=function(){var l,c,d;for(c="0123456789abcdef",l="#",d=0;d<6;++d)l+=c.charAt(ke(Math.random()*16));return new t(l)},S=[],fe=function(l,c,d,g){var p,_,w,E;for(d==null&&(d=.5),g==null&&(g="rgb"),rt(l)!=="object"&&(l=M(l)),rt(c)!=="object"&&(c=M(c)),w=0,_=S.length;w<_;w++)if(p=S[w],g===p[0]){E=p[1](l,c,d,g);break}if(E==null)throw"color mode "+g+" is not supported";return E.alpha(l.alpha()+d*(c.alpha()-l.alpha()))},M.interpolate=fe,t.prototype.interpolate=function(l,c,d){return fe(this,l,c,d)},M.mix=fe,t.prototype.mix=t.prototype.interpolate,C.rgb=function(){var l,c,d,g;c=ot(arguments),d=[];for(l in c)g=c[l],d.push(g);return d},M.rgb=function(){return(function(l,c,d){d.prototype=l.prototype;var g=new d,p=l.apply(g,c);return Object(p)===p?p:g})(t,zt.call(arguments).concat(["rgb"]),function(){})},t.prototype.rgb=function(l){return l==null&&(l=!0),l?this._rgb.map(Math.round).slice(0,3):this._rgb.slice(0,3)},t.prototype.rgba=function(l){return l==null&&(l=!0),l?[Math.round(this._rgb[0]),Math.round(this._rgb[1]),Math.round(this._rgb[2]),this._rgb[3]]:this._rgb.slice(0)},b.push({p:3,test:function(l){var c;if(c=ot(arguments),rt(c)==="array"&&c.length===3||c.length===4&&rt(c[3])==="number"&&c[3]>=0&&c[3]<=1)return"rgb"}}),C.lrgb=C.rgb,W=function(l,c,d,g){var p,_;return p=l._rgb,_=c._rgb,new t(Mt(Xe(p[0],2)*(1-d)+Xe(_[0],2)*d),Mt(Xe(p[1],2)*(1-d)+Xe(_[1],2)*d),Mt(Xe(p[2],2)*(1-d)+Xe(_[2],2)*d),g)},v=function(l){var c,d,g,p,_,w;for(d=1/l.length,w=[0,0,0,0],p=0,g=l.length;p<g;p++)c=l[p],_=c._rgb,w[0]+=Xe(_[0],2)*d,w[1]+=Xe(_[1],2)*d,w[2]+=Xe(_[2],2)*d,w[3]+=_[3]*d;return w[0]=Mt(w[0]),w[1]=Mt(w[1]),w[2]=Mt(w[2]),w[3]>1&&(w[3]=1),new t(ce(w))},S.push(["lrgb",W]),M.average=function(l,c){var d,g,p,_,w,E,I,z,te,Ae,Q,q,me;if(c==null&&(c="rgb"),te=l.length,l=l.map(function(Re){return M(Re)}),I=l.splice(0,1)[0],c==="lrgb")return v(l);q=I.get(c),_=[],w=0,E=0;for(z in q)q[z]=q[z]||0,_.push(isNaN(q[z])?0:1),c.charAt(z)==="h"&&!isNaN(q[z])&&(d=q[z]/180*r,w+=Y(d),E+=nn(d));for(g=I.alpha(),Q=0,Ae=l.length;Q<Ae;Q++){p=l[Q],me=p.get(c),g+=p.alpha();for(z in q)isNaN(me[z])||(_[z]+=1,c.charAt(z)==="h"?(d=me[z]/180*r,w+=Y(d),E+=nn(d)):q[z]+=me[z])}for(z in q)if(c.charAt(z)==="h"){for(d=P(E/_[z],w/_[z])/r*180;d<0;)d+=360;for(;d>=360;)d-=360;q[z]=d}else q[z]=q[z]/_[z];return M(q,c).alpha(g/te)},V=function(l){var c,d,g,p,_,w;if(l.match(/^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/))return(l.length===4||l.length===7)&&(l=l.substr(1)),l.length===3&&(l=l.split(""),l=l[0]+l[0]+l[1]+l[1]+l[2]+l[2]),w=parseInt(l,16),p=w>>16,g=w>>8&255,d=w&255,[p,g,d,1];if(l.match(/^#?([A-Fa-f0-9]{8})$/))return l.length===9&&(l=l.substr(1)),w=parseInt(l,16),p=w>>24&255,g=w>>16&255,d=w>>8&255,c=Et((w&255)/255*100)/100,[p,g,d,c];if(C.css!=null&&(_=C.css(l)))return _;throw"unknown color: "+l},Wt=function(l,c){var d,g,p,_,w,E,I;return c==null&&(c="auto"),w=l[0],p=l[1],g=l[2],d=l[3],c==="auto"&&(c=d<1?"rgba":"rgb"),w=Math.round(w),p=Math.round(p),g=Math.round(g),I=w<<16|p<<8|g,E="000000"+I.toString(16),E=E.substr(E.length-6),_="0"+Et(d*255).toString(16),_=_.substr(_.length-2),"#"+(function(){switch(c.toLowerCase()){case"rgba":return E+_;case"argb":return _+E;default:return E}})()},C.hex=function(l){return V(l)},M.hex=function(){return(function(l,c,d){d.prototype=l.prototype;var g=new d,p=l.apply(g,c);return Object(p)===p?p:g})(t,zt.call(arguments).concat(["hex"]),function(){})},t.prototype.hex=function(l){return l==null&&(l="auto"),Wt(this._rgb,l)},b.push({p:4,test:function(l){if(arguments.length===1&&rt(l)==="string")return"hex"}}),be=function(){var l,c,d,g,p,_,w,E,I,z,te,Ae,Q,q;if(l=ot(arguments),p=l[0],te=l[1],w=l[2],te===0)I=g=c=w*255;else{for(q=[0,0,0],d=[0,0,0],Q=w<.5?w*(1+te):w+te-w*te,Ae=2*w-Q,p/=360,q[0]=p+1/3,q[1]=p,q[2]=p-1/3,_=E=0;E<=2;_=++E)q[_]<0&&(q[_]+=1),q[_]>1&&(q[_]-=1),6*q[_]<1?d[_]=Ae+(Q-Ae)*6*q[_]:2*q[_]<1?d[_]=Q:3*q[_]<2?d[_]=Ae+(Q-Ae)*(2/3-q[_])*6:d[_]=Ae;z=[Et(d[0]*255),Et(d[1]*255),Et(d[2]*255)],I=z[0],g=z[1],c=z[2]}return l.length>3?[I,g,c,l[3]]:[I,g,c]},wn=function(l,c,d){var g,p,_,w,E;return l!==void 0&&l.length>=3&&(w=l,l=w[0],c=w[1],d=w[2]),l/=255,c/=255,d/=255,_=Math.min(l,c,d),oe=Math.max(l,c,d),p=(oe+_)/2,oe===_?(E=0,g=Number.NaN):E=p<.5?(oe-_)/(oe+_):(oe-_)/(2-oe-_),l===oe?g=(c-d)/(oe-_):c===oe?g=2+(d-l)/(oe-_):d===oe&&(g=4+(l-c)/(oe-_)),g*=60,g<0&&(g+=360),[g,E,p]},M.hsl=function(){return(function(l,c,d){d.prototype=l.prototype;var g=new d,p=l.apply(g,c);return Object(p)===p?p:g})(t,zt.call(arguments).concat(["hsl"]),function(){})},C.hsl=be,t.prototype.hsl=function(){return wn(this._rgb)},Be=function(){var l,c,d,g,p,_,w,E,I,z,te,Ae,Q,q,me,Re,Ne,De;if(l=ot(arguments),p=l[0],Re=l[1],De=l[2],De*=255,Re===0)I=g=c=De;else switch(p===360&&(p=0),p>360&&(p-=360),p<0&&(p+=360),p/=60,_=ke(p),d=p-_,w=De*(1-Re),E=De*(1-Re*d),Ne=De*(1-Re*(1-d)),_){case 0:z=[De,Ne,w],I=z[0],g=z[1],c=z[2];break;case 1:te=[E,De,w],I=te[0],g=te[1],c=te[2];break;case 2:Ae=[w,De,Ne],I=Ae[0],g=Ae[1],c=Ae[2];break;case 3:Q=[w,E,De],I=Q[0],g=Q[1],c=Q[2];break;case 4:q=[Ne,w,De],I=q[0],g=q[1],c=q[2];break;case 5:me=[De,w,E],I=me[0],g=me[1],c=me[2]}return[I,g,c,l.length>3?l[3]:1]},yn=function(){var l,c,d,g,p,_,w,E,I;return w=ot(arguments),_=w[0],d=w[1],l=w[2],p=Math.min(_,d,l),oe=Math.max(_,d,l),c=oe-p,I=oe/255,oe===0?(g=Number.NaN,E=0):(E=c/oe,_===oe&&(g=(d-l)/c),d===oe&&(g=2+(l-_)/c),l===oe&&(g=4+(_-d)/c),g*=60,g<0&&(g+=360)),[g,E,I]},M.hsv=function(){return(function(l,c,d){d.prototype=l.prototype;var g=new d,p=l.apply(g,c);return Object(p)===p?p:g})(t,zt.call(arguments).concat(["hsv"]),function(){})},C.hsv=Be,t.prototype.hsv=function(){return yn(this._rgb)},He=function(l){var c,d,g;return rt(l)==="number"&&l>=0&&l<=16777215?(g=l>>16,d=l>>8&255,c=l&255,[g,d,c,1]):(console.warn("unknown num color: "+l),[0,0,0,1])},tn=function(){var l,c,d,g;return g=ot(arguments),d=g[0],c=g[1],l=g[2],(d<<16)+(c<<8)+l},M.num=function(l){return new t(l,"num")},t.prototype.num=function(l){return l==null&&(l="rgb"),tn(this._rgb,l)},C.num=He,b.push({p:1,test:function(l){if(arguments.length===1&&rt(l)==="number"&&l>=0&&l<=16777215)return"num"}}),T=function(){var l,c,d,g,p,_,w,E,I,z,te,Ae,Q,q,me,Re,Ne,De,yt,st;if(d=ot(arguments),E=d[0],p=d[1],c=d[2],p=p/100,w=w/100*255,l=p*255,p===0)Ae=w=g=c;else switch(E===360&&(E=0),E>360&&(E-=360),E<0&&(E+=360),E/=60,I=ke(E),_=E-I,z=c*(1-p),te=z+l*(1-_),yt=z+l*_,st=z+l,I){case 0:Q=[st,yt,z],Ae=Q[0],w=Q[1],g=Q[2];break;case 1:q=[te,st,z],Ae=q[0],w=q[1],g=q[2];break;case 2:me=[z,st,yt],Ae=me[0],w=me[1],g=me[2];break;case 3:Re=[z,te,st],Ae=Re[0],w=Re[1],g=Re[2];break;case 4:Ne=[yt,z,st],Ae=Ne[0],w=Ne[1],g=Ne[2];break;case 5:De=[st,z,te],Ae=De[0],w=De[1],g=De[2]}return[Ae,w,g,d.length>3?d[3]:1]},Cn=function(){var l,c,d,g,p,_,w,E,I;return I=ot(arguments),E=I[0],p=I[1],c=I[2],w=Math.min(E,p,c),oe=Math.max(E,p,c),g=oe-w,d=g*100/255,l=w/(255-g)*100,g===0?_=Number.NaN:(E===oe&&(_=(p-c)/g),p===oe&&(_=2+(c-E)/g),c===oe&&(_=4+(E-p)/g),_*=60,_<0&&(_+=360)),[_,d,l]},M.hcg=function(){return(function(l,c,d){d.prototype=l.prototype;var g=new d,p=l.apply(g,c);return Object(p)===p?p:g})(t,zt.call(arguments).concat(["hcg"]),function(){})},C.hcg=T,t.prototype.hcg=function(){return Cn(this._rgb)},U=function(l){var c,d,g,p,_,w,E,I;if(l=l.toLowerCase(),M.colors!=null&&M.colors[l])return V(M.colors[l]);if(_=l.match(/rgb\(\s*(\-?\d+),\s*(\-?\d+)\s*,\s*(\-?\d+)\s*\)/)){for(E=_.slice(1,4),p=w=0;w<=2;p=++w)E[p]=+E[p];E[3]=1}else if(_=l.match(/rgba\(\s*(\-?\d+),\s*(\-?\d+)\s*,\s*(\-?\d+)\s*,\s*([01]|[01]?\.\d+)\)/))for(E=_.slice(1,5),p=I=0;I<=3;p=++I)E[p]=+E[p];else if(_=l.match(/rgb\(\s*(\-?\d+(?:\.\d+)?)%,\s*(\-?\d+(?:\.\d+)?)%\s*,\s*(\-?\d+(?:\.\d+)?)%\s*\)/)){for(E=_.slice(1,4),p=c=0;c<=2;p=++c)E[p]=Et(E[p]*2.55);E[3]=1}else if(_=l.match(/rgba\(\s*(\-?\d+(?:\.\d+)?)%,\s*(\-?\d+(?:\.\d+)?)%\s*,\s*(\-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)/)){for(E=_.slice(1,5),p=d=0;d<=2;p=++d)E[p]=Et(E[p]*2.55);E[3]=+E[3]}else(_=l.match(/hsl\(\s*(\-?\d+(?:\.\d+)?),\s*(\-?\d+(?:\.\d+)?)%\s*,\s*(\-?\d+(?:\.\d+)?)%\s*\)/))?(g=_.slice(1,4),g[1]*=.01,g[2]*=.01,E=be(g),E[3]=1):(_=l.match(/hsla\(\s*(\-?\d+(?:\.\d+)?),\s*(\-?\d+(?:\.\d+)?)%\s*,\s*(\-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)/))&&(g=_.slice(1,4),g[1]*=.01,g[2]*=.01,E=be(g),E[3]=+_[4]);return E},un=function(l){var c;if(c=l[3]<1?"rgba":"rgb",c==="rgb")return c+"("+l.slice(0,3).map(Et).join(",")+")";if(c==="rgba")return c+"("+l.slice(0,3).map(Et).join(",")+","+l[3]+")"},wt=function(l){return Et(l*100)/100},we=function(l,c){var d;return d=c<1?"hsla":"hsl",l[0]=wt(l[0]||0),l[1]=wt(l[1]*100)+"%",l[2]=wt(l[2]*100)+"%",d==="hsla"&&(l[3]=c),d+"("+l.join(",")+")"},C.css=function(l){return U(l)},M.css=function(){return(function(l,c,d){d.prototype=l.prototype;var g=new d,p=l.apply(g,c);return Object(p)===p?p:g})(t,zt.call(arguments).concat(["css"]),function(){})},t.prototype.css=function(l){if(l==null&&(l="rgb"),l.slice(0,3)==="rgb")return un(this._rgb);if(l.slice(0,3)==="hsl")return we(this.hsl(),this.alpha())},C.named=function(l){return V(Zt[l])},b.push({p:5,test:function(l){if(arguments.length===1&&Zt[l]!=null)return"named"}}),t.prototype.name=function(l){var c,d;arguments.length&&(Zt[l]&&(this._rgb=V(Zt[l])),this._rgb[3]=1),c=this.hex("rgb");for(d in Zt)if(c===Zt[d])return d;return c},xe=function(){var l,c,d,g;return g=ot(arguments),d=g[0],l=g[1],c=g[2],c=c*n,[d,Y(c)*l,nn(c)*l]},Ie=function(){var l,c,d,g,p,_,w,E,I,z,te;return d=ot(arguments),E=d[0],p=d[1],w=d[2],z=xe(E,p,w),l=z[0],c=z[1],g=z[2],te=Te(l,c,g),I=te[0],_=te[1],g=te[2],[I,_,g,d.length>3?d[3]:1]},ye=function(){var l,c,d,g,p,_;return _=ot(arguments),p=_[0],l=_[1],c=_[2],d=Mt(l*l+c*c),g=(P(c,l)*h+360)%360,Et(d*1e4)===0&&(g=Number.NaN),[p,d,g]},en=function(){var l,c,d,g,p,_,w;return _=ot(arguments),p=_[0],d=_[1],c=_[2],w=St(p,d,c),g=w[0],l=w[1],c=w[2],ye(g,l,c)},M.lch=function(){var l;return l=ot(arguments),new t(l,"lch")},M.hcl=function(){var l;return l=ot(arguments),new t(l,"hcl")},C.lch=Ie,C.hcl=function(){var l,c,d,g;return g=ot(arguments),c=g[0],l=g[1],d=g[2],Ie([d,l,c])},t.prototype.lch=function(){return en(this._rgb)},t.prototype.hcl=function(){return en(this._rgb).reverse()},Dt=function(l){var c,d,g,p,_,w,E,I,z;return l==null&&(l="rgb"),I=ot(arguments),E=I[0],p=I[1],c=I[2],E=E/255,p=p/255,c=c/255,_=1-Math.max(E,Math.max(p,c)),g=_<1?1/(1-_):0,d=(1-E-_)*g,w=(1-p-_)*g,z=(1-c-_)*g,[d,w,z,_]},ve=function(){var l,c,d,g,p,_,w,E,I;return c=ot(arguments),g=c[0],w=c[1],I=c[2],_=c[3],l=c.length>4?c[4]:1,_===1?[0,0,0,l]:(E=g>=1?0:255*(1-g)*(1-_),p=w>=1?0:255*(1-w)*(1-_),d=I>=1?0:255*(1-I)*(1-_),[E,p,d,l])},C.cmyk=function(){return ve(ot(arguments))},M.cmyk=function(){return(function(l,c,d){d.prototype=l.prototype;var g=new d,p=l.apply(g,c);return Object(p)===p?p:g})(t,zt.call(arguments).concat(["cmyk"]),function(){})},t.prototype.cmyk=function(){return Dt(this._rgb)},C.gl=function(){var l,c,d,g,p;for(g=(function(){var _,w;_=ot(arguments),w=[];for(c in _)p=_[c],w.push(p);return w}).apply(this,arguments),l=d=0;d<=2;l=++d)g[l]*=255;return g},M.gl=function(){return(function(l,c,d){d.prototype=l.prototype;var g=new d,p=l.apply(g,c);return Object(p)===p?p:g})(t,zt.call(arguments).concat(["gl"]),function(){})},t.prototype.gl=function(){var l;return l=this._rgb,[l[0]/255,l[1]/255,l[2]/255,l[3]]},$t=function(l,c,d){var g;return g=ot(arguments),l=g[0],c=g[1],d=g[2],l=je(l),c=je(c),d=je(d),.2126*l+.7152*c+.0722*d},je=function(l){return l/=255,l<=.03928?l/12.92:Xe((l+.055)/1.055,2.4)},Pe=function(l,c,d,g){var p,_;return p=l._rgb,_=c._rgb,new t(p[0]+d*(_[0]-p[0]),p[1]+d*(_[1]-p[1]),p[2]+d*(_[2]-p[2]),g)},S.push(["rgb",Pe]),t.prototype.luminance=function(l,c){var d,g,p,_,w;return c==null&&(c="rgb"),arguments.length?(_=this._rgb,l===0?_=[0,0,0,this._rgb[3]]:l===1?_=[255,255,255,this[3]]:(d=$t(this._rgb),g=1e-7,p=20,w=function(E,I){var z,te;return te=E.interpolate(I,.5,c),z=te.luminance(),Math.abs(l-z)<g||!p--?te:z>l?w(E,te):w(te,I)},d>l?_=w(M("black"),this).rgba():_=w(this,M("white")).rgba()),M(_).alpha(this.alpha())):$t(this._rgb)},Fn=function(l){var c,d,g,p;return p=l/100,p<66?(g=255,d=-155.25485562709179-.44596950469579133*(d=p-2)+104.49216199393888*ie(d),c=p<20?0:-254.76935184120902+.8274096064007395*(c=p-10)+115.67994401066147*ie(c)):(g=351.97690566805693+.114206453784165*(g=p-55)-40.25366309332127*ie(g),d=325.4494125711974+.07943456536662342*(d=p-50)-28.0852963507957*ie(d),c=255),[g,d,c]},ee=function(){var l,c,d,g,p,_,w,E;for(_=ot(arguments),p=_[0],_[1],l=_[2],g=1e3,d=4e4,c=.4;d-g>c;)E=(d+g)*.5,w=Fn(E),w[2]/w[0]>=l/p?d=E:g=E;return Et(E)},M.temperature=M.kelvin=function(){return(function(l,c,d){d.prototype=l.prototype;var g=new d,p=l.apply(g,c);return Object(p)===p?p:g})(t,zt.call(arguments).concat(["temperature"]),function(){})},C.temperature=C.kelvin=C.K=Fn,t.prototype.temperature=function(){return ee(this._rgb)},t.prototype.kelvin=t.prototype.temperature,M.contrast=function(l,c){var d,g,p,_;return((p=rt(l))==="string"||p==="number")&&(l=new t(l)),((_=rt(c))==="string"||_==="number")&&(c=new t(c)),d=l.luminance(),g=c.luminance(),d>g?(d+.05)/(g+.05):(g+.05)/(d+.05)},M.distance=function(l,c,d){var g,p,_,w,E,I,z;d==null&&(d="lab"),((E=rt(l))==="string"||E==="number")&&(l=new t(l)),((I=rt(c))==="string"||I==="number")&&(c=new t(c)),_=l.get(d),w=c.get(d),z=0;for(p in _)g=(_[p]||0)-(w[p]||0),z+=g*g;return Math.sqrt(z)},M.deltaE=function(l,c,d,g){var p,_,w,E,I,z,te,Ae,Q,q,me,Re,Ne,De,yt,st,Ot,Yt,Ze,O,Ee,qe,at,Oe,et,Je,ct;for(d==null&&(d=1),g==null&&(g=1),((Ot=rt(l))==="string"||Ot==="number")&&(l=new t(l)),((Yt=rt(c))==="string"||Yt==="number")&&(c=new t(c)),Ze=l.lab(),p=Ze[0],w=Ze[1],I=Ze[2],O=c.lab(),_=O[0],E=O[1],z=O[2],te=Mt(w*w+I*I),Ae=Mt(E*E+z*z),at=p<16?.511:.040975*p/(1+.01765*p),Ee=.0638*te/(1+.0131*te)+.638,st=te<1e-6?0:P(I,w)*180/r;st<0;)st+=360;for(;st>=360;)st-=360;return Oe=st>=164&&st<=345?.56+A(.2*Y(r*(st+168)/180)):.36+A(.4*Y(r*(st+35)/180)),Q=te*te*te*te,yt=Mt(Q/(Q+1900)),qe=Ee*(yt*Oe+1-yt),De=p-_,Ne=te-Ae,me=w-E,Re=I-z,q=me*me+Re*Re-Ne*Ne,et=De/(d*at),Je=Ne/(g*Ee),ct=qe,Mt(et*et+Je*Je+q/(ct*ct))},t.prototype.get=function(l){var c,d,g,p,_,w;return g=this,_=l.split("."),p=_[0],c=_[1],w=g[p](),c?(d=p.indexOf(c),d>-1?w[d]:console.warn("unknown channel "+c+" in mode "+p)):w},t.prototype.set=function(l,c){var d,g,p,_,w,E;if(p=this,w=l.split("."),_=w[0],d=w[1],d)if(E=p[_](),g=_.indexOf(d),g>-1)if(rt(c)==="string")switch(c.charAt(0)){case"+":E[g]+=+c;break;case"-":E[g]+=+c;break;case"*":E[g]*=+c.substr(1);break;case"/":E[g]/=+c.substr(1);break;default:E[g]=+c}else E[g]=c;else console.warn("unknown channel "+d+" in mode "+_);else E=c;return M(E,_).alpha(p.alpha())},t.prototype.clipped=function(){return this._rgb._clipped||!1},t.prototype.alpha=function(l){return arguments.length?M.rgb([this._rgb[0],this._rgb[1],this._rgb[2],l]):this._rgb[3]},t.prototype.darken=function(l){var c,d;return l==null&&(l=1),d=this,c=d.lab(),c[0]-=i.Kn*l,M.lab(c).alpha(d.alpha())},t.prototype.brighten=function(l){return l==null&&(l=1),this.darken(-l)},t.prototype.darker=t.prototype.darken,t.prototype.brighter=t.prototype.brighten,t.prototype.saturate=function(l){var c,d;return l==null&&(l=1),d=this,c=d.lch(),c[1]+=l*i.Kn,c[1]<0&&(c[1]=0),M.lch(c).alpha(d.alpha())},t.prototype.desaturate=function(l){return l==null&&(l=1),this.saturate(-l)},t.prototype.premultiply=function(){var l,c;return c=this.rgb(),l=this.alpha(),M(c[0]*l,c[1]*l,c[2]*l,l)},R=function(l,c,d){if(!R[d])throw"unknown blend mode "+d;return R[d](l,c)},G=function(l){return function(c,d){var g,p;return g=M(d).rgb(),p=M(c).rgb(),M(l(g,p),"rgb")}},Z=function(l){return function(c,d){var g,p,_;for(_=[],g=p=0;p<=3;g=++p)_[g]=l(c[g],d[g]);return _}},lt=function(l,c){return l},it=function(l,c){return l*c/255},N=function(l,c){return l>c?c:l},Ue=function(l,c){return l>c?l:c},zr=function(l,c){return 255*(1-(1-l/255)*(1-c/255))},Ke=function(l,c){return c<128?2*l*c/255:255*(1-2*(1-l/255)*(1-c/255))},ne=function(l,c){return 255*(1-(1-c/255)/(l/255))},ae=function(l,c){return l===255||(l=255*(c/255)/(1-l/255),l>255)?255:l},R.normal=G(Z(lt)),R.multiply=G(Z(it)),R.screen=G(Z(zr)),R.overlay=G(Z(Ke)),R.darken=G(Z(N)),R.lighten=G(Z(Ue)),R.dodge=G(Z(ae)),R.burn=G(Z(ne)),M.blend=R,M.analyze=function(l){var c,d,g,p;for(g={min:Number.MAX_VALUE,max:Number.MAX_VALUE*-1,sum:0,values:[],count:0},d=0,c=l.length;d<c;d++)p=l[d],p!=null&&!isNaN(p)&&(g.values.push(p),g.sum+=p,p<g.min&&(g.min=p),p>g.max&&(g.max=p),g.count+=1);return g.domain=[g.min,g.max],g.limits=function(_,w){return M.limits(g,_,w)},g},M.scale=function(l,c){var d,g,p,_,w,E,I,z,te,Ae,Q,q,me,Re,Ne,De,yt,st,Ot,Yt,Ze;return te="rgb",Ae=M("#ccc"),Re=0,w=[0,1],me=[],q=[0,0],d=!1,p=[],Q=!1,z=0,I=1,_=!1,g={},Ne=!0,E=1,Yt=function(O){var Ee,qe,at,Oe,et,Je;if(O==null&&(O=["#fff","#000"]),O!=null&&rt(O)==="string"&&M.brewer!=null&&(O=M.brewer[O]||M.brewer[O.toLowerCase()]||O),rt(O)==="array"){for(O.length===1&&(O=[O[0],O[0]]),O=O.slice(0),Ee=at=0,Oe=O.length-1;0<=Oe?at<=Oe:at>=Oe;Ee=0<=Oe?++at:--at)qe=O[Ee],rt(qe)==="string"&&(O[Ee]=M(qe));for(me.length=0,Ee=Je=0,et=O.length-1;0<=et?Je<=et:Je>=et;Ee=0<=et?++Je:--Je)me.push(Ee/(O.length-1))}return Ot(),p=O},yt=function(O){var Ee,qe;if(d!=null){for(qe=d.length-1,Ee=0;Ee<qe&&O>=d[Ee];)Ee++;return Ee-1}return 0},Ze=function(O){return O},st=function(O,Ee){var qe,at,Oe,et,Je,ct,Bt,We;if(Ee==null&&(Ee=!1),isNaN(O)||O===null)return Ae;if(Ee?We=O:d&&d.length>2?(qe=yt(O),We=qe/(d.length-2)):I!==z?We=(O-z)/(I-z):We=1,Ee||(We=Ze(We)),E!==1&&(We=Xe(We,E)),We=q[0]+We*(1-q[0]-q[1]),We=Math.min(1,Math.max(0,We)),et=Math.floor(We*1e4),Ne&&g[et])at=g[et];else{if(rt(p)==="array")for(Oe=Je=0,Bt=me.length-1;0<=Bt?Je<=Bt:Je>=Bt;Oe=0<=Bt?++Je:--Je){if(ct=me[Oe],We<=ct){at=p[Oe];break}if(We>=ct&&Oe===me.length-1){at=p[Oe];break}if(We>ct&&We<me[Oe+1]){We=(We-ct)/(me[Oe+1]-ct),at=M.interpolate(p[Oe],p[Oe+1],We,te);break}}else rt(p)==="function"&&(at=p(We));Ne&&(g[et]=at)}return at},Ot=function(){return g={}},Yt(l),De=function(O){var Ee;return Ee=M(st(O)),Q&&Ee[Q]?Ee[Q]():Ee},De.classes=function(O){var Ee;return O!=null?(rt(O)==="array"?(d=O,w=[O[0],O[O.length-1]]):(Ee=M.analyze(w),O===0?d=[Ee.min,Ee.max]:d=M.limits(Ee,"e",O)),De):d},De.domain=function(O){var Ee,qe,at,Oe,et,Je,ct;if(!arguments.length)return w;if(z=O[0],I=O[O.length-1],me=[],at=p.length,O.length===at&&z!==I)for(et=0,Oe=O.length;et<Oe;et++)qe=O[et],me.push((qe-z)/(I-z));else for(Ee=ct=0,Je=at-1;0<=Je?ct<=Je:ct>=Je;Ee=0<=Je?++ct:--ct)me.push(Ee/(at-1));return w=[z,I],De},De.mode=function(O){return arguments.length?(te=O,Ot(),De):te},De.range=function(O,Ee){return Yt(O,Ee),De},De.out=function(O){return Q=O,De},De.spread=function(O){return arguments.length?(Re=O,De):Re},De.correctLightness=function(O){return O==null&&(O=!0),_=O,Ot(),_?Ze=function(Ee){var qe,at,Oe,et,Je,ct,Bt,We,_t;for(qe=st(0,!0).lab()[0],at=st(1,!0).lab()[0],Bt=qe>at,Oe=st(Ee,!0).lab()[0],Je=qe+(at-qe)*Ee,et=Oe-Je,We=0,_t=1,ct=20;Math.abs(et)>.01&&ct-- >0;)(function(){return Bt&&(et*=-1),et<0?(We=Ee,Ee+=(_t-Ee)*.5):(_t=Ee,Ee+=(We-Ee)*.5),Oe=st(Ee,!0).lab()[0],et=Oe-Je})();return Ee}:Ze=function(Ee){return Ee},De},De.padding=function(O){return O!=null?(rt(O)==="number"&&(O=[O,O]),q=O,De):q},De.colors=function(O,Ee){var qe,at,Oe,et,Je,ct,Bt,We;if(arguments.length<2&&(Ee="hex"),Je=[],arguments.length===0)Je=p.slice(0);else if(O===1)Je=[De(.5)];else if(O>1)at=w[0],qe=w[1]-at,Je=(function(){ct=[];for(var _t=0;0<=O?_t<O:_t>O;0<=O?_t++:_t--)ct.push(_t);return ct}).apply(this).map(function(_t){return De(at+_t/(O-1)*qe)});else{if(l=[],Bt=[],d&&d.length>2)for(Oe=We=1,et=d.length;1<=et?We<et:We>et;Oe=1<=et?++We:--We)Bt.push((d[Oe-1]+d[Oe])*.5);else Bt=w;Je=Bt.map(function(_t){return De(_t)})}return M[Ee]&&(Je=Je.map(function(_t){return _t[Ee]()})),Je},De.cache=function(O){return O!=null?(Ne=O,De):Ne},De.gamma=function(O){return O!=null?(E=O,De):E},De.nodata=function(O){return O!=null?(Ae=M(O),De):Ae},De},M.scales==null&&(M.scales={}),M.scales.cool=function(){return M.scale([M.hsl(180,1,.9),M.hsl(250,.7,.4)])},M.scales.hot=function(){return M.scale(["#000","#f00","#ff0","#fff"],[0,.25,.75,1]).mode("rgb")},M.analyze=function(l,c,d){var g,p,_,w,E,I,z;if(E={min:Number.MAX_VALUE,max:Number.MAX_VALUE*-1,sum:0,values:[],count:0},d==null&&(d=function(){return!0}),g=function(te){te!=null&&!isNaN(te)&&(E.values.push(te),E.sum+=te,te<E.min&&(E.min=te),te>E.max&&(E.max=te),E.count+=1)},z=function(te,Ae){if(d(te,Ae))return c!=null&&rt(c)==="function"?g(c(te)):c!=null&&rt(c)==="string"||rt(c)==="number"?g(te[c]):g(te)},rt(l)==="array")for(w=0,_=l.length;w<_;w++)I=l[w],z(I);else for(p in l)I=l[p],z(I,p);return E.domain=[E.min,E.max],E.limits=function(te,Ae){return M.limits(E,te,Ae)},E},M.limits=function(l,c,d){var g,p,_,w,E,I,z,te,Ae,Q,q,me,Re,Ne,De,yt,st,Ot,Yt,Ze,O,Ee,qe,at,Oe,et,Je,ct,Bt,We,_t,Nr,$n,wa,or,sr,lr,hr,cr,ur,Yo,dr,mr,fr,gr,pr,vr,br,xr,Cr,dn,Wr,Uo,Ut,_r;if(c==null&&(c="equal"),d==null&&(d=7),rt(l)==="array"&&(l=M.analyze(l)),Oe=l.min,oe=l.max,l.sum,Ut=l.values.sort(function(ya,Fa){return ya-Fa}),d===1)return[Oe,oe];if(qe=[],c.substr(0,1)==="c"&&(qe.push(Oe),qe.push(oe)),c.substr(0,1)==="e"){for(qe.push(Oe),Ze=_t=1,or=d-1;1<=or?_t<=or:_t>=or;Ze=1<=or?++_t:--_t)qe.push(Oe+Ze/d*(oe-Oe));qe.push(oe)}else if(c.substr(0,1)==="l"){if(Oe<=0)throw"Logarithmic scales are only possible for values > 0";for(et=Math.LOG10E*ie(Oe),at=Math.LOG10E*ie(oe),qe.push(Oe),Ze=_r=1,sr=d-1;1<=sr?_r<=sr:_r>=sr;Ze=1<=sr?++_r:--_r)qe.push(Xe(10,et+Ze/d*(at-et)));qe.push(oe)}else if(c.substr(0,1)==="q"){for(qe.push(Oe),Ze=g=1,dr=d-1;1<=dr?g<=dr:g>=dr;Ze=1<=dr?++g:--g)Nr=(Ut.length-1)*Ze/d,$n=ke(Nr),$n===Nr?qe.push(Ut[$n]):(wa=Nr-$n,qe.push(Ut[$n]*(1-wa)+Ut[$n+1]*wa));qe.push(oe)}else if(c.substr(0,1)==="k"){for(ct=Ut.length,Ne=new Array(ct),Ot=new Array(d),Cr=!0,Bt=0,yt=null,yt=[],yt.push(Oe),Ze=p=1,mr=d-1;1<=mr?p<=mr:p>=mr;Ze=1<=mr?++p:--p)yt.push(Oe+Ze/d*(oe-Oe));for(yt.push(oe);Cr;){for(O=_=0,fr=d-1;0<=fr?_<=fr:_>=fr;O=0<=fr?++_:--_)Ot[O]=0;for(Ze=w=0,gr=ct-1;0<=gr?w<=gr:w>=gr;Ze=0<=gr?++w:--w){for(Uo=Ut[Ze],Je=Number.MAX_VALUE,O=E=0,pr=d-1;0<=pr?E<=pr:E>=pr;O=0<=pr?++E:--E)Yt=A(yt[O]-Uo),Yt<Je&&(Je=Yt,De=O);Ot[De]++,Ne[Ze]=De}for(We=new Array(d),O=I=0,vr=d-1;0<=vr?I<=vr:I>=vr;O=0<=vr?++I:--I)We[O]=null;for(Ze=z=0,br=ct-1;0<=br?z<=br:z>=br;Ze=0<=br?++z:--z)st=Ne[Ze],We[st]===null?We[st]=Ut[Ze]:We[st]+=Ut[Ze];for(O=te=0,xr=d-1;0<=xr?te<=xr:te>=xr;O=0<=xr?++te:--te)We[O]*=1/Ot[O];for(Cr=!1,O=Ae=0,lr=d-1;0<=lr?Ae<=lr:Ae>=lr;O=0<=lr?++Ae:--Ae)if(We[O]!==yt[Ze]){Cr=!0;break}yt=We,Bt++,Bt>200&&(Cr=!1)}for(Ee={},O=Q=0,hr=d-1;0<=hr?Q<=hr:Q>=hr;O=0<=hr?++Q:--Q)Ee[O]=[];for(Ze=q=0,cr=ct-1;0<=cr?q<=cr:q>=cr;Ze=0<=cr?++q:--q)st=Ne[Ze],Ee[st].push(Ut[Ze]);for(dn=[],O=me=0,ur=d-1;0<=ur?me<=ur:me>=ur;O=0<=ur?++me:--me)dn.push(Ee[O][0]),dn.push(Ee[O][Ee[O].length-1]);for(dn=dn.sort(function(ya,Fa){return ya-Fa}),qe.push(dn[0]),Ze=Re=1,Yo=dn.length-1;Re<=Yo;Ze=Re+=2)Wr=dn[Ze],!isNaN(Wr)&&qe.indexOf(Wr)===-1&&qe.push(Wr)}return qe},H=function(l,c,d){var g,p,_,w;return g=ot(arguments),l=g[0],c=g[1],d=g[2],isNaN(l)&&(l=0),l/=360,l<1/3?(p=(1-c)/3,w=(1+c*Y(u*l)/Y(o-u*l))/3,_=1-(p+w)):l<2/3?(l-=1/3,w=(1-c)/3,_=(1+c*Y(u*l)/Y(o-u*l))/3,p=1-(w+_)):(l-=2/3,_=(1-c)/3,p=(1+c*Y(u*l)/Y(o-u*l))/3,w=1-(_+p)),w=nt(d*w*3),_=nt(d*_*3),p=nt(d*p*3),[w*255,_*255,p*255,g.length>3?g[3]:1]},_n=function(){var l,c,d,g,p,_,w,E;return w=ot(arguments),_=w[0],c=w[1],l=w[2],u=Math.PI*2,_/=255,c/=255,l/=255,p=Math.min(_,c,l),g=(_+c+l)/3,E=1-p/g,E===0?d=0:(d=(_-c+(_-l))/2,d/=Math.sqrt((_-c)*(_-c)+(_-l)*(c-l)),d=Math.acos(d),l>c&&(d=u-d),d/=u),[d*360,E,g]},M.hsi=function(){return(function(l,c,d){d.prototype=l.prototype;var g=new d,p=l.apply(g,c);return Object(p)===p?p:g})(t,zt.call(arguments).concat(["hsi"]),function(){})},C.hsi=H,t.prototype.hsi=function(){return _n(this._rgb)},K=function(l,c,d,g){var p,_,w,E,I,z,te,Ae,Q,q,me,Re;return g==="hsl"?(me=l.hsl(),Re=c.hsl()):g==="hsv"?(me=l.hsv(),Re=c.hsv()):g==="hcg"?(me=l.hcg(),Re=c.hcg()):g==="hsi"?(me=l.hsi(),Re=c.hsi()):(g==="lch"||g==="hcl")&&(g="hcl",me=l.hcl(),Re=c.hcl()),g.substr(0,1)==="h"&&(w=me[0],Q=me[1],z=me[2],E=Re[0],q=Re[1],te=Re[2]),!isNaN(w)&&!isNaN(E)?(E>w&&E-w>180?p=E-(w+360):E<w&&w-E>180?p=E+360-w:p=E-w,_=w+d*p):isNaN(w)?isNaN(E)?_=Number.NaN:(_=E,(z===1||z===0)&&g!=="hsv"&&(Ae=q)):(_=w,(te===1||te===0)&&g!=="hsv"&&(Ae=Q)),Ae==null&&(Ae=Q+d*(q-Q)),I=z+d*(te-z),M[g](_,Ae,I)},S=S.concat((function(){var l,c,d,g;for(d=["hsv","hsl","hsi","hcl","lch","hcg"],g=[],c=0,l=d.length;c<l;c++)Le=d[c],g.push([Le,K]);return g})()),pe=function(l,c,d,g){var p,_;return p=l.num(),_=c.num(),M.num(p+(_-p)*d,"num")},S.push(["num",pe]),ge=function(l,c,d,g){var p,_;return p=l.lab(),_=c.lab(),new t(p[0]+d*(_[0]-p[0]),p[1]+d*(_[1]-p[1]),p[2]+d*(_[2]-p[2]),g)},S.push(["lab",ge])}).call(Bu)})(Fr,Fr.exports)),Fr.exports}var Ma,is;function Au(){return is||(is=1,Ma=function(){var a,e;if(typeof WeakMap!="function")return!1;try{a=new WeakMap([[e={},"one"],[{},"two"],[{},"three"]])}catch{return!1}return!(String(a)!=="[object WeakMap]"||typeof a.set!="function"||a.set({},1)!==a||typeof a.delete!="function"||typeof a.has!="function"||a.get(e)!=="one")}),Ma}var La,os;function Du(){return os||(os=1,La=function(){}),La}var Ra,ss;function Vn(){if(ss)return Ra;ss=1;var a=Du()();return Ra=function(e){return e!==a&&e!==null},Ra}var Pa,ls;function b1(){if(ls)return Pa;ls=1;var a=Object.create,e=Object.getPrototypeOf,t={};return Pa=function(){var n=Object.setPrototypeOf,i=arguments[0]||a;return typeof n!="function"?!1:e(n(i(null),t))===t},Pa}var Ia,hs;function x1(){if(hs)return Ia;hs=1;var a=Vn(),e={function:!0,object:!0};return Ia=function(t){return a(t)&&e[typeof t]||!1},Ia}var Ta,cs;function bn(){if(cs)return Ta;cs=1;var a=Vn();return Ta=function(e){if(!a(e))throw new TypeError("Cannot use null or undefined");return e},Ta}var Oa,us;function Mu(){if(us)return Oa;us=1;var a=Object.create,e;return b1()()||(e=C1()),Oa=(function(){var t,n,i;return!e||e.level!==1?a:(t={},n={},i={configurable:!1,enumerable:!1,writable:!0,value:void 0},Object.getOwnPropertyNames(Object.prototype).forEach(function(r){if(r==="__proto__"){n[r]={configurable:!0,enumerable:!1,writable:!0,value:void 0};return}n[r]=i}),Object.defineProperties(t,n),Object.defineProperty(e,"nullPolyfill",{configurable:!1,enumerable:!1,writable:!1,value:t}),function(r,o){return a(r===null?t:r,o)})})(),Oa}var Va,ds;function C1(){if(ds)return Va;ds=1;var a=x1(),e=bn(),t=Object.prototype.isPrototypeOf,n=Object.defineProperty,i={configurable:!0,enumerable:!1,writable:!0,value:void 0},r;return r=function(o,h){if(e(o),h===null||a(h))return o;throw new TypeError("Prototype must be null or an object")},Va=(function(o){var h,u;return o?(o.level===2?o.set?(u=o.set,h=function(v,b){return u.call(r(v,b),b),v}):h=function(v,b){return r(v,b).__proto__=b,v}:h=function v(b,y){var C;return r(b,y),C=t.call(v.nullPolyfill,b),C&&delete v.nullPolyfill.__proto__,y===null&&(y=v.nullPolyfill),b.__proto__=y,C&&n(v.nullPolyfill,"__proto__",i),b},Object.defineProperty(h,"level",{configurable:!1,enumerable:!1,writable:!1,value:o.level})):null})((function(){var o=Object.create(null),h={},u,v=Object.getOwnPropertyDescriptor(Object.prototype,"__proto__");if(v){try{u=v.set,u.call(o,h)}catch{}if(Object.getPrototypeOf(o)===h)return{set:u,level:2}}return o.__proto__=h,Object.getPrototypeOf(o)===h?{level:2}:(o={},o.__proto__=h,Object.getPrototypeOf(o)===h?{level:1}:!1)})()),Mu(),Va}var ja,ms;function qo(){return ms||(ms=1,ja=b1()()?Object.setPrototypeOf:C1()),ja}var $a,fs;function Lu(){if(fs)return $a;fs=1;var a=x1();return $a=function(e){if(!a(e))throw new TypeError(e+" is not an Object");return e},$a}var Ga,gs;function Ru(){if(gs)return Ga;gs=1;var a=Object.create(null),e=Math.random;return Ga=function(){var t;do t=e().toString(36).slice(2);while(a[t]);return t},Ga}var za={exports:{}},Ha,ps;function ar(){if(ps)return Ha;ps=1;var a=void 0;return Ha=function(e){return e!==a&&e!==null},Ha}var qa,vs;function _1(){if(vs)return qa;vs=1;var a=ar(),e={object:!0,function:!0,undefined:!0};return qa=function(t){return a(t)?hasOwnProperty.call(e,typeof t):!1},qa}var Na,bs;function Pu(){if(bs)return Na;bs=1;var a=_1();return Na=function(e){if(!a(e))return!1;try{return e.constructor?e.constructor.prototype===e:!1}catch{return!1}},Na}var Wa,xs;function Iu(){if(xs)return Wa;xs=1;var a=Pu();return Wa=function(e){if(typeof e!="function"||!hasOwnProperty.call(e,"length"))return!1;try{if(typeof e.length!="number"||typeof e.call!="function"||typeof e.apply!="function")return!1}catch{return!1}return!a(e)},Wa}var Za,Cs;function w1(){if(Cs)return Za;Cs=1;var a=Iu(),e=/^\s*class[\s{/}]/,t=Function.prototype.toString;return Za=function(n){return!(!a(n)||e.test(t.call(n)))},Za}var Ya,_s;function Tu(){return _s||(_s=1,Ya=function(){var a=Object.assign,e;return typeof a!="function"?!1:(e={foo:"raz"},a(e,{bar:"dwa"},{trzy:"trzy"}),e.foo+e.bar+e.trzy==="razdwatrzy")}),Ya}var Ua,ws;function Ou(){return ws||(ws=1,Ua=function(){try{return Object.keys("primitive"),!0}catch{return!1}}),Ua}var Ka,ys;function Vu(){if(ys)return Ka;ys=1;var a=Vn(),e=Object.keys;return Ka=function(t){return e(a(t)?Object(t):t)},Ka}var Ja,Fs;function ju(){return Fs||(Fs=1,Ja=Ou()()?Object.keys:Vu()),Ja}var Xa,ks;function $u(){if(ks)return Xa;ks=1;var a=ju(),e=bn(),t=Math.max;return Xa=function(n,i){var r,o,h=t(arguments.length,2),u;for(n=Object(e(n)),u=function(v){try{n[v]=i[v]}catch(b){r||(r=b)}},o=1;o<h;++o)i=arguments[o],a(i).forEach(u);if(r!==void 0)throw r;return n},Xa}var Qa,Es;function No(){return Es||(Es=1,Qa=Tu()()?Object.assign:$u()),Qa}var ei,Bs;function y1(){if(Bs)return ei;Bs=1;var a=Vn(),e=Array.prototype.forEach,t=Object.create,n=function(i,r){var o;for(o in i)r[o]=i[o]};return ei=function(i){var r=t(null);return e.call(arguments,function(o){a(o)&&n(Object(o),r)}),r},ei}var ti,Ss;function Gu(){if(Ss)return ti;Ss=1;var a="razdwatrzy";return ti=function(){return typeof a.contains!="function"?!1:a.contains("dwa")===!0&&a.contains("foo")===!1},ti}var ni,As;function zu(){if(As)return ni;As=1;var a=String.prototype.indexOf;return ni=function(e){return a.call(this,e,arguments[1])>-1},ni}var ri,Ds;function F1(){return Ds||(Ds=1,ri=Gu()()?String.prototype.contains:zu()),ri}var Ms;function xn(){if(Ms)return za.exports;Ms=1;var a=ar(),e=w1(),t=No(),n=y1(),i=F1(),r=za.exports=function(o,h){var u,v,b,y,C;return arguments.length<2||typeof o!="string"?(y=h,h=o,o=null):y=arguments[2],a(o)?(u=i.call(o,"c"),v=i.call(o,"e"),b=i.call(o,"w")):(u=b=!0,v=!1),C={value:h,configurable:u,enumerable:v,writable:b},y?t(n(y),C):C};return r.gs=function(o,h,u){var v,b,y,C;return typeof o!="string"?(y=u,u=h,h=o,o=null):y=arguments[3],a(h)?e(h)?a(u)?e(u)||(y=u,u=void 0):u=void 0:(y=h,h=u=void 0):h=void 0,a(o)?(v=i.call(o,"c"),b=i.call(o,"e")):(v=!0,b=!1),C={get:h,set:u,configurable:v,enumerable:b},y?t(n(y),C):C},za.exports}var ai,Ls;function pa(){if(Ls)return ai;Ls=1;var a=Object.prototype.toString,e=a.call((function(){return arguments})());return ai=function(t){return a.call(t)===e},ai}var ii,Rs;function va(){if(Rs)return ii;Rs=1;var a=Object.prototype.toString,e=a.call("");return ii=function(t){return typeof t=="string"||t&&typeof t=="object"&&(t instanceof String||a.call(t)===e)||!1},ii}var oi={exports:{}},si,Ps;function Hu(){return Ps||(Ps=1,si=function(){return typeof globalThis!="object"||!globalThis?!1:globalThis.Array===Array}),si}var li,Is;function qu(){if(Is)return li;Is=1;var a=function(){if(typeof self=="object"&&self)return self;if(typeof window=="object"&&window)return window;throw new Error("Unable to resolve global `this`")};return li=(function(){if(this)return this;try{Object.defineProperty(Object.prototype,"__global__",{get:function(){return this},configurable:!0})}catch{return a()}try{return __global__||a()}finally{delete Object.prototype.__global__}})(),li}var hi,Ts;function ba(){return Ts||(Ts=1,hi=Hu()()?globalThis:qu()),hi}var ci,Os;function Nu(){if(Os)return ci;Os=1;var a=ba(),e={object:!0,symbol:!0};return ci=function(){var t=a.Symbol,n;if(typeof t!="function")return!1;n=t("test symbol");try{String(n)}catch{return!1}return!(!e[typeof t.iterator]||!e[typeof t.toPrimitive]||!e[typeof t.toStringTag])},ci}var ui,Vs;function Wu(){return Vs||(Vs=1,ui=function(a){return a?typeof a=="symbol"?!0:!a.constructor||a.constructor.name!=="Symbol"?!1:a[a.constructor.toStringTag]==="Symbol":!1}),ui}var di,js;function k1(){if(js)return di;js=1;var a=Wu();return di=function(e){if(!a(e))throw new TypeError(e+" is not a symbol");return e},di}var mi,$s;function Zu(){if($s)return mi;$s=1;var a=xn(),e=Object.create,t=Object.defineProperty,n=Object.prototype,i=e(null);return mi=function(r){for(var o=0,h,u;i[r+(o||"")];)++o;return r+=o||"",i[r]=!0,h="@@"+r,t(n,h,a.gs(null,function(v){u||(u=!0,t(this,h,a(v)),u=!1)})),h},mi}var fi,Gs;function Yu(){if(Gs)return fi;Gs=1;var a=xn(),e=ba().Symbol;return fi=function(t){return Object.defineProperties(t,{hasInstance:a("",e&&e.hasInstance||t("hasInstance")),isConcatSpreadable:a("",e&&e.isConcatSpreadable||t("isConcatSpreadable")),iterator:a("",e&&e.iterator||t("iterator")),match:a("",e&&e.match||t("match")),replace:a("",e&&e.replace||t("replace")),search:a("",e&&e.search||t("search")),species:a("",e&&e.species||t("species")),split:a("",e&&e.split||t("split")),toPrimitive:a("",e&&e.toPrimitive||t("toPrimitive")),toStringTag:a("",e&&e.toStringTag||t("toStringTag")),unscopables:a("",e&&e.unscopables||t("unscopables"))})},fi}var gi,zs;function Uu(){if(zs)return gi;zs=1;var a=xn(),e=k1(),t=Object.create(null);return gi=function(n){return Object.defineProperties(n,{for:a(function(i){return t[i]?t[i]:t[i]=n(String(i))}),keyFor:a(function(i){var r;e(i);for(r in t)if(t[r]===i)return r})})},gi}var pi,Hs;function Ku(){if(Hs)return pi;Hs=1;var a=xn(),e=k1(),t=ba().Symbol,n=Zu(),i=Yu(),r=Uu(),o=Object.create,h=Object.defineProperties,u=Object.defineProperty,v,b,y;if(typeof t=="function")try{String(t()),y=!0}catch{}else t=null;return b=function(S){if(this instanceof b)throw new TypeError("Symbol is not a constructor");return v(S)},pi=v=function C(S){var A;if(this instanceof C)throw new TypeError("Symbol is not a constructor");return y?t(S):(A=o(b.prototype),S=S===void 0?"":String(S),h(A,{__description__:a("",S),__name__:a("",n(S))}))},i(v),r(v),h(b.prototype,{constructor:a(v),toString:a("",function(){return this.__name__})}),h(v.prototype,{toString:a(function(){return"Symbol ("+e(this).__description__+")"}),valueOf:a(function(){return e(this)})}),u(v.prototype,v.toPrimitive,a("",function(){var C=e(this);return typeof C=="symbol"?C:C.toString()})),u(v.prototype,v.toStringTag,a("c","Symbol")),u(b.prototype,v.toStringTag,a("c",v.prototype[v.toStringTag])),u(b.prototype,v.toPrimitive,a("c",v.prototype[v.toPrimitive])),pi}var vi,qs;function jn(){return qs||(qs=1,vi=Nu()()?ba().Symbol:Ku()),vi}var bi,Ns;function Ju(){if(Ns)return bi;Ns=1;var a=bn();return bi=function(){return a(this).length=0,this},bi}var xi,Ws;function Gr(){return Ws||(Ws=1,xi=function(a){if(typeof a!="function")throw new TypeError(a+" is not a function");return a}),xi}var Ci,Zs;function Xu(){if(Zs)return Ci;Zs=1;var a=ar(),e=_1(),t=Object.prototype.toString;return Ci=function(n){if(!a(n))return null;if(e(n)){var i=n.toString;if(typeof i!="function"||i===t)return null}try{return""+n}catch{return null}},Ci}var _i,Ys;function Qu(){return Ys||(Ys=1,_i=function(a){try{return a.toString()}catch{try{return String(a)}catch{return null}}}),_i}var wi,Us;function e2(){if(Us)return wi;Us=1;var a=Qu(),e=/[\n\r\u2028\u2029]/g;return wi=function(t){var n=a(t);return n===null?"<Non-coercible to string value>":(n.length>100&&(n=n.slice(0,99)+"…"),n=n.replace(e,function(i){switch(i){case`
-`:return"\\n";case"\r":return"\\r";case"\u2028":return"\\u2028";case"\u2029":return"\\u2029";default:throw new Error("Unexpected character")}}),n)},wi}var yi,Ks;function t2(){if(Ks)return yi;Ks=1;var a=Xu(),e=e2();return yi=function(t,n,i){i&&i.errorMessage&&(t=a(i.errorMessage));var r=t.indexOf("%v"),o=r>-1?e(n):null;if(i&&i.name){var h=t.indexOf("%n");if(h>-1){if(r>-1){var u,v,b,y;return h>r?(u=o,b=r,v=i.name,y=h):(u=i.name,b=h,v=o,y=r),t.slice(0,b)+u+t.slice(b+2,y)+v+t.slice(y+2)}return t.slice(0,h)+i.name+t.slice(h+2)}}return r>-1?t.slice(0,r)+o+t.slice(r+2):t},yi}var Fi,Js;function E1(){if(Js)return Fi;Js=1;var a=ar(),e=t2();return Fi=function(t,n,i){if(i&&!a(t)){if("default"in i)return i.default;if(i.isOptional)return null}var r=i&&i.Error||TypeError,o=new r(e(n,t,i));throw i&&i.errorCode&&(o.code=i.errorCode),o},Fi}var ki,Xs;function n2(){if(Xs)return ki;Xs=1;var a=E1(),e=ar();return ki=function(t){if(e(t))return t;var n=arguments[1],i=n&&n.name?"Expected a value for %n, received %v":"Cannot use %v";return a(t,i,n)},ki}var Ei,Qs;function r2(){if(Qs)return Ei;Qs=1;var a=E1(),e=w1();return Ei=function(t){if(e(t))return t;var n=arguments[1],i=n&&n.name?"Expected a plain function for %n, received %v":"%v is not a plain function";return a(t,i,n)},Ei}var Bi,el;function a2(){return el||(el=1,Bi=function(){var a=Array.from,e,t;return typeof a!="function"?!1:(e=["raz","dwa"],t=a(e),!!(t&&t!==e&&t[1]==="dwa"))}),Bi}var Si,tl;function i2(){if(tl)return Si;tl=1;var a=Object.prototype.toString,e=RegExp.prototype.test.bind(/^[object [A-Za-z0-9]*Function]$/);return Si=function(t){return typeof t=="function"&&e(a.call(t))},Si}var Ai,nl;function o2(){return nl||(nl=1,Ai=function(){var a=Math.sign;return typeof a!="function"?!1:a(10)===1&&a(-20)===-1}),Ai}var Di,rl;function s2(){return rl||(rl=1,Di=function(a){return a=Number(a),isNaN(a)||a===0?a:a>0?1:-1}),Di}var Mi,al;function l2(){return al||(al=1,Mi=o2()()?Math.sign:s2()),Mi}var Li,il;function h2(){if(il)return Li;il=1;var a=l2(),e=Math.abs,t=Math.floor;return Li=function(n){return isNaN(n)?0:(n=Number(n),n===0||!isFinite(n)?n:a(n)*t(e(n)))},Li}var Ri,ol;function c2(){if(ol)return Ri;ol=1;var a=h2(),e=Math.max;return Ri=function(t){return e(0,a(t))},Ri}var Pi,sl;function u2(){if(sl)return Pi;sl=1;var a=jn().iterator,e=pa(),t=i2(),n=c2(),i=Gr(),r=bn(),o=Vn(),h=va(),u=Array.isArray,v=Function.prototype.call,b={configurable:!0,enumerable:!0,writable:!0,value:null},y=Object.defineProperty;return Pi=function(C){var S=arguments[1],A=arguments[2],P,D,R,G,j,ne,M,ce,ve,Y;if(C=Object(r(C)),o(S)&&i(S),!this||this===Array||!t(this)){if(!S){if(e(C))return j=C.length,j!==1?Array.apply(null,C):(G=new Array(1),G[0]=C[0],G);if(u(C)){for(G=new Array(j=C.length),D=0;D<j;++D)G[D]=C[D];return G}}G=[]}else P=this;if(!u(C)){if((ve=C[a])!==void 0){for(M=i(ve).call(C),P&&(G=new P),ce=M.next(),D=0;!ce.done;)Y=S?v.call(S,A,ce.value,D):ce.value,P?(b.value=Y,y(G,D,b)):G[D]=Y,ce=M.next(),++D;j=D}else if(h(C)){for(j=C.length,P&&(G=new P),D=0,R=0;D<j;++D)Y=C[D],D+1<j&&(ne=Y.charCodeAt(0),ne>=55296&&ne<=56319&&(Y+=C[++D])),Y=S?v.call(S,A,Y,R):Y,P?(b.value=Y,y(G,R,b)):G[R]=Y,++R;j=R}}if(j===void 0)for(j=n(C.length),P&&(G=new P(j)),D=0;D<j;++D)Y=S?v.call(S,A,C[D],D):C[D],P?(b.value=Y,y(G,D,b)):G[D]=Y;return P&&(b.value=null,G.length=j),G},Pi}var Ii,ll;function d2(){return ll||(ll=1,Ii=a2()()?Array.from:u2()),Ii}var Ti,hl;function m2(){if(hl)return Ti;hl=1;var a=d2(),e=No(),t=bn();return Ti=function(n){var i=Object(t(n)),r=arguments[1],o=Object(arguments[2]);if(i!==n&&!r)return i;var h={};return r?a(r,function(u){(o.ensure||u in n)&&(h[u]=n[u])}):e(h,n),h},Ti}var Oi,cl;function f2(){if(cl)return Oi;cl=1;var a=Gr(),e=bn(),t=Function.prototype.bind,n=Function.prototype.call,i=Object.keys,r=Object.prototype.propertyIsEnumerable;return Oi=function(o,h){return function(u,v){var b,y=arguments[2],C=arguments[3];return u=Object(e(u)),a(v),b=i(u),C&&b.sort(typeof C=="function"?t.call(C,u):void 0),typeof o!="function"&&(o=b[o]),n.call(o,b,function(S,A){return r.call(u,S)?n.call(v,y,u[S],S,u,A):h})}},Oi}var Vi,ul;function g2(){return ul||(ul=1,Vi=f2()("forEach")),Vi}var ji,dl;function p2(){if(dl)return ji;dl=1;var a=Gr(),e=g2(),t=Function.prototype.call;return ji=function(n,i){var r={},o=arguments[2];return a(i),e(n,function(h,u,v,b){r[u]=t.call(i,o,h,u,v,b)}),r},ji}var $i,ml;function v2(){if(ml)return $i;ml=1;var a=ar(),e=n2(),t=r2(),n=m2(),i=y1(),r=p2(),o=Function.prototype.bind,h=Object.defineProperty,u=Object.prototype.hasOwnProperty,v;return v=function(b,y,C){var S=e(y)&&t(y.value),A;return A=n(y),delete A.writable,delete A.value,A.get=function(){return!C.overwriteDefinition&&u.call(this,b)?S:(y.value=o.call(S,C.resolveContext?C.resolveContext(this):this),h(this,b,y),this[b])},A},$i=function(b){var y=i(arguments[1]);return a(y.resolveContext)&&t(y.resolveContext),r(b,function(C,S){return v(S,C,y)})},$i}var Gi,fl;function B1(){if(fl)return Gi;fl=1;var a=Ju(),e=No(),t=Gr(),n=bn(),i=xn(),r=v2(),o=jn(),h=Object.defineProperty,u=Object.defineProperties,v;return Gi=v=function(b,y){if(!(this instanceof v))throw new TypeError("Constructor requires 'new'");u(this,{__list__:i("w",n(b)),__context__:i("w",y),__nextIndex__:i("w",0)}),y&&(t(y.on),y.on("_add",this._onAdd),y.on("_delete",this._onDelete),y.on("_clear",this._onClear))},delete v.prototype.constructor,u(v.prototype,e({_next:i(function(){var b;if(this.__list__){if(this.__redo__&&(b=this.__redo__.shift(),b!==void 0))return b;if(this.__nextIndex__<this.__list__.length)return this.__nextIndex__++;this._unBind()}}),next:i(function(){return this._createResult(this._next())}),_createResult:i(function(b){return b===void 0?{done:!0,value:void 0}:{done:!1,value:this._resolve(b)}}),_resolve:i(function(b){return this.__list__[b]}),_unBind:i(function(){this.__list__=null,delete this.__redo__,this.__context__&&(this.__context__.off("_add",this._onAdd),this.__context__.off("_delete",this._onDelete),this.__context__.off("_clear",this._onClear),this.__context__=null)}),toString:i(function(){return"[object "+(this[o.toStringTag]||"Object")+"]"})},r({_onAdd:i(function(b){if(!(b>=this.__nextIndex__)){if(++this.__nextIndex__,!this.__redo__){h(this,"__redo__",i("c",[b]));return}this.__redo__.forEach(function(y,C){y>=b&&(this.__redo__[C]=++y)},this),this.__redo__.push(b)}}),_onDelete:i(function(b){var y;b>=this.__nextIndex__||(--this.__nextIndex__,this.__redo__&&(y=this.__redo__.indexOf(b),y!==-1&&this.__redo__.splice(y,1),this.__redo__.forEach(function(C,S){C>b&&(this.__redo__[S]=--C)},this)))}),_onClear:i(function(){this.__redo__&&a.call(this.__redo__),this.__nextIndex__=0})}))),h(v.prototype,o.iterator,i(function(){return this})),Gi}var gl;function b2(){if(gl)return oi.exports;gl=1;var a=qo(),e=F1(),t=xn(),n=jn(),i=B1(),r=Object.defineProperty,o;return o=oi.exports=function(h,u){if(!(this instanceof o))throw new TypeError("Constructor requires 'new'");i.call(this,h),u?e.call(u,"key+value")?u="key+value":e.call(u,"key")?u="key":u="value":u="value",r(this,"__kind__",t("",u))},a&&a(o,i),delete o.prototype.constructor,o.prototype=Object.create(i.prototype,{_resolve:t(function(h){return this.__kind__==="value"?this.__list__[h]:this.__kind__==="key+value"?[h,this.__list__[h]]:h})}),r(o.prototype,n.toStringTag,t("c","Array Iterator")),oi.exports}var zi={exports:{}},pl;function x2(){if(pl)return zi.exports;pl=1;var a=qo(),e=xn(),t=jn(),n=B1(),i=Object.defineProperty,r;return r=zi.exports=function(o){if(!(this instanceof r))throw new TypeError("Constructor requires 'new'");o=String(o),n.call(this,o),i(this,"__length__",e("",o.length))},a&&a(r,n),delete r.prototype.constructor,r.prototype=Object.create(n.prototype,{_next:e(function(){if(this.__list__){if(this.__nextIndex__<this.__length__)return this.__nextIndex__++;this._unBind()}}),_resolve:e(function(o){var h=this.__list__[o],u;return this.__nextIndex__===this.__length__?h:(u=h.charCodeAt(0),u>=55296&&u<=56319?h+this.__list__[this.__nextIndex__++]:h)})}),i(r.prototype,t.toStringTag,e("c","String Iterator")),zi.exports}var Hi,vl;function C2(){if(vl)return Hi;vl=1;var a=pa(),e=Vn(),t=va(),n=jn().iterator,i=Array.isArray;return Hi=function(r){return e(r)?i(r)||t(r)||a(r)?!0:typeof r[n]=="function":!1},Hi}var qi,bl;function _2(){if(bl)return qi;bl=1;var a=C2();return qi=function(e){if(!a(e))throw new TypeError(e+" is not iterable");return e},qi}var Ni,xl;function S1(){if(xl)return Ni;xl=1;var a=pa(),e=va(),t=b2(),n=x2(),i=_2(),r=jn().iterator;return Ni=function(o){return typeof i(o)[r]=="function"?o[r]():a(o)?new t(o):e(o)?new n(o):new t(o)},Ni}var Wi,Cl;function w2(){if(Cl)return Wi;Cl=1;var a=pa(),e=Gr(),t=va(),n=S1(),i=Array.isArray,r=Function.prototype.call,o=Array.prototype.some;return Wi=function(h,u){var v,b=arguments[2],y,C,S,A,P,D,R;if(i(h)||a(h)?v="array":t(h)?v="string":h=n(h),e(u),C=function(){S=!0},v==="array"){o.call(h,function(G){return r.call(u,b,G,C),S});return}if(v==="string"){for(P=h.length,A=0;A<P&&(D=h[A],A+1<P&&(R=D.charCodeAt(0),R>=55296&&R<=56319&&(D+=h[++A])),r.call(u,b,D,C),!S);++A);return}for(y=h.next();!y.done;){if(r.call(u,b,y.value,C),S)return;y=h.next()}},Wi}var Zi,_l;function y2(){return _l||(_l=1,Zi=(function(){return typeof WeakMap!="function"?!1:Object.prototype.toString.call(new WeakMap)==="[object WeakMap]"})()),Zi}var Yi,wl;function F2(){if(wl)return Yi;wl=1;var a=Vn(),e=qo(),t=Lu(),n=bn(),i=Ru(),r=xn(),o=S1(),h=w2(),u=jn().toStringTag,v=y2(),b=Array.isArray,y=Object.defineProperty,C=Object.prototype.hasOwnProperty,S=Object.getPrototypeOf,A;return Yi=A=function(){var P=arguments[0],D;if(!(this instanceof A))throw new TypeError("Constructor requires 'new'");return D=v&&e&&WeakMap!==A?e(new WeakMap,S(this)):this,a(P)&&(b(P)||(P=o(P))),y(D,"__weakMapData__",r("c","$weakMap$"+i())),P&&h(P,function(R){n(R),D.set(R[0],R[1])}),D},v&&(e&&e(A,WeakMap),A.prototype=Object.create(WeakMap.prototype,{constructor:r(A)})),Object.defineProperties(A.prototype,{delete:r(function(P){return C.call(t(P),this.__weakMapData__)?(delete P[this.__weakMapData__],!0):!1}),get:r(function(P){if(C.call(t(P),this.__weakMapData__))return P[this.__weakMapData__]}),has:r(function(P){return C.call(t(P),this.__weakMapData__)}),set:r(function(P,D){return y(t(P),this.__weakMapData__,r("c",D)),this}),toString:r(function(){return"[object WeakMap]"})}),y(A.prototype,u,r("c","WeakMap")),Yi}var Ui,yl;function k2(){return yl||(yl=1,Ui=Au()()?WeakMap:F2()),Ui}var Ki,Fl;function E2(){return Fl||(Fl=1,Ki=[{name:"black",hex:"#000000"},{name:"blue",hex:"#0000FF"},{name:"cyan",hex:"#00FFFF"},{name:"green",hex:"#008000"},{name:"teal",hex:"#008080"},{name:"turquoise",hex:"#40E0D0"},{name:"indigo",hex:"#4B0082"},{name:"gray",hex:"#808080"},{name:"purple",hex:"#800080"},{name:"brown",hex:"#A52A2A"},{name:"tan",hex:"#D2B48C"},{name:"violet",hex:"#EE82EE"},{name:"beige",hex:"#F5F5DC"},{name:"fuchsia",hex:"#FF00FF"},{name:"gold",hex:"#FFD700"},{name:"magenta",hex:"#FF00FF"},{name:"orange",hex:"#FFA500"},{name:"pink",hex:"#FFC0CB"},{name:"red",hex:"#FF0000"},{name:"white",hex:"#FFFFFF"},{name:"yellow",hex:"#FFFF00"}]),Ki}var Ji,kl;function B2(){return kl||(kl=1,Ji=[{name:"aqua",hex:"#00FFFF"},{name:"aliceblue",hex:"#F0F8FF"},{name:"antiquewhite",hex:"#FAEBD7"},{name:"black",hex:"#000000"},{name:"blue",hex:"#0000FF"},{name:"cyan",hex:"#00FFFF"},{name:"darkblue",hex:"#00008B"},{name:"darkcyan",hex:"#008B8B"},{name:"darkgreen",hex:"#006400"},{name:"darkturquoise",hex:"#00CED1"},{name:"deepskyblue",hex:"#00BFFF"},{name:"green",hex:"#008000"},{name:"lime",hex:"#00FF00"},{name:"mediumblue",hex:"#0000CD"},{name:"mediumspringgreen",hex:"#00FA9A"},{name:"navy",hex:"#000080"},{name:"springgreen",hex:"#00FF7F"},{name:"teal",hex:"#008080"},{name:"midnightblue",hex:"#191970"},{name:"dodgerblue",hex:"#1E90FF"},{name:"lightseagreen",hex:"#20B2AA"},{name:"forestgreen",hex:"#228B22"},{name:"seagreen",hex:"#2E8B57"},{name:"darkslategray",hex:"#2F4F4F"},{name:"darkslategrey",hex:"#2F4F4F"},{name:"limegreen",hex:"#32CD32"},{name:"mediumseagreen",hex:"#3CB371"},{name:"turquoise",hex:"#40E0D0"},{name:"royalblue",hex:"#4169E1"},{name:"steelblue",hex:"#4682B4"},{name:"darkslateblue",hex:"#483D8B"},{name:"mediumturquoise",hex:"#48D1CC"},{name:"indigo",hex:"#4B0082"},{name:"darkolivegreen",hex:"#556B2F"},{name:"cadetblue",hex:"#5F9EA0"},{name:"cornflowerblue",hex:"#6495ED"},{name:"mediumaquamarine",hex:"#66CDAA"},{name:"dimgray",hex:"#696969"},{name:"dimgrey",hex:"#696969"},{name:"slateblue",hex:"#6A5ACD"},{name:"olivedrab",hex:"#6B8E23"},{name:"slategray",hex:"#708090"},{name:"slategrey",hex:"#708090"},{name:"lightslategray",hex:"#778899"},{name:"lightslategrey",hex:"#778899"},{name:"mediumslateblue",hex:"#7B68EE"},{name:"lawngreen",hex:"#7CFC00"},{name:"aquamarine",hex:"#7FFFD4"},{name:"chartreuse",hex:"#7FFF00"},{name:"gray",hex:"#808080"},{name:"grey",hex:"#808080"},{name:"maroon",hex:"#800000"},{name:"olive",hex:"#808000"},{name:"purple",hex:"#800080"},{name:"lightskyblue",hex:"#87CEFA"},{name:"skyblue",hex:"#87CEEB"},{name:"blueviolet",hex:"#8A2BE2"},{name:"darkmagenta",hex:"#8B008B"},{name:"darkred",hex:"#8B0000"},{name:"saddlebrown",hex:"#8B4513"},{name:"darkseagreen",hex:"#8FBC8F"},{name:"lightgreen",hex:"#90EE90"},{name:"mediumpurple",hex:"#9370DB"},{name:"darkviolet",hex:"#9400D3"},{name:"palegreen",hex:"#98FB98"},{name:"darkorchid",hex:"#9932CC"},{name:"yellowgreen",hex:"#9ACD32"},{name:"sienna",hex:"#A0522D"},{name:"brown",hex:"#A52A2A"},{name:"darkgray",hex:"#A9A9A9"},{name:"darkgrey",hex:"#A9A9A9"},{name:"greenyellow",hex:"#ADFF2F"},{name:"lightblue",hex:"#ADD8E6"},{name:"paleturquoise",hex:"#AFEEEE"},{name:"lightsteelblue",hex:"#B0C4DE"},{name:"powderblue",hex:"#B0E0E6"},{name:"firebrick",hex:"#B22222"},{name:"darkgoldenrod",hex:"#B8860B"},{name:"mediumorchid",hex:"#BA55D3"},{name:"rosybrown",hex:"#BC8F8F"},{name:"darkkhaki",hex:"#BDB76B"},{name:"silver",hex:"#C0C0C0"},{name:"mediumvioletred",hex:"#C71585"},{name:"indianred",hex:"#CD5C5C"},{name:"peru",hex:"#CD853F"},{name:"chocolate",hex:"#D2691E"},{name:"tan",hex:"#D2B48C"},{name:"lightgray",hex:"#D3D3D3"},{name:"lightgrey",hex:"#D3D3D3"},{name:"thistle",hex:"#D8BFD8"},{name:"goldenrod",hex:"#DAA520"},{name:"orchid",hex:"#DA70D6"},{name:"palevioletred",hex:"#DB7093"},{name:"crimson",hex:"#DC143C"},{name:"gainsboro",hex:"#DCDCDC"},{name:"plum",hex:"#DDA0DD"},{name:"burlywood",hex:"#DEB887"},{name:"lightcyan",hex:"#E0FFFF"},{name:"lavender",hex:"#E6E6FA"},{name:"darksalmon",hex:"#E9967A"},{name:"palegoldenrod",hex:"#EEE8AA"},{name:"violet",hex:"#EE82EE"},{name:"azure",hex:"#F0FFFF"},{name:"honeydew",hex:"#F0FFF0"},{name:"khaki",hex:"#F0E68C"},{name:"lightcoral",hex:"#F08080"},{name:"sandybrown",hex:"#F4A460"},{name:"beige",hex:"#F5F5DC"},{name:"mintcream",hex:"#F5FFFA"},{name:"wheat",hex:"#F5DEB3"},{name:"whitesmoke",hex:"#F5F5F5"},{name:"ghostwhite",hex:"#F8F8FF"},{name:"lightgoldenrodyellow",hex:"#FAFAD2"},{name:"linen",hex:"#FAF0E6"},{name:"salmon",hex:"#FA8072"},{name:"oldlace",hex:"#FDF5E6"},{name:"bisque",hex:"#FFE4C4"},{name:"blanchedalmond",hex:"#FFEBCD"},{name:"coral",hex:"#FF7F50"},{name:"cornsilk",hex:"#FFF8DC"},{name:"darkorange",hex:"#FF8C00"},{name:"deeppink",hex:"#FF1493"},{name:"floralwhite",hex:"#FFFAF0"},{name:"fuchsia",hex:"#FF00FF"},{name:"gold",hex:"#FFD700"},{name:"hotpink",hex:"#FF69B4"},{name:"ivory",hex:"#FFFFF0"},{name:"lavenderblush",hex:"#FFF0F5"},{name:"lemonchiffon",hex:"#FFFACD"},{name:"lightpink",hex:"#FFB6C1"},{name:"lightsalmon",hex:"#FFA07A"},{name:"lightyellow",hex:"#FFFFE0"},{name:"magenta",hex:"#FF00FF"},{name:"mistyrose",hex:"#FFE4E1"},{name:"moccasin",hex:"#FFE4B5"},{name:"navajowhite",hex:"#FFDEAD"},{name:"orange",hex:"#FFA500"},{name:"orangered",hex:"#FF4500"},{name:"papayawhip",hex:"#FFEFD5"},{name:"peachpuff",hex:"#FFDAB9"},{name:"pink",hex:"#FFC0CB"},{name:"red",hex:"#FF0000"},{name:"seashell",hex:"#FFF5EE"},{name:"snow",hex:"#FFFAFA"},{name:"tomato",hex:"#FF6347"},{name:"white",hex:"#FFFFFF"},{name:"yellow",hex:"#FFFF00"}]),Ji}var Xi,El;function S2(){return El||(El=1,Xi=[{name:"Black",hex:"000000"},{name:"Navy Blue",hex:"000080"},{name:"Dark Blue",hex:"0000C8"},{name:"Blue",hex:"0000FF"},{name:"Stratos",hex:"000741"},{name:"Swamp",hex:"001B1C"},{name:"Resolution Blue",hex:"002387"},{name:"Deep Fir",hex:"002900"},{name:"Burnham",hex:"002E20"},{name:"International Klein Blue",hex:"002FA7"},{name:"Prussian Blue",hex:"003153"},{name:"Midnight Blue",hex:"003366"},{name:"Smalt",hex:"003399"},{name:"Deep Teal",hex:"003532"},{name:"Cyprus",hex:"003E40"},{name:"Kaitoke Green",hex:"004620"},{name:"Cobalt",hex:"0047AB"},{name:"Crusoe",hex:"004816"},{name:"Sherpa Blue",hex:"004950"},{name:"Endeavour",hex:"0056A7"},{name:"Camarone",hex:"00581A"},{name:"Science Blue",hex:"0066CC"},{name:"Blue Ribbon",hex:"0066FF"},{name:"Tropical Rain Forest",hex:"00755E"},{name:"Allports",hex:"0076A3"},{name:"Deep Cerulean",hex:"007BA7"},{name:"Lochmara",hex:"007EC7"},{name:"Azure Radiance",hex:"007FFF"},{name:"Teal",hex:"008080"},{name:"Bondi Blue",hex:"0095B6"},{name:"Pacific Blue",hex:"009DC4"},{name:"Persian Green",hex:"00A693"},{name:"Jade",hex:"00A86B"},{name:"Caribbean Green",hex:"00CC99"},{name:"Robin's Egg Blue",hex:"00CCCC"},{name:"Green",hex:"00FF00"},{name:"Spring Green",hex:"00FF7F"},{name:"Cyan / Aqua",hex:"00FFFF"},{name:"Blue Charcoal",hex:"010D1A"},{name:"Midnight",hex:"011635"},{name:"Holly",hex:"011D13"},{name:"Daintree",hex:"012731"},{name:"Cardin Green",hex:"01361C"},{name:"County Green",hex:"01371A"},{name:"Astronaut Blue",hex:"013E62"},{name:"Regal Blue",hex:"013F6A"},{name:"Aqua Deep",hex:"014B43"},{name:"Orient",hex:"015E85"},{name:"Blue Stone",hex:"016162"},{name:"Fun Green",hex:"016D39"},{name:"Pine Green",hex:"01796F"},{name:"Blue Lagoon",hex:"017987"},{name:"Deep Sea",hex:"01826B"},{name:"Green Haze",hex:"01A368"},{name:"English Holly",hex:"022D15"},{name:"Sherwood Green",hex:"02402C"},{name:"Congress Blue",hex:"02478E"},{name:"Evening Sea",hex:"024E46"},{name:"Bahama Blue",hex:"026395"},{name:"Observatory",hex:"02866F"},{name:"Cerulean",hex:"02A4D3"},{name:"Tangaroa",hex:"03163C"},{name:"Green Vogue",hex:"032B52"},{name:"Mosque",hex:"036A6E"},{name:"Midnight Moss",hex:"041004"},{name:"Black Pearl",hex:"041322"},{name:"Blue Whale",hex:"042E4C"},{name:"Zuccini",hex:"044022"},{name:"Teal Blue",hex:"044259"},{name:"Deep Cove",hex:"051040"},{name:"Gulf Blue",hex:"051657"},{name:"Venice Blue",hex:"055989"},{name:"Watercourse",hex:"056F57"},{name:"Catalina Blue",hex:"062A78"},{name:"Tiber",hex:"063537"},{name:"Gossamer",hex:"069B81"},{name:"Niagara",hex:"06A189"},{name:"Tarawera",hex:"073A50"},{name:"Jaguar",hex:"080110"},{name:"Black Bean",hex:"081910"},{name:"Deep Sapphire",hex:"082567"},{name:"Elf Green",hex:"088370"},{name:"Bright Turquoise",hex:"08E8DE"},{name:"Downriver",hex:"092256"},{name:"Palm Green",hex:"09230F"},{name:"Madison",hex:"09255D"},{name:"Bottle Green",hex:"093624"},{name:"Deep Sea Green",hex:"095859"},{name:"Salem",hex:"097F4B"},{name:"Black Russian",hex:"0A001C"},{name:"Dark Fern",hex:"0A480D"},{name:"Japanese Laurel",hex:"0A6906"},{name:"Atoll",hex:"0A6F75"},{name:"Cod Gray",hex:"0B0B0B"},{name:"Marshland",hex:"0B0F08"},{name:"Gordons Green",hex:"0B1107"},{name:"Black Forest",hex:"0B1304"},{name:"San Felix",hex:"0B6207"},{name:"Malachite",hex:"0BDA51"},{name:"Ebony",hex:"0C0B1D"},{name:"Woodsmoke",hex:"0C0D0F"},{name:"Racing Green",hex:"0C1911"},{name:"Surfie Green",hex:"0C7A79"},{name:"Blue Chill",hex:"0C8990"},{name:"Black Rock",hex:"0D0332"},{name:"Bunker",hex:"0D1117"},{name:"Aztec",hex:"0D1C19"},{name:"Bush",hex:"0D2E1C"},{name:"Cinder",hex:"0E0E18"},{name:"Firefly",hex:"0E2A30"},{name:"Torea Bay",hex:"0F2D9E"},{name:"Vulcan",hex:"10121D"},{name:"Green Waterloo",hex:"101405"},{name:"Eden",hex:"105852"},{name:"Arapawa",hex:"110C6C"},{name:"Ultramarine",hex:"120A8F"},{name:"Elephant",hex:"123447"},{name:"Jewel",hex:"126B40"},{name:"Diesel",hex:"130000"},{name:"Asphalt",hex:"130A06"},{name:"Blue Zodiac",hex:"13264D"},{name:"Parsley",hex:"134F19"},{name:"Nero",hex:"140600"},{name:"Tory Blue",hex:"1450AA"},{name:"Bunting",hex:"151F4C"},{name:"Denim",hex:"1560BD"},{name:"Genoa",hex:"15736B"},{name:"Mirage",hex:"161928"},{name:"Hunter Green",hex:"161D10"},{name:"Big Stone",hex:"162A40"},{name:"Celtic",hex:"163222"},{name:"Timber Green",hex:"16322C"},{name:"Gable Green",hex:"163531"},{name:"Pine Tree",hex:"171F04"},{name:"Chathams Blue",hex:"175579"},{name:"Deep Forest Green",hex:"182D09"},{name:"Blumine",hex:"18587A"},{name:"Palm Leaf",hex:"19330E"},{name:"Nile Blue",hex:"193751"},{name:"Fun Blue",hex:"1959A8"},{name:"Lucky Point",hex:"1A1A68"},{name:"Mountain Meadow",hex:"1AB385"},{name:"Tolopea",hex:"1B0245"},{name:"Haiti",hex:"1B1035"},{name:"Deep Koamaru",hex:"1B127B"},{name:"Acadia",hex:"1B1404"},{name:"Seaweed",hex:"1B2F11"},{name:"Biscay",hex:"1B3162"},{name:"Matisse",hex:"1B659D"},{name:"Crowshead",hex:"1C1208"},{name:"Rangoon Green",hex:"1C1E13"},{name:"Persian Blue",hex:"1C39BB"},{name:"Everglade",hex:"1C402E"},{name:"Elm",hex:"1C7C7D"},{name:"Green Pea",hex:"1D6142"},{name:"Creole",hex:"1E0F04"},{name:"Karaka",hex:"1E1609"},{name:"El Paso",hex:"1E1708"},{name:"Cello",hex:"1E385B"},{name:"Te Papa Green",hex:"1E433C"},{name:"Dodger Blue",hex:"1E90FF"},{name:"Eastern Blue",hex:"1E9AB0"},{name:"Night Rider",hex:"1F120F"},{name:"Java",hex:"1FC2C2"},{name:"Jacksons Purple",hex:"20208D"},{name:"Cloud Burst",hex:"202E54"},{name:"Blue Dianne",hex:"204852"},{name:"Eternity",hex:"211A0E"},{name:"Deep Blue",hex:"220878"},{name:"Forest Green",hex:"228B22"},{name:"Mallard",hex:"233418"},{name:"Violet",hex:"240A40"},{name:"Kilamanjaro",hex:"240C02"},{name:"Log Cabin",hex:"242A1D"},{name:"Black Olive",hex:"242E16"},{name:"Green House",hex:"24500F"},{name:"Graphite",hex:"251607"},{name:"Cannon Black",hex:"251706"},{name:"Port Gore",hex:"251F4F"},{name:"Shark",hex:"25272C"},{name:"Green Kelp",hex:"25311C"},{name:"Curious Blue",hex:"2596D1"},{name:"Paua",hex:"260368"},{name:"Paris M",hex:"26056A"},{name:"Wood Bark",hex:"261105"},{name:"Gondola",hex:"261414"},{name:"Steel Gray",hex:"262335"},{name:"Ebony Clay",hex:"26283B"},{name:"Bay of Many",hex:"273A81"},{name:"Plantation",hex:"27504B"},{name:"Eucalyptus",hex:"278A5B"},{name:"Oil",hex:"281E15"},{name:"Astronaut",hex:"283A77"},{name:"Mariner",hex:"286ACD"},{name:"Violent Violet",hex:"290C5E"},{name:"Bastille",hex:"292130"},{name:"Zeus",hex:"292319"},{name:"Charade",hex:"292937"},{name:"Jelly Bean",hex:"297B9A"},{name:"Jungle Green",hex:"29AB87"},{name:"Cherry Pie",hex:"2A0359"},{name:"Coffee Bean",hex:"2A140E"},{name:"Baltic Sea",hex:"2A2630"},{name:"Turtle Green",hex:"2A380B"},{name:"Cerulean Blue",hex:"2A52BE"},{name:"Sepia Black",hex:"2B0202"},{name:"Valhalla",hex:"2B194F"},{name:"Heavy Metal",hex:"2B3228"},{name:"Blue Gem",hex:"2C0E8C"},{name:"Revolver",hex:"2C1632"},{name:"Bleached Cedar",hex:"2C2133"},{name:"Lochinvar",hex:"2C8C84"},{name:"Mikado",hex:"2D2510"},{name:"Outer Space",hex:"2D383A"},{name:"St Tropaz",hex:"2D569B"},{name:"Jacaranda",hex:"2E0329"},{name:"Jacko Bean",hex:"2E1905"},{name:"Rangitoto",hex:"2E3222"},{name:"Rhino",hex:"2E3F62"},{name:"Sea Green",hex:"2E8B57"},{name:"Scooter",hex:"2EBFD4"},{name:"Onion",hex:"2F270E"},{name:"Governor Bay",hex:"2F3CB3"},{name:"Sapphire",hex:"2F519E"},{name:"Spectra",hex:"2F5A57"},{name:"Casal",hex:"2F6168"},{name:"Melanzane",hex:"300529"},{name:"Cocoa Brown",hex:"301F1E"},{name:"Woodrush",hex:"302A0F"},{name:"San Juan",hex:"304B6A"},{name:"Turquoise",hex:"30D5C8"},{name:"Eclipse",hex:"311C17"},{name:"Pickled Bluewood",hex:"314459"},{name:"Azure",hex:"315BA1"},{name:"Calypso",hex:"31728D"},{name:"Paradiso",hex:"317D82"},{name:"Persian Indigo",hex:"32127A"},{name:"Blackcurrant",hex:"32293A"},{name:"Mine Shaft",hex:"323232"},{name:"Stromboli",hex:"325D52"},{name:"Bilbao",hex:"327C14"},{name:"Astral",hex:"327DA0"},{name:"Christalle",hex:"33036B"},{name:"Thunder",hex:"33292F"},{name:"Shamrock",hex:"33CC99"},{name:"Tamarind",hex:"341515"},{name:"Mardi Gras",hex:"350036"},{name:"Valentino",hex:"350E42"},{name:"Jagger",hex:"350E57"},{name:"Tuna",hex:"353542"},{name:"Chambray",hex:"354E8C"},{name:"Martinique",hex:"363050"},{name:"Tuatara",hex:"363534"},{name:"Waiouru",hex:"363C0D"},{name:"Ming",hex:"36747D"},{name:"La Palma",hex:"368716"},{name:"Chocolate",hex:"370202"},{name:"Clinker",hex:"371D09"},{name:"Brown Tumbleweed",hex:"37290E"},{name:"Birch",hex:"373021"},{name:"Oracle",hex:"377475"},{name:"Blue Diamond",hex:"380474"},{name:"Grape",hex:"381A51"},{name:"Dune",hex:"383533"},{name:"Oxford Blue",hex:"384555"},{name:"Clover",hex:"384910"},{name:"Limed Spruce",hex:"394851"},{name:"Dell",hex:"396413"},{name:"Toledo",hex:"3A0020"},{name:"Sambuca",hex:"3A2010"},{name:"Jacarta",hex:"3A2A6A"},{name:"William",hex:"3A686C"},{name:"Killarney",hex:"3A6A47"},{name:"Keppel",hex:"3AB09E"},{name:"Temptress",hex:"3B000B"},{name:"Aubergine",hex:"3B0910"},{name:"Jon",hex:"3B1F1F"},{name:"Treehouse",hex:"3B2820"},{name:"Amazon",hex:"3B7A57"},{name:"Boston Blue",hex:"3B91B4"},{name:"Windsor",hex:"3C0878"},{name:"Rebel",hex:"3C1206"},{name:"Meteorite",hex:"3C1F76"},{name:"Dark Ebony",hex:"3C2005"},{name:"Camouflage",hex:"3C3910"},{name:"Bright Gray",hex:"3C4151"},{name:"Cape Cod",hex:"3C4443"},{name:"Lunar Green",hex:"3C493A"},{name:"Bean  ",hex:"3D0C02"},{name:"Bistre",hex:"3D2B1F"},{name:"Goblin",hex:"3D7D52"},{name:"Kingfisher Daisy",hex:"3E0480"},{name:"Cedar",hex:"3E1C14"},{name:"English Walnut",hex:"3E2B23"},{name:"Black Marlin",hex:"3E2C1C"},{name:"Ship Gray",hex:"3E3A44"},{name:"Pelorous",hex:"3EABBF"},{name:"Bronze",hex:"3F2109"},{name:"Cola",hex:"3F2500"},{name:"Madras",hex:"3F3002"},{name:"Minsk",hex:"3F307F"},{name:"Cabbage Pont",hex:"3F4C3A"},{name:"Tom Thumb",hex:"3F583B"},{name:"Mineral Green",hex:"3F5D53"},{name:"Puerto Rico",hex:"3FC1AA"},{name:"Harlequin",hex:"3FFF00"},{name:"Brown Pod",hex:"401801"},{name:"Cork",hex:"40291D"},{name:"Masala",hex:"403B38"},{name:"Thatch Green",hex:"403D19"},{name:"Fiord",hex:"405169"},{name:"Viridian",hex:"40826D"},{name:"Chateau Green",hex:"40A860"},{name:"Ripe Plum",hex:"410056"},{name:"Paco",hex:"411F10"},{name:"Deep Oak",hex:"412010"},{name:"Merlin",hex:"413C37"},{name:"Gun Powder",hex:"414257"},{name:"East Bay",hex:"414C7D"},{name:"Royal Blue",hex:"4169E1"},{name:"Ocean Green",hex:"41AA78"},{name:"Burnt Maroon",hex:"420303"},{name:"Lisbon Brown",hex:"423921"},{name:"Faded Jade",hex:"427977"},{name:"Scarlet Gum",hex:"431560"},{name:"Iroko",hex:"433120"},{name:"Armadillo",hex:"433E37"},{name:"River Bed",hex:"434C59"},{name:"Green Leaf",hex:"436A0D"},{name:"Barossa",hex:"44012D"},{name:"Morocco Brown",hex:"441D00"},{name:"Mako",hex:"444954"},{name:"Kelp",hex:"454936"},{name:"San Marino",hex:"456CAC"},{name:"Picton Blue",hex:"45B1E8"},{name:"Loulou",hex:"460B41"},{name:"Crater Brown",hex:"462425"},{name:"Gray Asparagus",hex:"465945"},{name:"Steel Blue",hex:"4682B4"},{name:"Rustic Red",hex:"480404"},{name:"Bulgarian Rose",hex:"480607"},{name:"Clairvoyant",hex:"480656"},{name:"Cocoa Bean",hex:"481C1C"},{name:"Woody Brown",hex:"483131"},{name:"Taupe",hex:"483C32"},{name:"Van Cleef",hex:"49170C"},{name:"Brown Derby",hex:"492615"},{name:"Metallic Bronze",hex:"49371B"},{name:"Verdun Green",hex:"495400"},{name:"Blue Bayoux",hex:"496679"},{name:"Bismark",hex:"497183"},{name:"Bracken",hex:"4A2A04"},{name:"Deep Bronze",hex:"4A3004"},{name:"Mondo",hex:"4A3C30"},{name:"Tundora",hex:"4A4244"},{name:"Gravel",hex:"4A444B"},{name:"Trout",hex:"4A4E5A"},{name:"Pigment Indigo",hex:"4B0082"},{name:"Nandor",hex:"4B5D52"},{name:"Saddle",hex:"4C3024"},{name:"Abbey",hex:"4C4F56"},{name:"Blackberry",hex:"4D0135"},{name:"Cab Sav",hex:"4D0A18"},{name:"Indian Tan",hex:"4D1E01"},{name:"Cowboy",hex:"4D282D"},{name:"Livid Brown",hex:"4D282E"},{name:"Rock",hex:"4D3833"},{name:"Punga",hex:"4D3D14"},{name:"Bronzetone",hex:"4D400F"},{name:"Woodland",hex:"4D5328"},{name:"Mahogany",hex:"4E0606"},{name:"Bossanova",hex:"4E2A5A"},{name:"Matterhorn",hex:"4E3B41"},{name:"Bronze Olive",hex:"4E420C"},{name:"Mulled Wine",hex:"4E4562"},{name:"Axolotl",hex:"4E6649"},{name:"Wedgewood",hex:"4E7F9E"},{name:"Shakespeare",hex:"4EABD1"},{name:"Honey Flower",hex:"4F1C70"},{name:"Daisy Bush",hex:"4F2398"},{name:"Indigo",hex:"4F69C6"},{name:"Fern Green",hex:"4F7942"},{name:"Fruit Salad",hex:"4F9D5D"},{name:"Apple",hex:"4FA83D"},{name:"Mortar",hex:"504351"},{name:"Kashmir Blue",hex:"507096"},{name:"Cutty Sark",hex:"507672"},{name:"Emerald",hex:"50C878"},{name:"Emperor",hex:"514649"},{name:"Chalet Green",hex:"516E3D"},{name:"Como",hex:"517C66"},{name:"Smalt Blue",hex:"51808F"},{name:"Castro",hex:"52001F"},{name:"Maroon Oak",hex:"520C17"},{name:"Gigas",hex:"523C94"},{name:"Voodoo",hex:"533455"},{name:"Victoria",hex:"534491"},{name:"Hippie Green",hex:"53824B"},{name:"Heath",hex:"541012"},{name:"Judge Gray",hex:"544333"},{name:"Fuscous Gray",hex:"54534D"},{name:"Vida Loca",hex:"549019"},{name:"Cioccolato",hex:"55280C"},{name:"Saratoga",hex:"555B10"},{name:"Finlandia",hex:"556D56"},{name:"Havelock Blue",hex:"5590D9"},{name:"Fountain Blue",hex:"56B4BE"},{name:"Spring Leaves",hex:"578363"},{name:"Saddle Brown",hex:"583401"},{name:"Scarpa Flow",hex:"585562"},{name:"Cactus",hex:"587156"},{name:"Hippie Blue",hex:"589AAF"},{name:"Wine Berry",hex:"591D35"},{name:"Brown Bramble",hex:"592804"},{name:"Congo Brown",hex:"593737"},{name:"Millbrook",hex:"594433"},{name:"Waikawa Gray",hex:"5A6E9C"},{name:"Horizon",hex:"5A87A0"},{name:"Jambalaya",hex:"5B3013"},{name:"Bordeaux",hex:"5C0120"},{name:"Mulberry Wood",hex:"5C0536"},{name:"Carnaby Tan",hex:"5C2E01"},{name:"Comet",hex:"5C5D75"},{name:"Redwood",hex:"5D1E0F"},{name:"Don Juan",hex:"5D4C51"},{name:"Chicago",hex:"5D5C58"},{name:"Verdigris",hex:"5D5E37"},{name:"Dingley",hex:"5D7747"},{name:"Breaker Bay",hex:"5DA19F"},{name:"Kabul",hex:"5E483E"},{name:"Hemlock",hex:"5E5D3B"},{name:"Irish Coffee",hex:"5F3D26"},{name:"Mid Gray",hex:"5F5F6E"},{name:"Shuttle Gray",hex:"5F6672"},{name:"Aqua Forest",hex:"5FA777"},{name:"Tradewind",hex:"5FB3AC"},{name:"Horses Neck",hex:"604913"},{name:"Smoky",hex:"605B73"},{name:"Corduroy",hex:"606E68"},{name:"Danube",hex:"6093D1"},{name:"Espresso",hex:"612718"},{name:"Eggplant",hex:"614051"},{name:"Costa Del Sol",hex:"615D30"},{name:"Glade Green",hex:"61845F"},{name:"Buccaneer",hex:"622F30"},{name:"Quincy",hex:"623F2D"},{name:"Butterfly Bush",hex:"624E9A"},{name:"West Coast",hex:"625119"},{name:"Finch",hex:"626649"},{name:"Patina",hex:"639A8F"},{name:"Fern",hex:"63B76C"},{name:"Blue Violet",hex:"6456B7"},{name:"Dolphin",hex:"646077"},{name:"Storm Dust",hex:"646463"},{name:"Siam",hex:"646A54"},{name:"Nevada",hex:"646E75"},{name:"Cornflower Blue",hex:"6495ED"},{name:"Viking",hex:"64CCDB"},{name:"Rosewood",hex:"65000B"},{name:"Cherrywood",hex:"651A14"},{name:"Purple Heart",hex:"652DC1"},{name:"Fern Frond",hex:"657220"},{name:"Willow Grove",hex:"65745D"},{name:"Hoki",hex:"65869F"},{name:"Pompadour",hex:"660045"},{name:"Purple",hex:"660099"},{name:"Tyrian Purple",hex:"66023C"},{name:"Dark Tan",hex:"661010"},{name:"Silver Tree",hex:"66B58F"},{name:"Bright Green",hex:"66FF00"},{name:"Screamin' Green",hex:"66FF66"},{name:"Black Rose",hex:"67032D"},{name:"Scampi",hex:"675FA6"},{name:"Ironside Gray",hex:"676662"},{name:"Viridian Green",hex:"678975"},{name:"Christi",hex:"67A712"},{name:"Nutmeg Wood Finish",hex:"683600"},{name:"Zambezi",hex:"685558"},{name:"Salt Box",hex:"685E6E"},{name:"Tawny Port",hex:"692545"},{name:"Finn",hex:"692D54"},{name:"Scorpion",hex:"695F62"},{name:"Lynch",hex:"697E9A"},{name:"Spice",hex:"6A442E"},{name:"Himalaya",hex:"6A5D1B"},{name:"Soya Bean",hex:"6A6051"},{name:"Hairy Heath",hex:"6B2A14"},{name:"Royal Purple",hex:"6B3FA0"},{name:"Shingle Fawn",hex:"6B4E31"},{name:"Dorado",hex:"6B5755"},{name:"Bermuda Gray",hex:"6B8BA2"},{name:"Olive Drab",hex:"6B8E23"},{name:"Eminence",hex:"6C3082"},{name:"Turquoise Blue",hex:"6CDAE7"},{name:"Lonestar",hex:"6D0101"},{name:"Pine Cone",hex:"6D5E54"},{name:"Dove Gray",hex:"6D6C6C"},{name:"Juniper",hex:"6D9292"},{name:"Gothic",hex:"6D92A1"},{name:"Red Oxide",hex:"6E0902"},{name:"Moccaccino",hex:"6E1D14"},{name:"Pickled Bean",hex:"6E4826"},{name:"Dallas",hex:"6E4B26"},{name:"Kokoda",hex:"6E6D57"},{name:"Pale Sky",hex:"6E7783"},{name:"Cafe Royale",hex:"6F440C"},{name:"Flint",hex:"6F6A61"},{name:"Highland",hex:"6F8E63"},{name:"Limeade",hex:"6F9D02"},{name:"Downy",hex:"6FD0C5"},{name:"Persian Plum",hex:"701C1C"},{name:"Sepia",hex:"704214"},{name:"Antique Bronze",hex:"704A07"},{name:"Ferra",hex:"704F50"},{name:"Coffee",hex:"706555"},{name:"Slate Gray",hex:"708090"},{name:"Cedar Wood Finish",hex:"711A00"},{name:"Metallic Copper",hex:"71291D"},{name:"Affair",hex:"714693"},{name:"Studio",hex:"714AB2"},{name:"Tobacco Brown",hex:"715D47"},{name:"Yellow Metal",hex:"716338"},{name:"Peat",hex:"716B56"},{name:"Olivetone",hex:"716E10"},{name:"Storm Gray",hex:"717486"},{name:"Sirocco",hex:"718080"},{name:"Aquamarine Blue",hex:"71D9E2"},{name:"Venetian Red",hex:"72010F"},{name:"Old Copper",hex:"724A2F"},{name:"Go Ben",hex:"726D4E"},{name:"Raven",hex:"727B89"},{name:"Seance",hex:"731E8F"},{name:"Raw Umber",hex:"734A12"},{name:"Kimberly",hex:"736C9F"},{name:"Crocodile",hex:"736D58"},{name:"Crete",hex:"737829"},{name:"Xanadu",hex:"738678"},{name:"Spicy Mustard",hex:"74640D"},{name:"Limed Ash",hex:"747D63"},{name:"Rolling Stone",hex:"747D83"},{name:"Blue Smoke",hex:"748881"},{name:"Laurel",hex:"749378"},{name:"Mantis",hex:"74C365"},{name:"Russett",hex:"755A57"},{name:"Deluge",hex:"7563A8"},{name:"Cosmic",hex:"76395D"},{name:"Blue Marguerite",hex:"7666C6"},{name:"Lima",hex:"76BD17"},{name:"Sky Blue",hex:"76D7EA"},{name:"Dark Burgundy",hex:"770F05"},{name:"Crown of Thorns",hex:"771F1F"},{name:"Walnut",hex:"773F1A"},{name:"Pablo",hex:"776F61"},{name:"Pacifika",hex:"778120"},{name:"Oxley",hex:"779E86"},{name:"Pastel Green",hex:"77DD77"},{name:"Japanese Maple",hex:"780109"},{name:"Mocha",hex:"782D19"},{name:"Peanut",hex:"782F16"},{name:"Camouflage Green",hex:"78866B"},{name:"Wasabi",hex:"788A25"},{name:"Ship Cove",hex:"788BBA"},{name:"Sea Nymph",hex:"78A39C"},{name:"Roman Coffee",hex:"795D4C"},{name:"Old Lavender",hex:"796878"},{name:"Rum",hex:"796989"},{name:"Fedora",hex:"796A78"},{name:"Sandstone",hex:"796D62"},{name:"Spray",hex:"79DEEC"},{name:"Siren",hex:"7A013A"},{name:"Fuchsia Blue",hex:"7A58C1"},{name:"Boulder",hex:"7A7A7A"},{name:"Wild Blue Yonder",hex:"7A89B8"},{name:"De York",hex:"7AC488"},{name:"Red Beech",hex:"7B3801"},{name:"Cinnamon",hex:"7B3F00"},{name:"Yukon Gold",hex:"7B6608"},{name:"Tapa",hex:"7B7874"},{name:"Waterloo ",hex:"7B7C94"},{name:"Flax Smoke",hex:"7B8265"},{name:"Amulet",hex:"7B9F80"},{name:"Asparagus",hex:"7BA05B"},{name:"Kenyan Copper",hex:"7C1C05"},{name:"Pesto",hex:"7C7631"},{name:"Topaz",hex:"7C778A"},{name:"Concord",hex:"7C7B7A"},{name:"Jumbo",hex:"7C7B82"},{name:"Trendy Green",hex:"7C881A"},{name:"Gumbo",hex:"7CA1A6"},{name:"Acapulco",hex:"7CB0A1"},{name:"Neptune",hex:"7CB7BB"},{name:"Pueblo",hex:"7D2C14"},{name:"Bay Leaf",hex:"7DA98D"},{name:"Malibu",hex:"7DC8F7"},{name:"Bermuda",hex:"7DD8C6"},{name:"Copper Canyon",hex:"7E3A15"},{name:"Claret",hex:"7F1734"},{name:"Peru Tan",hex:"7F3A02"},{name:"Falcon",hex:"7F626D"},{name:"Mobster",hex:"7F7589"},{name:"Moody Blue",hex:"7F76D3"},{name:"Chartreuse",hex:"7FFF00"},{name:"Aquamarine",hex:"7FFFD4"},{name:"Maroon",hex:"800000"},{name:"Rose Bud Cherry",hex:"800B47"},{name:"Falu Red",hex:"801818"},{name:"Red Robin",hex:"80341F"},{name:"Vivid Violet",hex:"803790"},{name:"Russet",hex:"80461B"},{name:"Friar Gray",hex:"807E79"},{name:"Olive",hex:"808000"},{name:"Gray",hex:"808080"},{name:"Gulf Stream",hex:"80B3AE"},{name:"Glacier",hex:"80B3C4"},{name:"Seagull",hex:"80CCEA"},{name:"Nutmeg",hex:"81422C"},{name:"Spicy Pink",hex:"816E71"},{name:"Empress",hex:"817377"},{name:"Spanish Green",hex:"819885"},{name:"Sand Dune",hex:"826F65"},{name:"Gunsmoke",hex:"828685"},{name:"Battleship Gray",hex:"828F72"},{name:"Merlot",hex:"831923"},{name:"Shadow",hex:"837050"},{name:"Chelsea Cucumber",hex:"83AA5D"},{name:"Monte Carlo",hex:"83D0C6"},{name:"Plum",hex:"843179"},{name:"Granny Smith",hex:"84A0A0"},{name:"Chetwode Blue",hex:"8581D9"},{name:"Bandicoot",hex:"858470"},{name:"Bali Hai",hex:"859FAF"},{name:"Half Baked",hex:"85C4CC"},{name:"Red Devil",hex:"860111"},{name:"Lotus",hex:"863C3C"},{name:"Ironstone",hex:"86483C"},{name:"Bull Shot",hex:"864D1E"},{name:"Rusty Nail",hex:"86560A"},{name:"Bitter",hex:"868974"},{name:"Regent Gray",hex:"86949F"},{name:"Disco",hex:"871550"},{name:"Americano",hex:"87756E"},{name:"Hurricane",hex:"877C7B"},{name:"Oslo Gray",hex:"878D91"},{name:"Sushi",hex:"87AB39"},{name:"Spicy Mix",hex:"885342"},{name:"Kumera",hex:"886221"},{name:"Suva Gray",hex:"888387"},{name:"Avocado",hex:"888D65"},{name:"Camelot",hex:"893456"},{name:"Solid Pink",hex:"893843"},{name:"Cannon Pink",hex:"894367"},{name:"Makara",hex:"897D6D"},{name:"Burnt Umber",hex:"8A3324"},{name:"True V",hex:"8A73D6"},{name:"Clay Creek",hex:"8A8360"},{name:"Monsoon",hex:"8A8389"},{name:"Stack",hex:"8A8F8A"},{name:"Jordy Blue",hex:"8AB9F1"},{name:"Electric Violet",hex:"8B00FF"},{name:"Monarch",hex:"8B0723"},{name:"Corn Harvest",hex:"8B6B0B"},{name:"Olive Haze",hex:"8B8470"},{name:"Schooner",hex:"8B847E"},{name:"Natural Gray",hex:"8B8680"},{name:"Mantle",hex:"8B9C90"},{name:"Portage",hex:"8B9FEE"},{name:"Envy",hex:"8BA690"},{name:"Cascade",hex:"8BA9A5"},{name:"Riptide",hex:"8BE6D8"},{name:"Cardinal Pink",hex:"8C055E"},{name:"Mule Fawn",hex:"8C472F"},{name:"Potters Clay",hex:"8C5738"},{name:"Trendy Pink",hex:"8C6495"},{name:"Paprika",hex:"8D0226"},{name:"Sanguine Brown",hex:"8D3D38"},{name:"Tosca",hex:"8D3F3F"},{name:"Cement",hex:"8D7662"},{name:"Granite Green",hex:"8D8974"},{name:"Manatee",hex:"8D90A1"},{name:"Polo Blue",hex:"8DA8CC"},{name:"Red Berry",hex:"8E0000"},{name:"Rope",hex:"8E4D1E"},{name:"Opium",hex:"8E6F70"},{name:"Domino",hex:"8E775E"},{name:"Mamba",hex:"8E8190"},{name:"Nepal",hex:"8EABC1"},{name:"Pohutukawa",hex:"8F021C"},{name:"El Salva",hex:"8F3E33"},{name:"Korma",hex:"8F4B0E"},{name:"Squirrel",hex:"8F8176"},{name:"Vista Blue",hex:"8FD6B4"},{name:"Burgundy",hex:"900020"},{name:"Old Brick",hex:"901E1E"},{name:"Hemp",hex:"907874"},{name:"Almond Frost",hex:"907B71"},{name:"Sycamore",hex:"908D39"},{name:"Sangria",hex:"92000A"},{name:"Cumin",hex:"924321"},{name:"Beaver",hex:"926F5B"},{name:"Stonewall",hex:"928573"},{name:"Venus",hex:"928590"},{name:"Medium Purple",hex:"9370DB"},{name:"Cornflower",hex:"93CCEA"},{name:"Algae Green",hex:"93DFB8"},{name:"Copper Rust",hex:"944747"},{name:"Arrowtown",hex:"948771"},{name:"Scarlett",hex:"950015"},{name:"Strikemaster",hex:"956387"},{name:"Mountain Mist",hex:"959396"},{name:"Carmine",hex:"960018"},{name:"Brown",hex:"964B00"},{name:"Leather",hex:"967059"},{name:"Purple Mountain's Majesty",hex:"9678B6"},{name:"Lavender Purple",hex:"967BB6"},{name:"Pewter",hex:"96A8A1"},{name:"Summer Green",hex:"96BBAB"},{name:"Au Chico",hex:"97605D"},{name:"Wisteria",hex:"9771B5"},{name:"Atlantis",hex:"97CD2D"},{name:"Vin Rouge",hex:"983D61"},{name:"Lilac Bush",hex:"9874D3"},{name:"Bazaar",hex:"98777B"},{name:"Hacienda",hex:"98811B"},{name:"Pale Oyster",hex:"988D77"},{name:"Mint Green",hex:"98FF98"},{name:"Fresh Eggplant",hex:"990066"},{name:"Violet Eggplant",hex:"991199"},{name:"Tamarillo",hex:"991613"},{name:"Totem Pole",hex:"991B07"},{name:"Copper Rose",hex:"996666"},{name:"Amethyst",hex:"9966CC"},{name:"Mountbatten Pink",hex:"997A8D"},{name:"Blue Bell",hex:"9999CC"},{name:"Prairie Sand",hex:"9A3820"},{name:"Toast",hex:"9A6E61"},{name:"Gurkha",hex:"9A9577"},{name:"Olivine",hex:"9AB973"},{name:"Shadow Green",hex:"9AC2B8"},{name:"Oregon",hex:"9B4703"},{name:"Lemon Grass",hex:"9B9E8F"},{name:"Stiletto",hex:"9C3336"},{name:"Hawaiian Tan",hex:"9D5616"},{name:"Gull Gray",hex:"9DACB7"},{name:"Pistachio",hex:"9DC209"},{name:"Granny Smith Apple",hex:"9DE093"},{name:"Anakiwa",hex:"9DE5FF"},{name:"Chelsea Gem",hex:"9E5302"},{name:"Sepia Skin",hex:"9E5B40"},{name:"Sage",hex:"9EA587"},{name:"Citron",hex:"9EA91F"},{name:"Rock Blue",hex:"9EB1CD"},{name:"Morning Glory",hex:"9EDEE0"},{name:"Cognac",hex:"9F381D"},{name:"Reef Gold",hex:"9F821C"},{name:"Star Dust",hex:"9F9F9C"},{name:"Santas Gray",hex:"9FA0B1"},{name:"Sinbad",hex:"9FD7D3"},{name:"Feijoa",hex:"9FDD8C"},{name:"Tabasco",hex:"A02712"},{name:"Buttered Rum",hex:"A1750D"},{name:"Hit Gray",hex:"A1ADB5"},{name:"Citrus",hex:"A1C50A"},{name:"Aqua Island",hex:"A1DAD7"},{name:"Water Leaf",hex:"A1E9DE"},{name:"Flirt",hex:"A2006D"},{name:"Rouge",hex:"A23B6C"},{name:"Cape Palliser",hex:"A26645"},{name:"Gray Chateau",hex:"A2AAB3"},{name:"Edward",hex:"A2AEAB"},{name:"Pharlap",hex:"A3807B"},{name:"Amethyst Smoke",hex:"A397B4"},{name:"Blizzard Blue",hex:"A3E3ED"},{name:"Delta",hex:"A4A49D"},{name:"Wistful",hex:"A4A6D3"},{name:"Green Smoke",hex:"A4AF6E"},{name:"Jazzberry Jam",hex:"A50B5E"},{name:"Zorba",hex:"A59B91"},{name:"Bahia",hex:"A5CB0C"},{name:"Roof Terracotta",hex:"A62F20"},{name:"Paarl",hex:"A65529"},{name:"Barley Corn",hex:"A68B5B"},{name:"Donkey Brown",hex:"A69279"},{name:"Dawn",hex:"A6A29A"},{name:"Mexican Red",hex:"A72525"},{name:"Luxor Gold",hex:"A7882C"},{name:"Rich Gold",hex:"A85307"},{name:"Reno Sand",hex:"A86515"},{name:"Coral Tree",hex:"A86B6B"},{name:"Dusty Gray",hex:"A8989B"},{name:"Dull Lavender",hex:"A899E6"},{name:"Tallow",hex:"A8A589"},{name:"Bud",hex:"A8AE9C"},{name:"Locust",hex:"A8AF8E"},{name:"Norway",hex:"A8BD9F"},{name:"Chinook",hex:"A8E3BD"},{name:"Gray Olive",hex:"A9A491"},{name:"Aluminium",hex:"A9ACB6"},{name:"Cadet Blue",hex:"A9B2C3"},{name:"Schist",hex:"A9B497"},{name:"Tower Gray",hex:"A9BDBF"},{name:"Perano",hex:"A9BEF2"},{name:"Opal",hex:"A9C6C2"},{name:"Night Shadz",hex:"AA375A"},{name:"Fire",hex:"AA4203"},{name:"Muesli",hex:"AA8B5B"},{name:"Sandal",hex:"AA8D6F"},{name:"Shady Lady",hex:"AAA5A9"},{name:"Logan",hex:"AAA9CD"},{name:"Spun Pearl",hex:"AAABB7"},{name:"Regent St Blue",hex:"AAD6E6"},{name:"Magic Mint",hex:"AAF0D1"},{name:"Lipstick",hex:"AB0563"},{name:"Royal Heath",hex:"AB3472"},{name:"Sandrift",hex:"AB917A"},{name:"Cold Purple",hex:"ABA0D9"},{name:"Bronco",hex:"ABA196"},{name:"Limed Oak",hex:"AC8A56"},{name:"East Side",hex:"AC91CE"},{name:"Lemon Ginger",hex:"AC9E22"},{name:"Napa",hex:"ACA494"},{name:"Hillary",hex:"ACA586"},{name:"Cloudy",hex:"ACA59F"},{name:"Silver Chalice",hex:"ACACAC"},{name:"Swamp Green",hex:"ACB78E"},{name:"Spring Rain",hex:"ACCBB1"},{name:"Conifer",hex:"ACDD4D"},{name:"Celadon",hex:"ACE1AF"},{name:"Mandalay",hex:"AD781B"},{name:"Casper",hex:"ADBED1"},{name:"Moss Green",hex:"ADDFAD"},{name:"Padua",hex:"ADE6C4"},{name:"Green Yellow",hex:"ADFF2F"},{name:"Hippie Pink",hex:"AE4560"},{name:"Desert",hex:"AE6020"},{name:"Bouquet",hex:"AE809E"},{name:"Medium Carmine",hex:"AF4035"},{name:"Apple Blossom",hex:"AF4D43"},{name:"Brown Rust",hex:"AF593E"},{name:"Driftwood",hex:"AF8751"},{name:"Alpine",hex:"AF8F2C"},{name:"Lucky",hex:"AF9F1C"},{name:"Martini",hex:"AFA09E"},{name:"Bombay",hex:"AFB1B8"},{name:"Pigeon Post",hex:"AFBDD9"},{name:"Cadillac",hex:"B04C6A"},{name:"Matrix",hex:"B05D54"},{name:"Tapestry",hex:"B05E81"},{name:"Mai Tai",hex:"B06608"},{name:"Del Rio",hex:"B09A95"},{name:"Powder Blue",hex:"B0E0E6"},{name:"Inch Worm",hex:"B0E313"},{name:"Bright Red",hex:"B10000"},{name:"Vesuvius",hex:"B14A0B"},{name:"Pumpkin Skin",hex:"B1610B"},{name:"Santa Fe",hex:"B16D52"},{name:"Teak",hex:"B19461"},{name:"Fringy Flower",hex:"B1E2C1"},{name:"Ice Cold",hex:"B1F4E7"},{name:"Shiraz",hex:"B20931"},{name:"Biloba Flower",hex:"B2A1EA"},{name:"Tall Poppy",hex:"B32D29"},{name:"Fiery Orange",hex:"B35213"},{name:"Hot Toddy",hex:"B38007"},{name:"Taupe Gray",hex:"B3AF95"},{name:"La Rioja",hex:"B3C110"},{name:"Well Read",hex:"B43332"},{name:"Blush",hex:"B44668"},{name:"Jungle Mist",hex:"B4CFD3"},{name:"Turkish Rose",hex:"B57281"},{name:"Lavender",hex:"B57EDC"},{name:"Mongoose",hex:"B5A27F"},{name:"Olive Green",hex:"B5B35C"},{name:"Jet Stream",hex:"B5D2CE"},{name:"Cruise",hex:"B5ECDF"},{name:"Hibiscus",hex:"B6316C"},{name:"Thatch",hex:"B69D98"},{name:"Heathered Gray",hex:"B6B095"},{name:"Eagle",hex:"B6BAA4"},{name:"Spindle",hex:"B6D1EA"},{name:"Gum Leaf",hex:"B6D3BF"},{name:"Rust",hex:"B7410E"},{name:"Muddy Waters",hex:"B78E5C"},{name:"Sahara",hex:"B7A214"},{name:"Husk",hex:"B7A458"},{name:"Nobel",hex:"B7B1B1"},{name:"Heather",hex:"B7C3D0"},{name:"Madang",hex:"B7F0BE"},{name:"Milano Red",hex:"B81104"},{name:"Copper",hex:"B87333"},{name:"Gimblet",hex:"B8B56A"},{name:"Green Spring",hex:"B8C1B1"},{name:"Celery",hex:"B8C25D"},{name:"Sail",hex:"B8E0F9"},{name:"Chestnut",hex:"B94E48"},{name:"Crail",hex:"B95140"},{name:"Marigold",hex:"B98D28"},{name:"Wild Willow",hex:"B9C46A"},{name:"Rainee",hex:"B9C8AC"},{name:"Guardsman Red",hex:"BA0101"},{name:"Rock Spray",hex:"BA450C"},{name:"Bourbon",hex:"BA6F1E"},{name:"Pirate Gold",hex:"BA7F03"},{name:"Nomad",hex:"BAB1A2"},{name:"Submarine",hex:"BAC7C9"},{name:"Charlotte",hex:"BAEEF9"},{name:"Medium Red Violet",hex:"BB3385"},{name:"Brandy Rose",hex:"BB8983"},{name:"Rio Grande",hex:"BBD009"},{name:"Surf",hex:"BBD7C1"},{name:"Powder Ash",hex:"BCC9C2"},{name:"Tuscany",hex:"BD5E2E"},{name:"Quicksand",hex:"BD978E"},{name:"Silk",hex:"BDB1A8"},{name:"Malta",hex:"BDB2A1"},{name:"Chatelle",hex:"BDB3C7"},{name:"Lavender Gray",hex:"BDBBD7"},{name:"French Gray",hex:"BDBDC6"},{name:"Clay Ash",hex:"BDC8B3"},{name:"Loblolly",hex:"BDC9CE"},{name:"French Pass",hex:"BDEDFD"},{name:"London Hue",hex:"BEA6C3"},{name:"Pink Swan",hex:"BEB5B7"},{name:"Fuego",hex:"BEDE0D"},{name:"Rose of Sharon",hex:"BF5500"},{name:"Tide",hex:"BFB8B0"},{name:"Blue Haze",hex:"BFBED8"},{name:"Silver Sand",hex:"BFC1C2"},{name:"Key Lime Pie",hex:"BFC921"},{name:"Ziggurat",hex:"BFDBE2"},{name:"Lime",hex:"BFFF00"},{name:"Thunderbird",hex:"C02B18"},{name:"Mojo",hex:"C04737"},{name:"Old Rose",hex:"C08081"},{name:"Silver",hex:"C0C0C0"},{name:"Pale Leaf",hex:"C0D3B9"},{name:"Pixie Green",hex:"C0D8B6"},{name:"Tia Maria",hex:"C1440E"},{name:"Fuchsia Pink",hex:"C154C1"},{name:"Buddha Gold",hex:"C1A004"},{name:"Bison Hide",hex:"C1B7A4"},{name:"Tea",hex:"C1BAB0"},{name:"Gray Suit",hex:"C1BECD"},{name:"Sprout",hex:"C1D7B0"},{name:"Sulu",hex:"C1F07C"},{name:"Indochine",hex:"C26B03"},{name:"Twine",hex:"C2955D"},{name:"Cotton Seed",hex:"C2BDB6"},{name:"Pumice",hex:"C2CAC4"},{name:"Jagged Ice",hex:"C2E8E5"},{name:"Maroon Flush",hex:"C32148"},{name:"Indian Khaki",hex:"C3B091"},{name:"Pale Slate",hex:"C3BFC1"},{name:"Gray Nickel",hex:"C3C3BD"},{name:"Periwinkle Gray",hex:"C3CDE6"},{name:"Tiara",hex:"C3D1D1"},{name:"Tropical Blue",hex:"C3DDF9"},{name:"Cardinal",hex:"C41E3A"},{name:"Fuzzy Wuzzy Brown",hex:"C45655"},{name:"Orange Roughy",hex:"C45719"},{name:"Mist Gray",hex:"C4C4BC"},{name:"Coriander",hex:"C4D0B0"},{name:"Mint Tulip",hex:"C4F4EB"},{name:"Mulberry",hex:"C54B8C"},{name:"Nugget",hex:"C59922"},{name:"Tussock",hex:"C5994B"},{name:"Sea Mist",hex:"C5DBCA"},{name:"Yellow Green",hex:"C5E17A"},{name:"Brick Red",hex:"C62D42"},{name:"Contessa",hex:"C6726B"},{name:"Oriental Pink",hex:"C69191"},{name:"Roti",hex:"C6A84B"},{name:"Ash",hex:"C6C3B5"},{name:"Kangaroo",hex:"C6C8BD"},{name:"Las Palmas",hex:"C6E610"},{name:"Monza",hex:"C7031E"},{name:"Red Violet",hex:"C71585"},{name:"Coral Reef",hex:"C7BCA2"},{name:"Melrose",hex:"C7C1FF"},{name:"Cloud",hex:"C7C4BF"},{name:"Ghost",hex:"C7C9D5"},{name:"Pine Glade",hex:"C7CD90"},{name:"Botticelli",hex:"C7DDE5"},{name:"Antique Brass",hex:"C88A65"},{name:"Lilac",hex:"C8A2C8"},{name:"Hokey Pokey",hex:"C8A528"},{name:"Lily",hex:"C8AABF"},{name:"Laser",hex:"C8B568"},{name:"Edgewater",hex:"C8E3D7"},{name:"Piper",hex:"C96323"},{name:"Pizza",hex:"C99415"},{name:"Light Wisteria",hex:"C9A0DC"},{name:"Rodeo Dust",hex:"C9B29B"},{name:"Sundance",hex:"C9B35B"},{name:"Earls Green",hex:"C9B93B"},{name:"Silver Rust",hex:"C9C0BB"},{name:"Conch",hex:"C9D9D2"},{name:"Reef",hex:"C9FFA2"},{name:"Aero Blue",hex:"C9FFE5"},{name:"Flush Mahogany",hex:"CA3435"},{name:"Turmeric",hex:"CABB48"},{name:"Paris White",hex:"CADCD4"},{name:"Bitter Lemon",hex:"CAE00D"},{name:"Skeptic",hex:"CAE6DA"},{name:"Viola",hex:"CB8FA9"},{name:"Foggy Gray",hex:"CBCAB6"},{name:"Green Mist",hex:"CBD3B0"},{name:"Nebula",hex:"CBDBD6"},{name:"Persian Red",hex:"CC3333"},{name:"Burnt Orange",hex:"CC5500"},{name:"Ochre",hex:"CC7722"},{name:"Puce",hex:"CC8899"},{name:"Thistle Green",hex:"CCCAA8"},{name:"Periwinkle",hex:"CCCCFF"},{name:"Electric Lime",hex:"CCFF00"},{name:"Tenn",hex:"CD5700"},{name:"Chestnut Rose",hex:"CD5C5C"},{name:"Brandy Punch",hex:"CD8429"},{name:"Onahau",hex:"CDF4FF"},{name:"Sorrell Brown",hex:"CEB98F"},{name:"Cold Turkey",hex:"CEBABA"},{name:"Yuma",hex:"CEC291"},{name:"Chino",hex:"CEC7A7"},{name:"Eunry",hex:"CFA39D"},{name:"Old Gold",hex:"CFB53B"},{name:"Tasman",hex:"CFDCCF"},{name:"Surf Crest",hex:"CFE5D2"},{name:"Humming Bird",hex:"CFF9F3"},{name:"Scandal",hex:"CFFAF4"},{name:"Red Stage",hex:"D05F04"},{name:"Hopbush",hex:"D06DA1"},{name:"Meteor",hex:"D07D12"},{name:"Perfume",hex:"D0BEF8"},{name:"Prelude",hex:"D0C0E5"},{name:"Tea Green",hex:"D0F0C0"},{name:"Geebung",hex:"D18F1B"},{name:"Vanilla",hex:"D1BEA8"},{name:"Soft Amber",hex:"D1C6B4"},{name:"Celeste",hex:"D1D2CA"},{name:"Mischka",hex:"D1D2DD"},{name:"Pear",hex:"D1E231"},{name:"Hot Cinnamon",hex:"D2691E"},{name:"Raw Sienna",hex:"D27D46"},{name:"Careys Pink",hex:"D29EAA"},{name:"Tan",hex:"D2B48C"},{name:"Deco",hex:"D2DA97"},{name:"Blue Romance",hex:"D2F6DE"},{name:"Gossip",hex:"D2F8B0"},{name:"Sisal",hex:"D3CBBA"},{name:"Swirl",hex:"D3CDC5"},{name:"Charm",hex:"D47494"},{name:"Clam Shell",hex:"D4B6AF"},{name:"Straw",hex:"D4BF8D"},{name:"Akaroa",hex:"D4C4A8"},{name:"Bird Flower",hex:"D4CD16"},{name:"Iron",hex:"D4D7D9"},{name:"Geyser",hex:"D4DFE2"},{name:"Hawkes Blue",hex:"D4E2FC"},{name:"Grenadier",hex:"D54600"},{name:"Can Can",hex:"D591A4"},{name:"Whiskey",hex:"D59A6F"},{name:"Winter Hazel",hex:"D5D195"},{name:"Granny Apple",hex:"D5F6E3"},{name:"My Pink",hex:"D69188"},{name:"Tacha",hex:"D6C562"},{name:"Moon Raker",hex:"D6CEF6"},{name:"Quill Gray",hex:"D6D6D1"},{name:"Snowy Mint",hex:"D6FFDB"},{name:"New York Pink",hex:"D7837F"},{name:"Pavlova",hex:"D7C498"},{name:"Fog",hex:"D7D0FF"},{name:"Valencia",hex:"D84437"},{name:"Japonica",hex:"D87C63"},{name:"Thistle",hex:"D8BFD8"},{name:"Maverick",hex:"D8C2D5"},{name:"Foam",hex:"D8FCFA"},{name:"Cabaret",hex:"D94972"},{name:"Burning Sand",hex:"D99376"},{name:"Cameo",hex:"D9B99B"},{name:"Timberwolf",hex:"D9D6CF"},{name:"Tana",hex:"D9DCC1"},{name:"Link Water",hex:"D9E4F5"},{name:"Mabel",hex:"D9F7FF"},{name:"Cerise",hex:"DA3287"},{name:"Flame Pea",hex:"DA5B38"},{name:"Bamboo",hex:"DA6304"},{name:"Red Damask",hex:"DA6A41"},{name:"Orchid",hex:"DA70D6"},{name:"Copperfield",hex:"DA8A67"},{name:"Golden Grass",hex:"DAA520"},{name:"Zanah",hex:"DAECD6"},{name:"Iceberg",hex:"DAF4F0"},{name:"Oyster Bay",hex:"DAFAFF"},{name:"Cranberry",hex:"DB5079"},{name:"Petite Orchid",hex:"DB9690"},{name:"Di Serria",hex:"DB995E"},{name:"Alto",hex:"DBDBDB"},{name:"Frosted Mint",hex:"DBFFF8"},{name:"Crimson",hex:"DC143C"},{name:"Punch",hex:"DC4333"},{name:"Galliano",hex:"DCB20C"},{name:"Blossom",hex:"DCB4BC"},{name:"Wattle",hex:"DCD747"},{name:"Westar",hex:"DCD9D2"},{name:"Moon Mist",hex:"DCDDCC"},{name:"Caper",hex:"DCEDB4"},{name:"Swans Down",hex:"DCF0EA"},{name:"Swiss Coffee",hex:"DDD6D5"},{name:"White Ice",hex:"DDF9F1"},{name:"Cerise Red",hex:"DE3163"},{name:"Roman",hex:"DE6360"},{name:"Tumbleweed",hex:"DEA681"},{name:"Gold Tips",hex:"DEBA13"},{name:"Brandy",hex:"DEC196"},{name:"Wafer",hex:"DECBC6"},{name:"Sapling",hex:"DED4A4"},{name:"Barberry",hex:"DED717"},{name:"Beryl Green",hex:"DEE5C0"},{name:"Pattens Blue",hex:"DEF5FF"},{name:"Heliotrope",hex:"DF73FF"},{name:"Apache",hex:"DFBE6F"},{name:"Chenin",hex:"DFCD6F"},{name:"Lola",hex:"DFCFDB"},{name:"Willow Brook",hex:"DFECDA"},{name:"Chartreuse Yellow",hex:"DFFF00"},{name:"Mauve",hex:"E0B0FF"},{name:"Anzac",hex:"E0B646"},{name:"Harvest Gold",hex:"E0B974"},{name:"Calico",hex:"E0C095"},{name:"Baby Blue",hex:"E0FFFF"},{name:"Sunglo",hex:"E16865"},{name:"Equator",hex:"E1BC64"},{name:"Pink Flare",hex:"E1C0C8"},{name:"Periglacial Blue",hex:"E1E6D6"},{name:"Kidnapper",hex:"E1EAD4"},{name:"Tara",hex:"E1F6E8"},{name:"Mandy",hex:"E25465"},{name:"Terracotta",hex:"E2725B"},{name:"Golden Bell",hex:"E28913"},{name:"Shocking",hex:"E292C0"},{name:"Dixie",hex:"E29418"},{name:"Light Orchid",hex:"E29CD2"},{name:"Snuff",hex:"E2D8ED"},{name:"Mystic",hex:"E2EBED"},{name:"Apple Green",hex:"E2F3EC"},{name:"Razzmatazz",hex:"E30B5C"},{name:"Alizarin Crimson",hex:"E32636"},{name:"Cinnabar",hex:"E34234"},{name:"Cavern Pink",hex:"E3BEBE"},{name:"Peppermint",hex:"E3F5E1"},{name:"Mindaro",hex:"E3F988"},{name:"Deep Blush",hex:"E47698"},{name:"Gamboge",hex:"E49B0F"},{name:"Melanie",hex:"E4C2D5"},{name:"Twilight",hex:"E4CFDE"},{name:"Bone",hex:"E4D1C0"},{name:"Sunflower",hex:"E4D422"},{name:"Grain Brown",hex:"E4D5B7"},{name:"Zombie",hex:"E4D69B"},{name:"Frostee",hex:"E4F6E7"},{name:"Snow Flurry",hex:"E4FFD1"},{name:"Amaranth",hex:"E52B50"},{name:"Zest",hex:"E5841B"},{name:"Dust Storm",hex:"E5CCC9"},{name:"Stark White",hex:"E5D7BD"},{name:"Hampton",hex:"E5D8AF"},{name:"Bon Jour",hex:"E5E0E1"},{name:"Mercury",hex:"E5E5E5"},{name:"Polar",hex:"E5F9F6"},{name:"Trinidad",hex:"E64E03"},{name:"Gold Sand",hex:"E6BE8A"},{name:"Cashmere",hex:"E6BEA5"},{name:"Double Spanish White",hex:"E6D7B9"},{name:"Satin Linen",hex:"E6E4D4"},{name:"Harp",hex:"E6F2EA"},{name:"Off Green",hex:"E6F8F3"},{name:"Hint of Green",hex:"E6FFE9"},{name:"Tranquil",hex:"E6FFFF"},{name:"Mango Tango",hex:"E77200"},{name:"Christine",hex:"E7730A"},{name:"Tonys Pink",hex:"E79F8C"},{name:"Kobi",hex:"E79FC4"},{name:"Rose Fog",hex:"E7BCB4"},{name:"Corn",hex:"E7BF05"},{name:"Putty",hex:"E7CD8C"},{name:"Gray Nurse",hex:"E7ECE6"},{name:"Lily White",hex:"E7F8FF"},{name:"Bubbles",hex:"E7FEFF"},{name:"Fire Bush",hex:"E89928"},{name:"Shilo",hex:"E8B9B3"},{name:"Pearl Bush",hex:"E8E0D5"},{name:"Green White",hex:"E8EBE0"},{name:"Chrome White",hex:"E8F1D4"},{name:"Gin",hex:"E8F2EB"},{name:"Aqua Squeeze",hex:"E8F5F2"},{name:"Clementine",hex:"E96E00"},{name:"Burnt Sienna",hex:"E97451"},{name:"Tahiti Gold",hex:"E97C07"},{name:"Oyster Pink",hex:"E9CECD"},{name:"Confetti",hex:"E9D75A"},{name:"Ebb",hex:"E9E3E3"},{name:"Ottoman",hex:"E9F8ED"},{name:"Clear Day",hex:"E9FFFD"},{name:"Carissma",hex:"EA88A8"},{name:"Porsche",hex:"EAAE69"},{name:"Tulip Tree",hex:"EAB33B"},{name:"Rob Roy",hex:"EAC674"},{name:"Raffia",hex:"EADAB8"},{name:"White Rock",hex:"EAE8D4"},{name:"Panache",hex:"EAF6EE"},{name:"Solitude",hex:"EAF6FF"},{name:"Aqua Spring",hex:"EAF9F5"},{name:"Dew",hex:"EAFFFE"},{name:"Apricot",hex:"EB9373"},{name:"Zinnwaldite",hex:"EBC2AF"},{name:"Fuel Yellow",hex:"ECA927"},{name:"Ronchi",hex:"ECC54E"},{name:"French Lilac",hex:"ECC7EE"},{name:"Just Right",hex:"ECCDB9"},{name:"Wild Rice",hex:"ECE090"},{name:"Fall Green",hex:"ECEBBD"},{name:"Aths Special",hex:"ECEBCE"},{name:"Starship",hex:"ECF245"},{name:"Red Ribbon",hex:"ED0A3F"},{name:"Tango",hex:"ED7A1C"},{name:"Carrot Orange",hex:"ED9121"},{name:"Sea Pink",hex:"ED989E"},{name:"Tacao",hex:"EDB381"},{name:"Desert Sand",hex:"EDC9AF"},{name:"Pancho",hex:"EDCDAB"},{name:"Chamois",hex:"EDDCB1"},{name:"Primrose",hex:"EDEA99"},{name:"Frost",hex:"EDF5DD"},{name:"Aqua Haze",hex:"EDF5F5"},{name:"Zumthor",hex:"EDF6FF"},{name:"Narvik",hex:"EDF9F1"},{name:"Honeysuckle",hex:"EDFC84"},{name:"Lavender Magenta",hex:"EE82EE"},{name:"Beauty Bush",hex:"EEC1BE"},{name:"Chalky",hex:"EED794"},{name:"Almond",hex:"EED9C4"},{name:"Flax",hex:"EEDC82"},{name:"Bizarre",hex:"EEDEDA"},{name:"Double Colonial White",hex:"EEE3AD"},{name:"Cararra",hex:"EEEEE8"},{name:"Manz",hex:"EEEF78"},{name:"Tahuna Sands",hex:"EEF0C8"},{name:"Athens Gray",hex:"EEF0F3"},{name:"Tusk",hex:"EEF3C3"},{name:"Loafer",hex:"EEF4DE"},{name:"Catskill White",hex:"EEF6F7"},{name:"Twilight Blue",hex:"EEFDFF"},{name:"Jonquil",hex:"EEFF9A"},{name:"Rice Flower",hex:"EEFFE2"},{name:"Jaffa",hex:"EF863F"},{name:"Gallery",hex:"EFEFEF"},{name:"Porcelain",hex:"EFF2F3"},{name:"Mauvelous",hex:"F091A9"},{name:"Golden Dream",hex:"F0D52D"},{name:"Golden Sand",hex:"F0DB7D"},{name:"Buff",hex:"F0DC82"},{name:"Prim",hex:"F0E2EC"},{name:"Khaki",hex:"F0E68C"},{name:"Selago",hex:"F0EEFD"},{name:"Titan White",hex:"F0EEFF"},{name:"Alice Blue",hex:"F0F8FF"},{name:"Feta",hex:"F0FCEA"},{name:"Gold Drop",hex:"F18200"},{name:"Wewak",hex:"F19BAB"},{name:"Sahara Sand",hex:"F1E788"},{name:"Parchment",hex:"F1E9D2"},{name:"Blue Chalk",hex:"F1E9FF"},{name:"Mint Julep",hex:"F1EEC1"},{name:"Seashell",hex:"F1F1F1"},{name:"Saltpan",hex:"F1F7F2"},{name:"Tidal",hex:"F1FFAD"},{name:"Chiffon",hex:"F1FFC8"},{name:"Flamingo",hex:"F2552A"},{name:"Tangerine",hex:"F28500"},{name:"Mandys Pink",hex:"F2C3B2"},{name:"Concrete",hex:"F2F2F2"},{name:"Black Squeeze",hex:"F2FAFA"},{name:"Pomegranate",hex:"F34723"},{name:"Buttercup",hex:"F3AD16"},{name:"New Orleans",hex:"F3D69D"},{name:"Vanilla Ice",hex:"F3D9DF"},{name:"Sidecar",hex:"F3E7BB"},{name:"Dawn Pink",hex:"F3E9E5"},{name:"Wheatfield",hex:"F3EDCF"},{name:"Canary",hex:"F3FB62"},{name:"Orinoco",hex:"F3FBD4"},{name:"Carla",hex:"F3FFD8"},{name:"Hollywood Cerise",hex:"F400A1"},{name:"Sandy brown",hex:"F4A460"},{name:"Saffron",hex:"F4C430"},{name:"Ripe Lemon",hex:"F4D81C"},{name:"Janna",hex:"F4EBD3"},{name:"Pampas",hex:"F4F2EE"},{name:"Wild Sand",hex:"F4F4F4"},{name:"Zircon",hex:"F4F8FF"},{name:"Froly",hex:"F57584"},{name:"Cream Can",hex:"F5C85C"},{name:"Manhattan",hex:"F5C999"},{name:"Maize",hex:"F5D5A0"},{name:"Wheat",hex:"F5DEB3"},{name:"Sandwisp",hex:"F5E7A2"},{name:"Pot Pourri",hex:"F5E7E2"},{name:"Albescent White",hex:"F5E9D3"},{name:"Soft Peach",hex:"F5EDEF"},{name:"Ecru White",hex:"F5F3E5"},{name:"Beige",hex:"F5F5DC"},{name:"Golden Fizz",hex:"F5FB3D"},{name:"Australian Mint",hex:"F5FFBE"},{name:"French Rose",hex:"F64A8A"},{name:"Brilliant Rose",hex:"F653A6"},{name:"Illusion",hex:"F6A4C9"},{name:"Merino",hex:"F6F0E6"},{name:"Black Haze",hex:"F6F7F7"},{name:"Spring Sun",hex:"F6FFDC"},{name:"Violet Red",hex:"F7468A"},{name:"Chilean Fire",hex:"F77703"},{name:"Persian Pink",hex:"F77FBE"},{name:"Rajah",hex:"F7B668"},{name:"Azalea",hex:"F7C8DA"},{name:"We Peep",hex:"F7DBE6"},{name:"Quarter Spanish White",hex:"F7F2E1"},{name:"Whisper",hex:"F7F5FA"},{name:"Snow Drift",hex:"F7FAF7"},{name:"Casablanca",hex:"F8B853"},{name:"Chantilly",hex:"F8C3DF"},{name:"Cherub",hex:"F8D9E9"},{name:"Marzipan",hex:"F8DB9D"},{name:"Energy Yellow",hex:"F8DD5C"},{name:"Givry",hex:"F8E4BF"},{name:"White Linen",hex:"F8F0E8"},{name:"Magnolia",hex:"F8F4FF"},{name:"Spring Wood",hex:"F8F6F1"},{name:"Coconut Cream",hex:"F8F7DC"},{name:"White Lilac",hex:"F8F7FC"},{name:"Desert Storm",hex:"F8F8F7"},{name:"Texas",hex:"F8F99C"},{name:"Corn Field",hex:"F8FACD"},{name:"Mimosa",hex:"F8FDD3"},{name:"Carnation",hex:"F95A61"},{name:"Saffron Mango",hex:"F9BF58"},{name:"Carousel Pink",hex:"F9E0ED"},{name:"Dairy Cream",hex:"F9E4BC"},{name:"Portica",hex:"F9E663"},{name:"Amour",hex:"F9EAF3"},{name:"Rum Swizzle",hex:"F9F8E4"},{name:"Dolly",hex:"F9FF8B"},{name:"Sugar Cane",hex:"F9FFF6"},{name:"Ecstasy",hex:"FA7814"},{name:"Tan Hide",hex:"FA9D5A"},{name:"Corvette",hex:"FAD3A2"},{name:"Peach Yellow",hex:"FADFAD"},{name:"Turbo",hex:"FAE600"},{name:"Astra",hex:"FAEAB9"},{name:"Champagne",hex:"FAECCC"},{name:"Linen",hex:"FAF0E6"},{name:"Fantasy",hex:"FAF3F0"},{name:"Citrine White",hex:"FAF7D6"},{name:"Alabaster",hex:"FAFAFA"},{name:"Hint of Yellow",hex:"FAFDE4"},{name:"Milan",hex:"FAFFA4"},{name:"Brink Pink",hex:"FB607F"},{name:"Geraldine",hex:"FB8989"},{name:"Lavender Rose",hex:"FBA0E3"},{name:"Sea Buckthorn",hex:"FBA129"},{name:"Sun",hex:"FBAC13"},{name:"Lavender Pink",hex:"FBAED2"},{name:"Rose Bud",hex:"FBB2A3"},{name:"Cupid",hex:"FBBEDA"},{name:"Classic Rose",hex:"FBCCE7"},{name:"Apricot Peach",hex:"FBCEB1"},{name:"Banana Mania",hex:"FBE7B2"},{name:"Marigold Yellow",hex:"FBE870"},{name:"Festival",hex:"FBE96C"},{name:"Sweet Corn",hex:"FBEA8C"},{name:"Candy Corn",hex:"FBEC5D"},{name:"Hint of Red",hex:"FBF9F9"},{name:"Shalimar",hex:"FBFFBA"},{name:"Shocking Pink",hex:"FC0FC0"},{name:"Tickle Me Pink",hex:"FC80A5"},{name:"Tree Poppy",hex:"FC9C1D"},{name:"Lightning Yellow",hex:"FCC01E"},{name:"Goldenrod",hex:"FCD667"},{name:"Candlelight",hex:"FCD917"},{name:"Cherokee",hex:"FCDA98"},{name:"Double Pearl Lusta",hex:"FCF4D0"},{name:"Pearl Lusta",hex:"FCF4DC"},{name:"Vista White",hex:"FCF8F7"},{name:"Bianca",hex:"FCFBF3"},{name:"Moon Glow",hex:"FCFEDA"},{name:"China Ivory",hex:"FCFFE7"},{name:"Ceramic",hex:"FCFFF9"},{name:"Torch Red",hex:"FD0E35"},{name:"Wild Watermelon",hex:"FD5B78"},{name:"Crusta",hex:"FD7B33"},{name:"Sorbus",hex:"FD7C07"},{name:"Sweet Pink",hex:"FD9FA2"},{name:"Light Apricot",hex:"FDD5B1"},{name:"Pig Pink",hex:"FDD7E4"},{name:"Cinderella",hex:"FDE1DC"},{name:"Golden Glow",hex:"FDE295"},{name:"Lemon",hex:"FDE910"},{name:"Old Lace",hex:"FDF5E6"},{name:"Half Colonial White",hex:"FDF6D3"},{name:"Drover",hex:"FDF7AD"},{name:"Pale Prim",hex:"FDFEB8"},{name:"Cumulus",hex:"FDFFD5"},{name:"Persian Rose",hex:"FE28A2"},{name:"Sunset Orange",hex:"FE4C40"},{name:"Bittersweet",hex:"FE6F5E"},{name:"California",hex:"FE9D04"},{name:"Yellow Sea",hex:"FEA904"},{name:"Melon",hex:"FEBAAD"},{name:"Bright Sun",hex:"FED33C"},{name:"Dandelion",hex:"FED85D"},{name:"Salomie",hex:"FEDB8D"},{name:"Cape Honey",hex:"FEE5AC"},{name:"Remy",hex:"FEEBF3"},{name:"Oasis",hex:"FEEFCE"},{name:"Bridesmaid",hex:"FEF0EC"},{name:"Beeswax",hex:"FEF2C7"},{name:"Bleach White",hex:"FEF3D8"},{name:"Pipi",hex:"FEF4CC"},{name:"Half Spanish White",hex:"FEF4DB"},{name:"Wisp Pink",hex:"FEF4F8"},{name:"Provincial Pink",hex:"FEF5F1"},{name:"Half Dutch White",hex:"FEF7DE"},{name:"Solitaire",hex:"FEF8E2"},{name:"White Pointer",hex:"FEF8FF"},{name:"Off Yellow",hex:"FEF9E3"},{name:"Orange White",hex:"FEFCED"},{name:"Red",hex:"FF0000"},{name:"Rose",hex:"FF007F"},{name:"Purple Pizzazz",hex:"FF00CC"},{name:"Magenta / Fuchsia",hex:"FF00FF"},{name:"Scarlet",hex:"FF2400"},{name:"Wild Strawberry",hex:"FF3399"},{name:"Razzle Dazzle Rose",hex:"FF33CC"},{name:"Radical Red",hex:"FF355E"},{name:"Red Orange",hex:"FF3F34"},{name:"Coral Red",hex:"FF4040"},{name:"Vermilion",hex:"FF4D00"},{name:"International Orange",hex:"FF4F00"},{name:"Outrageous Orange",hex:"FF6037"},{name:"Blaze Orange",hex:"FF6600"},{name:"Pink Flamingo",hex:"FF66FF"},{name:"Orange",hex:"FF681F"},{name:"Hot Pink",hex:"FF69B4"},{name:"Persimmon",hex:"FF6B53"},{name:"Blush Pink",hex:"FF6FFF"},{name:"Burning Orange",hex:"FF7034"},{name:"Pumpkin",hex:"FF7518"},{name:"Flamenco",hex:"FF7D07"},{name:"Flush Orange",hex:"FF7F00"},{name:"Coral",hex:"FF7F50"},{name:"Salmon",hex:"FF8C69"},{name:"Pizazz",hex:"FF9000"},{name:"West Side",hex:"FF910F"},{name:"Pink Salmon",hex:"FF91A4"},{name:"Neon Carrot",hex:"FF9933"},{name:"Atomic Tangerine",hex:"FF9966"},{name:"Vivid Tangerine",hex:"FF9980"},{name:"Sunshade",hex:"FF9E2C"},{name:"Orange Peel",hex:"FFA000"},{name:"Mona Lisa",hex:"FFA194"},{name:"Web Orange",hex:"FFA500"},{name:"Carnation Pink",hex:"FFA6C9"},{name:"Hit Pink",hex:"FFAB81"},{name:"Yellow Orange",hex:"FFAE42"},{name:"Cornflower Lilac",hex:"FFB0AC"},{name:"Sundown",hex:"FFB1B3"},{name:"My Sin",hex:"FFB31F"},{name:"Texas Rose",hex:"FFB555"},{name:"Cotton Candy",hex:"FFB7D5"},{name:"Macaroni and Cheese",hex:"FFB97B"},{name:"Selective Yellow",hex:"FFBA00"},{name:"Koromiko",hex:"FFBD5F"},{name:"Amber",hex:"FFBF00"},{name:"Wax Flower",hex:"FFC0A8"},{name:"Pink",hex:"FFC0CB"},{name:"Your Pink",hex:"FFC3C0"},{name:"Supernova",hex:"FFC901"},{name:"Flesh",hex:"FFCBA4"},{name:"Sunglow",hex:"FFCC33"},{name:"Golden Tainoi",hex:"FFCC5C"},{name:"Peach Orange",hex:"FFCC99"},{name:"Chardonnay",hex:"FFCD8C"},{name:"Pastel Pink",hex:"FFD1DC"},{name:"Romantic",hex:"FFD2B7"},{name:"Grandis",hex:"FFD38C"},{name:"Gold",hex:"FFD700"},{name:"School bus Yellow",hex:"FFD800"},{name:"Cosmos",hex:"FFD8D9"},{name:"Mustard",hex:"FFDB58"},{name:"Peach Schnapps",hex:"FFDCD6"},{name:"Caramel",hex:"FFDDAF"},{name:"Tuft Bush",hex:"FFDDCD"},{name:"Watusi",hex:"FFDDCF"},{name:"Pink Lace",hex:"FFDDF4"},{name:"Navajo White",hex:"FFDEAD"},{name:"Frangipani",hex:"FFDEB3"},{name:"Pippin",hex:"FFE1DF"},{name:"Pale Rose",hex:"FFE1F2"},{name:"Negroni",hex:"FFE2C5"},{name:"Cream Brulee",hex:"FFE5A0"},{name:"Peach",hex:"FFE5B4"},{name:"Tequila",hex:"FFE6C7"},{name:"Kournikova",hex:"FFE772"},{name:"Sandy Beach",hex:"FFEAC8"},{name:"Karry",hex:"FFEAD4"},{name:"Broom",hex:"FFEC13"},{name:"Colonial White",hex:"FFEDBC"},{name:"Derby",hex:"FFEED8"},{name:"Vis Vis",hex:"FFEFA1"},{name:"Egg White",hex:"FFEFC1"},{name:"Papaya Whip",hex:"FFEFD5"},{name:"Fair Pink",hex:"FFEFEC"},{name:"Peach Cream",hex:"FFF0DB"},{name:"Lavender blush",hex:"FFF0F5"},{name:"Gorse",hex:"FFF14F"},{name:"Buttermilk",hex:"FFF1B5"},{name:"Pink Lady",hex:"FFF1D8"},{name:"Forget Me Not",hex:"FFF1EE"},{name:"Tutu",hex:"FFF1F9"},{name:"Picasso",hex:"FFF39D"},{name:"Chardon",hex:"FFF3F1"},{name:"Paris Daisy",hex:"FFF46E"},{name:"Barley White",hex:"FFF4CE"},{name:"Egg Sour",hex:"FFF4DD"},{name:"Sazerac",hex:"FFF4E0"},{name:"Serenade",hex:"FFF4E8"},{name:"Chablis",hex:"FFF4F3"},{name:"Seashell Peach",hex:"FFF5EE"},{name:"Sauvignon",hex:"FFF5F3"},{name:"Milk Punch",hex:"FFF6D4"},{name:"Varden",hex:"FFF6DF"},{name:"Rose White",hex:"FFF6F5"},{name:"Baja White",hex:"FFF8D1"},{name:"Gin Fizz",hex:"FFF9E2"},{name:"Early Dawn",hex:"FFF9E6"},{name:"Lemon Chiffon",hex:"FFFACD"},{name:"Bridal Heath",hex:"FFFAF4"},{name:"Scotch Mist",hex:"FFFBDC"},{name:"Soapstone",hex:"FFFBF9"},{name:"Witch Haze",hex:"FFFC99"},{name:"Buttery White",hex:"FFFCEA"},{name:"Island Spice",hex:"FFFCEE"},{name:"Cream",hex:"FFFDD0"},{name:"Chilean Heath",hex:"FFFDE6"},{name:"Travertine",hex:"FFFDE8"},{name:"Orchid White",hex:"FFFDF3"},{name:"Quarter Pearl Lusta",hex:"FFFDF4"},{name:"Half and Half",hex:"FFFEE1"},{name:"Apricot White",hex:"FFFEEC"},{name:"Rice Cake",hex:"FFFEF0"},{name:"Black White",hex:"FFFEF6"},{name:"Romance",hex:"FFFEFD"},{name:"Yellow",hex:"FFFF00"},{name:"Laser Lemon",hex:"FFFF66"},{name:"Pale Canary",hex:"FFFF99"},{name:"Portafino",hex:"FFFFB4"},{name:"Ivory",hex:"FFFFF0"},{name:"White",hex:"FFFFFF"}]),Xi}var Qi,Bl;function A2(){return Bl||(Bl=1,Qi=[{name:"Mahogany",hex:"#CD4A4A"},{name:"Fuzzy Wuzzy Brown",hex:"#CC6666"},{name:"Chestnut",hex:"#BC5D58"},{name:"Red Orange",hex:"#FF5349"},{name:"Sunset Orange",hex:"#FD5E53"},{name:"Bittersweet",hex:"#FD7C6E"},{name:"Melon",hex:"#FDBCB4"},{name:"Outrageous Orange",hex:"#FF6E4A"},{name:"Vivid Tangerine",hex:"#FFA089"},{name:"Burnt Sienna",hex:"#EA7E5D"},{name:"Brown",hex:"#B4674D"},{name:"Sepia",hex:"#A5694F"},{name:"Orange",hex:"#FF7538"},{name:"Burnt Orange",hex:"#FF7F49"},{name:"Copper",hex:"#DD9475"},{name:"Mango Tango",hex:"#FF8243"},{name:"Atomic Tangerine",hex:"#FFA474"},{name:"Beaver",hex:"#9F8170"},{name:"Antique Brass",hex:"#CD9575"},{name:"Desert Sand",hex:"#EFCDB8"},{name:"Raw Sienna",hex:"#D68A59"},{name:"Tumbleweed",hex:"#DEAA88"},{name:"Tan",hex:"#FAA76C"},{name:"Peach",hex:"#FFCFAB"},{name:"Macaroni and Cheese",hex:"#FFBD88"},{name:"Apricot",hex:"#FDD9B5"},{name:"Neon Carrot",hex:"#FFA343"},{name:"Almond",hex:"#EFDBC5"},{name:"Yellow Orange",hex:"#FFB653"},{name:"Gold",hex:"#E7C697"},{name:"Shadow",hex:"#8A795D"},{name:"Banana Mania",hex:"#FAE7B5"},{name:"Sunglow",hex:"#FFCF48"},{name:"Goldenrod",hex:"#FCD975"},{name:"Dandelion",hex:"#FDDB6D"},{name:"Yellow",hex:"#FCE883"},{name:"Green Yellow",hex:"#F0E891"},{name:"Spring Green",hex:"#ECEABE"},{name:"Olive Green",hex:"#BAB86C"},{name:"Laser Lemon",hex:"#FDFC74"},{name:"Unmellow Yellow",hex:"#FDFC74"},{name:"Canary",hex:"#FFFF99"},{name:"Yellow Green",hex:"#C5E384"},{name:"Inch Worm",hex:"#B2EC5D"},{name:"Asparagus",hex:"#87A96B"},{name:"Granny Smith Apple",hex:"#A8E4A0"},{name:"Electric Lime",hex:"#1DF914"},{name:"Screamin Green",hex:"#76FF7A"},{name:"Fern",hex:"#71BC78"},{name:"Forest Green",hex:"#6DAE81"},{name:"Sea Green",hex:"#9FE2BF"},{name:"Green",hex:"#1CAC78"},{name:"Mountain Meadow",hex:"#30BA8F"},{name:"Shamrock",hex:"#45CEA2"},{name:"Jungle Green",hex:"#3BB08F"},{name:"Caribbean Green",hex:"#1CD3A2"},{name:"Tropical Rain Forest",hex:"#17806D"},{name:"Pine Green",hex:"#158078"},{name:"Robin Egg Blue",hex:"#1FCECB"},{name:"Aquamarine",hex:"#78DBE2"},{name:"Turquoise Blue",hex:"#77DDE7"},{name:"Sky Blue",hex:"#80DAEB"},{name:"Outer Space",hex:"#414A4C"},{name:"Blue Green",hex:"#199EBD"},{name:"Pacific Blue",hex:"#1CA9C9"},{name:"Cerulean",hex:"#1DACD6"},{name:"Cornflower",hex:"#9ACEEB"},{name:"Midnight Blue",hex:"#1A4876"},{name:"Navy Blue",hex:"#1974D2"},{name:"Denim",hex:"#2B6CC4"},{name:"Blue",hex:"#1F75FE"},{name:"Periwinkle",hex:"#C5D0E6"},{name:"Cadet Blue",hex:"#B0B7C6"},{name:"Indigo",hex:"#5D76CB"},{name:"Wild Blue Yonder",hex:"#A2ADD0"},{name:"Manatee",hex:"#979AAA"},{name:"Blue Bell",hex:"#ADADD6"},{name:"Blue Violet",hex:"#7366BD"},{name:"Purple Heart",hex:"#7442C8"},{name:"Royal Purple",hex:"#7851A9"},{name:"Purple Mountains’ Majesty",hex:"#9D81BA"},{name:"Violet (Purple)",hex:"#926EAE"},{name:"Wisteria",hex:"#CDA4DE"},{name:"Vivid Violet",hex:"#8F509D"},{name:"Fuchsia",hex:"#C364C5"},{name:"Shocking Pink",hex:"#FB7EFD"},{name:"Pink Flamingo",hex:"#FC74FD"},{name:"Plum",hex:"#8E4585"},{name:"Hot Magenta",hex:"#FF1DCE"},{name:"Purple Pizzazz",hex:"#FF1DCE"},{name:"Razzle Dazzle Rose",hex:"#FF48D0"},{name:"Orchid",hex:"#E6A8D7"},{name:"Red Violet",hex:"#C0448F"},{name:"Eggplant",hex:"#6E5160"},{name:"Cerise",hex:"#DD4492"},{name:"Wild Strawberry",hex:"#FF43A4"},{name:"Magenta",hex:"#F664AF"},{name:"Lavender",hex:"#FCB4D5"},{name:"Cotton Candy",hex:"#FFBCD9"},{name:"Violet Red",hex:"#F75394"},{name:"Carnation Pink",hex:"#FFAACC"},{name:"Razzmatazz",hex:"#E3256B"},{name:"Piggy Pink",hex:"#FDD7E4"},{name:"Jazzberry Jam",hex:"#CA3767"},{name:"Blush",hex:"#DE5D83"},{name:"Tickle Me Pink",hex:"#FC89AC"},{name:"Pink Sherbet",hex:"#F780A1"},{name:"Maroon",hex:"#C8385A"},{name:"Red",hex:"#EE204D"},{name:"Radical Red",hex:"#FF496C"},{name:"Mauvelous",hex:"#EF98AA"},{name:"Wild Watermelon",hex:"#FC6C85"},{name:"Scarlet",hex:"#FC2847"},{name:"Salmon",hex:"#FF9BAA"},{name:"Brick Red",hex:"#CB4154"},{name:"White",hex:"#EDEDED"},{name:"Timberwolf",hex:"#DBD7D2"},{name:"Silver",hex:"#CDC5C2"},{name:"Gray",hex:"#95918C"},{name:"Black",hex:"#232323"}]),Qi}var eo,Sl;function D2(){return Sl||(Sl=1,eo=[{name:"red",hex:"#FF0000"},{name:"orange",hex:"#FFA500"},{name:"yellow",hex:"#FFFF00"},{name:"green",hex:"#008000"},{name:"blue",hex:"#0000FF"},{name:"indigo",hex:"#4B0082"},{name:"violet",hex:"#EE82EE"}]),eo}var to,Al;function M2(){return Al||(Al=1,to=[{name:"indigo",hex:"#4b0082"},{name:"gold",hex:"#ffd700"},{name:"hotpink",hex:"#ff69b4"},{name:"firebrick",hex:"#b22222"},{name:"indianred",hex:"#cd5c5c"},{name:"yellow",hex:"#ffff00"},{name:"mistyrose",hex:"#ffe4e1"},{name:"darkolivegreen",hex:"#556b2f"},{name:"olive",hex:"#808000"},{name:"darkseagreen",hex:"#8fbc8f"},{name:"pink",hex:"#ffc0cb"},{name:"tomato",hex:"#ff6347"},{name:"lightcoral",hex:"#f08080"},{name:"orangered",hex:"#ff4500"},{name:"navajowhite",hex:"#ffdead"},{name:"lime",hex:"#00ff00"},{name:"palegreen",hex:"#98fb98"},{name:"darkslategrey",hex:"#2f4f4f"},{name:"greenyellow",hex:"#adff2f"},{name:"burlywood",hex:"#deb887"},{name:"seashell",hex:"#fff5ee"},{name:"mediumspringgreen",hex:"#00fa9a"},{name:"fuchsia",hex:"#ff00ff"},{name:"papayawhip",hex:"#ffefd5"},{name:"blanchedalmond",hex:"#ffebcd"},{name:"chartreuse",hex:"#7fff00"},{name:"dimgray",hex:"#696969"},{name:"black",hex:"#000000"},{name:"peachpuff",hex:"#ffdab9"},{name:"springgreen",hex:"#00ff7f"},{name:"aquamarine",hex:"#7fffd4"},{name:"white",hex:"#ffffff"},{name:"orange",hex:"#ffa500"},{name:"lightsalmon",hex:"#ffa07a"},{name:"darkslategray",hex:"#2f4f4f"},{name:"brown",hex:"#a52a2a"},{name:"ivory",hex:"#fffff0"},{name:"dodgerblue",hex:"#1e90ff"},{name:"peru",hex:"#cd853f"},{name:"lawngreen",hex:"#7cfc00"},{name:"chocolate",hex:"#d2691e"},{name:"crimson",hex:"#dc143c"},{name:"forestgreen",hex:"#228b22"},{name:"darkgrey",hex:"#a9a9a9"},{name:"lightseagreen",hex:"#20b2aa"},{name:"cyan",hex:"#00ffff"},{name:"mintcream",hex:"#f5fffa"},{name:"silver",hex:"#c0c0c0"},{name:"antiquewhite",hex:"#faebd7"},{name:"mediumorchid",hex:"#ba55d3"},{name:"skyblue",hex:"#87ceeb"},{name:"gray",hex:"#808080"},{name:"darkturquoise",hex:"#00ced1"},{name:"goldenrod",hex:"#daa520"},{name:"darkgreen",hex:"#006400"},{name:"floralwhite",hex:"#fffaf0"},{name:"darkviolet",hex:"#9400d3"},{name:"darkgray",hex:"#a9a9a9"},{name:"moccasin",hex:"#ffe4b5"},{name:"saddlebrown",hex:"#8b4513"},{name:"grey",hex:"#808080"},{name:"darkslateblue",hex:"#483d8b"},{name:"lightskyblue",hex:"#87cefa"},{name:"lightpink",hex:"#ffb6c1"},{name:"mediumvioletred",hex:"#c71585"},{name:"slategrey",hex:"#708090"},{name:"red",hex:"#ff0000"},{name:"deeppink",hex:"#ff1493"},{name:"limegreen",hex:"#32cd32"},{name:"darkmagenta",hex:"#8b008b"},{name:"palegoldenrod",hex:"#eee8aa"},{name:"plum",hex:"#dda0dd"},{name:"turquoise",hex:"#40e0d0"},{name:"lightgrey",hex:"#d3d3d3"},{name:"lightgoldenrodyellow",hex:"#fafad2"},{name:"darkgoldenrod",hex:"#b8860b"},{name:"lavender",hex:"#e6e6fa"},{name:"maroon",hex:"#800000"},{name:"yellowgreen",hex:"#9acd32"},{name:"sandybrown",hex:"#f4a460"},{name:"thistle",hex:"#d8bfd8"},{name:"violet",hex:"#ee82ee"},{name:"navy",hex:"#000080"},{name:"magenta",hex:"#ff00ff"},{name:"dimgrey",hex:"#696969"},{name:"tan",hex:"#d2b48c"},{name:"rosybrown",hex:"#bc8f8f"},{name:"olivedrab",hex:"#6b8e23"},{name:"blue",hex:"#0000ff"},{name:"lightblue",hex:"#add8e6"},{name:"ghostwhite",hex:"#f8f8ff"},{name:"honeydew",hex:"#f0fff0"},{name:"cornflowerblue",hex:"#6495ed"},{name:"slateblue",hex:"#6a5acd"},{name:"linen",hex:"#faf0e6"},{name:"darkblue",hex:"#00008b"},{name:"powderblue",hex:"#b0e0e6"},{name:"seagreen",hex:"#2e8b57"},{name:"darkkhaki",hex:"#bdb76b"},{name:"snow",hex:"#fffafa"},{name:"sienna",hex:"#a0522d"},{name:"mediumblue",hex:"#0000cd"},{name:"royalblue",hex:"#4169e1"},{name:"lightcyan",hex:"#e0ffff"},{name:"green",hex:"#008000"},{name:"mediumpurple",hex:"#9370db"},{name:"midnightblue",hex:"#191970"},{name:"cornsilk",hex:"#fff8dc"},{name:"paleturquoise",hex:"#afeeee"},{name:"bisque",hex:"#ffe4c4"},{name:"slategray",hex:"#708090"},{name:"darkcyan",hex:"#008b8b"},{name:"khaki",hex:"#f0e68c"},{name:"wheat",hex:"#f5deb3"},{name:"teal",hex:"#008080"},{name:"darkorchid",hex:"#9932cc"},{name:"deepskyblue",hex:"#00bfff"},{name:"salmon",hex:"#fa8072"},{name:"darkred",hex:"#8b0000"},{name:"steelblue",hex:"#4682b4"},{name:"palevioletred",hex:"#db7093"},{name:"lightslategray",hex:"#778899"},{name:"aliceblue",hex:"#f0f8ff"},{name:"lightslategrey",hex:"#778899"},{name:"lightgreen",hex:"#90ee90"},{name:"orchid",hex:"#da70d6"},{name:"gainsboro",hex:"#dcdcdc"},{name:"mediumseagreen",hex:"#3cb371"},{name:"lightgray",hex:"#d3d3d3"},{name:"mediumturquoise",hex:"#48d1cc"},{name:"lemonchiffon",hex:"#fffacd"},{name:"cadetblue",hex:"#5f9ea0"},{name:"lightyellow",hex:"#ffffe0"},{name:"lavenderblush",hex:"#fff0f5"},{name:"coral",hex:"#ff7f50"},{name:"purple",hex:"#800080"},{name:"aqua",hex:"#00ffff"},{name:"whitesmoke",hex:"#f5f5f5"},{name:"mediumslateblue",hex:"#7b68ee"},{name:"darkorange",hex:"#ff8c00"},{name:"mediumaquamarine",hex:"#66cdaa"},{name:"darksalmon",hex:"#e9967a"},{name:"beige",hex:"#f5f5dc"},{name:"blueviolet",hex:"#8a2be2"},{name:"azure",hex:"#f0ffff"},{name:"lightsteelblue",hex:"#b0c4de"},{name:"oldlace",hex:"#fdf5e6"}]),to}var Dl;function L2(){if(Dl)return Da.exports;Dl=1;var a=Su(),e=k2(),t={basic:E2(),html:B2(),ntc:S2(),pantone:A2(),roygbiv:D2(),x11:M2()},n=new e,i=Da.exports=function(r,o){o=o||{};var h={color:r,options:o};if(n.has(h))return n.get(h);var u=String(o.distance).toLowerCase()==="deltae";r=a(r);var v={};for(var b in t)o.pick&&o.pick.indexOf(b)===-1||o.omit&&o.omit.indexOf(b)!==-1||(v[b]=t[b].map(function(y){return y.distance=u?a.deltaE(r,a(y.hex)):a.distance(r,a(y.hex)),y}).sort(function(y,C){return y.distance-C.distance}));return n.set(h,v),v};return i.chroma=a,i.lists=t,Da.exports}var R2=L2();const P2=Eu(R2);class tt{#e=L(_e(Ye()));get red(){return s(this.#e)}set red(e){F(this.#e,e,!0)}#t=L(_e(Ye()));get green(){return s(this.#t)}set green(e){F(this.#t,e,!0)}#n=L(_e(Ye()));get blue(){return s(this.#n)}set blue(e){F(this.#n,e,!0)}#r=L(_e(Ye()));get alpha(){return s(this.#r)}set alpha(e){F(this.#r,e,!0)}constructor(e,t,n,i=1){this.red=e,this.green=t,this.blue=n,this.alpha=i}serialize(){return this.hex}static deserialize(e){return tt.hex(e)}static get black(){return tt.rgb(0,0,0)}static get white(){return tt.rgb(255,255,255)}static rgb(e,t,n,i=1){return new tt(e,t,n,i)}static css(e,t=1){let{r:n,g:i,b:r}=I2[e];return new tt(n,i,r,t)}static from(e){return typeof e=="string"?tt.hex(e):Array.isArray(e)?tt.rgb(e[0],e[1],e[2]):"r"in e?tt.rgb(e.r,e.g,e.b):e.clone()}clone(){return new tt(this.red,this.green,this.blue)}equals(e){return this.hex===e.hex}get name(){return Object.values(P2(this.hex)).map(e=>({name:e[0].name,distance:e[0].distance})).toSorted((e,t)=>e.distance-t.distance)[0].name}get hue(){return this.hsl.h}get saturation(){return this.hsl.s}get lightness(){return this.hsl.l}get value(){return this.hsv.v}static tryHex(e){try{return tt.hex(e)}catch{return null}}static hex(e){e.startsWith("#")&&(e=e.substring(1)),(e.length===3||e.length===4)&&(e=e.split("").map(i=>i+i).join(""));let t=1;if(e.length===8&&(t=parseInt(e.substring(6,8),16)/255,e=e.substring(0,6)),e.length!==6)throw new Error("Invalid hex color: #"+e);const n=[0,0,0];for(let i=0;i<3;i++)n[i]=parseInt(e.substring(i*2,i*2+2),16);return new tt(n[0],n[1],n[2],t)}static hsl(e,t,n,i=1){t/=100,n/=100;const r=u=>(u+e/30)%12,o=t*Math.min(n,1-n),h=u=>n-o*Math.max(-1,Math.min(r(u)-3,Math.min(9-r(u),1)));return new tt(Math.round(255*h(0)),Math.round(255*h(8)),Math.round(255*h(4)),i)}static hsv(e,t,n,i=1){t/=100,n/=100;const r=(o,h=(o+e/60)%6)=>n-n*t*Math.max(Math.min(h,4-h,1),0);return new tt(Math.round(255*r(5)),Math.round(255*r(3)),Math.round(255*r(1)),i)}get rgb(){return this.red<<16|this.green<<8|this.blue}get hex(){const e=n=>n.toString(16).padStart(2,"0");let t=`#${e(this.red)}${e(this.green)}${e(this.blue)}`;return this.alpha<1&&(t+=e(Math.round(this.alpha*255))),t.toUpperCase()}get hsl(){const e=this.red/255,t=this.green/255,n=this.blue/255,i=Math.max(e,t,n),r=Math.min(e,t,n);let o=0,h=0,u=(i+r)/2;if(i!==r){const v=i-r;switch(h=u>.5?v/(2-i-r):v/(i+r),i){case e:o=(t-n)/v+(t<n?6:0);break;case t:o=(n-e)/v+2;break;case n:o=(e-t)/v+4;break}o/=6}return{h:Math.round(o*360),s:Math.round(h*100),l:Math.round(u*100)}}get hsv(){const e=this.red/255,t=this.green/255,n=this.blue/255,i=Math.max(e,t,n),r=Math.min(e,t,n);let o=0,h=i===0?0:(i-r)/i,u=i;if(i!==r){const v=i-r;switch(i){case e:o=(t-n)/v+(t<n?6:0);break;case t:o=(n-e)/v+2;break;case n:o=(e-t)/v+4;break}o/=6}return{h:Math.round(o*360),s:Math.round(h*100),v:Math.round(u*100)}}get brightness(){return(this.red*299+this.green*587+this.blue*114)/1e3}get luma(){return .2126*this.red+.7152*this.green+.0722*this.blue}get constrastColor(){return this.luma>=165?new tt(0,0,0):new tt(255,255,255)}contrastRatio(e){const t=Math.max(this.luma,e.luma)/255,n=Math.min(this.luma,e.luma)/255;return(t+.05)/(n+.05)}mix(e,t){t=Math.max(0,Math.min(1,t));const n=Math.round(this.red+(e.red-this.red)*t),i=Math.round(this.green+(e.green-this.green)*t),r=Math.round(this.blue+(e.blue-this.blue)*t),o=this.alpha+(e.alpha-this.alpha)*t;return new tt(n,i,r,o)}lighten(e){const{h:t,s:n,l:i}=this.hsl;return tt.hsl(t,n,Math.min(100,i+e),this.alpha)}darken(e){const{h:t,s:n,l:i}=this.hsl;return tt.hsl(t,n,Math.max(0,i-e),this.alpha)}saturate(e){const{h:t,s:n,l:i}=this.hsl;return tt.hsl(t,Math.min(100,n+e),i,this.alpha)}desaturate(e){const{h:t,s:n,l:i}=this.hsl;return tt.hsl(t,Math.max(0,n-e),i,this.alpha)}toString(){return this.alpha===1?`rgb(${this.red}, ${this.green}, ${this.blue})`:`rgba(${this.red}, ${this.green}, ${this.blue}, ${this.alpha.toFixed(2)})`}}const I2={aliceblue:{r:240,g:248,b:255},antiquewhite:{r:250,g:235,b:215},aqua:{r:0,g:255,b:255},aquamarine:{r:127,g:255,b:212},azure:{r:240,g:255,b:255},beige:{r:245,g:245,b:220},bisque:{r:255,g:228,b:196},black:{r:0,g:0,b:0},blanchedalmond:{r:255,g:235,b:205},blue:{r:0,g:0,b:255},blueviolet:{r:138,g:43,b:226},brown:{r:165,g:42,b:42},burlywood:{r:222,g:184,b:135},cadetblue:{r:95,g:158,b:160},chartreuse:{r:127,g:255,b:0},chocolate:{r:210,g:105,b:30},coral:{r:255,g:127,b:80},cornflowerblue:{r:100,g:149,b:237},cornsilk:{r:255,g:248,b:220},crimson:{r:220,g:20,b:60},cyan:{r:0,g:255,b:255},darkblue:{r:0,g:0,b:139},darkcyan:{r:0,g:139,b:139},darkgoldenrod:{r:184,g:134,b:11},darkgray:{r:169,g:169,b:169},darkgreen:{r:0,g:100,b:0},darkgrey:{r:169,g:169,b:169},darkkhaki:{r:189,g:183,b:107},darkmagenta:{r:139,g:0,b:139},darkolivegreen:{r:85,g:107,b:47},darkorange:{r:255,g:140,b:0},darkorchid:{r:153,g:50,b:204},darkred:{r:139,g:0,b:0},darksalmon:{r:233,g:150,b:122},darkseagreen:{r:143,g:188,b:143},darkslateblue:{r:72,g:61,b:139},darkslategray:{r:47,g:79,b:79},darkslategrey:{r:47,g:79,b:79},darkturquoise:{r:0,g:206,b:209},darkviolet:{r:148,g:0,b:211},deeppink:{r:255,g:20,b:147},deepskyblue:{r:0,g:191,b:255},dimgray:{r:105,g:105,b:105},dimgrey:{r:105,g:105,b:105},dodgerblue:{r:30,g:144,b:255},firebrick:{r:178,g:34,b:34},floralwhite:{r:255,g:250,b:240},forestgreen:{r:34,g:139,b:34},fuchsia:{r:255,g:0,b:255},gainsboro:{r:220,g:220,b:220},ghostwhite:{r:248,g:248,b:255},gold:{r:255,g:215,b:0},goldenrod:{r:218,g:165,b:32},gray:{r:128,g:128,b:128},green:{r:0,g:128,b:0},greenyellow:{r:173,g:255,b:47},grey:{r:128,g:128,b:128},honeydew:{r:240,g:255,b:240},hotpink:{r:255,g:105,b:180},indianred:{r:205,g:92,b:92},indigo:{r:75,g:0,b:130},ivory:{r:255,g:255,b:240},khaki:{r:240,g:230,b:140},lavender:{r:230,g:230,b:250},lavenderblush:{r:255,g:240,b:245},lawngreen:{r:124,g:252,b:0},lemonchiffon:{r:255,g:250,b:205},lightblue:{r:173,g:216,b:230},lightcoral:{r:240,g:128,b:128},lightcyan:{r:224,g:255,b:255},lightgoldenrodyellow:{r:250,g:250,b:210},lightgray:{r:211,g:211,b:211},lightgreen:{r:144,g:238,b:144},lightgrey:{r:211,g:211,b:211},lightpink:{r:255,g:182,b:193},lightsalmon:{r:255,g:160,b:122},lightseagreen:{r:32,g:178,b:170},lightskyblue:{r:135,g:206,b:250},lightslategray:{r:119,g:136,b:153},lightslategrey:{r:119,g:136,b:153},lightsteelblue:{r:176,g:196,b:222},lightyellow:{r:255,g:255,b:224},lime:{r:0,g:255,b:0},limegreen:{r:50,g:205,b:50},linen:{r:250,g:240,b:230},magenta:{r:255,g:0,b:255},maroon:{r:128,g:0,b:0},mediumaquamarine:{r:102,g:205,b:170},mediumblue:{r:0,g:0,b:205},mediumorchid:{r:186,g:85,b:211},mediumpurple:{r:147,g:112,b:219},mediumseagreen:{r:60,g:179,b:113},mediumslateblue:{r:123,g:104,b:238},mediumspringgreen:{r:0,g:250,b:154},mediumturquoise:{r:72,g:209,b:204},mediumvioletred:{r:199,g:21,b:133},midnightblue:{r:25,g:25,b:112},mintcream:{r:245,g:255,b:250},mistyrose:{r:255,g:228,b:225},moccasin:{r:255,g:228,b:181},navajowhite:{r:255,g:222,b:173},navy:{r:0,g:0,b:128},oldlace:{r:253,g:245,b:230},olive:{r:128,g:128,b:0},olivedrab:{r:107,g:142,b:35},orange:{r:255,g:165,b:0},orangered:{r:255,g:69,b:0},orchid:{r:218,g:112,b:214},palegoldenrod:{r:238,g:232,b:170},palegreen:{r:152,g:251,b:152},paleturquoise:{r:175,g:238,b:238},palevioletred:{r:219,g:112,b:147},papayawhip:{r:255,g:239,b:213},peachpuff:{r:255,g:218,b:185},peru:{r:205,g:133,b:63},pink:{r:255,g:192,b:203},plum:{r:221,g:160,b:221},powderblue:{r:176,g:224,b:230},purple:{r:128,g:0,b:128},rebeccapurple:{r:102,g:51,b:153},red:{r:255,g:0,b:0},rosybrown:{r:188,g:143,b:143},royalblue:{r:65,g:105,b:225},saddlebrown:{r:139,g:69,b:19},salmon:{r:250,g:128,b:114},sandybrown:{r:244,g:164,b:96},seagreen:{r:46,g:139,b:87},seashell:{r:255,g:245,b:238},sienna:{r:160,g:82,b:45},silver:{r:192,g:192,b:192},skyblue:{r:135,g:206,b:235},slateblue:{r:106,g:90,b:205},slategray:{r:112,g:128,b:144},slategrey:{r:112,g:128,b:144},snow:{r:255,g:250,b:250},springgreen:{r:0,g:255,b:127},steelblue:{r:70,g:130,b:180},tan:{r:210,g:180,b:140},teal:{r:0,g:128,b:128},thistle:{r:216,g:191,b:216},tomato:{r:255,g:99,b:71},turquoise:{r:64,g:224,b:208},violet:{r:238,g:130,b:238},wheat:{r:245,g:222,b:179},white:{r:255,g:255,b:255},whitesmoke:{r:245,g:245,b:245},yellow:{r:255,g:255,b:0},yellowgreen:{r:154,g:205,b:50}};class T2{#e=L(_e(Ye()));get month(){return s(this.#e)}set month(e){F(this.#e,e,!0)}#t=L(_e(Ye()));get day(){return s(this.#t)}set day(e){F(this.#t,e,!0)}serialize(){throw new Error("implement ser/de on datetime")}static deserialize(e){throw new Error("implement ser/de on datetime")}clone(){throw new Error("implement clone datetime")}}class A1{_tag="type instance"}class er{#e=L(_e(Ye()));get count_(){return s(this.#e)}set count_(e){F(this.#e,e,!0)}constructor(e){this.count_=e}serialize(){return{count:this.count,units:this.unit().abbreviation()}}static deserialize(e){const t=O2[e.units];return new t(e.count)}to(e){return e.fromStandard(this.toStandard())}get count(){return this.count_}}class Dr extends A1{static of(e,t){return new t(e)}static units(){return[Rn,Jn]}static standard(){return Rn}static name(){return"length"}}class Rn extends er{_meters=!0;clone(){return new Rn(this.count)}type(){return Dr}toStandard(){return this}unit(){return Rn}static fromStandard(e){return e}static abbreviation(){return"m"}}class Jn extends er{_kilometers=!0;clone(){return new Jn(this.count)}type(){return Dr}toStandard(){return Dr.of(this.count*1e3,Rn)}static fromStandard(e){return Dr.of(e.count/1e3,Jn)}unit(){return Jn}static abbreviation(){return"km"}}class Xr extends A1{static of(e,t){return new t(e)}static units(){return[Pn,Xn]}static standard(){return Pn}static name(){return"weight"}}class Pn extends er{_kilograms=!0;clone(){return new Pn(this.count)}type(){return Xr}toStandard(){return this}unit(){return Pn}static fromStandard(e){return e}static abbreviation(){return"kg"}}class Xn extends er{_grams=!0;clone(){return new Xn(this.count)}type(){return Xr}toStandard(){return Xr.of(this.count*1e3,Pn)}static fromStandard(e){return Xr.of(e.count/1e3,Xn)}unit(){return Xn}static abbreviation(){return"g"}}const O2={m:Rn,km:Jn,kg:Pn,g:Xn};class V2{#e=L(_e(Ye()));get values(){return s(this.#e)}set values(e){F(this.#e,e,!0)}constructor(e){this.values=e}serialize(){return this.values}}class D1{#e=L(_e(Ye()));get value(){return s(this.#e)}set value(e){F(this.#e,e,!0)}constructor(e){this.value=e}serialize(){return this.value}}class In extends D1{static deserialize(e){return new In(e)}clone(){return new In(this.value)}}class Or extends D1{static deserialize(e){return new Or(e)}clone(){return new Or(this.value)}}class ra extends V2{static deserialize(e){return new ra(e)}clone(){return new ra([...this.values])}}class xa{#e=L(!1);get bold(){return s(this.#e)}set bold(e){F(this.#e,e,!0)}#t=L(!1);get italic(){return s(this.#t)}set italic(e){F(this.#t,e,!0)}#n=L(!1);get underline(){return s(this.#n)}set underline(e){F(this.#n,e,!0)}#r=L(_e(tt.black));get color(){return s(this.#r)}set color(e){F(this.#r,e,!0)}constructor({bold:e,italic:t}){this.bold=e??!1,this.italic=t??!1}clone(){return new xa({bold:this.bold,italic:this.italic})}equals(e){return this.bold===e.bold&&this.italic===e.italic&&this.underline===e.underline&&this.color.equals(e.color)}}class on{#e=L(_e(Ye()));get text(){return s(this.#e)}set text(e){F(this.#e,e,!0)}#t=L(_e(Ye()));get style(){return s(this.#t)}set style(e){F(this.#t,e,!0)}constructor(e,t){this.text=e,this.style=new xa({bold:t.bold??!1,italic:t.italic??!1})}clone(){return new on(this.text,{bold:this.style.bold,italic:this.style.italic})}toHTML(e,t=!1){let n=document.createElement("pre");n.setAttribute("data-part-index",`${e}`);let i="";this.style.bold&&(i+="<b>");for(let r of this.text)r===`
-`?i+="<br>":i+=`<span class="character">${r}</span>`;return this.style.bold&&(i+="</b>"),t&&(i+="<span class='cursor'>|</span>"),n.innerHTML=i,n}}class An{#e=L(_e(Ye()));get parts(){return s(this.#e)}set parts(e){F(this.#e,e,!0)}constructor(e){this.parts=e??[],this.parts.length<1&&(this.parts=[new on("",new xa({bold:!1,italic:!1}))])}serialize(){return{parts:this.parts.map(e=>({text:e.text,style:{bold:e.style.bold,italic:e.style.italic}}))}}reconstruct(e){this.parts=e.parts}get content(){return this.parts.map(e=>e.text).join("")}static deserialize(e){return new An(e.parts.map(t=>new on(t.text,t.style)))}addPart(e){this.parts.push(e)}addPartAtIndex(e,t){this.parts.splice(t,0,e)}prependPart(e){this.parts.unshift(e)}clone(){return new An}partAtIndex(e){return this.parts[e]}toHTML(e){return this.parts.map((t,n)=>t.toHTML(n,e??!1))}some(e){return this.parts.some(e)}filter(e){return new An(this.parts.map(t=>t.clone()).filter(e))}partCount(){return this.parts.length}}function rn(a,e,t){return{icon:Bn(t),name:a,type:e,serialize(n){return n.serialize()},deserialize(n){return e.deserialize(n)},clone(){return this}}}const Zr=[rn("shortText",In,Oo),rn("longText",An,nr),rn("number",Or,Do),rn("color",tt,jr),rn("entries",ra,On),rn("date",T2,Co),rn("length",er,ga),rn("weight",er,zo)];var Tn;(function(a){function e(r){return Zr.find(o=>o.name===r)}a.fromName=e;function t(r){return Zr.find(o=>r instanceof o.type)}a.fromValue=t;function n(){return Zr.map(r=>r.name)}a.names=n;function i(r,o,h,u){Zr.push(rn(r,o,h))}a.define=i})(Tn||(Tn={}));class Ft{#e=L(_e(Ye()));get name(){return s(this.#e)}set name(e){F(this.#e,e,!0)}#t=L(_e(Ye()));get type(){return s(this.#t)}set type(e){F(this.#t,e,!0)}#n=L(_e(Ye()));get id_(){return s(this.#n)}set id_(e){F(this.#n,e,!0)}#r=L(_e(Ye()));get group(){return s(this.#r)}set group(e){F(this.#r,e,!0)}static nextID=0;constructor(e,t,n,i){this.name=e,this.type=t,this.group=n,this.id_=i??Ft.nextID++}clone(){return new Ft(this.name,this.type,this.group)}serialize(){return{name:this.name,type:this.type.name,id:this.id_,groupId:this.group.id}}static deserialize(e,t){Ft.nextID<=e.id&&(Ft.nextID=e.id+1);const n=new Ft(e.name,Tn.fromName(e.type),null);return n.group=t,n}get id(){return this.id_}static basic(e,t){return n=>new Ft(e,Tn.fromName(t),n)}}var aa;(function(a){function e(n){return Tn.fromName(n.type).deserialize(n.value)}a.deserialize=e;function t(n){return{type:Tn.fromValue(n).name,value:n.serialize()}}a.serialize=t})(aa||(aa={}));let j2=0;class Vr{static paddingMultiplier=1.1;#e=L(_e(Ye()));get parent_(){return s(this.#e)}set parent_(e){F(this.#e,e,!0)}#t=L(_e(Ye()));get outline_(){return s(this.#t)}set outline_(e){F(this.#t,e,!0)}id;constructor(){this.id=j2++}get parent(){return this.parent_}get siblingCountIncludingMe(){return this.parent?.children.length??1}get index(){return this.parent?this.parent.children.indexOf(this.self):null}calculateIntrinsicSize(){if(this.children.forEach(e=>e.calculateIntrinsicSize()),this.isLeaf())this.outline_=Sn.originCircle(15);else if(this.isntGrandparent)this.outline_=Sn.originCircle(this.children.length*75+150);else if(this.hasOnlyChild)this.outline_=Sn.originCircle(this.children[0].outline_.shape.radius*Vr.paddingMultiplier);else{let e=Math.max(...this.children.map(n=>n.outline_.shape.radius));e*=Vr.paddingMultiplier;const{parentRadius:t}=qt.prettyPack(this.children.length,e);this.outline_=Sn.originCircle(t)}return this.outline_.shape.radius}applyLayout(e,t){const n=e/this.outline_.shape.radius;if(this.outline_.shape.radius=e,!this.parent)this.outline_.shape.center=Ce.origin();else if(this.hasNoChildrenOrNiblings){const r=this.parent.outline_.shape.radius*.6,o=this.index*(2*Math.PI)/this.siblingCountIncludingMe;this.outline_.shape.center=Ce.polar(r,o).plus(t)}else if(this.isOnlyChild)this.outline_.shape.center=t;else{let r=Math.max(...this.siblingsIncludingMe.map(h=>h.outline_.shape.radius));const{circles:o}=qt.prettyPack(this.siblingCountIncludingMe,r);this.outline_.shape.center=t.plus(o[this.index])}const i=this.children.length>0?Math.max(...this.children.map(r=>r.outline_.shape.radius))*n:0;this.children.forEach(r=>{r.applyLayout(i,this.outline_.shape.center)})}resetLayout(){this.clearLayoutCache();let t=this.calculateIntrinsicSize(),n=Ce.origin();this.parent&&(t=Math.max(...this.siblingsIncludingMe.map(i=>i.outline_.shape.radius)),n=this.parent.outline_.shape.center),this.applyLayout(t,n)}resetColors(){this.parent?this.outline_.color=this.parent.outline_.color.darken(2):this.outline_.color=tt.hex("#181825"),this.children.forEach(e=>e.resetColors())}thanksgivingDinner(){this.root().dfs().forEach(e=>e.outline.isVisible=!0)}cutOff(){this.root().dfs().filter(e=>e!==this.self&&!e.isDescendantOf(this.self)).forEach(e=>e.outline.isVisible=!1)}shift(e){let t=new Ce(e);this.outline.shape.center=this.outline.shape.center.plus(t),this.children.forEach(n=>n.shift(e))}clearLayoutCache(){this.outline_=Ye(),this.children.forEach(e=>e.clearLayoutCache())}get hasOnlyLeaves(){return this.children.every(e=>e.isLeaf)}get isntGrandparent(){return this.children.every(e=>e.isLeaf())}get hasNoGrandchildren(){return this.children.every(e=>e.isBranch())}get hasNoChildrenOrNiblings(){return this.siblingsIncludingMe.every(e=>e.isLeaf())}get isOnlyChild(){return this.siblingCountIncludingMe===1}get hasChildren(){return this.children.length>0}get hasOnlyChild(){return this.children.length===1}get siblingsIncludingMe(){return this.parent?.children??[this.self]}get previousSibling(){return this.parent&&this.index>0?this.parent?.children[this.index-1]:null}generateOutline(){this.outline_||(this.root().resetLayout(),this.root().resetColors())}get outline(){return this.generateOutline(),this.outline_}root(){let e=this.self;for(;e.parent;)e=e.parent;return e}isOverlapping(){return this.cousins.some(e=>e.outline.shape.overlaps(this.outline.shape,this.outline.shape.radius/100))}isEscapingParent(){return this.parent?!this.parent.outline.shape.contains(this.outline.shape,this.outline.shape.radius/100):!1}wouldEscapeParentIfShifted(e){if(!this.parent)return!1;let t=this.outline.shape.center.plus(e),n=this.outline.shape.clone();return n.center=t,!this.parent.outline.shape.contains(this.outline.shape,this.outline.shape.radius/100)}wouldOverlapIfShifted(e){let t=this.outline.shape.center.plus(e),n=this.outline.shape.clone();return n.center=t,this.cousins.some(i=>i.outline.shape.overlaps(n,this.outline.shape.radius/2))}getCollisionConstrainedShift(e){let[t,n]=e;const i=this.outline.shape,r=this.cousins;for(const o of r){const h=o.outline.shape,u=i.radius+h.radius-.1,v=i.center.plus([t,n]);if(v.distanceTo(h.center)<u){const y=Math.atan2(v.y-h.center.y,v.x-h.center.x),C=h.center.x+Math.cos(y)*u,S=h.center.y+Math.sin(y)*u;t=C-i.center.x,n=S-i.center.y}}return[t,n]}get cousins(){return this.root().dfs().filter(e=>e!==this.self&&!e.isDescendantOf(this.self)&&!this.isDescendantOf(e))}isDescendantOf(e){return this.parent?this.parent===e?!0:this.parent.isDescendantOf(e):!1}get isRoot(){return!this.parent}get height(){return 1+this.children.map(e=>e.height).reduce((e,t)=>Math.max(e,t),0)}dfs(){let e=[];return e.push(this.self),this.children.forEach(t=>{e=[...e,...t.dfs()]}),e}dfsLeaves(){let e=[];return this.isLeaf()&&e.push(this),this.children.forEach(t=>{let n=t.isBranch()?t.dfsLeaves():[t];e=[...e,...n]}),e}dfsBranches(){let e=[];return this.isBranch()&&e.push(this),this.children.forEach(t=>{let n=t.isBranch()?t.dfsBranches():[];e=[...e,...n]}),e}dfsYoungParents(){let e=[];return this.isBranch()&&this.children[0].isLeaf()&&e.push(this),this.children.forEach(t=>{let n=t.isBranch()?t.dfsYoungParents():[];e=[...e,...n]}),e}get branchChildren(){return this.children.filter(e=>e.isBranch())}get leafChildren(){return this.children.filter(e=>e.isLeaf())}get sortedChildren(){return[...this.branchChildren,...this.leafChildren]}delete(){if(!this.parent)throw new Error("Attempted to delete tree root");this.parent.deleteChild(this.self)}}class $2 extends Vr{_treeLeaf=void 0;get children(){return[]}get self(){return this}isLeaf(){return!0}isBranch(){return!1}}class G2 extends Vr{#e=L(_e([]));get leaves(){return s(this.#e)}set leaves(e){F(this.#e,e,!0)}#t=L(_e([]));get branches(){return s(this.#t)}set branches(e){F(this.#t,e,!0)}constructor(...e){super(),e.forEach(t=>this.addChild(t))}addChild(e){e.isLeaf()?this.leaves.push(e):this.branches.push(e),e.parent_=this}filterChildrenInPlace(e){this.leaves=this.leaves.filter(e),this.branches=this.branches.filter(e)}get children(){return[...this.leaves,...this.branches]}get self(){return this}isLeaf(){return!1}isBranch(){return!0}deleteChild(e){this.leaves=this.leaves.filter(t=>t.id!==e.id),this.branches=this.branches.filter(t=>t.id!==e.id)}}class Sn{#e=L(_e(Ye()));get shape(){return s(this.#e)}set shape(e){F(this.#e,e,!0)}#t=L(_e(tt.black));get color(){return s(this.#t)}set color(e){F(this.#t,e,!0)}#n=L(!0);get isVisible(){return s(this.#n)}set isVisible(e){F(this.#n,e,!0)}constructor(e,t){this.shape=e,this.color=t}static originCircle(e){return new Sn(new qt(e,Ce.origin()),tt.black)}static fromShapeAndColor(e,t){return new Sn(e,t)}}class sn extends $2{#e=L(_e(Ye()));get attributes(){return s(this.#e)}set attributes(e){F(this.#e,e,!0)}constructor(e){super(),this.attributes=typeof e=="string"?{Name:new In(e)}:e}clone(){return new sn(Sr.mapValues(this.attributes,e=>e?.clone()??null))}serialize(){return{id:this.id,attributes:Sr.mapValues(this.attributes,e=>e?aa.serialize(e):null)}}static deserializeUnsafe(e){let t=new sn(Sr.mapValues(e.attributes,n=>n?aa.deserialize(n):null));return t.id=e.id,t}getAttributeValue(e){return this.attributes[e]??null}overwriteAttributeValue(e,t){if(!this.getAttributeValue(e))throw`Invalid attribute overwrite: Attempted to overwrite the attribute "${e}" on an item, but no such attribute exists. If this was intentional, use addNewAttributeValue().`;this.attributes[e]=t}setName(e){this.addNewOrOverwriteAttributeValue("Name",new In(e))}addNewOrOverwriteAttributeValue(e,t){this.attributes[e]=t}addNewAttributeValue(e,t){if(this.getAttributeValue(e))throw`Invalid attribute additoin: Attempted to overwrite the attribute "${e}" on an item, but no such attribute exists. If this was intentional, use addNewAttributeValue().`;this.attributes[e]=t}get icon(){return this.isRoot?Bn(On):this.parent.icon}get name(){return this.attributes.Name.value}toString(){return`Item[ ${this.name} ]`}dfsGroups(){return[]}dfsItems(){return[this]}}class dt extends G2{#e=L(_e(Ye()));get name(){return s(this.#e)}set name(e){F(this.#e,e,!0)}#t=L(_e(Ye()));get description(){return s(this.#t)}set description(e){F(this.#t,e,!0)}#n=L(_e(Ye()));get attributes_(){return s(this.#n)}set attributes_(e){F(this.#n,e,!0)}#r=L(_e(Ye()));get icon_(){return s(this.#r)}set icon_(e){F(this.#r,e,!0)}constructor(e,...t){super(...t),this.name=typeof e=="string"?e:e.name,this.description=typeof e=="object"?e.description??"":"";let n=typeof e=="object"?e.icon??"inherit":"inherit";this.icon_=n==="inherit"?"inherit":Bn(n),typeof e=="object"?!e.attributes||e.attributes==="inherit"?this.attributes_="inherit":this.attributes_=e.attributes.map(i=>typeof i=="function"?i(this):i):this.attributes_="inherit"}clone(){return new dt({name:this.name,description:this.description,icon:this.icon_,attributes:this.attributes_==="inherit"?"inherit":this.attributes_.map(e=>e.clone())})}serializeStandalone(){return{id:this.id,children:this.children.map(e=>e.id),name:this.name,description:this.description,iconName:this.icon_==="inherit"?"inherit":Bn(this.icon).name,attributes:this.attributes_==="inherit"?{type:"inherit"}:{type:"own",own:this.attributes_.map(e=>e.serialize())}}}get icon(){return this.isRoot?Bn(On):this.icon_==="inherit"?this.parent.icon:this.icon_}deleteAttributeDefinition(e){if(!this.getAttributeDefinition(e.name))throw`Error deleting attribute: Attempted to delete the attribute "${e}", but no such attribute exists on this object.`;if(this.attributes_==="inherit"){if(this.isRoot)return;this.parent.deleteAttributeDefinition(e);return}this.attributes_=this.attributes_.filter(t=>t!==e)}getAttributeDefinition(e){return this.attributes_==="inherit"?this.isRoot?null:this.parent.getAttributeDefinition(e):this.attributes_.find(t=>t.name===e)??null}addNewAttributeDefinition(e){if(this.attributes_==="inherit"){if(this.isRoot){let t=e(this);this.attributes_=[t];return}this.parent.addNewAttributeDefinition(e)}else{let t=e(this);if(this.getAttributeDefinition(t.name))throw`Duplicate attribute: Attempted to add the attribute "${t.name}", but the attribute already exists. If this was intentional, use overwriteAttribute().`;this.attributes_.push(t)}}overwriteAttributeDefinition(e){if(this.attributes_==="inherit"){if(this.isRoot){let i=e(this);this.attributes_=[i];return}this.parent?.overwriteAttributeDefinition(e);return}let t=e(this);if(this.attributes_.filter(i=>i.name!==t.name).length===this.attributes_.length)throw`Invalid attribute overwrite: Attempted to overwrite the attribute "${t.name}", but no such attribute exists. If this was intentional, use addNewAttribute().`;this.attributes_.push(t)}get attributeDefinitions(){return this.attributes_==="inherit"?this.isRoot?(this.attributes_=[Ft.basic("Name","shortText")(this)],this.attributes_):this.parent.attributeDefinitions:this.attributes_}removeItem(e){this.filterChildrenInPlace(t=>t!==e)}serialize(){return{groups:this.root().dfsGroups().map(e=>e.serializeStandalone()),items:this.root().dfsItems().map(e=>e.serialize()),root:this.root().id}}static deserializeUnsafe(e){let t=new dt({name:e.name,description:e.description,icon:e.iconName==="inherit"?"inherit":Bn(e.iconName),attributes:"inherit"});return e.attributes.type!=="inherit"&&(t.attributes_=e.attributes.own.map(n=>Ft.deserialize(n,t))),t.id=e.id,t}static deserialize(e){const t=e.groups.map(r=>dt.deserializeUnsafe(r)),n=e.items.map(r=>sn.deserializeUnsafe(r));for(let r=0;r<t.length;r++){let o=t[r],h=e.groups[r];for(let u=0;u<h.children.length;u++){let v=h.children[u],b=n.find(C=>C.id===v);if(b){o.addChild(b);continue}let y=t.find(C=>C.id===v);if(y){o.addChild(y);continue}throw new Error(`Error deserializing database: The group "${o.name}" was serialized as having a child of ID = ${v}, but no item with that ID exists on the serialized database object.`)}}return t.find(r=>r.id===e.root)}toString(){let e=this.children.map(t=>t.toString().split(`
-`)).flat().map(t=>`	${t}`).join(`
-`);return`${this.name} {
+import { c as ka, a as B, m as de, f as J, o as xt, j as Ct, g as ue, d as Nt, t as Gn } from "../chunks/BkpD4Td4.js";
+import {
+	aQ as Vl,
+	a_ as G1,
+	b1 as z1,
+	h as At,
+	K as Pr,
+	b2 as jl,
+	J as fo,
+	a as kn,
+	b3 as Ko,
+	L as $l,
+	Y as Wn,
+	_ as io,
+	aa as Zn,
+	G as Gl,
+	X as Er,
+	U as H1,
+	b4 as q1,
+	b5 as N1,
+	aA as W1,
+	E as ea,
+	aX as Z1,
+	aC as Ht,
+	b6 as Y1,
+	l as s,
+	b as oo,
+	b7 as U1,
+	s as K1,
+	ax as J1,
+	b8 as X1,
+	b9 as Q1,
+	ba as e0,
+	ae as go,
+	ak as t0,
+	e as Nn,
+	a6 as zl,
+	af as n0,
+	c as Ea,
+	bb as Jt,
+	at as r0,
+	r as Hl,
+	p as ql,
+	bc as Ba,
+	bd as a0,
+	ac as i0,
+	m as o0,
+	d as s0,
+	a5 as Hn,
+	a8 as Nl,
+	be as Wl,
+	bf as l0,
+	x as $,
+	H as h0,
+	bg as c0,
+	ag as u0,
+	a9 as d0,
+	aI as m0,
+	bh as f0,
+	bi as g0,
+	bj as p0,
+	aD as v0,
+	i as b0,
+	D as Zl,
+	bk as x0,
+	aH as C0,
+	aq as _e,
+	aE as L,
+	ar as F,
+	B as x,
+	z as f,
+	A as m,
+	v as mt,
+	y as ft,
+	aj as Rt,
+	aF as Se,
+	bl as _0,
+	w as ze,
+	bm as so,
+	Z as Fe,
+	g as Br,
+	bn as Yn,
+} from "../chunks/BKlAdfIx.js";
+import { p as k, r as se, b as Ve, i as Qe, c as Xt } from "../chunks/B9rAUB3Z.js";
+import { b as le, S as he, a as re, c as Ge, s as tr, d as vt, e as bt, r as ln } from "../chunks/6sds28cC.js";
+import { i as Yl } from "../chunks/C_9qFXfU.js";
+import { s as ut } from "../chunks/CqL83fI8.js";
+import { o as sa } from "../chunks/DSF6hJv0.js";
+import { B as Ul } from "../chunks/DD5MlUUo.js";
+const w0 = [];
+function y0(a, e = !1, t = !1) {
+	return Ur(a, new Map(), "", w0, null, t);
+}
+function Ur(a, e, t, n, i = null, r = !1) {
+	if (typeof a == "object" && a !== null) {
+		var o = e.get(a);
+		if (o !== void 0) return o;
+		if (a instanceof Map) return new Map(a);
+		if (a instanceof Set) return new Set(a);
+		if (Vl(a)) {
+			var h = Array(a.length);
+			(e.set(a, h), i !== null && e.set(i, h));
+			for (var u = 0; u < a.length; u += 1) {
+				var v = a[u];
+				u in a && (h[u] = Ur(v, e, t, n, null, r));
+			}
+			return h;
+		}
+		if (G1(a) === z1) {
+			((h = {}), e.set(a, h), i !== null && e.set(i, h));
+			for (var b of Object.keys(a)) h[b] = Ur(a[b], e, t, n, null, r);
+			return h;
+		}
+		if (a instanceof Date) return structuredClone(a);
+		if (typeof a.toJSON == "function" && !r) return Ur(a.toJSON(), e, t, n, a);
+	}
+	if (a instanceof EventTarget) return a;
+	try {
+		return structuredClone(a);
+	} catch {
+		return a;
+	}
+}
+const Jo = 0,
+	Xo = 1,
+	F0 = 2;
+function k0(a, e, t, n, i) {
+	At && Pr();
+	var r = jl(),
+		o = Z1,
+		h = r ? ea(o) : Ht(o, !1, !1),
+		u = r ? ea(o) : Ht(o, !1, !1),
+		v = new Ul(a);
+	fo(() => {
+		var b = kn;
+		b.deactivate();
+		var y = e();
+		b.activate();
+		var C = !1;
+		let S = At && Ko(y) === (a.data === $l);
+		if ((S && (Wn(io()), Zn(!1)), Ko(y))) {
+			var A = Y1(),
+				P = !1;
+			const D = R => {
+				if (!C) {
+					((P = !0), A(!1), H1.ensure(), At && Zn(!1));
+					try {
+						R();
+					} finally {
+						(q1(!1), N1 || W1());
+					}
+				}
+			};
+			(y.then(
+				R => {
+					D(() => {
+						(Er(h, R), v.ensure(Xo, n && (G => n(G, h))));
+					});
+				},
+				R => {
+					D(() => {
+						if ((Er(u, R), v.ensure(F0, i && (G => i(G, u))), !i)) throw u.v;
+					});
+				},
+			),
+				At
+					? v.ensure(Jo, t)
+					: Gl(() => {
+							P ||
+								D(() => {
+									v.ensure(Jo, t);
+								});
+						}));
+		} else (Er(h, y), v.ensure(Xo, n && (D => n(D, h))));
+		return (
+			S && Zn(!0),
+			() => {
+				C = !0;
+			}
+		);
+	});
+}
+const E0 = Symbol("NaN");
+function B0(a, e, t) {
+	At && Pr();
+	var n = new Ul(a),
+		i = !jl();
+	fo(() => {
+		var r = e();
+		(r !== r && (r = E0), i && r !== null && typeof r == "object" && (r = {}), n.ensure(r, t));
+	});
+}
+function Vt(a, e) {
+	return e;
+}
+function S0(a, e, t) {
+	for (var n = [], i = e.length, r, o = e.length, h = 0; h < i; h++) {
+		let y = e[h];
+		ql(
+			y,
+			() => {
+				if (r) {
+					if ((r.pending.delete(y), r.done.add(y), r.pending.size === 0)) {
+						var C = a.outrogroups;
+						(lo(a, go(r.done)), C.delete(r), C.size === 0 && (a.outrogroups = null));
+					}
+				} else o -= 1;
+			},
+			!1,
+		);
+	}
+	if (o === 0) {
+		var u = n.length === 0 && t !== null;
+		if (u) {
+			var v = t,
+				b = v.parentNode;
+			(i0(b), b.append(v), a.items.clear());
+		}
+		lo(a, e, !u);
+	} else ((r = { pending: new Set(e), done: new Set() }), (a.outrogroups ??= new Set()).add(r));
+}
+function lo(a, e, t = !0) {
+	var n;
+	if (a.pending.size > 0) {
+		n = new Set();
+		for (const o of a.pending.values()) for (const h of o) n.add(a.items.get(h).e);
+	}
+	for (var i = 0; i < e.length; i++) {
+		var r = e[i];
+		if (n?.has(r)) {
+			r.f |= Jt;
+			const o = document.createDocumentFragment();
+			o0(r, o);
+		} else s0(e[i], t);
+	}
+}
+var Qo;
+function Lt(a, e, t, n, i, r = null) {
+	var o = a,
+		h = new Map(),
+		u = (e & Wl) !== 0;
+	if (u) {
+		var v = a;
+		o = At ? Wn(Hn(v)) : v.appendChild(Ea());
+	}
+	At && Pr();
+	var b = null,
+		y = J1(() => {
+			var j = t();
+			return Vl(j) ? j : j == null ? [] : go(j);
+		}),
+		C,
+		S = new Map(),
+		A = !0;
+	function P(j) {
+		(G.effect.f & r0) === 0 &&
+			(G.pending.delete(j),
+			(G.fallback = b),
+			A0(G, C, o, e, n),
+			b !== null &&
+				(C.length === 0
+					? (b.f & Jt) === 0
+						? Hl(b)
+						: ((b.f ^= Jt), yr(b, null, o))
+					: ql(b, () => {
+							b = null;
+						})));
+	}
+	function D(j) {
+		G.pending.delete(j);
+	}
+	var R = fo(() => {
+			C = s(y);
+			var j = C.length;
+			let ne = !1;
+			if (At) {
+				var M = t0(o) === $l;
+				M !== (j === 0) && ((o = io()), Wn(o), Zn(!1), (ne = !0));
+			}
+			for (var ce = new Set(), ve = kn, Y = K1(), U = 0; U < j; U += 1) {
+				At && Nn.nodeType === zl && Nn.data === n0 && ((o = Nn), (ne = !0), Zn(!1));
+				var N = C[U],
+					ae = n(N, U),
+					Z = A ? null : h.get(ae);
+				(Z
+					? (Z.v && Er(Z.v, N), Z.i && Er(Z.i, U), Y && ve.unskip_effect(Z.e))
+					: ((Z = D0(h, A ? o : (Qo ??= Ea()), N, ae, U, i, e, t)), A || (Z.e.f |= Jt), h.set(ae, Z)),
+					ce.add(ae));
+			}
+			if (
+				(j === 0 && r && !b && (A ? (b = oo(() => r(o))) : ((b = oo(() => r((Qo ??= Ea())))), (b.f |= Jt))),
+				j > ce.size && U1(),
+				At && j > 0 && Wn(io()),
+				!A)
+			)
+				if ((S.set(ve, ce), Y)) {
+					for (const [ke, T] of h) ce.has(ke) || ve.skip_effect(T.e);
+					(ve.oncommit(P), ve.ondiscard(D));
+				} else P(ve);
+			(ne && Zn(!0), s(y));
+		}),
+		G = { effect: R, items: h, pending: S, outrogroups: null, fallback: b };
+	((A = !1), At && (o = Nn));
+}
+function wr(a) {
+	for (; a !== null && (a.f & a0) === 0; ) a = a.next;
+	return a;
+}
+function A0(a, e, t, n, i) {
+	var r = (n & l0) !== 0,
+		o = e.length,
+		h = a.items,
+		u = wr(a.effect.first),
+		v,
+		b = null,
+		y,
+		C = [],
+		S = [],
+		A,
+		P,
+		D,
+		R;
+	if (r)
+		for (R = 0; R < o; R += 1)
+			((A = e[R]), (P = i(A, R)), (D = h.get(P).e), (D.f & Jt) === 0 && (D.nodes?.a?.measure(), (y ??= new Set()).add(D)));
+	for (R = 0; R < o; R += 1) {
+		if (((A = e[R]), (P = i(A, R)), (D = h.get(P).e), a.outrogroups !== null))
+			for (const N of a.outrogroups) (N.pending.delete(D), N.done.delete(D));
+		if ((D.f & Jt) !== 0)
+			if (((D.f ^= Jt), D === u)) yr(D, null, t);
+			else {
+				var G = b ? b.next : u;
+				(D === a.effect.last && (a.effect.last = D.prev),
+					D.prev && (D.prev.next = D.next),
+					D.next && (D.next.prev = D.prev),
+					mn(a, b, D),
+					mn(a, D, G),
+					yr(D, G, t),
+					(b = D),
+					(C = []),
+					(S = []),
+					(u = wr(b.next)));
+				continue;
+			}
+		if (((D.f & Ba) !== 0 && (Hl(D), r && (D.nodes?.a?.unfix(), (y ??= new Set()).delete(D))), D !== u)) {
+			if (v !== void 0 && v.has(D)) {
+				if (C.length < S.length) {
+					var j = S[0],
+						ne;
+					b = j.prev;
+					var M = C[0],
+						ce = C[C.length - 1];
+					for (ne = 0; ne < C.length; ne += 1) yr(C[ne], j, t);
+					for (ne = 0; ne < S.length; ne += 1) v.delete(S[ne]);
+					(mn(a, M.prev, ce.next), mn(a, b, M), mn(a, ce, j), (u = j), (b = ce), (R -= 1), (C = []), (S = []));
+				} else
+					(v.delete(D), yr(D, u, t), mn(a, D.prev, D.next), mn(a, D, b === null ? a.effect.first : b.next), mn(a, b, D), (b = D));
+				continue;
+			}
+			for (C = [], S = []; u !== null && u !== D; ) ((v ??= new Set()).add(u), S.push(u), (u = wr(u.next)));
+			if (u === null) continue;
+		}
+		((D.f & Jt) === 0 && C.push(D), (b = D), (u = wr(D.next)));
+	}
+	if (a.outrogroups !== null) {
+		for (const N of a.outrogroups) N.pending.size === 0 && (lo(a, go(N.done)), a.outrogroups?.delete(N));
+		a.outrogroups.size === 0 && (a.outrogroups = null);
+	}
+	if (u !== null || v !== void 0) {
+		var ve = [];
+		if (v !== void 0) for (D of v) (D.f & Ba) === 0 && ve.push(D);
+		for (; u !== null; ) ((u.f & Ba) === 0 && u !== a.fallback && ve.push(u), (u = wr(u.next)));
+		var Y = ve.length;
+		if (Y > 0) {
+			var U = (n & Wl) !== 0 && o === 0 ? t : null;
+			if (r) {
+				for (R = 0; R < Y; R += 1) ve[R].nodes?.a?.measure();
+				for (R = 0; R < Y; R += 1) ve[R].nodes?.a?.fix();
+			}
+			S0(a, ve, U);
+		}
+	}
+	r &&
+		Gl(() => {
+			if (y !== void 0) for (D of y) D.nodes?.a?.apply();
+		});
+}
+function D0(a, e, t, n, i, r, o, h) {
+	var u = (o & Q1) !== 0 ? ((o & e0) === 0 ? Ht(t, !1, !1) : ea(t)) : null,
+		v = (o & X1) !== 0 ? ea(i) : null;
+	return {
+		v: u,
+		i: v,
+		e: oo(
+			() => (
+				r(e, u ?? t, v ?? i, h),
+				() => {
+					a.delete(n);
+				}
+			),
+		),
+	};
+}
+function yr(a, e, t) {
+	if (a.nodes)
+		for (var n = a.nodes.start, i = a.nodes.end, r = e && (e.f & Jt) === 0 ? e.nodes.start : t; n !== null; ) {
+			var o = Nl(n);
+			if ((r.before(n), n === i)) return;
+			n = o;
+		}
+}
+function mn(a, e, t) {
+	(e === null ? (a.effect.first = t) : (e.next = t), t === null ? (a.effect.last = e) : (t.prev = e));
+}
+function M0(a, e, t = !1, n = !1, i = !1, r = !1) {
+	var o = a,
+		h = "";
+	if (t) {
+		var u = a;
+		At && (o = Wn(Hn(u)));
+	}
+	$(() => {
+		var v = h0;
+		if (h === (h = e() ?? "")) {
+			At && Pr();
+			return;
+		}
+		if (t && !At) {
+			((v.nodes = null), (u.innerHTML = h), h !== "" && ka(Hn(u), u.lastChild));
+			return;
+		}
+		if ((v.nodes !== null && (c0(v.nodes.start, v.nodes.end), (v.nodes = null)), h !== "")) {
+			if (At) {
+				Nn.data;
+				for (var b = Pr(), y = b; b !== null && (b.nodeType !== zl || b.data !== ""); ) ((y = b), (b = Nl(b)));
+				if (b === null) throw (u0(), d0);
+				(ka(Nn, y), (o = Wn(b)));
+				return;
+			}
+			var C = n ? f0 : i ? g0 : void 0,
+				S = m0(n ? "svg" : i ? "math" : "template", C);
+			S.innerHTML = h;
+			var A = n || i ? S : S.content;
+			if ((ka(Hn(A), A.lastChild), n || i)) for (; Hn(A); ) o.before(Hn(A));
+			else o.before(A);
+		}
+	});
+}
+function hn(a, e, t = e) {
+	var n = new WeakSet();
+	(p0(a, "input", async i => {
+		var r = i ? a.defaultValue : a.value;
+		if (((r = Sa(a) ? Aa(r) : r), t(r), kn !== null && n.add(kn), await v0(), r !== (r = e()))) {
+			var o = a.selectionStart,
+				h = a.selectionEnd,
+				u = a.value.length;
+			if (((a.value = r ?? ""), h !== null)) {
+				var v = a.value.length;
+				o === h && h === u && v > u
+					? ((a.selectionStart = v), (a.selectionEnd = v))
+					: ((a.selectionStart = o), (a.selectionEnd = Math.min(h, v)));
+			}
+		}
+	}),
+		((At && a.defaultValue !== a.value) || (b0(e) == null && a.value)) &&
+			(t(Sa(a) ? Aa(a.value) : a.value), kn !== null && n.add(kn)),
+		Zl(() => {
+			var i = e();
+			if (a === document.activeElement) {
+				var r = kn;
+				if (n.has(r)) return;
+			}
+			(Sa(a) && i === Aa(a.value)) || (a.type === "date" && !i && !a.value) || (i !== a.value && (a.value = i ?? ""));
+		}));
+}
+function Sa(a) {
+	var e = a.type;
+	return e === "number" || e === "range";
+}
+function Aa(a) {
+	return a === "" ? null : +a;
+}
+function Kl(a, e, t, n = t) {
+	(e.addEventListener("input", () => {
+		n(e[a]);
+	}),
+		Zl(() => {
+			var i = t();
+			if (e[a] !== i)
+				if (i == null) {
+					var r = e[a];
+					n(r);
+				} else e[a] = i + "";
+		}));
+}
+function Jl(a, e) {
+	x0(window, ["resize"], () => C0(() => e(window[a])));
+}
+var ta;
+(a => {
+	function e(y, C = void 0, S = "Info", A = "#b7d2fe", P = "#33425b") {}
+	a.logColor = e;
+	function t(y) {}
+	a.errors = t;
+	function n(y, C) {
+		a.logColor(y, C, "Success", "#a6e3a1", "#344532");
+	}
+	a.success = n;
+	function i(y, C) {
+		a.logColor(y, C, "Info", "#b7d2fe", "#33425b");
+	}
+	a.info = i;
+	function r(y, C) {
+		a.logColor(y, C, "!! Warning !!", "#f9e2af", "#413c26");
+	}
+	a.warn = r;
+	function o(y, C) {
+		a.logColor(y, C, "!! ERROR !!", "#f38ba8", "#4e3534");
+	}
+	a.error = o;
+	function h(y, C, S, A = "error") {
+		y
+			? a.success("Successful check: " + C, S)
+			: A === "error"
+				? a.error("Failed check: " + C, S)
+				: a.warn("Failed check: " + C, S);
+	}
+	a.test = h;
+	function u(y) {
+		return /([^\/\\]+)$/.exec(v(y))[1];
+	}
+	a.file = u;
+	function v(y) {
+		return /^.+(\/src.+?)(\?|:)/.exec(y)?.[1] ?? y;
+	}
+	a.path = v;
+	function b(...y) {}
+	a.log = b;
+})(ta || (ta = {}));
+function L0(a) {
+	const e = a.trim().split(`
+`),
+		t = [];
+	let n = "";
+	e[0] && !e[0].trim().startsWith("at ") && (n = e.shift().trim());
+	const i = /at\s+(?:(?<functionName>.+?)\s+\()?(?<path>.+?):(?<line>\d+):(?<column>\d+)\)?|at\s+(?<anonymousPath>.+?)$/;
+	for (const r of e) {
+		const o = r.match(i);
+		if (o) {
+			const { functionName: h, path: u, line: v, column: b, anonymousPath: y } = o.groups;
+			let C = u || y || "",
+				S = C;
+			S = S.split("?")[0];
+			const A = S.indexOf("/src/");
+			(A !== -1 && (S = S.substring(A + 1)),
+				t.push({
+					functionName: h || (C.includes("<anonymous>") ? "anonymous" : "root"),
+					file: S,
+					line: v ? parseInt(v, 10) : null,
+					column: b ? parseInt(b, 10) : null,
+				}));
+		} else if (r.includes("<anonymous>")) {
+			const h = r.match(/at\s+(.+?)\s+\(/);
+			t.push({ functionName: h ? h[1] : "anonymous", file: "native", line: null, column: null });
+		}
+	}
+	return { message: n, stack: t };
+}
+let Xl = _e([]);
+function es(a, e) {
+	return async function (...t) {
+		try {
+			return await a(...t);
+		} catch (n) {
+			let i = n instanceof Error ? n.stack || n.message : String(n),
+				r = `
+	at ${a.name || "anonymous"}`;
+			e && (r = `${r} in ${ta.file(e)}`);
+			let o = L0(i),
+				h =
+					o.message +
+					o.stack
+						.map(
+							u => `
+	at ${u.functionName} in ${u.file} (line ${u.line ?? "_"}, column ${u.column ?? "_"})`,
+						)
+						.join("");
+			((h += `
+When calling:${r}`),
+				Xl.push(h));
+		}
+	};
+}
+function ts() {
+	return Xl;
+}
+function R0(a, e, t, n) {
+	if (typeof e == "function" ? a !== e || !n : !e.has(a))
+		throw new TypeError("Cannot read private member from an object whose class did not declare it");
+	return t === "m" ? n : t === "a" ? n.call(a) : n ? n.value : e.get(a);
+}
+function P0(a, e, t, n, i) {
+	if (typeof e == "function" ? a !== e || !0 : !e.has(a))
+		throw new TypeError("Cannot write private member to an object whose class did not declare it");
+	return (e.set(a, t), t);
+}
+var Kr;
+const jt = "__TAURI_TO_IPC_KEY__";
+function I0(a, e = !1) {
+	return window.__TAURI_INTERNALS__.transformCallback(a, e);
+}
+async function X(a, e = {}, t) {
+	return window.__TAURI_INTERNALS__.invoke(a, e, t);
+}
+class T0 {
+	get rid() {
+		return R0(this, Kr, "f");
+	}
+	constructor(e) {
+		(Kr.set(this, void 0), P0(this, Kr, e));
+	}
+	async close() {
+		return X("plugin:resources|close", { rid: this.rid });
+	}
+}
+Kr = new WeakMap();
+async function Ql(a = {}) {
+	return (typeof a == "object" && Object.freeze(a), await X("plugin:dialog|open", { options: a }));
+}
+function Ye() {
+	return null;
+}
+var Sr;
+(function (a) {
+	function e(n, i) {
+		return Object.entries(n)
+			.map(([r, o]) => ({ [r]: i(o) }))
+			.reduce((r, o) => ({ ...r, ...o }));
+	}
+	a.mapValues = e;
+	function t(n, i) {
+		return Object.entries(n)
+			.map(([r, o]) => i(r, o))
+			.reduce((r, [o, h]) => ({ ...r, [o]: h }), {});
+	}
+	a.mapEntries = t;
+})(Sr || (Sr = {}));
+class gt {
+	#e = L(
+		_e([
+			[1, 0, 0],
+			[0, 1, 0],
+			[0, 0, 1],
+		]),
+	);
+	get values() {
+		return s(this.#e);
+	}
+	set values(e) {
+		F(this.#e, e, !0);
+	}
+	constructor(e) {
+		e && (this.values = e);
+	}
+	getScale() {
+		let [[e, t, n], [i, r, o], [h, u, v]] = this.values;
+		return new Ce(e, r);
+	}
+	static identity() {
+		return new gt();
+	}
+	times(e) {
+		let [[t, n, i], [r, o, h], [u, v, b]] = this.values,
+			[[y, C, S], [A, P, D], [R, G, j]] = e.values;
+		return new gt([
+			[t * y + n * A + i * R, t * C + n * P + i * G, t * S + n * D + i * j],
+			[r * y + o * A + h * R, r * C + o * P + h * G, r * S + o * D + h * j],
+			[u * y + v * A + b * R, u * C + v * P + b * G, u * S + v * D + b * j],
+		]);
+	}
+	timesPoint(e) {
+		let { x: t, y: n } = new Ce(e),
+			[[i, r, o], [h, u, v], [b, y, C]] = this.values;
+		return new Ce({ x: i * t + r * n + o, y: h * t + u * n + v });
+	}
+	get inverse() {
+		let [[e, t, n], [i, r, o], [h, u, v]] = this.values;
+		const b = 1 / this.determinant;
+		return new gt([
+			[(r * v - o * u) * b, (n * u - t * v) * b, (t * o - n * r) * b],
+			[(o * h - i * v) * b, (e * v - n * h) * b, (n * i - e * o) * b],
+			[(i * u - r * h) * b, (t * h - e * u) * b, (e * r - t * i) * b],
+		]);
+	}
+	get determinant() {
+		let [[e, t, n], [i, r, o], [h, u, v]] = this.values;
+		return e * (r * v - o * u) - t * (i * v - o * h) + n * (i * u - r * h);
+	}
+	static translation(e) {
+		let { x: t, y: n } = new Ce(e);
+		return new gt([
+			[1, 0, t],
+			[0, 1, n],
+			[0, 0, 1],
+		]);
+	}
+	static rotation(e) {
+		return new gt([
+			[Math.cos(e), -Math.sin(e), 0],
+			[Math.sin(e), Math.cos(e), 0],
+			[0, 0, 1],
+		]);
+	}
+	static scale(e) {
+		let { x: t, y: n } = new Ce(typeof e == "object" ? e : [e, e]);
+		return new gt([
+			[t, 0, 0],
+			[0, n, 0],
+			[0, 0, 1],
+		]);
+	}
+	get css() {
+		const [[e, t, n], [i, r, o], h] = this.values;
+		return `matrix(${e}, ${i}, ${t}, ${r}, ${n}, ${o})`;
+	}
+}
+class Ce {
+	#e = L(_e(Ye()));
+	get x() {
+		return s(this.#e);
+	}
+	set x(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L(_e(Ye()));
+	get y() {
+		return s(this.#t);
+	}
+	set y(e) {
+		F(this.#t, e, !0);
+	}
+	constructor(e, t) {
+		typeof e == "object"
+			? Array.isArray(e)
+				? ((this.x = e[0]), (this.y = e[1]))
+				: ((this.x = e.x), (this.y = e.y))
+			: ((this.x = e), (this.y = t));
+	}
+	clone() {
+		return new Ce(this);
+	}
+	plus(e) {
+		let t = new Ce(e);
+		return new Ce(this.x + t.x, this.y + t.y);
+	}
+	equals(e) {
+		let t = new Ce(e);
+		return this.x == t.x && this.y == t.y;
+	}
+	moveAwayFrom(e, t) {
+		let n = new Ce(e),
+			i = this.distanceTo(n);
+		return new Ce(this.x + (t * (this.x - n.x)) / i, this.y + (t * (this.y - n.y)) / i);
+	}
+	static average(e) {
+		return e
+			.map(t => new Ce(t))
+			.reduce((t, n) => t.plus(n), Ce.origin())
+			.dividedBy(e.length);
+	}
+	static polar(e, t) {
+		return new Ce(e * Math.cos(t), e * Math.sin(t));
+	}
+	polar() {
+		return { radius: this.distanceTo(Ce.origin()), angle: Math.atan(this.y / this.x) };
+	}
+	polarRelativeTo(e) {
+		let t = Math.atan((this.y - e.y) / (this.x - e.x));
+		return { radius: this.distanceTo(e), angle: t };
+	}
+	static sum(...e) {
+		return e.map(n => new Ce(n)).reduce((n, i) => n.plus(i), Ce.origin());
+	}
+	dividedBy(e) {
+		let t = typeof e == "object" ? new Ce(e) : new Ce([e, e]);
+		return new Ce(this.x / t.x, this.y / t.y);
+	}
+	distanceTo(e) {
+		let t = new Ce(e);
+		return Math.sqrt(Math.pow(t.x - this.x, 2) + Math.pow(t.y - this.y, 2));
+	}
+	squared() {
+		return this.times(this);
+	}
+	times(e) {
+		let t = new Ce(e);
+		return new Ce(this.x * t.x, this.y * t.y);
+	}
+	distanceSquared(e) {
+		return Math.pow(this.distanceTo(e), 2);
+	}
+	minus(e) {
+		let t = new Ce(e);
+		return new Ce(this.x - t.x, this.y - t.y);
+	}
+	static origin() {
+		return new Ce(0, 0);
+	}
+}
+function En(a, e, t) {
+	return Math.min(t, Math.max(a, e));
+}
+class qt {
+	#e = L(_e(Ye()));
+	get radius() {
+		return s(this.#e);
+	}
+	set radius(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L(_e(Ye()));
+	get center() {
+		return s(this.#t);
+	}
+	set center(e) {
+		F(this.#t, e, !0);
+	}
+	constructor(e, t) {
+		((this.radius = e), (this.center = t));
+	}
+	clone() {
+		return new qt(this.radius, this.center.clone());
+	}
+	getConstrainedShift(e, t, n = 0) {
+		const [i, r] = e,
+			o = this.center.x + i,
+			h = this.center.y + r,
+			u = t.radius - this.radius - n;
+		if (u <= 0) return [0, 0];
+		const v = o - t.center.x,
+			b = h - t.center.y;
+		if (Math.hypot(v, b) <= u) return [i, r];
+		const C = Math.atan2(b, v),
+			S = t.center.x + Math.cos(C) * u,
+			A = t.center.y + Math.sin(C) * u;
+		return [S - this.center.x, A - this.center.y];
+	}
+	overlaps(e, t = 0) {
+		if (e instanceof qt) {
+			const n = this.radius + e.radius - t;
+			return this.center.distanceTo(e.center) < n;
+		}
+		if (e instanceof Kt) {
+			const n = new Ce(En(this.center.x, e.left, e.right), En(this.center.y, e.top, e.bottom));
+			return this.center.distanceTo(n) <= this.radius - t;
+		}
+		return e.overlaps(this);
+	}
+	contains(e, t = 0) {
+		const n = this.radius - t;
+		return n < 0
+			? !1
+			: e instanceof qt
+				? this.center.distanceTo(e.center) + e.radius <= n
+				: e instanceof Kt
+					? [new Ce(e.left, e.top), new Ce(e.right, e.top), new Ce(e.left, e.bottom), new Ce(e.right, e.bottom)].every(
+							r => this.center.distanceTo(r) <= n,
+						)
+					: !1;
+	}
+	static unit() {
+		return new qt(0, Ce.origin());
+	}
+	static prettyPack(e, t) {
+		if (e <= 0) return { circles: [], parentRadius: 0 };
+		if (e === 1) return { circles: [new Ce({ x: 0, y: 0 })], parentRadius: t };
+		if (e === 2) return { circles: [new Ce({ x: -t, y: 0 }), new Ce({ x: t, y: 0 })], parentRadius: 2 * t };
+		let n = 1 / 0,
+			i = null;
+		for (let o = e; o >= 3; o--) {
+			const h = e - o,
+				u = t * (1 + 1 / Math.sin(Math.PI / o)),
+				b = u - t - t;
+			if (h > 0) {
+				const y = qt.prettyPack(h, t);
+				y.parentRadius <= b + 1e-5 && u < n && ((n = u), (i = { m: o, coreResult: y }));
+			} else u < n && ((n = u), (i = { m: o, coreResult: { circles: [], parentRadius: 0 } }));
+		}
+		if (!i) {
+			const o = e,
+				h = t * (1 + 1 / Math.sin(Math.PI / o));
+			return { circles: ns(o, h - t), parentRadius: h };
+		}
+		return { circles: [...ns(i.m, n - t), ...i.coreResult.circles], parentRadius: n };
+	}
+}
+class Kt {
+	#e = L(_e(Ye()));
+	get left() {
+		return s(this.#e);
+	}
+	set left(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L(_e(Ye()));
+	get top() {
+		return s(this.#t);
+	}
+	set top(e) {
+		F(this.#t, e, !0);
+	}
+	#n = L(_e(Ye()));
+	get width() {
+		return s(this.#n);
+	}
+	set width(e) {
+		F(this.#n, e, !0);
+	}
+	#r = L(_e(Ye()));
+	get height() {
+		return s(this.#r);
+	}
+	set height(e) {
+		F(this.#r, e, !0);
+	}
+	constructor(e, t, n, i) {
+		((this.left = e), (this.top = t), (this.width = n), (this.height = i));
+	}
+	clone() {
+		return new Kt(this.left, this.top, this.width, this.height);
+	}
+	overlaps(e, t = 0) {
+		return e instanceof qt
+			? e.overlaps(this, t)
+			: e instanceof Kt
+				? this.left < e.right - t && this.right > e.left + t && this.top < e.bottom - t && this.bottom > e.top + t
+				: e.overlaps(this);
+	}
+	static squareFromCenter(e, t) {
+		let n = new Ce(e);
+		return new Kt(n.x - t, n.y - t, t * 2, t * 2);
+	}
+	contains(e, t = 0) {
+		const n = this.left + t,
+			i = this.right - t,
+			r = this.top + t,
+			o = this.bottom - t;
+		return n > i || r > o
+			? !1
+			: e instanceof qt
+				? e.center.x - e.radius >= n && e.center.x + e.radius <= i && e.center.y - e.radius >= r && e.center.y + e.radius <= o
+				: e instanceof Kt
+					? e.left >= n && e.right <= i && e.top >= r && e.bottom <= o
+					: !1;
+	}
+	static fromXYWH({ x: e, y: t, width: n, height: i }) {
+		return new Kt(e, t, n, i);
+	}
+	shiftRight(e) {
+		this.left += e;
+	}
+	get center() {
+		return new Ce([this.width / 2 + this.left, this.height / 2 + this.top]);
+	}
+	get right() {
+		return this.left + this.width;
+	}
+	get bottom() {
+		return this.top + this.height;
+	}
+	get size() {
+		return new Ce(this.width, this.height);
+	}
+	static around(e, t = {}) {
+		let n = { top: 0, left: 0, right: 0, bottom: 0, ...t },
+			i = Math.min(...e.map(u => u.left)) - n.left,
+			r = Math.min(...e.map(u => u.top)) + n.top,
+			o = Math.max(...e.map(u => u.right)) + n.right,
+			h = Math.max(...e.map(u => u.bottom)) + n.bottom;
+		return Kt.fromBounds({ left: i, top: r, right: o, bottom: h });
+	}
+	static fromBounds({ left: e, top: t, right: n, bottom: i }) {
+		return new Kt(e, t, n - e, i - t);
+	}
+}
+function ns(a, e) {
+	const t = [];
+	for (let n = 0; n < a; n++) {
+		const i = (n * 2 * Math.PI) / a;
+		t.push(new Ce({ x: e * Math.cos(i), y: e * Math.sin(i) }));
+	}
+	return t;
+}
+var O0 = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"></path></g></svg>',
+);
+function Qt(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = O0();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "fill", t())), B(a, r));
+}
+const V0 = Object.freeze(Object.defineProperty({ __proto__: null, default: Qt }, Symbol.toStringTag, { value: "Module" }));
+var j0 = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><rect x="2" y="12" width="20" height="3.5" fill="white"></rect><path d="M2 8.5H22V12H2V8.5Z" fill="#A3A3A3"></path><path d="M2 7C2 5.89543 2.89543 5 4 5H20C21.1046 5 22 5.89543 22 7V8.5H2V7Z" fill="#000000"></path><path d="M2 15.5H22V17C22 18.1046 21.1046 19 20 19H4C2.89543 19 2 18.1046 2 17V15.5Z" fill="#77187B"></path></g></svg>',
+);
+function e1(a, e) {
+	k(e, "stroke", 3, "currentcolor");
+	let t = k(e, "scale", 3, 1),
+		n = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var i = j0();
+	(le(i, () => ({
+		...n,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${t() ?? ""}rem`, height: `${t() ?? ""}rem` },
+	})),
+		B(a, i));
+}
+const $0 = Object.freeze(Object.defineProperty({ __proto__: null, default: e1 }, Symbol.toStringTag, { value: "Module" }));
+var G0 = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><rect x="2" y="9.67" width="20" height="4.67" fill="#6D5291"></rect><path d="M2 7C2 5.89543 2.89543 5 4 5H20C21.1046 5 22 5.89543 22 7V9.67H2V7Z" fill="#C62B6F"></path><path d="M2 14.34H22V17.01C22 18.1146 21.1046 19.01 20 19.01H4C2.89543 19.01 2 18.1146 2 17.01V14.34Z" fill="#1439A3"></path></g></svg>',
+);
+function t1(a, e) {
+	k(e, "stroke", 3, "currentcolor");
+	let t = k(e, "scale", 3, 1),
+		n = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var i = G0();
+	(le(i, () => ({
+		...n,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${t() ?? ""}rem`, height: `${t() ?? ""}rem` },
+	})),
+		B(a, i));
+}
+const z0 = Object.freeze(Object.defineProperty({ __proto__: null, default: t1 }, Symbol.toStringTag, { value: "Module" }));
+var H0 = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g><path class="st0" d="M411.626,0H222.754c-13.552,0-26.56,5.39-36.148,14.969L68.794,132.788 c-9.594,9.587-14.976,22.596-14.976,36.156v296.5c0,25.67,20.892,46.556,46.564,46.556h311.243 c25.664,0,46.556-20.886,46.556-46.556V46.542C458.182,20.878,437.289,0,411.626,0z M206.248,32.349v104.652 c0,11.313-4.402,15.722-15.715,15.722H85.881L206.248,32.349z M431.998,465.444c0,11.237-9.142,20.372-20.372,20.372H100.382 c-11.245,0-20.38-9.135-20.38-20.372V175.998h124.55c13.77,0,24.978-11.207,24.978-24.985V26.184h182.096 c11.23,0,20.372,9.127,20.372,20.358V465.444z"></path></g></g></svg>',
+);
+function po(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = H0();
+	le(r, () => ({
+		...i,
+		"height": "200px",
+		"width": "200px",
+		"version": "1.1",
+		"id": "_x32_",
+		"xmlns": "http://www.w3.org/2000/svg",
+		"xmlns:xlink": "http://www.w3.org/1999/xlink",
+		"viewBox": "0 0 512 512",
+		"xml:space": "preserve",
+		"fill": t(),
+		"stroke": t(),
+		"stroke-width": "12.8",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o),
+		u = f(h);
+	let v;
+	(m(h), m(o), m(r), $(() => (v = Ge(u, "", v, { fill: t() }))), B(a, r));
+}
+const q0 = Object.freeze(Object.defineProperty({ __proto__: null, default: po }, Symbol.toStringTag, { value: "Module" }));
+var N0 = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 1H8.625C11.0412 1 13 2.95875 13 5.375C13 6.08661 12.8301 6.75853 12.5287 7.35243C13.4313 8.15386 14 9.32301 14 10.625C14 13.0412 12.0412 15 9.625 15H2V1ZM5.5 9.75V11.5H9.625C10.1082 11.5 10.5 11.1082 10.5 10.625C10.5 10.1418 10.1082 9.75 9.625 9.75H5.5ZM5.5 6.25H8.625C9.10825 6.25 9.5 5.85825 9.5 5.375C9.5 4.89175 9.10825 4.5 8.625 4.5H5.5V6.25Z"></path></g></svg>',
+);
+function vo(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = N0();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 16 16",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "fill", t())), B(a, r));
+}
+const W0 = Object.freeze(Object.defineProperty({ __proto__: null, default: vo }, Symbol.toStringTag, { value: "Module" }));
+var Z0 = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M4 19V6.2C4 5.0799 4 4.51984 4.21799 4.09202C4.40973 3.71569 4.71569 3.40973 5.09202 3.21799C5.51984 3 6.0799 3 7.2 3H16.8C17.9201 3 18.4802 3 18.908 3.21799C19.2843 3.40973 19.5903 3.71569 19.782 4.09202C20 4.51984 20 5.0799 20 6.2V17H6C4.89543 17 4 17.8954 4 19ZM4 19C4 20.1046 4.89543 21 6 21H20M9 7H15M9 11H15M19 17V21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function bo(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Z0();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const Y0 = Object.freeze(Object.defineProperty({ __proto__: null, default: bo }, Symbol.toStringTag, { value: "Module" }));
+var U0 = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.47 5.777C6.64843 5.66548 6.82631 5.57017 7.00005 5.48867C7.00341 5.24634 7.03488 5.00375 7.08016 4.76601C7.15702 4.36251 7.31232 3.81288 7.63176 3.25386C8.30808 2.0703 9.63768 1 12 1C14.3623 1 15.6919 2.0703 16.3682 3.25386C16.6877 3.81288 16.843 4.36251 16.9198 4.76601C16.9651 5.00366 16.9966 5.24615 16.9999 5.48839C17.1737 5.56989 17.3516 5.66548 17.53 5.777C18.207 6.20012 18.8425 6.82582 19.2994 7.71927C19.7656 7.53233 20.2282 7.23 20.5429 6.7578C20.7966 6.3773 21 5.82502 21 5C21 4.44772 21.4477 4 22 4C22.5523 4 23 4.44772 23 5C23 6.17498 22.7034 7.1227 22.2071 7.8672C21.5676 8.82639 20.6756 9.34444 19.8991 9.63125C19.9646 10.0513 20 10.5067 20 11V12H22C22.5523 12 23 12.4477 23 13C23 13.5523 22.5523 14 22 14H20V15.5191C19.9891 15.8049 19.9498 16.088 19.9016 16.3697C20.6774 16.6566 21.5683 17.1746 22.2071 18.1328C22.7034 18.8773 23 19.825 23 21C23 21.5523 22.5523 22 22 22C21.4477 22 21 21.5523 21 21C21 20.175 20.7966 19.6227 20.5429 19.2422C20.2401 18.7879 19.8018 18.4912 19.3524 18.3025C19.2288 18.6068 19.0814 18.9213 18.9053 19.237C17.8448 21.1392 15.7816 23 12 23C8.2184 23 6.15524 21.1392 5.09465 19.237C4.91864 18.9213 4.77118 18.6068 4.6476 18.3025C4.19823 18.4912 3.75992 18.7879 3.45705 19.2422C3.20338 19.6227 3 20.175 3 21C3 21.5523 2.55228 22 2 22C1.44772 22 1 21.5523 1 21C1 19.825 1.29662 18.8773 1.79295 18.1328C2.43173 17.1746 3.32255 16.6566 4.09839 16.3697C4.05024 16.0885 4.0127 15.8043 4 15.5191V14H2C1.44772 14 1 13.5523 1 13C1 12.4477 1.44772 12 2 12H4V11C4 10.5067 4.0354 10.0513 4.10086 9.63125C3.3244 9.34444 2.43241 8.82639 1.79295 7.8672C1.29662 7.1227 1 6.17498 1 5C1 4.44772 1.44772 4 2 4C2.55228 4 3 4.44772 3 5C3 5.82502 3.20338 6.3773 3.45705 6.7578C3.77185 7.23 4.2344 7.53233 4.70063 7.71927C5.15748 6.82582 5.79302 6.20012 6.47 5.777ZM14.6318 4.24614C14.7804 4.50632 14.8709 4.77287 14.9251 5H9.07491C9.1291 4.77287 9.21957 4.50632 9.36824 4.24614C9.69192 3.6797 10.3623 3 12 3C13.6377 3 14.3081 3.6797 14.6318 4.24614ZM8.99671 7.00035C8.48495 7.02168 7.96106 7.20358 7.53 7.473C6.84294 7.90241 6 8.81983 6 11V15.4738C6.06537 16.4404 6.37182 17.4207 6.84149 18.263C7.5032 19.4498 8.69637 20.6688 11 20.943V7L8.99671 7.00035ZM13 7V20.943C15.3036 20.6688 16.4968 19.4498 17.1585 18.263C17.6282 17.4206 17.9346 16.4404 18 15.4738V11C18 8.81983 17.1571 7.90241 16.47 7.473C16.0389 7.20358 15.515 7.02168 15.0033 7.00035L13 7Z"></path></g></svg>',
+);
+function xo(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = U0();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "fill", t())), B(a, r));
+}
+const K0 = Object.freeze(Object.defineProperty({ __proto__: null, default: xo }, Symbol.toStringTag, { value: "Module" }));
+var J0 = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3 9H21M17 13.0014L7 13M10.3333 17.0005L7 17M7 3V5M17 3V5M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function Co(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = J0();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const X0 = Object.freeze(Object.defineProperty({ __proto__: null, default: Co }, Symbol.toStringTag, { value: "Module" }));
+var Q0 = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M19.0993 10.6602C20.2113 11.9744 19.98 13.5815 19.9801 15C19.9801 18.9062 14.7132 20 12 20C9.28677 20 4.01994 18.9062 4.01994 15C4.01995 13.5815 3.78875 11.9744 4.90066 10.6602M19.0993 10.6602C18.9048 10.4303 18.6692 10.2094 18.384 10M19.0993 10.6602C19.7993 11.0634 19.9781 9.55469 19.9801 9.0625V7.18761C19.9801 5.56261 18.8629 5.00011 17.9053 5.00011C16.9477 5.00011 15.0324 6.5625 14.394 6.5625C13.6279 6.5625 13.4804 6.40636 12 6.40636C10.5197 6.40636 10.3721 6.5625 9.60601 6.5625C8.9676 6.5625 7.05236 5 6.09476 5C5.13715 5 4.01995 5.5625 4.01995 7.1875V9.0625C4.02188 9.55469 4.20072 11.0634 4.90066 10.6602M4.90066 10.6602C5.09519 10.4303 5.33082 10.2094 5.61599 10" stroke-width="1.5" stroke-linecap="round"></path><path d="M12.8258 16C12.8258 16.1726 12.4647 16.3125 12.0193 16.3125C11.574 16.3125 11.2129 16.1726 11.2129 16C11.2129 15.8274 11.574 15.6875 12.0193 15.6875C12.4647 15.6875 12.8258 15.8274 12.8258 16Z" stroke-width="1.5"></path><path d="M15.5 13.5938C15.5 14.0252 15.2834 14.375 15.0161 14.375C14.7489 14.375 14.5323 14.0252 14.5323 13.5938C14.5323 13.1623 14.7489 12.8125 15.0161 12.8125C15.2834 12.8125 15.5 13.1623 15.5 13.5938Z" stroke-width="1.5"></path><path d="M9.5 13.5938C9.5 14.0252 9.28336 14.375 9.01613 14.375C8.74889 14.375 8.53226 14.0252 8.53226 13.5938C8.53226 13.1623 8.74889 12.8125 9.01613 12.8125C9.28336 12.8125 9.5 13.1623 9.5 13.5938Z" stroke-width="1.5"></path><path d="M22.0004 15.4688C21.5165 15.1562 19.4197 14.375 18.6133 14.375" stroke-width="1.5" stroke-linecap="round"></path><path d="M20.3871 17.9688C19.9033 17.6562 18.7742 16.875 17.9678 16.875" stroke-width="1.5" stroke-linecap="round"></path><path d="M2 15.4688C2.48387 15.1562 4.58065 14.375 5.3871 14.375" stroke-width="1.5" stroke-linecap="round"></path><path d="M3.61279 17.9688C4.09667 17.6562 5.2257 16.875 6.03215 16.875" stroke-width="1.5" stroke-linecap="round"></path></g></svg>',
+);
+function n1(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Q0();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o),
+		u = x(h),
+		v = x(u),
+		b = x(v),
+		y = x(b),
+		C = x(y),
+		S = x(C),
+		A = x(S);
+	(m(o),
+		m(r),
+		$(() => {
+			(re(h, "stroke", t()),
+				re(u, "stroke", t()),
+				re(v, "stroke", t()),
+				re(b, "stroke", t()),
+				re(y, "stroke", t()),
+				re(C, "stroke", t()),
+				re(S, "stroke", t()),
+				re(A, "stroke", t()));
+		}),
+		B(a, r));
+}
+const eh = Object.freeze(Object.defineProperty({ __proto__: null, default: n1 }, Symbol.toStringTag, { value: "Module" }));
+var th = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title></title><path d="M158.25,38.5A9.91,9.91,0,0,0,144.75,53c12.5,12,20.5,28.5,20.5,47a64.87,64.87,0,0,1-65,65,10,10,0,0,0,0,20,84.93,84.93,0,0,0,85-85c-.5-24.5-10.5-46-27-61.5ZM34.75,100a64.87,64.87,0,0,1,65-65,10,10,0,0,0,0-20,84.88,84.88,0,0,0-61.5,143.5A9.91,9.91,0,0,0,52.75,145C41.75,133,34.75,117.5,34.75,100Zm85,32a10,10,0,0,0,19.5-4.5l-12-55.5c-2.5-12.5-14-22-27.5-22a28.87,28.87,0,0,0-28,22.5l-12,55.5a10.61,10.61,0,0,0,7.5,12,10.61,10.61,0,0,0,12-7.5l4-19.5h32l4.5,19ZM88.25,92.5,91.75,77a8.66,8.66,0,0,1,17,0l3.5,15.5Z"></path></g></svg>',
+);
+function _o(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = th();
+	(le(r, () => ({
+		...i,
+		"fill": t(),
+		"viewBox": "0 0 200 200",
+		"data-name": "Layer 1",
+		"id": "Layer_1",
+		"xmlns": "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	})),
+		B(a, r));
+}
+const nh = Object.freeze(Object.defineProperty({ __proto__: null, default: _o }, Symbol.toStringTag, { value: "Module" }));
+var rh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>plus-circle</title><desc>Created with Sketch Beta.</desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Icon-Set" transform="translate(-464.000000, -1087.000000)"><path d="M480,1117 C472.268,1117 466,1110.73 466,1103 C466,1095.27 472.268,1089 480,1089 C487.732,1089 494,1095.27 494,1103 C494,1110.73 487.732,1117 480,1117 L480,1117 Z M480,1087 C471.163,1087 464,1094.16 464,1103 C464,1111.84 471.163,1119 480,1119 C488.837,1119 496,1111.84 496,1103 C496,1094.16 488.837,1087 480,1087 L480,1087 Z M486,1102 L481,1102 L481,1097 C481,1096.45 480.553,1096 480,1096 C479.447,1096 479,1096.45 479,1097 L479,1102 L474,1102 C473.447,1102 473,1102.45 473,1103 C473,1103.55 473.447,1104 474,1104 L479,1104 L479,1109 C479,1109.55 479.447,1110 480,1110 C480.553,1110 481,1109.55 481,1109 L481,1104 L486,1104 C486.553,1104 487,1103.55 487,1103 C487,1102.45 486.553,1102 486,1102 L486,1102 Z" id="plus-circle"></path></g></g></g></svg>',
+);
+function la(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = rh();
+	le(r, () => ({
+		...i,
+		"viewBox": "0 0 32 32",
+		"version": "1.1",
+		"xmlns": "http://www.w3.org/2000/svg",
+		"xmlns:xlink": "http://www.w3.org/1999/xlink",
+		"fill": t(),
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = x(f(o), 3),
+		u = f(h);
+	(m(h), m(o), m(r), $(() => re(u, "fill", t())), B(a, r));
+}
+const ah = Object.freeze(Object.defineProperty({ __proto__: null, default: la }, Symbol.toStringTag, { value: "Module" }));
+var ih = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 7V12H15M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function ha(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = ih();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const oh = Object.freeze(Object.defineProperty({ __proto__: null, default: ha }, Symbol.toStringTag, { value: "Module" }));
+var sh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z"></path></g></svg>',
+);
+function It(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = sh();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "fill", t())), B(a, r));
+}
+const lh = Object.freeze(Object.defineProperty({ __proto__: null, default: It }, Symbol.toStringTag, { value: "Module" }));
+var hh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12.022,23a11.053,11.053,0,0,0,10.921-9.5,5.853,5.853,0,0,0-.577-3.5c-1.655-3.146-4.777-2.671-7.056-2.322-1.18.178-2.4.366-2.865-.035A2.416,2.416,0,0,1,12.02,6c0-2.683,0-5-3-5C3.753,1,1,6.534,1,12A11.023,11.023,0,0,0,12.022,23ZM9.016,3c.909,0,1,0,1,3a3.941,3.941,0,0,0,1.122,3.168c1.163,1,2.844.741,4.469.494,2.483-.379,4.061-.482,4.986,1.276a3.844,3.844,0,0,1,.363,2.293A9.024,9.024,0,0,1,3,12C3,8.382,4.6,3,9.016,3ZM5,7.5A1.5,1.5,0,1,1,6.5,9,1.5,1.5,0,0,1,5,7.5ZM4,12a1.5,1.5,0,1,1,1.5,1.5A1.5,1.5,0,0,1,4,12Zm3.5,3A1.5,1.5,0,1,1,6,16.5,1.5,1.5,0,0,1,7.5,15Zm8,3A3.5,3.5,0,1,0,12,14.5,3.5,3.5,0,0,0,15.5,18Zm0-5A1.5,1.5,0,1,1,14,14.5,1.5,1.5,0,0,1,15.5,13Z"></path></g></svg>',
+);
+function jr(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = hh();
+	(le(r, () => ({
+		...i,
+		fill: t(),
+		viewBox: "0 0 24 24",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	})),
+		B(a, r));
+}
+const ch = Object.freeze(Object.defineProperty({ __proto__: null, default: jr }, Symbol.toStringTag, { value: "Module" }));
+var uh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3 12L21 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function ca(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = uh();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const dh = Object.freeze(Object.defineProperty({ __proto__: null, default: ca }, Symbol.toStringTag, { value: "Module" }));
+var mh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>dice [#25]</title><desc>Created with Sketch.</desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Dribbble-Light-Preview" transform="translate(-180.000000, -8079.000000)"><g id="icons" transform="translate(56.000000, 160.000000)"><path d="M138,7927.1047 C136.896,7927.1047 136,7927.9997 136,7929.1047 C136,7930.2097 136.896,7931.1047 138,7931.1047 C139.104,7931.1047 140,7930.2097 140,7929.1047 C140,7927.9997 139.104,7927.1047 138,7927.1047 L138,7927.1047 Z M130,7927.1047 C128.896,7927.1047 128,7927.9997 128,7929.1047 C128,7930.2097 128.896,7931.1047 130,7931.1047 C131.104,7931.1047 132,7930.2097 132,7929.1047 C132,7927.9997 131.104,7927.1047 130,7927.1047 L130,7927.1047 Z M142,7921.9997 C142,7921.4477 141.552,7920.9997 141,7920.9997 L127,7920.9997 C126.448,7920.9997 126,7921.4477 126,7921.9997 L126,7935.9997 C126,7936.5527 126.448,7936.9997 127,7936.9997 L141,7936.9997 C141.552,7936.9997 142,7936.5527 142,7935.9997 L142,7921.9997 Z M144,7920.9997 L144,7936.9997 C144,7938.1047 143.104,7938.9997 142,7938.9997 L126,7938.9997 C124.896,7938.9997 124,7938.1047 124,7936.9997 L124,7920.9997 C124,7919.8957 124.896,7918.9997 126,7918.9997 L142,7918.9997 C143.104,7918.9997 144,7919.8957 144,7920.9997 L144,7920.9997 Z M130,7922.1047 C128.896,7922.1047 128,7922.9997 128,7924.1047 C128,7925.2097 128.896,7926.1047 130,7926.1047 C131.104,7926.1047 132,7925.2097 132,7924.1047 C132,7922.9997 131.104,7922.1047 130,7922.1047 L130,7922.1047 Z M130,7932.1047 C128.896,7932.1047 128,7932.9997 128,7934.1047 C128,7935.2097 128.896,7936.1047 130,7936.1047 C131.104,7936.1047 132,7935.2097 132,7934.1047 C132,7932.9997 131.104,7932.1047 130,7932.1047 L130,7932.1047 Z M138,7922.1047 C136.896,7922.1047 136,7922.9997 136,7924.1047 C136,7925.2097 136.896,7926.1047 138,7926.1047 C139.104,7926.1047 140,7925.2097 140,7924.1047 C140,7922.9997 139.104,7922.1047 138,7922.1047 L138,7922.1047 Z M140,7934.1047 C140,7935.2097 139.104,7936.1047 138,7936.1047 C136.896,7936.1047 136,7935.2097 136,7934.1047 C136,7932.9997 136.896,7932.1047 138,7932.1047 C139.104,7932.1047 140,7932.9997 140,7934.1047 L140,7934.1047 Z" id="dice-[#25]"></path></g></g></g></g></svg>',
+);
+function ua(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = mh();
+	le(r, () => ({
+		...i,
+		"viewBox": "0 0 20 20",
+		"version": "1.1",
+		"xmlns": "http://www.w3.org/2000/svg",
+		"xmlns:xlink": "http://www.w3.org/1999/xlink",
+		"fill": t(),
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = x(f(o), 3),
+		u = f(h);
+	(m(h), m(o), m(r), $(() => re(u, "fill", t())), B(a, r));
+}
+const fh = Object.freeze(Object.defineProperty({ __proto__: null, default: ua }, Symbol.toStringTag, { value: "Module" }));
+var gh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>ellipsis-filled</title><path d="M19.75 16c0 2.071-1.679 3.75-3.75 3.75s-3.75-1.679-3.75-3.75c0-2.071 1.679-3.75 3.75-3.75s3.75 1.679 3.75 3.75zM8.75 16c0 2.071-1.679 3.75-3.75 3.75s-3.75-1.679-3.75-3.75c0-2.071 1.679-3.75 3.75-3.75s3.75 1.679 3.75 3.75zM30.75 16c0 2.071-1.679 3.75-3.75 3.75s-3.75-1.679-3.75-3.75c0-2.071 1.679-3.75 3.75-3.75s3.75 1.679 3.75 3.75z"></path></g></svg>',
+);
+function r1(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = gh();
+	(le(r, () => ({
+		...i,
+		fill: t(),
+		viewBox: "0 0 32 32",
+		version: "1.1",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	})),
+		B(a, r));
+}
+const ph = Object.freeze(Object.defineProperty({ __proto__: null, default: r1 }, Symbol.toStringTag, { value: "Module" }));
+var vh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M15.0007 12C15.0007 13.6569 13.6576 15 12.0007 15C10.3439 15 9.00073 13.6569 9.00073 12C9.00073 10.3431 10.3439 9 12.0007 9C13.6576 9 15.0007 10.3431 15.0007 12Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.0012 5C7.52354 5 3.73326 7.94288 2.45898 12C3.73324 16.0571 7.52354 19 12.0012 19C16.4788 19 20.2691 16.0571 21.5434 12C20.2691 7.94291 16.4788 5 12.0012 5Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function Un(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = vh();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o),
+		u = x(h);
+	(m(o),
+		m(r),
+		$(() => {
+			(re(h, "stroke", t()), re(u, "stroke", t()));
+		}),
+		B(a, r));
+}
+const bh = Object.freeze(Object.defineProperty({ __proto__: null, default: Un }, Symbol.toStringTag, { value: "Module" }));
+var xh = J(
+	'<div><svg fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 32 32" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" stroke-width="1.6"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M8.622,4.953c0.022,-0.234 0.205,-0.424 0.443,-0.45c0.253,-0.028 0.487,0.139 0.543,0.388c0.378,1.695 1.642,3.338 3.556,3.002c0.329,-0.058 0.654,-0.223 0.907,-0.438c0.778,-0.661 1.189,-1.617 1.446,-2.583c0.064,-0.243 0.299,-0.4 0.548,-0.368c0.237,0.031 0.417,0.225 0.434,0.461c0.39,1.678 1.649,3.289 3.545,2.955c0.33,-0.058 0.654,-0.223 0.907,-0.438c0.778,-0.66 1.19,-1.617 1.446,-2.583c0.059,-0.222 0.263,-0.376 0.493,-0.371c0.231,0.004 0.428,0.166 0.478,0.391c0.379,1.695 1.643,3.338 3.556,3.001c0.33,-0.058 0.654,-0.223 0.907,-0.438c0.778,-0.66 1.19,-1.617 1.446,-2.583c0.071,-0.266 0.345,-0.425 0.612,-0.355c0.267,0.071 0.426,0.345 0.355,0.612c-0.308,1.161 -0.83,2.295 -1.765,3.089c-0.385,0.326 -0.88,0.572 -1.381,0.66c-1.943,0.342 -3.43,-0.818 -4.218,-2.393c-0.307,0.655 -0.719,1.255 -1.282,1.733c-0.384,0.326 -0.88,0.572 -1.381,0.66c-1.948,0.343 -3.437,-0.825 -4.224,-2.407c-0.306,0.65 -0.717,1.245 -1.275,1.719c-0.384,0.327 -0.88,0.572 -1.381,0.661c-1.938,0.341 -3.421,-0.812 -4.211,-2.38c-0.307,0.66 -0.722,1.266 -1.288,1.747c-0.385,0.326 -0.88,0.572 -1.381,0.66c-2.479,0.436 -4.215,-1.572 -4.706,-3.768c-0.06,-0.27 0.11,-0.537 0.379,-0.597c0.27,-0.061 0.537,0.109 0.597,0.379c0.379,1.695 1.643,3.338 3.556,3.001c0.33,-0.058 0.654,-0.223 0.907,-0.438c0.764,-0.648 1.174,-1.581 1.432,-2.529Z"></path></g></svg></div>',
+);
+function a1(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = xh();
+	le(
+		r,
+		() => ({ ...i, [he]: { "width": `${n() ?? ""}rem`, "height": `${n() ?? ""}rem`, "--stroke": t() } }),
+		void 0,
+		void 0,
+		void 0,
+		"svelte-p1q4x9",
+	);
+	var o = f(r),
+		h = x(f(o), 2),
+		u = f(h);
+	(m(h),
+		m(o),
+		m(r),
+		$(() => {
+			(re(o, "stroke", t()), re(o, "fill", t()), Ge(u, `fill:${t() ?? ""};`));
+		}),
+		B(a, r));
+}
+const Ch = Object.freeze(Object.defineProperty({ __proto__: null, default: a1 }, Symbol.toStringTag, { value: "Module" }));
+var _h = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3 4.6C3 4.03995 3 3.75992 3.10899 3.54601C3.20487 3.35785 3.35785 3.20487 3.54601 3.10899C3.75992 3 4.03995 3 4.6 3H19.4C19.9601 3 20.2401 3 20.454 3.10899C20.6422 3.20487 20.7951 3.35785 20.891 3.54601C21 3.75992 21 4.03995 21 4.6V6.33726C21 6.58185 21 6.70414 20.9724 6.81923C20.9479 6.92127 20.9075 7.01881 20.8526 7.10828C20.7908 7.2092 20.7043 7.29568 20.5314 7.46863L14.4686 13.5314C14.2957 13.7043 14.2092 13.7908 14.1474 13.8917C14.0925 13.9812 14.0521 14.0787 14.0276 14.1808C14 14.2959 14 14.4182 14 14.6627V17L10 21V14.6627C10 14.4182 10 14.2959 9.97237 14.1808C9.94787 14.0787 9.90747 13.9812 9.85264 13.8917C9.7908 13.7908 9.70432 13.7043 9.53137 13.5314L3.46863 7.46863C3.29568 7.29568 3.2092 7.2092 3.14736 7.10828C3.09253 7.01881 3.05213 6.92127 3.02763 6.81923C3 6.70414 3 6.58185 3 6.33726V4.6Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function i1(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = _h();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem`, scale: "80%" },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const wh = Object.freeze(Object.defineProperty({ __proto__: null, default: i1 }, Symbol.toStringTag, { value: "Module" }));
+var yh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 5C1 3.34315 2.34315 2 4 2H8.43845C9.81505 2 11.015 2.93689 11.3489 4.27239L11.7808 6H13.5H20C21.6569 6 23 7.34315 23 9V19C23 20.6569 21.6569 22 20 22H4C2.34315 22 1 20.6569 1 19V10V9V5ZM3 9V10V19C3 19.5523 3.44772 20 4 20H20C20.5523 20 21 19.5523 21 19V9C21 8.44772 20.5523 8 20 8H13.5H11.7808H4C3.44772 8 3 8.44772 3 9ZM9.71922 6H4C3.64936 6 3.31278 6.06015 3 6.17071V5C3 4.44772 3.44772 4 4 4H8.43845C8.89732 4 9.2973 4.3123 9.40859 4.75746L9.71922 6Z"></path></g></svg>',
+);
+function Kn(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = yh();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "fill", t())), B(a, r));
+}
+const Fh = Object.freeze(Object.defineProperty({ __proto__: null, default: Kn }, Symbol.toStringTag, { value: "Module" }));
+var kh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M2 7C2 5.89543 2.89543 5 4 5H20C21.1046 5 22 5.89543 22 7H2Z" fill="#058169"></path><rect x="2" y="7" width="20" height="2" fill="#23C0A5"></rect><rect x="2" y="9" width="20" height="2" fill="#8FD8BB"></rect><rect x="2" y="11" width="20" height="2" fill="#ECEDF2"></rect><rect x="2" y="13" width="20" height="2" fill="#73A4DE"></rect><rect x="2" y="15" width="20" height="2" fill="#4B44C5"></rect><path d="M2 17H22C22 18.1046 21.1046 19 20 19H4C2.89543 19 2 18.1046 2 17Z" fill="#3C1975"></path></g></svg>',
+);
+function o1(a, e) {
+	k(e, "stroke", 3, "currentcolor");
+	let t = k(e, "scale", 3, 1),
+		n = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var i = kh();
+	(le(i, () => ({
+		...n,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${t() ?? ""}rem`, height: `${t() ?? ""}rem` },
+	})),
+		B(a, i));
+}
+const Eh = Object.freeze(Object.defineProperty({ __proto__: null, default: o1 }, Symbol.toStringTag, { value: "Module" }));
+var Bh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0002 8C9.79111 8 8.00024 9.79086 8.00024 12C8.00024 14.2091 9.79111 16 12.0002 16C14.2094 16 16.0002 14.2091 16.0002 12C16.0002 9.79086 14.2094 8 12.0002 8ZM10.0002 12C10.0002 10.8954 10.8957 10 12.0002 10C13.1048 10 14.0002 10.8954 14.0002 12C14.0002 13.1046 13.1048 14 12.0002 14C10.8957 14 10.0002 13.1046 10.0002 12Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2867 0.5C9.88583 0.5 8.6461 1.46745 8.37171 2.85605L8.29264 3.25622C8.10489 4.20638 7.06195 4.83059 6.04511 4.48813L5.64825 4.35447C4.32246 3.90796 2.83873 4.42968 2.11836 5.63933L1.40492 6.83735C0.67773 8.05846 0.954349 9.60487 2.03927 10.5142L2.35714 10.7806C3.12939 11.4279 3.12939 12.5721 2.35714 13.2194L2.03927 13.4858C0.954349 14.3951 0.67773 15.9415 1.40492 17.1626L2.11833 18.3606C2.83872 19.5703 4.3225 20.092 5.64831 19.6455L6.04506 19.5118C7.06191 19.1693 8.1049 19.7935 8.29264 20.7437L8.37172 21.1439C8.6461 22.5325 9.88584 23.5 11.2867 23.5H12.7136C14.1146 23.5 15.3543 22.5325 15.6287 21.1438L15.7077 20.7438C15.8954 19.7936 16.9384 19.1693 17.9553 19.5118L18.3521 19.6455C19.6779 20.092 21.1617 19.5703 21.8821 18.3606L22.5955 17.1627C23.3227 15.9416 23.046 14.3951 21.9611 13.4858L21.6432 13.2194C20.8709 12.5722 20.8709 11.4278 21.6432 10.7806L21.9611 10.5142C23.046 9.60489 23.3227 8.05845 22.5955 6.83732L21.8821 5.63932C21.1617 4.42968 19.678 3.90795 18.3522 4.35444L17.9552 4.48814C16.9384 4.83059 15.8954 4.20634 15.7077 3.25617L15.6287 2.85616C15.3543 1.46751 14.1146 0.5 12.7136 0.5H11.2867ZM10.3338 3.24375C10.4149 2.83334 10.7983 2.5 11.2867 2.5H12.7136C13.2021 2.5 13.5855 2.83336 13.6666 3.24378L13.7456 3.64379C14.1791 5.83811 16.4909 7.09167 18.5935 6.38353L18.9905 6.24984C19.4495 6.09527 19.9394 6.28595 20.1637 6.66264L20.8771 7.86064C21.0946 8.22587 21.0208 8.69271 20.6764 8.98135L20.3586 9.24773C18.6325 10.6943 18.6325 13.3057 20.3586 14.7523L20.6764 15.0186C21.0208 15.3073 21.0946 15.7741 20.8771 16.1394L20.1637 17.3373C19.9394 17.714 19.4495 17.9047 18.9905 17.7501L18.5936 17.6164C16.4909 16.9082 14.1791 18.1618 13.7456 20.3562L13.6666 20.7562C13.5855 21.1666 13.2021 21.5 12.7136 21.5H11.2867C10.7983 21.5 10.4149 21.1667 10.3338 20.7562L10.2547 20.356C9.82113 18.1617 7.50931 16.9082 5.40665 17.6165L5.0099 17.7501C4.55092 17.9047 4.06104 17.714 3.83671 17.3373L3.1233 16.1393C2.9058 15.7741 2.97959 15.3073 3.32398 15.0186L3.64185 14.7522C5.36782 13.3056 5.36781 10.6944 3.64185 9.24779L3.32398 8.98137C2.97959 8.69273 2.9058 8.2259 3.1233 7.86067L3.83674 6.66266C4.06106 6.28596 4.55093 6.09528 5.0099 6.24986L5.40676 6.38352C7.50938 7.09166 9.82112 5.83819 10.2547 3.64392L10.3338 3.24375Z"></path></g></svg>',
+);
+function Tt(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Bh();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o),
+		u = x(h);
+	(m(o),
+		m(r),
+		$(() => {
+			(re(h, "fill", t()), re(u, "fill", t()));
+		}),
+		B(a, r));
+}
+const Sh = Object.freeze(Object.defineProperty({ __proto__: null, default: Tt }, Symbol.toStringTag, { value: "Module" }));
+var Ah = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>network</title><path d="M27 21.75c-0.795 0.004-1.538 0.229-2.169 0.616l0.018-0.010-2.694-2.449c0.724-1.105 1.154-2.459 1.154-3.913 0-1.572-0.503-3.027-1.358-4.212l0.015 0.021 3.062-3.062c0.57 0.316 1.249 0.503 1.971 0.508h0.002c2.347 0 4.25-1.903 4.25-4.25s-1.903-4.25-4.25-4.25c-2.347 0-4.25 1.903-4.25 4.25v0c0.005 0.724 0.193 1.403 0.519 1.995l-0.011-0.022-3.062 3.062c-1.147-0.84-2.587-1.344-4.144-1.344-0.868 0-1.699 0.157-2.467 0.443l0.049-0.016-0.644-1.17c0.726-0.757 1.173-1.787 1.173-2.921 0-2.332-1.891-4.223-4.223-4.223s-4.223 1.891-4.223 4.223c0 2.332 1.891 4.223 4.223 4.223 0.306 0 0.605-0.033 0.893-0.095l-0.028 0.005 0.642 1.166c-1.685 1.315-2.758 3.345-2.758 5.627 0 0.605 0.076 1.193 0.218 1.754l-0.011-0.049-0.667 0.283c-0.78-0.904-1.927-1.474-3.207-1.474-2.334 0-4.226 1.892-4.226 4.226s1.892 4.226 4.226 4.226c2.334 0 4.226-1.892 4.226-4.226 0-0.008-0-0.017-0-0.025v0.001c-0.008-0.159-0.023-0.307-0.046-0.451l0.003 0.024 0.667-0.283c1.303 2.026 3.547 3.349 6.1 3.349 1.703 0 3.268-0.589 4.503-1.574l-0.015 0.011 2.702 2.455c-0.258 0.526-0.41 1.144-0.414 1.797v0.001c0 2.347 1.903 4.25 4.25 4.25s4.25-1.903 4.25-4.25c0-2.347-1.903-4.25-4.25-4.25v0zM8.19 5c0-0.966 0.784-1.75 1.75-1.75s1.75 0.784 1.75 1.75c0 0.966-0.784 1.75-1.75 1.75v0c-0.966-0.001-1.749-0.784-1.75-1.75v-0zM5 22.42c-0.966-0.001-1.748-0.783-1.748-1.749s0.783-1.749 1.749-1.749c0.966 0 1.748 0.782 1.749 1.748v0c-0.001 0.966-0.784 1.749-1.75 1.75h-0zM27 3.25c0.966 0 1.75 0.784 1.75 1.75s-0.784 1.75-1.75 1.75c-0.966 0-1.75-0.784-1.75-1.75v0c0.001-0.966 0.784-1.749 1.75-1.75h0zM11.19 16c0-0.001 0-0.002 0-0.003 0-2.655 2.152-4.807 4.807-4.807 1.328 0 2.53 0.539 3.4 1.409l0.001 0.001 0.001 0.001c0.87 0.87 1.407 2.072 1.407 3.399 0 2.656-2.153 4.808-4.808 4.808s-4.808-2.153-4.808-4.808c0-0 0-0 0-0v0zM27 27.75c-0.966 0-1.75-0.784-1.75-1.75s0.784-1.75 1.75-1.75c0.966 0 1.75 0.784 1.75 1.75v0c-0.001 0.966-0.784 1.749-1.75 1.75h-0z"></path></g></svg>',
+);
+function On(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Ah();
+	(le(r, () => ({
+		...i,
+		fill: t(),
+		viewBox: "0 0 32 32",
+		version: "1.1",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	})),
+		B(a, r));
+}
+const Dh = Object.freeze(Object.defineProperty({ __proto__: null, default: On }, Symbol.toStringTag, { value: "Module" }));
+var Mh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g><g><path d="M13.684,24.416h-2.225v-2.102c4.412-0.796,7.753-4.655,7.753-9.282c0-1.251-0.239-2.445-0.685-3.538 c-0.486-0.183-1.004-0.281-1.539-0.281c-0.849,0-1.657,0.241-2.354,0.689c0.585,0.903,0.925,1.977,0.925,3.13 c0,3.184-2.587,5.773-5.771,5.773c-3.182,0-5.77-2.589-5.77-5.773c0-2.423,1.501-4.499,3.62-5.354 C8.07,7.001,8.579,6.365,9.161,5.784c0.794-0.793,1.69-1.451,2.661-1.96c-0.654-0.144-1.334-0.222-2.03-0.222 c-5.199,0-9.446,4.232-9.446,9.431c0,4.524,3.208,8.31,7.437,9.22v2.164H5.71c-1.011,0-1.831,0.829-1.831,1.838 c0,1.012,0.82,1.84,1.831,1.84h2.073v1.462c0,1.009,0.828,1.828,1.838,1.828c1.011,0,1.838-0.819,1.838-1.828v-1.462h2.225 c1.011,0,1.829-0.828,1.829-1.84C15.513,25.245,14.694,24.416,13.684,24.416z"></path><path d="M29.13,0c-0.084-0.004-5.847,0.062-5.847,0.062c-1.024,0.012-1.848,1.016-1.834,2.044 c0.013,1.018,0.843,1.996,1.857,1.996c0.006,0,0.016,0,0.024,0l1.073-0.177l-1.955,1.877c-1.594-1.108-3.479-1.753-5.459-1.753 c-2.559,0-4.965,0.977-6.775,2.786c-2.892,2.891-3.544,7.177-1.962,10.702c0.102,0.034,0.205,0.066,0.31,0.095 c0.349,0.095,0.709,0.146,1.068,0.158c0.052,0.002,0.105,0.003,0.158,0.003c0.882,0,1.742-0.245,2.492-0.709 c-1.703-2.294-1.517-5.558,0.564-7.64c1.106-1.107,2.579-1.718,4.146-1.718s3.039,0.61,4.146,1.718 c2.289,2.288,2.289,6.01,0,8.296c-0.844,0.846-1.902,1.401-3.054,1.616c-0.079,0.104-0.16,0.208-0.242,0.309 c-1.078,1.31-2.455,2.335-4.004,2.989c1.001,0.347,2.063,0.528,3.153,0.528c2.56,0,4.966-1.001,6.777-2.811 c3.248-3.249,3.783-8.269,1.385-11.981l2.209-2.092v1.299c0,1.026,0.812,1.859,1.838,1.859c1.027,0,1.84-0.833,1.84-1.859V1.844 C31.039,1.347,30.955,0.113,29.13,0z"></path></g></g></g></svg>',
+);
+function s1(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Mh();
+	(le(r, () => ({
+		...i,
+		"fill": t(),
+		"version": "1.1",
+		"id": "Capa_1",
+		"xmlns": "http://www.w3.org/2000/svg",
+		"xmlns:xlink": "http://www.w3.org/1999/xlink",
+		"viewBox": "0 0 31.385 31.385",
+		"xml:space": "preserve",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	})),
+		B(a, r));
+}
+const Lh = Object.freeze(Object.defineProperty({ __proto__: null, default: s1 }, Symbol.toStringTag, { value: "Module" }));
+var Rh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M2.46148 12.8001C2.29321 12.5087 2.20908 12.3629 2.17615 12.208C2.14701 12.0709 2.14701 11.9293 2.17615 11.7922C2.20908 11.6373 2.29321 11.4915 2.46148 11.2001L6.53772 4.13984C6.70598 3.8484 6.79011 3.70268 6.90782 3.5967C7.01196 3.50293 7.13465 3.43209 7.26793 3.38879C7.41856 3.33984 7.58683 3.33984 7.92336 3.33984H16.0758C16.4124 3.33984 16.5806 3.33984 16.7313 3.38879C16.8645 3.43209 16.9872 3.50293 17.0914 3.5967C17.2091 3.70268 17.2932 3.8484 17.4615 4.13984L21.5377 11.2001C21.706 11.4915 21.7901 11.6373 21.823 11.7922C21.8522 11.9293 21.8522 12.0709 21.823 12.208C21.7901 12.3629 21.706 12.5087 21.5377 12.8001L17.4615 19.8604C17.2932 20.1518 17.2091 20.2975 17.0914 20.4035C16.9872 20.4973 16.8645 20.5681 16.7313 20.6114C16.5806 20.6604 16.4124 20.6604 16.0758 20.6604H7.92336C7.58683 20.6604 7.41856 20.6604 7.26793 20.6114C7.13465 20.5681 7.01196 20.4973 6.90782 20.4035C6.79011 20.2975 6.70598 20.1518 6.53772 19.8604L2.46148 12.8001Z" stroke-width="2" stroke-linejoin="round"></path></g></svg>',
+);
+function Ar(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Rh();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const Ph = Object.freeze(Object.defineProperty({ __proto__: null, default: Ar }, Symbol.toStringTag, { value: "Module" }));
+var Ih = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M2 7C2 5.89543 2.89543 5 4 5H20C21.1046 5 22 5.89543 22 7H2Z" fill="#FF575B"></path><rect x="2" y="7" width="20" height="2" fill="#FF8353"></rect><rect x="2" y="9" width="20" height="2" fill="#FABA2C"></rect><rect x="2" y="11" width="20" height="2" fill="#7AC74D"></rect><rect x="2" y="13" width="20" height="2" fill="#00B0FF"></rect><rect x="2" y="15" width="20" height="2" fill="#B99FE4"></rect><path d="M2 17H22C22 18.1046 21.1046 19 20 19H4C2.89543 19 2 18.1046 2 17Z" fill="#E39BD1"></path></g></svg>',
+);
+function l1(a, e) {
+	k(e, "stroke", 3, "currentcolor");
+	let t = k(e, "scale", 3, 1),
+		n = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var i = Ih();
+	(le(i, () => ({
+		...n,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${t() ?? ""}rem`, height: `${t() ?? ""}rem` },
+	})),
+		B(a, i));
+}
+const Th = Object.freeze(Object.defineProperty({ __proto__: null, default: l1 }, Symbol.toStringTag, { value: "Module" }));
+var Oh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>function-block</title><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Combined-Shape"><path d="M362.666667,85.3333333 L362.666333,234.666333 L426.666667,234.666667 L426.666667,277.333333 L362.666333,277.333333 L362.666667,426.666667 L149.333333,426.666667 L149.333333,341.333333 L85.3333333,341.333333 L85.3333333,298.666667 L149.333333,298.666333 L149.333333,213.333333 L85.3333333,213.333333 L85.3333333,170.666667 L149.333333,170.666333 L149.333333,85.3333333 L362.666667,85.3333333 Z M320,128 L192,128 L192,384 L320,384 L320,128 Z"></path></g></g></g></svg>',
+);
+function wo(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Oh();
+	le(r, () => ({
+		...i,
+		"viewBox": "0 0 512 512",
+		"version": "1.1",
+		"xmlns": "http://www.w3.org/2000/svg",
+		"xmlns:xlink": "http://www.w3.org/1999/xlink",
+		"fill": t(),
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem`, scale: "140%" },
+	}));
+	var o = x(f(r), 2),
+		h = x(f(o)),
+		u = f(h);
+	(m(h), m(o), m(r), $(() => re(u, "fill", t())), B(a, r));
+}
+const Vh = Object.freeze(Object.defineProperty({ __proto__: null, default: wo }, Symbol.toStringTag, { value: "Module" }));
+var jh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3L8 17m4-14H8m4 0h4M8 17H4m4 0h4"></path></g></svg>',
+);
+function da(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = jh();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 20 20",
+		xmlns: "http://www.w3.org/2000/svg",
+		fill: "none",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const $h = Object.freeze(Object.defineProperty({ __proto__: null, default: da }, Symbol.toStringTag, { value: "Module" }));
+var Gh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>hotkey_line</title><g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Development" transform="translate(-816.000000, 0.000000)" fill-rule="nonzero"><g id="hotkey_line" transform="translate(816.000000, 0.000000)"><path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z" id="MingCute" fill-rule="nonzero"></path><path d="M18,3 C19.597725,3 20.903664,4.24892392 20.9949075,5.82372764 L21,6 L21,18 C21,19.597725 19.7511226,20.903664 18.1762773,20.9949075 L18,21 L6,21 C4.40232321,21 3.09633941,19.7511226 3.00509271,18.1762773 L3,18 L3,6 C3,4.40232321 4.24892392,3.09633941 5.82372764,3.00509271 L6,3 L18,3 Z M15.2934,16.7076 C14.9018,16.895 14.4631,17 14,17 L5,17 L5,18 C5,18.5523 5.44772,19 6,19 L17.5858,19 L15.2934,16.7076 Z M18,5 L17,5 L17,14 C17,14.3859167 16.9270833,14.7548889 16.7943287,15.0937801 L16.7076,15.2934 L19,17.5858 L19,6 C19,5.48716857 18.613973,5.06449347 18.1166239,5.0067278 L18,5 Z M15,5 L6,5 C5.48716857,5 5.06449347,5.38604429 5.0067278,5.88337975 L5,6 L5,15 L14,15 C14.51285,15 14.9355092,14.613973 14.9932725,14.1166239 L15,14 L15,5 Z M9,7 C9.51283143,7 9.93550653,7.38604429 9.9932722,7.88337975 L10,8 L10,8.63148 L11.4453,7.66795 C11.9048,7.3616 12.5257,7.48577 12.8321,7.9453 C13.1165214,8.37200643 13.0297464,8.93782745 12.6479974,9.26176291 L12.5547,9.33205 L11.1778,10.25 L12.5547,11.1679 C13.0142,11.4743 13.1384,12.0952 12.8321,12.5547 C12.5475857,12.9813786 11.9918954,13.1189464 11.5460613,12.8911811 L11.4453,12.8321 L10,11.8685 L10,12 C10,12.5523 9.55228,13 9,13 C8.48716857,13 8.06449347,12.613973 8.0067278,12.1166239 L8,12 L8,8 C8,7.44772 8.44772,7 9,7 Z" id="形状"></path></g></g></g></g></svg>',
+);
+function yo(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Gh();
+	le(r, () => ({
+		...i,
+		"viewBox": "0 0 24 24",
+		"version": "1.1",
+		"xmlns": "http://www.w3.org/2000/svg",
+		"xmlns:xlink": "http://www.w3.org/1999/xlink",
+		"fill": t(),
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = x(f(o)),
+		u = f(h),
+		v = f(u),
+		b = x(f(v));
+	(m(v), m(u), m(h), m(o), m(r), $(() => re(b, "fill", t())), B(a, r));
+}
+const zh = Object.freeze(Object.defineProperty({ __proto__: null, default: yo }, Symbol.toStringTag, { value: "Module" }));
+var Hh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M2 7C2 5.89543 2.89543 5 4 5H20C21.1046 5 22 5.89543 22 7H2Z" fill="#C53D1F"></path><rect x="2" y="7" width="20" height="2" fill="#E07C3D"></rect><rect x="2" y="9" width="20" height="2" fill="#F19E63"></rect><rect x="2" y="11" width="20" height="2" fill="#EEECEF"></rect><rect x="2" y="13" width="20" height="2" fill="#C46AA1"></rect><rect x="2" y="15" width="20" height="2" fill="#AA5C8E"></rect><path d="M2 17H22C22 18.1046 21.1046 19 20 19H4C2.89543 19 2 18.1046 2 17Z" fill="#961F60"></path></g></svg>',
+);
+function h1(a, e) {
+	k(e, "stroke", 3, "currentcolor");
+	let t = k(e, "scale", 3, 1),
+		n = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var i = Hh();
+	(le(i, () => ({
+		...n,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${t() ?? ""}rem`, height: `${t() ?? ""}rem` },
+	})),
+		B(a, i));
+}
+const qh = Object.freeze(Object.defineProperty({ __proto__: null, default: h1 }, Symbol.toStringTag, { value: "Module" }));
+var Nh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>license-line</title><path d="M32,6H4A2,2,0,0,0,2,8V28a2,2,0,0,0,2,2H19l.57-.7.93-1.14L20.41,28H4V8H32l0,8.56a8.41,8.41,0,0,1,2,1.81V8A2,2,0,0,0,32,6Z" class="clr-i-outline clr-i-outline-path-1"></path><rect x="7" y="12" width="17" height="1.6" class="clr-i-outline clr-i-outline-path-2"></rect><rect x="7" y="16" width="11" height="1.6" class="clr-i-outline clr-i-outline-path-3"></rect><rect x="7" y="23" width="10" height="1.6" class="clr-i-outline clr-i-outline-path-4"></rect><path d="M27.46,17.23a6.36,6.36,0,0,0-4.4,11l-1.94,2.37.9,3.61,3.66-4.46a6.26,6.26,0,0,0,3.55,0l3.66,4.46.9-3.61-1.94-2.37a6.36,6.36,0,0,0-4.4-11Zm0,10.68a4.31,4.31,0,1,1,4.37-4.31A4.35,4.35,0,0,1,27.46,27.91Z" class="clr-i-outline clr-i-outline-path-5"></path><rect x="0" y="0" width="36" height="36" fill-opacity="0"></rect></g></svg>',
+);
+function Fo(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Nh();
+	(le(r, () => ({
+		...i,
+		"fill": t(),
+		"viewBox": "0 0 36 36",
+		"version": "1.1",
+		"preserveAspectRatio": "xMidYMid meet",
+		"xmlns": "http://www.w3.org/2000/svg",
+		"xmlns:xlink": "http://www.w3.org/1999/xlink",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	})),
+		B(a, r));
+}
+const Wh = Object.freeze(Object.defineProperty({ __proto__: null, default: Fo }, Symbol.toStringTag, { value: "Module" }));
+var Zh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M10,8h11c0.6,0,1-0.4,1-1s-0.4-1-1-1H10C9.4,6,9,6.4,9,7S9.4,8,10,8z M5.7,15.3V8.7C5.9,8.9,6.1,9,6.3,9C6.6,9,6.8,8.9,7,8.8c0.4-0.4,0.5-1,0.1-1.4l-1.7-2C5.2,5.1,5,5,4.7,5S4.1,5.1,3.9,5.4l-1.7,2c-0.3,0.4-0.3,1,0.2,1.4c0.4,0.3,0.9,0.3,1.3,0v6.6c-0.4-0.3-0.9-0.4-1.3,0c-0.4,0.4-0.5,1-0.1,1.4l1.7,2C4.1,18.9,4.4,19,4.7,19s0.6-0.1,0.8-0.4l1.7-2c0.4-0.4,0.3-1.1-0.1-1.4C6.6,14.9,6,14.9,5.7,15.3z M21,11H10c-0.6,0-1,0.4-1,1s0.4,1,1,1h11c0.6,0,1-0.4,1-1S21.6,11,21,11z M21,16H10c-0.6,0-1,0.4-1,1s0.4,1,1,1h11c0.6,0,1-0.4,1-1S21.6,16,21,16z"></path></g></svg>',
+);
+function ko(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Zh();
+	(le(r, () => ({
+		...i,
+		"fill": t(),
+		"viewBox": "0 0 24 24",
+		"xmlns": "http://www.w3.org/2000/svg",
+		"enable-background": "new 0 0 24 24",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem`, scale: "130%" },
+	})),
+		B(a, r));
+}
+const Yh = Object.freeze(Object.defineProperty({ __proto__: null, default: ko }, Symbol.toStringTag, { value: "Module" }));
+var Uh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 21C15.5 17.4 19 14.1764 19 10.2C19 6.22355 15.866 3 12 3C8.13401 3 5 6.22355 5 10.2C5 14.1764 8.5 17.4 12 21Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function Eo(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Uh();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o),
+		u = x(h);
+	(m(o),
+		m(r),
+		$(() => {
+			(re(h, "stroke", t()), re(u, "stroke", t()));
+		}),
+		B(a, r));
+}
+const Kh = Object.freeze(Object.defineProperty({ __proto__: null, default: Eo }, Symbol.toStringTag, { value: "Module" }));
+var Jh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M2 16C2 13.1716 2 11.7574 2.87868 10.8787C3.75736 10 5.17157 10 8 10H16C18.8284 10 20.2426 10 21.1213 10.8787C22 11.7574 22 13.1716 22 16C22 18.8284 22 20.2426 21.1213 21.1213C20.2426 22 18.8284 22 16 22H8C5.17157 22 3.75736 22 2.87868 21.1213C2 20.2426 2 18.8284 2 16Z" stroke-width="1.5"></path><path d="M12 14V18" stroke-width="1.5" stroke-linecap="round"></path><path d="M6 10V8C6 4.68629 8.68629 2 12 2C15.3137 2 18 4.68629 18 8V10" stroke-width="1.5" stroke-linecap="round"></path></g></svg>',
+);
+function Bo(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Jh();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o),
+		u = x(h),
+		v = x(u);
+	(m(o),
+		m(r),
+		$(() => {
+			(re(h, "stroke", t()), re(u, "stroke", t()), re(v, "stroke", t()));
+		}),
+		B(a, r));
+}
+const Xh = Object.freeze(Object.defineProperty({ __proto__: null, default: Bo }, Symbol.toStringTag, { value: "Module" }));
+var Qh = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 8C0 5.79086 1.79086 4 4 4H20C22.2091 4 24 5.79086 24 8V16C24 18.2091 22.2091 20 20 20H4C1.79086 20 0 18.2091 0 16V8ZM4 6C2.89543 6 2 6.89543 2 8V16C2 17.1046 2.89543 18 4 18H20C21.1046 18 22 17.1046 22 16V8C22 6.89543 21.1046 6 20 6H4ZM5.68377 8.05132C6.09211 7.9152 6.54174 8.05566 6.8 8.4L9 11.3333L11.2 8.4C11.4583 8.05566 11.9079 7.9152 12.3162 8.05132C12.7246 8.18743 13 8.56957 13 9V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V12L9.8 13.6C9.61115 13.8518 9.31476 14 9 14C8.68524 14 8.38885 13.8518 8.2 13.6L7 12V15C7 15.5523 6.55228 16 6 16C5.44772 16 5 15.5523 5 15V9C5 8.56957 5.27543 8.18743 5.68377 8.05132ZM18 9C18 8.44772 17.5523 8 17 8C16.4477 8 16 8.44772 16 9V12.5858L15.7071 12.2929C15.3166 11.9024 14.6834 11.9024 14.2929 12.2929C13.9024 12.6834 13.9024 13.3166 14.2929 13.7071L16.2929 15.7071C16.6834 16.0976 17.3166 16.0976 17.7071 15.7071L19.7071 13.7071C20.0976 13.3166 20.0976 12.6834 19.7071 12.2929C19.3166 11.9024 18.6834 11.9024 18.2929 12.2929L18 12.5858V9Z"></path></g></svg>',
+);
+function c1(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Qh();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "fill", t())), B(a, r));
+}
+const ec = Object.freeze(Object.defineProperty({ __proto__: null, default: c1 }, Symbol.toStringTag, { value: "Module" }));
+var tc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M23 4C23 2.34315 21.6569 1 20 1H8C6.34315 1 5 2.34315 5 4V5H4C2.34315 5 1 6.34315 1 8V20C1 21.6569 2.34315 23 4 23H16C17.6569 23 19 21.6569 19 20V19H20C21.6569 19 23 17.6569 23 16V4ZM19 17H20C20.5523 17 21 16.5523 21 16V4C21 3.44772 20.5523 3 20 3H8C7.44772 3 7 3.44772 7 4V5H16C17.6569 5 19 6.34315 19 8V17ZM16 7C16.5523 7 17 7.44772 17 8V20C17 20.5523 16.5523 21 16 21H4C3.44772 21 3 20.5523 3 20V8C3 7.44772 3.44772 7 4 7H16Z"></path></g></svg>',
+);
+function So(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = tc();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "fill", t())), B(a, r));
+}
+const nc = Object.freeze(Object.defineProperty({ __proto__: null, default: So }, Symbol.toStringTag, { value: "Module" }));
+var rc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3.32031 11.6835C3.32031 16.6541 7.34975 20.6835 12.3203 20.6835C16.1075 20.6835 19.3483 18.3443 20.6768 15.032C19.6402 15.4486 18.5059 15.6834 17.3203 15.6834C12.3497 15.6834 8.32031 11.654 8.32031 6.68342C8.32031 5.50338 8.55165 4.36259 8.96453 3.32996C5.65605 4.66028 3.32031 7.89912 3.32031 11.6835Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function Ao(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = rc();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const ac = Object.freeze(Object.defineProperty({ __proto__: null, default: Ao }, Symbol.toStringTag, { value: "Module" }));
+var ic = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M4 8H20M4 16H20M8 3V21M16 3V21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function Do(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = ic();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const oc = Object.freeze(Object.defineProperty({ __proto__: null, default: Do }, Symbol.toStringTag, { value: "Module" }));
+var sc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M10 13H14M19 9V20H5V9M19 9H5M19 9C19.5523 9 20 8.55228 20 8V5C20 4.44772 19.5523 4 19 4H5C4.44772 4 4 4.44772 4 5V8C4 8.55228 4.44772 9 5 9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function Dn(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = sc();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const lc = Object.freeze(Object.defineProperty({ __proto__: null, default: Dn }, Symbol.toStringTag, { value: "Module" }));
+var hc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M8 13H14M8 17H16M13 3H5V21H19V9M13 3H14L19 8V9M13 3V7C13 8 14 9 15 9H19" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function u1(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = hc();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const cc = Object.freeze(Object.defineProperty({ __proto__: null, default: u1 }, Symbol.toStringTag, { value: "Module" }));
+var uc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><rect x="2" y="9.666" width="20" height="4.666" fill="#F9D949"></rect><path d="M2 7C2 5.89543 2.89543 5 4 5H20C21.1046 5 22 5.89543 22 7V9.666H2V7Z" fill="#EC408D"></path><path d="M2 14.332H22V16.998C22 18.1026 21.1046 18.998 20 18.998H4C2.89543 18.998 2 18.1026 2 16.998V14.332Z" fill="#3F93F6"></path></g></svg>',
+);
+function d1(a, e) {
+	k(e, "stroke", 3, "currentcolor");
+	let t = k(e, "scale", 3, 1),
+		n = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var i = uc();
+	(le(i, () => ({
+		...n,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${t() ?? ""}rem`, height: `${t() ?? ""}rem` },
+	})),
+		B(a, i));
+}
+const dc = Object.freeze(Object.defineProperty({ __proto__: null, default: d1 }, Symbol.toStringTag, { value: "Module" }));
+var mc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M2,12H5a1,1,0,0,0,0-2H4.635l.586-1.692H8.779L9.365,10H9a1,1,0,0,0,0,2h3a1,1,0,0,0,0-2h-.518L8.945,2.673A1,1,0,0,0,8,2H6a1,1,0,0,0-.945.673L2.518,10H2a1,1,0,0,0,0,2ZM6.712,4h.576l.8,2.308H5.913ZM23,4a1,1,0,0,1-1,1H15a1,1,0,0,1,0-2h7A1,1,0,0,1,23,4Zm0,6a1,1,0,0,1-1,1H15a1,1,0,0,1,0-2h7A1,1,0,0,1,23,10Zm0,5a1,1,0,0,1-1,1H2a1,1,0,0,1,0-2H22A1,1,0,0,1,23,15Zm0,6a1,1,0,0,1-1,1H2a1,1,0,0,1,0-2H22A1,1,0,0,1,23,21Z"></path></g></svg>',
+);
+function nr(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = mc();
+	(le(r, () => ({
+		...i,
+		fill: t(),
+		viewBox: "0 0 24 24",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	})),
+		B(a, r));
+}
+const fc = Object.freeze(Object.defineProperty({ __proto__: null, default: nr }, Symbol.toStringTag, { value: "Module" }));
+var gc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.265 4.16231L19.21 5.74531C19.3978 5.9283 19.5031 6.17982 19.5015 6.44201C19.5 6.70421 19.3919 6.9545 19.202 7.13531L17.724 8.93531L12.694 15.0723C12.6069 15.1749 12.4897 15.2473 12.359 15.2793L9.75102 15.8793C9.40496 15.8936 9.10654 15.6384 9.06702 15.2943L9.18902 12.7213C9.19806 12.5899 9.25006 12.4652 9.33702 12.3663L14.15 6.50131L15.845 4.43331C16.1743 3.98505 16.7938 3.86684 17.265 4.16231Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.5 18.2413C5.08579 18.2413 4.75 18.5771 4.75 18.9913C4.75 19.4056 5.08579 19.7413 5.5 19.7413V18.2413ZM19.2 19.7413C19.6142 19.7413 19.95 19.4056 19.95 18.9913C19.95 18.5771 19.6142 18.2413 19.2 18.2413V19.7413ZM14.8455 6.22062C14.6904 5.83652 14.2534 5.65082 13.8693 5.80586C13.4852 5.9609 13.2995 6.39796 13.4545 6.78206L14.8455 6.22062ZM17.8893 9.66991C18.2933 9.57863 18.5468 9.17711 18.4556 8.77308C18.3643 8.36904 17.9628 8.1155 17.5587 8.20678L17.8893 9.66991ZM5.5 19.7413H19.2V18.2413H5.5V19.7413ZM13.4545 6.78206C13.6872 7.35843 14.165 8.18012 14.8765 8.8128C15.6011 9.45718 16.633 9.95371 17.8893 9.66991L17.5587 8.20678C16.916 8.35198 16.3609 8.12551 15.8733 7.69189C15.3725 7.24656 15.0128 6.63526 14.8455 6.22062L13.4545 6.78206Z"></path></g></svg>',
+);
+function ma(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = gc();
+	le(r, () => ({
+		...i,
+		viewBox: "0 -0.5 25 25",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o),
+		u = x(h);
+	(m(o),
+		m(r),
+		$(() => {
+			(re(h, "stroke", t()), re(u, "fill", t()));
+		}),
+		B(a, r));
+}
+const pc = Object.freeze(Object.defineProperty({ __proto__: null, default: ma }, Symbol.toStringTag, { value: "Module" }));
+var vc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>profile_round [#1342]</title><desc>Created with Sketch.</desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Dribbble-Light-Preview" transform="translate(-140.000000, -2159.000000)"><g id="icons" transform="translate(56.000000, 160.000000)"><path d="M100.562548,2016.99998 L87.4381713,2016.99998 C86.7317804,2016.99998 86.2101535,2016.30298 86.4765813,2015.66198 C87.7127655,2012.69798 90.6169306,2010.99998 93.9998492,2010.99998 C97.3837885,2010.99998 100.287954,2012.69798 101.524138,2015.66198 C101.790566,2016.30298 101.268939,2016.99998 100.562548,2016.99998 M89.9166645,2004.99998 C89.9166645,2002.79398 91.7489936,2000.99998 93.9998492,2000.99998 C96.2517256,2000.99998 98.0830339,2002.79398 98.0830339,2004.99998 C98.0830339,2007.20598 96.2517256,2008.99998 93.9998492,2008.99998 C91.7489936,2008.99998 89.9166645,2007.20598 89.9166645,2004.99998 M103.955674,2016.63598 C103.213556,2013.27698 100.892265,2010.79798 97.837022,2009.67298 C99.4560048,2008.39598 100.400241,2006.33098 100.053171,2004.06998 C99.6509769,2001.44698 97.4235996,1999.34798 94.7348224,1999.04198 C91.0232075,1998.61898 87.8750721,2001.44898 87.8750721,2004.99998 C87.8750721,2006.88998 88.7692896,2008.57398 90.1636971,2009.67298 C87.1074334,2010.79798 84.7871636,2013.27698 84.044024,2016.63598 C83.7745338,2017.85698 84.7789973,2018.99998 86.0539717,2018.99998 L101.945727,2018.99998 C103.221722,2018.99998 104.226185,2017.85698 103.955674,2016.63598" id="profile_round-[#1342]"></path></g></g></g></g></svg>',
+);
+function Mo(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = vc();
+	le(r, () => ({
+		...i,
+		"viewBox": "0 0 20 20",
+		"version": "1.1",
+		"xmlns": "http://www.w3.org/2000/svg",
+		"xmlns:xlink": "http://www.w3.org/1999/xlink",
+		"fill": t(),
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem`, scale: "80%" },
+	}));
+	var o = x(f(r), 2),
+		h = x(f(o), 3),
+		u = f(h);
+	(m(h), m(o), m(r), $(() => re(u, "fill", t())), B(a, r));
+}
+const bc = Object.freeze(Object.defineProperty({ __proto__: null, default: Mo }, Symbol.toStringTag, { value: "Module" }));
+var xc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M17 9V12C17 14.7614 14.7614 17 12 17M7 9V12C7 14.7614 9.23858 17 12 17M12 17V21M8 3V6M16 3V6M5 9H19" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function Ir(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = xc();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const Cc = Object.freeze(Object.defineProperty({ __proto__: null, default: Ir }, Symbol.toStringTag, { value: "Module" }));
+var _c = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M4 12H20M12 4V20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function cn(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = _c();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const wc = Object.freeze(Object.defineProperty({ __proto__: null, default: cn }, Symbol.toStringTag, { value: "Module" }));
+var yc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M9 12L11 14L15 9.99999M20 12C20 16.4611 14.54 19.6937 12.6414 20.683C12.4361 20.79 12.3334 20.8435 12.191 20.8712C12.08 20.8928 11.92 20.8928 11.809 20.8712C11.6666 20.8435 11.5639 20.79 11.3586 20.683C9.45996 19.6937 4 16.4611 4 12V8.21759C4 7.41808 4 7.01833 4.13076 6.6747C4.24627 6.37113 4.43398 6.10027 4.67766 5.88552C4.9535 5.64243 5.3278 5.50207 6.0764 5.22134L11.4382 3.21067C11.6461 3.13271 11.75 3.09373 11.857 3.07827C11.9518 3.06457 12.0482 3.06457 12.143 3.07827C12.25 3.09373 12.3539 3.13271 12.5618 3.21067L17.9236 5.22134C18.6722 5.50207 19.0465 5.64243 19.3223 5.88552C19.566 6.10027 19.7537 6.37113 19.8692 6.6747C20 7.01833 20 7.41808 20 8.21759V12Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function fa(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = yc();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const Fc = Object.freeze(Object.defineProperty({ __proto__: null, default: fa }, Symbol.toStringTag, { value: "Module" }));
+var kc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M21 12L38 42H4L21 12Z" stroke-width="4" stroke-linejoin="round"></path><path d="M36.5 42H44L36 28L33 33" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M21 12L13 42" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function m1(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = kc();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 48 48",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o),
+		u = x(h),
+		v = x(u);
+	(m(o),
+		m(r),
+		$(() => {
+			(re(h, "stroke", t()), re(u, "stroke", t()), re(v, "stroke", t()));
+		}),
+		B(a, r));
+}
+const Ec = Object.freeze(Object.defineProperty({ __proto__: null, default: m1 }, Symbol.toStringTag, { value: "Module" }));
+var Bc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g id="Layer_2" data-name="Layer 2"><g id="invisible_box" data-name="invisible box"><rect width="48" height="48" fill="none"></rect></g><g id="Icons"><g><path d="M24.3,6A11.2,11.2,0,0,0,16,9.3a11,11,0,0,0-3.5,8.2,2.5,2.5,0,0,0,5,0,6.5,6.5,0,0,1,2-4.7A6.2,6.2,0,0,1,24.2,11a6.5,6.5,0,0,1,1,12.9,4.4,4.4,0,0,0-3.7,4.4v3.2a2.5,2.5,0,0,0,5,0V28.7a11.6,11.6,0,0,0,9-11.5A11.7,11.7,0,0,0,24.3,6Z"></path><circle cx="24" cy="39.5" r="2.5"></circle></g></g></g></g></svg>',
+);
+function Lo(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Bc();
+	(le(r, () => ({
+		...i,
+		viewBox: "0 0 48 48",
+		xmlns: "http://www.w3.org/2000/svg",
+		fill: t(),
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	})),
+		B(a, r));
+}
+const Sc = Object.freeze(Object.defineProperty({ __proto__: null, default: Lo }, Symbol.toStringTag, { value: "Module" }));
+var Ac = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M11.75 2C11.3358 2 11 2.33579 11 2.75C11 3.16421 11.3358 3.5 11.75 3.5H13.25V24.5H11.75C11.3358 24.5 11 24.8358 11 25.25C11 25.6642 11.3358 26 11.75 26H16.25C16.6642 26 17 25.6642 17 25.25C17 24.8358 16.6642 24.5 16.25 24.5H14.75V3.5H16.25C16.6642 3.5 17 3.16421 17 2.75C17 2.33579 16.6642 2 16.25 2H11.75Z"></path><path d="M6.25 6.01958H12.25V7.51958H6.25C5.2835 7.51958 4.5 8.30308 4.5 9.26958V18.7696C4.5 19.7361 5.2835 20.5196 6.25 20.5196H12.25V22.0196H6.25C4.45507 22.0196 3 20.5645 3 18.7696V9.26958C3 7.47465 4.45507 6.01958 6.25 6.01958Z"></path><path d="M21.75 20.5196H15.75V22.0196H21.75C23.5449 22.0196 25 20.5645 25 18.7696V9.26958C25 7.47465 23.5449 6.01958 21.75 6.01958H15.75V7.51958H21.75C22.7165 7.51958 23.5 8.30308 23.5 9.26958V18.7696C23.5 19.7361 22.7165 20.5196 21.75 20.5196Z"></path></g></svg>',
+);
+function rr(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Ac();
+	le(r, () => ({
+		...i,
+		"viewBox": "0 0 28 28",
+		"fill": "none",
+		"xmlns": "http://www.w3.org/2000/svg",
+		"stroke": t(),
+		"stroke-width": "0.28",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o),
+		u = x(h),
+		v = x(u);
+	(m(o),
+		m(r),
+		$(() => {
+			(re(h, "fill", t()), re(u, "fill", t()), re(v, "fill", t()));
+		}),
+		B(a, r));
+}
+const Dc = Object.freeze(Object.defineProperty({ __proto__: null, default: rr }, Symbol.toStringTag, { value: "Module" }));
+var Mc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,11H19.93A8,8,0,0,0,13,4.07V3a1,1,0,0,0-2,0V4.07A8,8,0,0,0,4.07,11H3a1,1,0,0,0,0,2H4.07A8,8,0,0,0,11,19.93V21a1,1,0,0,0,2,0V19.93A8,8,0,0,0,19.93,13H21a1,1,0,0,0,0-2Zm-4,2h.91A6,6,0,0,1,13,17.91V17a1,1,0,0,0-2,0v.91A6,6,0,0,1,6.09,13H7a1,1,0,0,0,0-2H6.09A6,6,0,0,1,11,6.09V7a1,1,0,0,0,2,0V6.09A6,6,0,0,1,17.91,11H17a1,1,0,0,0,0,2Zm-5-2a1,1,0,1,0,1,1A1,1,0,0,0,12,11Z"></path></g></svg>',
+);
+function Tr(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Mc();
+	(le(r, () => ({
+		...i,
+		fill: t(),
+		viewBox: "0 0 24 24",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	})),
+		B(a, r));
+}
+const Lc = Object.freeze(Object.defineProperty({ __proto__: null, default: Tr }, Symbol.toStringTag, { value: "Module" }));
+var Rc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.5563 1.41421C16.3374 0.633165 17.6037 0.633165 18.3848 1.41421L22.6274 5.65685C23.4085 6.4379 23.4085 7.70423 22.6274 8.48528L8.48527 22.6274C7.70422 23.4085 6.43789 23.4085 5.65684 22.6274L1.4142 18.3848C0.633153 17.6037 0.633154 16.3374 1.4142 15.5563L15.5563 1.41421ZM16.2634 3.53553C16.654 3.14501 17.2871 3.14501 17.6777 3.53553L20.5061 6.36396C20.8966 6.75449 20.8966 7.38765 20.5061 7.77817L19.799 7.07107C19.4085 6.68054 18.7753 6.68054 18.3848 7.07107C17.9942 7.46159 17.9942 8.09476 18.3848 8.48528L19.0919 9.19239L17.6777 10.6066L15.5563 8.48528C15.1658 8.09476 14.5326 8.09476 14.1421 8.48528C13.7516 8.87581 13.7516 9.50897 14.1421 9.89949L16.2634 12.0208L14.8492 13.435L14.1421 12.7279C13.7516 12.3374 13.1184 12.3374 12.7279 12.7279C12.3374 13.1184 12.3374 13.7516 12.7279 14.1421L13.435 14.8492L12.0208 16.2635L9.89948 14.1421C9.50896 13.7516 8.87579 13.7516 8.48527 14.1421C8.09475 14.5327 8.09475 15.1658 8.48527 15.5563L10.6066 17.6777L9.19238 19.0919L8.48527 18.3848C8.09475 17.9943 7.46158 17.9943 7.07106 18.3848C6.68053 18.7753 6.68053 19.4085 7.07106 19.799L7.77816 20.5061C7.38764 20.8966 6.75447 20.8966 6.36395 20.5061L3.53552 17.6777C3.145 17.2871 3.145 16.654 3.53552 16.2635L16.2634 3.53553Z"></path></g></svg>',
+);
+function ga(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Rc();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "fill", t())), B(a, r));
+}
+const Pc = Object.freeze(Object.defineProperty({ __proto__: null, default: ga }, Symbol.toStringTag, { value: "Module" }));
+var Ic = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.1716 1C18.702 1 19.2107 1.21071 19.5858 1.58579L22.4142 4.41421C22.7893 4.78929 23 5.29799 23 5.82843V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H18.1716ZM4 3C3.44772 3 3 3.44772 3 4V20C3 20.5523 3.44772 21 4 21L5 21L5 15C5 13.3431 6.34315 12 8 12L16 12C17.6569 12 19 13.3431 19 15V21H20C20.5523 21 21 20.5523 21 20V6.82843C21 6.29799 20.7893 5.78929 20.4142 5.41421L18.5858 3.58579C18.2107 3.21071 17.702 3 17.1716 3H17V5C17 6.65685 15.6569 8 14 8H10C8.34315 8 7 6.65685 7 5V3H4ZM17 21V15C17 14.4477 16.5523 14 16 14L8 14C7.44772 14 7 14.4477 7 15L7 21L17 21ZM9 3H15V5C15 5.55228 14.5523 6 14 6H10C9.44772 6 9 5.55228 9 5V3Z"></path></g></svg>',
+);
+function Qn(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Ic();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "fill", t())), B(a, r));
+}
+const Tc = Object.freeze(Object.defineProperty({ __proto__: null, default: Qn }, Symbol.toStringTag, { value: "Module" }));
+var Oc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M16 21H16.2C17.8802 21 18.7202 21 19.362 20.673C19.9265 20.3854 20.3854 19.9265 20.673 19.362C21 18.7202 21 17.8802 21 16.2V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3H7.8C6.11984 3 5.27976 3 4.63803 3.32698C4.07354 3.6146 3.6146 4.07354 3.32698 4.63803C3 5.27976 3 6.11984 3 7.8V8M11.5 12.5L17 7M17 7H12M17 7V12M6.2 21H8.8C9.9201 21 10.4802 21 10.908 20.782C11.2843 20.5903 11.5903 20.2843 11.782 19.908C12 19.4802 12 18.9201 12 17.8V15.2C12 14.0799 12 13.5198 11.782 13.092C11.5903 12.7157 11.2843 12.4097 10.908 12.218C10.4802 12 9.92011 12 8.8 12H6.2C5.0799 12 4.51984 12 4.09202 12.218C3.71569 12.4097 3.40973 12.7157 3.21799 13.092C3 13.5198 3 14.0799 3 15.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function Ro(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Oc();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const Vc = Object.freeze(Object.defineProperty({ __proto__: null, default: Ro }, Symbol.toStringTag, { value: "Module" }));
+var jc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g><path d="M467.138,231.502c-4.793,4.318-8.66,8.652-12.12,12.438c-5.186,5.719-9.459,10.067-13.497,12.63 c-2.029,1.304-3.992,2.252-6.296,2.948c-2.304,0.696-5,1.155-8.571,1.155c-3.63,0-6.356-0.482-8.689-1.185 c-4.022-1.252-7.238-3.297-11.142-6.786c-2.896-2.593-6-5.978-9.541-9.86c-5.319-5.786-11.63-12.852-20.802-18.83 c-4.578-2.963-9.874-5.571-15.801-7.348c-5.933-1.793-12.452-2.756-19.379-2.749c-7.037-0.007-13.653,0.985-19.653,2.83 c-10.564,3.222-18.868,9.008-25.209,14.756c-4.793,4.326-8.66,8.652-12.127,12.438c-5.178,5.719-9.452,10.067-13.482,12.63 c-2.03,1.304-3.993,2.252-6.297,2.948c-2.304,0.696-4.993,1.155-8.571,1.155c-3.63,0-6.348-0.482-8.682-1.185 c-4.015-1.252-7.23-3.297-11.134-6.778c-2.896-2.593-6-5.978-9.534-9.868c-5.326-5.778-11.63-12.852-20.809-18.83 c-4.57-2.963-9.874-5.571-15.801-7.348c-5.926-1.793-12.445-2.756-19.375-2.749c-7.034-0.007-13.649,0.985-19.649,2.83 c-10.56,3.222-18.864,9.016-25.202,14.756c-4.789,4.326-8.652,8.66-12.115,12.438c-5.175,5.726-9.453,10.067-13.483,12.63 c-2.03,1.304-3.989,2.252-6.289,2.948c-2.304,0.696-4.993,1.155-8.564,1.155c-3.63,0-6.352-0.482-8.678-1.185 c-4.019-1.252-7.237-3.297-11.142-6.778c-2.889-2.593-5.989-5.978-9.53-9.868c-5.323-5.778-11.63-12.852-20.801-18.83 c-4.575-2.963-9.875-5.571-15.804-7.348c-5.931-1.793-12.445-2.756-19.372-2.749v37.41c3.63,0.008,6.348,0.482,8.678,1.185 c4.023,1.252,7.237,3.297,11.142,6.778c2.892,2.593,5.993,5.986,9.53,9.868c5.323,5.778,11.63,12.852,20.805,18.83 c4.57,2.963,9.867,5.571,15.801,7.348c5.93,1.793,12.445,2.756,19.371,2.749c7.034,0.007,13.645-0.985,19.649-2.838 c10.564-3.215,18.864-9.008,25.206-14.749c4.789-4.326,8.652-8.66,12.116-12.438c5.17-5.726,9.452-10.067,13.482-12.638 c2.03-1.303,3.986-2.251,6.289-2.948c2.3-0.69,4.989-1.141,8.56-1.148c3.634,0.008,6.352,0.482,8.686,1.185 c4.015,1.252,7.237,3.297,11.142,6.778c2.889,2.593,5.985,5.986,9.526,9.868c5.327,5.778,11.63,12.852,20.809,18.83 c4.57,2.963,9.868,5.571,15.801,7.348c5.926,1.793,12.445,2.756,19.371,2.749c7.038,0.007,13.653-0.985,19.653-2.83 c10.564-3.222,18.869-9.008,25.209-14.756c4.793-4.326,8.66-8.652,12.119-12.438c5.186-5.719,9.46-10.06,13.49-12.63 c2.029-1.304,3.992-2.252,6.296-2.955c2.305-0.69,4.993-1.141,8.571-1.148c3.63,0.008,6.348,0.482,8.682,1.185 c4.022,1.252,7.244,3.297,11.149,6.778c2.888,2.593,5.992,5.986,9.534,9.868c5.319,5.778,11.63,12.852,20.809,18.83 c4.57,2.963,9.874,5.571,15.801,7.348c5.934,1.793,12.452,2.756,19.379,2.749c7.037,0.007,13.645-0.985,19.653-2.83 c10.564-3.222,18.868-9.008,25.209-14.756c4.793-4.326,8.66-8.652,12.12-12.431c5.186-5.726,9.46-10.067,13.497-12.638 c2.03-1.304,3.993-2.252,6.297-2.948c2.304-0.696,4.993-1.148,8.571-1.155v-37.41c-7.038-0.007-13.652,0.985-19.654,2.83 C481.776,219.968,473.479,225.754,467.138,231.502z"></path></g></g></svg>',
+);
+function f1(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = jc();
+	le(r, () => ({
+		...i,
+		"height": "200px",
+		"width": "200px",
+		"version": "1.1",
+		"id": "_x32_",
+		"xmlns": "http://www.w3.org/2000/svg",
+		"xmlns:xlink": "http://www.w3.org/1999/xlink",
+		"viewBox": "0 0 512 512",
+		"xml:space": "preserve",
+		"fill": t(),
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem`, rotate: "-10deg" },
+	}));
+	var o = x(f(r), 2),
+		h = f(o),
+		u = f(h);
+	(m(h), m(o), m(r), $(() => re(u, "fill", t())), B(a, r));
+}
+const $c = Object.freeze(Object.defineProperty({ __proto__: null, default: f1 }, Symbol.toStringTag, { value: "Module" }));
+var Gc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 4C4.34315 4 3 5.34315 3 7V17C3 18.6569 4.34315 20 6 20H18C19.6569 20 21 18.6569 21 17V7C21 5.34315 19.6569 4 18 4H6ZM5 7C5 6.44772 5.44772 6 6 6H11V18H6C5.44772 18 5 17.5523 5 17V7ZM13 18H18C18.5523 18 19 17.5523 19 17V7C19 6.44772 18.5523 6 18 6H13V18Z"></path></g></svg>',
+);
+function gn(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Gc();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "fill", t())), B(a, r));
+}
+const zc = Object.freeze(Object.defineProperty({ __proto__: null, default: gn }, Symbol.toStringTag, { value: "Module" }));
+var Hc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 10V20M3 15L21 15M3 10H21M6.2 20H17.8C18.9201 20 19.4802 20 19.908 19.782C20.2843 19.5903 20.5903 19.2843 20.782 18.908C21 18.4802 21 17.9201 21 16.8V7.2C21 6.0799 21 5.51984 20.782 5.09202C20.5903 4.71569 20.2843 4.40973 19.908 4.21799C19.4802 4 18.9201 4 17.8 4H6.2C5.0799 4 4.51984 4 4.09202 4.21799C3.71569 4.40973 3.40973 4.71569 3.21799 5.09202C3 5.51984 3 6.07989 3 7.2V16.8C3 17.9201 3 18.4802 3.21799 18.908C3.40973 19.2843 3.71569 19.5903 4.09202 19.782C4.51984 20 5.07989 20 6.2 20Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function Mn(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Hc();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const qc = Object.freeze(Object.defineProperty({ __proto__: null, default: Mn }, Symbol.toStringTag, { value: "Module" }));
+var Nc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g id="grow"><g><path d="M16.9,24H7.2l-1-7H4v-2h7v-3.1c-1.9,0.3-3.8-0.2-5.2-1.4C4.1,9,3.6,6.8,4.4,4.8l0.2-0.4L5,4.3C7,3.6,9.4,4,11,5.2 c0-1.4,0.6-2.8,1.8-3.8l0,0c1.1-0.9,2.6-1.4,4-1.4c0.7,0,1.5,0.1,2.2,0.3l0.4,0.1l0.2,0.4c0.9,2,0.4,4.2-1.4,5.7 c-1.4,1.2-3.3,1.7-5.2,1.4V9c0,0.1,0,0.3,0,0.4V15h7v2h-2.1L16.9,24z M8.9,22h6.3l0.7-5H8.2L8.9,22z M6.1,6.1 c-0.3,1,0.1,2.1,1,2.9c1,0.9,2.5,1.2,3.8,0.9C11,9.7,11,9.5,11,9.3V9c0-0.8-0.4-1.5-1.1-2.1C8.9,6.1,7.5,5.8,6.1,6.1z M13.1,5.9 c1.4,0.3,2.8,0,3.8-0.9c0.9-0.8,1.3-1.9,1-2.9c-1.4-0.3-2.8,0-3.8,0.9l0,0C13.2,3.7,12.8,4.8,13.1,5.9z"></path></g></g></g></svg>',
+);
+function Po(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Nc();
+	(le(r, () => ({
+		...i,
+		"fill": t(),
+		"version": "1.1",
+		"id": "XMLID_125_",
+		"xmlns": "http://www.w3.org/2000/svg",
+		"xmlns:xlink": "http://www.w3.org/1999/xlink",
+		"viewBox": "0 0 24 24",
+		"xml:space": "preserve",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	})),
+		B(a, r));
+}
+const Wc = Object.freeze(Object.defineProperty({ __proto__: null, default: Po }, Symbol.toStringTag, { value: "Module" }));
+var Zc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M11 2C11 1.44772 11.4477 1 12 1C12.0161 1 12.0322 1.00038 12.0481 1.00114C12.0632 1.00051 12.0785 1.00026 12.0938 1.00039C14.1199 1.01765 16.1091 1.59455 17.8374 2.67665C19.8492 3.93625 21.3996 5.8128 22.2571 8.02608C23.1146 10.2394 23.2332 12.6706 22.5951 14.9569C21.9571 17.2431 20.5967 19.2616 18.717 20.711C16.8373 22.1604 14.5393 22.9629 12.1659 22.9988C9.79262 23.0346 7.47138 22.3017 5.54884 20.9097C3.6263 19.5177 2.2056 17.5411 1.49889 15.2752C0.891759 13.3285 0.839553 11.258 1.33799 9.29413C1.47385 8.75881 2.05308 8.48753 2.57385 8.67143C3.09462 8.85532 3.36505 9.4271 3.24007 9.96506C2.8794 11.5176 2.93657 13.1446 3.4147 14.6776C3.99248 16.5302 5.15399 18.1461 6.72579 19.2842C8.29758 20.4223 10.1953 21.0214 12.1357 20.9921C14.076 20.9629 15.9548 20.3068 17.4916 19.1218C19.0283 17.9368 20.1405 16.2866 20.6622 14.4174C21.1838 12.5483 21.0869 10.5606 20.3858 8.75108C19.6847 6.94158 18.4172 5.40739 16.7724 4.37759C15.6232 3.65806 14.3329 3.21174 13 3.06259V5C13 5.55229 12.5523 6 12 6C11.4477 6 11 5.55229 11 5V2Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M5.31205 3.92537C4.91543 3.66095 4.38731 3.71325 4.05025 4.05031C3.71318 4.38738 3.66089 4.9155 3.9253 5.31212L9.30753 13.3855C9.50568 13.6827 9.80929 14.101 10.283 14.3927C10.6282 14.6053 11.1764 14.8627 11.8475 14.871C12.5576 14.8799 13.2918 14.6077 13.9497 13.9498C14.6076 13.2919 14.8798 12.5577 14.871 11.8475C14.8626 11.1764 14.6053 10.6283 14.3927 10.2831C14.1009 9.80935 13.6826 9.50574 13.3854 9.30759L5.31205 3.92537ZM10.9716 12.2761L8.36291 8.36297L12.276 10.9717C12.5267 11.1388 12.6362 11.2449 12.6897 11.3319C12.7963 11.5049 12.8689 11.6951 12.8711 11.8724C12.8728 12.0107 12.8361 12.235 12.5355 12.5356C12.2349 12.8362 12.0106 12.8729 11.8723 12.8712C11.695 12.869 11.5048 12.7964 11.3318 12.6898C11.2448 12.6362 11.1388 12.5267 10.9716 12.2761Z"></path></g></svg>',
+);
+function Io(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor");
+	k(e, "scale", 3, 1);
+	let n = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var i = Zc();
+	le(i, () => ({ ...n, viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" }));
+	var r = x(f(i), 2),
+		o = f(r),
+		h = x(o);
+	(m(r),
+		m(i),
+		$(() => {
+			(re(o, "fill", t()), re(h, "fill", t()));
+		}),
+		B(a, i));
+}
+const Yc = Object.freeze(Object.defineProperty({ __proto__: null, default: Io }, Symbol.toStringTag, { value: "Module" }));
+var Uc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 3V4M12 20V21M4 12H3M6.31412 6.31412L5.5 5.5M17.6859 6.31412L18.5 5.5M6.31412 17.69L5.5 18.5001M17.6859 17.69L18.5 18.5001M21 12H20M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function To(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Uc();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const Kc = Object.freeze(Object.defineProperty({ __proto__: null, default: To }, Symbol.toStringTag, { value: "Module" }));
+var Jc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M19 1.48416e-05L23 0C23.2652 -9.53668e-07 23.5195 0.105355 23.7071 0.292891C23.8946 0.480426 24 0.73478 24 0.999997L24 5.00001C24 5.26523 23.8946 5.51958 23.7071 5.70712L11.9142 17.5L13.7071 19.2929C14.0976 19.6834 14.0976 20.3166 13.7071 20.7071C13.3166 21.0977 12.6834 21.0977 12.2929 20.7071L9.79289 18.2071L9.46376 17.878L5.9999 20.9955C6.00096 21.7635 5.70873 22.534 5.12132 23.1214C3.94975 24.293 2.05025 24.293 0.87868 23.1214C-0.292893 21.9498 -0.292893 20.0503 0.87868 18.8787C1.46607 18.2913 2.23647 17.9991 3.00451 18.0002L6.12202 14.5363L5.79287 14.2071L3.29289 11.7071C2.90237 11.3166 2.90237 10.6834 3.29289 10.2929C3.68342 9.90239 4.31658 9.90239 4.70711 10.2929L6.49998 12.0858L18.2929 0.292907C18.4804 0.105372 18.7348 1.57952e-05 19 1.48416e-05ZM7.91419 13.5L8.2071 13.7929L10.2071 15.7929L10.5 16.0858L22 4.5858L22 2L19.4142 2.00001L7.91419 13.5ZM7.53819 15.9524L5.00435 18.7678C5.0441 18.8035 5.08311 18.8405 5.12132 18.8787C5.15952 18.9169 5.19648 18.9559 5.23221 18.9957L8.04759 16.4618L7.53819 15.9524ZM3.20676 20.0214C2.88445 19.954 2.54009 20.0458 2.29289 20.293C1.90237 20.6835 1.90237 21.3166 2.29289 21.7072C2.68342 22.0977 3.31658 22.0977 3.70711 21.7072C3.95431 21.46 4.0461 21.1156 3.97862 20.7933C3.94032 20.6103 3.85075 20.4366 3.70711 20.293C3.56346 20.1493 3.3897 20.0597 3.20676 20.0214Z"></path></g></svg>',
+);
+function g1(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Jc();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "fill", t())), B(a, r));
+}
+const Xc = Object.freeze(Object.defineProperty({ __proto__: null, default: g1 }, Symbol.toStringTag, { value: "Module" }));
+var Qc = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 18L8 5H7L3 18M4.23077 14H10.7692M14.5 10C16 9 20 8 20 11.5C20 15 20 18 20 18M20 12.5C18.5 13 14 13 14 16C14 19 18.5 18 20 15.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function Oo(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Qc();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const eu = Object.freeze(Object.defineProperty({ __proto__: null, default: Oo }, Symbol.toStringTag, { value: "Module" }));
+var tu = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M206.86 245.15c-35.88 10.45-59.95 41.2-57.53 74.1 11.4-12.72 28.81-23.7 49.9-30.92l7.63-43.18zM95.81 295L64.08 115.49c-.29-1.62.28-2.62.24-2.65 57.76-32.06 123.12-49.01 189.01-49.01 1.61 0 3.23.17 4.85.19 13.95-13.47 31.73-22.83 51.59-26 18.89-3.02 38.05-4.55 57.18-5.32-9.99-13.95-24.48-24.23-41.77-27C301.27 1.89 277.24 0 253.32 0 176.66 0 101.02 19.42 33.2 57.06 9.03 70.48-3.92 98.48 1.05 126.58l31.73 179.51c14.23 80.52 136.33 142.08 204.45 142.08 3.59 0 6.75-.46 10.01-.8-13.52-17.08-28.94-40.48-39.5-67.58-47.61-12.98-106.06-51.62-111.93-84.79zm97.55-137.46c-.73-4.12-2.23-7.87-4.07-11.4-8.25 8.91-20.67 15.75-35.32 18.32-14.65 2.58-28.67.4-39.48-5.17-.52 3.94-.64 7.98.09 12.1 3.84 21.7 24.58 36.19 46.34 32.37 21.75-3.82 36.28-24.52 32.44-46.22zM606.8 120.9c-88.98-49.38-191.43-67.41-291.98-51.35-27.31 4.36-49.08 26.26-54.04 54.36l-31.73 179.51c-15.39 87.05 95.28 196.27 158.31 207.35 63.03 11.09 204.47-53.79 219.86-140.84l31.73-179.51c4.97-28.11-7.98-56.11-32.15-69.52zm-273.24 96.8c3.84-21.7 24.58-36.19 46.34-32.36 21.76 3.83 36.28 24.52 32.45 46.22-.73 4.12-2.23 7.87-4.07 11.4-8.25-8.91-20.67-15.75-35.32-18.32-14.65-2.58-28.67-.4-39.48 5.17-.53-3.95-.65-7.99.08-12.11zm70.47 198.76c-55.68-9.79-93.52-59.27-89.04-112.9 20.6 25.54 56.21 46.17 99.49 53.78 43.28 7.61 83.82.37 111.93-16.6-14.18 51.94-66.71 85.51-122.38 75.72zm130.3-151.34c-8.25-8.91-20.68-15.75-35.33-18.32-14.65-2.58-28.67-.4-39.48 5.17-.52-3.94-.64-7.98.09-12.1 3.84-21.7 24.58-36.19 46.34-32.37 21.75 3.83 36.28 24.52 32.45 46.22-.73 4.13-2.23 7.88-4.07 11.4z"></path></g></svg>',
+);
+function p1(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = tu();
+	(le(r, () => ({
+		...i,
+		fill: t(),
+		viewBox: "0 -64 640 640",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	})),
+		B(a, r));
+}
+const nu = Object.freeze(Object.defineProperty({ __proto__: null, default: p1 }, Symbol.toStringTag, { value: "Module" }));
+var ru = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>Transfer</title><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Transfer"><rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="24" height="24"></rect><path d="M19,7 L5,7 M20,17 L5,17" id="Shape" stroke-width="2" stroke-linecap="round"></path><path d="M16,3 L19.2929,6.29289 C19.6834,6.68342 19.6834,7.31658 19.2929,7.70711 L16,11" id="Path" stroke-width="2" stroke-linecap="round"></path><path d="M8,13 L4.70711,16.2929 C4.31658,16.6834 4.31658,17.3166 4.70711,17.7071 L8,21" id="Path" stroke-width="2" stroke-linecap="round"></path></g></g></g></svg>',
+);
+function Vo(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = ru();
+	le(r, () => ({
+		...i,
+		"viewBox": "0 0 24 24",
+		"version": "1.1",
+		"xmlns": "http://www.w3.org/2000/svg",
+		"xmlns:xlink": "http://www.w3.org/1999/xlink",
+		"fill": t(),
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = x(f(o)),
+		u = f(h),
+		v = x(f(u)),
+		b = x(v),
+		y = x(b);
+	(m(u),
+		m(h),
+		m(o),
+		m(r),
+		$(() => {
+			(re(v, "stroke", t()), re(b, "stroke", t()), re(y, "stroke", t()));
+		}),
+		B(a, r));
+}
+const au = Object.freeze(Object.defineProperty({ __proto__: null, default: Vo }, Symbol.toStringTag, { value: "Module" }));
+var iu = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function Ln(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = iu();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const ou = Object.freeze(Object.defineProperty({ __proto__: null, default: Ln }, Symbol.toStringTag, { value: "Module" }));
+var su = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>tree-structure</title><g id="Layer_2" data-name="Layer 2"><g id="invisible_box" data-name="invisible box"><rect width="48" height="48" fill="none"></rect></g><g id="Q3_icons" data-name="Q3 icons"><path d="M26,30H42a2,2,0,0,0,2-2V20a2,2,0,0,0-2-2H26a2,2,0,0,0-2,2v2H16V14h6a2,2,0,0,0,2-2V4a2,2,0,0,0-2-2H6A2,2,0,0,0,4,4v8a2,2,0,0,0,2,2h6V40a2,2,0,0,0,2,2H24v2a2,2,0,0,0,2,2H42a2,2,0,0,0,2-2V36a2,2,0,0,0-2-2H26a2,2,0,0,0-2,2v2H16V26h8v2A2,2,0,0,0,26,30Zm2-8H40v4H28ZM8,6H20v4H8ZM28,38H40v4H28Z"></path></g></g></g></svg>',
+);
+function $r(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = su();
+	(le(r, () => ({
+		...i,
+		viewBox: "0 0 48 48",
+		xmlns: "http://www.w3.org/2000/svg",
+		fill: t(),
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	})),
+		B(a, r));
+}
+const lu = Object.freeze(Object.defineProperty({ __proto__: null, default: $r }, Symbol.toStringTag, { value: "Module" }));
+var hu = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M18 4V11C18 14.3137 15.3137 17 12 17C8.68629 17 6 14.3137 6 11V4M4 21H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+);
+function jo(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = hu();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem`, scale: "120%" },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "stroke", t())), B(a, r));
+}
+const cu = Object.freeze(Object.defineProperty({ __proto__: null, default: jo }, Symbol.toStringTag, { value: "Module" }));
+var uu = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.53033 3.46967C7.82322 3.76256 7.82322 4.23744 7.53033 4.53033L5.81066 6.25H15C18.1756 6.25 20.75 8.82436 20.75 12C20.75 15.1756 18.1756 17.75 15 17.75H8.00001C7.58579 17.75 7.25001 17.4142 7.25001 17C7.25001 16.5858 7.58579 16.25 8.00001 16.25H15C17.3472 16.25 19.25 14.3472 19.25 12C19.25 9.65279 17.3472 7.75 15 7.75H5.81066L7.53033 9.46967C7.82322 9.76256 7.82322 10.2374 7.53033 10.5303C7.23744 10.8232 6.76256 10.8232 6.46967 10.5303L3.46967 7.53033C3.17678 7.23744 3.17678 6.76256 3.46967 6.46967L6.46967 3.46967C6.76256 3.17678 7.23744 3.17678 7.53033 3.46967Z"></path></g></svg>',
+);
+function na(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = uu();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "fill", t())), B(a, r));
+}
+const du = Object.freeze(Object.defineProperty({ __proto__: null, default: na }, Symbol.toStringTag, { value: "Module" }));
+var mu = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M2 16C2 13.1716 2 11.7574 2.87868 10.8787C3.75736 10 5.17157 10 8 10H16C18.8284 10 20.2426 10 21.1213 10.8787C22 11.7574 22 13.1716 22 16C22 18.8284 22 20.2426 21.1213 21.1213C20.2426 22 18.8284 22 16 22H8C5.17157 22 3.75736 22 2.87868 21.1213C2 20.2426 2 18.8284 2 16Z" stroke-width="1.5"></path><path d="M6 10V8C6 4.68629 8.68629 2 12 2C14.7958 2 17.1449 3.91216 17.811 6.5" stroke-width="1.5" stroke-linecap="round"></path><path d="M12 14V18" stroke-width="1.5" stroke-linecap="round"></path></g></svg>',
+);
+function $o(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = mu();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o),
+		u = x(h),
+		v = x(u);
+	(m(o),
+		m(r),
+		$(() => {
+			(re(h, "stroke", t()), re(u, "stroke", t()), re(v, "stroke", t()));
+		}),
+		B(a, r));
+}
+const fu = Object.freeze(Object.defineProperty({ __proto__: null, default: $o }, Symbol.toStringTag, { value: "Module" }));
+var gu = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"></path></g></svg>',
+);
+function pu(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = gu();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "fill", t())), B(a, r));
+}
+const vu = Object.freeze(Object.defineProperty({ __proto__: null, default: pu }, Symbol.toStringTag, { value: "Module" }));
+var bu = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 5C6 4.44772 6.44772 4 7 4C7.55228 4 8 4.44772 8 5C8 5.55228 7.55228 6 7 6C6.44772 6 6 5.55228 6 5ZM8 7.82929C9.16519 7.41746 10 6.30622 10 5C10 3.34315 8.65685 2 7 2C5.34315 2 4 3.34315 4 5C4 6.30622 4.83481 7.41746 6 7.82929V16.1707C4.83481 16.5825 4 17.6938 4 19C4 20.6569 5.34315 22 7 22C8.65685 22 10 20.6569 10 19C10 17.7334 9.21506 16.6501 8.10508 16.2101C8.45179 14.9365 9.61653 14 11 14H13C16.3137 14 19 11.3137 19 8V7.82929C20.1652 7.41746 21 6.30622 21 5C21 3.34315 19.6569 2 18 2C16.3431 2 15 3.34315 15 5C15 6.30622 15.8348 7.41746 17 7.82929V8C17 10.2091 15.2091 12 13 12H11C9.87439 12 8.83566 12.3719 8 12.9996V7.82929ZM18 6C18.5523 6 19 5.55228 19 5C19 4.44772 18.5523 4 18 4C17.4477 4 17 4.44772 17 5C17 5.55228 17.4477 6 18 6ZM6 19C6 18.4477 6.44772 18 7 18C7.55228 18 8 18.4477 8 19C8 19.5523 7.55228 20 7 20C6.44772 20 6 19.5523 6 19Z"></path></g></svg>',
+);
+function Go(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = bu();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "fill", t())), B(a, r));
+}
+const xu = Object.freeze(Object.defineProperty({ __proto__: null, default: Go }, Symbol.toStringTag, { value: "Module" }));
+var Cu = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g><path d="M455.998,0.004H56.002C25.063,0.011,0.008,25.067,0,56.006v399.989c0.008,30.938,25.063,55.994,56.002,56.002 h399.997c30.938-0.008,55.994-25.063,56.002-56.002V56.006C511.993,25.067,486.937,0.011,455.998,0.004z M479.999,455.994 c-0.007,6.68-2.664,12.579-7.032,16.969c-4.39,4.367-10.289,7.024-16.969,7.032H56.002c-6.68-0.008-12.579-2.664-16.969-7.032 c-4.367-4.39-7.023-10.289-7.031-16.969V56.006c0.008-6.68,2.664-12.579,7.031-16.977c4.39-4.359,10.289-7.016,16.969-7.023 h399.997c6.68,0.007,12.579,2.664,16.969,7.023c4.367,4.398,7.024,10.297,7.032,16.977V455.994z"></path><path d="M128.012,119.101l26.391,76.783H270.86l16.352-67.947l9.938,2.031l9.93,2.015l-10.696,63.9h61.212 l26.392-76.783C346.612,96.577,302.83,83.6,256.008,83.6C209.178,83.6,165.388,96.577,128.012,119.101z"></path></g></g></svg>',
+);
+function zo(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Cu();
+	le(r, () => ({
+		...i,
+		"height": "200px",
+		"width": "200px",
+		"version": "1.1",
+		"id": "_x32_",
+		"xmlns": "http://www.w3.org/2000/svg",
+		"xmlns:xlink": "http://www.w3.org/1999/xlink",
+		"viewBox": "0 0 512 512",
+		"xml:space": "preserve",
+		"fill": t(),
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem`, scale: "90%" },
+	}));
+	var o = x(f(r), 2),
+		h = f(o),
+		u = f(h),
+		v = x(u);
+	(m(h),
+		m(o),
+		m(r),
+		$(() => {
+			(re(u, "fill", t()), re(v, "fill", t()));
+		}),
+		B(a, r));
+}
+const _u = Object.freeze(Object.defineProperty({ __proto__: null, default: zo }, Symbol.toStringTag, { value: "Module" }));
+var wu = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g><g><path d="M256.001,0c-141.159,0-256,114.84-256,255.998s114.84,256,255.998,256s255.998-114.841,255.998-256S397.16,0,256.001,0z M95.292,129.984l100.153,100.153H53.327C58.081,192.661,73.027,158.318,95.292,129.984z M53.323,281.833h142.151L95.292,382.016 C73.022,353.674,58.074,319.32,53.323,281.833z M230.154,458.678c-36.563-4.637-70.135-18.984-98.063-40.354l98.063-98.065 V458.678z M230.154,191.741l-98.063-98.065c27.928-21.37,61.5-35.719,98.063-40.354V191.741z M458.675,230.139H320.274 l98.049-98.049C439.692,160.013,454.038,193.58,458.675,230.139z M281.848,53.322c37.483,4.752,71.83,19.701,100.169,41.969 L281.848,195.46V53.322z M281.848,458.678V316.54l100.167,100.169C353.678,438.977,319.329,453.925,281.848,458.678z M418.323,379.91l-98.077-98.079H458.68C454.045,318.401,439.695,351.978,418.323,379.91z"></path></g></g></g></svg>',
+);
+function v1(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = wu();
+	(le(r, () => ({
+		...i,
+		"fill": t(),
+		"height": "200px",
+		"width": "200px",
+		"version": "1.1",
+		"id": "Layer_1",
+		"xmlns": "http://www.w3.org/2000/svg",
+		"xmlns:xlink": "http://www.w3.org/1999/xlink",
+		"viewBox": "0 0 511.998 511.998",
+		"xml:space": "preserve",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	})),
+		B(a, r));
+}
+const yu = Object.freeze(Object.defineProperty({ __proto__: null, default: v1 }, Symbol.toStringTag, { value: "Module" }));
+var Fu = de(
+	'<svg><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H10C10.5523 23 11 22.5523 11 22C11 21.4477 10.5523 21 10 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM12.952 12.694C12.783 12.1682 12.2198 11.879 11.694 12.048C11.1682 12.217 10.879 12.7802 11.048 13.306L13.298 20.306C13.4309 20.7196 13.8156 21 14.25 21C14.6844 21 15.0691 20.7196 15.202 20.306L16.5 16.2679L17.798 20.306C17.9309 20.7196 18.3156 21 18.75 21C19.1844 21 19.5691 20.7196 19.702 20.306L21.952 13.306C22.121 12.7802 21.8318 12.217 21.306 12.048C20.7802 11.879 20.217 12.1682 20.048 12.694L18.75 16.7321L17.452 12.694C17.3191 12.2804 16.9344 12 16.5 12C16.0656 12 15.6809 12.2804 15.548 12.694L14.25 16.7321L12.952 12.694Z"></path></g></svg>',
+);
+function Ho(a, e) {
+	let t = k(e, "stroke", 3, "currentcolor"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "stroke", "scale"]);
+	var r = Fu();
+	le(r, () => ({
+		...i,
+		viewBox: "0 0 24 24",
+		fill: "none",
+		xmlns: "http://www.w3.org/2000/svg",
+		[he]: { width: `${n() ?? ""}rem`, height: `${n() ?? ""}rem` },
+	}));
+	var o = x(f(r), 2),
+		h = f(o);
+	(m(o), m(r), $(() => re(h, "fill", t())), B(a, r));
+}
+const ku = Object.freeze(Object.defineProperty({ __proto__: null, default: Ho }, Symbol.toStringTag, { value: "Module" })),
+	Jr = [
+		{ name: "ArrowIcon", categories: [], component: Qt },
+		{ name: "AsexualIcon", categories: [], component: e1 },
+		{ name: "BisexualIcon", categories: [], component: t1 },
+		{ name: "BlankPageIcon", categories: [], component: po },
+		{ name: "BoldIcon", categories: [], component: vo },
+		{ name: "BookIcon", categories: [], component: bo },
+		{ name: "BugIcon", categories: [], component: xo },
+		{ name: "CalendarIcon", categories: [], component: Co },
+		{ name: "CatIcon", categories: [], component: n1 },
+		{ name: "CharacterCountIcon", categories: [], component: _o },
+		{ name: "CircledPlusIcon", categories: [], component: la },
+		{ name: "ClockIcon", categories: [], component: ha },
+		{ name: "CloseIcon", categories: [], component: It },
+		{ name: "ColorPaletteIcon", categories: [], component: jr },
+		{ name: "DashIcon", categories: [], component: ca },
+		{ name: "DiceIcon", categories: [], component: ua },
+		{ name: "EllipsisIcon", categories: [], component: r1 },
+		{ name: "EyeIcon", categories: [], component: Un },
+		{ name: "FichteanCurveIcon", categories: [], component: a1 },
+		{ name: "FilterIcon", categories: [], component: i1 },
+		{ name: "FolderIcon", categories: [], component: Kn },
+		{ name: "GayIcon", categories: [], component: o1 },
+		{ name: "GearIcon", categories: [], component: Tt },
+		{ name: "GraphIcon", categories: [], component: On },
+		{ name: "HexagonIcon", categories: [], component: Ar },
+		{ name: "HeterosexualIcon", categories: [], component: s1 },
+		{ name: "HomosexualIcon", categories: [], component: l1 },
+		{ name: "IOIcon", categories: [], component: wo },
+		{ name: "ItalicIcon", categories: [], component: da },
+		{ name: "KeyboardKeyIcon", categories: [], component: yo },
+		{ name: "LesbianIcon", categories: [], component: h1 },
+		{ name: "LicenseIcon", categories: [], component: Fo },
+		{ name: "LineSpacingIcon", categories: [], component: ko },
+		{ name: "LocationIcon", categories: [], component: Eo },
+		{ name: "LockIcon", categories: [], component: Bo },
+		{ name: "MarkdownIcon", categories: [], component: c1 },
+		{ name: "MinimizeIcon", categories: [], component: So },
+		{ name: "MoonIcon", categories: [], component: Ao },
+		{ name: "NumberSignIcon", categories: [], component: Do },
+		{ name: "PackageIcon", categories: [], component: Dn },
+		{ name: "PageIcon", categories: [], component: u1 },
+		{ name: "PansexualIcon", categories: [], component: d1 },
+		{ name: "ParagraphIcon", categories: [], component: nr },
+		{ name: "PencilIcon", categories: [], component: ma },
+		{ name: "PersonIcon", categories: [], component: Mo },
+		{ name: "PlugIcon", categories: [], component: Ir },
+		{ name: "PlusIcon", categories: [], component: cn },
+		{ name: "PrivacyIcon", categories: [], component: fa },
+		{ name: "PyramidIcon", categories: [], component: m1 },
+		{ name: "QuestionMarkIcon", categories: [], component: Lo },
+		{ name: "RenameIcon", categories: [], component: rr },
+		{ name: "ReticleIcon", categories: [], component: Tr },
+		{ name: "RulerIcon", categories: [], component: ga },
+		{ name: "SaveIcon", categories: [], component: Qn },
+		{ name: "ScaleIcon", categories: [], component: Ro },
+		{ name: "SevenPointStructureIcon", categories: [], component: f1 },
+		{ name: "SplitHorizontalIcon", categories: [], component: gn },
+		{ name: "SpreadsheetIcon", categories: [], component: Mn },
+		{ name: "SproutIcon", categories: [], component: Po },
+		{ name: "StartupIcon", categories: [], component: Io },
+		{ name: "SunIcon", categories: [], component: To },
+		{ name: "SwordIcon", categories: [], component: g1 },
+		{ name: "TextIcon", categories: [], component: Oo },
+		{ name: "TheaterIcon", categories: [], component: p1 },
+		{ name: "TransferIcon", categories: [], component: Vo },
+		{ name: "TrashIcon", categories: [], component: Ln },
+		{ name: "TreeIcon", categories: [], component: $r },
+		{ name: "UnderlineIcon", categories: [], component: jo },
+		{ name: "UndoIcon", categories: [], component: na },
+		{ name: "UnlockedIcon", categories: [], component: $o },
+		{ name: "VersionControlIcon", categories: [], component: Go },
+		{ name: "WeightScaleIcon", categories: [], component: zo },
+		{ name: "WheelIcon", categories: [], component: v1 },
+		{ name: "WordCountIcon", categories: [], component: Ho },
+	];
+function Bn(a) {
+	return typeof a == "string"
+		? Jr.find(e => e.name === a)
+		: "categories" in a
+			? Jr.find(e => e.name === a.name)
+			: Jr.find(e => e.component === a);
+}
+const rs = Object.assign({
+	"../components/icons/ArrowIcon.svelte": V0,
+	"../components/icons/AsexualIcon.svelte": $0,
+	"../components/icons/BisexualIcon.svelte": z0,
+	"../components/icons/BlankPageIcon.svelte": q0,
+	"../components/icons/BoldIcon.svelte": W0,
+	"../components/icons/BookIcon.svelte": Y0,
+	"../components/icons/BugIcon.svelte": K0,
+	"../components/icons/CalendarIcon.svelte": X0,
+	"../components/icons/CatIcon.svelte": eh,
+	"../components/icons/CharacterCountIcon.svelte": nh,
+	"../components/icons/CircledPlusIcon.svelte": ah,
+	"../components/icons/ClockIcon.svelte": oh,
+	"../components/icons/CloseIcon.svelte": lh,
+	"../components/icons/ColorPaletteIcon.svelte": ch,
+	"../components/icons/DashIcon.svelte": dh,
+	"../components/icons/DiceIcon.svelte": fh,
+	"../components/icons/EllipsisIcon.svelte": ph,
+	"../components/icons/EyeIcon.svelte": bh,
+	"../components/icons/FichteanCurveIcon.svelte": Ch,
+	"../components/icons/FilterIcon.svelte": wh,
+	"../components/icons/FolderIcon.svelte": Fh,
+	"../components/icons/GayIcon.svelte": Eh,
+	"../components/icons/GearIcon.svelte": Sh,
+	"../components/icons/GraphIcon.svelte": Dh,
+	"../components/icons/HeterosexualIcon.svelte": Lh,
+	"../components/icons/HexagonIcon.svelte": Ph,
+	"../components/icons/HomosexualIcon.svelte": Th,
+	"../components/icons/IOIcon.svelte": Vh,
+	"../components/icons/ItalicIcon.svelte": $h,
+	"../components/icons/KeyboardKeyIcon.svelte": zh,
+	"../components/icons/LesbianIcon.svelte": qh,
+	"../components/icons/LicenseIcon.svelte": Wh,
+	"../components/icons/LineSpacingIcon.svelte": Yh,
+	"../components/icons/LocationIcon.svelte": Kh,
+	"../components/icons/LockIcon.svelte": Xh,
+	"../components/icons/MarkdownIcon.svelte": ec,
+	"../components/icons/MinimizeIcon.svelte": nc,
+	"../components/icons/MoonIcon.svelte": ac,
+	"../components/icons/NumberSignIcon.svelte": oc,
+	"../components/icons/PackageIcon.svelte": lc,
+	"../components/icons/PageIcon.svelte": cc,
+	"../components/icons/PansexualIcon.svelte": dc,
+	"../components/icons/ParagraphIcon.svelte": fc,
+	"../components/icons/PencilIcon.svelte": pc,
+	"../components/icons/PersonIcon.svelte": bc,
+	"../components/icons/PlugIcon.svelte": Cc,
+	"../components/icons/PlusIcon.svelte": wc,
+	"../components/icons/PrivacyIcon.svelte": Fc,
+	"../components/icons/PyramidIcon.svelte": Ec,
+	"../components/icons/QuestionMarkIcon.svelte": Sc,
+	"../components/icons/RenameIcon.svelte": Dc,
+	"../components/icons/ReticleIcon.svelte": Lc,
+	"../components/icons/RulerIcon.svelte": Pc,
+	"../components/icons/SaveIcon.svelte": Tc,
+	"../components/icons/ScaleIcon.svelte": Vc,
+	"../components/icons/SevenPointStructureIcon.svelte": $c,
+	"../components/icons/SplitHorizontalIcon.svelte": zc,
+	"../components/icons/SpreadsheetIcon.svelte": qc,
+	"../components/icons/SproutIcon.svelte": Wc,
+	"../components/icons/StartupIcon.svelte": Yc,
+	"../components/icons/SunIcon.svelte": Kc,
+	"../components/icons/SwordIcon.svelte": Xc,
+	"../components/icons/TextIcon.svelte": eu,
+	"../components/icons/TheaterIcon.svelte": nu,
+	"../components/icons/TransferIcon.svelte": au,
+	"../components/icons/TrashIcon.svelte": ou,
+	"../components/icons/TreeIcon.svelte": lu,
+	"../components/icons/UnderlineIcon.svelte": cu,
+	"../components/icons/UndoIcon.svelte": du,
+	"../components/icons/UnlockedIcon.svelte": fu,
+	"../components/icons/UnregisteredIcon.svelte": vu,
+	"../components/icons/VersionControlIcon.svelte": xu,
+	"../components/icons/WeightScaleIcon.svelte": _u,
+	"../components/icons/WheelIcon.svelte": yu,
+	"../components/icons/WordCountIcon.svelte": ku,
+});
+for (const a in rs) {
+	let e = rs[a].default;
+	const t = a
+		.split("/")
+		.pop()
+		.replace(/\.svelte$/, "");
+	Bn(t) || t === "UnregisteredIcon" || Jr.push({ name: t, categories: [], component: e });
+}
+function Eu(a) {
+	return a && a.__esModule && Object.prototype.hasOwnProperty.call(a, "default") ? a.default : a;
+}
+var Da = { exports: {} },
+	Fr = { exports: {} },
+	Bu = Fr.exports,
+	as;
+function Su() {
+	return (
+		as ||
+			((as = 1),
+			(function (a, e) {
+				(function () {
+					var t,
+						n,
+						i,
+						r,
+						o,
+						h,
+						u,
+						v,
+						b,
+						y,
+						C,
+						S,
+						A,
+						P,
+						D,
+						R,
+						G,
+						j,
+						ne,
+						M,
+						ce,
+						ve,
+						Y,
+						U,
+						N,
+						ae,
+						Z,
+						ke,
+						T,
+						V,
+						H,
+						we,
+						be,
+						Be,
+						fe,
+						K,
+						ge,
+						W,
+						pe,
+						Pe,
+						ye,
+						Te,
+						Me,
+						xe,
+						Ie,
+						Ue,
+						nt,
+						ie,
+						je,
+						Le,
+						oe,
+						it,
+						lt,
+						He,
+						Ke,
+						Xe,
+						Dt,
+						un,
+						Cn,
+						Wt,
+						_n,
+						wn,
+						yn,
+						St,
+						en,
+						$t,
+						tn,
+						ee,
+						$e,
+						ht,
+						wt,
+						Gt,
+						Et,
+						zr,
+						nn,
+						Mt,
+						Fn,
+						rt,
+						ot,
+						Zt,
+						Hr,
+						qr,
+						zt = [].slice;
+					((rt = (function () {
+						var l, c, d, g, p;
+						for (
+							l = {}, p = "Boolean Number String Function Array Date RegExp Undefined Null".split(" "), g = 0, c = p.length;
+							g < c;
+							g++
+						)
+							((d = p[g]), (l["[object " + d + "]"] = d.toLowerCase()));
+						return function (_) {
+							var w;
+							return ((w = Object.prototype.toString.call(_)), l[w] || "object");
+						};
+					})()),
+						(nt = function (l, c, d) {
+							return (c == null && (c = 0), d == null && (d = 1), l < c && (l = c), l > d && (l = d), l);
+						}),
+						(ot = function (l) {
+							return l.length >= 3 ? Array.prototype.slice.call(l) : l[0];
+						}),
+						(ce = function (l) {
+							var c, d;
+							for (l._clipped = !1, l._unclipped = l.slice(0), c = d = 0; d < 3; c = ++d)
+								c < 3
+									? ((l[c] < 0 || l[c] > 255) && (l._clipped = !0), l[c] < 0 && (l[c] = 0), l[c] > 255 && (l[c] = 255))
+									: c === 3 && (l[c] < 0 && (l[c] = 0), l[c] > 1 && (l[c] = 1));
+							return (l._clipped || delete l._unclipped, l);
+						}),
+						(r = Math.PI),
+						(Et = Math.round),
+						(Y = Math.cos),
+						(ke = Math.floor),
+						(Xe = Math.pow),
+						(ie = Math.log),
+						(nn = Math.sin),
+						(Mt = Math.sqrt),
+						(P = Math.atan2),
+						(oe = Math.max),
+						(A = Math.abs),
+						(u = r * 2),
+						(o = r / 3),
+						(n = r / 180),
+						(h = 180 / r),
+						(M = function () {
+							return arguments[0] instanceof t
+								? arguments[0]
+								: (function (l, c, d) {
+										d.prototype = l.prototype;
+										var g = new d(),
+											p = l.apply(g, c);
+										return Object(p) === p ? p : g;
+									})(t, arguments, function () {});
+						}),
+						(M.default = M),
+						(S = []),
+						a !== null && a.exports != null && (a.exports = M),
+						(Gt = e !== null ? e : this),
+						(Gt.chroma = M),
+						(M.version = "1.4.1"),
+						(C = {}),
+						(b = []),
+						(y = !1),
+						(t = (function () {
+							function l() {
+								var c, d, g, p, _, w, E, I, z;
+								for (w = this, d = [], I = 0, p = arguments.length; I < p; I++) ((c = arguments[I]), c != null && d.push(c));
+								if ((d.length > 1 && (E = d[d.length - 1]), C[E] != null)) w._rgb = ce(C[E](ot(d.slice(0, -1))));
+								else {
+									for (
+										y ||
+											((b = b.sort(function (te, Ae) {
+												return Ae.p - te.p;
+											})),
+											(y = !0)),
+											z = 0,
+											_ = b.length;
+										z < _ && ((g = b[z]), (E = g.test.apply(g, d)), !E);
+										z++
+									);
+									E && (w._rgb = ce(C[E].apply(C, d)));
+								}
+								(w._rgb == null && console.warn("unknown format: " + d),
+									w._rgb == null && (w._rgb = [0, 0, 0]),
+									w._rgb.length === 3 && w._rgb.push(1));
+							}
+							return (
+								(l.prototype.toString = function () {
+									return this.hex();
+								}),
+								l
+							);
+						})()),
+						(M._input = C));
+					((M.brewer = j =
+						{
+							OrRd: ["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000"],
+							PuBu: ["#fff7fb", "#ece7f2", "#d0d1e6", "#a6bddb", "#74a9cf", "#3690c0", "#0570b0", "#045a8d", "#023858"],
+							BuPu: ["#f7fcfd", "#e0ecf4", "#bfd3e6", "#9ebcda", "#8c96c6", "#8c6bb1", "#88419d", "#810f7c", "#4d004b"],
+							Oranges: ["#fff5eb", "#fee6ce", "#fdd0a2", "#fdae6b", "#fd8d3c", "#f16913", "#d94801", "#a63603", "#7f2704"],
+							BuGn: ["#f7fcfd", "#e5f5f9", "#ccece6", "#99d8c9", "#66c2a4", "#41ae76", "#238b45", "#006d2c", "#00441b"],
+							YlOrBr: ["#ffffe5", "#fff7bc", "#fee391", "#fec44f", "#fe9929", "#ec7014", "#cc4c02", "#993404", "#662506"],
+							YlGn: ["#ffffe5", "#f7fcb9", "#d9f0a3", "#addd8e", "#78c679", "#41ab5d", "#238443", "#006837", "#004529"],
+							Reds: ["#fff5f0", "#fee0d2", "#fcbba1", "#fc9272", "#fb6a4a", "#ef3b2c", "#cb181d", "#a50f15", "#67000d"],
+							RdPu: ["#fff7f3", "#fde0dd", "#fcc5c0", "#fa9fb5", "#f768a1", "#dd3497", "#ae017e", "#7a0177", "#49006a"],
+							Greens: ["#f7fcf5", "#e5f5e0", "#c7e9c0", "#a1d99b", "#74c476", "#41ab5d", "#238b45", "#006d2c", "#00441b"],
+							YlGnBu: ["#ffffd9", "#edf8b1", "#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#253494", "#081d58"],
+							Purples: ["#fcfbfd", "#efedf5", "#dadaeb", "#bcbddc", "#9e9ac8", "#807dba", "#6a51a3", "#54278f", "#3f007d"],
+							GnBu: ["#f7fcf0", "#e0f3db", "#ccebc5", "#a8ddb5", "#7bccc4", "#4eb3d3", "#2b8cbe", "#0868ac", "#084081"],
+							Greys: ["#ffffff", "#f0f0f0", "#d9d9d9", "#bdbdbd", "#969696", "#737373", "#525252", "#252525", "#000000"],
+							YlOrRd: ["#ffffcc", "#ffeda0", "#fed976", "#feb24c", "#fd8d3c", "#fc4e2a", "#e31a1c", "#bd0026", "#800026"],
+							PuRd: ["#f7f4f9", "#e7e1ef", "#d4b9da", "#c994c7", "#df65b0", "#e7298a", "#ce1256", "#980043", "#67001f"],
+							Blues: ["#f7fbff", "#deebf7", "#c6dbef", "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#08519c", "#08306b"],
+							PuBuGn: ["#fff7fb", "#ece2f0", "#d0d1e6", "#a6bddb", "#67a9cf", "#3690c0", "#02818a", "#016c59", "#014636"],
+							Viridis: ["#440154", "#482777", "#3f4a8a", "#31678e", "#26838f", "#1f9d8a", "#6cce5a", "#b6de2b", "#fee825"],
+							Spectral: [
+								"#9e0142",
+								"#d53e4f",
+								"#f46d43",
+								"#fdae61",
+								"#fee08b",
+								"#ffffbf",
+								"#e6f598",
+								"#abdda4",
+								"#66c2a5",
+								"#3288bd",
+								"#5e4fa2",
+							],
+							RdYlGn: [
+								"#a50026",
+								"#d73027",
+								"#f46d43",
+								"#fdae61",
+								"#fee08b",
+								"#ffffbf",
+								"#d9ef8b",
+								"#a6d96a",
+								"#66bd63",
+								"#1a9850",
+								"#006837",
+							],
+							RdBu: [
+								"#67001f",
+								"#b2182b",
+								"#d6604d",
+								"#f4a582",
+								"#fddbc7",
+								"#f7f7f7",
+								"#d1e5f0",
+								"#92c5de",
+								"#4393c3",
+								"#2166ac",
+								"#053061",
+							],
+							PiYG: [
+								"#8e0152",
+								"#c51b7d",
+								"#de77ae",
+								"#f1b6da",
+								"#fde0ef",
+								"#f7f7f7",
+								"#e6f5d0",
+								"#b8e186",
+								"#7fbc41",
+								"#4d9221",
+								"#276419",
+							],
+							PRGn: [
+								"#40004b",
+								"#762a83",
+								"#9970ab",
+								"#c2a5cf",
+								"#e7d4e8",
+								"#f7f7f7",
+								"#d9f0d3",
+								"#a6dba0",
+								"#5aae61",
+								"#1b7837",
+								"#00441b",
+							],
+							RdYlBu: [
+								"#a50026",
+								"#d73027",
+								"#f46d43",
+								"#fdae61",
+								"#fee090",
+								"#ffffbf",
+								"#e0f3f8",
+								"#abd9e9",
+								"#74add1",
+								"#4575b4",
+								"#313695",
+							],
+							BrBG: [
+								"#543005",
+								"#8c510a",
+								"#bf812d",
+								"#dfc27d",
+								"#f6e8c3",
+								"#f5f5f5",
+								"#c7eae5",
+								"#80cdc1",
+								"#35978f",
+								"#01665e",
+								"#003c30",
+							],
+							RdGy: [
+								"#67001f",
+								"#b2182b",
+								"#d6604d",
+								"#f4a582",
+								"#fddbc7",
+								"#ffffff",
+								"#e0e0e0",
+								"#bababa",
+								"#878787",
+								"#4d4d4d",
+								"#1a1a1a",
+							],
+							PuOr: [
+								"#7f3b08",
+								"#b35806",
+								"#e08214",
+								"#fdb863",
+								"#fee0b6",
+								"#f7f7f7",
+								"#d8daeb",
+								"#b2abd2",
+								"#8073ac",
+								"#542788",
+								"#2d004b",
+							],
+							Set2: ["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f", "#e5c494", "#b3b3b3"],
+							Accent: ["#7fc97f", "#beaed4", "#fdc086", "#ffff99", "#386cb0", "#f0027f", "#bf5b17", "#666666"],
+							Set1: ["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf", "#999999"],
+							Set3: [
+								"#8dd3c7",
+								"#ffffb3",
+								"#bebada",
+								"#fb8072",
+								"#80b1d3",
+								"#fdb462",
+								"#b3de69",
+								"#fccde5",
+								"#d9d9d9",
+								"#bc80bd",
+								"#ccebc5",
+								"#ffed6f",
+							],
+							Dark2: ["#1b9e77", "#d95f02", "#7570b3", "#e7298a", "#66a61e", "#e6ab02", "#a6761d", "#666666"],
+							Paired: [
+								"#a6cee3",
+								"#1f78b4",
+								"#b2df8a",
+								"#33a02c",
+								"#fb9a99",
+								"#e31a1c",
+								"#fdbf6f",
+								"#ff7f00",
+								"#cab2d6",
+								"#6a3d9a",
+								"#ffff99",
+								"#b15928",
+							],
+							Pastel2: ["#b3e2cd", "#fdcdac", "#cbd5e8", "#f4cae4", "#e6f5c9", "#fff2ae", "#f1e2cc", "#cccccc"],
+							Pastel1: ["#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6", "#ffffcc", "#e5d8bd", "#fddaec", "#f2f2f2"],
+						}),
+						(function () {
+							var l, c;
+							c = [];
+							for (l in j) c.push((j[l.toLowerCase()] = j[l]));
+							return c;
+						})(),
+						(Zt = {
+							aliceblue: "#f0f8ff",
+							antiquewhite: "#faebd7",
+							aqua: "#00ffff",
+							aquamarine: "#7fffd4",
+							azure: "#f0ffff",
+							beige: "#f5f5dc",
+							bisque: "#ffe4c4",
+							black: "#000000",
+							blanchedalmond: "#ffebcd",
+							blue: "#0000ff",
+							blueviolet: "#8a2be2",
+							brown: "#a52a2a",
+							burlywood: "#deb887",
+							cadetblue: "#5f9ea0",
+							chartreuse: "#7fff00",
+							chocolate: "#d2691e",
+							coral: "#ff7f50",
+							cornflower: "#6495ed",
+							cornflowerblue: "#6495ed",
+							cornsilk: "#fff8dc",
+							crimson: "#dc143c",
+							cyan: "#00ffff",
+							darkblue: "#00008b",
+							darkcyan: "#008b8b",
+							darkgoldenrod: "#b8860b",
+							darkgray: "#a9a9a9",
+							darkgreen: "#006400",
+							darkgrey: "#a9a9a9",
+							darkkhaki: "#bdb76b",
+							darkmagenta: "#8b008b",
+							darkolivegreen: "#556b2f",
+							darkorange: "#ff8c00",
+							darkorchid: "#9932cc",
+							darkred: "#8b0000",
+							darksalmon: "#e9967a",
+							darkseagreen: "#8fbc8f",
+							darkslateblue: "#483d8b",
+							darkslategray: "#2f4f4f",
+							darkslategrey: "#2f4f4f",
+							darkturquoise: "#00ced1",
+							darkviolet: "#9400d3",
+							deeppink: "#ff1493",
+							deepskyblue: "#00bfff",
+							dimgray: "#696969",
+							dimgrey: "#696969",
+							dodgerblue: "#1e90ff",
+							firebrick: "#b22222",
+							floralwhite: "#fffaf0",
+							forestgreen: "#228b22",
+							fuchsia: "#ff00ff",
+							gainsboro: "#dcdcdc",
+							ghostwhite: "#f8f8ff",
+							gold: "#ffd700",
+							goldenrod: "#daa520",
+							gray: "#808080",
+							green: "#008000",
+							greenyellow: "#adff2f",
+							grey: "#808080",
+							honeydew: "#f0fff0",
+							hotpink: "#ff69b4",
+							indianred: "#cd5c5c",
+							indigo: "#4b0082",
+							ivory: "#fffff0",
+							khaki: "#f0e68c",
+							laserlemon: "#ffff54",
+							lavender: "#e6e6fa",
+							lavenderblush: "#fff0f5",
+							lawngreen: "#7cfc00",
+							lemonchiffon: "#fffacd",
+							lightblue: "#add8e6",
+							lightcoral: "#f08080",
+							lightcyan: "#e0ffff",
+							lightgoldenrod: "#fafad2",
+							lightgoldenrodyellow: "#fafad2",
+							lightgray: "#d3d3d3",
+							lightgreen: "#90ee90",
+							lightgrey: "#d3d3d3",
+							lightpink: "#ffb6c1",
+							lightsalmon: "#ffa07a",
+							lightseagreen: "#20b2aa",
+							lightskyblue: "#87cefa",
+							lightslategray: "#778899",
+							lightslategrey: "#778899",
+							lightsteelblue: "#b0c4de",
+							lightyellow: "#ffffe0",
+							lime: "#00ff00",
+							limegreen: "#32cd32",
+							linen: "#faf0e6",
+							magenta: "#ff00ff",
+							maroon: "#800000",
+							maroon2: "#7f0000",
+							maroon3: "#b03060",
+							mediumaquamarine: "#66cdaa",
+							mediumblue: "#0000cd",
+							mediumorchid: "#ba55d3",
+							mediumpurple: "#9370db",
+							mediumseagreen: "#3cb371",
+							mediumslateblue: "#7b68ee",
+							mediumspringgreen: "#00fa9a",
+							mediumturquoise: "#48d1cc",
+							mediumvioletred: "#c71585",
+							midnightblue: "#191970",
+							mintcream: "#f5fffa",
+							mistyrose: "#ffe4e1",
+							moccasin: "#ffe4b5",
+							navajowhite: "#ffdead",
+							navy: "#000080",
+							oldlace: "#fdf5e6",
+							olive: "#808000",
+							olivedrab: "#6b8e23",
+							orange: "#ffa500",
+							orangered: "#ff4500",
+							orchid: "#da70d6",
+							palegoldenrod: "#eee8aa",
+							palegreen: "#98fb98",
+							paleturquoise: "#afeeee",
+							palevioletred: "#db7093",
+							papayawhip: "#ffefd5",
+							peachpuff: "#ffdab9",
+							peru: "#cd853f",
+							pink: "#ffc0cb",
+							plum: "#dda0dd",
+							powderblue: "#b0e0e6",
+							purple: "#800080",
+							purple2: "#7f007f",
+							purple3: "#a020f0",
+							rebeccapurple: "#663399",
+							red: "#ff0000",
+							rosybrown: "#bc8f8f",
+							royalblue: "#4169e1",
+							saddlebrown: "#8b4513",
+							salmon: "#fa8072",
+							sandybrown: "#f4a460",
+							seagreen: "#2e8b57",
+							seashell: "#fff5ee",
+							sienna: "#a0522d",
+							silver: "#c0c0c0",
+							skyblue: "#87ceeb",
+							slateblue: "#6a5acd",
+							slategray: "#708090",
+							slategrey: "#708090",
+							snow: "#fffafa",
+							springgreen: "#00ff7f",
+							steelblue: "#4682b4",
+							tan: "#d2b48c",
+							teal: "#008080",
+							thistle: "#d8bfd8",
+							tomato: "#ff6347",
+							turquoise: "#40e0d0",
+							violet: "#ee82ee",
+							wheat: "#f5deb3",
+							white: "#ffffff",
+							whitesmoke: "#f5f5f5",
+							yellow: "#ffff00",
+							yellowgreen: "#9acd32",
+						}),
+						(M.colors = Zt),
+						(Te = function () {
+							var l, c, d, g, p, _, w, E, I;
+							return (
+								(c = ot(arguments)),
+								(p = c[0]),
+								(l = c[1]),
+								(d = c[2]),
+								(E = (p + 16) / 116),
+								(w = isNaN(l) ? E : E + l / 500),
+								(I = isNaN(d) ? E : E - d / 200),
+								(E = i.Yn * Me(E)),
+								(w = i.Xn * Me(w)),
+								(I = i.Zn * Me(I)),
+								(_ = qr(3.2404542 * w - 1.5371385 * E - 0.4985314 * I)),
+								(g = qr(-0.969266 * w + 1.8760108 * E + 0.041556 * I)),
+								(d = qr(0.0556434 * w - 0.2040259 * E + 1.0572252 * I)),
+								[_, g, d, c.length > 3 ? c[3] : 1]
+							);
+						}),
+						(qr = function (l) {
+							return 255 * (l <= 0.00304 ? 12.92 * l : 1.055 * Xe(l, 1 / 2.4) - 0.055);
+						}),
+						(Me = function (l) {
+							return l > i.t1 ? l * l * l : i.t2 * (l - i.t0);
+						}),
+						(i = { Kn: 18, Xn: 0.95047, Yn: 1, Zn: 1.08883, t0: 0.137931034, t1: 0.206896552, t2: 0.12841855, t3: 0.008856452 }),
+						(St = function () {
+							var l, c, d, g, p, _, w, E;
+							return (
+								(g = ot(arguments)),
+								(d = g[0]),
+								(c = g[1]),
+								(l = g[2]),
+								(p = $e(d, c, l)),
+								(_ = p[0]),
+								(w = p[1]),
+								(E = p[2]),
+								[116 * w - 16, 500 * (_ - w), 200 * (w - E)]
+							);
+						}),
+						(ht = function (l) {
+							return (l /= 255) <= 0.04045 ? l / 12.92 : Xe((l + 0.055) / 1.055, 2.4);
+						}),
+						(Hr = function (l) {
+							return l > i.t3 ? Xe(l, 1 / 3) : l / i.t2 + i.t0;
+						}),
+						($e = function () {
+							var l, c, d, g, p, _, w;
+							return (
+								(g = ot(arguments)),
+								(d = g[0]),
+								(c = g[1]),
+								(l = g[2]),
+								(d = ht(d)),
+								(c = ht(c)),
+								(l = ht(l)),
+								(p = Hr((0.4124564 * d + 0.3575761 * c + 0.1804375 * l) / i.Xn)),
+								(_ = Hr((0.2126729 * d + 0.7151522 * c + 0.072175 * l) / i.Yn)),
+								(w = Hr((0.0193339 * d + 0.119192 * c + 0.9503041 * l) / i.Zn)),
+								[p, _, w]
+							);
+						}),
+						(M.lab = function () {
+							return (function (l, c, d) {
+								d.prototype = l.prototype;
+								var g = new d(),
+									p = l.apply(g, c);
+								return Object(p) === p ? p : g;
+							})(t, zt.call(arguments).concat(["lab"]), function () {});
+						}),
+						(C.lab = Te),
+						(t.prototype.lab = function () {
+							return St(this._rgb);
+						}),
+						(D = function (l) {
+							var c, d, g, p, _, w, E, I, z, te, Ae;
+							return (
+								(l = (function () {
+									var Q, q, me;
+									for (me = [], q = 0, Q = l.length; q < Q; q++) ((p = l[q]), me.push(M(p)));
+									return me;
+								})()),
+								l.length === 2
+									? ((z = (function () {
+											var Q, q, me;
+											for (me = [], q = 0, Q = l.length; q < Q; q++) ((p = l[q]), me.push(p.lab()));
+											return me;
+										})()),
+										(_ = z[0]),
+										(w = z[1]),
+										(c = function (Q) {
+											var q, me;
+											return (
+												(me = (function () {
+													var Re, Ne;
+													for (Ne = [], q = Re = 0; Re <= 2; q = ++Re) Ne.push(_[q] + Q * (w[q] - _[q]));
+													return Ne;
+												})()),
+												M.lab.apply(M, me)
+											);
+										}))
+									: l.length === 3
+										? ((te = (function () {
+												var Q, q, me;
+												for (me = [], q = 0, Q = l.length; q < Q; q++) ((p = l[q]), me.push(p.lab()));
+												return me;
+											})()),
+											(_ = te[0]),
+											(w = te[1]),
+											(E = te[2]),
+											(c = function (Q) {
+												var q, me;
+												return (
+													(me = (function () {
+														var Re, Ne;
+														for (Ne = [], q = Re = 0; Re <= 2; q = ++Re)
+															Ne.push((1 - Q) * (1 - Q) * _[q] + 2 * (1 - Q) * Q * w[q] + Q * Q * E[q]);
+														return Ne;
+													})()),
+													M.lab.apply(M, me)
+												);
+											}))
+										: l.length === 4
+											? ((Ae = (function () {
+													var Q, q, me;
+													for (me = [], q = 0, Q = l.length; q < Q; q++) ((p = l[q]), me.push(p.lab()));
+													return me;
+												})()),
+												(_ = Ae[0]),
+												(w = Ae[1]),
+												(E = Ae[2]),
+												(I = Ae[3]),
+												(c = function (Q) {
+													var q, me;
+													return (
+														(me = (function () {
+															var Re, Ne;
+															for (Ne = [], q = Re = 0; Re <= 2; q = ++Re)
+																Ne.push(
+																	(1 - Q) * (1 - Q) * (1 - Q) * _[q] +
+																		3 * (1 - Q) * (1 - Q) * Q * w[q] +
+																		3 * (1 - Q) * Q * Q * E[q] +
+																		Q * Q * Q * I[q],
+																);
+															return Ne;
+														})()),
+														M.lab.apply(M, me)
+													);
+												}))
+											: l.length === 5 &&
+												((d = D(l.slice(0, 3))),
+												(g = D(l.slice(2, 5))),
+												(c = function (Q) {
+													return Q < 0.5 ? d(Q * 2) : g((Q - 0.5) * 2);
+												})),
+								c
+							);
+						}),
+						(M.bezier = function (l) {
+							var c;
+							return (
+								(c = D(l)),
+								(c.scale = function () {
+									return M.scale(c);
+								}),
+								c
+							);
+						}),
+						(M.cubehelix = function (l, c, d, g, p) {
+							var _, w, E;
+							return (
+								l == null && (l = 300),
+								c == null && (c = -1.5),
+								d == null && (d = 1),
+								g == null && (g = 1),
+								p == null && (p = [0, 1]),
+								(_ = 0),
+								rt(p) === "array" ? (w = p[1] - p[0]) : ((w = 0), (p = [p, p])),
+								(E = function (I) {
+									var z, te, Ae, Q, q, me, Re, Ne, De;
+									return (
+										(z = u * ((l + 120) / 360 + c * I)),
+										(Re = Xe(p[0] + w * I, g)),
+										(me = _ !== 0 ? d[0] + I * _ : d),
+										(te = (me * Re * (1 - Re)) / 2),
+										(Q = Y(z)),
+										(De = nn(z)),
+										(Ne = Re + te * (-0.14861 * Q + 1.78277 * De)),
+										(q = Re + te * (-0.29227 * Q - 0.90649 * De)),
+										(Ae = Re + te * (1.97294 * Q)),
+										M(ce([Ne * 255, q * 255, Ae * 255, 1]))
+									);
+								}),
+								(E.start = function (I) {
+									return I == null ? l : ((l = I), E);
+								}),
+								(E.rotations = function (I) {
+									return I == null ? c : ((c = I), E);
+								}),
+								(E.gamma = function (I) {
+									return I == null ? g : ((g = I), E);
+								}),
+								(E.hue = function (I) {
+									return I == null ? d : ((d = I), rt(d) === "array" ? ((_ = d[1] - d[0]), _ === 0 && (d = d[1])) : (_ = 0), E);
+								}),
+								(E.lightness = function (I) {
+									return I == null ? p : (rt(I) === "array" ? ((p = I), (w = I[1] - I[0])) : ((p = [I, I]), (w = 0)), E);
+								}),
+								(E.scale = function () {
+									return M.scale(E);
+								}),
+								E.hue(d),
+								E
+							);
+						}),
+						(M.random = function () {
+							var l, c, d;
+							for (c = "0123456789abcdef", l = "#", d = 0; d < 6; ++d) l += c.charAt(ke(Math.random() * 16));
+							return new t(l);
+						}),
+						(S = []),
+						(fe = function (l, c, d, g) {
+							var p, _, w, E;
+							for (
+								d == null && (d = 0.5),
+									g == null && (g = "rgb"),
+									rt(l) !== "object" && (l = M(l)),
+									rt(c) !== "object" && (c = M(c)),
+									w = 0,
+									_ = S.length;
+								w < _;
+								w++
+							)
+								if (((p = S[w]), g === p[0])) {
+									E = p[1](l, c, d, g);
+									break;
+								}
+							if (E == null) throw "color mode " + g + " is not supported";
+							return E.alpha(l.alpha() + d * (c.alpha() - l.alpha()));
+						}),
+						(M.interpolate = fe),
+						(t.prototype.interpolate = function (l, c, d) {
+							return fe(this, l, c, d);
+						}),
+						(M.mix = fe),
+						(t.prototype.mix = t.prototype.interpolate),
+						(C.rgb = function () {
+							var l, c, d, g;
+							((c = ot(arguments)), (d = []));
+							for (l in c) ((g = c[l]), d.push(g));
+							return d;
+						}),
+						(M.rgb = function () {
+							return (function (l, c, d) {
+								d.prototype = l.prototype;
+								var g = new d(),
+									p = l.apply(g, c);
+								return Object(p) === p ? p : g;
+							})(t, zt.call(arguments).concat(["rgb"]), function () {});
+						}),
+						(t.prototype.rgb = function (l) {
+							return (l == null && (l = !0), l ? this._rgb.map(Math.round).slice(0, 3) : this._rgb.slice(0, 3));
+						}),
+						(t.prototype.rgba = function (l) {
+							return (
+								l == null && (l = !0),
+								l
+									? [Math.round(this._rgb[0]), Math.round(this._rgb[1]), Math.round(this._rgb[2]), this._rgb[3]]
+									: this._rgb.slice(0)
+							);
+						}),
+						b.push({
+							p: 3,
+							test: function (l) {
+								var c;
+								if (
+									((c = ot(arguments)),
+									(rt(c) === "array" && c.length === 3) || (c.length === 4 && rt(c[3]) === "number" && c[3] >= 0 && c[3] <= 1))
+								)
+									return "rgb";
+							},
+						}),
+						(C.lrgb = C.rgb),
+						(W = function (l, c, d, g) {
+							var p, _;
+							return (
+								(p = l._rgb),
+								(_ = c._rgb),
+								new t(
+									Mt(Xe(p[0], 2) * (1 - d) + Xe(_[0], 2) * d),
+									Mt(Xe(p[1], 2) * (1 - d) + Xe(_[1], 2) * d),
+									Mt(Xe(p[2], 2) * (1 - d) + Xe(_[2], 2) * d),
+									g,
+								)
+							);
+						}),
+						(v = function (l) {
+							var c, d, g, p, _, w;
+							for (d = 1 / l.length, w = [0, 0, 0, 0], p = 0, g = l.length; p < g; p++)
+								((c = l[p]),
+									(_ = c._rgb),
+									(w[0] += Xe(_[0], 2) * d),
+									(w[1] += Xe(_[1], 2) * d),
+									(w[2] += Xe(_[2], 2) * d),
+									(w[3] += _[3] * d));
+							return ((w[0] = Mt(w[0])), (w[1] = Mt(w[1])), (w[2] = Mt(w[2])), w[3] > 1 && (w[3] = 1), new t(ce(w)));
+						}),
+						S.push(["lrgb", W]),
+						(M.average = function (l, c) {
+							var d, g, p, _, w, E, I, z, te, Ae, Q, q, me;
+							if (
+								(c == null && (c = "rgb"),
+								(te = l.length),
+								(l = l.map(function (Re) {
+									return M(Re);
+								})),
+								(I = l.splice(0, 1)[0]),
+								c === "lrgb")
+							)
+								return v(l);
+							((q = I.get(c)), (_ = []), (w = 0), (E = 0));
+							for (z in q)
+								((q[z] = q[z] || 0),
+									_.push(isNaN(q[z]) ? 0 : 1),
+									c.charAt(z) === "h" && !isNaN(q[z]) && ((d = (q[z] / 180) * r), (w += Y(d)), (E += nn(d))));
+							for (g = I.alpha(), Q = 0, Ae = l.length; Q < Ae; Q++) {
+								((p = l[Q]), (me = p.get(c)), (g += p.alpha()));
+								for (z in q)
+									isNaN(me[z]) ||
+										((_[z] += 1), c.charAt(z) === "h" ? ((d = (me[z] / 180) * r), (w += Y(d)), (E += nn(d))) : (q[z] += me[z]));
+							}
+							for (z in q)
+								if (c.charAt(z) === "h") {
+									for (d = (P(E / _[z], w / _[z]) / r) * 180; d < 0; ) d += 360;
+									for (; d >= 360; ) d -= 360;
+									q[z] = d;
+								} else q[z] = q[z] / _[z];
+							return M(q, c).alpha(g / te);
+						}),
+						(V = function (l) {
+							var c, d, g, p, _, w;
+							if (l.match(/^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/))
+								return (
+									(l.length === 4 || l.length === 7) && (l = l.substr(1)),
+									l.length === 3 && ((l = l.split("")), (l = l[0] + l[0] + l[1] + l[1] + l[2] + l[2])),
+									(w = parseInt(l, 16)),
+									(p = w >> 16),
+									(g = (w >> 8) & 255),
+									(d = w & 255),
+									[p, g, d, 1]
+								);
+							if (l.match(/^#?([A-Fa-f0-9]{8})$/))
+								return (
+									l.length === 9 && (l = l.substr(1)),
+									(w = parseInt(l, 16)),
+									(p = (w >> 24) & 255),
+									(g = (w >> 16) & 255),
+									(d = (w >> 8) & 255),
+									(c = Et(((w & 255) / 255) * 100) / 100),
+									[p, g, d, c]
+								);
+							if (C.css != null && (_ = C.css(l))) return _;
+							throw "unknown color: " + l;
+						}),
+						(Wt = function (l, c) {
+							var d, g, p, _, w, E, I;
+							return (
+								c == null && (c = "auto"),
+								(w = l[0]),
+								(p = l[1]),
+								(g = l[2]),
+								(d = l[3]),
+								c === "auto" && (c = d < 1 ? "rgba" : "rgb"),
+								(w = Math.round(w)),
+								(p = Math.round(p)),
+								(g = Math.round(g)),
+								(I = (w << 16) | (p << 8) | g),
+								(E = "000000" + I.toString(16)),
+								(E = E.substr(E.length - 6)),
+								(_ = "0" + Et(d * 255).toString(16)),
+								(_ = _.substr(_.length - 2)),
+								"#" +
+									(function () {
+										switch (c.toLowerCase()) {
+											case "rgba":
+												return E + _;
+											case "argb":
+												return _ + E;
+											default:
+												return E;
+										}
+									})()
+							);
+						}),
+						(C.hex = function (l) {
+							return V(l);
+						}),
+						(M.hex = function () {
+							return (function (l, c, d) {
+								d.prototype = l.prototype;
+								var g = new d(),
+									p = l.apply(g, c);
+								return Object(p) === p ? p : g;
+							})(t, zt.call(arguments).concat(["hex"]), function () {});
+						}),
+						(t.prototype.hex = function (l) {
+							return (l == null && (l = "auto"), Wt(this._rgb, l));
+						}),
+						b.push({
+							p: 4,
+							test: function (l) {
+								if (arguments.length === 1 && rt(l) === "string") return "hex";
+							},
+						}),
+						(be = function () {
+							var l, c, d, g, p, _, w, E, I, z, te, Ae, Q, q;
+							if (((l = ot(arguments)), (p = l[0]), (te = l[1]), (w = l[2]), te === 0)) I = g = c = w * 255;
+							else {
+								for (
+									q = [0, 0, 0],
+										d = [0, 0, 0],
+										Q = w < 0.5 ? w * (1 + te) : w + te - w * te,
+										Ae = 2 * w - Q,
+										p /= 360,
+										q[0] = p + 1 / 3,
+										q[1] = p,
+										q[2] = p - 1 / 3,
+										_ = E = 0;
+									E <= 2;
+									_ = ++E
+								)
+									(q[_] < 0 && (q[_] += 1),
+										q[_] > 1 && (q[_] -= 1),
+										6 * q[_] < 1
+											? (d[_] = Ae + (Q - Ae) * 6 * q[_])
+											: 2 * q[_] < 1
+												? (d[_] = Q)
+												: 3 * q[_] < 2
+													? (d[_] = Ae + (Q - Ae) * (2 / 3 - q[_]) * 6)
+													: (d[_] = Ae));
+								((z = [Et(d[0] * 255), Et(d[1] * 255), Et(d[2] * 255)]), (I = z[0]), (g = z[1]), (c = z[2]));
+							}
+							return l.length > 3 ? [I, g, c, l[3]] : [I, g, c];
+						}),
+						(wn = function (l, c, d) {
+							var g, p, _, w, E;
+							return (
+								l !== void 0 && l.length >= 3 && ((w = l), (l = w[0]), (c = w[1]), (d = w[2])),
+								(l /= 255),
+								(c /= 255),
+								(d /= 255),
+								(_ = Math.min(l, c, d)),
+								(oe = Math.max(l, c, d)),
+								(p = (oe + _) / 2),
+								oe === _ ? ((E = 0), (g = Number.NaN)) : (E = p < 0.5 ? (oe - _) / (oe + _) : (oe - _) / (2 - oe - _)),
+								l === oe
+									? (g = (c - d) / (oe - _))
+									: c === oe
+										? (g = 2 + (d - l) / (oe - _))
+										: d === oe && (g = 4 + (l - c) / (oe - _)),
+								(g *= 60),
+								g < 0 && (g += 360),
+								[g, E, p]
+							);
+						}),
+						(M.hsl = function () {
+							return (function (l, c, d) {
+								d.prototype = l.prototype;
+								var g = new d(),
+									p = l.apply(g, c);
+								return Object(p) === p ? p : g;
+							})(t, zt.call(arguments).concat(["hsl"]), function () {});
+						}),
+						(C.hsl = be),
+						(t.prototype.hsl = function () {
+							return wn(this._rgb);
+						}),
+						(Be = function () {
+							var l, c, d, g, p, _, w, E, I, z, te, Ae, Q, q, me, Re, Ne, De;
+							if (((l = ot(arguments)), (p = l[0]), (Re = l[1]), (De = l[2]), (De *= 255), Re === 0)) I = g = c = De;
+							else
+								switch (
+									(p === 360 && (p = 0),
+									p > 360 && (p -= 360),
+									p < 0 && (p += 360),
+									(p /= 60),
+									(_ = ke(p)),
+									(d = p - _),
+									(w = De * (1 - Re)),
+									(E = De * (1 - Re * d)),
+									(Ne = De * (1 - Re * (1 - d))),
+									_)
+								) {
+									case 0:
+										((z = [De, Ne, w]), (I = z[0]), (g = z[1]), (c = z[2]));
+										break;
+									case 1:
+										((te = [E, De, w]), (I = te[0]), (g = te[1]), (c = te[2]));
+										break;
+									case 2:
+										((Ae = [w, De, Ne]), (I = Ae[0]), (g = Ae[1]), (c = Ae[2]));
+										break;
+									case 3:
+										((Q = [w, E, De]), (I = Q[0]), (g = Q[1]), (c = Q[2]));
+										break;
+									case 4:
+										((q = [Ne, w, De]), (I = q[0]), (g = q[1]), (c = q[2]));
+										break;
+									case 5:
+										((me = [De, w, E]), (I = me[0]), (g = me[1]), (c = me[2]));
+								}
+							return [I, g, c, l.length > 3 ? l[3] : 1];
+						}),
+						(yn = function () {
+							var l, c, d, g, p, _, w, E, I;
+							return (
+								(w = ot(arguments)),
+								(_ = w[0]),
+								(d = w[1]),
+								(l = w[2]),
+								(p = Math.min(_, d, l)),
+								(oe = Math.max(_, d, l)),
+								(c = oe - p),
+								(I = oe / 255),
+								oe === 0
+									? ((g = Number.NaN), (E = 0))
+									: ((E = c / oe),
+										_ === oe && (g = (d - l) / c),
+										d === oe && (g = 2 + (l - _) / c),
+										l === oe && (g = 4 + (_ - d) / c),
+										(g *= 60),
+										g < 0 && (g += 360)),
+								[g, E, I]
+							);
+						}),
+						(M.hsv = function () {
+							return (function (l, c, d) {
+								d.prototype = l.prototype;
+								var g = new d(),
+									p = l.apply(g, c);
+								return Object(p) === p ? p : g;
+							})(t, zt.call(arguments).concat(["hsv"]), function () {});
+						}),
+						(C.hsv = Be),
+						(t.prototype.hsv = function () {
+							return yn(this._rgb);
+						}),
+						(He = function (l) {
+							var c, d, g;
+							return rt(l) === "number" && l >= 0 && l <= 16777215
+								? ((g = l >> 16), (d = (l >> 8) & 255), (c = l & 255), [g, d, c, 1])
+								: (console.warn("unknown num color: " + l), [0, 0, 0, 1]);
+						}),
+						(tn = function () {
+							var l, c, d, g;
+							return ((g = ot(arguments)), (d = g[0]), (c = g[1]), (l = g[2]), (d << 16) + (c << 8) + l);
+						}),
+						(M.num = function (l) {
+							return new t(l, "num");
+						}),
+						(t.prototype.num = function (l) {
+							return (l == null && (l = "rgb"), tn(this._rgb, l));
+						}),
+						(C.num = He),
+						b.push({
+							p: 1,
+							test: function (l) {
+								if (arguments.length === 1 && rt(l) === "number" && l >= 0 && l <= 16777215) return "num";
+							},
+						}),
+						(T = function () {
+							var l, c, d, g, p, _, w, E, I, z, te, Ae, Q, q, me, Re, Ne, De, yt, st;
+							if (
+								((d = ot(arguments)),
+								(E = d[0]),
+								(p = d[1]),
+								(c = d[2]),
+								(p = p / 100),
+								(w = (w / 100) * 255),
+								(l = p * 255),
+								p === 0)
+							)
+								Ae = w = g = c;
+							else
+								switch (
+									(E === 360 && (E = 0),
+									E > 360 && (E -= 360),
+									E < 0 && (E += 360),
+									(E /= 60),
+									(I = ke(E)),
+									(_ = E - I),
+									(z = c * (1 - p)),
+									(te = z + l * (1 - _)),
+									(yt = z + l * _),
+									(st = z + l),
+									I)
+								) {
+									case 0:
+										((Q = [st, yt, z]), (Ae = Q[0]), (w = Q[1]), (g = Q[2]));
+										break;
+									case 1:
+										((q = [te, st, z]), (Ae = q[0]), (w = q[1]), (g = q[2]));
+										break;
+									case 2:
+										((me = [z, st, yt]), (Ae = me[0]), (w = me[1]), (g = me[2]));
+										break;
+									case 3:
+										((Re = [z, te, st]), (Ae = Re[0]), (w = Re[1]), (g = Re[2]));
+										break;
+									case 4:
+										((Ne = [yt, z, st]), (Ae = Ne[0]), (w = Ne[1]), (g = Ne[2]));
+										break;
+									case 5:
+										((De = [st, z, te]), (Ae = De[0]), (w = De[1]), (g = De[2]));
+								}
+							return [Ae, w, g, d.length > 3 ? d[3] : 1];
+						}),
+						(Cn = function () {
+							var l, c, d, g, p, _, w, E, I;
+							return (
+								(I = ot(arguments)),
+								(E = I[0]),
+								(p = I[1]),
+								(c = I[2]),
+								(w = Math.min(E, p, c)),
+								(oe = Math.max(E, p, c)),
+								(g = oe - w),
+								(d = (g * 100) / 255),
+								(l = (w / (255 - g)) * 100),
+								g === 0
+									? (_ = Number.NaN)
+									: (E === oe && (_ = (p - c) / g),
+										p === oe && (_ = 2 + (c - E) / g),
+										c === oe && (_ = 4 + (E - p) / g),
+										(_ *= 60),
+										_ < 0 && (_ += 360)),
+								[_, d, l]
+							);
+						}),
+						(M.hcg = function () {
+							return (function (l, c, d) {
+								d.prototype = l.prototype;
+								var g = new d(),
+									p = l.apply(g, c);
+								return Object(p) === p ? p : g;
+							})(t, zt.call(arguments).concat(["hcg"]), function () {});
+						}),
+						(C.hcg = T),
+						(t.prototype.hcg = function () {
+							return Cn(this._rgb);
+						}),
+						(U = function (l) {
+							var c, d, g, p, _, w, E, I;
+							if (((l = l.toLowerCase()), M.colors != null && M.colors[l])) return V(M.colors[l]);
+							if ((_ = l.match(/rgb\(\s*(\-?\d+),\s*(\-?\d+)\s*,\s*(\-?\d+)\s*\)/))) {
+								for (E = _.slice(1, 4), p = w = 0; w <= 2; p = ++w) E[p] = +E[p];
+								E[3] = 1;
+							} else if ((_ = l.match(/rgba\(\s*(\-?\d+),\s*(\-?\d+)\s*,\s*(\-?\d+)\s*,\s*([01]|[01]?\.\d+)\)/)))
+								for (E = _.slice(1, 5), p = I = 0; I <= 3; p = ++I) E[p] = +E[p];
+							else if ((_ = l.match(/rgb\(\s*(\-?\d+(?:\.\d+)?)%,\s*(\-?\d+(?:\.\d+)?)%\s*,\s*(\-?\d+(?:\.\d+)?)%\s*\)/))) {
+								for (E = _.slice(1, 4), p = c = 0; c <= 2; p = ++c) E[p] = Et(E[p] * 2.55);
+								E[3] = 1;
+							} else if (
+								(_ = l.match(
+									/rgba\(\s*(\-?\d+(?:\.\d+)?)%,\s*(\-?\d+(?:\.\d+)?)%\s*,\s*(\-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)/,
+								))
+							) {
+								for (E = _.slice(1, 5), p = d = 0; d <= 2; p = ++d) E[p] = Et(E[p] * 2.55);
+								E[3] = +E[3];
+							} else
+								(_ = l.match(/hsl\(\s*(\-?\d+(?:\.\d+)?),\s*(\-?\d+(?:\.\d+)?)%\s*,\s*(\-?\d+(?:\.\d+)?)%\s*\)/))
+									? ((g = _.slice(1, 4)), (g[1] *= 0.01), (g[2] *= 0.01), (E = be(g)), (E[3] = 1))
+									: (_ = l.match(
+											/hsla\(\s*(\-?\d+(?:\.\d+)?),\s*(\-?\d+(?:\.\d+)?)%\s*,\s*(\-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)/,
+										)) && ((g = _.slice(1, 4)), (g[1] *= 0.01), (g[2] *= 0.01), (E = be(g)), (E[3] = +_[4]));
+							return E;
+						}),
+						(un = function (l) {
+							var c;
+							if (((c = l[3] < 1 ? "rgba" : "rgb"), c === "rgb")) return c + "(" + l.slice(0, 3).map(Et).join(",") + ")";
+							if (c === "rgba") return c + "(" + l.slice(0, 3).map(Et).join(",") + "," + l[3] + ")";
+						}),
+						(wt = function (l) {
+							return Et(l * 100) / 100;
+						}),
+						(we = function (l, c) {
+							var d;
+							return (
+								(d = c < 1 ? "hsla" : "hsl"),
+								(l[0] = wt(l[0] || 0)),
+								(l[1] = wt(l[1] * 100) + "%"),
+								(l[2] = wt(l[2] * 100) + "%"),
+								d === "hsla" && (l[3] = c),
+								d + "(" + l.join(",") + ")"
+							);
+						}),
+						(C.css = function (l) {
+							return U(l);
+						}),
+						(M.css = function () {
+							return (function (l, c, d) {
+								d.prototype = l.prototype;
+								var g = new d(),
+									p = l.apply(g, c);
+								return Object(p) === p ? p : g;
+							})(t, zt.call(arguments).concat(["css"]), function () {});
+						}),
+						(t.prototype.css = function (l) {
+							if ((l == null && (l = "rgb"), l.slice(0, 3) === "rgb")) return un(this._rgb);
+							if (l.slice(0, 3) === "hsl") return we(this.hsl(), this.alpha());
+						}),
+						(C.named = function (l) {
+							return V(Zt[l]);
+						}),
+						b.push({
+							p: 5,
+							test: function (l) {
+								if (arguments.length === 1 && Zt[l] != null) return "named";
+							},
+						}),
+						(t.prototype.name = function (l) {
+							var c, d;
+							(arguments.length && (Zt[l] && (this._rgb = V(Zt[l])), (this._rgb[3] = 1)), (c = this.hex("rgb")));
+							for (d in Zt) if (c === Zt[d]) return d;
+							return c;
+						}),
+						(xe = function () {
+							var l, c, d, g;
+							return ((g = ot(arguments)), (d = g[0]), (l = g[1]), (c = g[2]), (c = c * n), [d, Y(c) * l, nn(c) * l]);
+						}),
+						(Ie = function () {
+							var l, c, d, g, p, _, w, E, I, z, te;
+							return (
+								(d = ot(arguments)),
+								(E = d[0]),
+								(p = d[1]),
+								(w = d[2]),
+								(z = xe(E, p, w)),
+								(l = z[0]),
+								(c = z[1]),
+								(g = z[2]),
+								(te = Te(l, c, g)),
+								(I = te[0]),
+								(_ = te[1]),
+								(g = te[2]),
+								[I, _, g, d.length > 3 ? d[3] : 1]
+							);
+						}),
+						(ye = function () {
+							var l, c, d, g, p, _;
+							return (
+								(_ = ot(arguments)),
+								(p = _[0]),
+								(l = _[1]),
+								(c = _[2]),
+								(d = Mt(l * l + c * c)),
+								(g = (P(c, l) * h + 360) % 360),
+								Et(d * 1e4) === 0 && (g = Number.NaN),
+								[p, d, g]
+							);
+						}),
+						(en = function () {
+							var l, c, d, g, p, _, w;
+							return (
+								(_ = ot(arguments)),
+								(p = _[0]),
+								(d = _[1]),
+								(c = _[2]),
+								(w = St(p, d, c)),
+								(g = w[0]),
+								(l = w[1]),
+								(c = w[2]),
+								ye(g, l, c)
+							);
+						}),
+						(M.lch = function () {
+							var l;
+							return ((l = ot(arguments)), new t(l, "lch"));
+						}),
+						(M.hcl = function () {
+							var l;
+							return ((l = ot(arguments)), new t(l, "hcl"));
+						}),
+						(C.lch = Ie),
+						(C.hcl = function () {
+							var l, c, d, g;
+							return ((g = ot(arguments)), (c = g[0]), (l = g[1]), (d = g[2]), Ie([d, l, c]));
+						}),
+						(t.prototype.lch = function () {
+							return en(this._rgb);
+						}),
+						(t.prototype.hcl = function () {
+							return en(this._rgb).reverse();
+						}),
+						(Dt = function (l) {
+							var c, d, g, p, _, w, E, I, z;
+							return (
+								l == null && (l = "rgb"),
+								(I = ot(arguments)),
+								(E = I[0]),
+								(p = I[1]),
+								(c = I[2]),
+								(E = E / 255),
+								(p = p / 255),
+								(c = c / 255),
+								(_ = 1 - Math.max(E, Math.max(p, c))),
+								(g = _ < 1 ? 1 / (1 - _) : 0),
+								(d = (1 - E - _) * g),
+								(w = (1 - p - _) * g),
+								(z = (1 - c - _) * g),
+								[d, w, z, _]
+							);
+						}),
+						(ve = function () {
+							var l, c, d, g, p, _, w, E, I;
+							return (
+								(c = ot(arguments)),
+								(g = c[0]),
+								(w = c[1]),
+								(I = c[2]),
+								(_ = c[3]),
+								(l = c.length > 4 ? c[4] : 1),
+								_ === 1
+									? [0, 0, 0, l]
+									: ((E = g >= 1 ? 0 : 255 * (1 - g) * (1 - _)),
+										(p = w >= 1 ? 0 : 255 * (1 - w) * (1 - _)),
+										(d = I >= 1 ? 0 : 255 * (1 - I) * (1 - _)),
+										[E, p, d, l])
+							);
+						}),
+						(C.cmyk = function () {
+							return ve(ot(arguments));
+						}),
+						(M.cmyk = function () {
+							return (function (l, c, d) {
+								d.prototype = l.prototype;
+								var g = new d(),
+									p = l.apply(g, c);
+								return Object(p) === p ? p : g;
+							})(t, zt.call(arguments).concat(["cmyk"]), function () {});
+						}),
+						(t.prototype.cmyk = function () {
+							return Dt(this._rgb);
+						}),
+						(C.gl = function () {
+							var l, c, d, g, p;
+							for (
+								g = function () {
+									var _, w;
+									((_ = ot(arguments)), (w = []));
+									for (c in _) ((p = _[c]), w.push(p));
+									return w;
+								}.apply(this, arguments),
+									l = d = 0;
+								d <= 2;
+								l = ++d
+							)
+								g[l] *= 255;
+							return g;
+						}),
+						(M.gl = function () {
+							return (function (l, c, d) {
+								d.prototype = l.prototype;
+								var g = new d(),
+									p = l.apply(g, c);
+								return Object(p) === p ? p : g;
+							})(t, zt.call(arguments).concat(["gl"]), function () {});
+						}),
+						(t.prototype.gl = function () {
+							var l;
+							return ((l = this._rgb), [l[0] / 255, l[1] / 255, l[2] / 255, l[3]]);
+						}),
+						($t = function (l, c, d) {
+							var g;
+							return (
+								(g = ot(arguments)),
+								(l = g[0]),
+								(c = g[1]),
+								(d = g[2]),
+								(l = je(l)),
+								(c = je(c)),
+								(d = je(d)),
+								0.2126 * l + 0.7152 * c + 0.0722 * d
+							);
+						}),
+						(je = function (l) {
+							return ((l /= 255), l <= 0.03928 ? l / 12.92 : Xe((l + 0.055) / 1.055, 2.4));
+						}),
+						(Pe = function (l, c, d, g) {
+							var p, _;
+							return (
+								(p = l._rgb),
+								(_ = c._rgb),
+								new t(p[0] + d * (_[0] - p[0]), p[1] + d * (_[1] - p[1]), p[2] + d * (_[2] - p[2]), g)
+							);
+						}),
+						S.push(["rgb", Pe]),
+						(t.prototype.luminance = function (l, c) {
+							var d, g, p, _, w;
+							return (
+								c == null && (c = "rgb"),
+								arguments.length
+									? ((_ = this._rgb),
+										l === 0
+											? (_ = [0, 0, 0, this._rgb[3]])
+											: l === 1
+												? (_ = [255, 255, 255, this[3]])
+												: ((d = $t(this._rgb)),
+													(g = 1e-7),
+													(p = 20),
+													(w = function (E, I) {
+														var z, te;
+														return (
+															(te = E.interpolate(I, 0.5, c)),
+															(z = te.luminance()),
+															Math.abs(l - z) < g || !p-- ? te : z > l ? w(E, te) : w(te, I)
+														);
+													}),
+													d > l ? (_ = w(M("black"), this).rgba()) : (_ = w(this, M("white")).rgba())),
+										M(_).alpha(this.alpha()))
+									: $t(this._rgb)
+							);
+						}),
+						(Fn = function (l) {
+							var c, d, g, p;
+							return (
+								(p = l / 100),
+								p < 66
+									? ((g = 255),
+										(d = -155.25485562709179 - 0.44596950469579133 * (d = p - 2) + 104.49216199393888 * ie(d)),
+										(c = p < 20 ? 0 : -254.76935184120902 + 0.8274096064007395 * (c = p - 10) + 115.67994401066147 * ie(c)))
+									: ((g = 351.97690566805693 + 0.114206453784165 * (g = p - 55) - 40.25366309332127 * ie(g)),
+										(d = 325.4494125711974 + 0.07943456536662342 * (d = p - 50) - 28.0852963507957 * ie(d)),
+										(c = 255)),
+								[g, d, c]
+							);
+						}),
+						(ee = function () {
+							var l, c, d, g, p, _, w, E;
+							for (_ = ot(arguments), p = _[0], _[1], l = _[2], g = 1e3, d = 4e4, c = 0.4; d - g > c; )
+								((E = (d + g) * 0.5), (w = Fn(E)), w[2] / w[0] >= l / p ? (d = E) : (g = E));
+							return Et(E);
+						}),
+						(M.temperature = M.kelvin =
+							function () {
+								return (function (l, c, d) {
+									d.prototype = l.prototype;
+									var g = new d(),
+										p = l.apply(g, c);
+									return Object(p) === p ? p : g;
+								})(t, zt.call(arguments).concat(["temperature"]), function () {});
+							}),
+						(C.temperature = C.kelvin = C.K = Fn),
+						(t.prototype.temperature = function () {
+							return ee(this._rgb);
+						}),
+						(t.prototype.kelvin = t.prototype.temperature),
+						(M.contrast = function (l, c) {
+							var d, g, p, _;
+							return (
+								((p = rt(l)) === "string" || p === "number") && (l = new t(l)),
+								((_ = rt(c)) === "string" || _ === "number") && (c = new t(c)),
+								(d = l.luminance()),
+								(g = c.luminance()),
+								d > g ? (d + 0.05) / (g + 0.05) : (g + 0.05) / (d + 0.05)
+							);
+						}),
+						(M.distance = function (l, c, d) {
+							var g, p, _, w, E, I, z;
+							(d == null && (d = "lab"),
+								((E = rt(l)) === "string" || E === "number") && (l = new t(l)),
+								((I = rt(c)) === "string" || I === "number") && (c = new t(c)),
+								(_ = l.get(d)),
+								(w = c.get(d)),
+								(z = 0));
+							for (p in _) ((g = (_[p] || 0) - (w[p] || 0)), (z += g * g));
+							return Math.sqrt(z);
+						}),
+						(M.deltaE = function (l, c, d, g) {
+							var p, _, w, E, I, z, te, Ae, Q, q, me, Re, Ne, De, yt, st, Ot, Yt, Ze, O, Ee, qe, at, Oe, et, Je, ct;
+							for (
+								d == null && (d = 1),
+									g == null && (g = 1),
+									((Ot = rt(l)) === "string" || Ot === "number") && (l = new t(l)),
+									((Yt = rt(c)) === "string" || Yt === "number") && (c = new t(c)),
+									Ze = l.lab(),
+									p = Ze[0],
+									w = Ze[1],
+									I = Ze[2],
+									O = c.lab(),
+									_ = O[0],
+									E = O[1],
+									z = O[2],
+									te = Mt(w * w + I * I),
+									Ae = Mt(E * E + z * z),
+									at = p < 16 ? 0.511 : (0.040975 * p) / (1 + 0.01765 * p),
+									Ee = (0.0638 * te) / (1 + 0.0131 * te) + 0.638,
+									st = te < 1e-6 ? 0 : (P(I, w) * 180) / r;
+								st < 0;
+							)
+								st += 360;
+							for (; st >= 360; ) st -= 360;
+							return (
+								(Oe =
+									st >= 164 && st <= 345 ? 0.56 + A(0.2 * Y((r * (st + 168)) / 180)) : 0.36 + A(0.4 * Y((r * (st + 35)) / 180))),
+								(Q = te * te * te * te),
+								(yt = Mt(Q / (Q + 1900))),
+								(qe = Ee * (yt * Oe + 1 - yt)),
+								(De = p - _),
+								(Ne = te - Ae),
+								(me = w - E),
+								(Re = I - z),
+								(q = me * me + Re * Re - Ne * Ne),
+								(et = De / (d * at)),
+								(Je = Ne / (g * Ee)),
+								(ct = qe),
+								Mt(et * et + Je * Je + q / (ct * ct))
+							);
+						}),
+						(t.prototype.get = function (l) {
+							var c, d, g, p, _, w;
+							return (
+								(g = this),
+								(_ = l.split(".")),
+								(p = _[0]),
+								(c = _[1]),
+								(w = g[p]()),
+								c ? ((d = p.indexOf(c)), d > -1 ? w[d] : console.warn("unknown channel " + c + " in mode " + p)) : w
+							);
+						}),
+						(t.prototype.set = function (l, c) {
+							var d, g, p, _, w, E;
+							if (((p = this), (w = l.split(".")), (_ = w[0]), (d = w[1]), d))
+								if (((E = p[_]()), (g = _.indexOf(d)), g > -1))
+									if (rt(c) === "string")
+										switch (c.charAt(0)) {
+											case "+":
+												E[g] += +c;
+												break;
+											case "-":
+												E[g] += +c;
+												break;
+											case "*":
+												E[g] *= +c.substr(1);
+												break;
+											case "/":
+												E[g] /= +c.substr(1);
+												break;
+											default:
+												E[g] = +c;
+										}
+									else E[g] = c;
+								else console.warn("unknown channel " + d + " in mode " + _);
+							else E = c;
+							return M(E, _).alpha(p.alpha());
+						}),
+						(t.prototype.clipped = function () {
+							return this._rgb._clipped || !1;
+						}),
+						(t.prototype.alpha = function (l) {
+							return arguments.length ? M.rgb([this._rgb[0], this._rgb[1], this._rgb[2], l]) : this._rgb[3];
+						}),
+						(t.prototype.darken = function (l) {
+							var c, d;
+							return (l == null && (l = 1), (d = this), (c = d.lab()), (c[0] -= i.Kn * l), M.lab(c).alpha(d.alpha()));
+						}),
+						(t.prototype.brighten = function (l) {
+							return (l == null && (l = 1), this.darken(-l));
+						}),
+						(t.prototype.darker = t.prototype.darken),
+						(t.prototype.brighter = t.prototype.brighten),
+						(t.prototype.saturate = function (l) {
+							var c, d;
+							return (
+								l == null && (l = 1),
+								(d = this),
+								(c = d.lch()),
+								(c[1] += l * i.Kn),
+								c[1] < 0 && (c[1] = 0),
+								M.lch(c).alpha(d.alpha())
+							);
+						}),
+						(t.prototype.desaturate = function (l) {
+							return (l == null && (l = 1), this.saturate(-l));
+						}),
+						(t.prototype.premultiply = function () {
+							var l, c;
+							return ((c = this.rgb()), (l = this.alpha()), M(c[0] * l, c[1] * l, c[2] * l, l));
+						}),
+						(R = function (l, c, d) {
+							if (!R[d]) throw "unknown blend mode " + d;
+							return R[d](l, c);
+						}),
+						(G = function (l) {
+							return function (c, d) {
+								var g, p;
+								return ((g = M(d).rgb()), (p = M(c).rgb()), M(l(g, p), "rgb"));
+							};
+						}),
+						(Z = function (l) {
+							return function (c, d) {
+								var g, p, _;
+								for (_ = [], g = p = 0; p <= 3; g = ++p) _[g] = l(c[g], d[g]);
+								return _;
+							};
+						}),
+						(lt = function (l, c) {
+							return l;
+						}),
+						(it = function (l, c) {
+							return (l * c) / 255;
+						}),
+						(N = function (l, c) {
+							return l > c ? c : l;
+						}),
+						(Ue = function (l, c) {
+							return l > c ? l : c;
+						}),
+						(zr = function (l, c) {
+							return 255 * (1 - (1 - l / 255) * (1 - c / 255));
+						}),
+						(Ke = function (l, c) {
+							return c < 128 ? (2 * l * c) / 255 : 255 * (1 - 2 * (1 - l / 255) * (1 - c / 255));
+						}),
+						(ne = function (l, c) {
+							return 255 * (1 - (1 - c / 255) / (l / 255));
+						}),
+						(ae = function (l, c) {
+							return l === 255 || ((l = (255 * (c / 255)) / (1 - l / 255)), l > 255) ? 255 : l;
+						}),
+						(R.normal = G(Z(lt))),
+						(R.multiply = G(Z(it))),
+						(R.screen = G(Z(zr))),
+						(R.overlay = G(Z(Ke))),
+						(R.darken = G(Z(N))),
+						(R.lighten = G(Z(Ue))),
+						(R.dodge = G(Z(ae))),
+						(R.burn = G(Z(ne))),
+						(M.blend = R),
+						(M.analyze = function (l) {
+							var c, d, g, p;
+							for (
+								g = { min: Number.MAX_VALUE, max: Number.MAX_VALUE * -1, sum: 0, values: [], count: 0 }, d = 0, c = l.length;
+								d < c;
+								d++
+							)
+								((p = l[d]),
+									p != null &&
+										!isNaN(p) &&
+										(g.values.push(p), (g.sum += p), p < g.min && (g.min = p), p > g.max && (g.max = p), (g.count += 1)));
+							return (
+								(g.domain = [g.min, g.max]),
+								(g.limits = function (_, w) {
+									return M.limits(g, _, w);
+								}),
+								g
+							);
+						}),
+						(M.scale = function (l, c) {
+							var d, g, p, _, w, E, I, z, te, Ae, Q, q, me, Re, Ne, De, yt, st, Ot, Yt, Ze;
+							return (
+								(te = "rgb"),
+								(Ae = M("#ccc")),
+								(Re = 0),
+								(w = [0, 1]),
+								(me = []),
+								(q = [0, 0]),
+								(d = !1),
+								(p = []),
+								(Q = !1),
+								(z = 0),
+								(I = 1),
+								(_ = !1),
+								(g = {}),
+								(Ne = !0),
+								(E = 1),
+								(Yt = function (O) {
+									var Ee, qe, at, Oe, et, Je;
+									if (
+										(O == null && (O = ["#fff", "#000"]),
+										O != null && rt(O) === "string" && M.brewer != null && (O = M.brewer[O] || M.brewer[O.toLowerCase()] || O),
+										rt(O) === "array")
+									) {
+										for (
+											O.length === 1 && (O = [O[0], O[0]]), O = O.slice(0), Ee = at = 0, Oe = O.length - 1;
+											0 <= Oe ? at <= Oe : at >= Oe;
+											Ee = 0 <= Oe ? ++at : --at
+										)
+											((qe = O[Ee]), rt(qe) === "string" && (O[Ee] = M(qe)));
+										for (me.length = 0, Ee = Je = 0, et = O.length - 1; 0 <= et ? Je <= et : Je >= et; Ee = 0 <= et ? ++Je : --Je)
+											me.push(Ee / (O.length - 1));
+									}
+									return (Ot(), (p = O));
+								}),
+								(yt = function (O) {
+									var Ee, qe;
+									if (d != null) {
+										for (qe = d.length - 1, Ee = 0; Ee < qe && O >= d[Ee]; ) Ee++;
+										return Ee - 1;
+									}
+									return 0;
+								}),
+								(Ze = function (O) {
+									return O;
+								}),
+								(st = function (O, Ee) {
+									var qe, at, Oe, et, Je, ct, Bt, We;
+									if ((Ee == null && (Ee = !1), isNaN(O) || O === null)) return Ae;
+									if (
+										(Ee
+											? (We = O)
+											: d && d.length > 2
+												? ((qe = yt(O)), (We = qe / (d.length - 2)))
+												: I !== z
+													? (We = (O - z) / (I - z))
+													: (We = 1),
+										Ee || (We = Ze(We)),
+										E !== 1 && (We = Xe(We, E)),
+										(We = q[0] + We * (1 - q[0] - q[1])),
+										(We = Math.min(1, Math.max(0, We))),
+										(et = Math.floor(We * 1e4)),
+										Ne && g[et])
+									)
+										at = g[et];
+									else {
+										if (rt(p) === "array")
+											for (Oe = Je = 0, Bt = me.length - 1; 0 <= Bt ? Je <= Bt : Je >= Bt; Oe = 0 <= Bt ? ++Je : --Je) {
+												if (((ct = me[Oe]), We <= ct)) {
+													at = p[Oe];
+													break;
+												}
+												if (We >= ct && Oe === me.length - 1) {
+													at = p[Oe];
+													break;
+												}
+												if (We > ct && We < me[Oe + 1]) {
+													((We = (We - ct) / (me[Oe + 1] - ct)), (at = M.interpolate(p[Oe], p[Oe + 1], We, te)));
+													break;
+												}
+											}
+										else rt(p) === "function" && (at = p(We));
+										Ne && (g[et] = at);
+									}
+									return at;
+								}),
+								(Ot = function () {
+									return (g = {});
+								}),
+								Yt(l),
+								(De = function (O) {
+									var Ee;
+									return ((Ee = M(st(O))), Q && Ee[Q] ? Ee[Q]() : Ee);
+								}),
+								(De.classes = function (O) {
+									var Ee;
+									return O != null
+										? (rt(O) === "array"
+												? ((d = O), (w = [O[0], O[O.length - 1]]))
+												: ((Ee = M.analyze(w)), O === 0 ? (d = [Ee.min, Ee.max]) : (d = M.limits(Ee, "e", O))),
+											De)
+										: d;
+								}),
+								(De.domain = function (O) {
+									var Ee, qe, at, Oe, et, Je, ct;
+									if (!arguments.length) return w;
+									if (((z = O[0]), (I = O[O.length - 1]), (me = []), (at = p.length), O.length === at && z !== I))
+										for (et = 0, Oe = O.length; et < Oe; et++) ((qe = O[et]), me.push((qe - z) / (I - z)));
+									else
+										for (Ee = ct = 0, Je = at - 1; 0 <= Je ? ct <= Je : ct >= Je; Ee = 0 <= Je ? ++ct : --ct)
+											me.push(Ee / (at - 1));
+									return ((w = [z, I]), De);
+								}),
+								(De.mode = function (O) {
+									return arguments.length ? ((te = O), Ot(), De) : te;
+								}),
+								(De.range = function (O, Ee) {
+									return (Yt(O, Ee), De);
+								}),
+								(De.out = function (O) {
+									return ((Q = O), De);
+								}),
+								(De.spread = function (O) {
+									return arguments.length ? ((Re = O), De) : Re;
+								}),
+								(De.correctLightness = function (O) {
+									return (
+										O == null && (O = !0),
+										(_ = O),
+										Ot(),
+										_
+											? (Ze = function (Ee) {
+													var qe, at, Oe, et, Je, ct, Bt, We, _t;
+													for (
+														qe = st(0, !0).lab()[0],
+															at = st(1, !0).lab()[0],
+															Bt = qe > at,
+															Oe = st(Ee, !0).lab()[0],
+															Je = qe + (at - qe) * Ee,
+															et = Oe - Je,
+															We = 0,
+															_t = 1,
+															ct = 20;
+														Math.abs(et) > 0.01 && ct-- > 0;
+													)
+														(function () {
+															return (
+																Bt && (et *= -1),
+																et < 0 ? ((We = Ee), (Ee += (_t - Ee) * 0.5)) : ((_t = Ee), (Ee += (We - Ee) * 0.5)),
+																(Oe = st(Ee, !0).lab()[0]),
+																(et = Oe - Je)
+															);
+														})();
+													return Ee;
+												})
+											: (Ze = function (Ee) {
+													return Ee;
+												}),
+										De
+									);
+								}),
+								(De.padding = function (O) {
+									return O != null ? (rt(O) === "number" && (O = [O, O]), (q = O), De) : q;
+								}),
+								(De.colors = function (O, Ee) {
+									var qe, at, Oe, et, Je, ct, Bt, We;
+									if ((arguments.length < 2 && (Ee = "hex"), (Je = []), arguments.length === 0)) Je = p.slice(0);
+									else if (O === 1) Je = [De(0.5)];
+									else if (O > 1)
+										((at = w[0]),
+											(qe = w[1] - at),
+											(Je = function () {
+												ct = [];
+												for (var _t = 0; 0 <= O ? _t < O : _t > O; 0 <= O ? _t++ : _t--) ct.push(_t);
+												return ct;
+											}
+												.apply(this)
+												.map(function (_t) {
+													return De(at + (_t / (O - 1)) * qe);
+												})));
+									else {
+										if (((l = []), (Bt = []), d && d.length > 2))
+											for (Oe = We = 1, et = d.length; 1 <= et ? We < et : We > et; Oe = 1 <= et ? ++We : --We)
+												Bt.push((d[Oe - 1] + d[Oe]) * 0.5);
+										else Bt = w;
+										Je = Bt.map(function (_t) {
+											return De(_t);
+										});
+									}
+									return (
+										M[Ee] &&
+											(Je = Je.map(function (_t) {
+												return _t[Ee]();
+											})),
+										Je
+									);
+								}),
+								(De.cache = function (O) {
+									return O != null ? ((Ne = O), De) : Ne;
+								}),
+								(De.gamma = function (O) {
+									return O != null ? ((E = O), De) : E;
+								}),
+								(De.nodata = function (O) {
+									return O != null ? ((Ae = M(O)), De) : Ae;
+								}),
+								De
+							);
+						}),
+						M.scales == null && (M.scales = {}),
+						(M.scales.cool = function () {
+							return M.scale([M.hsl(180, 1, 0.9), M.hsl(250, 0.7, 0.4)]);
+						}),
+						(M.scales.hot = function () {
+							return M.scale(["#000", "#f00", "#ff0", "#fff"], [0, 0.25, 0.75, 1]).mode("rgb");
+						}),
+						(M.analyze = function (l, c, d) {
+							var g, p, _, w, E, I, z;
+							if (
+								((E = { min: Number.MAX_VALUE, max: Number.MAX_VALUE * -1, sum: 0, values: [], count: 0 }),
+								d == null &&
+									(d = function () {
+										return !0;
+									}),
+								(g = function (te) {
+									te != null &&
+										!isNaN(te) &&
+										(E.values.push(te), (E.sum += te), te < E.min && (E.min = te), te > E.max && (E.max = te), (E.count += 1));
+								}),
+								(z = function (te, Ae) {
+									if (d(te, Ae))
+										return c != null && rt(c) === "function"
+											? g(c(te))
+											: (c != null && rt(c) === "string") || rt(c) === "number"
+												? g(te[c])
+												: g(te);
+								}),
+								rt(l) === "array")
+							)
+								for (w = 0, _ = l.length; w < _; w++) ((I = l[w]), z(I));
+							else for (p in l) ((I = l[p]), z(I, p));
+							return (
+								(E.domain = [E.min, E.max]),
+								(E.limits = function (te, Ae) {
+									return M.limits(E, te, Ae);
+								}),
+								E
+							);
+						}),
+						(M.limits = function (l, c, d) {
+							var g,
+								p,
+								_,
+								w,
+								E,
+								I,
+								z,
+								te,
+								Ae,
+								Q,
+								q,
+								me,
+								Re,
+								Ne,
+								De,
+								yt,
+								st,
+								Ot,
+								Yt,
+								Ze,
+								O,
+								Ee,
+								qe,
+								at,
+								Oe,
+								et,
+								Je,
+								ct,
+								Bt,
+								We,
+								_t,
+								Nr,
+								$n,
+								wa,
+								or,
+								sr,
+								lr,
+								hr,
+								cr,
+								ur,
+								Yo,
+								dr,
+								mr,
+								fr,
+								gr,
+								pr,
+								vr,
+								br,
+								xr,
+								Cr,
+								dn,
+								Wr,
+								Uo,
+								Ut,
+								_r;
+							if (
+								(c == null && (c = "equal"),
+								d == null && (d = 7),
+								rt(l) === "array" && (l = M.analyze(l)),
+								(Oe = l.min),
+								(oe = l.max),
+								l.sum,
+								(Ut = l.values.sort(function (ya, Fa) {
+									return ya - Fa;
+								})),
+								d === 1)
+							)
+								return [Oe, oe];
+							if (((qe = []), c.substr(0, 1) === "c" && (qe.push(Oe), qe.push(oe)), c.substr(0, 1) === "e")) {
+								for (qe.push(Oe), Ze = _t = 1, or = d - 1; 1 <= or ? _t <= or : _t >= or; Ze = 1 <= or ? ++_t : --_t)
+									qe.push(Oe + (Ze / d) * (oe - Oe));
+								qe.push(oe);
+							} else if (c.substr(0, 1) === "l") {
+								if (Oe <= 0) throw "Logarithmic scales are only possible for values > 0";
+								for (
+									et = Math.LOG10E * ie(Oe), at = Math.LOG10E * ie(oe), qe.push(Oe), Ze = _r = 1, sr = d - 1;
+									1 <= sr ? _r <= sr : _r >= sr;
+									Ze = 1 <= sr ? ++_r : --_r
+								)
+									qe.push(Xe(10, et + (Ze / d) * (at - et)));
+								qe.push(oe);
+							} else if (c.substr(0, 1) === "q") {
+								for (qe.push(Oe), Ze = g = 1, dr = d - 1; 1 <= dr ? g <= dr : g >= dr; Ze = 1 <= dr ? ++g : --g)
+									((Nr = ((Ut.length - 1) * Ze) / d),
+										($n = ke(Nr)),
+										$n === Nr ? qe.push(Ut[$n]) : ((wa = Nr - $n), qe.push(Ut[$n] * (1 - wa) + Ut[$n + 1] * wa)));
+								qe.push(oe);
+							} else if (c.substr(0, 1) === "k") {
+								for (
+									ct = Ut.length,
+										Ne = new Array(ct),
+										Ot = new Array(d),
+										Cr = !0,
+										Bt = 0,
+										yt = null,
+										yt = [],
+										yt.push(Oe),
+										Ze = p = 1,
+										mr = d - 1;
+									1 <= mr ? p <= mr : p >= mr;
+									Ze = 1 <= mr ? ++p : --p
+								)
+									yt.push(Oe + (Ze / d) * (oe - Oe));
+								for (yt.push(oe); Cr; ) {
+									for (O = _ = 0, fr = d - 1; 0 <= fr ? _ <= fr : _ >= fr; O = 0 <= fr ? ++_ : --_) Ot[O] = 0;
+									for (Ze = w = 0, gr = ct - 1; 0 <= gr ? w <= gr : w >= gr; Ze = 0 <= gr ? ++w : --w) {
+										for (
+											Uo = Ut[Ze], Je = Number.MAX_VALUE, O = E = 0, pr = d - 1;
+											0 <= pr ? E <= pr : E >= pr;
+											O = 0 <= pr ? ++E : --E
+										)
+											((Yt = A(yt[O] - Uo)), Yt < Je && ((Je = Yt), (De = O)));
+										(Ot[De]++, (Ne[Ze] = De));
+									}
+									for (We = new Array(d), O = I = 0, vr = d - 1; 0 <= vr ? I <= vr : I >= vr; O = 0 <= vr ? ++I : --I)
+										We[O] = null;
+									for (Ze = z = 0, br = ct - 1; 0 <= br ? z <= br : z >= br; Ze = 0 <= br ? ++z : --z)
+										((st = Ne[Ze]), We[st] === null ? (We[st] = Ut[Ze]) : (We[st] += Ut[Ze]));
+									for (O = te = 0, xr = d - 1; 0 <= xr ? te <= xr : te >= xr; O = 0 <= xr ? ++te : --te) We[O] *= 1 / Ot[O];
+									for (Cr = !1, O = Ae = 0, lr = d - 1; 0 <= lr ? Ae <= lr : Ae >= lr; O = 0 <= lr ? ++Ae : --Ae)
+										if (We[O] !== yt[Ze]) {
+											Cr = !0;
+											break;
+										}
+									((yt = We), Bt++, Bt > 200 && (Cr = !1));
+								}
+								for (Ee = {}, O = Q = 0, hr = d - 1; 0 <= hr ? Q <= hr : Q >= hr; O = 0 <= hr ? ++Q : --Q) Ee[O] = [];
+								for (Ze = q = 0, cr = ct - 1; 0 <= cr ? q <= cr : q >= cr; Ze = 0 <= cr ? ++q : --q)
+									((st = Ne[Ze]), Ee[st].push(Ut[Ze]));
+								for (dn = [], O = me = 0, ur = d - 1; 0 <= ur ? me <= ur : me >= ur; O = 0 <= ur ? ++me : --me)
+									(dn.push(Ee[O][0]), dn.push(Ee[O][Ee[O].length - 1]));
+								for (
+									dn = dn.sort(function (ya, Fa) {
+										return ya - Fa;
+									}),
+										qe.push(dn[0]),
+										Ze = Re = 1,
+										Yo = dn.length - 1;
+									Re <= Yo;
+									Ze = Re += 2
+								)
+									((Wr = dn[Ze]), !isNaN(Wr) && qe.indexOf(Wr) === -1 && qe.push(Wr));
+							}
+							return qe;
+						}),
+						(H = function (l, c, d) {
+							var g, p, _, w;
+							return (
+								(g = ot(arguments)),
+								(l = g[0]),
+								(c = g[1]),
+								(d = g[2]),
+								isNaN(l) && (l = 0),
+								(l /= 360),
+								l < 1 / 3
+									? ((p = (1 - c) / 3), (w = (1 + (c * Y(u * l)) / Y(o - u * l)) / 3), (_ = 1 - (p + w)))
+									: l < 2 / 3
+										? ((l -= 1 / 3), (w = (1 - c) / 3), (_ = (1 + (c * Y(u * l)) / Y(o - u * l)) / 3), (p = 1 - (w + _)))
+										: ((l -= 2 / 3), (_ = (1 - c) / 3), (p = (1 + (c * Y(u * l)) / Y(o - u * l)) / 3), (w = 1 - (_ + p))),
+								(w = nt(d * w * 3)),
+								(_ = nt(d * _ * 3)),
+								(p = nt(d * p * 3)),
+								[w * 255, _ * 255, p * 255, g.length > 3 ? g[3] : 1]
+							);
+						}),
+						(_n = function () {
+							var l, c, d, g, p, _, w, E;
+							return (
+								(w = ot(arguments)),
+								(_ = w[0]),
+								(c = w[1]),
+								(l = w[2]),
+								(u = Math.PI * 2),
+								(_ /= 255),
+								(c /= 255),
+								(l /= 255),
+								(p = Math.min(_, c, l)),
+								(g = (_ + c + l) / 3),
+								(E = 1 - p / g),
+								E === 0
+									? (d = 0)
+									: ((d = (_ - c + (_ - l)) / 2),
+										(d /= Math.sqrt((_ - c) * (_ - c) + (_ - l) * (c - l))),
+										(d = Math.acos(d)),
+										l > c && (d = u - d),
+										(d /= u)),
+								[d * 360, E, g]
+							);
+						}),
+						(M.hsi = function () {
+							return (function (l, c, d) {
+								d.prototype = l.prototype;
+								var g = new d(),
+									p = l.apply(g, c);
+								return Object(p) === p ? p : g;
+							})(t, zt.call(arguments).concat(["hsi"]), function () {});
+						}),
+						(C.hsi = H),
+						(t.prototype.hsi = function () {
+							return _n(this._rgb);
+						}),
+						(K = function (l, c, d, g) {
+							var p, _, w, E, I, z, te, Ae, Q, q, me, Re;
+							return (
+								g === "hsl"
+									? ((me = l.hsl()), (Re = c.hsl()))
+									: g === "hsv"
+										? ((me = l.hsv()), (Re = c.hsv()))
+										: g === "hcg"
+											? ((me = l.hcg()), (Re = c.hcg()))
+											: g === "hsi"
+												? ((me = l.hsi()), (Re = c.hsi()))
+												: (g === "lch" || g === "hcl") && ((g = "hcl"), (me = l.hcl()), (Re = c.hcl())),
+								g.substr(0, 1) === "h" && ((w = me[0]), (Q = me[1]), (z = me[2]), (E = Re[0]), (q = Re[1]), (te = Re[2])),
+								!isNaN(w) && !isNaN(E)
+									? (E > w && E - w > 180 ? (p = E - (w + 360)) : E < w && w - E > 180 ? (p = E + 360 - w) : (p = E - w),
+										(_ = w + d * p))
+									: isNaN(w)
+										? isNaN(E)
+											? (_ = Number.NaN)
+											: ((_ = E), (z === 1 || z === 0) && g !== "hsv" && (Ae = q))
+										: ((_ = w), (te === 1 || te === 0) && g !== "hsv" && (Ae = Q)),
+								Ae == null && (Ae = Q + d * (q - Q)),
+								(I = z + d * (te - z)),
+								M[g](_, Ae, I)
+							);
+						}),
+						(S = S.concat(
+							(function () {
+								var l, c, d, g;
+								for (d = ["hsv", "hsl", "hsi", "hcl", "lch", "hcg"], g = [], c = 0, l = d.length; c < l; c++)
+									((Le = d[c]), g.push([Le, K]));
+								return g;
+							})(),
+						)),
+						(pe = function (l, c, d, g) {
+							var p, _;
+							return ((p = l.num()), (_ = c.num()), M.num(p + (_ - p) * d, "num"));
+						}),
+						S.push(["num", pe]),
+						(ge = function (l, c, d, g) {
+							var p, _;
+							return (
+								(p = l.lab()),
+								(_ = c.lab()),
+								new t(p[0] + d * (_[0] - p[0]), p[1] + d * (_[1] - p[1]), p[2] + d * (_[2] - p[2]), g)
+							);
+						}),
+						S.push(["lab", ge]));
+				}).call(Bu);
+			})(Fr, Fr.exports)),
+		Fr.exports
+	);
+}
+var Ma, is;
+function Au() {
+	return (
+		is ||
+			((is = 1),
+			(Ma = function () {
+				var a, e;
+				if (typeof WeakMap != "function") return !1;
+				try {
+					a = new WeakMap([
+						[(e = {}), "one"],
+						[{}, "two"],
+						[{}, "three"],
+					]);
+				} catch {
+					return !1;
+				}
+				return !(
+					String(a) !== "[object WeakMap]" ||
+					typeof a.set != "function" ||
+					a.set({}, 1) !== a ||
+					typeof a.delete != "function" ||
+					typeof a.has != "function" ||
+					a.get(e) !== "one"
+				);
+			})),
+		Ma
+	);
+}
+var La, os;
+function Du() {
+	return (os || ((os = 1), (La = function () {})), La);
+}
+var Ra, ss;
+function Vn() {
+	if (ss) return Ra;
+	ss = 1;
+	var a = Du()();
+	return (
+		(Ra = function (e) {
+			return e !== a && e !== null;
+		}),
+		Ra
+	);
+}
+var Pa, ls;
+function b1() {
+	if (ls) return Pa;
+	ls = 1;
+	var a = Object.create,
+		e = Object.getPrototypeOf,
+		t = {};
+	return (
+		(Pa = function () {
+			var n = Object.setPrototypeOf,
+				i = arguments[0] || a;
+			return typeof n != "function" ? !1 : e(n(i(null), t)) === t;
+		}),
+		Pa
+	);
+}
+var Ia, hs;
+function x1() {
+	if (hs) return Ia;
+	hs = 1;
+	var a = Vn(),
+		e = { function: !0, object: !0 };
+	return (
+		(Ia = function (t) {
+			return (a(t) && e[typeof t]) || !1;
+		}),
+		Ia
+	);
+}
+var Ta, cs;
+function bn() {
+	if (cs) return Ta;
+	cs = 1;
+	var a = Vn();
+	return (
+		(Ta = function (e) {
+			if (!a(e)) throw new TypeError("Cannot use null or undefined");
+			return e;
+		}),
+		Ta
+	);
+}
+var Oa, us;
+function Mu() {
+	if (us) return Oa;
+	us = 1;
+	var a = Object.create,
+		e;
+	return (
+		b1()() || (e = C1()),
+		(Oa = (function () {
+			var t, n, i;
+			return !e || e.level !== 1
+				? a
+				: ((t = {}),
+					(n = {}),
+					(i = { configurable: !1, enumerable: !1, writable: !0, value: void 0 }),
+					Object.getOwnPropertyNames(Object.prototype).forEach(function (r) {
+						if (r === "__proto__") {
+							n[r] = { configurable: !0, enumerable: !1, writable: !0, value: void 0 };
+							return;
+						}
+						n[r] = i;
+					}),
+					Object.defineProperties(t, n),
+					Object.defineProperty(e, "nullPolyfill", { configurable: !1, enumerable: !1, writable: !1, value: t }),
+					function (r, o) {
+						return a(r === null ? t : r, o);
+					});
+		})()),
+		Oa
+	);
+}
+var Va, ds;
+function C1() {
+	if (ds) return Va;
+	ds = 1;
+	var a = x1(),
+		e = bn(),
+		t = Object.prototype.isPrototypeOf,
+		n = Object.defineProperty,
+		i = { configurable: !0, enumerable: !1, writable: !0, value: void 0 },
+		r;
+	return (
+		(r = function (o, h) {
+			if ((e(o), h === null || a(h))) return o;
+			throw new TypeError("Prototype must be null or an object");
+		}),
+		(Va = (function (o) {
+			var h, u;
+			return o
+				? (o.level === 2
+						? o.set
+							? ((u = o.set),
+								(h = function (v, b) {
+									return (u.call(r(v, b), b), v);
+								}))
+							: (h = function (v, b) {
+									return ((r(v, b).__proto__ = b), v);
+								})
+						: (h = function v(b, y) {
+								var C;
+								return (
+									r(b, y),
+									(C = t.call(v.nullPolyfill, b)),
+									C && delete v.nullPolyfill.__proto__,
+									y === null && (y = v.nullPolyfill),
+									(b.__proto__ = y),
+									C && n(v.nullPolyfill, "__proto__", i),
+									b
+								);
+							}),
+					Object.defineProperty(h, "level", { configurable: !1, enumerable: !1, writable: !1, value: o.level }))
+				: null;
+		})(
+			(function () {
+				var o = Object.create(null),
+					h = {},
+					u,
+					v = Object.getOwnPropertyDescriptor(Object.prototype, "__proto__");
+				if (v) {
+					try {
+						((u = v.set), u.call(o, h));
+					} catch {}
+					if (Object.getPrototypeOf(o) === h) return { set: u, level: 2 };
+				}
+				return (
+					(o.__proto__ = h),
+					Object.getPrototypeOf(o) === h
+						? { level: 2 }
+						: ((o = {}), (o.__proto__ = h), Object.getPrototypeOf(o) === h ? { level: 1 } : !1)
+				);
+			})(),
+		)),
+		Mu(),
+		Va
+	);
+}
+var ja, ms;
+function qo() {
+	return (ms || ((ms = 1), (ja = b1()() ? Object.setPrototypeOf : C1())), ja);
+}
+var $a, fs;
+function Lu() {
+	if (fs) return $a;
+	fs = 1;
+	var a = x1();
+	return (
+		($a = function (e) {
+			if (!a(e)) throw new TypeError(e + " is not an Object");
+			return e;
+		}),
+		$a
+	);
+}
+var Ga, gs;
+function Ru() {
+	if (gs) return Ga;
+	gs = 1;
+	var a = Object.create(null),
+		e = Math.random;
+	return (
+		(Ga = function () {
+			var t;
+			do t = e().toString(36).slice(2);
+			while (a[t]);
+			return t;
+		}),
+		Ga
+	);
+}
+var za = { exports: {} },
+	Ha,
+	ps;
+function ar() {
+	if (ps) return Ha;
+	ps = 1;
+	var a = void 0;
+	return (
+		(Ha = function (e) {
+			return e !== a && e !== null;
+		}),
+		Ha
+	);
+}
+var qa, vs;
+function _1() {
+	if (vs) return qa;
+	vs = 1;
+	var a = ar(),
+		e = { object: !0, function: !0, undefined: !0 };
+	return (
+		(qa = function (t) {
+			return a(t) ? hasOwnProperty.call(e, typeof t) : !1;
+		}),
+		qa
+	);
+}
+var Na, bs;
+function Pu() {
+	if (bs) return Na;
+	bs = 1;
+	var a = _1();
+	return (
+		(Na = function (e) {
+			if (!a(e)) return !1;
+			try {
+				return e.constructor ? e.constructor.prototype === e : !1;
+			} catch {
+				return !1;
+			}
+		}),
+		Na
+	);
+}
+var Wa, xs;
+function Iu() {
+	if (xs) return Wa;
+	xs = 1;
+	var a = Pu();
+	return (
+		(Wa = function (e) {
+			if (typeof e != "function" || !hasOwnProperty.call(e, "length")) return !1;
+			try {
+				if (typeof e.length != "number" || typeof e.call != "function" || typeof e.apply != "function") return !1;
+			} catch {
+				return !1;
+			}
+			return !a(e);
+		}),
+		Wa
+	);
+}
+var Za, Cs;
+function w1() {
+	if (Cs) return Za;
+	Cs = 1;
+	var a = Iu(),
+		e = /^\s*class[\s{/}]/,
+		t = Function.prototype.toString;
+	return (
+		(Za = function (n) {
+			return !(!a(n) || e.test(t.call(n)));
+		}),
+		Za
+	);
+}
+var Ya, _s;
+function Tu() {
+	return (
+		_s ||
+			((_s = 1),
+			(Ya = function () {
+				var a = Object.assign,
+					e;
+				return typeof a != "function"
+					? !1
+					: ((e = { foo: "raz" }), a(e, { bar: "dwa" }, { trzy: "trzy" }), e.foo + e.bar + e.trzy === "razdwatrzy");
+			})),
+		Ya
+	);
+}
+var Ua, ws;
+function Ou() {
+	return (
+		ws ||
+			((ws = 1),
+			(Ua = function () {
+				try {
+					return (Object.keys("primitive"), !0);
+				} catch {
+					return !1;
+				}
+			})),
+		Ua
+	);
+}
+var Ka, ys;
+function Vu() {
+	if (ys) return Ka;
+	ys = 1;
+	var a = Vn(),
+		e = Object.keys;
+	return (
+		(Ka = function (t) {
+			return e(a(t) ? Object(t) : t);
+		}),
+		Ka
+	);
+}
+var Ja, Fs;
+function ju() {
+	return (Fs || ((Fs = 1), (Ja = Ou()() ? Object.keys : Vu())), Ja);
+}
+var Xa, ks;
+function $u() {
+	if (ks) return Xa;
+	ks = 1;
+	var a = ju(),
+		e = bn(),
+		t = Math.max;
+	return (
+		(Xa = function (n, i) {
+			var r,
+				o,
+				h = t(arguments.length, 2),
+				u;
+			for (
+				n = Object(e(n)),
+					u = function (v) {
+						try {
+							n[v] = i[v];
+						} catch (b) {
+							r || (r = b);
+						}
+					},
+					o = 1;
+				o < h;
+				++o
+			)
+				((i = arguments[o]), a(i).forEach(u));
+			if (r !== void 0) throw r;
+			return n;
+		}),
+		Xa
+	);
+}
+var Qa, Es;
+function No() {
+	return (Es || ((Es = 1), (Qa = Tu()() ? Object.assign : $u())), Qa);
+}
+var ei, Bs;
+function y1() {
+	if (Bs) return ei;
+	Bs = 1;
+	var a = Vn(),
+		e = Array.prototype.forEach,
+		t = Object.create,
+		n = function (i, r) {
+			var o;
+			for (o in i) r[o] = i[o];
+		};
+	return (
+		(ei = function (i) {
+			var r = t(null);
+			return (
+				e.call(arguments, function (o) {
+					a(o) && n(Object(o), r);
+				}),
+				r
+			);
+		}),
+		ei
+	);
+}
+var ti, Ss;
+function Gu() {
+	if (Ss) return ti;
+	Ss = 1;
+	var a = "razdwatrzy";
+	return (
+		(ti = function () {
+			return typeof a.contains != "function" ? !1 : a.contains("dwa") === !0 && a.contains("foo") === !1;
+		}),
+		ti
+	);
+}
+var ni, As;
+function zu() {
+	if (As) return ni;
+	As = 1;
+	var a = String.prototype.indexOf;
+	return (
+		(ni = function (e) {
+			return a.call(this, e, arguments[1]) > -1;
+		}),
+		ni
+	);
+}
+var ri, Ds;
+function F1() {
+	return (Ds || ((Ds = 1), (ri = Gu()() ? String.prototype.contains : zu())), ri);
+}
+var Ms;
+function xn() {
+	if (Ms) return za.exports;
+	Ms = 1;
+	var a = ar(),
+		e = w1(),
+		t = No(),
+		n = y1(),
+		i = F1(),
+		r = (za.exports = function (o, h) {
+			var u, v, b, y, C;
+			return (
+				arguments.length < 2 || typeof o != "string" ? ((y = h), (h = o), (o = null)) : (y = arguments[2]),
+				a(o) ? ((u = i.call(o, "c")), (v = i.call(o, "e")), (b = i.call(o, "w"))) : ((u = b = !0), (v = !1)),
+				(C = { value: h, configurable: u, enumerable: v, writable: b }),
+				y ? t(n(y), C) : C
+			);
+		});
+	return (
+		(r.gs = function (o, h, u) {
+			var v, b, y, C;
+			return (
+				typeof o != "string" ? ((y = u), (u = h), (h = o), (o = null)) : (y = arguments[3]),
+				a(h) ? (e(h) ? (a(u) ? e(u) || ((y = u), (u = void 0)) : (u = void 0)) : ((y = h), (h = u = void 0))) : (h = void 0),
+				a(o) ? ((v = i.call(o, "c")), (b = i.call(o, "e"))) : ((v = !0), (b = !1)),
+				(C = { get: h, set: u, configurable: v, enumerable: b }),
+				y ? t(n(y), C) : C
+			);
+		}),
+		za.exports
+	);
+}
+var ai, Ls;
+function pa() {
+	if (Ls) return ai;
+	Ls = 1;
+	var a = Object.prototype.toString,
+		e = a.call(
+			(function () {
+				return arguments;
+			})(),
+		);
+	return (
+		(ai = function (t) {
+			return a.call(t) === e;
+		}),
+		ai
+	);
+}
+var ii, Rs;
+function va() {
+	if (Rs) return ii;
+	Rs = 1;
+	var a = Object.prototype.toString,
+		e = a.call("");
+	return (
+		(ii = function (t) {
+			return typeof t == "string" || (t && typeof t == "object" && (t instanceof String || a.call(t) === e)) || !1;
+		}),
+		ii
+	);
+}
+var oi = { exports: {} },
+	si,
+	Ps;
+function Hu() {
+	return (
+		Ps ||
+			((Ps = 1),
+			(si = function () {
+				return typeof globalThis != "object" || !globalThis ? !1 : globalThis.Array === Array;
+			})),
+		si
+	);
+}
+var li, Is;
+function qu() {
+	if (Is) return li;
+	Is = 1;
+	var a = function () {
+		if (typeof self == "object" && self) return self;
+		if (typeof window == "object" && window) return window;
+		throw new Error("Unable to resolve global `this`");
+	};
+	return (
+		(li = (function () {
+			if (this) return this;
+			try {
+				Object.defineProperty(Object.prototype, "__global__", {
+					get: function () {
+						return this;
+					},
+					configurable: !0,
+				});
+			} catch {
+				return a();
+			}
+			try {
+				return __global__ || a();
+			} finally {
+				delete Object.prototype.__global__;
+			}
+		})()),
+		li
+	);
+}
+var hi, Ts;
+function ba() {
+	return (Ts || ((Ts = 1), (hi = Hu()() ? globalThis : qu())), hi);
+}
+var ci, Os;
+function Nu() {
+	if (Os) return ci;
+	Os = 1;
+	var a = ba(),
+		e = { object: !0, symbol: !0 };
+	return (
+		(ci = function () {
+			var t = a.Symbol,
+				n;
+			if (typeof t != "function") return !1;
+			n = t("test symbol");
+			try {
+				String(n);
+			} catch {
+				return !1;
+			}
+			return !(!e[typeof t.iterator] || !e[typeof t.toPrimitive] || !e[typeof t.toStringTag]);
+		}),
+		ci
+	);
+}
+var ui, Vs;
+function Wu() {
+	return (
+		Vs ||
+			((Vs = 1),
+			(ui = function (a) {
+				return a
+					? typeof a == "symbol"
+						? !0
+						: !a.constructor || a.constructor.name !== "Symbol"
+							? !1
+							: a[a.constructor.toStringTag] === "Symbol"
+					: !1;
+			})),
+		ui
+	);
+}
+var di, js;
+function k1() {
+	if (js) return di;
+	js = 1;
+	var a = Wu();
+	return (
+		(di = function (e) {
+			if (!a(e)) throw new TypeError(e + " is not a symbol");
+			return e;
+		}),
+		di
+	);
+}
+var mi, $s;
+function Zu() {
+	if ($s) return mi;
+	$s = 1;
+	var a = xn(),
+		e = Object.create,
+		t = Object.defineProperty,
+		n = Object.prototype,
+		i = e(null);
+	return (
+		(mi = function (r) {
+			for (var o = 0, h, u; i[r + (o || "")]; ) ++o;
+			return (
+				(r += o || ""),
+				(i[r] = !0),
+				(h = "@@" + r),
+				t(
+					n,
+					h,
+					a.gs(null, function (v) {
+						u || ((u = !0), t(this, h, a(v)), (u = !1));
+					}),
+				),
+				h
+			);
+		}),
+		mi
+	);
+}
+var fi, Gs;
+function Yu() {
+	if (Gs) return fi;
+	Gs = 1;
+	var a = xn(),
+		e = ba().Symbol;
+	return (
+		(fi = function (t) {
+			return Object.defineProperties(t, {
+				hasInstance: a("", (e && e.hasInstance) || t("hasInstance")),
+				isConcatSpreadable: a("", (e && e.isConcatSpreadable) || t("isConcatSpreadable")),
+				iterator: a("", (e && e.iterator) || t("iterator")),
+				match: a("", (e && e.match) || t("match")),
+				replace: a("", (e && e.replace) || t("replace")),
+				search: a("", (e && e.search) || t("search")),
+				species: a("", (e && e.species) || t("species")),
+				split: a("", (e && e.split) || t("split")),
+				toPrimitive: a("", (e && e.toPrimitive) || t("toPrimitive")),
+				toStringTag: a("", (e && e.toStringTag) || t("toStringTag")),
+				unscopables: a("", (e && e.unscopables) || t("unscopables")),
+			});
+		}),
+		fi
+	);
+}
+var gi, zs;
+function Uu() {
+	if (zs) return gi;
+	zs = 1;
+	var a = xn(),
+		e = k1(),
+		t = Object.create(null);
+	return (
+		(gi = function (n) {
+			return Object.defineProperties(n, {
+				for: a(function (i) {
+					return t[i] ? t[i] : (t[i] = n(String(i)));
+				}),
+				keyFor: a(function (i) {
+					var r;
+					e(i);
+					for (r in t) if (t[r] === i) return r;
+				}),
+			});
+		}),
+		gi
+	);
+}
+var pi, Hs;
+function Ku() {
+	if (Hs) return pi;
+	Hs = 1;
+	var a = xn(),
+		e = k1(),
+		t = ba().Symbol,
+		n = Zu(),
+		i = Yu(),
+		r = Uu(),
+		o = Object.create,
+		h = Object.defineProperties,
+		u = Object.defineProperty,
+		v,
+		b,
+		y;
+	if (typeof t == "function")
+		try {
+			(String(t()), (y = !0));
+		} catch {}
+	else t = null;
+	return (
+		(b = function (S) {
+			if (this instanceof b) throw new TypeError("Symbol is not a constructor");
+			return v(S);
+		}),
+		(pi = v =
+			function C(S) {
+				var A;
+				if (this instanceof C) throw new TypeError("Symbol is not a constructor");
+				return y
+					? t(S)
+					: ((A = o(b.prototype)),
+						(S = S === void 0 ? "" : String(S)),
+						h(A, { __description__: a("", S), __name__: a("", n(S)) }));
+			}),
+		i(v),
+		r(v),
+		h(b.prototype, {
+			constructor: a(v),
+			toString: a("", function () {
+				return this.__name__;
+			}),
+		}),
+		h(v.prototype, {
+			toString: a(function () {
+				return "Symbol (" + e(this).__description__ + ")";
+			}),
+			valueOf: a(function () {
+				return e(this);
+			}),
+		}),
+		u(
+			v.prototype,
+			v.toPrimitive,
+			a("", function () {
+				var C = e(this);
+				return typeof C == "symbol" ? C : C.toString();
+			}),
+		),
+		u(v.prototype, v.toStringTag, a("c", "Symbol")),
+		u(b.prototype, v.toStringTag, a("c", v.prototype[v.toStringTag])),
+		u(b.prototype, v.toPrimitive, a("c", v.prototype[v.toPrimitive])),
+		pi
+	);
+}
+var vi, qs;
+function jn() {
+	return (qs || ((qs = 1), (vi = Nu()() ? ba().Symbol : Ku())), vi);
+}
+var bi, Ns;
+function Ju() {
+	if (Ns) return bi;
+	Ns = 1;
+	var a = bn();
+	return (
+		(bi = function () {
+			return ((a(this).length = 0), this);
+		}),
+		bi
+	);
+}
+var xi, Ws;
+function Gr() {
+	return (
+		Ws ||
+			((Ws = 1),
+			(xi = function (a) {
+				if (typeof a != "function") throw new TypeError(a + " is not a function");
+				return a;
+			})),
+		xi
+	);
+}
+var Ci, Zs;
+function Xu() {
+	if (Zs) return Ci;
+	Zs = 1;
+	var a = ar(),
+		e = _1(),
+		t = Object.prototype.toString;
+	return (
+		(Ci = function (n) {
+			if (!a(n)) return null;
+			if (e(n)) {
+				var i = n.toString;
+				if (typeof i != "function" || i === t) return null;
+			}
+			try {
+				return "" + n;
+			} catch {
+				return null;
+			}
+		}),
+		Ci
+	);
+}
+var _i, Ys;
+function Qu() {
+	return (
+		Ys ||
+			((Ys = 1),
+			(_i = function (a) {
+				try {
+					return a.toString();
+				} catch {
+					try {
+						return String(a);
+					} catch {
+						return null;
+					}
+				}
+			})),
+		_i
+	);
+}
+var wi, Us;
+function e2() {
+	if (Us) return wi;
+	Us = 1;
+	var a = Qu(),
+		e = /[\n\r\u2028\u2029]/g;
+	return (
+		(wi = function (t) {
+			var n = a(t);
+			return n === null
+				? "<Non-coercible to string value>"
+				: (n.length > 100 && (n = n.slice(0, 99) + "…"),
+					(n = n.replace(e, function (i) {
+						switch (i) {
+							case `
+`:
+								return "\\n";
+							case "\r":
+								return "\\r";
+							case "\u2028":
+								return "\\u2028";
+							case "\u2029":
+								return "\\u2029";
+							default:
+								throw new Error("Unexpected character");
+						}
+					})),
+					n);
+		}),
+		wi
+	);
+}
+var yi, Ks;
+function t2() {
+	if (Ks) return yi;
+	Ks = 1;
+	var a = Xu(),
+		e = e2();
+	return (
+		(yi = function (t, n, i) {
+			i && i.errorMessage && (t = a(i.errorMessage));
+			var r = t.indexOf("%v"),
+				o = r > -1 ? e(n) : null;
+			if (i && i.name) {
+				var h = t.indexOf("%n");
+				if (h > -1) {
+					if (r > -1) {
+						var u, v, b, y;
+						return (
+							h > r ? ((u = o), (b = r), (v = i.name), (y = h)) : ((u = i.name), (b = h), (v = o), (y = r)),
+							t.slice(0, b) + u + t.slice(b + 2, y) + v + t.slice(y + 2)
+						);
+					}
+					return t.slice(0, h) + i.name + t.slice(h + 2);
+				}
+			}
+			return r > -1 ? t.slice(0, r) + o + t.slice(r + 2) : t;
+		}),
+		yi
+	);
+}
+var Fi, Js;
+function E1() {
+	if (Js) return Fi;
+	Js = 1;
+	var a = ar(),
+		e = t2();
+	return (
+		(Fi = function (t, n, i) {
+			if (i && !a(t)) {
+				if ("default" in i) return i.default;
+				if (i.isOptional) return null;
+			}
+			var r = (i && i.Error) || TypeError,
+				o = new r(e(n, t, i));
+			throw (i && i.errorCode && (o.code = i.errorCode), o);
+		}),
+		Fi
+	);
+}
+var ki, Xs;
+function n2() {
+	if (Xs) return ki;
+	Xs = 1;
+	var a = E1(),
+		e = ar();
+	return (
+		(ki = function (t) {
+			if (e(t)) return t;
+			var n = arguments[1],
+				i = n && n.name ? "Expected a value for %n, received %v" : "Cannot use %v";
+			return a(t, i, n);
+		}),
+		ki
+	);
+}
+var Ei, Qs;
+function r2() {
+	if (Qs) return Ei;
+	Qs = 1;
+	var a = E1(),
+		e = w1();
+	return (
+		(Ei = function (t) {
+			if (e(t)) return t;
+			var n = arguments[1],
+				i = n && n.name ? "Expected a plain function for %n, received %v" : "%v is not a plain function";
+			return a(t, i, n);
+		}),
+		Ei
+	);
+}
+var Bi, el;
+function a2() {
+	return (
+		el ||
+			((el = 1),
+			(Bi = function () {
+				var a = Array.from,
+					e,
+					t;
+				return typeof a != "function" ? !1 : ((e = ["raz", "dwa"]), (t = a(e)), !!(t && t !== e && t[1] === "dwa"));
+			})),
+		Bi
+	);
+}
+var Si, tl;
+function i2() {
+	if (tl) return Si;
+	tl = 1;
+	var a = Object.prototype.toString,
+		e = RegExp.prototype.test.bind(/^[object [A-Za-z0-9]*Function]$/);
+	return (
+		(Si = function (t) {
+			return typeof t == "function" && e(a.call(t));
+		}),
+		Si
+	);
+}
+var Ai, nl;
+function o2() {
+	return (
+		nl ||
+			((nl = 1),
+			(Ai = function () {
+				var a = Math.sign;
+				return typeof a != "function" ? !1 : a(10) === 1 && a(-20) === -1;
+			})),
+		Ai
+	);
+}
+var Di, rl;
+function s2() {
+	return (
+		rl ||
+			((rl = 1),
+			(Di = function (a) {
+				return ((a = Number(a)), isNaN(a) || a === 0 ? a : a > 0 ? 1 : -1);
+			})),
+		Di
+	);
+}
+var Mi, al;
+function l2() {
+	return (al || ((al = 1), (Mi = o2()() ? Math.sign : s2())), Mi);
+}
+var Li, il;
+function h2() {
+	if (il) return Li;
+	il = 1;
+	var a = l2(),
+		e = Math.abs,
+		t = Math.floor;
+	return (
+		(Li = function (n) {
+			return isNaN(n) ? 0 : ((n = Number(n)), n === 0 || !isFinite(n) ? n : a(n) * t(e(n)));
+		}),
+		Li
+	);
+}
+var Ri, ol;
+function c2() {
+	if (ol) return Ri;
+	ol = 1;
+	var a = h2(),
+		e = Math.max;
+	return (
+		(Ri = function (t) {
+			return e(0, a(t));
+		}),
+		Ri
+	);
+}
+var Pi, sl;
+function u2() {
+	if (sl) return Pi;
+	sl = 1;
+	var a = jn().iterator,
+		e = pa(),
+		t = i2(),
+		n = c2(),
+		i = Gr(),
+		r = bn(),
+		o = Vn(),
+		h = va(),
+		u = Array.isArray,
+		v = Function.prototype.call,
+		b = { configurable: !0, enumerable: !0, writable: !0, value: null },
+		y = Object.defineProperty;
+	return (
+		(Pi = function (C) {
+			var S = arguments[1],
+				A = arguments[2],
+				P,
+				D,
+				R,
+				G,
+				j,
+				ne,
+				M,
+				ce,
+				ve,
+				Y;
+			if (((C = Object(r(C))), o(S) && i(S), !this || this === Array || !t(this))) {
+				if (!S) {
+					if (e(C)) return ((j = C.length), j !== 1 ? Array.apply(null, C) : ((G = new Array(1)), (G[0] = C[0]), G));
+					if (u(C)) {
+						for (G = new Array((j = C.length)), D = 0; D < j; ++D) G[D] = C[D];
+						return G;
+					}
+				}
+				G = [];
+			} else P = this;
+			if (!u(C)) {
+				if ((ve = C[a]) !== void 0) {
+					for (M = i(ve).call(C), P && (G = new P()), ce = M.next(), D = 0; !ce.done; )
+						((Y = S ? v.call(S, A, ce.value, D) : ce.value), P ? ((b.value = Y), y(G, D, b)) : (G[D] = Y), (ce = M.next()), ++D);
+					j = D;
+				} else if (h(C)) {
+					for (j = C.length, P && (G = new P()), D = 0, R = 0; D < j; ++D)
+						((Y = C[D]),
+							D + 1 < j && ((ne = Y.charCodeAt(0)), ne >= 55296 && ne <= 56319 && (Y += C[++D])),
+							(Y = S ? v.call(S, A, Y, R) : Y),
+							P ? ((b.value = Y), y(G, R, b)) : (G[R] = Y),
+							++R);
+					j = R;
+				}
+			}
+			if (j === void 0)
+				for (j = n(C.length), P && (G = new P(j)), D = 0; D < j; ++D)
+					((Y = S ? v.call(S, A, C[D], D) : C[D]), P ? ((b.value = Y), y(G, D, b)) : (G[D] = Y));
+			return (P && ((b.value = null), (G.length = j)), G);
+		}),
+		Pi
+	);
+}
+var Ii, ll;
+function d2() {
+	return (ll || ((ll = 1), (Ii = a2()() ? Array.from : u2())), Ii);
+}
+var Ti, hl;
+function m2() {
+	if (hl) return Ti;
+	hl = 1;
+	var a = d2(),
+		e = No(),
+		t = bn();
+	return (
+		(Ti = function (n) {
+			var i = Object(t(n)),
+				r = arguments[1],
+				o = Object(arguments[2]);
+			if (i !== n && !r) return i;
+			var h = {};
+			return (
+				r
+					? a(r, function (u) {
+							(o.ensure || u in n) && (h[u] = n[u]);
+						})
+					: e(h, n),
+				h
+			);
+		}),
+		Ti
+	);
+}
+var Oi, cl;
+function f2() {
+	if (cl) return Oi;
+	cl = 1;
+	var a = Gr(),
+		e = bn(),
+		t = Function.prototype.bind,
+		n = Function.prototype.call,
+		i = Object.keys,
+		r = Object.prototype.propertyIsEnumerable;
+	return (
+		(Oi = function (o, h) {
+			return function (u, v) {
+				var b,
+					y = arguments[2],
+					C = arguments[3];
+				return (
+					(u = Object(e(u))),
+					a(v),
+					(b = i(u)),
+					C && b.sort(typeof C == "function" ? t.call(C, u) : void 0),
+					typeof o != "function" && (o = b[o]),
+					n.call(o, b, function (S, A) {
+						return r.call(u, S) ? n.call(v, y, u[S], S, u, A) : h;
+					})
+				);
+			};
+		}),
+		Oi
+	);
+}
+var Vi, ul;
+function g2() {
+	return (ul || ((ul = 1), (Vi = f2()("forEach"))), Vi);
+}
+var ji, dl;
+function p2() {
+	if (dl) return ji;
+	dl = 1;
+	var a = Gr(),
+		e = g2(),
+		t = Function.prototype.call;
+	return (
+		(ji = function (n, i) {
+			var r = {},
+				o = arguments[2];
+			return (
+				a(i),
+				e(n, function (h, u, v, b) {
+					r[u] = t.call(i, o, h, u, v, b);
+				}),
+				r
+			);
+		}),
+		ji
+	);
+}
+var $i, ml;
+function v2() {
+	if (ml) return $i;
+	ml = 1;
+	var a = ar(),
+		e = n2(),
+		t = r2(),
+		n = m2(),
+		i = y1(),
+		r = p2(),
+		o = Function.prototype.bind,
+		h = Object.defineProperty,
+		u = Object.prototype.hasOwnProperty,
+		v;
+	return (
+		(v = function (b, y, C) {
+			var S = e(y) && t(y.value),
+				A;
+			return (
+				(A = n(y)),
+				delete A.writable,
+				delete A.value,
+				(A.get = function () {
+					return !C.overwriteDefinition && u.call(this, b)
+						? S
+						: ((y.value = o.call(S, C.resolveContext ? C.resolveContext(this) : this)), h(this, b, y), this[b]);
+				}),
+				A
+			);
+		}),
+		($i = function (b) {
+			var y = i(arguments[1]);
+			return (
+				a(y.resolveContext) && t(y.resolveContext),
+				r(b, function (C, S) {
+					return v(S, C, y);
+				})
+			);
+		}),
+		$i
+	);
+}
+var Gi, fl;
+function B1() {
+	if (fl) return Gi;
+	fl = 1;
+	var a = Ju(),
+		e = No(),
+		t = Gr(),
+		n = bn(),
+		i = xn(),
+		r = v2(),
+		o = jn(),
+		h = Object.defineProperty,
+		u = Object.defineProperties,
+		v;
+	return (
+		(Gi = v =
+			function (b, y) {
+				if (!(this instanceof v)) throw new TypeError("Constructor requires 'new'");
+				(u(this, { __list__: i("w", n(b)), __context__: i("w", y), __nextIndex__: i("w", 0) }),
+					y && (t(y.on), y.on("_add", this._onAdd), y.on("_delete", this._onDelete), y.on("_clear", this._onClear)));
+			}),
+		delete v.prototype.constructor,
+		u(
+			v.prototype,
+			e(
+				{
+					_next: i(function () {
+						var b;
+						if (this.__list__) {
+							if (this.__redo__ && ((b = this.__redo__.shift()), b !== void 0)) return b;
+							if (this.__nextIndex__ < this.__list__.length) return this.__nextIndex__++;
+							this._unBind();
+						}
+					}),
+					next: i(function () {
+						return this._createResult(this._next());
+					}),
+					_createResult: i(function (b) {
+						return b === void 0 ? { done: !0, value: void 0 } : { done: !1, value: this._resolve(b) };
+					}),
+					_resolve: i(function (b) {
+						return this.__list__[b];
+					}),
+					_unBind: i(function () {
+						((this.__list__ = null),
+							delete this.__redo__,
+							this.__context__ &&
+								(this.__context__.off("_add", this._onAdd),
+								this.__context__.off("_delete", this._onDelete),
+								this.__context__.off("_clear", this._onClear),
+								(this.__context__ = null)));
+					}),
+					toString: i(function () {
+						return "[object " + (this[o.toStringTag] || "Object") + "]";
+					}),
+				},
+				r({
+					_onAdd: i(function (b) {
+						if (!(b >= this.__nextIndex__)) {
+							if ((++this.__nextIndex__, !this.__redo__)) {
+								h(this, "__redo__", i("c", [b]));
+								return;
+							}
+							(this.__redo__.forEach(function (y, C) {
+								y >= b && (this.__redo__[C] = ++y);
+							}, this),
+								this.__redo__.push(b));
+						}
+					}),
+					_onDelete: i(function (b) {
+						var y;
+						b >= this.__nextIndex__ ||
+							(--this.__nextIndex__,
+							this.__redo__ &&
+								((y = this.__redo__.indexOf(b)),
+								y !== -1 && this.__redo__.splice(y, 1),
+								this.__redo__.forEach(function (C, S) {
+									C > b && (this.__redo__[S] = --C);
+								}, this)));
+					}),
+					_onClear: i(function () {
+						(this.__redo__ && a.call(this.__redo__), (this.__nextIndex__ = 0));
+					}),
+				}),
+			),
+		),
+		h(
+			v.prototype,
+			o.iterator,
+			i(function () {
+				return this;
+			}),
+		),
+		Gi
+	);
+}
+var gl;
+function b2() {
+	if (gl) return oi.exports;
+	gl = 1;
+	var a = qo(),
+		e = F1(),
+		t = xn(),
+		n = jn(),
+		i = B1(),
+		r = Object.defineProperty,
+		o;
+	return (
+		(o = oi.exports =
+			function (h, u) {
+				if (!(this instanceof o)) throw new TypeError("Constructor requires 'new'");
+				(i.call(this, h),
+					u ? (e.call(u, "key+value") ? (u = "key+value") : e.call(u, "key") ? (u = "key") : (u = "value")) : (u = "value"),
+					r(this, "__kind__", t("", u)));
+			}),
+		a && a(o, i),
+		delete o.prototype.constructor,
+		(o.prototype = Object.create(i.prototype, {
+			_resolve: t(function (h) {
+				return this.__kind__ === "value" ? this.__list__[h] : this.__kind__ === "key+value" ? [h, this.__list__[h]] : h;
+			}),
+		})),
+		r(o.prototype, n.toStringTag, t("c", "Array Iterator")),
+		oi.exports
+	);
+}
+var zi = { exports: {} },
+	pl;
+function x2() {
+	if (pl) return zi.exports;
+	pl = 1;
+	var a = qo(),
+		e = xn(),
+		t = jn(),
+		n = B1(),
+		i = Object.defineProperty,
+		r;
+	return (
+		(r = zi.exports =
+			function (o) {
+				if (!(this instanceof r)) throw new TypeError("Constructor requires 'new'");
+				((o = String(o)), n.call(this, o), i(this, "__length__", e("", o.length)));
+			}),
+		a && a(r, n),
+		delete r.prototype.constructor,
+		(r.prototype = Object.create(n.prototype, {
+			_next: e(function () {
+				if (this.__list__) {
+					if (this.__nextIndex__ < this.__length__) return this.__nextIndex__++;
+					this._unBind();
+				}
+			}),
+			_resolve: e(function (o) {
+				var h = this.__list__[o],
+					u;
+				return this.__nextIndex__ === this.__length__
+					? h
+					: ((u = h.charCodeAt(0)), u >= 55296 && u <= 56319 ? h + this.__list__[this.__nextIndex__++] : h);
+			}),
+		})),
+		i(r.prototype, t.toStringTag, e("c", "String Iterator")),
+		zi.exports
+	);
+}
+var Hi, vl;
+function C2() {
+	if (vl) return Hi;
+	vl = 1;
+	var a = pa(),
+		e = Vn(),
+		t = va(),
+		n = jn().iterator,
+		i = Array.isArray;
+	return (
+		(Hi = function (r) {
+			return e(r) ? (i(r) || t(r) || a(r) ? !0 : typeof r[n] == "function") : !1;
+		}),
+		Hi
+	);
+}
+var qi, bl;
+function _2() {
+	if (bl) return qi;
+	bl = 1;
+	var a = C2();
+	return (
+		(qi = function (e) {
+			if (!a(e)) throw new TypeError(e + " is not iterable");
+			return e;
+		}),
+		qi
+	);
+}
+var Ni, xl;
+function S1() {
+	if (xl) return Ni;
+	xl = 1;
+	var a = pa(),
+		e = va(),
+		t = b2(),
+		n = x2(),
+		i = _2(),
+		r = jn().iterator;
+	return (
+		(Ni = function (o) {
+			return typeof i(o)[r] == "function" ? o[r]() : a(o) ? new t(o) : e(o) ? new n(o) : new t(o);
+		}),
+		Ni
+	);
+}
+var Wi, Cl;
+function w2() {
+	if (Cl) return Wi;
+	Cl = 1;
+	var a = pa(),
+		e = Gr(),
+		t = va(),
+		n = S1(),
+		i = Array.isArray,
+		r = Function.prototype.call,
+		o = Array.prototype.some;
+	return (
+		(Wi = function (h, u) {
+			var v,
+				b = arguments[2],
+				y,
+				C,
+				S,
+				A,
+				P,
+				D,
+				R;
+			if (
+				(i(h) || a(h) ? (v = "array") : t(h) ? (v = "string") : (h = n(h)),
+				e(u),
+				(C = function () {
+					S = !0;
+				}),
+				v === "array")
+			) {
+				o.call(h, function (G) {
+					return (r.call(u, b, G, C), S);
+				});
+				return;
+			}
+			if (v === "string") {
+				for (
+					P = h.length, A = 0;
+					A < P &&
+					((D = h[A]), A + 1 < P && ((R = D.charCodeAt(0)), R >= 55296 && R <= 56319 && (D += h[++A])), r.call(u, b, D, C), !S);
+					++A
+				);
+				return;
+			}
+			for (y = h.next(); !y.done; ) {
+				if ((r.call(u, b, y.value, C), S)) return;
+				y = h.next();
+			}
+		}),
+		Wi
+	);
+}
+var Zi, _l;
+function y2() {
+	return (
+		_l ||
+			((_l = 1),
+			(Zi = (function () {
+				return typeof WeakMap != "function" ? !1 : Object.prototype.toString.call(new WeakMap()) === "[object WeakMap]";
+			})())),
+		Zi
+	);
+}
+var Yi, wl;
+function F2() {
+	if (wl) return Yi;
+	wl = 1;
+	var a = Vn(),
+		e = qo(),
+		t = Lu(),
+		n = bn(),
+		i = Ru(),
+		r = xn(),
+		o = S1(),
+		h = w2(),
+		u = jn().toStringTag,
+		v = y2(),
+		b = Array.isArray,
+		y = Object.defineProperty,
+		C = Object.prototype.hasOwnProperty,
+		S = Object.getPrototypeOf,
+		A;
+	return (
+		(Yi = A =
+			function () {
+				var P = arguments[0],
+					D;
+				if (!(this instanceof A)) throw new TypeError("Constructor requires 'new'");
+				return (
+					(D = v && e && WeakMap !== A ? e(new WeakMap(), S(this)) : this),
+					a(P) && (b(P) || (P = o(P))),
+					y(D, "__weakMapData__", r("c", "$weakMap$" + i())),
+					P &&
+						h(P, function (R) {
+							(n(R), D.set(R[0], R[1]));
+						}),
+					D
+				);
+			}),
+		v && (e && e(A, WeakMap), (A.prototype = Object.create(WeakMap.prototype, { constructor: r(A) }))),
+		Object.defineProperties(A.prototype, {
+			delete: r(function (P) {
+				return C.call(t(P), this.__weakMapData__) ? (delete P[this.__weakMapData__], !0) : !1;
+			}),
+			get: r(function (P) {
+				if (C.call(t(P), this.__weakMapData__)) return P[this.__weakMapData__];
+			}),
+			has: r(function (P) {
+				return C.call(t(P), this.__weakMapData__);
+			}),
+			set: r(function (P, D) {
+				return (y(t(P), this.__weakMapData__, r("c", D)), this);
+			}),
+			toString: r(function () {
+				return "[object WeakMap]";
+			}),
+		}),
+		y(A.prototype, u, r("c", "WeakMap")),
+		Yi
+	);
+}
+var Ui, yl;
+function k2() {
+	return (yl || ((yl = 1), (Ui = Au()() ? WeakMap : F2())), Ui);
+}
+var Ki, Fl;
+function E2() {
+	return (
+		Fl ||
+			((Fl = 1),
+			(Ki = [
+				{ name: "black", hex: "#000000" },
+				{ name: "blue", hex: "#0000FF" },
+				{ name: "cyan", hex: "#00FFFF" },
+				{ name: "green", hex: "#008000" },
+				{ name: "teal", hex: "#008080" },
+				{ name: "turquoise", hex: "#40E0D0" },
+				{ name: "indigo", hex: "#4B0082" },
+				{ name: "gray", hex: "#808080" },
+				{ name: "purple", hex: "#800080" },
+				{ name: "brown", hex: "#A52A2A" },
+				{ name: "tan", hex: "#D2B48C" },
+				{ name: "violet", hex: "#EE82EE" },
+				{ name: "beige", hex: "#F5F5DC" },
+				{ name: "fuchsia", hex: "#FF00FF" },
+				{ name: "gold", hex: "#FFD700" },
+				{ name: "magenta", hex: "#FF00FF" },
+				{ name: "orange", hex: "#FFA500" },
+				{ name: "pink", hex: "#FFC0CB" },
+				{ name: "red", hex: "#FF0000" },
+				{ name: "white", hex: "#FFFFFF" },
+				{ name: "yellow", hex: "#FFFF00" },
+			])),
+		Ki
+	);
+}
+var Ji, kl;
+function B2() {
+	return (
+		kl ||
+			((kl = 1),
+			(Ji = [
+				{ name: "aqua", hex: "#00FFFF" },
+				{ name: "aliceblue", hex: "#F0F8FF" },
+				{ name: "antiquewhite", hex: "#FAEBD7" },
+				{ name: "black", hex: "#000000" },
+				{ name: "blue", hex: "#0000FF" },
+				{ name: "cyan", hex: "#00FFFF" },
+				{ name: "darkblue", hex: "#00008B" },
+				{ name: "darkcyan", hex: "#008B8B" },
+				{ name: "darkgreen", hex: "#006400" },
+				{ name: "darkturquoise", hex: "#00CED1" },
+				{ name: "deepskyblue", hex: "#00BFFF" },
+				{ name: "green", hex: "#008000" },
+				{ name: "lime", hex: "#00FF00" },
+				{ name: "mediumblue", hex: "#0000CD" },
+				{ name: "mediumspringgreen", hex: "#00FA9A" },
+				{ name: "navy", hex: "#000080" },
+				{ name: "springgreen", hex: "#00FF7F" },
+				{ name: "teal", hex: "#008080" },
+				{ name: "midnightblue", hex: "#191970" },
+				{ name: "dodgerblue", hex: "#1E90FF" },
+				{ name: "lightseagreen", hex: "#20B2AA" },
+				{ name: "forestgreen", hex: "#228B22" },
+				{ name: "seagreen", hex: "#2E8B57" },
+				{ name: "darkslategray", hex: "#2F4F4F" },
+				{ name: "darkslategrey", hex: "#2F4F4F" },
+				{ name: "limegreen", hex: "#32CD32" },
+				{ name: "mediumseagreen", hex: "#3CB371" },
+				{ name: "turquoise", hex: "#40E0D0" },
+				{ name: "royalblue", hex: "#4169E1" },
+				{ name: "steelblue", hex: "#4682B4" },
+				{ name: "darkslateblue", hex: "#483D8B" },
+				{ name: "mediumturquoise", hex: "#48D1CC" },
+				{ name: "indigo", hex: "#4B0082" },
+				{ name: "darkolivegreen", hex: "#556B2F" },
+				{ name: "cadetblue", hex: "#5F9EA0" },
+				{ name: "cornflowerblue", hex: "#6495ED" },
+				{ name: "mediumaquamarine", hex: "#66CDAA" },
+				{ name: "dimgray", hex: "#696969" },
+				{ name: "dimgrey", hex: "#696969" },
+				{ name: "slateblue", hex: "#6A5ACD" },
+				{ name: "olivedrab", hex: "#6B8E23" },
+				{ name: "slategray", hex: "#708090" },
+				{ name: "slategrey", hex: "#708090" },
+				{ name: "lightslategray", hex: "#778899" },
+				{ name: "lightslategrey", hex: "#778899" },
+				{ name: "mediumslateblue", hex: "#7B68EE" },
+				{ name: "lawngreen", hex: "#7CFC00" },
+				{ name: "aquamarine", hex: "#7FFFD4" },
+				{ name: "chartreuse", hex: "#7FFF00" },
+				{ name: "gray", hex: "#808080" },
+				{ name: "grey", hex: "#808080" },
+				{ name: "maroon", hex: "#800000" },
+				{ name: "olive", hex: "#808000" },
+				{ name: "purple", hex: "#800080" },
+				{ name: "lightskyblue", hex: "#87CEFA" },
+				{ name: "skyblue", hex: "#87CEEB" },
+				{ name: "blueviolet", hex: "#8A2BE2" },
+				{ name: "darkmagenta", hex: "#8B008B" },
+				{ name: "darkred", hex: "#8B0000" },
+				{ name: "saddlebrown", hex: "#8B4513" },
+				{ name: "darkseagreen", hex: "#8FBC8F" },
+				{ name: "lightgreen", hex: "#90EE90" },
+				{ name: "mediumpurple", hex: "#9370DB" },
+				{ name: "darkviolet", hex: "#9400D3" },
+				{ name: "palegreen", hex: "#98FB98" },
+				{ name: "darkorchid", hex: "#9932CC" },
+				{ name: "yellowgreen", hex: "#9ACD32" },
+				{ name: "sienna", hex: "#A0522D" },
+				{ name: "brown", hex: "#A52A2A" },
+				{ name: "darkgray", hex: "#A9A9A9" },
+				{ name: "darkgrey", hex: "#A9A9A9" },
+				{ name: "greenyellow", hex: "#ADFF2F" },
+				{ name: "lightblue", hex: "#ADD8E6" },
+				{ name: "paleturquoise", hex: "#AFEEEE" },
+				{ name: "lightsteelblue", hex: "#B0C4DE" },
+				{ name: "powderblue", hex: "#B0E0E6" },
+				{ name: "firebrick", hex: "#B22222" },
+				{ name: "darkgoldenrod", hex: "#B8860B" },
+				{ name: "mediumorchid", hex: "#BA55D3" },
+				{ name: "rosybrown", hex: "#BC8F8F" },
+				{ name: "darkkhaki", hex: "#BDB76B" },
+				{ name: "silver", hex: "#C0C0C0" },
+				{ name: "mediumvioletred", hex: "#C71585" },
+				{ name: "indianred", hex: "#CD5C5C" },
+				{ name: "peru", hex: "#CD853F" },
+				{ name: "chocolate", hex: "#D2691E" },
+				{ name: "tan", hex: "#D2B48C" },
+				{ name: "lightgray", hex: "#D3D3D3" },
+				{ name: "lightgrey", hex: "#D3D3D3" },
+				{ name: "thistle", hex: "#D8BFD8" },
+				{ name: "goldenrod", hex: "#DAA520" },
+				{ name: "orchid", hex: "#DA70D6" },
+				{ name: "palevioletred", hex: "#DB7093" },
+				{ name: "crimson", hex: "#DC143C" },
+				{ name: "gainsboro", hex: "#DCDCDC" },
+				{ name: "plum", hex: "#DDA0DD" },
+				{ name: "burlywood", hex: "#DEB887" },
+				{ name: "lightcyan", hex: "#E0FFFF" },
+				{ name: "lavender", hex: "#E6E6FA" },
+				{ name: "darksalmon", hex: "#E9967A" },
+				{ name: "palegoldenrod", hex: "#EEE8AA" },
+				{ name: "violet", hex: "#EE82EE" },
+				{ name: "azure", hex: "#F0FFFF" },
+				{ name: "honeydew", hex: "#F0FFF0" },
+				{ name: "khaki", hex: "#F0E68C" },
+				{ name: "lightcoral", hex: "#F08080" },
+				{ name: "sandybrown", hex: "#F4A460" },
+				{ name: "beige", hex: "#F5F5DC" },
+				{ name: "mintcream", hex: "#F5FFFA" },
+				{ name: "wheat", hex: "#F5DEB3" },
+				{ name: "whitesmoke", hex: "#F5F5F5" },
+				{ name: "ghostwhite", hex: "#F8F8FF" },
+				{ name: "lightgoldenrodyellow", hex: "#FAFAD2" },
+				{ name: "linen", hex: "#FAF0E6" },
+				{ name: "salmon", hex: "#FA8072" },
+				{ name: "oldlace", hex: "#FDF5E6" },
+				{ name: "bisque", hex: "#FFE4C4" },
+				{ name: "blanchedalmond", hex: "#FFEBCD" },
+				{ name: "coral", hex: "#FF7F50" },
+				{ name: "cornsilk", hex: "#FFF8DC" },
+				{ name: "darkorange", hex: "#FF8C00" },
+				{ name: "deeppink", hex: "#FF1493" },
+				{ name: "floralwhite", hex: "#FFFAF0" },
+				{ name: "fuchsia", hex: "#FF00FF" },
+				{ name: "gold", hex: "#FFD700" },
+				{ name: "hotpink", hex: "#FF69B4" },
+				{ name: "ivory", hex: "#FFFFF0" },
+				{ name: "lavenderblush", hex: "#FFF0F5" },
+				{ name: "lemonchiffon", hex: "#FFFACD" },
+				{ name: "lightpink", hex: "#FFB6C1" },
+				{ name: "lightsalmon", hex: "#FFA07A" },
+				{ name: "lightyellow", hex: "#FFFFE0" },
+				{ name: "magenta", hex: "#FF00FF" },
+				{ name: "mistyrose", hex: "#FFE4E1" },
+				{ name: "moccasin", hex: "#FFE4B5" },
+				{ name: "navajowhite", hex: "#FFDEAD" },
+				{ name: "orange", hex: "#FFA500" },
+				{ name: "orangered", hex: "#FF4500" },
+				{ name: "papayawhip", hex: "#FFEFD5" },
+				{ name: "peachpuff", hex: "#FFDAB9" },
+				{ name: "pink", hex: "#FFC0CB" },
+				{ name: "red", hex: "#FF0000" },
+				{ name: "seashell", hex: "#FFF5EE" },
+				{ name: "snow", hex: "#FFFAFA" },
+				{ name: "tomato", hex: "#FF6347" },
+				{ name: "white", hex: "#FFFFFF" },
+				{ name: "yellow", hex: "#FFFF00" },
+			])),
+		Ji
+	);
+}
+var Xi, El;
+function S2() {
+	return (
+		El ||
+			((El = 1),
+			(Xi = [
+				{ name: "Black", hex: "000000" },
+				{ name: "Navy Blue", hex: "000080" },
+				{ name: "Dark Blue", hex: "0000C8" },
+				{ name: "Blue", hex: "0000FF" },
+				{ name: "Stratos", hex: "000741" },
+				{ name: "Swamp", hex: "001B1C" },
+				{ name: "Resolution Blue", hex: "002387" },
+				{ name: "Deep Fir", hex: "002900" },
+				{ name: "Burnham", hex: "002E20" },
+				{ name: "International Klein Blue", hex: "002FA7" },
+				{ name: "Prussian Blue", hex: "003153" },
+				{ name: "Midnight Blue", hex: "003366" },
+				{ name: "Smalt", hex: "003399" },
+				{ name: "Deep Teal", hex: "003532" },
+				{ name: "Cyprus", hex: "003E40" },
+				{ name: "Kaitoke Green", hex: "004620" },
+				{ name: "Cobalt", hex: "0047AB" },
+				{ name: "Crusoe", hex: "004816" },
+				{ name: "Sherpa Blue", hex: "004950" },
+				{ name: "Endeavour", hex: "0056A7" },
+				{ name: "Camarone", hex: "00581A" },
+				{ name: "Science Blue", hex: "0066CC" },
+				{ name: "Blue Ribbon", hex: "0066FF" },
+				{ name: "Tropical Rain Forest", hex: "00755E" },
+				{ name: "Allports", hex: "0076A3" },
+				{ name: "Deep Cerulean", hex: "007BA7" },
+				{ name: "Lochmara", hex: "007EC7" },
+				{ name: "Azure Radiance", hex: "007FFF" },
+				{ name: "Teal", hex: "008080" },
+				{ name: "Bondi Blue", hex: "0095B6" },
+				{ name: "Pacific Blue", hex: "009DC4" },
+				{ name: "Persian Green", hex: "00A693" },
+				{ name: "Jade", hex: "00A86B" },
+				{ name: "Caribbean Green", hex: "00CC99" },
+				{ name: "Robin's Egg Blue", hex: "00CCCC" },
+				{ name: "Green", hex: "00FF00" },
+				{ name: "Spring Green", hex: "00FF7F" },
+				{ name: "Cyan / Aqua", hex: "00FFFF" },
+				{ name: "Blue Charcoal", hex: "010D1A" },
+				{ name: "Midnight", hex: "011635" },
+				{ name: "Holly", hex: "011D13" },
+				{ name: "Daintree", hex: "012731" },
+				{ name: "Cardin Green", hex: "01361C" },
+				{ name: "County Green", hex: "01371A" },
+				{ name: "Astronaut Blue", hex: "013E62" },
+				{ name: "Regal Blue", hex: "013F6A" },
+				{ name: "Aqua Deep", hex: "014B43" },
+				{ name: "Orient", hex: "015E85" },
+				{ name: "Blue Stone", hex: "016162" },
+				{ name: "Fun Green", hex: "016D39" },
+				{ name: "Pine Green", hex: "01796F" },
+				{ name: "Blue Lagoon", hex: "017987" },
+				{ name: "Deep Sea", hex: "01826B" },
+				{ name: "Green Haze", hex: "01A368" },
+				{ name: "English Holly", hex: "022D15" },
+				{ name: "Sherwood Green", hex: "02402C" },
+				{ name: "Congress Blue", hex: "02478E" },
+				{ name: "Evening Sea", hex: "024E46" },
+				{ name: "Bahama Blue", hex: "026395" },
+				{ name: "Observatory", hex: "02866F" },
+				{ name: "Cerulean", hex: "02A4D3" },
+				{ name: "Tangaroa", hex: "03163C" },
+				{ name: "Green Vogue", hex: "032B52" },
+				{ name: "Mosque", hex: "036A6E" },
+				{ name: "Midnight Moss", hex: "041004" },
+				{ name: "Black Pearl", hex: "041322" },
+				{ name: "Blue Whale", hex: "042E4C" },
+				{ name: "Zuccini", hex: "044022" },
+				{ name: "Teal Blue", hex: "044259" },
+				{ name: "Deep Cove", hex: "051040" },
+				{ name: "Gulf Blue", hex: "051657" },
+				{ name: "Venice Blue", hex: "055989" },
+				{ name: "Watercourse", hex: "056F57" },
+				{ name: "Catalina Blue", hex: "062A78" },
+				{ name: "Tiber", hex: "063537" },
+				{ name: "Gossamer", hex: "069B81" },
+				{ name: "Niagara", hex: "06A189" },
+				{ name: "Tarawera", hex: "073A50" },
+				{ name: "Jaguar", hex: "080110" },
+				{ name: "Black Bean", hex: "081910" },
+				{ name: "Deep Sapphire", hex: "082567" },
+				{ name: "Elf Green", hex: "088370" },
+				{ name: "Bright Turquoise", hex: "08E8DE" },
+				{ name: "Downriver", hex: "092256" },
+				{ name: "Palm Green", hex: "09230F" },
+				{ name: "Madison", hex: "09255D" },
+				{ name: "Bottle Green", hex: "093624" },
+				{ name: "Deep Sea Green", hex: "095859" },
+				{ name: "Salem", hex: "097F4B" },
+				{ name: "Black Russian", hex: "0A001C" },
+				{ name: "Dark Fern", hex: "0A480D" },
+				{ name: "Japanese Laurel", hex: "0A6906" },
+				{ name: "Atoll", hex: "0A6F75" },
+				{ name: "Cod Gray", hex: "0B0B0B" },
+				{ name: "Marshland", hex: "0B0F08" },
+				{ name: "Gordons Green", hex: "0B1107" },
+				{ name: "Black Forest", hex: "0B1304" },
+				{ name: "San Felix", hex: "0B6207" },
+				{ name: "Malachite", hex: "0BDA51" },
+				{ name: "Ebony", hex: "0C0B1D" },
+				{ name: "Woodsmoke", hex: "0C0D0F" },
+				{ name: "Racing Green", hex: "0C1911" },
+				{ name: "Surfie Green", hex: "0C7A79" },
+				{ name: "Blue Chill", hex: "0C8990" },
+				{ name: "Black Rock", hex: "0D0332" },
+				{ name: "Bunker", hex: "0D1117" },
+				{ name: "Aztec", hex: "0D1C19" },
+				{ name: "Bush", hex: "0D2E1C" },
+				{ name: "Cinder", hex: "0E0E18" },
+				{ name: "Firefly", hex: "0E2A30" },
+				{ name: "Torea Bay", hex: "0F2D9E" },
+				{ name: "Vulcan", hex: "10121D" },
+				{ name: "Green Waterloo", hex: "101405" },
+				{ name: "Eden", hex: "105852" },
+				{ name: "Arapawa", hex: "110C6C" },
+				{ name: "Ultramarine", hex: "120A8F" },
+				{ name: "Elephant", hex: "123447" },
+				{ name: "Jewel", hex: "126B40" },
+				{ name: "Diesel", hex: "130000" },
+				{ name: "Asphalt", hex: "130A06" },
+				{ name: "Blue Zodiac", hex: "13264D" },
+				{ name: "Parsley", hex: "134F19" },
+				{ name: "Nero", hex: "140600" },
+				{ name: "Tory Blue", hex: "1450AA" },
+				{ name: "Bunting", hex: "151F4C" },
+				{ name: "Denim", hex: "1560BD" },
+				{ name: "Genoa", hex: "15736B" },
+				{ name: "Mirage", hex: "161928" },
+				{ name: "Hunter Green", hex: "161D10" },
+				{ name: "Big Stone", hex: "162A40" },
+				{ name: "Celtic", hex: "163222" },
+				{ name: "Timber Green", hex: "16322C" },
+				{ name: "Gable Green", hex: "163531" },
+				{ name: "Pine Tree", hex: "171F04" },
+				{ name: "Chathams Blue", hex: "175579" },
+				{ name: "Deep Forest Green", hex: "182D09" },
+				{ name: "Blumine", hex: "18587A" },
+				{ name: "Palm Leaf", hex: "19330E" },
+				{ name: "Nile Blue", hex: "193751" },
+				{ name: "Fun Blue", hex: "1959A8" },
+				{ name: "Lucky Point", hex: "1A1A68" },
+				{ name: "Mountain Meadow", hex: "1AB385" },
+				{ name: "Tolopea", hex: "1B0245" },
+				{ name: "Haiti", hex: "1B1035" },
+				{ name: "Deep Koamaru", hex: "1B127B" },
+				{ name: "Acadia", hex: "1B1404" },
+				{ name: "Seaweed", hex: "1B2F11" },
+				{ name: "Biscay", hex: "1B3162" },
+				{ name: "Matisse", hex: "1B659D" },
+				{ name: "Crowshead", hex: "1C1208" },
+				{ name: "Rangoon Green", hex: "1C1E13" },
+				{ name: "Persian Blue", hex: "1C39BB" },
+				{ name: "Everglade", hex: "1C402E" },
+				{ name: "Elm", hex: "1C7C7D" },
+				{ name: "Green Pea", hex: "1D6142" },
+				{ name: "Creole", hex: "1E0F04" },
+				{ name: "Karaka", hex: "1E1609" },
+				{ name: "El Paso", hex: "1E1708" },
+				{ name: "Cello", hex: "1E385B" },
+				{ name: "Te Papa Green", hex: "1E433C" },
+				{ name: "Dodger Blue", hex: "1E90FF" },
+				{ name: "Eastern Blue", hex: "1E9AB0" },
+				{ name: "Night Rider", hex: "1F120F" },
+				{ name: "Java", hex: "1FC2C2" },
+				{ name: "Jacksons Purple", hex: "20208D" },
+				{ name: "Cloud Burst", hex: "202E54" },
+				{ name: "Blue Dianne", hex: "204852" },
+				{ name: "Eternity", hex: "211A0E" },
+				{ name: "Deep Blue", hex: "220878" },
+				{ name: "Forest Green", hex: "228B22" },
+				{ name: "Mallard", hex: "233418" },
+				{ name: "Violet", hex: "240A40" },
+				{ name: "Kilamanjaro", hex: "240C02" },
+				{ name: "Log Cabin", hex: "242A1D" },
+				{ name: "Black Olive", hex: "242E16" },
+				{ name: "Green House", hex: "24500F" },
+				{ name: "Graphite", hex: "251607" },
+				{ name: "Cannon Black", hex: "251706" },
+				{ name: "Port Gore", hex: "251F4F" },
+				{ name: "Shark", hex: "25272C" },
+				{ name: "Green Kelp", hex: "25311C" },
+				{ name: "Curious Blue", hex: "2596D1" },
+				{ name: "Paua", hex: "260368" },
+				{ name: "Paris M", hex: "26056A" },
+				{ name: "Wood Bark", hex: "261105" },
+				{ name: "Gondola", hex: "261414" },
+				{ name: "Steel Gray", hex: "262335" },
+				{ name: "Ebony Clay", hex: "26283B" },
+				{ name: "Bay of Many", hex: "273A81" },
+				{ name: "Plantation", hex: "27504B" },
+				{ name: "Eucalyptus", hex: "278A5B" },
+				{ name: "Oil", hex: "281E15" },
+				{ name: "Astronaut", hex: "283A77" },
+				{ name: "Mariner", hex: "286ACD" },
+				{ name: "Violent Violet", hex: "290C5E" },
+				{ name: "Bastille", hex: "292130" },
+				{ name: "Zeus", hex: "292319" },
+				{ name: "Charade", hex: "292937" },
+				{ name: "Jelly Bean", hex: "297B9A" },
+				{ name: "Jungle Green", hex: "29AB87" },
+				{ name: "Cherry Pie", hex: "2A0359" },
+				{ name: "Coffee Bean", hex: "2A140E" },
+				{ name: "Baltic Sea", hex: "2A2630" },
+				{ name: "Turtle Green", hex: "2A380B" },
+				{ name: "Cerulean Blue", hex: "2A52BE" },
+				{ name: "Sepia Black", hex: "2B0202" },
+				{ name: "Valhalla", hex: "2B194F" },
+				{ name: "Heavy Metal", hex: "2B3228" },
+				{ name: "Blue Gem", hex: "2C0E8C" },
+				{ name: "Revolver", hex: "2C1632" },
+				{ name: "Bleached Cedar", hex: "2C2133" },
+				{ name: "Lochinvar", hex: "2C8C84" },
+				{ name: "Mikado", hex: "2D2510" },
+				{ name: "Outer Space", hex: "2D383A" },
+				{ name: "St Tropaz", hex: "2D569B" },
+				{ name: "Jacaranda", hex: "2E0329" },
+				{ name: "Jacko Bean", hex: "2E1905" },
+				{ name: "Rangitoto", hex: "2E3222" },
+				{ name: "Rhino", hex: "2E3F62" },
+				{ name: "Sea Green", hex: "2E8B57" },
+				{ name: "Scooter", hex: "2EBFD4" },
+				{ name: "Onion", hex: "2F270E" },
+				{ name: "Governor Bay", hex: "2F3CB3" },
+				{ name: "Sapphire", hex: "2F519E" },
+				{ name: "Spectra", hex: "2F5A57" },
+				{ name: "Casal", hex: "2F6168" },
+				{ name: "Melanzane", hex: "300529" },
+				{ name: "Cocoa Brown", hex: "301F1E" },
+				{ name: "Woodrush", hex: "302A0F" },
+				{ name: "San Juan", hex: "304B6A" },
+				{ name: "Turquoise", hex: "30D5C8" },
+				{ name: "Eclipse", hex: "311C17" },
+				{ name: "Pickled Bluewood", hex: "314459" },
+				{ name: "Azure", hex: "315BA1" },
+				{ name: "Calypso", hex: "31728D" },
+				{ name: "Paradiso", hex: "317D82" },
+				{ name: "Persian Indigo", hex: "32127A" },
+				{ name: "Blackcurrant", hex: "32293A" },
+				{ name: "Mine Shaft", hex: "323232" },
+				{ name: "Stromboli", hex: "325D52" },
+				{ name: "Bilbao", hex: "327C14" },
+				{ name: "Astral", hex: "327DA0" },
+				{ name: "Christalle", hex: "33036B" },
+				{ name: "Thunder", hex: "33292F" },
+				{ name: "Shamrock", hex: "33CC99" },
+				{ name: "Tamarind", hex: "341515" },
+				{ name: "Mardi Gras", hex: "350036" },
+				{ name: "Valentino", hex: "350E42" },
+				{ name: "Jagger", hex: "350E57" },
+				{ name: "Tuna", hex: "353542" },
+				{ name: "Chambray", hex: "354E8C" },
+				{ name: "Martinique", hex: "363050" },
+				{ name: "Tuatara", hex: "363534" },
+				{ name: "Waiouru", hex: "363C0D" },
+				{ name: "Ming", hex: "36747D" },
+				{ name: "La Palma", hex: "368716" },
+				{ name: "Chocolate", hex: "370202" },
+				{ name: "Clinker", hex: "371D09" },
+				{ name: "Brown Tumbleweed", hex: "37290E" },
+				{ name: "Birch", hex: "373021" },
+				{ name: "Oracle", hex: "377475" },
+				{ name: "Blue Diamond", hex: "380474" },
+				{ name: "Grape", hex: "381A51" },
+				{ name: "Dune", hex: "383533" },
+				{ name: "Oxford Blue", hex: "384555" },
+				{ name: "Clover", hex: "384910" },
+				{ name: "Limed Spruce", hex: "394851" },
+				{ name: "Dell", hex: "396413" },
+				{ name: "Toledo", hex: "3A0020" },
+				{ name: "Sambuca", hex: "3A2010" },
+				{ name: "Jacarta", hex: "3A2A6A" },
+				{ name: "William", hex: "3A686C" },
+				{ name: "Killarney", hex: "3A6A47" },
+				{ name: "Keppel", hex: "3AB09E" },
+				{ name: "Temptress", hex: "3B000B" },
+				{ name: "Aubergine", hex: "3B0910" },
+				{ name: "Jon", hex: "3B1F1F" },
+				{ name: "Treehouse", hex: "3B2820" },
+				{ name: "Amazon", hex: "3B7A57" },
+				{ name: "Boston Blue", hex: "3B91B4" },
+				{ name: "Windsor", hex: "3C0878" },
+				{ name: "Rebel", hex: "3C1206" },
+				{ name: "Meteorite", hex: "3C1F76" },
+				{ name: "Dark Ebony", hex: "3C2005" },
+				{ name: "Camouflage", hex: "3C3910" },
+				{ name: "Bright Gray", hex: "3C4151" },
+				{ name: "Cape Cod", hex: "3C4443" },
+				{ name: "Lunar Green", hex: "3C493A" },
+				{ name: "Bean  ", hex: "3D0C02" },
+				{ name: "Bistre", hex: "3D2B1F" },
+				{ name: "Goblin", hex: "3D7D52" },
+				{ name: "Kingfisher Daisy", hex: "3E0480" },
+				{ name: "Cedar", hex: "3E1C14" },
+				{ name: "English Walnut", hex: "3E2B23" },
+				{ name: "Black Marlin", hex: "3E2C1C" },
+				{ name: "Ship Gray", hex: "3E3A44" },
+				{ name: "Pelorous", hex: "3EABBF" },
+				{ name: "Bronze", hex: "3F2109" },
+				{ name: "Cola", hex: "3F2500" },
+				{ name: "Madras", hex: "3F3002" },
+				{ name: "Minsk", hex: "3F307F" },
+				{ name: "Cabbage Pont", hex: "3F4C3A" },
+				{ name: "Tom Thumb", hex: "3F583B" },
+				{ name: "Mineral Green", hex: "3F5D53" },
+				{ name: "Puerto Rico", hex: "3FC1AA" },
+				{ name: "Harlequin", hex: "3FFF00" },
+				{ name: "Brown Pod", hex: "401801" },
+				{ name: "Cork", hex: "40291D" },
+				{ name: "Masala", hex: "403B38" },
+				{ name: "Thatch Green", hex: "403D19" },
+				{ name: "Fiord", hex: "405169" },
+				{ name: "Viridian", hex: "40826D" },
+				{ name: "Chateau Green", hex: "40A860" },
+				{ name: "Ripe Plum", hex: "410056" },
+				{ name: "Paco", hex: "411F10" },
+				{ name: "Deep Oak", hex: "412010" },
+				{ name: "Merlin", hex: "413C37" },
+				{ name: "Gun Powder", hex: "414257" },
+				{ name: "East Bay", hex: "414C7D" },
+				{ name: "Royal Blue", hex: "4169E1" },
+				{ name: "Ocean Green", hex: "41AA78" },
+				{ name: "Burnt Maroon", hex: "420303" },
+				{ name: "Lisbon Brown", hex: "423921" },
+				{ name: "Faded Jade", hex: "427977" },
+				{ name: "Scarlet Gum", hex: "431560" },
+				{ name: "Iroko", hex: "433120" },
+				{ name: "Armadillo", hex: "433E37" },
+				{ name: "River Bed", hex: "434C59" },
+				{ name: "Green Leaf", hex: "436A0D" },
+				{ name: "Barossa", hex: "44012D" },
+				{ name: "Morocco Brown", hex: "441D00" },
+				{ name: "Mako", hex: "444954" },
+				{ name: "Kelp", hex: "454936" },
+				{ name: "San Marino", hex: "456CAC" },
+				{ name: "Picton Blue", hex: "45B1E8" },
+				{ name: "Loulou", hex: "460B41" },
+				{ name: "Crater Brown", hex: "462425" },
+				{ name: "Gray Asparagus", hex: "465945" },
+				{ name: "Steel Blue", hex: "4682B4" },
+				{ name: "Rustic Red", hex: "480404" },
+				{ name: "Bulgarian Rose", hex: "480607" },
+				{ name: "Clairvoyant", hex: "480656" },
+				{ name: "Cocoa Bean", hex: "481C1C" },
+				{ name: "Woody Brown", hex: "483131" },
+				{ name: "Taupe", hex: "483C32" },
+				{ name: "Van Cleef", hex: "49170C" },
+				{ name: "Brown Derby", hex: "492615" },
+				{ name: "Metallic Bronze", hex: "49371B" },
+				{ name: "Verdun Green", hex: "495400" },
+				{ name: "Blue Bayoux", hex: "496679" },
+				{ name: "Bismark", hex: "497183" },
+				{ name: "Bracken", hex: "4A2A04" },
+				{ name: "Deep Bronze", hex: "4A3004" },
+				{ name: "Mondo", hex: "4A3C30" },
+				{ name: "Tundora", hex: "4A4244" },
+				{ name: "Gravel", hex: "4A444B" },
+				{ name: "Trout", hex: "4A4E5A" },
+				{ name: "Pigment Indigo", hex: "4B0082" },
+				{ name: "Nandor", hex: "4B5D52" },
+				{ name: "Saddle", hex: "4C3024" },
+				{ name: "Abbey", hex: "4C4F56" },
+				{ name: "Blackberry", hex: "4D0135" },
+				{ name: "Cab Sav", hex: "4D0A18" },
+				{ name: "Indian Tan", hex: "4D1E01" },
+				{ name: "Cowboy", hex: "4D282D" },
+				{ name: "Livid Brown", hex: "4D282E" },
+				{ name: "Rock", hex: "4D3833" },
+				{ name: "Punga", hex: "4D3D14" },
+				{ name: "Bronzetone", hex: "4D400F" },
+				{ name: "Woodland", hex: "4D5328" },
+				{ name: "Mahogany", hex: "4E0606" },
+				{ name: "Bossanova", hex: "4E2A5A" },
+				{ name: "Matterhorn", hex: "4E3B41" },
+				{ name: "Bronze Olive", hex: "4E420C" },
+				{ name: "Mulled Wine", hex: "4E4562" },
+				{ name: "Axolotl", hex: "4E6649" },
+				{ name: "Wedgewood", hex: "4E7F9E" },
+				{ name: "Shakespeare", hex: "4EABD1" },
+				{ name: "Honey Flower", hex: "4F1C70" },
+				{ name: "Daisy Bush", hex: "4F2398" },
+				{ name: "Indigo", hex: "4F69C6" },
+				{ name: "Fern Green", hex: "4F7942" },
+				{ name: "Fruit Salad", hex: "4F9D5D" },
+				{ name: "Apple", hex: "4FA83D" },
+				{ name: "Mortar", hex: "504351" },
+				{ name: "Kashmir Blue", hex: "507096" },
+				{ name: "Cutty Sark", hex: "507672" },
+				{ name: "Emerald", hex: "50C878" },
+				{ name: "Emperor", hex: "514649" },
+				{ name: "Chalet Green", hex: "516E3D" },
+				{ name: "Como", hex: "517C66" },
+				{ name: "Smalt Blue", hex: "51808F" },
+				{ name: "Castro", hex: "52001F" },
+				{ name: "Maroon Oak", hex: "520C17" },
+				{ name: "Gigas", hex: "523C94" },
+				{ name: "Voodoo", hex: "533455" },
+				{ name: "Victoria", hex: "534491" },
+				{ name: "Hippie Green", hex: "53824B" },
+				{ name: "Heath", hex: "541012" },
+				{ name: "Judge Gray", hex: "544333" },
+				{ name: "Fuscous Gray", hex: "54534D" },
+				{ name: "Vida Loca", hex: "549019" },
+				{ name: "Cioccolato", hex: "55280C" },
+				{ name: "Saratoga", hex: "555B10" },
+				{ name: "Finlandia", hex: "556D56" },
+				{ name: "Havelock Blue", hex: "5590D9" },
+				{ name: "Fountain Blue", hex: "56B4BE" },
+				{ name: "Spring Leaves", hex: "578363" },
+				{ name: "Saddle Brown", hex: "583401" },
+				{ name: "Scarpa Flow", hex: "585562" },
+				{ name: "Cactus", hex: "587156" },
+				{ name: "Hippie Blue", hex: "589AAF" },
+				{ name: "Wine Berry", hex: "591D35" },
+				{ name: "Brown Bramble", hex: "592804" },
+				{ name: "Congo Brown", hex: "593737" },
+				{ name: "Millbrook", hex: "594433" },
+				{ name: "Waikawa Gray", hex: "5A6E9C" },
+				{ name: "Horizon", hex: "5A87A0" },
+				{ name: "Jambalaya", hex: "5B3013" },
+				{ name: "Bordeaux", hex: "5C0120" },
+				{ name: "Mulberry Wood", hex: "5C0536" },
+				{ name: "Carnaby Tan", hex: "5C2E01" },
+				{ name: "Comet", hex: "5C5D75" },
+				{ name: "Redwood", hex: "5D1E0F" },
+				{ name: "Don Juan", hex: "5D4C51" },
+				{ name: "Chicago", hex: "5D5C58" },
+				{ name: "Verdigris", hex: "5D5E37" },
+				{ name: "Dingley", hex: "5D7747" },
+				{ name: "Breaker Bay", hex: "5DA19F" },
+				{ name: "Kabul", hex: "5E483E" },
+				{ name: "Hemlock", hex: "5E5D3B" },
+				{ name: "Irish Coffee", hex: "5F3D26" },
+				{ name: "Mid Gray", hex: "5F5F6E" },
+				{ name: "Shuttle Gray", hex: "5F6672" },
+				{ name: "Aqua Forest", hex: "5FA777" },
+				{ name: "Tradewind", hex: "5FB3AC" },
+				{ name: "Horses Neck", hex: "604913" },
+				{ name: "Smoky", hex: "605B73" },
+				{ name: "Corduroy", hex: "606E68" },
+				{ name: "Danube", hex: "6093D1" },
+				{ name: "Espresso", hex: "612718" },
+				{ name: "Eggplant", hex: "614051" },
+				{ name: "Costa Del Sol", hex: "615D30" },
+				{ name: "Glade Green", hex: "61845F" },
+				{ name: "Buccaneer", hex: "622F30" },
+				{ name: "Quincy", hex: "623F2D" },
+				{ name: "Butterfly Bush", hex: "624E9A" },
+				{ name: "West Coast", hex: "625119" },
+				{ name: "Finch", hex: "626649" },
+				{ name: "Patina", hex: "639A8F" },
+				{ name: "Fern", hex: "63B76C" },
+				{ name: "Blue Violet", hex: "6456B7" },
+				{ name: "Dolphin", hex: "646077" },
+				{ name: "Storm Dust", hex: "646463" },
+				{ name: "Siam", hex: "646A54" },
+				{ name: "Nevada", hex: "646E75" },
+				{ name: "Cornflower Blue", hex: "6495ED" },
+				{ name: "Viking", hex: "64CCDB" },
+				{ name: "Rosewood", hex: "65000B" },
+				{ name: "Cherrywood", hex: "651A14" },
+				{ name: "Purple Heart", hex: "652DC1" },
+				{ name: "Fern Frond", hex: "657220" },
+				{ name: "Willow Grove", hex: "65745D" },
+				{ name: "Hoki", hex: "65869F" },
+				{ name: "Pompadour", hex: "660045" },
+				{ name: "Purple", hex: "660099" },
+				{ name: "Tyrian Purple", hex: "66023C" },
+				{ name: "Dark Tan", hex: "661010" },
+				{ name: "Silver Tree", hex: "66B58F" },
+				{ name: "Bright Green", hex: "66FF00" },
+				{ name: "Screamin' Green", hex: "66FF66" },
+				{ name: "Black Rose", hex: "67032D" },
+				{ name: "Scampi", hex: "675FA6" },
+				{ name: "Ironside Gray", hex: "676662" },
+				{ name: "Viridian Green", hex: "678975" },
+				{ name: "Christi", hex: "67A712" },
+				{ name: "Nutmeg Wood Finish", hex: "683600" },
+				{ name: "Zambezi", hex: "685558" },
+				{ name: "Salt Box", hex: "685E6E" },
+				{ name: "Tawny Port", hex: "692545" },
+				{ name: "Finn", hex: "692D54" },
+				{ name: "Scorpion", hex: "695F62" },
+				{ name: "Lynch", hex: "697E9A" },
+				{ name: "Spice", hex: "6A442E" },
+				{ name: "Himalaya", hex: "6A5D1B" },
+				{ name: "Soya Bean", hex: "6A6051" },
+				{ name: "Hairy Heath", hex: "6B2A14" },
+				{ name: "Royal Purple", hex: "6B3FA0" },
+				{ name: "Shingle Fawn", hex: "6B4E31" },
+				{ name: "Dorado", hex: "6B5755" },
+				{ name: "Bermuda Gray", hex: "6B8BA2" },
+				{ name: "Olive Drab", hex: "6B8E23" },
+				{ name: "Eminence", hex: "6C3082" },
+				{ name: "Turquoise Blue", hex: "6CDAE7" },
+				{ name: "Lonestar", hex: "6D0101" },
+				{ name: "Pine Cone", hex: "6D5E54" },
+				{ name: "Dove Gray", hex: "6D6C6C" },
+				{ name: "Juniper", hex: "6D9292" },
+				{ name: "Gothic", hex: "6D92A1" },
+				{ name: "Red Oxide", hex: "6E0902" },
+				{ name: "Moccaccino", hex: "6E1D14" },
+				{ name: "Pickled Bean", hex: "6E4826" },
+				{ name: "Dallas", hex: "6E4B26" },
+				{ name: "Kokoda", hex: "6E6D57" },
+				{ name: "Pale Sky", hex: "6E7783" },
+				{ name: "Cafe Royale", hex: "6F440C" },
+				{ name: "Flint", hex: "6F6A61" },
+				{ name: "Highland", hex: "6F8E63" },
+				{ name: "Limeade", hex: "6F9D02" },
+				{ name: "Downy", hex: "6FD0C5" },
+				{ name: "Persian Plum", hex: "701C1C" },
+				{ name: "Sepia", hex: "704214" },
+				{ name: "Antique Bronze", hex: "704A07" },
+				{ name: "Ferra", hex: "704F50" },
+				{ name: "Coffee", hex: "706555" },
+				{ name: "Slate Gray", hex: "708090" },
+				{ name: "Cedar Wood Finish", hex: "711A00" },
+				{ name: "Metallic Copper", hex: "71291D" },
+				{ name: "Affair", hex: "714693" },
+				{ name: "Studio", hex: "714AB2" },
+				{ name: "Tobacco Brown", hex: "715D47" },
+				{ name: "Yellow Metal", hex: "716338" },
+				{ name: "Peat", hex: "716B56" },
+				{ name: "Olivetone", hex: "716E10" },
+				{ name: "Storm Gray", hex: "717486" },
+				{ name: "Sirocco", hex: "718080" },
+				{ name: "Aquamarine Blue", hex: "71D9E2" },
+				{ name: "Venetian Red", hex: "72010F" },
+				{ name: "Old Copper", hex: "724A2F" },
+				{ name: "Go Ben", hex: "726D4E" },
+				{ name: "Raven", hex: "727B89" },
+				{ name: "Seance", hex: "731E8F" },
+				{ name: "Raw Umber", hex: "734A12" },
+				{ name: "Kimberly", hex: "736C9F" },
+				{ name: "Crocodile", hex: "736D58" },
+				{ name: "Crete", hex: "737829" },
+				{ name: "Xanadu", hex: "738678" },
+				{ name: "Spicy Mustard", hex: "74640D" },
+				{ name: "Limed Ash", hex: "747D63" },
+				{ name: "Rolling Stone", hex: "747D83" },
+				{ name: "Blue Smoke", hex: "748881" },
+				{ name: "Laurel", hex: "749378" },
+				{ name: "Mantis", hex: "74C365" },
+				{ name: "Russett", hex: "755A57" },
+				{ name: "Deluge", hex: "7563A8" },
+				{ name: "Cosmic", hex: "76395D" },
+				{ name: "Blue Marguerite", hex: "7666C6" },
+				{ name: "Lima", hex: "76BD17" },
+				{ name: "Sky Blue", hex: "76D7EA" },
+				{ name: "Dark Burgundy", hex: "770F05" },
+				{ name: "Crown of Thorns", hex: "771F1F" },
+				{ name: "Walnut", hex: "773F1A" },
+				{ name: "Pablo", hex: "776F61" },
+				{ name: "Pacifika", hex: "778120" },
+				{ name: "Oxley", hex: "779E86" },
+				{ name: "Pastel Green", hex: "77DD77" },
+				{ name: "Japanese Maple", hex: "780109" },
+				{ name: "Mocha", hex: "782D19" },
+				{ name: "Peanut", hex: "782F16" },
+				{ name: "Camouflage Green", hex: "78866B" },
+				{ name: "Wasabi", hex: "788A25" },
+				{ name: "Ship Cove", hex: "788BBA" },
+				{ name: "Sea Nymph", hex: "78A39C" },
+				{ name: "Roman Coffee", hex: "795D4C" },
+				{ name: "Old Lavender", hex: "796878" },
+				{ name: "Rum", hex: "796989" },
+				{ name: "Fedora", hex: "796A78" },
+				{ name: "Sandstone", hex: "796D62" },
+				{ name: "Spray", hex: "79DEEC" },
+				{ name: "Siren", hex: "7A013A" },
+				{ name: "Fuchsia Blue", hex: "7A58C1" },
+				{ name: "Boulder", hex: "7A7A7A" },
+				{ name: "Wild Blue Yonder", hex: "7A89B8" },
+				{ name: "De York", hex: "7AC488" },
+				{ name: "Red Beech", hex: "7B3801" },
+				{ name: "Cinnamon", hex: "7B3F00" },
+				{ name: "Yukon Gold", hex: "7B6608" },
+				{ name: "Tapa", hex: "7B7874" },
+				{ name: "Waterloo ", hex: "7B7C94" },
+				{ name: "Flax Smoke", hex: "7B8265" },
+				{ name: "Amulet", hex: "7B9F80" },
+				{ name: "Asparagus", hex: "7BA05B" },
+				{ name: "Kenyan Copper", hex: "7C1C05" },
+				{ name: "Pesto", hex: "7C7631" },
+				{ name: "Topaz", hex: "7C778A" },
+				{ name: "Concord", hex: "7C7B7A" },
+				{ name: "Jumbo", hex: "7C7B82" },
+				{ name: "Trendy Green", hex: "7C881A" },
+				{ name: "Gumbo", hex: "7CA1A6" },
+				{ name: "Acapulco", hex: "7CB0A1" },
+				{ name: "Neptune", hex: "7CB7BB" },
+				{ name: "Pueblo", hex: "7D2C14" },
+				{ name: "Bay Leaf", hex: "7DA98D" },
+				{ name: "Malibu", hex: "7DC8F7" },
+				{ name: "Bermuda", hex: "7DD8C6" },
+				{ name: "Copper Canyon", hex: "7E3A15" },
+				{ name: "Claret", hex: "7F1734" },
+				{ name: "Peru Tan", hex: "7F3A02" },
+				{ name: "Falcon", hex: "7F626D" },
+				{ name: "Mobster", hex: "7F7589" },
+				{ name: "Moody Blue", hex: "7F76D3" },
+				{ name: "Chartreuse", hex: "7FFF00" },
+				{ name: "Aquamarine", hex: "7FFFD4" },
+				{ name: "Maroon", hex: "800000" },
+				{ name: "Rose Bud Cherry", hex: "800B47" },
+				{ name: "Falu Red", hex: "801818" },
+				{ name: "Red Robin", hex: "80341F" },
+				{ name: "Vivid Violet", hex: "803790" },
+				{ name: "Russet", hex: "80461B" },
+				{ name: "Friar Gray", hex: "807E79" },
+				{ name: "Olive", hex: "808000" },
+				{ name: "Gray", hex: "808080" },
+				{ name: "Gulf Stream", hex: "80B3AE" },
+				{ name: "Glacier", hex: "80B3C4" },
+				{ name: "Seagull", hex: "80CCEA" },
+				{ name: "Nutmeg", hex: "81422C" },
+				{ name: "Spicy Pink", hex: "816E71" },
+				{ name: "Empress", hex: "817377" },
+				{ name: "Spanish Green", hex: "819885" },
+				{ name: "Sand Dune", hex: "826F65" },
+				{ name: "Gunsmoke", hex: "828685" },
+				{ name: "Battleship Gray", hex: "828F72" },
+				{ name: "Merlot", hex: "831923" },
+				{ name: "Shadow", hex: "837050" },
+				{ name: "Chelsea Cucumber", hex: "83AA5D" },
+				{ name: "Monte Carlo", hex: "83D0C6" },
+				{ name: "Plum", hex: "843179" },
+				{ name: "Granny Smith", hex: "84A0A0" },
+				{ name: "Chetwode Blue", hex: "8581D9" },
+				{ name: "Bandicoot", hex: "858470" },
+				{ name: "Bali Hai", hex: "859FAF" },
+				{ name: "Half Baked", hex: "85C4CC" },
+				{ name: "Red Devil", hex: "860111" },
+				{ name: "Lotus", hex: "863C3C" },
+				{ name: "Ironstone", hex: "86483C" },
+				{ name: "Bull Shot", hex: "864D1E" },
+				{ name: "Rusty Nail", hex: "86560A" },
+				{ name: "Bitter", hex: "868974" },
+				{ name: "Regent Gray", hex: "86949F" },
+				{ name: "Disco", hex: "871550" },
+				{ name: "Americano", hex: "87756E" },
+				{ name: "Hurricane", hex: "877C7B" },
+				{ name: "Oslo Gray", hex: "878D91" },
+				{ name: "Sushi", hex: "87AB39" },
+				{ name: "Spicy Mix", hex: "885342" },
+				{ name: "Kumera", hex: "886221" },
+				{ name: "Suva Gray", hex: "888387" },
+				{ name: "Avocado", hex: "888D65" },
+				{ name: "Camelot", hex: "893456" },
+				{ name: "Solid Pink", hex: "893843" },
+				{ name: "Cannon Pink", hex: "894367" },
+				{ name: "Makara", hex: "897D6D" },
+				{ name: "Burnt Umber", hex: "8A3324" },
+				{ name: "True V", hex: "8A73D6" },
+				{ name: "Clay Creek", hex: "8A8360" },
+				{ name: "Monsoon", hex: "8A8389" },
+				{ name: "Stack", hex: "8A8F8A" },
+				{ name: "Jordy Blue", hex: "8AB9F1" },
+				{ name: "Electric Violet", hex: "8B00FF" },
+				{ name: "Monarch", hex: "8B0723" },
+				{ name: "Corn Harvest", hex: "8B6B0B" },
+				{ name: "Olive Haze", hex: "8B8470" },
+				{ name: "Schooner", hex: "8B847E" },
+				{ name: "Natural Gray", hex: "8B8680" },
+				{ name: "Mantle", hex: "8B9C90" },
+				{ name: "Portage", hex: "8B9FEE" },
+				{ name: "Envy", hex: "8BA690" },
+				{ name: "Cascade", hex: "8BA9A5" },
+				{ name: "Riptide", hex: "8BE6D8" },
+				{ name: "Cardinal Pink", hex: "8C055E" },
+				{ name: "Mule Fawn", hex: "8C472F" },
+				{ name: "Potters Clay", hex: "8C5738" },
+				{ name: "Trendy Pink", hex: "8C6495" },
+				{ name: "Paprika", hex: "8D0226" },
+				{ name: "Sanguine Brown", hex: "8D3D38" },
+				{ name: "Tosca", hex: "8D3F3F" },
+				{ name: "Cement", hex: "8D7662" },
+				{ name: "Granite Green", hex: "8D8974" },
+				{ name: "Manatee", hex: "8D90A1" },
+				{ name: "Polo Blue", hex: "8DA8CC" },
+				{ name: "Red Berry", hex: "8E0000" },
+				{ name: "Rope", hex: "8E4D1E" },
+				{ name: "Opium", hex: "8E6F70" },
+				{ name: "Domino", hex: "8E775E" },
+				{ name: "Mamba", hex: "8E8190" },
+				{ name: "Nepal", hex: "8EABC1" },
+				{ name: "Pohutukawa", hex: "8F021C" },
+				{ name: "El Salva", hex: "8F3E33" },
+				{ name: "Korma", hex: "8F4B0E" },
+				{ name: "Squirrel", hex: "8F8176" },
+				{ name: "Vista Blue", hex: "8FD6B4" },
+				{ name: "Burgundy", hex: "900020" },
+				{ name: "Old Brick", hex: "901E1E" },
+				{ name: "Hemp", hex: "907874" },
+				{ name: "Almond Frost", hex: "907B71" },
+				{ name: "Sycamore", hex: "908D39" },
+				{ name: "Sangria", hex: "92000A" },
+				{ name: "Cumin", hex: "924321" },
+				{ name: "Beaver", hex: "926F5B" },
+				{ name: "Stonewall", hex: "928573" },
+				{ name: "Venus", hex: "928590" },
+				{ name: "Medium Purple", hex: "9370DB" },
+				{ name: "Cornflower", hex: "93CCEA" },
+				{ name: "Algae Green", hex: "93DFB8" },
+				{ name: "Copper Rust", hex: "944747" },
+				{ name: "Arrowtown", hex: "948771" },
+				{ name: "Scarlett", hex: "950015" },
+				{ name: "Strikemaster", hex: "956387" },
+				{ name: "Mountain Mist", hex: "959396" },
+				{ name: "Carmine", hex: "960018" },
+				{ name: "Brown", hex: "964B00" },
+				{ name: "Leather", hex: "967059" },
+				{ name: "Purple Mountain's Majesty", hex: "9678B6" },
+				{ name: "Lavender Purple", hex: "967BB6" },
+				{ name: "Pewter", hex: "96A8A1" },
+				{ name: "Summer Green", hex: "96BBAB" },
+				{ name: "Au Chico", hex: "97605D" },
+				{ name: "Wisteria", hex: "9771B5" },
+				{ name: "Atlantis", hex: "97CD2D" },
+				{ name: "Vin Rouge", hex: "983D61" },
+				{ name: "Lilac Bush", hex: "9874D3" },
+				{ name: "Bazaar", hex: "98777B" },
+				{ name: "Hacienda", hex: "98811B" },
+				{ name: "Pale Oyster", hex: "988D77" },
+				{ name: "Mint Green", hex: "98FF98" },
+				{ name: "Fresh Eggplant", hex: "990066" },
+				{ name: "Violet Eggplant", hex: "991199" },
+				{ name: "Tamarillo", hex: "991613" },
+				{ name: "Totem Pole", hex: "991B07" },
+				{ name: "Copper Rose", hex: "996666" },
+				{ name: "Amethyst", hex: "9966CC" },
+				{ name: "Mountbatten Pink", hex: "997A8D" },
+				{ name: "Blue Bell", hex: "9999CC" },
+				{ name: "Prairie Sand", hex: "9A3820" },
+				{ name: "Toast", hex: "9A6E61" },
+				{ name: "Gurkha", hex: "9A9577" },
+				{ name: "Olivine", hex: "9AB973" },
+				{ name: "Shadow Green", hex: "9AC2B8" },
+				{ name: "Oregon", hex: "9B4703" },
+				{ name: "Lemon Grass", hex: "9B9E8F" },
+				{ name: "Stiletto", hex: "9C3336" },
+				{ name: "Hawaiian Tan", hex: "9D5616" },
+				{ name: "Gull Gray", hex: "9DACB7" },
+				{ name: "Pistachio", hex: "9DC209" },
+				{ name: "Granny Smith Apple", hex: "9DE093" },
+				{ name: "Anakiwa", hex: "9DE5FF" },
+				{ name: "Chelsea Gem", hex: "9E5302" },
+				{ name: "Sepia Skin", hex: "9E5B40" },
+				{ name: "Sage", hex: "9EA587" },
+				{ name: "Citron", hex: "9EA91F" },
+				{ name: "Rock Blue", hex: "9EB1CD" },
+				{ name: "Morning Glory", hex: "9EDEE0" },
+				{ name: "Cognac", hex: "9F381D" },
+				{ name: "Reef Gold", hex: "9F821C" },
+				{ name: "Star Dust", hex: "9F9F9C" },
+				{ name: "Santas Gray", hex: "9FA0B1" },
+				{ name: "Sinbad", hex: "9FD7D3" },
+				{ name: "Feijoa", hex: "9FDD8C" },
+				{ name: "Tabasco", hex: "A02712" },
+				{ name: "Buttered Rum", hex: "A1750D" },
+				{ name: "Hit Gray", hex: "A1ADB5" },
+				{ name: "Citrus", hex: "A1C50A" },
+				{ name: "Aqua Island", hex: "A1DAD7" },
+				{ name: "Water Leaf", hex: "A1E9DE" },
+				{ name: "Flirt", hex: "A2006D" },
+				{ name: "Rouge", hex: "A23B6C" },
+				{ name: "Cape Palliser", hex: "A26645" },
+				{ name: "Gray Chateau", hex: "A2AAB3" },
+				{ name: "Edward", hex: "A2AEAB" },
+				{ name: "Pharlap", hex: "A3807B" },
+				{ name: "Amethyst Smoke", hex: "A397B4" },
+				{ name: "Blizzard Blue", hex: "A3E3ED" },
+				{ name: "Delta", hex: "A4A49D" },
+				{ name: "Wistful", hex: "A4A6D3" },
+				{ name: "Green Smoke", hex: "A4AF6E" },
+				{ name: "Jazzberry Jam", hex: "A50B5E" },
+				{ name: "Zorba", hex: "A59B91" },
+				{ name: "Bahia", hex: "A5CB0C" },
+				{ name: "Roof Terracotta", hex: "A62F20" },
+				{ name: "Paarl", hex: "A65529" },
+				{ name: "Barley Corn", hex: "A68B5B" },
+				{ name: "Donkey Brown", hex: "A69279" },
+				{ name: "Dawn", hex: "A6A29A" },
+				{ name: "Mexican Red", hex: "A72525" },
+				{ name: "Luxor Gold", hex: "A7882C" },
+				{ name: "Rich Gold", hex: "A85307" },
+				{ name: "Reno Sand", hex: "A86515" },
+				{ name: "Coral Tree", hex: "A86B6B" },
+				{ name: "Dusty Gray", hex: "A8989B" },
+				{ name: "Dull Lavender", hex: "A899E6" },
+				{ name: "Tallow", hex: "A8A589" },
+				{ name: "Bud", hex: "A8AE9C" },
+				{ name: "Locust", hex: "A8AF8E" },
+				{ name: "Norway", hex: "A8BD9F" },
+				{ name: "Chinook", hex: "A8E3BD" },
+				{ name: "Gray Olive", hex: "A9A491" },
+				{ name: "Aluminium", hex: "A9ACB6" },
+				{ name: "Cadet Blue", hex: "A9B2C3" },
+				{ name: "Schist", hex: "A9B497" },
+				{ name: "Tower Gray", hex: "A9BDBF" },
+				{ name: "Perano", hex: "A9BEF2" },
+				{ name: "Opal", hex: "A9C6C2" },
+				{ name: "Night Shadz", hex: "AA375A" },
+				{ name: "Fire", hex: "AA4203" },
+				{ name: "Muesli", hex: "AA8B5B" },
+				{ name: "Sandal", hex: "AA8D6F" },
+				{ name: "Shady Lady", hex: "AAA5A9" },
+				{ name: "Logan", hex: "AAA9CD" },
+				{ name: "Spun Pearl", hex: "AAABB7" },
+				{ name: "Regent St Blue", hex: "AAD6E6" },
+				{ name: "Magic Mint", hex: "AAF0D1" },
+				{ name: "Lipstick", hex: "AB0563" },
+				{ name: "Royal Heath", hex: "AB3472" },
+				{ name: "Sandrift", hex: "AB917A" },
+				{ name: "Cold Purple", hex: "ABA0D9" },
+				{ name: "Bronco", hex: "ABA196" },
+				{ name: "Limed Oak", hex: "AC8A56" },
+				{ name: "East Side", hex: "AC91CE" },
+				{ name: "Lemon Ginger", hex: "AC9E22" },
+				{ name: "Napa", hex: "ACA494" },
+				{ name: "Hillary", hex: "ACA586" },
+				{ name: "Cloudy", hex: "ACA59F" },
+				{ name: "Silver Chalice", hex: "ACACAC" },
+				{ name: "Swamp Green", hex: "ACB78E" },
+				{ name: "Spring Rain", hex: "ACCBB1" },
+				{ name: "Conifer", hex: "ACDD4D" },
+				{ name: "Celadon", hex: "ACE1AF" },
+				{ name: "Mandalay", hex: "AD781B" },
+				{ name: "Casper", hex: "ADBED1" },
+				{ name: "Moss Green", hex: "ADDFAD" },
+				{ name: "Padua", hex: "ADE6C4" },
+				{ name: "Green Yellow", hex: "ADFF2F" },
+				{ name: "Hippie Pink", hex: "AE4560" },
+				{ name: "Desert", hex: "AE6020" },
+				{ name: "Bouquet", hex: "AE809E" },
+				{ name: "Medium Carmine", hex: "AF4035" },
+				{ name: "Apple Blossom", hex: "AF4D43" },
+				{ name: "Brown Rust", hex: "AF593E" },
+				{ name: "Driftwood", hex: "AF8751" },
+				{ name: "Alpine", hex: "AF8F2C" },
+				{ name: "Lucky", hex: "AF9F1C" },
+				{ name: "Martini", hex: "AFA09E" },
+				{ name: "Bombay", hex: "AFB1B8" },
+				{ name: "Pigeon Post", hex: "AFBDD9" },
+				{ name: "Cadillac", hex: "B04C6A" },
+				{ name: "Matrix", hex: "B05D54" },
+				{ name: "Tapestry", hex: "B05E81" },
+				{ name: "Mai Tai", hex: "B06608" },
+				{ name: "Del Rio", hex: "B09A95" },
+				{ name: "Powder Blue", hex: "B0E0E6" },
+				{ name: "Inch Worm", hex: "B0E313" },
+				{ name: "Bright Red", hex: "B10000" },
+				{ name: "Vesuvius", hex: "B14A0B" },
+				{ name: "Pumpkin Skin", hex: "B1610B" },
+				{ name: "Santa Fe", hex: "B16D52" },
+				{ name: "Teak", hex: "B19461" },
+				{ name: "Fringy Flower", hex: "B1E2C1" },
+				{ name: "Ice Cold", hex: "B1F4E7" },
+				{ name: "Shiraz", hex: "B20931" },
+				{ name: "Biloba Flower", hex: "B2A1EA" },
+				{ name: "Tall Poppy", hex: "B32D29" },
+				{ name: "Fiery Orange", hex: "B35213" },
+				{ name: "Hot Toddy", hex: "B38007" },
+				{ name: "Taupe Gray", hex: "B3AF95" },
+				{ name: "La Rioja", hex: "B3C110" },
+				{ name: "Well Read", hex: "B43332" },
+				{ name: "Blush", hex: "B44668" },
+				{ name: "Jungle Mist", hex: "B4CFD3" },
+				{ name: "Turkish Rose", hex: "B57281" },
+				{ name: "Lavender", hex: "B57EDC" },
+				{ name: "Mongoose", hex: "B5A27F" },
+				{ name: "Olive Green", hex: "B5B35C" },
+				{ name: "Jet Stream", hex: "B5D2CE" },
+				{ name: "Cruise", hex: "B5ECDF" },
+				{ name: "Hibiscus", hex: "B6316C" },
+				{ name: "Thatch", hex: "B69D98" },
+				{ name: "Heathered Gray", hex: "B6B095" },
+				{ name: "Eagle", hex: "B6BAA4" },
+				{ name: "Spindle", hex: "B6D1EA" },
+				{ name: "Gum Leaf", hex: "B6D3BF" },
+				{ name: "Rust", hex: "B7410E" },
+				{ name: "Muddy Waters", hex: "B78E5C" },
+				{ name: "Sahara", hex: "B7A214" },
+				{ name: "Husk", hex: "B7A458" },
+				{ name: "Nobel", hex: "B7B1B1" },
+				{ name: "Heather", hex: "B7C3D0" },
+				{ name: "Madang", hex: "B7F0BE" },
+				{ name: "Milano Red", hex: "B81104" },
+				{ name: "Copper", hex: "B87333" },
+				{ name: "Gimblet", hex: "B8B56A" },
+				{ name: "Green Spring", hex: "B8C1B1" },
+				{ name: "Celery", hex: "B8C25D" },
+				{ name: "Sail", hex: "B8E0F9" },
+				{ name: "Chestnut", hex: "B94E48" },
+				{ name: "Crail", hex: "B95140" },
+				{ name: "Marigold", hex: "B98D28" },
+				{ name: "Wild Willow", hex: "B9C46A" },
+				{ name: "Rainee", hex: "B9C8AC" },
+				{ name: "Guardsman Red", hex: "BA0101" },
+				{ name: "Rock Spray", hex: "BA450C" },
+				{ name: "Bourbon", hex: "BA6F1E" },
+				{ name: "Pirate Gold", hex: "BA7F03" },
+				{ name: "Nomad", hex: "BAB1A2" },
+				{ name: "Submarine", hex: "BAC7C9" },
+				{ name: "Charlotte", hex: "BAEEF9" },
+				{ name: "Medium Red Violet", hex: "BB3385" },
+				{ name: "Brandy Rose", hex: "BB8983" },
+				{ name: "Rio Grande", hex: "BBD009" },
+				{ name: "Surf", hex: "BBD7C1" },
+				{ name: "Powder Ash", hex: "BCC9C2" },
+				{ name: "Tuscany", hex: "BD5E2E" },
+				{ name: "Quicksand", hex: "BD978E" },
+				{ name: "Silk", hex: "BDB1A8" },
+				{ name: "Malta", hex: "BDB2A1" },
+				{ name: "Chatelle", hex: "BDB3C7" },
+				{ name: "Lavender Gray", hex: "BDBBD7" },
+				{ name: "French Gray", hex: "BDBDC6" },
+				{ name: "Clay Ash", hex: "BDC8B3" },
+				{ name: "Loblolly", hex: "BDC9CE" },
+				{ name: "French Pass", hex: "BDEDFD" },
+				{ name: "London Hue", hex: "BEA6C3" },
+				{ name: "Pink Swan", hex: "BEB5B7" },
+				{ name: "Fuego", hex: "BEDE0D" },
+				{ name: "Rose of Sharon", hex: "BF5500" },
+				{ name: "Tide", hex: "BFB8B0" },
+				{ name: "Blue Haze", hex: "BFBED8" },
+				{ name: "Silver Sand", hex: "BFC1C2" },
+				{ name: "Key Lime Pie", hex: "BFC921" },
+				{ name: "Ziggurat", hex: "BFDBE2" },
+				{ name: "Lime", hex: "BFFF00" },
+				{ name: "Thunderbird", hex: "C02B18" },
+				{ name: "Mojo", hex: "C04737" },
+				{ name: "Old Rose", hex: "C08081" },
+				{ name: "Silver", hex: "C0C0C0" },
+				{ name: "Pale Leaf", hex: "C0D3B9" },
+				{ name: "Pixie Green", hex: "C0D8B6" },
+				{ name: "Tia Maria", hex: "C1440E" },
+				{ name: "Fuchsia Pink", hex: "C154C1" },
+				{ name: "Buddha Gold", hex: "C1A004" },
+				{ name: "Bison Hide", hex: "C1B7A4" },
+				{ name: "Tea", hex: "C1BAB0" },
+				{ name: "Gray Suit", hex: "C1BECD" },
+				{ name: "Sprout", hex: "C1D7B0" },
+				{ name: "Sulu", hex: "C1F07C" },
+				{ name: "Indochine", hex: "C26B03" },
+				{ name: "Twine", hex: "C2955D" },
+				{ name: "Cotton Seed", hex: "C2BDB6" },
+				{ name: "Pumice", hex: "C2CAC4" },
+				{ name: "Jagged Ice", hex: "C2E8E5" },
+				{ name: "Maroon Flush", hex: "C32148" },
+				{ name: "Indian Khaki", hex: "C3B091" },
+				{ name: "Pale Slate", hex: "C3BFC1" },
+				{ name: "Gray Nickel", hex: "C3C3BD" },
+				{ name: "Periwinkle Gray", hex: "C3CDE6" },
+				{ name: "Tiara", hex: "C3D1D1" },
+				{ name: "Tropical Blue", hex: "C3DDF9" },
+				{ name: "Cardinal", hex: "C41E3A" },
+				{ name: "Fuzzy Wuzzy Brown", hex: "C45655" },
+				{ name: "Orange Roughy", hex: "C45719" },
+				{ name: "Mist Gray", hex: "C4C4BC" },
+				{ name: "Coriander", hex: "C4D0B0" },
+				{ name: "Mint Tulip", hex: "C4F4EB" },
+				{ name: "Mulberry", hex: "C54B8C" },
+				{ name: "Nugget", hex: "C59922" },
+				{ name: "Tussock", hex: "C5994B" },
+				{ name: "Sea Mist", hex: "C5DBCA" },
+				{ name: "Yellow Green", hex: "C5E17A" },
+				{ name: "Brick Red", hex: "C62D42" },
+				{ name: "Contessa", hex: "C6726B" },
+				{ name: "Oriental Pink", hex: "C69191" },
+				{ name: "Roti", hex: "C6A84B" },
+				{ name: "Ash", hex: "C6C3B5" },
+				{ name: "Kangaroo", hex: "C6C8BD" },
+				{ name: "Las Palmas", hex: "C6E610" },
+				{ name: "Monza", hex: "C7031E" },
+				{ name: "Red Violet", hex: "C71585" },
+				{ name: "Coral Reef", hex: "C7BCA2" },
+				{ name: "Melrose", hex: "C7C1FF" },
+				{ name: "Cloud", hex: "C7C4BF" },
+				{ name: "Ghost", hex: "C7C9D5" },
+				{ name: "Pine Glade", hex: "C7CD90" },
+				{ name: "Botticelli", hex: "C7DDE5" },
+				{ name: "Antique Brass", hex: "C88A65" },
+				{ name: "Lilac", hex: "C8A2C8" },
+				{ name: "Hokey Pokey", hex: "C8A528" },
+				{ name: "Lily", hex: "C8AABF" },
+				{ name: "Laser", hex: "C8B568" },
+				{ name: "Edgewater", hex: "C8E3D7" },
+				{ name: "Piper", hex: "C96323" },
+				{ name: "Pizza", hex: "C99415" },
+				{ name: "Light Wisteria", hex: "C9A0DC" },
+				{ name: "Rodeo Dust", hex: "C9B29B" },
+				{ name: "Sundance", hex: "C9B35B" },
+				{ name: "Earls Green", hex: "C9B93B" },
+				{ name: "Silver Rust", hex: "C9C0BB" },
+				{ name: "Conch", hex: "C9D9D2" },
+				{ name: "Reef", hex: "C9FFA2" },
+				{ name: "Aero Blue", hex: "C9FFE5" },
+				{ name: "Flush Mahogany", hex: "CA3435" },
+				{ name: "Turmeric", hex: "CABB48" },
+				{ name: "Paris White", hex: "CADCD4" },
+				{ name: "Bitter Lemon", hex: "CAE00D" },
+				{ name: "Skeptic", hex: "CAE6DA" },
+				{ name: "Viola", hex: "CB8FA9" },
+				{ name: "Foggy Gray", hex: "CBCAB6" },
+				{ name: "Green Mist", hex: "CBD3B0" },
+				{ name: "Nebula", hex: "CBDBD6" },
+				{ name: "Persian Red", hex: "CC3333" },
+				{ name: "Burnt Orange", hex: "CC5500" },
+				{ name: "Ochre", hex: "CC7722" },
+				{ name: "Puce", hex: "CC8899" },
+				{ name: "Thistle Green", hex: "CCCAA8" },
+				{ name: "Periwinkle", hex: "CCCCFF" },
+				{ name: "Electric Lime", hex: "CCFF00" },
+				{ name: "Tenn", hex: "CD5700" },
+				{ name: "Chestnut Rose", hex: "CD5C5C" },
+				{ name: "Brandy Punch", hex: "CD8429" },
+				{ name: "Onahau", hex: "CDF4FF" },
+				{ name: "Sorrell Brown", hex: "CEB98F" },
+				{ name: "Cold Turkey", hex: "CEBABA" },
+				{ name: "Yuma", hex: "CEC291" },
+				{ name: "Chino", hex: "CEC7A7" },
+				{ name: "Eunry", hex: "CFA39D" },
+				{ name: "Old Gold", hex: "CFB53B" },
+				{ name: "Tasman", hex: "CFDCCF" },
+				{ name: "Surf Crest", hex: "CFE5D2" },
+				{ name: "Humming Bird", hex: "CFF9F3" },
+				{ name: "Scandal", hex: "CFFAF4" },
+				{ name: "Red Stage", hex: "D05F04" },
+				{ name: "Hopbush", hex: "D06DA1" },
+				{ name: "Meteor", hex: "D07D12" },
+				{ name: "Perfume", hex: "D0BEF8" },
+				{ name: "Prelude", hex: "D0C0E5" },
+				{ name: "Tea Green", hex: "D0F0C0" },
+				{ name: "Geebung", hex: "D18F1B" },
+				{ name: "Vanilla", hex: "D1BEA8" },
+				{ name: "Soft Amber", hex: "D1C6B4" },
+				{ name: "Celeste", hex: "D1D2CA" },
+				{ name: "Mischka", hex: "D1D2DD" },
+				{ name: "Pear", hex: "D1E231" },
+				{ name: "Hot Cinnamon", hex: "D2691E" },
+				{ name: "Raw Sienna", hex: "D27D46" },
+				{ name: "Careys Pink", hex: "D29EAA" },
+				{ name: "Tan", hex: "D2B48C" },
+				{ name: "Deco", hex: "D2DA97" },
+				{ name: "Blue Romance", hex: "D2F6DE" },
+				{ name: "Gossip", hex: "D2F8B0" },
+				{ name: "Sisal", hex: "D3CBBA" },
+				{ name: "Swirl", hex: "D3CDC5" },
+				{ name: "Charm", hex: "D47494" },
+				{ name: "Clam Shell", hex: "D4B6AF" },
+				{ name: "Straw", hex: "D4BF8D" },
+				{ name: "Akaroa", hex: "D4C4A8" },
+				{ name: "Bird Flower", hex: "D4CD16" },
+				{ name: "Iron", hex: "D4D7D9" },
+				{ name: "Geyser", hex: "D4DFE2" },
+				{ name: "Hawkes Blue", hex: "D4E2FC" },
+				{ name: "Grenadier", hex: "D54600" },
+				{ name: "Can Can", hex: "D591A4" },
+				{ name: "Whiskey", hex: "D59A6F" },
+				{ name: "Winter Hazel", hex: "D5D195" },
+				{ name: "Granny Apple", hex: "D5F6E3" },
+				{ name: "My Pink", hex: "D69188" },
+				{ name: "Tacha", hex: "D6C562" },
+				{ name: "Moon Raker", hex: "D6CEF6" },
+				{ name: "Quill Gray", hex: "D6D6D1" },
+				{ name: "Snowy Mint", hex: "D6FFDB" },
+				{ name: "New York Pink", hex: "D7837F" },
+				{ name: "Pavlova", hex: "D7C498" },
+				{ name: "Fog", hex: "D7D0FF" },
+				{ name: "Valencia", hex: "D84437" },
+				{ name: "Japonica", hex: "D87C63" },
+				{ name: "Thistle", hex: "D8BFD8" },
+				{ name: "Maverick", hex: "D8C2D5" },
+				{ name: "Foam", hex: "D8FCFA" },
+				{ name: "Cabaret", hex: "D94972" },
+				{ name: "Burning Sand", hex: "D99376" },
+				{ name: "Cameo", hex: "D9B99B" },
+				{ name: "Timberwolf", hex: "D9D6CF" },
+				{ name: "Tana", hex: "D9DCC1" },
+				{ name: "Link Water", hex: "D9E4F5" },
+				{ name: "Mabel", hex: "D9F7FF" },
+				{ name: "Cerise", hex: "DA3287" },
+				{ name: "Flame Pea", hex: "DA5B38" },
+				{ name: "Bamboo", hex: "DA6304" },
+				{ name: "Red Damask", hex: "DA6A41" },
+				{ name: "Orchid", hex: "DA70D6" },
+				{ name: "Copperfield", hex: "DA8A67" },
+				{ name: "Golden Grass", hex: "DAA520" },
+				{ name: "Zanah", hex: "DAECD6" },
+				{ name: "Iceberg", hex: "DAF4F0" },
+				{ name: "Oyster Bay", hex: "DAFAFF" },
+				{ name: "Cranberry", hex: "DB5079" },
+				{ name: "Petite Orchid", hex: "DB9690" },
+				{ name: "Di Serria", hex: "DB995E" },
+				{ name: "Alto", hex: "DBDBDB" },
+				{ name: "Frosted Mint", hex: "DBFFF8" },
+				{ name: "Crimson", hex: "DC143C" },
+				{ name: "Punch", hex: "DC4333" },
+				{ name: "Galliano", hex: "DCB20C" },
+				{ name: "Blossom", hex: "DCB4BC" },
+				{ name: "Wattle", hex: "DCD747" },
+				{ name: "Westar", hex: "DCD9D2" },
+				{ name: "Moon Mist", hex: "DCDDCC" },
+				{ name: "Caper", hex: "DCEDB4" },
+				{ name: "Swans Down", hex: "DCF0EA" },
+				{ name: "Swiss Coffee", hex: "DDD6D5" },
+				{ name: "White Ice", hex: "DDF9F1" },
+				{ name: "Cerise Red", hex: "DE3163" },
+				{ name: "Roman", hex: "DE6360" },
+				{ name: "Tumbleweed", hex: "DEA681" },
+				{ name: "Gold Tips", hex: "DEBA13" },
+				{ name: "Brandy", hex: "DEC196" },
+				{ name: "Wafer", hex: "DECBC6" },
+				{ name: "Sapling", hex: "DED4A4" },
+				{ name: "Barberry", hex: "DED717" },
+				{ name: "Beryl Green", hex: "DEE5C0" },
+				{ name: "Pattens Blue", hex: "DEF5FF" },
+				{ name: "Heliotrope", hex: "DF73FF" },
+				{ name: "Apache", hex: "DFBE6F" },
+				{ name: "Chenin", hex: "DFCD6F" },
+				{ name: "Lola", hex: "DFCFDB" },
+				{ name: "Willow Brook", hex: "DFECDA" },
+				{ name: "Chartreuse Yellow", hex: "DFFF00" },
+				{ name: "Mauve", hex: "E0B0FF" },
+				{ name: "Anzac", hex: "E0B646" },
+				{ name: "Harvest Gold", hex: "E0B974" },
+				{ name: "Calico", hex: "E0C095" },
+				{ name: "Baby Blue", hex: "E0FFFF" },
+				{ name: "Sunglo", hex: "E16865" },
+				{ name: "Equator", hex: "E1BC64" },
+				{ name: "Pink Flare", hex: "E1C0C8" },
+				{ name: "Periglacial Blue", hex: "E1E6D6" },
+				{ name: "Kidnapper", hex: "E1EAD4" },
+				{ name: "Tara", hex: "E1F6E8" },
+				{ name: "Mandy", hex: "E25465" },
+				{ name: "Terracotta", hex: "E2725B" },
+				{ name: "Golden Bell", hex: "E28913" },
+				{ name: "Shocking", hex: "E292C0" },
+				{ name: "Dixie", hex: "E29418" },
+				{ name: "Light Orchid", hex: "E29CD2" },
+				{ name: "Snuff", hex: "E2D8ED" },
+				{ name: "Mystic", hex: "E2EBED" },
+				{ name: "Apple Green", hex: "E2F3EC" },
+				{ name: "Razzmatazz", hex: "E30B5C" },
+				{ name: "Alizarin Crimson", hex: "E32636" },
+				{ name: "Cinnabar", hex: "E34234" },
+				{ name: "Cavern Pink", hex: "E3BEBE" },
+				{ name: "Peppermint", hex: "E3F5E1" },
+				{ name: "Mindaro", hex: "E3F988" },
+				{ name: "Deep Blush", hex: "E47698" },
+				{ name: "Gamboge", hex: "E49B0F" },
+				{ name: "Melanie", hex: "E4C2D5" },
+				{ name: "Twilight", hex: "E4CFDE" },
+				{ name: "Bone", hex: "E4D1C0" },
+				{ name: "Sunflower", hex: "E4D422" },
+				{ name: "Grain Brown", hex: "E4D5B7" },
+				{ name: "Zombie", hex: "E4D69B" },
+				{ name: "Frostee", hex: "E4F6E7" },
+				{ name: "Snow Flurry", hex: "E4FFD1" },
+				{ name: "Amaranth", hex: "E52B50" },
+				{ name: "Zest", hex: "E5841B" },
+				{ name: "Dust Storm", hex: "E5CCC9" },
+				{ name: "Stark White", hex: "E5D7BD" },
+				{ name: "Hampton", hex: "E5D8AF" },
+				{ name: "Bon Jour", hex: "E5E0E1" },
+				{ name: "Mercury", hex: "E5E5E5" },
+				{ name: "Polar", hex: "E5F9F6" },
+				{ name: "Trinidad", hex: "E64E03" },
+				{ name: "Gold Sand", hex: "E6BE8A" },
+				{ name: "Cashmere", hex: "E6BEA5" },
+				{ name: "Double Spanish White", hex: "E6D7B9" },
+				{ name: "Satin Linen", hex: "E6E4D4" },
+				{ name: "Harp", hex: "E6F2EA" },
+				{ name: "Off Green", hex: "E6F8F3" },
+				{ name: "Hint of Green", hex: "E6FFE9" },
+				{ name: "Tranquil", hex: "E6FFFF" },
+				{ name: "Mango Tango", hex: "E77200" },
+				{ name: "Christine", hex: "E7730A" },
+				{ name: "Tonys Pink", hex: "E79F8C" },
+				{ name: "Kobi", hex: "E79FC4" },
+				{ name: "Rose Fog", hex: "E7BCB4" },
+				{ name: "Corn", hex: "E7BF05" },
+				{ name: "Putty", hex: "E7CD8C" },
+				{ name: "Gray Nurse", hex: "E7ECE6" },
+				{ name: "Lily White", hex: "E7F8FF" },
+				{ name: "Bubbles", hex: "E7FEFF" },
+				{ name: "Fire Bush", hex: "E89928" },
+				{ name: "Shilo", hex: "E8B9B3" },
+				{ name: "Pearl Bush", hex: "E8E0D5" },
+				{ name: "Green White", hex: "E8EBE0" },
+				{ name: "Chrome White", hex: "E8F1D4" },
+				{ name: "Gin", hex: "E8F2EB" },
+				{ name: "Aqua Squeeze", hex: "E8F5F2" },
+				{ name: "Clementine", hex: "E96E00" },
+				{ name: "Burnt Sienna", hex: "E97451" },
+				{ name: "Tahiti Gold", hex: "E97C07" },
+				{ name: "Oyster Pink", hex: "E9CECD" },
+				{ name: "Confetti", hex: "E9D75A" },
+				{ name: "Ebb", hex: "E9E3E3" },
+				{ name: "Ottoman", hex: "E9F8ED" },
+				{ name: "Clear Day", hex: "E9FFFD" },
+				{ name: "Carissma", hex: "EA88A8" },
+				{ name: "Porsche", hex: "EAAE69" },
+				{ name: "Tulip Tree", hex: "EAB33B" },
+				{ name: "Rob Roy", hex: "EAC674" },
+				{ name: "Raffia", hex: "EADAB8" },
+				{ name: "White Rock", hex: "EAE8D4" },
+				{ name: "Panache", hex: "EAF6EE" },
+				{ name: "Solitude", hex: "EAF6FF" },
+				{ name: "Aqua Spring", hex: "EAF9F5" },
+				{ name: "Dew", hex: "EAFFFE" },
+				{ name: "Apricot", hex: "EB9373" },
+				{ name: "Zinnwaldite", hex: "EBC2AF" },
+				{ name: "Fuel Yellow", hex: "ECA927" },
+				{ name: "Ronchi", hex: "ECC54E" },
+				{ name: "French Lilac", hex: "ECC7EE" },
+				{ name: "Just Right", hex: "ECCDB9" },
+				{ name: "Wild Rice", hex: "ECE090" },
+				{ name: "Fall Green", hex: "ECEBBD" },
+				{ name: "Aths Special", hex: "ECEBCE" },
+				{ name: "Starship", hex: "ECF245" },
+				{ name: "Red Ribbon", hex: "ED0A3F" },
+				{ name: "Tango", hex: "ED7A1C" },
+				{ name: "Carrot Orange", hex: "ED9121" },
+				{ name: "Sea Pink", hex: "ED989E" },
+				{ name: "Tacao", hex: "EDB381" },
+				{ name: "Desert Sand", hex: "EDC9AF" },
+				{ name: "Pancho", hex: "EDCDAB" },
+				{ name: "Chamois", hex: "EDDCB1" },
+				{ name: "Primrose", hex: "EDEA99" },
+				{ name: "Frost", hex: "EDF5DD" },
+				{ name: "Aqua Haze", hex: "EDF5F5" },
+				{ name: "Zumthor", hex: "EDF6FF" },
+				{ name: "Narvik", hex: "EDF9F1" },
+				{ name: "Honeysuckle", hex: "EDFC84" },
+				{ name: "Lavender Magenta", hex: "EE82EE" },
+				{ name: "Beauty Bush", hex: "EEC1BE" },
+				{ name: "Chalky", hex: "EED794" },
+				{ name: "Almond", hex: "EED9C4" },
+				{ name: "Flax", hex: "EEDC82" },
+				{ name: "Bizarre", hex: "EEDEDA" },
+				{ name: "Double Colonial White", hex: "EEE3AD" },
+				{ name: "Cararra", hex: "EEEEE8" },
+				{ name: "Manz", hex: "EEEF78" },
+				{ name: "Tahuna Sands", hex: "EEF0C8" },
+				{ name: "Athens Gray", hex: "EEF0F3" },
+				{ name: "Tusk", hex: "EEF3C3" },
+				{ name: "Loafer", hex: "EEF4DE" },
+				{ name: "Catskill White", hex: "EEF6F7" },
+				{ name: "Twilight Blue", hex: "EEFDFF" },
+				{ name: "Jonquil", hex: "EEFF9A" },
+				{ name: "Rice Flower", hex: "EEFFE2" },
+				{ name: "Jaffa", hex: "EF863F" },
+				{ name: "Gallery", hex: "EFEFEF" },
+				{ name: "Porcelain", hex: "EFF2F3" },
+				{ name: "Mauvelous", hex: "F091A9" },
+				{ name: "Golden Dream", hex: "F0D52D" },
+				{ name: "Golden Sand", hex: "F0DB7D" },
+				{ name: "Buff", hex: "F0DC82" },
+				{ name: "Prim", hex: "F0E2EC" },
+				{ name: "Khaki", hex: "F0E68C" },
+				{ name: "Selago", hex: "F0EEFD" },
+				{ name: "Titan White", hex: "F0EEFF" },
+				{ name: "Alice Blue", hex: "F0F8FF" },
+				{ name: "Feta", hex: "F0FCEA" },
+				{ name: "Gold Drop", hex: "F18200" },
+				{ name: "Wewak", hex: "F19BAB" },
+				{ name: "Sahara Sand", hex: "F1E788" },
+				{ name: "Parchment", hex: "F1E9D2" },
+				{ name: "Blue Chalk", hex: "F1E9FF" },
+				{ name: "Mint Julep", hex: "F1EEC1" },
+				{ name: "Seashell", hex: "F1F1F1" },
+				{ name: "Saltpan", hex: "F1F7F2" },
+				{ name: "Tidal", hex: "F1FFAD" },
+				{ name: "Chiffon", hex: "F1FFC8" },
+				{ name: "Flamingo", hex: "F2552A" },
+				{ name: "Tangerine", hex: "F28500" },
+				{ name: "Mandys Pink", hex: "F2C3B2" },
+				{ name: "Concrete", hex: "F2F2F2" },
+				{ name: "Black Squeeze", hex: "F2FAFA" },
+				{ name: "Pomegranate", hex: "F34723" },
+				{ name: "Buttercup", hex: "F3AD16" },
+				{ name: "New Orleans", hex: "F3D69D" },
+				{ name: "Vanilla Ice", hex: "F3D9DF" },
+				{ name: "Sidecar", hex: "F3E7BB" },
+				{ name: "Dawn Pink", hex: "F3E9E5" },
+				{ name: "Wheatfield", hex: "F3EDCF" },
+				{ name: "Canary", hex: "F3FB62" },
+				{ name: "Orinoco", hex: "F3FBD4" },
+				{ name: "Carla", hex: "F3FFD8" },
+				{ name: "Hollywood Cerise", hex: "F400A1" },
+				{ name: "Sandy brown", hex: "F4A460" },
+				{ name: "Saffron", hex: "F4C430" },
+				{ name: "Ripe Lemon", hex: "F4D81C" },
+				{ name: "Janna", hex: "F4EBD3" },
+				{ name: "Pampas", hex: "F4F2EE" },
+				{ name: "Wild Sand", hex: "F4F4F4" },
+				{ name: "Zircon", hex: "F4F8FF" },
+				{ name: "Froly", hex: "F57584" },
+				{ name: "Cream Can", hex: "F5C85C" },
+				{ name: "Manhattan", hex: "F5C999" },
+				{ name: "Maize", hex: "F5D5A0" },
+				{ name: "Wheat", hex: "F5DEB3" },
+				{ name: "Sandwisp", hex: "F5E7A2" },
+				{ name: "Pot Pourri", hex: "F5E7E2" },
+				{ name: "Albescent White", hex: "F5E9D3" },
+				{ name: "Soft Peach", hex: "F5EDEF" },
+				{ name: "Ecru White", hex: "F5F3E5" },
+				{ name: "Beige", hex: "F5F5DC" },
+				{ name: "Golden Fizz", hex: "F5FB3D" },
+				{ name: "Australian Mint", hex: "F5FFBE" },
+				{ name: "French Rose", hex: "F64A8A" },
+				{ name: "Brilliant Rose", hex: "F653A6" },
+				{ name: "Illusion", hex: "F6A4C9" },
+				{ name: "Merino", hex: "F6F0E6" },
+				{ name: "Black Haze", hex: "F6F7F7" },
+				{ name: "Spring Sun", hex: "F6FFDC" },
+				{ name: "Violet Red", hex: "F7468A" },
+				{ name: "Chilean Fire", hex: "F77703" },
+				{ name: "Persian Pink", hex: "F77FBE" },
+				{ name: "Rajah", hex: "F7B668" },
+				{ name: "Azalea", hex: "F7C8DA" },
+				{ name: "We Peep", hex: "F7DBE6" },
+				{ name: "Quarter Spanish White", hex: "F7F2E1" },
+				{ name: "Whisper", hex: "F7F5FA" },
+				{ name: "Snow Drift", hex: "F7FAF7" },
+				{ name: "Casablanca", hex: "F8B853" },
+				{ name: "Chantilly", hex: "F8C3DF" },
+				{ name: "Cherub", hex: "F8D9E9" },
+				{ name: "Marzipan", hex: "F8DB9D" },
+				{ name: "Energy Yellow", hex: "F8DD5C" },
+				{ name: "Givry", hex: "F8E4BF" },
+				{ name: "White Linen", hex: "F8F0E8" },
+				{ name: "Magnolia", hex: "F8F4FF" },
+				{ name: "Spring Wood", hex: "F8F6F1" },
+				{ name: "Coconut Cream", hex: "F8F7DC" },
+				{ name: "White Lilac", hex: "F8F7FC" },
+				{ name: "Desert Storm", hex: "F8F8F7" },
+				{ name: "Texas", hex: "F8F99C" },
+				{ name: "Corn Field", hex: "F8FACD" },
+				{ name: "Mimosa", hex: "F8FDD3" },
+				{ name: "Carnation", hex: "F95A61" },
+				{ name: "Saffron Mango", hex: "F9BF58" },
+				{ name: "Carousel Pink", hex: "F9E0ED" },
+				{ name: "Dairy Cream", hex: "F9E4BC" },
+				{ name: "Portica", hex: "F9E663" },
+				{ name: "Amour", hex: "F9EAF3" },
+				{ name: "Rum Swizzle", hex: "F9F8E4" },
+				{ name: "Dolly", hex: "F9FF8B" },
+				{ name: "Sugar Cane", hex: "F9FFF6" },
+				{ name: "Ecstasy", hex: "FA7814" },
+				{ name: "Tan Hide", hex: "FA9D5A" },
+				{ name: "Corvette", hex: "FAD3A2" },
+				{ name: "Peach Yellow", hex: "FADFAD" },
+				{ name: "Turbo", hex: "FAE600" },
+				{ name: "Astra", hex: "FAEAB9" },
+				{ name: "Champagne", hex: "FAECCC" },
+				{ name: "Linen", hex: "FAF0E6" },
+				{ name: "Fantasy", hex: "FAF3F0" },
+				{ name: "Citrine White", hex: "FAF7D6" },
+				{ name: "Alabaster", hex: "FAFAFA" },
+				{ name: "Hint of Yellow", hex: "FAFDE4" },
+				{ name: "Milan", hex: "FAFFA4" },
+				{ name: "Brink Pink", hex: "FB607F" },
+				{ name: "Geraldine", hex: "FB8989" },
+				{ name: "Lavender Rose", hex: "FBA0E3" },
+				{ name: "Sea Buckthorn", hex: "FBA129" },
+				{ name: "Sun", hex: "FBAC13" },
+				{ name: "Lavender Pink", hex: "FBAED2" },
+				{ name: "Rose Bud", hex: "FBB2A3" },
+				{ name: "Cupid", hex: "FBBEDA" },
+				{ name: "Classic Rose", hex: "FBCCE7" },
+				{ name: "Apricot Peach", hex: "FBCEB1" },
+				{ name: "Banana Mania", hex: "FBE7B2" },
+				{ name: "Marigold Yellow", hex: "FBE870" },
+				{ name: "Festival", hex: "FBE96C" },
+				{ name: "Sweet Corn", hex: "FBEA8C" },
+				{ name: "Candy Corn", hex: "FBEC5D" },
+				{ name: "Hint of Red", hex: "FBF9F9" },
+				{ name: "Shalimar", hex: "FBFFBA" },
+				{ name: "Shocking Pink", hex: "FC0FC0" },
+				{ name: "Tickle Me Pink", hex: "FC80A5" },
+				{ name: "Tree Poppy", hex: "FC9C1D" },
+				{ name: "Lightning Yellow", hex: "FCC01E" },
+				{ name: "Goldenrod", hex: "FCD667" },
+				{ name: "Candlelight", hex: "FCD917" },
+				{ name: "Cherokee", hex: "FCDA98" },
+				{ name: "Double Pearl Lusta", hex: "FCF4D0" },
+				{ name: "Pearl Lusta", hex: "FCF4DC" },
+				{ name: "Vista White", hex: "FCF8F7" },
+				{ name: "Bianca", hex: "FCFBF3" },
+				{ name: "Moon Glow", hex: "FCFEDA" },
+				{ name: "China Ivory", hex: "FCFFE7" },
+				{ name: "Ceramic", hex: "FCFFF9" },
+				{ name: "Torch Red", hex: "FD0E35" },
+				{ name: "Wild Watermelon", hex: "FD5B78" },
+				{ name: "Crusta", hex: "FD7B33" },
+				{ name: "Sorbus", hex: "FD7C07" },
+				{ name: "Sweet Pink", hex: "FD9FA2" },
+				{ name: "Light Apricot", hex: "FDD5B1" },
+				{ name: "Pig Pink", hex: "FDD7E4" },
+				{ name: "Cinderella", hex: "FDE1DC" },
+				{ name: "Golden Glow", hex: "FDE295" },
+				{ name: "Lemon", hex: "FDE910" },
+				{ name: "Old Lace", hex: "FDF5E6" },
+				{ name: "Half Colonial White", hex: "FDF6D3" },
+				{ name: "Drover", hex: "FDF7AD" },
+				{ name: "Pale Prim", hex: "FDFEB8" },
+				{ name: "Cumulus", hex: "FDFFD5" },
+				{ name: "Persian Rose", hex: "FE28A2" },
+				{ name: "Sunset Orange", hex: "FE4C40" },
+				{ name: "Bittersweet", hex: "FE6F5E" },
+				{ name: "California", hex: "FE9D04" },
+				{ name: "Yellow Sea", hex: "FEA904" },
+				{ name: "Melon", hex: "FEBAAD" },
+				{ name: "Bright Sun", hex: "FED33C" },
+				{ name: "Dandelion", hex: "FED85D" },
+				{ name: "Salomie", hex: "FEDB8D" },
+				{ name: "Cape Honey", hex: "FEE5AC" },
+				{ name: "Remy", hex: "FEEBF3" },
+				{ name: "Oasis", hex: "FEEFCE" },
+				{ name: "Bridesmaid", hex: "FEF0EC" },
+				{ name: "Beeswax", hex: "FEF2C7" },
+				{ name: "Bleach White", hex: "FEF3D8" },
+				{ name: "Pipi", hex: "FEF4CC" },
+				{ name: "Half Spanish White", hex: "FEF4DB" },
+				{ name: "Wisp Pink", hex: "FEF4F8" },
+				{ name: "Provincial Pink", hex: "FEF5F1" },
+				{ name: "Half Dutch White", hex: "FEF7DE" },
+				{ name: "Solitaire", hex: "FEF8E2" },
+				{ name: "White Pointer", hex: "FEF8FF" },
+				{ name: "Off Yellow", hex: "FEF9E3" },
+				{ name: "Orange White", hex: "FEFCED" },
+				{ name: "Red", hex: "FF0000" },
+				{ name: "Rose", hex: "FF007F" },
+				{ name: "Purple Pizzazz", hex: "FF00CC" },
+				{ name: "Magenta / Fuchsia", hex: "FF00FF" },
+				{ name: "Scarlet", hex: "FF2400" },
+				{ name: "Wild Strawberry", hex: "FF3399" },
+				{ name: "Razzle Dazzle Rose", hex: "FF33CC" },
+				{ name: "Radical Red", hex: "FF355E" },
+				{ name: "Red Orange", hex: "FF3F34" },
+				{ name: "Coral Red", hex: "FF4040" },
+				{ name: "Vermilion", hex: "FF4D00" },
+				{ name: "International Orange", hex: "FF4F00" },
+				{ name: "Outrageous Orange", hex: "FF6037" },
+				{ name: "Blaze Orange", hex: "FF6600" },
+				{ name: "Pink Flamingo", hex: "FF66FF" },
+				{ name: "Orange", hex: "FF681F" },
+				{ name: "Hot Pink", hex: "FF69B4" },
+				{ name: "Persimmon", hex: "FF6B53" },
+				{ name: "Blush Pink", hex: "FF6FFF" },
+				{ name: "Burning Orange", hex: "FF7034" },
+				{ name: "Pumpkin", hex: "FF7518" },
+				{ name: "Flamenco", hex: "FF7D07" },
+				{ name: "Flush Orange", hex: "FF7F00" },
+				{ name: "Coral", hex: "FF7F50" },
+				{ name: "Salmon", hex: "FF8C69" },
+				{ name: "Pizazz", hex: "FF9000" },
+				{ name: "West Side", hex: "FF910F" },
+				{ name: "Pink Salmon", hex: "FF91A4" },
+				{ name: "Neon Carrot", hex: "FF9933" },
+				{ name: "Atomic Tangerine", hex: "FF9966" },
+				{ name: "Vivid Tangerine", hex: "FF9980" },
+				{ name: "Sunshade", hex: "FF9E2C" },
+				{ name: "Orange Peel", hex: "FFA000" },
+				{ name: "Mona Lisa", hex: "FFA194" },
+				{ name: "Web Orange", hex: "FFA500" },
+				{ name: "Carnation Pink", hex: "FFA6C9" },
+				{ name: "Hit Pink", hex: "FFAB81" },
+				{ name: "Yellow Orange", hex: "FFAE42" },
+				{ name: "Cornflower Lilac", hex: "FFB0AC" },
+				{ name: "Sundown", hex: "FFB1B3" },
+				{ name: "My Sin", hex: "FFB31F" },
+				{ name: "Texas Rose", hex: "FFB555" },
+				{ name: "Cotton Candy", hex: "FFB7D5" },
+				{ name: "Macaroni and Cheese", hex: "FFB97B" },
+				{ name: "Selective Yellow", hex: "FFBA00" },
+				{ name: "Koromiko", hex: "FFBD5F" },
+				{ name: "Amber", hex: "FFBF00" },
+				{ name: "Wax Flower", hex: "FFC0A8" },
+				{ name: "Pink", hex: "FFC0CB" },
+				{ name: "Your Pink", hex: "FFC3C0" },
+				{ name: "Supernova", hex: "FFC901" },
+				{ name: "Flesh", hex: "FFCBA4" },
+				{ name: "Sunglow", hex: "FFCC33" },
+				{ name: "Golden Tainoi", hex: "FFCC5C" },
+				{ name: "Peach Orange", hex: "FFCC99" },
+				{ name: "Chardonnay", hex: "FFCD8C" },
+				{ name: "Pastel Pink", hex: "FFD1DC" },
+				{ name: "Romantic", hex: "FFD2B7" },
+				{ name: "Grandis", hex: "FFD38C" },
+				{ name: "Gold", hex: "FFD700" },
+				{ name: "School bus Yellow", hex: "FFD800" },
+				{ name: "Cosmos", hex: "FFD8D9" },
+				{ name: "Mustard", hex: "FFDB58" },
+				{ name: "Peach Schnapps", hex: "FFDCD6" },
+				{ name: "Caramel", hex: "FFDDAF" },
+				{ name: "Tuft Bush", hex: "FFDDCD" },
+				{ name: "Watusi", hex: "FFDDCF" },
+				{ name: "Pink Lace", hex: "FFDDF4" },
+				{ name: "Navajo White", hex: "FFDEAD" },
+				{ name: "Frangipani", hex: "FFDEB3" },
+				{ name: "Pippin", hex: "FFE1DF" },
+				{ name: "Pale Rose", hex: "FFE1F2" },
+				{ name: "Negroni", hex: "FFE2C5" },
+				{ name: "Cream Brulee", hex: "FFE5A0" },
+				{ name: "Peach", hex: "FFE5B4" },
+				{ name: "Tequila", hex: "FFE6C7" },
+				{ name: "Kournikova", hex: "FFE772" },
+				{ name: "Sandy Beach", hex: "FFEAC8" },
+				{ name: "Karry", hex: "FFEAD4" },
+				{ name: "Broom", hex: "FFEC13" },
+				{ name: "Colonial White", hex: "FFEDBC" },
+				{ name: "Derby", hex: "FFEED8" },
+				{ name: "Vis Vis", hex: "FFEFA1" },
+				{ name: "Egg White", hex: "FFEFC1" },
+				{ name: "Papaya Whip", hex: "FFEFD5" },
+				{ name: "Fair Pink", hex: "FFEFEC" },
+				{ name: "Peach Cream", hex: "FFF0DB" },
+				{ name: "Lavender blush", hex: "FFF0F5" },
+				{ name: "Gorse", hex: "FFF14F" },
+				{ name: "Buttermilk", hex: "FFF1B5" },
+				{ name: "Pink Lady", hex: "FFF1D8" },
+				{ name: "Forget Me Not", hex: "FFF1EE" },
+				{ name: "Tutu", hex: "FFF1F9" },
+				{ name: "Picasso", hex: "FFF39D" },
+				{ name: "Chardon", hex: "FFF3F1" },
+				{ name: "Paris Daisy", hex: "FFF46E" },
+				{ name: "Barley White", hex: "FFF4CE" },
+				{ name: "Egg Sour", hex: "FFF4DD" },
+				{ name: "Sazerac", hex: "FFF4E0" },
+				{ name: "Serenade", hex: "FFF4E8" },
+				{ name: "Chablis", hex: "FFF4F3" },
+				{ name: "Seashell Peach", hex: "FFF5EE" },
+				{ name: "Sauvignon", hex: "FFF5F3" },
+				{ name: "Milk Punch", hex: "FFF6D4" },
+				{ name: "Varden", hex: "FFF6DF" },
+				{ name: "Rose White", hex: "FFF6F5" },
+				{ name: "Baja White", hex: "FFF8D1" },
+				{ name: "Gin Fizz", hex: "FFF9E2" },
+				{ name: "Early Dawn", hex: "FFF9E6" },
+				{ name: "Lemon Chiffon", hex: "FFFACD" },
+				{ name: "Bridal Heath", hex: "FFFAF4" },
+				{ name: "Scotch Mist", hex: "FFFBDC" },
+				{ name: "Soapstone", hex: "FFFBF9" },
+				{ name: "Witch Haze", hex: "FFFC99" },
+				{ name: "Buttery White", hex: "FFFCEA" },
+				{ name: "Island Spice", hex: "FFFCEE" },
+				{ name: "Cream", hex: "FFFDD0" },
+				{ name: "Chilean Heath", hex: "FFFDE6" },
+				{ name: "Travertine", hex: "FFFDE8" },
+				{ name: "Orchid White", hex: "FFFDF3" },
+				{ name: "Quarter Pearl Lusta", hex: "FFFDF4" },
+				{ name: "Half and Half", hex: "FFFEE1" },
+				{ name: "Apricot White", hex: "FFFEEC" },
+				{ name: "Rice Cake", hex: "FFFEF0" },
+				{ name: "Black White", hex: "FFFEF6" },
+				{ name: "Romance", hex: "FFFEFD" },
+				{ name: "Yellow", hex: "FFFF00" },
+				{ name: "Laser Lemon", hex: "FFFF66" },
+				{ name: "Pale Canary", hex: "FFFF99" },
+				{ name: "Portafino", hex: "FFFFB4" },
+				{ name: "Ivory", hex: "FFFFF0" },
+				{ name: "White", hex: "FFFFFF" },
+			])),
+		Xi
+	);
+}
+var Qi, Bl;
+function A2() {
+	return (
+		Bl ||
+			((Bl = 1),
+			(Qi = [
+				{ name: "Mahogany", hex: "#CD4A4A" },
+				{ name: "Fuzzy Wuzzy Brown", hex: "#CC6666" },
+				{ name: "Chestnut", hex: "#BC5D58" },
+				{ name: "Red Orange", hex: "#FF5349" },
+				{ name: "Sunset Orange", hex: "#FD5E53" },
+				{ name: "Bittersweet", hex: "#FD7C6E" },
+				{ name: "Melon", hex: "#FDBCB4" },
+				{ name: "Outrageous Orange", hex: "#FF6E4A" },
+				{ name: "Vivid Tangerine", hex: "#FFA089" },
+				{ name: "Burnt Sienna", hex: "#EA7E5D" },
+				{ name: "Brown", hex: "#B4674D" },
+				{ name: "Sepia", hex: "#A5694F" },
+				{ name: "Orange", hex: "#FF7538" },
+				{ name: "Burnt Orange", hex: "#FF7F49" },
+				{ name: "Copper", hex: "#DD9475" },
+				{ name: "Mango Tango", hex: "#FF8243" },
+				{ name: "Atomic Tangerine", hex: "#FFA474" },
+				{ name: "Beaver", hex: "#9F8170" },
+				{ name: "Antique Brass", hex: "#CD9575" },
+				{ name: "Desert Sand", hex: "#EFCDB8" },
+				{ name: "Raw Sienna", hex: "#D68A59" },
+				{ name: "Tumbleweed", hex: "#DEAA88" },
+				{ name: "Tan", hex: "#FAA76C" },
+				{ name: "Peach", hex: "#FFCFAB" },
+				{ name: "Macaroni and Cheese", hex: "#FFBD88" },
+				{ name: "Apricot", hex: "#FDD9B5" },
+				{ name: "Neon Carrot", hex: "#FFA343" },
+				{ name: "Almond", hex: "#EFDBC5" },
+				{ name: "Yellow Orange", hex: "#FFB653" },
+				{ name: "Gold", hex: "#E7C697" },
+				{ name: "Shadow", hex: "#8A795D" },
+				{ name: "Banana Mania", hex: "#FAE7B5" },
+				{ name: "Sunglow", hex: "#FFCF48" },
+				{ name: "Goldenrod", hex: "#FCD975" },
+				{ name: "Dandelion", hex: "#FDDB6D" },
+				{ name: "Yellow", hex: "#FCE883" },
+				{ name: "Green Yellow", hex: "#F0E891" },
+				{ name: "Spring Green", hex: "#ECEABE" },
+				{ name: "Olive Green", hex: "#BAB86C" },
+				{ name: "Laser Lemon", hex: "#FDFC74" },
+				{ name: "Unmellow Yellow", hex: "#FDFC74" },
+				{ name: "Canary", hex: "#FFFF99" },
+				{ name: "Yellow Green", hex: "#C5E384" },
+				{ name: "Inch Worm", hex: "#B2EC5D" },
+				{ name: "Asparagus", hex: "#87A96B" },
+				{ name: "Granny Smith Apple", hex: "#A8E4A0" },
+				{ name: "Electric Lime", hex: "#1DF914" },
+				{ name: "Screamin Green", hex: "#76FF7A" },
+				{ name: "Fern", hex: "#71BC78" },
+				{ name: "Forest Green", hex: "#6DAE81" },
+				{ name: "Sea Green", hex: "#9FE2BF" },
+				{ name: "Green", hex: "#1CAC78" },
+				{ name: "Mountain Meadow", hex: "#30BA8F" },
+				{ name: "Shamrock", hex: "#45CEA2" },
+				{ name: "Jungle Green", hex: "#3BB08F" },
+				{ name: "Caribbean Green", hex: "#1CD3A2" },
+				{ name: "Tropical Rain Forest", hex: "#17806D" },
+				{ name: "Pine Green", hex: "#158078" },
+				{ name: "Robin Egg Blue", hex: "#1FCECB" },
+				{ name: "Aquamarine", hex: "#78DBE2" },
+				{ name: "Turquoise Blue", hex: "#77DDE7" },
+				{ name: "Sky Blue", hex: "#80DAEB" },
+				{ name: "Outer Space", hex: "#414A4C" },
+				{ name: "Blue Green", hex: "#199EBD" },
+				{ name: "Pacific Blue", hex: "#1CA9C9" },
+				{ name: "Cerulean", hex: "#1DACD6" },
+				{ name: "Cornflower", hex: "#9ACEEB" },
+				{ name: "Midnight Blue", hex: "#1A4876" },
+				{ name: "Navy Blue", hex: "#1974D2" },
+				{ name: "Denim", hex: "#2B6CC4" },
+				{ name: "Blue", hex: "#1F75FE" },
+				{ name: "Periwinkle", hex: "#C5D0E6" },
+				{ name: "Cadet Blue", hex: "#B0B7C6" },
+				{ name: "Indigo", hex: "#5D76CB" },
+				{ name: "Wild Blue Yonder", hex: "#A2ADD0" },
+				{ name: "Manatee", hex: "#979AAA" },
+				{ name: "Blue Bell", hex: "#ADADD6" },
+				{ name: "Blue Violet", hex: "#7366BD" },
+				{ name: "Purple Heart", hex: "#7442C8" },
+				{ name: "Royal Purple", hex: "#7851A9" },
+				{ name: "Purple Mountains’ Majesty", hex: "#9D81BA" },
+				{ name: "Violet (Purple)", hex: "#926EAE" },
+				{ name: "Wisteria", hex: "#CDA4DE" },
+				{ name: "Vivid Violet", hex: "#8F509D" },
+				{ name: "Fuchsia", hex: "#C364C5" },
+				{ name: "Shocking Pink", hex: "#FB7EFD" },
+				{ name: "Pink Flamingo", hex: "#FC74FD" },
+				{ name: "Plum", hex: "#8E4585" },
+				{ name: "Hot Magenta", hex: "#FF1DCE" },
+				{ name: "Purple Pizzazz", hex: "#FF1DCE" },
+				{ name: "Razzle Dazzle Rose", hex: "#FF48D0" },
+				{ name: "Orchid", hex: "#E6A8D7" },
+				{ name: "Red Violet", hex: "#C0448F" },
+				{ name: "Eggplant", hex: "#6E5160" },
+				{ name: "Cerise", hex: "#DD4492" },
+				{ name: "Wild Strawberry", hex: "#FF43A4" },
+				{ name: "Magenta", hex: "#F664AF" },
+				{ name: "Lavender", hex: "#FCB4D5" },
+				{ name: "Cotton Candy", hex: "#FFBCD9" },
+				{ name: "Violet Red", hex: "#F75394" },
+				{ name: "Carnation Pink", hex: "#FFAACC" },
+				{ name: "Razzmatazz", hex: "#E3256B" },
+				{ name: "Piggy Pink", hex: "#FDD7E4" },
+				{ name: "Jazzberry Jam", hex: "#CA3767" },
+				{ name: "Blush", hex: "#DE5D83" },
+				{ name: "Tickle Me Pink", hex: "#FC89AC" },
+				{ name: "Pink Sherbet", hex: "#F780A1" },
+				{ name: "Maroon", hex: "#C8385A" },
+				{ name: "Red", hex: "#EE204D" },
+				{ name: "Radical Red", hex: "#FF496C" },
+				{ name: "Mauvelous", hex: "#EF98AA" },
+				{ name: "Wild Watermelon", hex: "#FC6C85" },
+				{ name: "Scarlet", hex: "#FC2847" },
+				{ name: "Salmon", hex: "#FF9BAA" },
+				{ name: "Brick Red", hex: "#CB4154" },
+				{ name: "White", hex: "#EDEDED" },
+				{ name: "Timberwolf", hex: "#DBD7D2" },
+				{ name: "Silver", hex: "#CDC5C2" },
+				{ name: "Gray", hex: "#95918C" },
+				{ name: "Black", hex: "#232323" },
+			])),
+		Qi
+	);
+}
+var eo, Sl;
+function D2() {
+	return (
+		Sl ||
+			((Sl = 1),
+			(eo = [
+				{ name: "red", hex: "#FF0000" },
+				{ name: "orange", hex: "#FFA500" },
+				{ name: "yellow", hex: "#FFFF00" },
+				{ name: "green", hex: "#008000" },
+				{ name: "blue", hex: "#0000FF" },
+				{ name: "indigo", hex: "#4B0082" },
+				{ name: "violet", hex: "#EE82EE" },
+			])),
+		eo
+	);
+}
+var to, Al;
+function M2() {
+	return (
+		Al ||
+			((Al = 1),
+			(to = [
+				{ name: "indigo", hex: "#4b0082" },
+				{ name: "gold", hex: "#ffd700" },
+				{ name: "hotpink", hex: "#ff69b4" },
+				{ name: "firebrick", hex: "#b22222" },
+				{ name: "indianred", hex: "#cd5c5c" },
+				{ name: "yellow", hex: "#ffff00" },
+				{ name: "mistyrose", hex: "#ffe4e1" },
+				{ name: "darkolivegreen", hex: "#556b2f" },
+				{ name: "olive", hex: "#808000" },
+				{ name: "darkseagreen", hex: "#8fbc8f" },
+				{ name: "pink", hex: "#ffc0cb" },
+				{ name: "tomato", hex: "#ff6347" },
+				{ name: "lightcoral", hex: "#f08080" },
+				{ name: "orangered", hex: "#ff4500" },
+				{ name: "navajowhite", hex: "#ffdead" },
+				{ name: "lime", hex: "#00ff00" },
+				{ name: "palegreen", hex: "#98fb98" },
+				{ name: "darkslategrey", hex: "#2f4f4f" },
+				{ name: "greenyellow", hex: "#adff2f" },
+				{ name: "burlywood", hex: "#deb887" },
+				{ name: "seashell", hex: "#fff5ee" },
+				{ name: "mediumspringgreen", hex: "#00fa9a" },
+				{ name: "fuchsia", hex: "#ff00ff" },
+				{ name: "papayawhip", hex: "#ffefd5" },
+				{ name: "blanchedalmond", hex: "#ffebcd" },
+				{ name: "chartreuse", hex: "#7fff00" },
+				{ name: "dimgray", hex: "#696969" },
+				{ name: "black", hex: "#000000" },
+				{ name: "peachpuff", hex: "#ffdab9" },
+				{ name: "springgreen", hex: "#00ff7f" },
+				{ name: "aquamarine", hex: "#7fffd4" },
+				{ name: "white", hex: "#ffffff" },
+				{ name: "orange", hex: "#ffa500" },
+				{ name: "lightsalmon", hex: "#ffa07a" },
+				{ name: "darkslategray", hex: "#2f4f4f" },
+				{ name: "brown", hex: "#a52a2a" },
+				{ name: "ivory", hex: "#fffff0" },
+				{ name: "dodgerblue", hex: "#1e90ff" },
+				{ name: "peru", hex: "#cd853f" },
+				{ name: "lawngreen", hex: "#7cfc00" },
+				{ name: "chocolate", hex: "#d2691e" },
+				{ name: "crimson", hex: "#dc143c" },
+				{ name: "forestgreen", hex: "#228b22" },
+				{ name: "darkgrey", hex: "#a9a9a9" },
+				{ name: "lightseagreen", hex: "#20b2aa" },
+				{ name: "cyan", hex: "#00ffff" },
+				{ name: "mintcream", hex: "#f5fffa" },
+				{ name: "silver", hex: "#c0c0c0" },
+				{ name: "antiquewhite", hex: "#faebd7" },
+				{ name: "mediumorchid", hex: "#ba55d3" },
+				{ name: "skyblue", hex: "#87ceeb" },
+				{ name: "gray", hex: "#808080" },
+				{ name: "darkturquoise", hex: "#00ced1" },
+				{ name: "goldenrod", hex: "#daa520" },
+				{ name: "darkgreen", hex: "#006400" },
+				{ name: "floralwhite", hex: "#fffaf0" },
+				{ name: "darkviolet", hex: "#9400d3" },
+				{ name: "darkgray", hex: "#a9a9a9" },
+				{ name: "moccasin", hex: "#ffe4b5" },
+				{ name: "saddlebrown", hex: "#8b4513" },
+				{ name: "grey", hex: "#808080" },
+				{ name: "darkslateblue", hex: "#483d8b" },
+				{ name: "lightskyblue", hex: "#87cefa" },
+				{ name: "lightpink", hex: "#ffb6c1" },
+				{ name: "mediumvioletred", hex: "#c71585" },
+				{ name: "slategrey", hex: "#708090" },
+				{ name: "red", hex: "#ff0000" },
+				{ name: "deeppink", hex: "#ff1493" },
+				{ name: "limegreen", hex: "#32cd32" },
+				{ name: "darkmagenta", hex: "#8b008b" },
+				{ name: "palegoldenrod", hex: "#eee8aa" },
+				{ name: "plum", hex: "#dda0dd" },
+				{ name: "turquoise", hex: "#40e0d0" },
+				{ name: "lightgrey", hex: "#d3d3d3" },
+				{ name: "lightgoldenrodyellow", hex: "#fafad2" },
+				{ name: "darkgoldenrod", hex: "#b8860b" },
+				{ name: "lavender", hex: "#e6e6fa" },
+				{ name: "maroon", hex: "#800000" },
+				{ name: "yellowgreen", hex: "#9acd32" },
+				{ name: "sandybrown", hex: "#f4a460" },
+				{ name: "thistle", hex: "#d8bfd8" },
+				{ name: "violet", hex: "#ee82ee" },
+				{ name: "navy", hex: "#000080" },
+				{ name: "magenta", hex: "#ff00ff" },
+				{ name: "dimgrey", hex: "#696969" },
+				{ name: "tan", hex: "#d2b48c" },
+				{ name: "rosybrown", hex: "#bc8f8f" },
+				{ name: "olivedrab", hex: "#6b8e23" },
+				{ name: "blue", hex: "#0000ff" },
+				{ name: "lightblue", hex: "#add8e6" },
+				{ name: "ghostwhite", hex: "#f8f8ff" },
+				{ name: "honeydew", hex: "#f0fff0" },
+				{ name: "cornflowerblue", hex: "#6495ed" },
+				{ name: "slateblue", hex: "#6a5acd" },
+				{ name: "linen", hex: "#faf0e6" },
+				{ name: "darkblue", hex: "#00008b" },
+				{ name: "powderblue", hex: "#b0e0e6" },
+				{ name: "seagreen", hex: "#2e8b57" },
+				{ name: "darkkhaki", hex: "#bdb76b" },
+				{ name: "snow", hex: "#fffafa" },
+				{ name: "sienna", hex: "#a0522d" },
+				{ name: "mediumblue", hex: "#0000cd" },
+				{ name: "royalblue", hex: "#4169e1" },
+				{ name: "lightcyan", hex: "#e0ffff" },
+				{ name: "green", hex: "#008000" },
+				{ name: "mediumpurple", hex: "#9370db" },
+				{ name: "midnightblue", hex: "#191970" },
+				{ name: "cornsilk", hex: "#fff8dc" },
+				{ name: "paleturquoise", hex: "#afeeee" },
+				{ name: "bisque", hex: "#ffe4c4" },
+				{ name: "slategray", hex: "#708090" },
+				{ name: "darkcyan", hex: "#008b8b" },
+				{ name: "khaki", hex: "#f0e68c" },
+				{ name: "wheat", hex: "#f5deb3" },
+				{ name: "teal", hex: "#008080" },
+				{ name: "darkorchid", hex: "#9932cc" },
+				{ name: "deepskyblue", hex: "#00bfff" },
+				{ name: "salmon", hex: "#fa8072" },
+				{ name: "darkred", hex: "#8b0000" },
+				{ name: "steelblue", hex: "#4682b4" },
+				{ name: "palevioletred", hex: "#db7093" },
+				{ name: "lightslategray", hex: "#778899" },
+				{ name: "aliceblue", hex: "#f0f8ff" },
+				{ name: "lightslategrey", hex: "#778899" },
+				{ name: "lightgreen", hex: "#90ee90" },
+				{ name: "orchid", hex: "#da70d6" },
+				{ name: "gainsboro", hex: "#dcdcdc" },
+				{ name: "mediumseagreen", hex: "#3cb371" },
+				{ name: "lightgray", hex: "#d3d3d3" },
+				{ name: "mediumturquoise", hex: "#48d1cc" },
+				{ name: "lemonchiffon", hex: "#fffacd" },
+				{ name: "cadetblue", hex: "#5f9ea0" },
+				{ name: "lightyellow", hex: "#ffffe0" },
+				{ name: "lavenderblush", hex: "#fff0f5" },
+				{ name: "coral", hex: "#ff7f50" },
+				{ name: "purple", hex: "#800080" },
+				{ name: "aqua", hex: "#00ffff" },
+				{ name: "whitesmoke", hex: "#f5f5f5" },
+				{ name: "mediumslateblue", hex: "#7b68ee" },
+				{ name: "darkorange", hex: "#ff8c00" },
+				{ name: "mediumaquamarine", hex: "#66cdaa" },
+				{ name: "darksalmon", hex: "#e9967a" },
+				{ name: "beige", hex: "#f5f5dc" },
+				{ name: "blueviolet", hex: "#8a2be2" },
+				{ name: "azure", hex: "#f0ffff" },
+				{ name: "lightsteelblue", hex: "#b0c4de" },
+				{ name: "oldlace", hex: "#fdf5e6" },
+			])),
+		to
+	);
+}
+var Dl;
+function L2() {
+	if (Dl) return Da.exports;
+	Dl = 1;
+	var a = Su(),
+		e = k2(),
+		t = { basic: E2(), html: B2(), ntc: S2(), pantone: A2(), roygbiv: D2(), x11: M2() },
+		n = new e(),
+		i = (Da.exports = function (r, o) {
+			o = o || {};
+			var h = { color: r, options: o };
+			if (n.has(h)) return n.get(h);
+			var u = String(o.distance).toLowerCase() === "deltae";
+			r = a(r);
+			var v = {};
+			for (var b in t)
+				(o.pick && o.pick.indexOf(b) === -1) ||
+					(o.omit && o.omit.indexOf(b) !== -1) ||
+					(v[b] = t[b]
+						.map(function (y) {
+							return ((y.distance = u ? a.deltaE(r, a(y.hex)) : a.distance(r, a(y.hex))), y);
+						})
+						.sort(function (y, C) {
+							return y.distance - C.distance;
+						}));
+			return (n.set(h, v), v);
+		});
+	return ((i.chroma = a), (i.lists = t), Da.exports);
+}
+var R2 = L2();
+const P2 = Eu(R2);
+class tt {
+	#e = L(_e(Ye()));
+	get red() {
+		return s(this.#e);
+	}
+	set red(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L(_e(Ye()));
+	get green() {
+		return s(this.#t);
+	}
+	set green(e) {
+		F(this.#t, e, !0);
+	}
+	#n = L(_e(Ye()));
+	get blue() {
+		return s(this.#n);
+	}
+	set blue(e) {
+		F(this.#n, e, !0);
+	}
+	#r = L(_e(Ye()));
+	get alpha() {
+		return s(this.#r);
+	}
+	set alpha(e) {
+		F(this.#r, e, !0);
+	}
+	constructor(e, t, n, i = 1) {
+		((this.red = e), (this.green = t), (this.blue = n), (this.alpha = i));
+	}
+	serialize() {
+		return this.hex;
+	}
+	static deserialize(e) {
+		return tt.hex(e);
+	}
+	static get black() {
+		return tt.rgb(0, 0, 0);
+	}
+	static get white() {
+		return tt.rgb(255, 255, 255);
+	}
+	static rgb(e, t, n, i = 1) {
+		return new tt(e, t, n, i);
+	}
+	static css(e, t = 1) {
+		let { r: n, g: i, b: r } = I2[e];
+		return new tt(n, i, r, t);
+	}
+	static from(e) {
+		return typeof e == "string"
+			? tt.hex(e)
+			: Array.isArray(e)
+				? tt.rgb(e[0], e[1], e[2])
+				: "r" in e
+					? tt.rgb(e.r, e.g, e.b)
+					: e.clone();
+	}
+	clone() {
+		return new tt(this.red, this.green, this.blue);
+	}
+	equals(e) {
+		return this.hex === e.hex;
+	}
+	get name() {
+		return Object.values(P2(this.hex))
+			.map(e => ({ name: e[0].name, distance: e[0].distance }))
+			.toSorted((e, t) => e.distance - t.distance)[0].name;
+	}
+	get hue() {
+		return this.hsl.h;
+	}
+	get saturation() {
+		return this.hsl.s;
+	}
+	get lightness() {
+		return this.hsl.l;
+	}
+	get value() {
+		return this.hsv.v;
+	}
+	static tryHex(e) {
+		try {
+			return tt.hex(e);
+		} catch {
+			return null;
+		}
+	}
+	static hex(e) {
+		(e.startsWith("#") && (e = e.substring(1)),
+			(e.length === 3 || e.length === 4) &&
+				(e = e
+					.split("")
+					.map(i => i + i)
+					.join("")));
+		let t = 1;
+		if ((e.length === 8 && ((t = parseInt(e.substring(6, 8), 16) / 255), (e = e.substring(0, 6))), e.length !== 6))
+			throw new Error("Invalid hex color: #" + e);
+		const n = [0, 0, 0];
+		for (let i = 0; i < 3; i++) n[i] = parseInt(e.substring(i * 2, i * 2 + 2), 16);
+		return new tt(n[0], n[1], n[2], t);
+	}
+	static hsl(e, t, n, i = 1) {
+		((t /= 100), (n /= 100));
+		const r = u => (u + e / 30) % 12,
+			o = t * Math.min(n, 1 - n),
+			h = u => n - o * Math.max(-1, Math.min(r(u) - 3, Math.min(9 - r(u), 1)));
+		return new tt(Math.round(255 * h(0)), Math.round(255 * h(8)), Math.round(255 * h(4)), i);
+	}
+	static hsv(e, t, n, i = 1) {
+		((t /= 100), (n /= 100));
+		const r = (o, h = (o + e / 60) % 6) => n - n * t * Math.max(Math.min(h, 4 - h, 1), 0);
+		return new tt(Math.round(255 * r(5)), Math.round(255 * r(3)), Math.round(255 * r(1)), i);
+	}
+	get rgb() {
+		return (this.red << 16) | (this.green << 8) | this.blue;
+	}
+	get hex() {
+		const e = n => n.toString(16).padStart(2, "0");
+		let t = `#${e(this.red)}${e(this.green)}${e(this.blue)}`;
+		return (this.alpha < 1 && (t += e(Math.round(this.alpha * 255))), t.toUpperCase());
+	}
+	get hsl() {
+		const e = this.red / 255,
+			t = this.green / 255,
+			n = this.blue / 255,
+			i = Math.max(e, t, n),
+			r = Math.min(e, t, n);
+		let o = 0,
+			h = 0,
+			u = (i + r) / 2;
+		if (i !== r) {
+			const v = i - r;
+			switch (((h = u > 0.5 ? v / (2 - i - r) : v / (i + r)), i)) {
+				case e:
+					o = (t - n) / v + (t < n ? 6 : 0);
+					break;
+				case t:
+					o = (n - e) / v + 2;
+					break;
+				case n:
+					o = (e - t) / v + 4;
+					break;
+			}
+			o /= 6;
+		}
+		return { h: Math.round(o * 360), s: Math.round(h * 100), l: Math.round(u * 100) };
+	}
+	get hsv() {
+		const e = this.red / 255,
+			t = this.green / 255,
+			n = this.blue / 255,
+			i = Math.max(e, t, n),
+			r = Math.min(e, t, n);
+		let o = 0,
+			h = i === 0 ? 0 : (i - r) / i,
+			u = i;
+		if (i !== r) {
+			const v = i - r;
+			switch (i) {
+				case e:
+					o = (t - n) / v + (t < n ? 6 : 0);
+					break;
+				case t:
+					o = (n - e) / v + 2;
+					break;
+				case n:
+					o = (e - t) / v + 4;
+					break;
+			}
+			o /= 6;
+		}
+		return { h: Math.round(o * 360), s: Math.round(h * 100), v: Math.round(u * 100) };
+	}
+	get brightness() {
+		return (this.red * 299 + this.green * 587 + this.blue * 114) / 1e3;
+	}
+	get luma() {
+		return 0.2126 * this.red + 0.7152 * this.green + 0.0722 * this.blue;
+	}
+	get constrastColor() {
+		return this.luma >= 165 ? new tt(0, 0, 0) : new tt(255, 255, 255);
+	}
+	contrastRatio(e) {
+		const t = Math.max(this.luma, e.luma) / 255,
+			n = Math.min(this.luma, e.luma) / 255;
+		return (t + 0.05) / (n + 0.05);
+	}
+	mix(e, t) {
+		t = Math.max(0, Math.min(1, t));
+		const n = Math.round(this.red + (e.red - this.red) * t),
+			i = Math.round(this.green + (e.green - this.green) * t),
+			r = Math.round(this.blue + (e.blue - this.blue) * t),
+			o = this.alpha + (e.alpha - this.alpha) * t;
+		return new tt(n, i, r, o);
+	}
+	lighten(e) {
+		const { h: t, s: n, l: i } = this.hsl;
+		return tt.hsl(t, n, Math.min(100, i + e), this.alpha);
+	}
+	darken(e) {
+		const { h: t, s: n, l: i } = this.hsl;
+		return tt.hsl(t, n, Math.max(0, i - e), this.alpha);
+	}
+	saturate(e) {
+		const { h: t, s: n, l: i } = this.hsl;
+		return tt.hsl(t, Math.min(100, n + e), i, this.alpha);
+	}
+	desaturate(e) {
+		const { h: t, s: n, l: i } = this.hsl;
+		return tt.hsl(t, Math.max(0, n - e), i, this.alpha);
+	}
+	toString() {
+		return this.alpha === 1
+			? `rgb(${this.red}, ${this.green}, ${this.blue})`
+			: `rgba(${this.red}, ${this.green}, ${this.blue}, ${this.alpha.toFixed(2)})`;
+	}
+}
+const I2 = {
+	aliceblue: { r: 240, g: 248, b: 255 },
+	antiquewhite: { r: 250, g: 235, b: 215 },
+	aqua: { r: 0, g: 255, b: 255 },
+	aquamarine: { r: 127, g: 255, b: 212 },
+	azure: { r: 240, g: 255, b: 255 },
+	beige: { r: 245, g: 245, b: 220 },
+	bisque: { r: 255, g: 228, b: 196 },
+	black: { r: 0, g: 0, b: 0 },
+	blanchedalmond: { r: 255, g: 235, b: 205 },
+	blue: { r: 0, g: 0, b: 255 },
+	blueviolet: { r: 138, g: 43, b: 226 },
+	brown: { r: 165, g: 42, b: 42 },
+	burlywood: { r: 222, g: 184, b: 135 },
+	cadetblue: { r: 95, g: 158, b: 160 },
+	chartreuse: { r: 127, g: 255, b: 0 },
+	chocolate: { r: 210, g: 105, b: 30 },
+	coral: { r: 255, g: 127, b: 80 },
+	cornflowerblue: { r: 100, g: 149, b: 237 },
+	cornsilk: { r: 255, g: 248, b: 220 },
+	crimson: { r: 220, g: 20, b: 60 },
+	cyan: { r: 0, g: 255, b: 255 },
+	darkblue: { r: 0, g: 0, b: 139 },
+	darkcyan: { r: 0, g: 139, b: 139 },
+	darkgoldenrod: { r: 184, g: 134, b: 11 },
+	darkgray: { r: 169, g: 169, b: 169 },
+	darkgreen: { r: 0, g: 100, b: 0 },
+	darkgrey: { r: 169, g: 169, b: 169 },
+	darkkhaki: { r: 189, g: 183, b: 107 },
+	darkmagenta: { r: 139, g: 0, b: 139 },
+	darkolivegreen: { r: 85, g: 107, b: 47 },
+	darkorange: { r: 255, g: 140, b: 0 },
+	darkorchid: { r: 153, g: 50, b: 204 },
+	darkred: { r: 139, g: 0, b: 0 },
+	darksalmon: { r: 233, g: 150, b: 122 },
+	darkseagreen: { r: 143, g: 188, b: 143 },
+	darkslateblue: { r: 72, g: 61, b: 139 },
+	darkslategray: { r: 47, g: 79, b: 79 },
+	darkslategrey: { r: 47, g: 79, b: 79 },
+	darkturquoise: { r: 0, g: 206, b: 209 },
+	darkviolet: { r: 148, g: 0, b: 211 },
+	deeppink: { r: 255, g: 20, b: 147 },
+	deepskyblue: { r: 0, g: 191, b: 255 },
+	dimgray: { r: 105, g: 105, b: 105 },
+	dimgrey: { r: 105, g: 105, b: 105 },
+	dodgerblue: { r: 30, g: 144, b: 255 },
+	firebrick: { r: 178, g: 34, b: 34 },
+	floralwhite: { r: 255, g: 250, b: 240 },
+	forestgreen: { r: 34, g: 139, b: 34 },
+	fuchsia: { r: 255, g: 0, b: 255 },
+	gainsboro: { r: 220, g: 220, b: 220 },
+	ghostwhite: { r: 248, g: 248, b: 255 },
+	gold: { r: 255, g: 215, b: 0 },
+	goldenrod: { r: 218, g: 165, b: 32 },
+	gray: { r: 128, g: 128, b: 128 },
+	green: { r: 0, g: 128, b: 0 },
+	greenyellow: { r: 173, g: 255, b: 47 },
+	grey: { r: 128, g: 128, b: 128 },
+	honeydew: { r: 240, g: 255, b: 240 },
+	hotpink: { r: 255, g: 105, b: 180 },
+	indianred: { r: 205, g: 92, b: 92 },
+	indigo: { r: 75, g: 0, b: 130 },
+	ivory: { r: 255, g: 255, b: 240 },
+	khaki: { r: 240, g: 230, b: 140 },
+	lavender: { r: 230, g: 230, b: 250 },
+	lavenderblush: { r: 255, g: 240, b: 245 },
+	lawngreen: { r: 124, g: 252, b: 0 },
+	lemonchiffon: { r: 255, g: 250, b: 205 },
+	lightblue: { r: 173, g: 216, b: 230 },
+	lightcoral: { r: 240, g: 128, b: 128 },
+	lightcyan: { r: 224, g: 255, b: 255 },
+	lightgoldenrodyellow: { r: 250, g: 250, b: 210 },
+	lightgray: { r: 211, g: 211, b: 211 },
+	lightgreen: { r: 144, g: 238, b: 144 },
+	lightgrey: { r: 211, g: 211, b: 211 },
+	lightpink: { r: 255, g: 182, b: 193 },
+	lightsalmon: { r: 255, g: 160, b: 122 },
+	lightseagreen: { r: 32, g: 178, b: 170 },
+	lightskyblue: { r: 135, g: 206, b: 250 },
+	lightslategray: { r: 119, g: 136, b: 153 },
+	lightslategrey: { r: 119, g: 136, b: 153 },
+	lightsteelblue: { r: 176, g: 196, b: 222 },
+	lightyellow: { r: 255, g: 255, b: 224 },
+	lime: { r: 0, g: 255, b: 0 },
+	limegreen: { r: 50, g: 205, b: 50 },
+	linen: { r: 250, g: 240, b: 230 },
+	magenta: { r: 255, g: 0, b: 255 },
+	maroon: { r: 128, g: 0, b: 0 },
+	mediumaquamarine: { r: 102, g: 205, b: 170 },
+	mediumblue: { r: 0, g: 0, b: 205 },
+	mediumorchid: { r: 186, g: 85, b: 211 },
+	mediumpurple: { r: 147, g: 112, b: 219 },
+	mediumseagreen: { r: 60, g: 179, b: 113 },
+	mediumslateblue: { r: 123, g: 104, b: 238 },
+	mediumspringgreen: { r: 0, g: 250, b: 154 },
+	mediumturquoise: { r: 72, g: 209, b: 204 },
+	mediumvioletred: { r: 199, g: 21, b: 133 },
+	midnightblue: { r: 25, g: 25, b: 112 },
+	mintcream: { r: 245, g: 255, b: 250 },
+	mistyrose: { r: 255, g: 228, b: 225 },
+	moccasin: { r: 255, g: 228, b: 181 },
+	navajowhite: { r: 255, g: 222, b: 173 },
+	navy: { r: 0, g: 0, b: 128 },
+	oldlace: { r: 253, g: 245, b: 230 },
+	olive: { r: 128, g: 128, b: 0 },
+	olivedrab: { r: 107, g: 142, b: 35 },
+	orange: { r: 255, g: 165, b: 0 },
+	orangered: { r: 255, g: 69, b: 0 },
+	orchid: { r: 218, g: 112, b: 214 },
+	palegoldenrod: { r: 238, g: 232, b: 170 },
+	palegreen: { r: 152, g: 251, b: 152 },
+	paleturquoise: { r: 175, g: 238, b: 238 },
+	palevioletred: { r: 219, g: 112, b: 147 },
+	papayawhip: { r: 255, g: 239, b: 213 },
+	peachpuff: { r: 255, g: 218, b: 185 },
+	peru: { r: 205, g: 133, b: 63 },
+	pink: { r: 255, g: 192, b: 203 },
+	plum: { r: 221, g: 160, b: 221 },
+	powderblue: { r: 176, g: 224, b: 230 },
+	purple: { r: 128, g: 0, b: 128 },
+	rebeccapurple: { r: 102, g: 51, b: 153 },
+	red: { r: 255, g: 0, b: 0 },
+	rosybrown: { r: 188, g: 143, b: 143 },
+	royalblue: { r: 65, g: 105, b: 225 },
+	saddlebrown: { r: 139, g: 69, b: 19 },
+	salmon: { r: 250, g: 128, b: 114 },
+	sandybrown: { r: 244, g: 164, b: 96 },
+	seagreen: { r: 46, g: 139, b: 87 },
+	seashell: { r: 255, g: 245, b: 238 },
+	sienna: { r: 160, g: 82, b: 45 },
+	silver: { r: 192, g: 192, b: 192 },
+	skyblue: { r: 135, g: 206, b: 235 },
+	slateblue: { r: 106, g: 90, b: 205 },
+	slategray: { r: 112, g: 128, b: 144 },
+	slategrey: { r: 112, g: 128, b: 144 },
+	snow: { r: 255, g: 250, b: 250 },
+	springgreen: { r: 0, g: 255, b: 127 },
+	steelblue: { r: 70, g: 130, b: 180 },
+	tan: { r: 210, g: 180, b: 140 },
+	teal: { r: 0, g: 128, b: 128 },
+	thistle: { r: 216, g: 191, b: 216 },
+	tomato: { r: 255, g: 99, b: 71 },
+	turquoise: { r: 64, g: 224, b: 208 },
+	violet: { r: 238, g: 130, b: 238 },
+	wheat: { r: 245, g: 222, b: 179 },
+	white: { r: 255, g: 255, b: 255 },
+	whitesmoke: { r: 245, g: 245, b: 245 },
+	yellow: { r: 255, g: 255, b: 0 },
+	yellowgreen: { r: 154, g: 205, b: 50 },
+};
+class T2 {
+	#e = L(_e(Ye()));
+	get month() {
+		return s(this.#e);
+	}
+	set month(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L(_e(Ye()));
+	get day() {
+		return s(this.#t);
+	}
+	set day(e) {
+		F(this.#t, e, !0);
+	}
+	serialize() {
+		throw new Error("implement ser/de on datetime");
+	}
+	static deserialize(e) {
+		throw new Error("implement ser/de on datetime");
+	}
+	clone() {
+		throw new Error("implement clone datetime");
+	}
+}
+class A1 {
+	_tag = "type instance";
+}
+class er {
+	#e = L(_e(Ye()));
+	get count_() {
+		return s(this.#e);
+	}
+	set count_(e) {
+		F(this.#e, e, !0);
+	}
+	constructor(e) {
+		this.count_ = e;
+	}
+	serialize() {
+		return { count: this.count, units: this.unit().abbreviation() };
+	}
+	static deserialize(e) {
+		const t = O2[e.units];
+		return new t(e.count);
+	}
+	to(e) {
+		return e.fromStandard(this.toStandard());
+	}
+	get count() {
+		return this.count_;
+	}
+}
+class Dr extends A1 {
+	static of(e, t) {
+		return new t(e);
+	}
+	static units() {
+		return [Rn, Jn];
+	}
+	static standard() {
+		return Rn;
+	}
+	static name() {
+		return "length";
+	}
+}
+class Rn extends er {
+	_meters = !0;
+	clone() {
+		return new Rn(this.count);
+	}
+	type() {
+		return Dr;
+	}
+	toStandard() {
+		return this;
+	}
+	unit() {
+		return Rn;
+	}
+	static fromStandard(e) {
+		return e;
+	}
+	static abbreviation() {
+		return "m";
+	}
+}
+class Jn extends er {
+	_kilometers = !0;
+	clone() {
+		return new Jn(this.count);
+	}
+	type() {
+		return Dr;
+	}
+	toStandard() {
+		return Dr.of(this.count * 1e3, Rn);
+	}
+	static fromStandard(e) {
+		return Dr.of(e.count / 1e3, Jn);
+	}
+	unit() {
+		return Jn;
+	}
+	static abbreviation() {
+		return "km";
+	}
+}
+class Xr extends A1 {
+	static of(e, t) {
+		return new t(e);
+	}
+	static units() {
+		return [Pn, Xn];
+	}
+	static standard() {
+		return Pn;
+	}
+	static name() {
+		return "weight";
+	}
+}
+class Pn extends er {
+	_kilograms = !0;
+	clone() {
+		return new Pn(this.count);
+	}
+	type() {
+		return Xr;
+	}
+	toStandard() {
+		return this;
+	}
+	unit() {
+		return Pn;
+	}
+	static fromStandard(e) {
+		return e;
+	}
+	static abbreviation() {
+		return "kg";
+	}
+}
+class Xn extends er {
+	_grams = !0;
+	clone() {
+		return new Xn(this.count);
+	}
+	type() {
+		return Xr;
+	}
+	toStandard() {
+		return Xr.of(this.count * 1e3, Pn);
+	}
+	static fromStandard(e) {
+		return Xr.of(e.count / 1e3, Xn);
+	}
+	unit() {
+		return Xn;
+	}
+	static abbreviation() {
+		return "g";
+	}
+}
+const O2 = { m: Rn, km: Jn, kg: Pn, g: Xn };
+class V2 {
+	#e = L(_e(Ye()));
+	get values() {
+		return s(this.#e);
+	}
+	set values(e) {
+		F(this.#e, e, !0);
+	}
+	constructor(e) {
+		this.values = e;
+	}
+	serialize() {
+		return this.values;
+	}
+}
+class D1 {
+	#e = L(_e(Ye()));
+	get value() {
+		return s(this.#e);
+	}
+	set value(e) {
+		F(this.#e, e, !0);
+	}
+	constructor(e) {
+		this.value = e;
+	}
+	serialize() {
+		return this.value;
+	}
+}
+class In extends D1 {
+	static deserialize(e) {
+		return new In(e);
+	}
+	clone() {
+		return new In(this.value);
+	}
+}
+class Or extends D1 {
+	static deserialize(e) {
+		return new Or(e);
+	}
+	clone() {
+		return new Or(this.value);
+	}
+}
+class ra extends V2 {
+	static deserialize(e) {
+		return new ra(e);
+	}
+	clone() {
+		return new ra([...this.values]);
+	}
+}
+class xa {
+	#e = L(!1);
+	get bold() {
+		return s(this.#e);
+	}
+	set bold(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L(!1);
+	get italic() {
+		return s(this.#t);
+	}
+	set italic(e) {
+		F(this.#t, e, !0);
+	}
+	#n = L(!1);
+	get underline() {
+		return s(this.#n);
+	}
+	set underline(e) {
+		F(this.#n, e, !0);
+	}
+	#r = L(_e(tt.black));
+	get color() {
+		return s(this.#r);
+	}
+	set color(e) {
+		F(this.#r, e, !0);
+	}
+	constructor({ bold: e, italic: t }) {
+		((this.bold = e ?? !1), (this.italic = t ?? !1));
+	}
+	clone() {
+		return new xa({ bold: this.bold, italic: this.italic });
+	}
+	equals(e) {
+		return this.bold === e.bold && this.italic === e.italic && this.underline === e.underline && this.color.equals(e.color);
+	}
+}
+class on {
+	#e = L(_e(Ye()));
+	get text() {
+		return s(this.#e);
+	}
+	set text(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L(_e(Ye()));
+	get style() {
+		return s(this.#t);
+	}
+	set style(e) {
+		F(this.#t, e, !0);
+	}
+	constructor(e, t) {
+		((this.text = e), (this.style = new xa({ bold: t.bold ?? !1, italic: t.italic ?? !1 })));
+	}
+	clone() {
+		return new on(this.text, { bold: this.style.bold, italic: this.style.italic });
+	}
+	toHTML(e, t = !1) {
+		let n = document.createElement("pre");
+		n.setAttribute("data-part-index", `${e}`);
+		let i = "";
+		this.style.bold && (i += "<b>");
+		for (let r of this.text)
+			r ===
+			`
+`
+				? (i += "<br>")
+				: (i += `<span class="character">${r}</span>`);
+		return (this.style.bold && (i += "</b>"), t && (i += "<span class='cursor'>|</span>"), (n.innerHTML = i), n);
+	}
+}
+class An {
+	#e = L(_e(Ye()));
+	get parts() {
+		return s(this.#e);
+	}
+	set parts(e) {
+		F(this.#e, e, !0);
+	}
+	constructor(e) {
+		((this.parts = e ?? []), this.parts.length < 1 && (this.parts = [new on("", new xa({ bold: !1, italic: !1 }))]));
+	}
+	serialize() {
+		return { parts: this.parts.map(e => ({ text: e.text, style: { bold: e.style.bold, italic: e.style.italic } })) };
+	}
+	reconstruct(e) {
+		this.parts = e.parts;
+	}
+	get content() {
+		return this.parts.map(e => e.text).join("");
+	}
+	static deserialize(e) {
+		return new An(e.parts.map(t => new on(t.text, t.style)));
+	}
+	addPart(e) {
+		this.parts.push(e);
+	}
+	addPartAtIndex(e, t) {
+		this.parts.splice(t, 0, e);
+	}
+	prependPart(e) {
+		this.parts.unshift(e);
+	}
+	clone() {
+		return new An();
+	}
+	partAtIndex(e) {
+		return this.parts[e];
+	}
+	toHTML(e) {
+		return this.parts.map((t, n) => t.toHTML(n, e ?? !1));
+	}
+	some(e) {
+		return this.parts.some(e);
+	}
+	filter(e) {
+		return new An(this.parts.map(t => t.clone()).filter(e));
+	}
+	partCount() {
+		return this.parts.length;
+	}
+}
+function rn(a, e, t) {
+	return {
+		icon: Bn(t),
+		name: a,
+		type: e,
+		serialize(n) {
+			return n.serialize();
+		},
+		deserialize(n) {
+			return e.deserialize(n);
+		},
+		clone() {
+			return this;
+		},
+	};
+}
+const Zr = [
+	rn("shortText", In, Oo),
+	rn("longText", An, nr),
+	rn("number", Or, Do),
+	rn("color", tt, jr),
+	rn("entries", ra, On),
+	rn("date", T2, Co),
+	rn("length", er, ga),
+	rn("weight", er, zo),
+];
+var Tn;
+(function (a) {
+	function e(r) {
+		return Zr.find(o => o.name === r);
+	}
+	a.fromName = e;
+	function t(r) {
+		return Zr.find(o => r instanceof o.type);
+	}
+	a.fromValue = t;
+	function n() {
+		return Zr.map(r => r.name);
+	}
+	a.names = n;
+	function i(r, o, h, u) {
+		Zr.push(rn(r, o, h));
+	}
+	a.define = i;
+})(Tn || (Tn = {}));
+class Ft {
+	#e = L(_e(Ye()));
+	get name() {
+		return s(this.#e);
+	}
+	set name(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L(_e(Ye()));
+	get type() {
+		return s(this.#t);
+	}
+	set type(e) {
+		F(this.#t, e, !0);
+	}
+	#n = L(_e(Ye()));
+	get id_() {
+		return s(this.#n);
+	}
+	set id_(e) {
+		F(this.#n, e, !0);
+	}
+	#r = L(_e(Ye()));
+	get group() {
+		return s(this.#r);
+	}
+	set group(e) {
+		F(this.#r, e, !0);
+	}
+	static nextID = 0;
+	constructor(e, t, n, i) {
+		((this.name = e), (this.type = t), (this.group = n), (this.id_ = i ?? Ft.nextID++));
+	}
+	clone() {
+		return new Ft(this.name, this.type, this.group);
+	}
+	serialize() {
+		return { name: this.name, type: this.type.name, id: this.id_, groupId: this.group.id };
+	}
+	static deserialize(e, t) {
+		Ft.nextID <= e.id && (Ft.nextID = e.id + 1);
+		const n = new Ft(e.name, Tn.fromName(e.type), null);
+		return ((n.group = t), n);
+	}
+	get id() {
+		return this.id_;
+	}
+	static basic(e, t) {
+		return n => new Ft(e, Tn.fromName(t), n);
+	}
+}
+var aa;
+(function (a) {
+	function e(n) {
+		return Tn.fromName(n.type).deserialize(n.value);
+	}
+	a.deserialize = e;
+	function t(n) {
+		return { type: Tn.fromValue(n).name, value: n.serialize() };
+	}
+	a.serialize = t;
+})(aa || (aa = {}));
+let j2 = 0;
+class Vr {
+	static paddingMultiplier = 1.1;
+	#e = L(_e(Ye()));
+	get parent_() {
+		return s(this.#e);
+	}
+	set parent_(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L(_e(Ye()));
+	get outline_() {
+		return s(this.#t);
+	}
+	set outline_(e) {
+		F(this.#t, e, !0);
+	}
+	id;
+	constructor() {
+		this.id = j2++;
+	}
+	get parent() {
+		return this.parent_;
+	}
+	get siblingCountIncludingMe() {
+		return this.parent?.children.length ?? 1;
+	}
+	get index() {
+		return this.parent ? this.parent.children.indexOf(this.self) : null;
+	}
+	calculateIntrinsicSize() {
+		if ((this.children.forEach(e => e.calculateIntrinsicSize()), this.isLeaf())) this.outline_ = Sn.originCircle(15);
+		else if (this.isntGrandparent) this.outline_ = Sn.originCircle(this.children.length * 75 + 150);
+		else if (this.hasOnlyChild) this.outline_ = Sn.originCircle(this.children[0].outline_.shape.radius * Vr.paddingMultiplier);
+		else {
+			let e = Math.max(...this.children.map(n => n.outline_.shape.radius));
+			e *= Vr.paddingMultiplier;
+			const { parentRadius: t } = qt.prettyPack(this.children.length, e);
+			this.outline_ = Sn.originCircle(t);
+		}
+		return this.outline_.shape.radius;
+	}
+	applyLayout(e, t) {
+		const n = e / this.outline_.shape.radius;
+		if (((this.outline_.shape.radius = e), !this.parent)) this.outline_.shape.center = Ce.origin();
+		else if (this.hasNoChildrenOrNiblings) {
+			const r = this.parent.outline_.shape.radius * 0.6,
+				o = (this.index * (2 * Math.PI)) / this.siblingCountIncludingMe;
+			this.outline_.shape.center = Ce.polar(r, o).plus(t);
+		} else if (this.isOnlyChild) this.outline_.shape.center = t;
+		else {
+			let r = Math.max(...this.siblingsIncludingMe.map(h => h.outline_.shape.radius));
+			const { circles: o } = qt.prettyPack(this.siblingCountIncludingMe, r);
+			this.outline_.shape.center = t.plus(o[this.index]);
+		}
+		const i = this.children.length > 0 ? Math.max(...this.children.map(r => r.outline_.shape.radius)) * n : 0;
+		this.children.forEach(r => {
+			r.applyLayout(i, this.outline_.shape.center);
+		});
+	}
+	resetLayout() {
+		this.clearLayoutCache();
+		let t = this.calculateIntrinsicSize(),
+			n = Ce.origin();
+		(this.parent &&
+			((t = Math.max(...this.siblingsIncludingMe.map(i => i.outline_.shape.radius))), (n = this.parent.outline_.shape.center)),
+			this.applyLayout(t, n));
+	}
+	resetColors() {
+		(this.parent ? (this.outline_.color = this.parent.outline_.color.darken(2)) : (this.outline_.color = tt.hex("#181825")),
+			this.children.forEach(e => e.resetColors()));
+	}
+	thanksgivingDinner() {
+		this.root()
+			.dfs()
+			.forEach(e => (e.outline.isVisible = !0));
+	}
+	cutOff() {
+		this.root()
+			.dfs()
+			.filter(e => e !== this.self && !e.isDescendantOf(this.self))
+			.forEach(e => (e.outline.isVisible = !1));
+	}
+	shift(e) {
+		let t = new Ce(e);
+		((this.outline.shape.center = this.outline.shape.center.plus(t)), this.children.forEach(n => n.shift(e)));
+	}
+	clearLayoutCache() {
+		((this.outline_ = Ye()), this.children.forEach(e => e.clearLayoutCache()));
+	}
+	get hasOnlyLeaves() {
+		return this.children.every(e => e.isLeaf);
+	}
+	get isntGrandparent() {
+		return this.children.every(e => e.isLeaf());
+	}
+	get hasNoGrandchildren() {
+		return this.children.every(e => e.isBranch());
+	}
+	get hasNoChildrenOrNiblings() {
+		return this.siblingsIncludingMe.every(e => e.isLeaf());
+	}
+	get isOnlyChild() {
+		return this.siblingCountIncludingMe === 1;
+	}
+	get hasChildren() {
+		return this.children.length > 0;
+	}
+	get hasOnlyChild() {
+		return this.children.length === 1;
+	}
+	get siblingsIncludingMe() {
+		return this.parent?.children ?? [this.self];
+	}
+	get previousSibling() {
+		return this.parent && this.index > 0 ? this.parent?.children[this.index - 1] : null;
+	}
+	generateOutline() {
+		this.outline_ || (this.root().resetLayout(), this.root().resetColors());
+	}
+	get outline() {
+		return (this.generateOutline(), this.outline_);
+	}
+	root() {
+		let e = this.self;
+		for (; e.parent; ) e = e.parent;
+		return e;
+	}
+	isOverlapping() {
+		return this.cousins.some(e => e.outline.shape.overlaps(this.outline.shape, this.outline.shape.radius / 100));
+	}
+	isEscapingParent() {
+		return this.parent ? !this.parent.outline.shape.contains(this.outline.shape, this.outline.shape.radius / 100) : !1;
+	}
+	wouldEscapeParentIfShifted(e) {
+		if (!this.parent) return !1;
+		let t = this.outline.shape.center.plus(e),
+			n = this.outline.shape.clone();
+		return ((n.center = t), !this.parent.outline.shape.contains(this.outline.shape, this.outline.shape.radius / 100));
+	}
+	wouldOverlapIfShifted(e) {
+		let t = this.outline.shape.center.plus(e),
+			n = this.outline.shape.clone();
+		return ((n.center = t), this.cousins.some(i => i.outline.shape.overlaps(n, this.outline.shape.radius / 2)));
+	}
+	getCollisionConstrainedShift(e) {
+		let [t, n] = e;
+		const i = this.outline.shape,
+			r = this.cousins;
+		for (const o of r) {
+			const h = o.outline.shape,
+				u = i.radius + h.radius - 0.1,
+				v = i.center.plus([t, n]);
+			if (v.distanceTo(h.center) < u) {
+				const y = Math.atan2(v.y - h.center.y, v.x - h.center.x),
+					C = h.center.x + Math.cos(y) * u,
+					S = h.center.y + Math.sin(y) * u;
+				((t = C - i.center.x), (n = S - i.center.y));
+			}
+		}
+		return [t, n];
+	}
+	get cousins() {
+		return this.root()
+			.dfs()
+			.filter(e => e !== this.self && !e.isDescendantOf(this.self) && !this.isDescendantOf(e));
+	}
+	isDescendantOf(e) {
+		return this.parent ? (this.parent === e ? !0 : this.parent.isDescendantOf(e)) : !1;
+	}
+	get isRoot() {
+		return !this.parent;
+	}
+	get height() {
+		return 1 + this.children.map(e => e.height).reduce((e, t) => Math.max(e, t), 0);
+	}
+	dfs() {
+		let e = [];
+		return (
+			e.push(this.self),
+			this.children.forEach(t => {
+				e = [...e, ...t.dfs()];
+			}),
+			e
+		);
+	}
+	dfsLeaves() {
+		let e = [];
+		return (
+			this.isLeaf() && e.push(this),
+			this.children.forEach(t => {
+				let n = t.isBranch() ? t.dfsLeaves() : [t];
+				e = [...e, ...n];
+			}),
+			e
+		);
+	}
+	dfsBranches() {
+		let e = [];
+		return (
+			this.isBranch() && e.push(this),
+			this.children.forEach(t => {
+				let n = t.isBranch() ? t.dfsBranches() : [];
+				e = [...e, ...n];
+			}),
+			e
+		);
+	}
+	dfsYoungParents() {
+		let e = [];
+		return (
+			this.isBranch() && this.children[0].isLeaf() && e.push(this),
+			this.children.forEach(t => {
+				let n = t.isBranch() ? t.dfsYoungParents() : [];
+				e = [...e, ...n];
+			}),
+			e
+		);
+	}
+	get branchChildren() {
+		return this.children.filter(e => e.isBranch());
+	}
+	get leafChildren() {
+		return this.children.filter(e => e.isLeaf());
+	}
+	get sortedChildren() {
+		return [...this.branchChildren, ...this.leafChildren];
+	}
+	delete() {
+		if (!this.parent) throw new Error("Attempted to delete tree root");
+		this.parent.deleteChild(this.self);
+	}
+}
+class $2 extends Vr {
+	_treeLeaf = void 0;
+	get children() {
+		return [];
+	}
+	get self() {
+		return this;
+	}
+	isLeaf() {
+		return !0;
+	}
+	isBranch() {
+		return !1;
+	}
+}
+class G2 extends Vr {
+	#e = L(_e([]));
+	get leaves() {
+		return s(this.#e);
+	}
+	set leaves(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L(_e([]));
+	get branches() {
+		return s(this.#t);
+	}
+	set branches(e) {
+		F(this.#t, e, !0);
+	}
+	constructor(...e) {
+		(super(), e.forEach(t => this.addChild(t)));
+	}
+	addChild(e) {
+		(e.isLeaf() ? this.leaves.push(e) : this.branches.push(e), (e.parent_ = this));
+	}
+	filterChildrenInPlace(e) {
+		((this.leaves = this.leaves.filter(e)), (this.branches = this.branches.filter(e)));
+	}
+	get children() {
+		return [...this.leaves, ...this.branches];
+	}
+	get self() {
+		return this;
+	}
+	isLeaf() {
+		return !1;
+	}
+	isBranch() {
+		return !0;
+	}
+	deleteChild(e) {
+		((this.leaves = this.leaves.filter(t => t.id !== e.id)), (this.branches = this.branches.filter(t => t.id !== e.id)));
+	}
+}
+class Sn {
+	#e = L(_e(Ye()));
+	get shape() {
+		return s(this.#e);
+	}
+	set shape(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L(_e(tt.black));
+	get color() {
+		return s(this.#t);
+	}
+	set color(e) {
+		F(this.#t, e, !0);
+	}
+	#n = L(!0);
+	get isVisible() {
+		return s(this.#n);
+	}
+	set isVisible(e) {
+		F(this.#n, e, !0);
+	}
+	constructor(e, t) {
+		((this.shape = e), (this.color = t));
+	}
+	static originCircle(e) {
+		return new Sn(new qt(e, Ce.origin()), tt.black);
+	}
+	static fromShapeAndColor(e, t) {
+		return new Sn(e, t);
+	}
+}
+class sn extends $2 {
+	#e = L(_e(Ye()));
+	get attributes() {
+		return s(this.#e);
+	}
+	set attributes(e) {
+		F(this.#e, e, !0);
+	}
+	constructor(e) {
+		(super(), (this.attributes = typeof e == "string" ? { Name: new In(e) } : e));
+	}
+	clone() {
+		return new sn(Sr.mapValues(this.attributes, e => e?.clone() ?? null));
+	}
+	serialize() {
+		return { id: this.id, attributes: Sr.mapValues(this.attributes, e => (e ? aa.serialize(e) : null)) };
+	}
+	static deserializeUnsafe(e) {
+		let t = new sn(Sr.mapValues(e.attributes, n => (n ? aa.deserialize(n) : null)));
+		return ((t.id = e.id), t);
+	}
+	getAttributeValue(e) {
+		return this.attributes[e] ?? null;
+	}
+	overwriteAttributeValue(e, t) {
+		if (!this.getAttributeValue(e))
+			throw `Invalid attribute overwrite: Attempted to overwrite the attribute "${e}" on an item, but no such attribute exists. If this was intentional, use addNewAttributeValue().`;
+		this.attributes[e] = t;
+	}
+	setName(e) {
+		this.addNewOrOverwriteAttributeValue("Name", new In(e));
+	}
+	addNewOrOverwriteAttributeValue(e, t) {
+		this.attributes[e] = t;
+	}
+	addNewAttributeValue(e, t) {
+		if (this.getAttributeValue(e))
+			throw `Invalid attribute additoin: Attempted to overwrite the attribute "${e}" on an item, but no such attribute exists. If this was intentional, use addNewAttributeValue().`;
+		this.attributes[e] = t;
+	}
+	get icon() {
+		return this.isRoot ? Bn(On) : this.parent.icon;
+	}
+	get name() {
+		return this.attributes.Name.value;
+	}
+	toString() {
+		return `Item[ ${this.name} ]`;
+	}
+	dfsGroups() {
+		return [];
+	}
+	dfsItems() {
+		return [this];
+	}
+}
+class dt extends G2 {
+	#e = L(_e(Ye()));
+	get name() {
+		return s(this.#e);
+	}
+	set name(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L(_e(Ye()));
+	get description() {
+		return s(this.#t);
+	}
+	set description(e) {
+		F(this.#t, e, !0);
+	}
+	#n = L(_e(Ye()));
+	get attributes_() {
+		return s(this.#n);
+	}
+	set attributes_(e) {
+		F(this.#n, e, !0);
+	}
+	#r = L(_e(Ye()));
+	get icon_() {
+		return s(this.#r);
+	}
+	set icon_(e) {
+		F(this.#r, e, !0);
+	}
+	constructor(e, ...t) {
+		(super(...t),
+			(this.name = typeof e == "string" ? e : e.name),
+			(this.description = typeof e == "object" ? (e.description ?? "") : ""));
+		let n = typeof e == "object" ? (e.icon ?? "inherit") : "inherit";
+		((this.icon_ = n === "inherit" ? "inherit" : Bn(n)),
+			typeof e == "object"
+				? !e.attributes || e.attributes === "inherit"
+					? (this.attributes_ = "inherit")
+					: (this.attributes_ = e.attributes.map(i => (typeof i == "function" ? i(this) : i)))
+				: (this.attributes_ = "inherit"));
+	}
+	clone() {
+		return new dt({
+			name: this.name,
+			description: this.description,
+			icon: this.icon_,
+			attributes: this.attributes_ === "inherit" ? "inherit" : this.attributes_.map(e => e.clone()),
+		});
+	}
+	serializeStandalone() {
+		return {
+			id: this.id,
+			children: this.children.map(e => e.id),
+			name: this.name,
+			description: this.description,
+			iconName: this.icon_ === "inherit" ? "inherit" : Bn(this.icon).name,
+			attributes:
+				this.attributes_ === "inherit" ? { type: "inherit" } : { type: "own", own: this.attributes_.map(e => e.serialize()) },
+		};
+	}
+	get icon() {
+		return this.isRoot ? Bn(On) : this.icon_ === "inherit" ? this.parent.icon : this.icon_;
+	}
+	deleteAttributeDefinition(e) {
+		if (!this.getAttributeDefinition(e.name))
+			throw `Error deleting attribute: Attempted to delete the attribute "${e}", but no such attribute exists on this object.`;
+		if (this.attributes_ === "inherit") {
+			if (this.isRoot) return;
+			this.parent.deleteAttributeDefinition(e);
+			return;
+		}
+		this.attributes_ = this.attributes_.filter(t => t !== e);
+	}
+	getAttributeDefinition(e) {
+		return this.attributes_ === "inherit"
+			? this.isRoot
+				? null
+				: this.parent.getAttributeDefinition(e)
+			: (this.attributes_.find(t => t.name === e) ?? null);
+	}
+	addNewAttributeDefinition(e) {
+		if (this.attributes_ === "inherit") {
+			if (this.isRoot) {
+				let t = e(this);
+				this.attributes_ = [t];
+				return;
+			}
+			this.parent.addNewAttributeDefinition(e);
+		} else {
+			let t = e(this);
+			if (this.getAttributeDefinition(t.name))
+				throw `Duplicate attribute: Attempted to add the attribute "${t.name}", but the attribute already exists. If this was intentional, use overwriteAttribute().`;
+			this.attributes_.push(t);
+		}
+	}
+	overwriteAttributeDefinition(e) {
+		if (this.attributes_ === "inherit") {
+			if (this.isRoot) {
+				let i = e(this);
+				this.attributes_ = [i];
+				return;
+			}
+			this.parent?.overwriteAttributeDefinition(e);
+			return;
+		}
+		let t = e(this);
+		if (this.attributes_.filter(i => i.name !== t.name).length === this.attributes_.length)
+			throw `Invalid attribute overwrite: Attempted to overwrite the attribute "${t.name}", but no such attribute exists. If this was intentional, use addNewAttribute().`;
+		this.attributes_.push(t);
+	}
+	get attributeDefinitions() {
+		return this.attributes_ === "inherit"
+			? this.isRoot
+				? ((this.attributes_ = [Ft.basic("Name", "shortText")(this)]), this.attributes_)
+				: this.parent.attributeDefinitions
+			: this.attributes_;
+	}
+	removeItem(e) {
+		this.filterChildrenInPlace(t => t !== e);
+	}
+	serialize() {
+		return {
+			groups: this.root()
+				.dfsGroups()
+				.map(e => e.serializeStandalone()),
+			items: this.root()
+				.dfsItems()
+				.map(e => e.serialize()),
+			root: this.root().id,
+		};
+	}
+	static deserializeUnsafe(e) {
+		let t = new dt({
+			name: e.name,
+			description: e.description,
+			icon: e.iconName === "inherit" ? "inherit" : Bn(e.iconName),
+			attributes: "inherit",
+		});
+		return (
+			e.attributes.type !== "inherit" && (t.attributes_ = e.attributes.own.map(n => Ft.deserialize(n, t))),
+			(t.id = e.id),
+			t
+		);
+	}
+	static deserialize(e) {
+		const t = e.groups.map(r => dt.deserializeUnsafe(r)),
+			n = e.items.map(r => sn.deserializeUnsafe(r));
+		for (let r = 0; r < t.length; r++) {
+			let o = t[r],
+				h = e.groups[r];
+			for (let u = 0; u < h.children.length; u++) {
+				let v = h.children[u],
+					b = n.find(C => C.id === v);
+				if (b) {
+					o.addChild(b);
+					continue;
+				}
+				let y = t.find(C => C.id === v);
+				if (y) {
+					o.addChild(y);
+					continue;
+				}
+				throw new Error(
+					`Error deserializing database: The group "${o.name}" was serialized as having a child of ID = ${v}, but no item with that ID exists on the serialized database object.`,
+				);
+			}
+		}
+		return t.find(r => r.id === e.root);
+	}
+	toString() {
+		let e = this.children
+			.map(t =>
+				t.toString().split(`
+`),
+			)
+			.flat()
+			.map(t => `	${t}`).join(`
+`);
+		return `${this.name} {
 ${e}
-}`}dfsGroups(){let e=[this];return this.children.forEach(t=>{let n=t instanceof dt?t.dfsGroups():[];e=[...e,...n]}),e}dfsItems(){let e=[];return this.children.forEach(t=>{let n=t instanceof sn?[t]:t.dfsItems();e=[...e,...n]}),e}get directItemChildren(){return this.children.filter(e=>e instanceof sn)}setName(e){this.name=e}}let no=L(null);function kr(){return s(no)||F(no,{templates:[new dt({name:"Blank",icon:po,description:"A blank project with no datasets. This is not recommended for first time users; Use Basic instead."}),new dt({name:"Dev",icon:Tt,description:"dev testing"},new dt({name:"Plot Events",icon:nr,description:"The events of this story. The actual scene prose exists here.",attributes:[Ft.basic("Name","shortText"),Ft.basic("Script","longText"),Ft.basic("Notes","longText")]},new dt({name:"Act I"},new dt("Hook",new dt(new dt("Chapter 1",new sn("Scene 1")))),new dt("Inciting Incident"),new dt("First Plot Point")),new dt({name:"Act II"},new dt("First Pinch Point"),new dt("Midpoint"),new dt("Second Pinch Point")),new dt({name:"Act III"},new dt("Third Plot Point"),new dt("Climax"),new dt("Resolution"))),new dt({name:"Characters",icon:Mo,description:"The characters of this story.",attributes:[Ft.basic("Name","shortText"),Ft.basic("Gender","shortText"),Ft.basic("Sexuality","shortText"),Ft.basic("Height","length"),Ft.basic("Partner","entries")]},new dt("Main Characters"),new dt("Side Characters")),new dt({name:"Locations",icon:Eo,description:"The locations in this story.",attributes:[Ft.basic("Name","shortText")]}))]},!0),s(no)}let ho=L(_e(z2()));function z2(){return JSON.parse(localStorage.getItem("session-data")??JSON.stringify({lastProjectPath:null}))}function H2(){localStorage.setItem("session-data",JSON.stringify(s(ho)))}function q2(a){F(ho,{...s(ho),...a},!0),H2()}class pt{#e=L(_e(Ye()));get location(){return s(this.#e)}set location(e){F(this.#e,e,!0)}#t=L(_e(Ye()));get database(){return s(this.#t)}set database(e){F(this.#t,e,!0)}constructor({location:e,database:t}){this.location=e,this.database=t}static set(e){F(Ml,e,!0),q2({lastProjectPath:`${e.location}/${e.database.name}`})}static get(){return s(Ml)}static deserialize(e){return new pt({location:e.location,database:dt.deserialize(e.database)})}serialize(){return{location:this.location,database:this.database.serialize()}}static async openFromLocation(e){const t=await X("read_project",{path:e}),n=pt.deserialize(t);pt.set(n)}static async open(){const e=await Ql({directory:!0,multiple:!1,title:"Select a directory"});if(typeof e=="string"){const t=await X("read_project",{path:e}),n=pt.deserialize(t);pt.set(n)}else console.log("No directory selected")}static async save(){const t=pt.get().serialize();await X("save_project",{project:t})}}let Ml=L(null);class M1{constructor(...e){this.type="Logical",e.length===1?"Logical"in e[0]?(this.width=e[0].Logical.width,this.height=e[0].Logical.height):(this.width=e[0].width,this.height=e[0].height):(this.width=e[0],this.height=e[1])}toPhysical(e){return new Mr(this.width*e,this.height*e)}[jt](){return{width:this.width,height:this.height}}toJSON(){return this[jt]()}}class Mr{constructor(...e){this.type="Physical",e.length===1?"Physical"in e[0]?(this.width=e[0].Physical.width,this.height=e[0].Physical.height):(this.width=e[0].width,this.height=e[0].height):(this.width=e[0],this.height=e[1])}toLogical(e){return new M1(this.width/e,this.height/e)}[jt](){return{width:this.width,height:this.height}}toJSON(){return this[jt]()}}class zn{constructor(e){this.size=e}toLogical(e){return this.size instanceof M1?this.size:this.size.toLogical(e)}toPhysical(e){return this.size instanceof Mr?this.size:this.size.toPhysical(e)}[jt](){return{[`${this.size.type}`]:{width:this.size.width,height:this.size.height}}}toJSON(){return this[jt]()}}class L1{constructor(...e){this.type="Logical",e.length===1?"Logical"in e[0]?(this.x=e[0].Logical.x,this.y=e[0].Logical.y):(this.x=e[0].x,this.y=e[0].y):(this.x=e[0],this.y=e[1])}toPhysical(e){return new pn(this.x*e,this.y*e)}[jt](){return{x:this.x,y:this.y}}toJSON(){return this[jt]()}}class pn{constructor(...e){this.type="Physical",e.length===1?"Physical"in e[0]?(this.x=e[0].Physical.x,this.y=e[0].Physical.y):(this.x=e[0].x,this.y=e[0].y):(this.x=e[0],this.y=e[1])}toLogical(e){return new L1(this.x/e,this.y/e)}[jt](){return{x:this.x,y:this.y}}toJSON(){return this[jt]()}}class Yr{constructor(e){this.position=e}toLogical(e){return this.position instanceof L1?this.position:this.position.toLogical(e)}toPhysical(e){return this.position instanceof pn?this.position:this.position.toPhysical(e)}[jt](){return{[`${this.position.type}`]:{x:this.position.x,y:this.position.y}}}toJSON(){return this[jt]()}}var Pt;(function(a){a.WINDOW_RESIZED="tauri://resize",a.WINDOW_MOVED="tauri://move",a.WINDOW_CLOSE_REQUESTED="tauri://close-requested",a.WINDOW_DESTROYED="tauri://destroyed",a.WINDOW_FOCUS="tauri://focus",a.WINDOW_BLUR="tauri://blur",a.WINDOW_SCALE_FACTOR_CHANGED="tauri://scale-change",a.WINDOW_THEME_CHANGED="tauri://theme-changed",a.WINDOW_CREATED="tauri://window-created",a.WEBVIEW_CREATED="tauri://webview-created",a.DRAG_ENTER="tauri://drag-enter",a.DRAG_OVER="tauri://drag-over",a.DRAG_DROP="tauri://drag-drop",a.DRAG_LEAVE="tauri://drag-leave"})(Pt||(Pt={}));async function R1(a,e){window.__TAURI_EVENT_PLUGIN_INTERNALS__.unregisterListener(a,e),await X("plugin:event|unlisten",{event:a,eventId:e})}async function P1(a,e,t){var n;const i=typeof t?.target=="string"?{kind:"AnyLabel",label:t.target}:(n=t?.target)!==null&&n!==void 0?n:{kind:"Any"};return X("plugin:event|listen",{event:a,target:i,handler:I0(e)}).then(r=>async()=>R1(a,r))}async function N2(a,e,t){return P1(a,n=>{R1(a,n.id),e(n)},t)}async function W2(a,e){await X("plugin:event|emit",{event:a,payload:e})}async function Z2(a,e,t){await X("plugin:event|emit_to",{target:typeof a=="string"?{kind:"AnyLabel",label:a}:a,event:e,payload:t})}class Lr extends T0{constructor(e){super(e)}static async new(e,t,n){return X("plugin:image|new",{rgba:ia(e),width:t,height:n}).then(i=>new Lr(i))}static async fromBytes(e){return X("plugin:image|from_bytes",{bytes:ia(e)}).then(t=>new Lr(t))}static async fromPath(e){return X("plugin:image|from_path",{path:e}).then(t=>new Lr(t))}async rgba(){return X("plugin:image|rgba",{rid:this.rid}).then(e=>new Uint8Array(e))}async size(){return X("plugin:image|size",{rid:this.rid})}}function ia(a){return a==null?null:typeof a=="string"?a:a instanceof Lr?a.rid:a}var co;(function(a){a[a.Critical=1]="Critical",a[a.Informational=2]="Informational"})(co||(co={}));class Y2{constructor(e){this._preventDefault=!1,this.event=e.event,this.id=e.id}preventDefault(){this._preventDefault=!0}isPreventDefault(){return this._preventDefault}}var Ll;(function(a){a.None="none",a.Normal="normal",a.Indeterminate="indeterminate",a.Paused="paused",a.Error="error"})(Ll||(Ll={}));function Qr(){return new I1(window.__TAURI_INTERNALS__.metadata.currentWindow.label,{skip:!0})}async function ro(){return X("plugin:window|get_all_windows").then(a=>a.map(e=>new I1(e,{skip:!0})))}const ao=["tauri://created","tauri://error"];class I1{constructor(e,t={}){var n;this.label=e,this.listeners=Object.create(null),t?.skip||X("plugin:window|create",{options:{...t,parent:typeof t.parent=="string"?t.parent:(n=t.parent)===null||n===void 0?void 0:n.label,label:e}}).then(async()=>this.emit("tauri://created")).catch(async i=>this.emit("tauri://error",i))}static async getByLabel(e){var t;return(t=(await ro()).find(n=>n.label===e))!==null&&t!==void 0?t:null}static getCurrent(){return Qr()}static async getAll(){return ro()}static async getFocusedWindow(){for(const e of await ro())if(await e.isFocused())return e;return null}async listen(e,t){return this._handleTauriEvent(e,t)?()=>{const n=this.listeners[e];n.splice(n.indexOf(t),1)}:P1(e,t,{target:{kind:"Window",label:this.label}})}async once(e,t){return this._handleTauriEvent(e,t)?()=>{const n=this.listeners[e];n.splice(n.indexOf(t),1)}:N2(e,t,{target:{kind:"Window",label:this.label}})}async emit(e,t){if(ao.includes(e)){for(const n of this.listeners[e]||[])n({event:e,id:-1,payload:t});return}return W2(e,t)}async emitTo(e,t,n){if(ao.includes(t)){for(const i of this.listeners[t]||[])i({event:t,id:-1,payload:n});return}return Z2(e,t,n)}_handleTauriEvent(e,t){return ao.includes(e)?(e in this.listeners?this.listeners[e].push(t):this.listeners[e]=[t],!0):!1}async scaleFactor(){return X("plugin:window|scale_factor",{label:this.label})}async innerPosition(){return X("plugin:window|inner_position",{label:this.label}).then(e=>new pn(e))}async outerPosition(){return X("plugin:window|outer_position",{label:this.label}).then(e=>new pn(e))}async innerSize(){return X("plugin:window|inner_size",{label:this.label}).then(e=>new Mr(e))}async outerSize(){return X("plugin:window|outer_size",{label:this.label}).then(e=>new Mr(e))}async isFullscreen(){return X("plugin:window|is_fullscreen",{label:this.label})}async isMinimized(){return X("plugin:window|is_minimized",{label:this.label})}async isMaximized(){return X("plugin:window|is_maximized",{label:this.label})}async isFocused(){return X("plugin:window|is_focused",{label:this.label})}async isDecorated(){return X("plugin:window|is_decorated",{label:this.label})}async isResizable(){return X("plugin:window|is_resizable",{label:this.label})}async isMaximizable(){return X("plugin:window|is_maximizable",{label:this.label})}async isMinimizable(){return X("plugin:window|is_minimizable",{label:this.label})}async isClosable(){return X("plugin:window|is_closable",{label:this.label})}async isVisible(){return X("plugin:window|is_visible",{label:this.label})}async title(){return X("plugin:window|title",{label:this.label})}async theme(){return X("plugin:window|theme",{label:this.label})}async isAlwaysOnTop(){return X("plugin:window|is_always_on_top",{label:this.label})}async center(){return X("plugin:window|center",{label:this.label})}async requestUserAttention(e){let t=null;return e&&(e===co.Critical?t={type:"Critical"}:t={type:"Informational"}),X("plugin:window|request_user_attention",{label:this.label,value:t})}async setResizable(e){return X("plugin:window|set_resizable",{label:this.label,value:e})}async setEnabled(e){return X("plugin:window|set_enabled",{label:this.label,value:e})}async isEnabled(){return X("plugin:window|is_enabled",{label:this.label})}async setMaximizable(e){return X("plugin:window|set_maximizable",{label:this.label,value:e})}async setMinimizable(e){return X("plugin:window|set_minimizable",{label:this.label,value:e})}async setClosable(e){return X("plugin:window|set_closable",{label:this.label,value:e})}async setTitle(e){return X("plugin:window|set_title",{label:this.label,value:e})}async maximize(){return X("plugin:window|maximize",{label:this.label})}async unmaximize(){return X("plugin:window|unmaximize",{label:this.label})}async toggleMaximize(){return X("plugin:window|toggle_maximize",{label:this.label})}async minimize(){return X("plugin:window|minimize",{label:this.label})}async unminimize(){return X("plugin:window|unminimize",{label:this.label})}async show(){return X("plugin:window|show",{label:this.label})}async hide(){return X("plugin:window|hide",{label:this.label})}async close(){return X("plugin:window|close",{label:this.label})}async destroy(){return X("plugin:window|destroy",{label:this.label})}async setDecorations(e){return X("plugin:window|set_decorations",{label:this.label,value:e})}async setShadow(e){return X("plugin:window|set_shadow",{label:this.label,value:e})}async setEffects(e){return X("plugin:window|set_effects",{label:this.label,value:e})}async clearEffects(){return X("plugin:window|set_effects",{label:this.label,value:null})}async setAlwaysOnTop(e){return X("plugin:window|set_always_on_top",{label:this.label,value:e})}async setAlwaysOnBottom(e){return X("plugin:window|set_always_on_bottom",{label:this.label,value:e})}async setContentProtected(e){return X("plugin:window|set_content_protected",{label:this.label,value:e})}async setSize(e){return X("plugin:window|set_size",{label:this.label,value:e instanceof zn?e:new zn(e)})}async setMinSize(e){return X("plugin:window|set_min_size",{label:this.label,value:e instanceof zn?e:e?new zn(e):null})}async setMaxSize(e){return X("plugin:window|set_max_size",{label:this.label,value:e instanceof zn?e:e?new zn(e):null})}async setSizeConstraints(e){function t(n){return n?{Logical:n}:null}return X("plugin:window|set_size_constraints",{label:this.label,value:{minWidth:t(e?.minWidth),minHeight:t(e?.minHeight),maxWidth:t(e?.maxWidth),maxHeight:t(e?.maxHeight)}})}async setPosition(e){return X("plugin:window|set_position",{label:this.label,value:e instanceof Yr?e:new Yr(e)})}async setFullscreen(e){return X("plugin:window|set_fullscreen",{label:this.label,value:e})}async setSimpleFullscreen(e){return X("plugin:window|set_simple_fullscreen",{label:this.label,value:e})}async setFocus(){return X("plugin:window|set_focus",{label:this.label})}async setFocusable(e){return X("plugin:window|set_focusable",{label:this.label,value:e})}async setIcon(e){return X("plugin:window|set_icon",{label:this.label,value:ia(e)})}async setSkipTaskbar(e){return X("plugin:window|set_skip_taskbar",{label:this.label,value:e})}async setCursorGrab(e){return X("plugin:window|set_cursor_grab",{label:this.label,value:e})}async setCursorVisible(e){return X("plugin:window|set_cursor_visible",{label:this.label,value:e})}async setCursorIcon(e){return X("plugin:window|set_cursor_icon",{label:this.label,value:e})}async setBackgroundColor(e){return X("plugin:window|set_background_color",{color:e})}async setCursorPosition(e){return X("plugin:window|set_cursor_position",{label:this.label,value:e instanceof Yr?e:new Yr(e)})}async setIgnoreCursorEvents(e){return X("plugin:window|set_ignore_cursor_events",{label:this.label,value:e})}async startDragging(){return X("plugin:window|start_dragging",{label:this.label})}async startResizeDragging(e){return X("plugin:window|start_resize_dragging",{label:this.label,value:e})}async setBadgeCount(e){return X("plugin:window|set_badge_count",{label:this.label,value:e})}async setBadgeLabel(e){return X("plugin:window|set_badge_label",{label:this.label,value:e})}async setOverlayIcon(e){return X("plugin:window|set_overlay_icon",{label:this.label,value:e?ia(e):void 0})}async setProgressBar(e){return X("plugin:window|set_progress_bar",{label:this.label,value:e})}async setVisibleOnAllWorkspaces(e){return X("plugin:window|set_visible_on_all_workspaces",{label:this.label,value:e})}async setTitleBarStyle(e){return X("plugin:window|set_title_bar_style",{label:this.label,value:e})}async setTheme(e){return X("plugin:window|set_theme",{label:this.label,value:e})}async onResized(e){return this.listen(Pt.WINDOW_RESIZED,t=>{t.payload=new Mr(t.payload),e(t)})}async onMoved(e){return this.listen(Pt.WINDOW_MOVED,t=>{t.payload=new pn(t.payload),e(t)})}async onCloseRequested(e){return this.listen(Pt.WINDOW_CLOSE_REQUESTED,async t=>{const n=new Y2(t);await e(n),n.isPreventDefault()||await this.destroy()})}async onDragDropEvent(e){const t=await this.listen(Pt.DRAG_ENTER,o=>{e({...o,payload:{type:"enter",paths:o.payload.paths,position:new pn(o.payload.position)}})}),n=await this.listen(Pt.DRAG_OVER,o=>{e({...o,payload:{type:"over",position:new pn(o.payload.position)}})}),i=await this.listen(Pt.DRAG_DROP,o=>{e({...o,payload:{type:"drop",paths:o.payload.paths,position:new pn(o.payload.position)}})}),r=await this.listen(Pt.DRAG_LEAVE,o=>{e({...o,payload:{type:"leave"}})});return()=>{t(),i(),n(),r()}}async onFocusChanged(e){const t=await this.listen(Pt.WINDOW_FOCUS,i=>{e({...i,payload:!0})}),n=await this.listen(Pt.WINDOW_BLUR,i=>{e({...i,payload:!1})});return()=>{t(),n()}}async onScaleChanged(e){return this.listen(Pt.WINDOW_SCALE_FACTOR_CHANGED,e)}async onThemeChanged(e){return this.listen(Pt.WINDOW_THEME_CHANGED,e)}}var Rl;(function(a){a.Disabled="disabled",a.Throttle="throttle",a.Suspend="suspend"})(Rl||(Rl={}));var Pl;(function(a){a.Default="default",a.FluentOverlay="fluentOverlay"})(Pl||(Pl={}));var Il;(function(a){a.AppearanceBased="appearanceBased",a.Light="light",a.Dark="dark",a.MediumLight="mediumLight",a.UltraDark="ultraDark",a.Titlebar="titlebar",a.Selection="selection",a.Menu="menu",a.Popover="popover",a.Sidebar="sidebar",a.HeaderView="headerView",a.Sheet="sheet",a.WindowBackground="windowBackground",a.HudWindow="hudWindow",a.FullScreenUI="fullScreenUI",a.Tooltip="tooltip",a.ContentBackground="contentBackground",a.UnderWindowBackground="underWindowBackground",a.UnderPageBackground="underPageBackground",a.Mica="mica",a.Blur="blur",a.Acrylic="acrylic",a.Tabbed="tabbed",a.TabbedDark="tabbedDark",a.TabbedLight="tabbedLight"})(Il||(Il={}));var Tl;(function(a){a.FollowsWindowActiveState="followsWindowActiveState",a.Active="active",a.Inactive="inactive"})(Tl||(Tl={}));let U2=class{#e=L(_e(Ce.origin()));get client_(){return s(this.#e)}set client_(e){F(this.#e,e,!0)}#t=L(_e(Ce.origin()));get offset_(){return s(this.#t)}set offset_(e){F(this.#t,e,!0)}#n=L(!1);get leftClicking_(){return s(this.#n)}set leftClicking_(e){F(this.#n,e,!0)}#r=L(!1);get rightClicking_(){return s(this.#r)}set rightClicking_(e){F(this.#r,e,!0)}#a=L(!1);get middleClicking_(){return s(this.#a)}set middleClicking_(e){F(this.#a,e,!0)}#i=L(!1);get isMoving_(){return s(this.#i)}set isMoving_(e){F(this.#i,e,!0)}#o=L(!1);get isDragging_(){return s(this.#o)}set isDragging_(e){F(this.#o,e,!0)}#s=L(_e([]));get handlers(){return s(this.#s)}set handlers(e){F(this.#s,e,!0)}get isLeftClicking(){return this.leftClicking_}get isRightClicking(){return this.rightClicking_}get isMiddleClicking(){return this.middleClicking_}get client(){return this.client_}get offsetY(){return this.offset_}relativeTo(e){return e.offsetParent?new Ce(this.client.x-e.offsetParent.getBoundingClientRect().left,this.client.y-e.offsetParent.getBoundingClientRect().top):Ce.origin()}get isMoving(){return this.isMoving_}get isDragging(){return this.isDragging_}onLeftClick(e){this.handlers.push({event:"mousedown",callback:e})}onClickAndRelease(e){this.handlers.push({event:"click",callback:e})}onRelease(e){this.handlers.push({event:"mouseup",callback:e})}},K2=_e(new U2);function J2(){return K2}var X2=J('<section><div class="inner svelte-ezbhs7"><!></div></section>');function vn(a,e){mt(e,!0);let t=k(e,"left",15),n=k(e,"top",15),i=k(e,"onclose",3,()=>{}),r=L(!1),o=L(!0),h=L(null),u=L(0),v=L(null),b=Se(()=>s(v)?s(v).getBoundingClientRect().right>s(u):!1),y=Se(()=>t()?s(b)?"100%":"0%":s(b)?"0%":"100%"),C=Se(()=>n()?"0%":"100%");function S(){s(r)?R():A()}function A(){s(o)&&P()}function P(){F(o,!1),F(r,!0),s(h)&&clearTimeout(s(h)),F(h,setTimeout(()=>{F(o,!0)},100),!0)}function D(T){T?.preventDefault();let V=J2().relativeTo(s(v));t(`${V.x}px`),n(`${V.y}px`),A()}function R(){s(o)&&G()}function G(){F(o,!1),F(r,!1),i()(),s(h)&&clearTimeout(s(h)),F(h,setTimeout(()=>{F(o,!0)},100),!0)}function j(){return s(v)}function ne(T){s(r)&&s(o)&&s(v)&&!T.composedPath().includes(s(v))&&R()}function M(){return s(o)&&s(r)?"open":!s(o)&&s(r)?"opening":s(o)&&!s(r)?"closing":"closed"}let ce=L(!1);function ve(T,V,H,{padLeft:we,padRight:be,padTop:Be,padBottom:fe}={}){return T>=H.left-(we??0)&&T<=H.right+(be??0)&&V>=H.top-(Be??0)&&V<=H.bottom+(fe??0)}sa(()=>{let T=s(v).parentElement.closest(".context-menu");T&&(s(v).parentElement.addEventListener("mouseenter",V=>{T.matches(".open")&&!s(v).parentElement.matches(".disabled")&&(t(`${T.getBoundingClientRect().width}px`),n(`${s(v).parentElement.getBoundingClientRect().top-s(v).offsetParent.getBoundingClientRect().top-10}px`),P())}),document.addEventListener("mousemove",V=>{const H=s(v)?.parentElement?.getBoundingClientRect();if(!H)return;const we=ve(V.clientX,V.clientY,H,{padRight:10}),be=s(r)&&ve(V.clientX,V.clientY,s(v).getBoundingClientRect()),Be=s(v).parentElement.classList.contains("disabled"),fe=Array.from(s(v).querySelectorAll(".context-menu.open")).some(K=>ve(V.clientX,V.clientY,K.getBoundingClientRect(),{padLeft:10}));!be&&!we&&!fe||Be?G():(t(`${T.getBoundingClientRect().width}px`),n(`${s(v).parentElement.getBoundingClientRect().top-s(v).offsetParent.getBoundingClientRect().top-10}px`),P())}))});var Y={toggle:S,open:A,forceOpen:P,openAtMouse:D,close:R,forceClose:G,element:j,openingState:M},U=X2();xt("mousedown",Rt,ne);let N;var ae=f(U);let Z;var ke=f(ae);return tr(ke,()=>e.children),m(ae),m(U),Ve(U,T=>F(v,T),()=>s(v)),$(()=>{vt(U,1,bt(["context-menu",s(r)&&"open"]),"svelte-ezbhs7"),N=Ge(U,"",N,{top:n(),bottom:e.bottom,right:e.right,left:t()}),Z=Ge(ae,"",Z,{scale:s(r)?"100%":"0%",transform:s(b)?"translateX(-170px)":void 0,"transform-origin":`${s(y)??""}
-		${s(C)??""}`})}),Jl("innerWidth",T=>F(u,T,!0)),xt("mouseenter",U,()=>F(ce,!0)),xt("mouseleave",U,()=>F(ce,!1)),B(a,U),ft(Y)}const Q2=""+new URL("../assets/icon.CsvkJIeS.png",import.meta.url).href;let ed=0;var td=J('<div class="background svelte-d6p9tu" role="combobox" tabindex="0"><section><!> <button class="close-button svelte-d6p9tu"><!></button></section></div>');function ir(a,e){mt(e,!0);let t=k(e,"width",3,"70%"),n=k(e,"height",3,"85%"),i=L(!1),r=ed++;function o(){F(i,!0)}function h(){F(i,!1),e.reset()}let u;function v(j){j.composedPath().includes(u)||h()}function b(j){j.key==="Escape"&&!u.querySelector(".visible.popup")&&h()}var y={open:o,close:h},C=td();xt("keydown",Rt,b);let S;var A=f(C);let P;var D=f(A);tr(D,()=>e.children??_0);var R=x(D,2),G=f(R);return It(G,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),m(R),m(A),Ve(A,j=>u=j,()=>u),m(C),$(()=>{re(C,"aria-expanded",s(i)),re(C,"aria-controls",`popup-${r??""}`),S=Ge(C,"",S,{"background-color":s(i)?"rgba(0, 0, 0, 50%)":"rgba(0, 0, 0, 0%)","pointer-events":s(i)?"auto":"none"}),vt(A,1,bt(["popup",s(i)&&"visible"]),"svelte-d6p9tu"),re(A,"id",`popup-${r??""}`),P=Ge(A,"",P,{scale:s(i)?"100%":"0%",width:t(),height:n()})}),ue("mousedown",C,v),ue("mousedown",R,h),B(a,C),ft(y)}Ct(["mousedown"]);var nd=J('<img class="svelte-h1y0m4"/>'),rd=J("<!> ",1),ad=J('<button><!> <span class="svelte-h1y0m4"> </span></button>'),id=J('<h1 class="svelte-h1y0m4"> </h1> <!>',1),od=J('<div class="sidebar svelte-h1y0m4"><h1 class="title svelte-h1y0m4"><!></h1> <!></div>');function sd(a,e){mt(e,!0);let t=k(e,"view",15);var n=od(),i=f(n),r=f(i);{var o=u=>{var v=rd(),b=ze(v);{var y=A=>{var P=nd();$(()=>re(P,"src",e.title.icon)),B(A,P)},C=A=>{var P=Nt(),D=ze(P);Xt(D,()=>e.title.icon,(R,G)=>{G(R,{})}),B(A,P)};Qe(b,A=>{typeof e.title.icon=="string"?A(y):A(C,-1)})}var S=x(b);$(()=>ut(S,` ${e.title.text??""}`)),B(u,v)};Qe(r,u=>{e.title&&u(o)})}m(i);var h=x(i,2);Lt(h,17,()=>Object.entries(e.sections),Vt,(u,v)=>{var b=Se(()=>so(s(v),2));let y=()=>s(b)[0],C=()=>s(b)[1];var S=id(),A=ze(S),P=f(A,!0);m(A);var D=x(A,2);Lt(D,17,C,Vt,(R,G)=>{var j=Se(()=>so(s(G),2));let ne=()=>s(j)[0],M=()=>s(j)[1];var ce=ad(),ve=f(ce);Xt(ve,M,(N,ae)=>{ae(N,{style:"width: 1rem; height: 1rem;"})});var Y=x(ve,2),U=f(Y,!0);m(Y),m(ce),$(()=>{vt(ce,1,bt({"sidebar-button":!0,active:t()===ne()}),"svelte-h1y0m4"),ut(U,ne())}),ue("mousedown",ce,()=>t(ne())),B(R,ce)}),$(()=>ut(P,y())),B(u,S)}),m(n),B(a,n),ft()}Ct(["mousedown"]);var ld=J('<h1 class="svelte-ip7hp8">Introduction</h1> <p class="svelte-ip7hp8">Welcome to Wallflower!</p> <p class="svelte-ip7hp8">Wallflower is a <i class="svelte-ip7hp8">data editor and visualizer</i> .</p> <div class="nav-buttons svelte-ip7hp8"><button class="next svelte-ip7hp8">Next</button></div>',1),hd=J(`<h1 class="svelte-ip7hp8">Interface</h1> <p class="svelte-ip7hp8">Wallflower is divided into <i class="svelte-ip7hp8">panes.</i> You can think of a pane like a window&mdash; It's its own little workspace with tabs and settings. Panes are divided into
+}`;
+	}
+	dfsGroups() {
+		let e = [this];
+		return (
+			this.children.forEach(t => {
+				let n = t instanceof dt ? t.dfsGroups() : [];
+				e = [...e, ...n];
+			}),
+			e
+		);
+	}
+	dfsItems() {
+		let e = [];
+		return (
+			this.children.forEach(t => {
+				let n = t instanceof sn ? [t] : t.dfsItems();
+				e = [...e, ...n];
+			}),
+			e
+		);
+	}
+	get directItemChildren() {
+		return this.children.filter(e => e instanceof sn);
+	}
+	setName(e) {
+		this.name = e;
+	}
+}
+let no = L(null);
+function kr() {
+	return (
+		s(no) ||
+			F(
+				no,
+				{
+					templates: [
+						new dt({
+							name: "Blank",
+							icon: po,
+							description: "A blank project with no datasets. This is not recommended for first time users; Use Basic instead.",
+						}),
+						new dt(
+							{ name: "Dev", icon: Tt, description: "dev testing" },
+							new dt(
+								{
+									name: "Plot Events",
+									icon: nr,
+									description: "The events of this story. The actual scene prose exists here.",
+									attributes: [Ft.basic("Name", "shortText"), Ft.basic("Script", "longText"), Ft.basic("Notes", "longText")],
+								},
+								new dt(
+									{ name: "Act I" },
+									new dt("Hook", new dt(new dt("Chapter 1", new sn("Scene 1")))),
+									new dt("Inciting Incident"),
+									new dt("First Plot Point"),
+								),
+								new dt({ name: "Act II" }, new dt("First Pinch Point"), new dt("Midpoint"), new dt("Second Pinch Point")),
+								new dt({ name: "Act III" }, new dt("Third Plot Point"), new dt("Climax"), new dt("Resolution")),
+							),
+							new dt(
+								{
+									name: "Characters",
+									icon: Mo,
+									description: "The characters of this story.",
+									attributes: [
+										Ft.basic("Name", "shortText"),
+										Ft.basic("Gender", "shortText"),
+										Ft.basic("Sexuality", "shortText"),
+										Ft.basic("Height", "length"),
+										Ft.basic("Partner", "entries"),
+									],
+								},
+								new dt("Main Characters"),
+								new dt("Side Characters"),
+							),
+							new dt({
+								name: "Locations",
+								icon: Eo,
+								description: "The locations in this story.",
+								attributes: [Ft.basic("Name", "shortText")],
+							}),
+						),
+					],
+				},
+				!0,
+			),
+		s(no)
+	);
+}
+let ho = L(_e(z2()));
+function z2() {
+	return JSON.parse(localStorage.getItem("session-data") ?? JSON.stringify({ lastProjectPath: null }));
+}
+function H2() {
+	localStorage.setItem("session-data", JSON.stringify(s(ho)));
+}
+function q2(a) {
+	(F(ho, { ...s(ho), ...a }, !0), H2());
+}
+class pt {
+	#e = L(_e(Ye()));
+	get location() {
+		return s(this.#e);
+	}
+	set location(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L(_e(Ye()));
+	get database() {
+		return s(this.#t);
+	}
+	set database(e) {
+		F(this.#t, e, !0);
+	}
+	constructor({ location: e, database: t }) {
+		((this.location = e), (this.database = t));
+	}
+	static set(e) {
+		(F(Ml, e, !0), q2({ lastProjectPath: `${e.location}/${e.database.name}` }));
+	}
+	static get() {
+		return s(Ml);
+	}
+	static deserialize(e) {
+		return new pt({ location: e.location, database: dt.deserialize(e.database) });
+	}
+	serialize() {
+		return { location: this.location, database: this.database.serialize() };
+	}
+	static async openFromLocation(e) {
+		const t = await X("read_project", { path: e }),
+			n = pt.deserialize(t);
+		pt.set(n);
+	}
+	static async open() {
+		const e = await Ql({ directory: !0, multiple: !1, title: "Select a directory" });
+		if (typeof e == "string") {
+			const t = await X("read_project", { path: e }),
+				n = pt.deserialize(t);
+			pt.set(n);
+		} else console.log("No directory selected");
+	}
+	static async save() {
+		const t = pt.get().serialize();
+		await X("save_project", { project: t });
+	}
+}
+let Ml = L(null);
+class M1 {
+	constructor(...e) {
+		((this.type = "Logical"),
+			e.length === 1
+				? "Logical" in e[0]
+					? ((this.width = e[0].Logical.width), (this.height = e[0].Logical.height))
+					: ((this.width = e[0].width), (this.height = e[0].height))
+				: ((this.width = e[0]), (this.height = e[1])));
+	}
+	toPhysical(e) {
+		return new Mr(this.width * e, this.height * e);
+	}
+	[jt]() {
+		return { width: this.width, height: this.height };
+	}
+	toJSON() {
+		return this[jt]();
+	}
+}
+class Mr {
+	constructor(...e) {
+		((this.type = "Physical"),
+			e.length === 1
+				? "Physical" in e[0]
+					? ((this.width = e[0].Physical.width), (this.height = e[0].Physical.height))
+					: ((this.width = e[0].width), (this.height = e[0].height))
+				: ((this.width = e[0]), (this.height = e[1])));
+	}
+	toLogical(e) {
+		return new M1(this.width / e, this.height / e);
+	}
+	[jt]() {
+		return { width: this.width, height: this.height };
+	}
+	toJSON() {
+		return this[jt]();
+	}
+}
+class zn {
+	constructor(e) {
+		this.size = e;
+	}
+	toLogical(e) {
+		return this.size instanceof M1 ? this.size : this.size.toLogical(e);
+	}
+	toPhysical(e) {
+		return this.size instanceof Mr ? this.size : this.size.toPhysical(e);
+	}
+	[jt]() {
+		return { [`${this.size.type}`]: { width: this.size.width, height: this.size.height } };
+	}
+	toJSON() {
+		return this[jt]();
+	}
+}
+class L1 {
+	constructor(...e) {
+		((this.type = "Logical"),
+			e.length === 1
+				? "Logical" in e[0]
+					? ((this.x = e[0].Logical.x), (this.y = e[0].Logical.y))
+					: ((this.x = e[0].x), (this.y = e[0].y))
+				: ((this.x = e[0]), (this.y = e[1])));
+	}
+	toPhysical(e) {
+		return new pn(this.x * e, this.y * e);
+	}
+	[jt]() {
+		return { x: this.x, y: this.y };
+	}
+	toJSON() {
+		return this[jt]();
+	}
+}
+class pn {
+	constructor(...e) {
+		((this.type = "Physical"),
+			e.length === 1
+				? "Physical" in e[0]
+					? ((this.x = e[0].Physical.x), (this.y = e[0].Physical.y))
+					: ((this.x = e[0].x), (this.y = e[0].y))
+				: ((this.x = e[0]), (this.y = e[1])));
+	}
+	toLogical(e) {
+		return new L1(this.x / e, this.y / e);
+	}
+	[jt]() {
+		return { x: this.x, y: this.y };
+	}
+	toJSON() {
+		return this[jt]();
+	}
+}
+class Yr {
+	constructor(e) {
+		this.position = e;
+	}
+	toLogical(e) {
+		return this.position instanceof L1 ? this.position : this.position.toLogical(e);
+	}
+	toPhysical(e) {
+		return this.position instanceof pn ? this.position : this.position.toPhysical(e);
+	}
+	[jt]() {
+		return { [`${this.position.type}`]: { x: this.position.x, y: this.position.y } };
+	}
+	toJSON() {
+		return this[jt]();
+	}
+}
+var Pt;
+(function (a) {
+	((a.WINDOW_RESIZED = "tauri://resize"),
+		(a.WINDOW_MOVED = "tauri://move"),
+		(a.WINDOW_CLOSE_REQUESTED = "tauri://close-requested"),
+		(a.WINDOW_DESTROYED = "tauri://destroyed"),
+		(a.WINDOW_FOCUS = "tauri://focus"),
+		(a.WINDOW_BLUR = "tauri://blur"),
+		(a.WINDOW_SCALE_FACTOR_CHANGED = "tauri://scale-change"),
+		(a.WINDOW_THEME_CHANGED = "tauri://theme-changed"),
+		(a.WINDOW_CREATED = "tauri://window-created"),
+		(a.WEBVIEW_CREATED = "tauri://webview-created"),
+		(a.DRAG_ENTER = "tauri://drag-enter"),
+		(a.DRAG_OVER = "tauri://drag-over"),
+		(a.DRAG_DROP = "tauri://drag-drop"),
+		(a.DRAG_LEAVE = "tauri://drag-leave"));
+})(Pt || (Pt = {}));
+async function R1(a, e) {
+	(window.__TAURI_EVENT_PLUGIN_INTERNALS__.unregisterListener(a, e), await X("plugin:event|unlisten", { event: a, eventId: e }));
+}
+async function P1(a, e, t) {
+	var n;
+	const i =
+		typeof t?.target == "string"
+			? { kind: "AnyLabel", label: t.target }
+			: (n = t?.target) !== null && n !== void 0
+				? n
+				: { kind: "Any" };
+	return X("plugin:event|listen", { event: a, target: i, handler: I0(e) }).then(r => async () => R1(a, r));
+}
+async function N2(a, e, t) {
+	return P1(
+		a,
+		n => {
+			(R1(a, n.id), e(n));
+		},
+		t,
+	);
+}
+async function W2(a, e) {
+	await X("plugin:event|emit", { event: a, payload: e });
+}
+async function Z2(a, e, t) {
+	await X("plugin:event|emit_to", { target: typeof a == "string" ? { kind: "AnyLabel", label: a } : a, event: e, payload: t });
+}
+class Lr extends T0 {
+	constructor(e) {
+		super(e);
+	}
+	static async new(e, t, n) {
+		return X("plugin:image|new", { rgba: ia(e), width: t, height: n }).then(i => new Lr(i));
+	}
+	static async fromBytes(e) {
+		return X("plugin:image|from_bytes", { bytes: ia(e) }).then(t => new Lr(t));
+	}
+	static async fromPath(e) {
+		return X("plugin:image|from_path", { path: e }).then(t => new Lr(t));
+	}
+	async rgba() {
+		return X("plugin:image|rgba", { rid: this.rid }).then(e => new Uint8Array(e));
+	}
+	async size() {
+		return X("plugin:image|size", { rid: this.rid });
+	}
+}
+function ia(a) {
+	return a == null ? null : typeof a == "string" ? a : a instanceof Lr ? a.rid : a;
+}
+var co;
+(function (a) {
+	((a[(a.Critical = 1)] = "Critical"), (a[(a.Informational = 2)] = "Informational"));
+})(co || (co = {}));
+class Y2 {
+	constructor(e) {
+		((this._preventDefault = !1), (this.event = e.event), (this.id = e.id));
+	}
+	preventDefault() {
+		this._preventDefault = !0;
+	}
+	isPreventDefault() {
+		return this._preventDefault;
+	}
+}
+var Ll;
+(function (a) {
+	((a.None = "none"), (a.Normal = "normal"), (a.Indeterminate = "indeterminate"), (a.Paused = "paused"), (a.Error = "error"));
+})(Ll || (Ll = {}));
+function Qr() {
+	return new I1(window.__TAURI_INTERNALS__.metadata.currentWindow.label, { skip: !0 });
+}
+async function ro() {
+	return X("plugin:window|get_all_windows").then(a => a.map(e => new I1(e, { skip: !0 })));
+}
+const ao = ["tauri://created", "tauri://error"];
+class I1 {
+	constructor(e, t = {}) {
+		var n;
+		((this.label = e),
+			(this.listeners = Object.create(null)),
+			t?.skip ||
+				X("plugin:window|create", {
+					options: {
+						...t,
+						parent: typeof t.parent == "string" ? t.parent : (n = t.parent) === null || n === void 0 ? void 0 : n.label,
+						label: e,
+					},
+				})
+					.then(async () => this.emit("tauri://created"))
+					.catch(async i => this.emit("tauri://error", i)));
+	}
+	static async getByLabel(e) {
+		var t;
+		return (t = (await ro()).find(n => n.label === e)) !== null && t !== void 0 ? t : null;
+	}
+	static getCurrent() {
+		return Qr();
+	}
+	static async getAll() {
+		return ro();
+	}
+	static async getFocusedWindow() {
+		for (const e of await ro()) if (await e.isFocused()) return e;
+		return null;
+	}
+	async listen(e, t) {
+		return this._handleTauriEvent(e, t)
+			? () => {
+					const n = this.listeners[e];
+					n.splice(n.indexOf(t), 1);
+				}
+			: P1(e, t, { target: { kind: "Window", label: this.label } });
+	}
+	async once(e, t) {
+		return this._handleTauriEvent(e, t)
+			? () => {
+					const n = this.listeners[e];
+					n.splice(n.indexOf(t), 1);
+				}
+			: N2(e, t, { target: { kind: "Window", label: this.label } });
+	}
+	async emit(e, t) {
+		if (ao.includes(e)) {
+			for (const n of this.listeners[e] || []) n({ event: e, id: -1, payload: t });
+			return;
+		}
+		return W2(e, t);
+	}
+	async emitTo(e, t, n) {
+		if (ao.includes(t)) {
+			for (const i of this.listeners[t] || []) i({ event: t, id: -1, payload: n });
+			return;
+		}
+		return Z2(e, t, n);
+	}
+	_handleTauriEvent(e, t) {
+		return ao.includes(e) ? (e in this.listeners ? this.listeners[e].push(t) : (this.listeners[e] = [t]), !0) : !1;
+	}
+	async scaleFactor() {
+		return X("plugin:window|scale_factor", { label: this.label });
+	}
+	async innerPosition() {
+		return X("plugin:window|inner_position", { label: this.label }).then(e => new pn(e));
+	}
+	async outerPosition() {
+		return X("plugin:window|outer_position", { label: this.label }).then(e => new pn(e));
+	}
+	async innerSize() {
+		return X("plugin:window|inner_size", { label: this.label }).then(e => new Mr(e));
+	}
+	async outerSize() {
+		return X("plugin:window|outer_size", { label: this.label }).then(e => new Mr(e));
+	}
+	async isFullscreen() {
+		return X("plugin:window|is_fullscreen", { label: this.label });
+	}
+	async isMinimized() {
+		return X("plugin:window|is_minimized", { label: this.label });
+	}
+	async isMaximized() {
+		return X("plugin:window|is_maximized", { label: this.label });
+	}
+	async isFocused() {
+		return X("plugin:window|is_focused", { label: this.label });
+	}
+	async isDecorated() {
+		return X("plugin:window|is_decorated", { label: this.label });
+	}
+	async isResizable() {
+		return X("plugin:window|is_resizable", { label: this.label });
+	}
+	async isMaximizable() {
+		return X("plugin:window|is_maximizable", { label: this.label });
+	}
+	async isMinimizable() {
+		return X("plugin:window|is_minimizable", { label: this.label });
+	}
+	async isClosable() {
+		return X("plugin:window|is_closable", { label: this.label });
+	}
+	async isVisible() {
+		return X("plugin:window|is_visible", { label: this.label });
+	}
+	async title() {
+		return X("plugin:window|title", { label: this.label });
+	}
+	async theme() {
+		return X("plugin:window|theme", { label: this.label });
+	}
+	async isAlwaysOnTop() {
+		return X("plugin:window|is_always_on_top", { label: this.label });
+	}
+	async center() {
+		return X("plugin:window|center", { label: this.label });
+	}
+	async requestUserAttention(e) {
+		let t = null;
+		return (
+			e && (e === co.Critical ? (t = { type: "Critical" }) : (t = { type: "Informational" })),
+			X("plugin:window|request_user_attention", { label: this.label, value: t })
+		);
+	}
+	async setResizable(e) {
+		return X("plugin:window|set_resizable", { label: this.label, value: e });
+	}
+	async setEnabled(e) {
+		return X("plugin:window|set_enabled", { label: this.label, value: e });
+	}
+	async isEnabled() {
+		return X("plugin:window|is_enabled", { label: this.label });
+	}
+	async setMaximizable(e) {
+		return X("plugin:window|set_maximizable", { label: this.label, value: e });
+	}
+	async setMinimizable(e) {
+		return X("plugin:window|set_minimizable", { label: this.label, value: e });
+	}
+	async setClosable(e) {
+		return X("plugin:window|set_closable", { label: this.label, value: e });
+	}
+	async setTitle(e) {
+		return X("plugin:window|set_title", { label: this.label, value: e });
+	}
+	async maximize() {
+		return X("plugin:window|maximize", { label: this.label });
+	}
+	async unmaximize() {
+		return X("plugin:window|unmaximize", { label: this.label });
+	}
+	async toggleMaximize() {
+		return X("plugin:window|toggle_maximize", { label: this.label });
+	}
+	async minimize() {
+		return X("plugin:window|minimize", { label: this.label });
+	}
+	async unminimize() {
+		return X("plugin:window|unminimize", { label: this.label });
+	}
+	async show() {
+		return X("plugin:window|show", { label: this.label });
+	}
+	async hide() {
+		return X("plugin:window|hide", { label: this.label });
+	}
+	async close() {
+		return X("plugin:window|close", { label: this.label });
+	}
+	async destroy() {
+		return X("plugin:window|destroy", { label: this.label });
+	}
+	async setDecorations(e) {
+		return X("plugin:window|set_decorations", { label: this.label, value: e });
+	}
+	async setShadow(e) {
+		return X("plugin:window|set_shadow", { label: this.label, value: e });
+	}
+	async setEffects(e) {
+		return X("plugin:window|set_effects", { label: this.label, value: e });
+	}
+	async clearEffects() {
+		return X("plugin:window|set_effects", { label: this.label, value: null });
+	}
+	async setAlwaysOnTop(e) {
+		return X("plugin:window|set_always_on_top", { label: this.label, value: e });
+	}
+	async setAlwaysOnBottom(e) {
+		return X("plugin:window|set_always_on_bottom", { label: this.label, value: e });
+	}
+	async setContentProtected(e) {
+		return X("plugin:window|set_content_protected", { label: this.label, value: e });
+	}
+	async setSize(e) {
+		return X("plugin:window|set_size", { label: this.label, value: e instanceof zn ? e : new zn(e) });
+	}
+	async setMinSize(e) {
+		return X("plugin:window|set_min_size", { label: this.label, value: e instanceof zn ? e : e ? new zn(e) : null });
+	}
+	async setMaxSize(e) {
+		return X("plugin:window|set_max_size", { label: this.label, value: e instanceof zn ? e : e ? new zn(e) : null });
+	}
+	async setSizeConstraints(e) {
+		function t(n) {
+			return n ? { Logical: n } : null;
+		}
+		return X("plugin:window|set_size_constraints", {
+			label: this.label,
+			value: { minWidth: t(e?.minWidth), minHeight: t(e?.minHeight), maxWidth: t(e?.maxWidth), maxHeight: t(e?.maxHeight) },
+		});
+	}
+	async setPosition(e) {
+		return X("plugin:window|set_position", { label: this.label, value: e instanceof Yr ? e : new Yr(e) });
+	}
+	async setFullscreen(e) {
+		return X("plugin:window|set_fullscreen", { label: this.label, value: e });
+	}
+	async setSimpleFullscreen(e) {
+		return X("plugin:window|set_simple_fullscreen", { label: this.label, value: e });
+	}
+	async setFocus() {
+		return X("plugin:window|set_focus", { label: this.label });
+	}
+	async setFocusable(e) {
+		return X("plugin:window|set_focusable", { label: this.label, value: e });
+	}
+	async setIcon(e) {
+		return X("plugin:window|set_icon", { label: this.label, value: ia(e) });
+	}
+	async setSkipTaskbar(e) {
+		return X("plugin:window|set_skip_taskbar", { label: this.label, value: e });
+	}
+	async setCursorGrab(e) {
+		return X("plugin:window|set_cursor_grab", { label: this.label, value: e });
+	}
+	async setCursorVisible(e) {
+		return X("plugin:window|set_cursor_visible", { label: this.label, value: e });
+	}
+	async setCursorIcon(e) {
+		return X("plugin:window|set_cursor_icon", { label: this.label, value: e });
+	}
+	async setBackgroundColor(e) {
+		return X("plugin:window|set_background_color", { color: e });
+	}
+	async setCursorPosition(e) {
+		return X("plugin:window|set_cursor_position", { label: this.label, value: e instanceof Yr ? e : new Yr(e) });
+	}
+	async setIgnoreCursorEvents(e) {
+		return X("plugin:window|set_ignore_cursor_events", { label: this.label, value: e });
+	}
+	async startDragging() {
+		return X("plugin:window|start_dragging", { label: this.label });
+	}
+	async startResizeDragging(e) {
+		return X("plugin:window|start_resize_dragging", { label: this.label, value: e });
+	}
+	async setBadgeCount(e) {
+		return X("plugin:window|set_badge_count", { label: this.label, value: e });
+	}
+	async setBadgeLabel(e) {
+		return X("plugin:window|set_badge_label", { label: this.label, value: e });
+	}
+	async setOverlayIcon(e) {
+		return X("plugin:window|set_overlay_icon", { label: this.label, value: e ? ia(e) : void 0 });
+	}
+	async setProgressBar(e) {
+		return X("plugin:window|set_progress_bar", { label: this.label, value: e });
+	}
+	async setVisibleOnAllWorkspaces(e) {
+		return X("plugin:window|set_visible_on_all_workspaces", { label: this.label, value: e });
+	}
+	async setTitleBarStyle(e) {
+		return X("plugin:window|set_title_bar_style", { label: this.label, value: e });
+	}
+	async setTheme(e) {
+		return X("plugin:window|set_theme", { label: this.label, value: e });
+	}
+	async onResized(e) {
+		return this.listen(Pt.WINDOW_RESIZED, t => {
+			((t.payload = new Mr(t.payload)), e(t));
+		});
+	}
+	async onMoved(e) {
+		return this.listen(Pt.WINDOW_MOVED, t => {
+			((t.payload = new pn(t.payload)), e(t));
+		});
+	}
+	async onCloseRequested(e) {
+		return this.listen(Pt.WINDOW_CLOSE_REQUESTED, async t => {
+			const n = new Y2(t);
+			(await e(n), n.isPreventDefault() || (await this.destroy()));
+		});
+	}
+	async onDragDropEvent(e) {
+		const t = await this.listen(Pt.DRAG_ENTER, o => {
+				e({ ...o, payload: { type: "enter", paths: o.payload.paths, position: new pn(o.payload.position) } });
+			}),
+			n = await this.listen(Pt.DRAG_OVER, o => {
+				e({ ...o, payload: { type: "over", position: new pn(o.payload.position) } });
+			}),
+			i = await this.listen(Pt.DRAG_DROP, o => {
+				e({ ...o, payload: { type: "drop", paths: o.payload.paths, position: new pn(o.payload.position) } });
+			}),
+			r = await this.listen(Pt.DRAG_LEAVE, o => {
+				e({ ...o, payload: { type: "leave" } });
+			});
+		return () => {
+			(t(), i(), n(), r());
+		};
+	}
+	async onFocusChanged(e) {
+		const t = await this.listen(Pt.WINDOW_FOCUS, i => {
+				e({ ...i, payload: !0 });
+			}),
+			n = await this.listen(Pt.WINDOW_BLUR, i => {
+				e({ ...i, payload: !1 });
+			});
+		return () => {
+			(t(), n());
+		};
+	}
+	async onScaleChanged(e) {
+		return this.listen(Pt.WINDOW_SCALE_FACTOR_CHANGED, e);
+	}
+	async onThemeChanged(e) {
+		return this.listen(Pt.WINDOW_THEME_CHANGED, e);
+	}
+}
+var Rl;
+(function (a) {
+	((a.Disabled = "disabled"), (a.Throttle = "throttle"), (a.Suspend = "suspend"));
+})(Rl || (Rl = {}));
+var Pl;
+(function (a) {
+	((a.Default = "default"), (a.FluentOverlay = "fluentOverlay"));
+})(Pl || (Pl = {}));
+var Il;
+(function (a) {
+	((a.AppearanceBased = "appearanceBased"),
+		(a.Light = "light"),
+		(a.Dark = "dark"),
+		(a.MediumLight = "mediumLight"),
+		(a.UltraDark = "ultraDark"),
+		(a.Titlebar = "titlebar"),
+		(a.Selection = "selection"),
+		(a.Menu = "menu"),
+		(a.Popover = "popover"),
+		(a.Sidebar = "sidebar"),
+		(a.HeaderView = "headerView"),
+		(a.Sheet = "sheet"),
+		(a.WindowBackground = "windowBackground"),
+		(a.HudWindow = "hudWindow"),
+		(a.FullScreenUI = "fullScreenUI"),
+		(a.Tooltip = "tooltip"),
+		(a.ContentBackground = "contentBackground"),
+		(a.UnderWindowBackground = "underWindowBackground"),
+		(a.UnderPageBackground = "underPageBackground"),
+		(a.Mica = "mica"),
+		(a.Blur = "blur"),
+		(a.Acrylic = "acrylic"),
+		(a.Tabbed = "tabbed"),
+		(a.TabbedDark = "tabbedDark"),
+		(a.TabbedLight = "tabbedLight"));
+})(Il || (Il = {}));
+var Tl;
+(function (a) {
+	((a.FollowsWindowActiveState = "followsWindowActiveState"), (a.Active = "active"), (a.Inactive = "inactive"));
+})(Tl || (Tl = {}));
+let U2 = class {
+		#e = L(_e(Ce.origin()));
+		get client_() {
+			return s(this.#e);
+		}
+		set client_(e) {
+			F(this.#e, e, !0);
+		}
+		#t = L(_e(Ce.origin()));
+		get offset_() {
+			return s(this.#t);
+		}
+		set offset_(e) {
+			F(this.#t, e, !0);
+		}
+		#n = L(!1);
+		get leftClicking_() {
+			return s(this.#n);
+		}
+		set leftClicking_(e) {
+			F(this.#n, e, !0);
+		}
+		#r = L(!1);
+		get rightClicking_() {
+			return s(this.#r);
+		}
+		set rightClicking_(e) {
+			F(this.#r, e, !0);
+		}
+		#a = L(!1);
+		get middleClicking_() {
+			return s(this.#a);
+		}
+		set middleClicking_(e) {
+			F(this.#a, e, !0);
+		}
+		#i = L(!1);
+		get isMoving_() {
+			return s(this.#i);
+		}
+		set isMoving_(e) {
+			F(this.#i, e, !0);
+		}
+		#o = L(!1);
+		get isDragging_() {
+			return s(this.#o);
+		}
+		set isDragging_(e) {
+			F(this.#o, e, !0);
+		}
+		#s = L(_e([]));
+		get handlers() {
+			return s(this.#s);
+		}
+		set handlers(e) {
+			F(this.#s, e, !0);
+		}
+		get isLeftClicking() {
+			return this.leftClicking_;
+		}
+		get isRightClicking() {
+			return this.rightClicking_;
+		}
+		get isMiddleClicking() {
+			return this.middleClicking_;
+		}
+		get client() {
+			return this.client_;
+		}
+		get offsetY() {
+			return this.offset_;
+		}
+		relativeTo(e) {
+			return e.offsetParent
+				? new Ce(
+						this.client.x - e.offsetParent.getBoundingClientRect().left,
+						this.client.y - e.offsetParent.getBoundingClientRect().top,
+					)
+				: Ce.origin();
+		}
+		get isMoving() {
+			return this.isMoving_;
+		}
+		get isDragging() {
+			return this.isDragging_;
+		}
+		onLeftClick(e) {
+			this.handlers.push({ event: "mousedown", callback: e });
+		}
+		onClickAndRelease(e) {
+			this.handlers.push({ event: "click", callback: e });
+		}
+		onRelease(e) {
+			this.handlers.push({ event: "mouseup", callback: e });
+		}
+	},
+	K2 = _e(new U2());
+function J2() {
+	return K2;
+}
+var X2 = J('<section><div class="inner svelte-ezbhs7"><!></div></section>');
+function vn(a, e) {
+	mt(e, !0);
+	let t = k(e, "left", 15),
+		n = k(e, "top", 15),
+		i = k(e, "onclose", 3, () => {}),
+		r = L(!1),
+		o = L(!0),
+		h = L(null),
+		u = L(0),
+		v = L(null),
+		b = Se(() => (s(v) ? s(v).getBoundingClientRect().right > s(u) : !1)),
+		y = Se(() => (t() ? (s(b) ? "100%" : "0%") : s(b) ? "0%" : "100%")),
+		C = Se(() => (n() ? "0%" : "100%"));
+	function S() {
+		s(r) ? R() : A();
+	}
+	function A() {
+		s(o) && P();
+	}
+	function P() {
+		(F(o, !1),
+			F(r, !0),
+			s(h) && clearTimeout(s(h)),
+			F(
+				h,
+				setTimeout(() => {
+					F(o, !0);
+				}, 100),
+				!0,
+			));
+	}
+	function D(T) {
+		T?.preventDefault();
+		let V = J2().relativeTo(s(v));
+		(t(`${V.x}px`), n(`${V.y}px`), A());
+	}
+	function R() {
+		s(o) && G();
+	}
+	function G() {
+		(F(o, !1),
+			F(r, !1),
+			i()(),
+			s(h) && clearTimeout(s(h)),
+			F(
+				h,
+				setTimeout(() => {
+					F(o, !0);
+				}, 100),
+				!0,
+			));
+	}
+	function j() {
+		return s(v);
+	}
+	function ne(T) {
+		s(r) && s(o) && s(v) && !T.composedPath().includes(s(v)) && R();
+	}
+	function M() {
+		return s(o) && s(r) ? "open" : !s(o) && s(r) ? "opening" : s(o) && !s(r) ? "closing" : "closed";
+	}
+	let ce = L(!1);
+	function ve(T, V, H, { padLeft: we, padRight: be, padTop: Be, padBottom: fe } = {}) {
+		return T >= H.left - (we ?? 0) && T <= H.right + (be ?? 0) && V >= H.top - (Be ?? 0) && V <= H.bottom + (fe ?? 0);
+	}
+	sa(() => {
+		let T = s(v).parentElement.closest(".context-menu");
+		T &&
+			(s(v).parentElement.addEventListener("mouseenter", V => {
+				T.matches(".open") &&
+					!s(v).parentElement.matches(".disabled") &&
+					(t(`${T.getBoundingClientRect().width}px`),
+					n(`${s(v).parentElement.getBoundingClientRect().top - s(v).offsetParent.getBoundingClientRect().top - 10}px`),
+					P());
+			}),
+			document.addEventListener("mousemove", V => {
+				const H = s(v)?.parentElement?.getBoundingClientRect();
+				if (!H) return;
+				const we = ve(V.clientX, V.clientY, H, { padRight: 10 }),
+					be = s(r) && ve(V.clientX, V.clientY, s(v).getBoundingClientRect()),
+					Be = s(v).parentElement.classList.contains("disabled"),
+					fe = Array.from(s(v).querySelectorAll(".context-menu.open")).some(K =>
+						ve(V.clientX, V.clientY, K.getBoundingClientRect(), { padLeft: 10 }),
+					);
+				(!be && !we && !fe) || Be
+					? G()
+					: (t(`${T.getBoundingClientRect().width}px`),
+						n(`${s(v).parentElement.getBoundingClientRect().top - s(v).offsetParent.getBoundingClientRect().top - 10}px`),
+						P());
+			}));
+	});
+	var Y = { toggle: S, open: A, forceOpen: P, openAtMouse: D, close: R, forceClose: G, element: j, openingState: M },
+		U = X2();
+	xt("mousedown", Rt, ne);
+	let N;
+	var ae = f(U);
+	let Z;
+	var ke = f(ae);
+	return (
+		tr(ke, () => e.children),
+		m(ae),
+		m(U),
+		Ve(
+			U,
+			T => F(v, T),
+			() => s(v),
+		),
+		$(() => {
+			(vt(U, 1, bt(["context-menu", s(r) && "open"]), "svelte-ezbhs7"),
+				(N = Ge(U, "", N, { top: n(), bottom: e.bottom, right: e.right, left: t() })),
+				(Z = Ge(ae, "", Z, {
+					"scale": s(r) ? "100%" : "0%",
+					"transform": s(b) ? "translateX(-170px)" : void 0,
+					"transform-origin": `${s(y) ?? ""}
+		${s(C) ?? ""}`,
+				})));
+		}),
+		Jl("innerWidth", T => F(u, T, !0)),
+		xt("mouseenter", U, () => F(ce, !0)),
+		xt("mouseleave", U, () => F(ce, !1)),
+		B(a, U),
+		ft(Y)
+	);
+}
+const Q2 = "" + new URL("../assets/icon.CsvkJIeS.png", import.meta.url).href;
+let ed = 0;
+var td = J(
+	'<div class="background svelte-d6p9tu" role="combobox" tabindex="0"><section><!> <button class="close-button svelte-d6p9tu"><!></button></section></div>',
+);
+function ir(a, e) {
+	mt(e, !0);
+	let t = k(e, "width", 3, "70%"),
+		n = k(e, "height", 3, "85%"),
+		i = L(!1),
+		r = ed++;
+	function o() {
+		F(i, !0);
+	}
+	function h() {
+		(F(i, !1), e.reset());
+	}
+	let u;
+	function v(j) {
+		j.composedPath().includes(u) || h();
+	}
+	function b(j) {
+		j.key === "Escape" && !u.querySelector(".visible.popup") && h();
+	}
+	var y = { open: o, close: h },
+		C = td();
+	xt("keydown", Rt, b);
+	let S;
+	var A = f(C);
+	let P;
+	var D = f(A);
+	tr(D, () => e.children ?? _0);
+	var R = x(D, 2),
+		G = f(R);
+	return (
+		It(G, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }),
+		m(R),
+		m(A),
+		Ve(
+			A,
+			j => (u = j),
+			() => u,
+		),
+		m(C),
+		$(() => {
+			(re(C, "aria-expanded", s(i)),
+				re(C, "aria-controls", `popup-${r ?? ""}`),
+				(S = Ge(C, "", S, {
+					"background-color": s(i) ? "rgba(0, 0, 0, 50%)" : "rgba(0, 0, 0, 0%)",
+					"pointer-events": s(i) ? "auto" : "none",
+				})),
+				vt(A, 1, bt(["popup", s(i) && "visible"]), "svelte-d6p9tu"),
+				re(A, "id", `popup-${r ?? ""}`),
+				(P = Ge(A, "", P, { scale: s(i) ? "100%" : "0%", width: t(), height: n() })));
+		}),
+		ue("mousedown", C, v),
+		ue("mousedown", R, h),
+		B(a, C),
+		ft(y)
+	);
+}
+Ct(["mousedown"]);
+var nd = J('<img class="svelte-h1y0m4"/>'),
+	rd = J("<!> ", 1),
+	ad = J('<button><!> <span class="svelte-h1y0m4"> </span></button>'),
+	id = J('<h1 class="svelte-h1y0m4"> </h1> <!>', 1),
+	od = J('<div class="sidebar svelte-h1y0m4"><h1 class="title svelte-h1y0m4"><!></h1> <!></div>');
+function sd(a, e) {
+	mt(e, !0);
+	let t = k(e, "view", 15);
+	var n = od(),
+		i = f(n),
+		r = f(i);
+	{
+		var o = u => {
+			var v = rd(),
+				b = ze(v);
+			{
+				var y = A => {
+						var P = nd();
+						($(() => re(P, "src", e.title.icon)), B(A, P));
+					},
+					C = A => {
+						var P = Nt(),
+							D = ze(P);
+						(Xt(
+							D,
+							() => e.title.icon,
+							(R, G) => {
+								G(R, {});
+							},
+						),
+							B(A, P));
+					};
+				Qe(b, A => {
+					typeof e.title.icon == "string" ? A(y) : A(C, -1);
+				});
+			}
+			var S = x(b);
+			($(() => ut(S, ` ${e.title.text ?? ""}`)), B(u, v));
+		};
+		Qe(r, u => {
+			e.title && u(o);
+		});
+	}
+	m(i);
+	var h = x(i, 2);
+	(Lt(
+		h,
+		17,
+		() => Object.entries(e.sections),
+		Vt,
+		(u, v) => {
+			var b = Se(() => so(s(v), 2));
+			let y = () => s(b)[0],
+				C = () => s(b)[1];
+			var S = id(),
+				A = ze(S),
+				P = f(A, !0);
+			m(A);
+			var D = x(A, 2);
+			(Lt(D, 17, C, Vt, (R, G) => {
+				var j = Se(() => so(s(G), 2));
+				let ne = () => s(j)[0],
+					M = () => s(j)[1];
+				var ce = ad(),
+					ve = f(ce);
+				Xt(ve, M, (N, ae) => {
+					ae(N, { style: "width: 1rem; height: 1rem;" });
+				});
+				var Y = x(ve, 2),
+					U = f(Y, !0);
+				(m(Y),
+					m(ce),
+					$(() => {
+						(vt(ce, 1, bt({ "sidebar-button": !0, "active": t() === ne() }), "svelte-h1y0m4"), ut(U, ne()));
+					}),
+					ue("mousedown", ce, () => t(ne())),
+					B(R, ce));
+			}),
+				$(() => ut(P, y())),
+				B(u, S));
+		},
+	),
+		m(n),
+		B(a, n),
+		ft());
+}
+Ct(["mousedown"]);
+var ld = J(
+		'<h1 class="svelte-ip7hp8">Introduction</h1> <p class="svelte-ip7hp8">Welcome to Clara!</p> <p class="svelte-ip7hp8">Clara is a <i class="svelte-ip7hp8">data editor and visualizer</i> .</p> <div class="nav-buttons svelte-ip7hp8"><button class="next svelte-ip7hp8">Next</button></div>',
+		1,
+	),
+	hd = J(
+		`<h1 class="svelte-ip7hp8">Interface</h1> <p class="svelte-ip7hp8">Clara is divided into <i class="svelte-ip7hp8">panes.</i> You can think of a pane like a window&mdash; It's its own little workspace with tabs and settings. Panes are divided into
 					multiple <i class="svelte-ip7hp8">tabs</i> . Each tab holds one group or editor&mdash;don't worry about those right now, we'll talk more about that later. Panes can
-					be infinitely split horizontally or vertically into more panes.</p>`,1),cd=J(`<h1 class="svelte-ip7hp8">Groups</h1> <h1 class="svelte-ip7hp8">Attributes &amp; Items</h1> <p class="svelte-ip7hp8"><i class="svelte-ip7hp8">Attributes</i> are where all of your actual data lives. Your characters physical appearances, location information, and even your actual
-					prose will all be stored as attributes.</p> <p class="svelte-ip7hp8">Generally you'll be editing your attributes in the <i class="svelte-ip7hp8">spreadsheet view.</i> One notable exception to this is any longText data with formatting like bold and italics, which can be edited in the <i class="svelte-ip7hp8">editor</i> panel. This is where your actual writing will take place.</p>`,1),ud=J(`<h1 class="svelte-ip7hp8">License</h1> <p class="svelte-ip7hp8">The Wallflower project is FOSS and licensed under the <i class="svelte-ip7hp8">Attribution-NonCommercial-ShareAlike 4.0 International</i> license. The TL;DR is, you can copy, redistribute, and modify the code as much as you'd like, as long as it's:</p> <ul class="svelte-ip7hp8"><li class="svelte-ip7hp8"><b class="svelte-ip7hp8">Attributed</b> - You must link to the original project</li> <li class="svelte-ip7hp8"><b class="svelte-ip7hp8">Non-Commercial</b> - You cannot use any form of this code for profit or commercial gain, including modified and old versions.</li> <li class="svelte-ip7hp8"><b class="svelte-ip7hp8">Share-Alike</b> - Any versions, adaptations, or redistributions you release of the project's code <b class="svelte-ip7hp8">must be licensed under this same license.</b></li></ul> <p class="svelte-ip7hp8">That's pretty much it. I'd like to think it's mostly common sense&mdash;credit me, don't sell my work, and don't let
-					others sell your work. Wallflower was designed to be a free community tool for all to use, and I will not see it made
+					be infinitely split horizontally or vertically into more panes.</p>`,
+		1,
+	),
+	cd = J(
+		`<h1 class="svelte-ip7hp8">Groups</h1> <h1 class="svelte-ip7hp8">Attributes &amp; Items</h1> <p class="svelte-ip7hp8"><i class="svelte-ip7hp8">Attributes</i> are where all of your actual data lives. Your characters physical appearances, location information, and even your actual
+					prose will all be stored as attributes.</p> <p class="svelte-ip7hp8">Generally you'll be editing your attributes in the <i class="svelte-ip7hp8">spreadsheet view.</i> One notable exception to this is any longText data with formatting like bold and italics, which can be edited in the <i class="svelte-ip7hp8">editor</i> panel. This is where your actual writing will take place.</p>`,
+		1,
+	),
+	ud = J(
+		`<h1 class="svelte-ip7hp8">License</h1> <p class="svelte-ip7hp8">The Clara project is FOSS and licensed under the <i class="svelte-ip7hp8">Attribution-NonCommercial-ShareAlike 4.0 International</i> license. The TL;DR is, you can copy, redistribute, and modify the code as much as you'd like, as long as it's:</p> <ul class="svelte-ip7hp8"><li class="svelte-ip7hp8"><b class="svelte-ip7hp8">Attributed</b> - You must link to the original project</li> <li class="svelte-ip7hp8"><b class="svelte-ip7hp8">Non-Commercial</b> - You cannot use any form of this code for profit or commercial gain, including modified and old versions.</li> <li class="svelte-ip7hp8"><b class="svelte-ip7hp8">Share-Alike</b> - Any versions, adaptations, or redistributions you release of the project's code <b class="svelte-ip7hp8">must be licensed under this same license.</b></li></ul> <p class="svelte-ip7hp8">That's pretty much it. I'd like to think it's mostly common sense&mdash;credit me, don't sell my work, and don't let
+					others sell your work. Clara was designed to be a free community tool for all to use, and I will not see it made
 					predatory.</p> <p class="svelte-ip7hp8">The full license spec is below.</p> <h2 class="svelte-ip7hp8">Attribution-NonCommercial-ShareAlike 4.0 International</h2> <p class="svelte-ip7hp8">Creative Commons Corporation ("Creative Commons") is not a law firm and does not provide legal services or legal advice.
 					Distribution of Creative Commons public licenses does not create a lawyer-client or other relationship. Creative Commons
 					makes its licenses and related information available on an "as-is" basis. Creative Commons gives no warranties regarding
@@ -138,6 +11211,3706 @@ ${e}
 							does not authorize the use of the trademark "Creative Commons" or any other trademark or logo of Creative Commons
 							without its prior written consent including, without limitation, in connection with any unauthorized modifications
 							to any of its public licenses or any other arrangements, understandings, or agreements concerning use of licensed
-							material. For the avoidance of doubt, this paragraph does not form part of the public licenses.</p> <p class="svelte-ip7hp8">Creative Commons may be contacted at creativecommons.org.</p></li></ol>`,1),dd=J('<div class="popup svelte-ip7hp8"><!> <div class="content svelte-ip7hp8"><!></div></div>');function Wo(a,e){mt(e,!0);let t,n=L("Introduction");function i(h){h&&F(n,h,!0),t.open()}function r(){}var o={open:i};return Ve(ir(a,{reset:r,children:(h,u)=>{var v=dd(),b=f(v);{let R=Se(()=>({text:"Wallflower Manual",icon:Q2})),G=Se(()=>({"The essentials":[["Introduction",Po],["Interface",$r],["Entries",Mn],["Templates",Dn],["View",On],["The Editor",ma]],Advanced:[["Measurements & Units",ga],["Randomization",ua],["Generated Attributes",wo],["Suggestions",nr],["Plugins",Ir]],Development:[["Plugin Development",Ir],["Bug Reporting",xo],["Contributing",Go]],Legal:[["License",Fo],["Privacy Policy",fa]]}));sd(b,{get title(){return s(R)},get sections(){return s(G)},get view(){return s(n)},set view(j){F(n,j,!0)}})}var y=x(b,2),C=f(y);{var S=R=>{var G=ld();Fe(6),B(R,G)},A=R=>{var G=hd();Fe(2),B(R,G)},P=R=>{var G=cd();Fe(6),B(R,G)},D=R=>{var G=ud();Fe(34),B(R,G)};Qe(C,R=>{s(n)==="Introduction"?R(S):s(n)==="Interface"?R(A,1):s(n)==="Entries"?R(P,2):s(n)==="License"&&R(D,3)})}m(y),m(v),B(h,v)},$$slots:{default:!0}}),h=>t=h,()=>t),ft(o)}var md=J("<button><!></button>");function an(a,e){let t=k(e,"accent",3,"#b4befe"),n=k(e,"scale",3,1),i=se(e,["$$slots","$$events","$$legacy","Icon","accent","scale"]);var r=md();le(r,()=>({...i,[he]:{"--accent":t()}}),void 0,void 0,void 0,"svelte-1g3nbt2");var o=f(r);Xt(o,()=>e.Icon,(h,u)=>{u(h,{stroke:"var(--stroke)",get style(){return`width: ${n()??""}rem; height: ${n()??""}rem;`}})}),m(r),B(a,r)}var fd=J('<div class="header svelte-b4ffmr"><!></div>'),gd=J("<!> <span> </span>",1),pd=J('<button class="header svelte-b4ffmr"><!> <!></button>'),vd=J("<!> <!>",1),bd=J('<div class="svelte-b4ffmr"><!></div>'),xd=J('<div class="svelte-b4ffmr"> </div>'),Cd=J('<div><div class="input svelte-b4ffmr"><!> <!></div> <div><!> <!></div></div>');function Ca(a,e){mt(e,!0);let t=k(e,"locked",7,!1),n=k(e,"lockable",7,void 0),i=k(e,"onunlock",3,T=>{T()}),r=k(e,"value",15),o=k(e,"title",3,void 0),h=k(e,"width",3,"20rem"),u=k(e,"height",3,"fit-content"),v=k(e,"emptyText",3,"None Selected"),b=k(e,"noarrow",3,!1),y=se(e,["$$slots","$$events","$$legacy","options","locked","lockable","onunlock","itemOverride","value","title","children","width","height","additionalButtonText","additionalButtonClick","isError","emptyText","noarrow"]);n()===void 0&&n(t());let C=L(!1);function S(T){return function(){F(C,!1),r(T)}}let A;function P(T){t()||F(C,!s(C))}function D(T){T.composedPath().includes(A)||F(C,!1)}function R(){t(!1)}function G(){if(console.log("toggle",t()),!t()){t(!0);return}console.log("calling onunlock"),i()(R)}var j=Cd();xt("mousedown",Rt,D),le(j,()=>({class:"select",...y,[he]:{cursor:t()?"not-allowed":"pointer",width:h()}}),void 0,void 0,void 0,"svelte-b4ffmr");var ne=f(j),M=f(ne);{var ce=T=>{var V=fd();let H;var we=f(V);tr(we,()=>e.children),m(V),$(()=>H=Ge(V,"",H,{cursor:t()?"not-allowed":"pointer",display:"contents"})),ue("mousedown",V,P),B(T,V)},ve=T=>{var V=pd();let H;var we=f(V);{var be=W=>{var pe=Gn();$(()=>ut(pe,o())),B(W,pe)},Be=W=>{const pe=Se(()=>e.options.find(xe=>typeof xe!="string"&&xe.name===(typeof r()=="string"?r():r().name)));var Pe=Nt(),ye=ze(Pe);{var Te=xe=>{var Ie=gd(),Ue=ze(Ie);{var nt=Le=>{var oe=Nt(),it=ze(oe);{let lt=Se(()=>s(pe).color??"#a6adc8");Xt(it,()=>s(pe).icon,(He,Ke)=>{Ke(He,{get stroke(){return s(lt)},style:"width: 1rem; height: 1rem;"})})}B(Le,oe)};Qe(Ue,Le=>{s(pe).icon&&Le(nt)})}var ie=x(Ue,2),je=f(ie,!0);m(ie),$(()=>{Ge(ie,s(pe).style??""),ut(je,s(pe).name)}),B(xe,Ie)},Me=xe=>{var Ie=Gn();$(()=>ut(Ie,r())),B(xe,Ie)};Qe(ye,xe=>{s(pe)?xe(Te):xe(Me,-1)})}B(W,Pe)},fe=W=>{var pe=Gn();$(()=>ut(pe,v())),B(W,pe)};Qe(we,W=>{o()?W(be):r()?W(Be,1):W(fe,-1)})}var K=x(we,2);{var ge=W=>{{let pe=Se(()=>s(C)?"180deg":"90deg");Qt(W,{stroke:"#b4befe",get style(){return`width: 1rem; height: 1rem; margin-left: auto; transform: rotate(${s(pe)??""}); transition: transform 0.1s;`}})}};Qe(K,W=>{b()||W(ge)})}m(V),$(()=>H=Ge(V,"",H,{height:u(),cursor:t()?"not-allowed":"pointer",outline:e.isError?"2px solid var(--red)":"none"})),ue("mousedown",V,P),B(T,V)};Qe(M,T=>{e.children?T(ce):T(ve,-1)})}var Y=x(M,2);{var U=T=>{{let V=Se(()=>t()?Bo:$o);an(T,{onmousedown:G,scale:1.5,style:"border: 1px solid #313244;",get Icon(){return s(V)}})}};Qe(Y,T=>{n()&&T(U)})}m(ne);var N=x(ne,2),ae=f(N);Lt(ae,17,()=>e.options,Vt,(T,V)=>{var H=bd(),we=Se(()=>S(typeof s(V)=="string"?s(V):s(V).name)),be=f(H);{var Be=K=>{var ge=Gn();$(()=>ut(ge,s(V))),B(K,ge)},fe=K=>{var ge=vd(),W=ze(ge);{var pe=Me=>{var xe=Nt(),Ie=ze(xe);{let Ue=Se(()=>s(V).color??"#a6adc8");Xt(Ie,()=>s(V).icon,(nt,ie)=>{ie(nt,{get stroke(){return s(Ue)},style:"width: 1rem; height: 1rem;"})})}B(Me,xe)};Qe(W,Me=>{s(V).icon&&Me(pe)})}var Pe=x(W,2);{var ye=Me=>{var xe=Gn();$(()=>ut(xe,e.itemOverride)),B(Me,xe)},Te=Me=>{var xe=Gn();$(()=>ut(xe,s(V).name)),B(Me,xe)};Qe(Pe,Me=>{e.itemOverride?Me(ye):Me(Te,-1)})}B(K,ge)};Qe(be,K=>{typeof s(V)=="string"?K(Be):K(fe,-1)})}m(H),$(()=>Ge(H,typeof s(V)!="string"&&s(V).style?s(V).style:"")),ue("mousedown",H,function(...K){s(we)?.apply(this,K)}),B(T,H)});var Z=x(ae,2);{var ke=T=>{var V=xd(),H=f(V,!0);m(V),$(()=>ut(H,e.additionalButtonText)),ue("mousedown",V,function(...we){e.additionalButtonClick?.apply(this,we)}),B(T,V)};Qe(Z,T=>{e.additionalButtonText&&T(ke)})}m(N),m(j),Ve(j,T=>A=T,()=>A),$(()=>vt(N,1,bt(["options",s(C)&&"visible"]),"svelte-b4ffmr")),B(a,j),ft()}Ct(["mousedown"]);var _d=J('<h1 class="svelte-1qktjv">Appearance</h1> <div class="section svelte-1qktjv"><div class="option svelte-1qktjv"><div class="left svelte-1qktjv"><h2 class="svelte-1qktjv">Theme</h2> <p class="svelte-1qktjv">Set the color theme for Wallflower.</p></div> <!></div> <div class="option svelte-1qktjv"><div class="left svelte-1qktjv"><h2 class="svelte-1qktjv">UI Scale</h2> <p class="svelte-1qktjv">Set the color theme for Wallflower.</p></div> <input class="svelte-1qktjv"/></div></div>',1),wd=J('<button class="header svelte-1qktjv"><div class="svelte-1qktjv"><h1 class="svelte-1qktjv"> </h1> <p class="svelte-1qktjv"> </p></div> <!></button>'),yd=J('<h1 style="margin-top: 1rem;" class="svelte-1qktjv">Templates</h1> <div class="templates svelte-1qktjv"></div>',1),Fd=J('<div class="template-editor svelte-1qktjv"><h2 class="svelte-1qktjv">Name</h2> <div class="name svelte-1qktjv"><button class="svelte-1qktjv"><!></button> <input class="svelte-1qktjv"/></div> <h2 class="svelte-1qktjv">Groups &amp; Items</h2></div>'),kd=J('<div class="popup svelte-1qktjv"><div class="sidebar svelte-1qktjv"><h1 class="title svelte-1qktjv"><!> Settings</h1> <h1 class="svelte-1qktjv">General</h1> <button class="svelte-1qktjv"><!> <span class="svelte-1qktjv">Appearance</span></button> <button class="svelte-1qktjv"><!> <span class="svelte-1qktjv">Hotkeys</span></button> <button class="svelte-1qktjv"><!> <span class="svelte-1qktjv">Startup</span></button> <button class="svelte-1qktjv"><!> <span class="svelte-1qktjv">Plugins</span></button> <h1 class="svelte-1qktjv">Presets</h1> <button><!> <span class="svelte-1qktjv">Templates</span></button> <button class="svelte-1qktjv"><!> <span class="svelte-1qktjv">Randomizers</span></button> <button class="svelte-1qktjv"><!> <span class="svelte-1qktjv">Suggestions</span></button> <h1 class="svelte-1qktjv">Plugins</h1></div> <div class="content svelte-1qktjv"><!></div></div>');function T1(a,e){mt(e,!0);let t;function n(b){b&&F(i,b,!0),t.open()}let i=L("appearance");function r(){}function o(b){return function(){F(i,b,!0)}}L(_e([]));let h=L(null);function u(b){return function(){F(h,b,!0),o("template-editor")()}}var v={open:n};return Ve(ir(a,{reset:r,children:(b,y)=>{var C=kd(),S=f(C),A=f(S),P=f(A);Tt(P,{stroke:"#cdd6f4",style:"width: 1rem; height: 1rem;"}),Fe(),m(A);var D=x(A,4),R=Se(()=>o("appearance")),G=f(D);jr(G,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),Fe(2),m(D);var j=x(D,2),ne=Se(()=>o("introduction")),M=f(j);yo(M,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),Fe(2),m(j);var ce=x(j,2),ve=Se(()=>o("introduction")),Y=f(ce);Io(Y,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),Fe(2),m(ce);var U=x(ce,2),N=Se(()=>o("introduction")),ae=f(U);Ir(ae,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),Fe(2),m(U);var Z=x(U,4),ke=Se(()=>o("templates")),T=f(Z);Dn(T,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),Fe(2),m(Z);var V=x(Z,2),H=Se(()=>o("introduction")),we=f(V);ua(we,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),Fe(2),m(V);var be=x(V,2),Be=Se(()=>o("introduction")),fe=f(be);nr(fe,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),Fe(2),m(be),Fe(2),m(S);var K=x(S,2),ge=f(K);{var W=ye=>{var Te=_d(),Me=x(ze(Te),2),xe=f(Me),Ie=x(f(xe),2);Ca(Ie,{style:"background: #1e1e2e;",options:["Catppuccin Mocha"],value:"Catppuccin Mocha"}),m(xe),Fe(2),m(Me),B(ye,Te)},pe=ye=>{var Te=yd(),Me=x(ze(Te),2);Lt(Me,21,()=>kr().templates,Vt,(xe,Ie)=>{var Ue=wd(),nt=Se(()=>u(s(Ie))),ie=f(Ue),je=f(ie),Le=f(je,!0);m(je);var oe=x(je,2),it=f(oe,!0);m(oe),m(ie);var lt=x(ie,2);Qt(lt,{stroke:"#cdd6f4",style:"width: 1.5rem; height: 1.5rem; rotate: 90deg;"}),m(Ue),$(()=>{ut(Le,s(Ie).name),ut(it,s(Ie).description)}),ue("mousedown",Ue,function(...He){s(nt)?.apply(this,He)}),B(xe,Ue)}),m(Me),B(ye,Te)},Pe=ye=>{var Te=Nt(),Me=ze(Te);{var xe=Ie=>{var Ue=Fd(),nt=x(f(Ue),2),ie=f(nt),je=f(ie);Xt(je,()=>s(h).icon.component,(oe,it)=>{it(oe,{stroke:"var(--stroke)"})}),m(ie);var Le=x(ie,2);ln(Le),m(nt),Fe(2),m(Ue),hn(Le,()=>s(h).name,oe=>s(h).name=oe),B(Ie,Ue)};Qe(Me,Ie=>{s(h)&&Ie(xe)})}B(ye,Te)};Qe(ge,ye=>{s(i)==="appearance"?ye(W):s(i)==="templates"?ye(pe,1):s(i)==="template-editor"&&ye(Pe,2)})}m(K),m(C),$(()=>vt(Z,1,bt([s(i)==="templates"&&"selected"]),"svelte-1qktjv")),ue("mousedown",D,function(...ye){s(R)?.apply(this,ye)}),ue("mousedown",j,function(...ye){s(ne)?.apply(this,ye)}),ue("mousedown",ce,function(...ye){s(ve)?.apply(this,ye)}),ue("mousedown",U,function(...ye){s(N)?.apply(this,ye)}),ue("mousedown",Z,function(...ye){s(ke)?.apply(this,ye)}),ue("mousedown",V,function(...ye){s(H)?.apply(this,ye)}),ue("mousedown",be,function(...ye){s(Be)?.apply(this,ye)}),B(b,C)},$$slots:{default:!0}}),b=>t=b,()=>t),ft(v)}Ct(["mousedown"]);var Ed=J('<button><!> <span class="node-name svelte-87xnpf" contenteditable="" spellcheck="false"></span> <!></button>'),Bd=J("<li><!></li>"),Sd=J("<ul></ul>"),Ad=J("<hr/>"),Dd=J("<button><!> Create new item</button> <button><!> Create new group</button> <!>",1),Md=J('<button><!> <span>Rename</span></button> <button><!> <span style="color: #f38ba8;">Delete</span></button>',1),Ld=J("<!> <!>",1),Rd=J('<section class="svelte-87xnpf"><!> <!> <!></section>');function Zo(a,e){mt(e,!0);let t=k(e,"entry",7),n=k(e,"hideRoot",3,!1),i=k(e,"subtree",3,!1),r=k(e,"demo",3,!1),o=L(_e(n()||r()));t()||t(pt.get().database);function h(N){N.button===0&&(N.composedPath().some(ae=>"classList"in ae&&ae.classList.contains("node-name"))||F(o,!s(o)))}function u(N){N.key==="Enter"&&N.target.blur()}let v="",b="",y=L(null),C,S=L(!1);function A(N){F(S,!0),s(y).openAtMouse(N)}function P(){t().addChild(new dt("New Group")),s(y)?.close(),F(o,!0)}function D(){t().addChild(new sn("New Item")),s(y)?.close(),F(o,!0)}let R=L(null);function G(){if(s(y)?.close(),!s(R))return;s(R).focus();const N=window.getSelection(),ae=document.createRange();ae.selectNodeContents(s(R)),ae.collapse(!1),N?.removeAllRanges(),N?.addRange(ae)}function j(){t().delete()}var ne=Rd(),M=f(ne);{var ce=N=>{var ae=Ed(),Z=f(ae);{var ke=fe=>{Dn(fe,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"})},T=Se(()=>t().isBranch()),V=fe=>{var K=Nt(),ge=ze(K);Xt(ge,()=>t().icon.component,(W,pe)=>{pe(W,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"})}),B(fe,K)};Qe(Z,fe=>{s(T)?fe(ke):fe(V,-1)})}var H=x(Z,2);Ve(H,fe=>F(R,fe),()=>s(R));var we=x(H,2);{var be=fe=>{{let K=Se(()=>s(o)?"180deg":"90deg");Qt(fe,{stroke:"var(--arrow)",get style(){return`width: 1rem; transition: rotate 0.1s; height: 1rem; rotate: ${s(K)??""};`}})}},Be=Se(()=>t().isBranch());Qe(we,fe=>{s(Be)&&fe(be)})}m(ae),$(()=>vt(ae,1,bt(["node",s(S)&&"active"]),"svelte-87xnpf")),ue("contextmenu",ae,A),ue("mousedown",ae,h),xt("keypress",H,u),Kl("textContent",H,()=>t().name,fe=>t().setName(fe)),B(N,ae)};Qe(M,N=>{(!n()||i())&&N(ce)})}var ve=x(M,2);{var Y=N=>{var ae=Sd();let Z;Lt(ae,21,()=>t().sortedChildren,ke=>ke.id,(ke,T)=>{var V=Bd();let H;var we=f(V);Zo(we,{get demo(){return r()},get hideRoot(){return n()},get entry(){return s(T)},subtree:!0}),m(V),$(()=>H=Ge(V,"",H,{"padding-left":n()&&t().isRoot?"0px":"1.25rem"})),B(ke,V)}),m(ae),$(()=>{vt(ae,1,bt({expanded:s(o)}),"svelte-87xnpf"),Z=Ge(ae,"",Z,{"border-left":n()?"none":"1px solid #45475a","margin-top":i()||!s(o)?"0px":"0.5rem"})}),B(N,ae)};Qe(ve,N=>{t().children.length!==0&&N(Y)})}var U=x(ve,2);Ve(vn(U,{onclose:()=>F(S,!1),left:b,top:v,children:(N,ae)=>{var Z=Ld(),ke=ze(Z);{var T=be=>{var Be=Dd(),fe=ze(Be),K=f(fe);la(K,{scale:.85}),Fe(),m(fe);var ge=x(fe,2),W=f(ge);Dn(W,{scale:.85}),Fe(),m(ge);var pe=x(ge,2);{var Pe=ye=>{var Te=Ad();B(ye,Te)};Qe(pe,ye=>{t().isRoot||ye(Pe)})}ue("mousedown",fe,D),ue("mousedown",ge,P),B(be,Be)},V=Se(()=>t().isBranch());Qe(ke,be=>{s(V)&&be(T)})}var H=x(ke,2);{var we=be=>{var Be=Md(),fe=ze(Be),K=f(fe);rr(K,{scale:.85}),Fe(2),m(fe);var ge=x(fe,2),W=f(ge);Ln(W,{stroke:"#f38ba8",scale:.85}),Fe(2),m(ge),ue("mousedown",fe,G),ue("mousedown",ge,j),B(be,Be)};Qe(H,be=>{t().isRoot||be(we)})}B(N,Z)},$$slots:{default:!0}}),N=>F(y,N,!0),()=>s(y)),m(ne),Ve(ne,N=>C=N,()=>C),B(a,ne),ft()}Ct(["contextmenu","mousedown"]);var Pd=J('<span class="error svelte-dmtq7h"> </span>'),Id=J('<span class="error svelte-dmtq7h"> </span>'),Td=J('<span class="svelte-dmtq7h">Project will be created at <span class="svelte-dmtq7h"> </span></span>'),Od=J('<section class="popup svelte-dmtq7h"><h1 class="svelte-dmtq7h">New Project</h1> <div><div class="svelte-dmtq7h"><h2 class="svelte-dmtq7h">Location</h2> <div class="wrapper svelte-dmtq7h"><input placeholder="/path/to/books/folder"/> <button class="input-button svelte-dmtq7h"><!></button></div> <!></div> <div class="svelte-dmtq7h"><h2 class="svelte-dmtq7h">Name</h2> <input placeholder="Book title"/> <!> <!></div></div> <div class="template svelte-dmtq7h"><div class="svelte-dmtq7h"><h2 class="svelte-dmtq7h">Template</h2> <div class="templates svelte-dmtq7h"><div class="select svelte-dmtq7h"><!> <button class="svelte-dmtq7h"><!></button></div></div></div> <p class="svelte-dmtq7h"> </p> <div class="svelte-dmtq7h"><h2 class="svelte-dmtq7h">Entries</h2> <div class="tree svelte-dmtq7h"><!></div></div></div> <button>Create</button></section>'),Vd=J("<!> <!>",1);function O1(a,e){mt(e,!0);let t;function n(){t.open()}let i,r=L(""),o=L(""),h=L(_e(kr().templates[0])),u=L(!1),v=L(!1),b=Se(()=>s(r).length===0?"Location cannot be empty":/^([a-zA-Z]:)?[\w\.\/\\]+$/.test(s(r))?null:"Location contains invalid characters"),y=Se(()=>s(o).length===0?"Name cannot be empty":/^[\w\. ]+$/.test(s(o))?null:"Name contains invalid characters");function C(){F(v,!0)}function S(){F(u,!0)}const A=es(async function(){const Y=await Ql({directory:!0,multiple:!1,title:"Select a directory"});F(u,!0),typeof Y=="string"?F(r,Y,!0):console.log("No directory selected")},import.meta.url);let P=Se(()=>!!s(y)||!!s(b)),D=L(!1);const R=es(async function(){if(s(P)){F(u,!0),F(v,!0),F(D,!0);return}let Y=s(h).clone();Y.name=s(o);let U=new pt({location:s(r),database:Y});pt.set(U);let N=U.serialize();await X("new_project",{project:N}),t?.close()},import.meta.url);function G(){F(r,""),F(o,""),F(u,!1),F(v,!1),F(h,kr().templates[0],!0)}var j={open:n},ne=Vd(),M=ze(ne);Ve(ir(M,{reset:G,width:"50rem",children:(ve,Y)=>{var U=Od(),N=x(f(U),2),ae=f(N),Z=x(f(ae),2),ke=f(Z);ln(ke);var T=x(ke,2),V=f(T);Kn(V,{stroke:"#a6adc8",style:"width: 1rem; height: 1rem;"}),m(T),m(Z);var H=x(Z,2);{var we=He=>{var Ke=Pd(),Xe=f(Ke,!0);m(Ke),$(()=>ut(Xe,s(b))),B(He,Ke)};Qe(H,He=>{s(b)&&s(u)&&He(we)})}m(ae);var be=x(ae,2),Be=x(f(be),2);ln(Be);var fe=x(Be,2);{var K=He=>{var Ke=Id(),Xe=f(Ke,!0);m(Ke),$(()=>ut(Xe,s(y))),B(He,Ke)};Qe(fe,He=>{s(y)&&s(v)&&He(K)})}var ge=x(fe,2);{var W=He=>{var Ke=Td(),Xe=x(f(Ke));Ge(Xe,"",{},{color:"#cdd6f4"});var Dt=f(Xe);m(Xe),m(Ke),$(()=>ut(Dt,`${s(r)??""}/${s(o)??""}`)),B(He,Ke)};Qe(ge,He=>{!s(b)&&!s(y)&&s(u)&&s(v)&&He(W)})}m(be),m(N);var pe=x(N,2),Pe=f(pe),ye=x(f(Pe),2),Te=f(ye),Me=f(Te),xe=()=>s(h).name,Ie=He=>F(h,kr().templates.find(Ke=>Ke.name===He),!0);{let He=Se(()=>kr().templates.map(Ke=>({name:Ke.name,icon:Ke.icon.component})));Ca(Me,{width:"calc(100% - 1.75rem)",get options(){return s(He)},get value(){return xe()},set value(Ke){Ie(Ke)}})}var Ue=x(Me,2),nt=f(Ue);Tt(nt,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;",onmousedown:()=>i.open("templates")}),m(Ue),m(Te),m(ye),m(Pe);var ie=x(Pe,2),je=f(ie,!0);m(ie);var Le=x(ie,2),oe=x(f(Le),2),it=f(oe);Zo(it,{hideRoot:!0,get entry(){return s(h)}}),m(oe),m(Le),m(pe);var lt=x(pe,2);m(U),$(()=>{vt(N,1,bt(["template",(s(y)||s(b))&&s(D)&&"invalid-input"]),"svelte-dmtq7h"),vt(ke,1,bt([s(b)&&s(u)&&"invalid-input"]),"svelte-dmtq7h"),vt(Be,1,bt([s(y)&&s(v)&&"invalid-input"]),"svelte-dmtq7h"),ut(je,s(h).description),vt(lt,1,bt(["create-button",s(P)&&"disabled"]),"svelte-dmtq7h")}),ue("change",ke,S),hn(ke,()=>s(r),He=>F(r,He)),ue("mousedown",T,A),ue("change",Be,C),hn(Be,()=>s(o),He=>F(o,He)),ue("mousedown",lt,R),B(ve,U)},$$slots:{default:!0}}),ve=>t=ve,()=>t);var ce=x(M,2);return Ve(T1(ce,{}),ve=>i=ve,()=>i),B(a,ne),ft(j)}Ct(["change","mousedown"]);var jd=J('<div class="popup svelte-2dta6u"><div class="sidebar svelte-2dta6u"><button class="svelte-2dta6u"><!> <span class="svelte-2dta6u">General</span></button></div></div>');function $d(a,e){mt(e,!0);let t;function n(){t.open()}let i=L("general");function r(){F(i,"general")}var o={open:n};return Ve(ir(a,{reset:r,children:(h,u)=>{var v=jd(),b=f(v),y=f(b),C=f(y);Tt(C,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),Fe(2),m(y),m(b),m(v),B(h,v)},$$slots:{default:!0}}),h=>t=h,()=>t),ft(o)}var Gd=J('<button class="svelte-d8j1hi"><!> <span>Recent</span></button> <button class="svelte-d8j1hi"><!> <span>Browse</span></button>',1),zd=J('<div><!> <span>Open project</span> <!> <!></div> <button class="svelte-d8j1hi"><!> <span>New project</span></button> <hr/> <div><!> <span>Project settings</span></div> <button class="svelte-d8j1hi"><!> <span>Save project</span></button> <button class="svelte-d8j1hi"><!> <span>Save project as...</span></button>',1),Hd=J('<div class="svelte-d8j1hi"> </div>'),qd=J('<nav class="svelte-d8j1hi"><div class="svelte-d8j1hi"><div class="wrapper svelte-d8j1hi"><!> <!></div> <!> <!></div> <!> <div class="svelte-d8j1hi"><!> <!> <!></div></nav> <!> <!> <!> <!>',1);function Nd(a,e){mt(e,!1);let t=Ht(),n=Ht(),i=Ht(),r=Ht(),o=Ht();function h(){Qr().close()}function u(){Qr().minimize()}function v(){Qr().toggleMaximize()}function b(){s(t).close(),pt.open()}Yl();var y=qd(),C=ze(y),S=f(C),A=f(S),P=f(A);an(P,{get Icon(){return Kn},onmousedown:()=>s(t).toggle()});var D=x(P,2);Ve(vn(D,{top:"120%",left:"0px",children:(H,we)=>{var be=zd(),Be=ze(be);vt(Be,1,bt(["cm-button"]),"svelte-d8j1hi");var fe=f(Be);Kn(fe,{stroke:"var(--stroke)",style:"width: 0.85rem; height: 0.85rem;"});var K=x(fe,4);Qt(K,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem; rotate: 90deg; margin-left: auto;"});var ge=x(K,2);vn(ge,{children:(Ue,nt)=>{var ie=Gd(),je=ze(ie),Le=f(je);ha(Le,{stroke:"var(--stroke)",style:"width: 0.85rem; height: 0.85rem;"}),Fe(2),m(je);var oe=x(je,2),it=f(oe);Kn(it,{stroke:"var(--stroke)",style:"width: 0.85rem; height: 0.85rem;"}),Fe(2),m(oe),ue("mousedown",oe,b),B(Ue,ie)},$$slots:{default:!0}}),m(Be);var W=x(Be,2),pe=f(W);la(pe,{stroke:"var(--stroke)",style:"width: 0.85rem; height: 0.85rem;"}),Fe(2),m(W);var Pe=x(W,4),ye=f(Pe);Tt(ye,{stroke:"var(--stroke)",style:"width: 0.85rem; height: 0.85rem;"}),Fe(2),m(Pe);var Te=x(Pe,2),Me=f(Te);Qn(Me,{stroke:"var(--stroke)",style:"width: 0.85rem; height: 0.85rem;"}),Fe(2),m(Te);var xe=x(Te,2),Ie=f(xe);Qn(Ie,{stroke:"var(--stroke)",style:"width: 0.85rem; height: 0.85rem;"}),Fe(2),m(xe),$((Ue,nt,ie)=>{vt(Pe,1,Ue,"svelte-d8j1hi"),Te.disabled=nt,xe.disabled=ie},[()=>bt(["cm-button",!pt.get()&&"disabled"]),()=>!pt.get(),()=>!pt.get()]),ue("mousedown",Be,()=>pt.open()),ue("mousedown",W,()=>{s(i).open(),s(t).close()}),ue("mousedown",Pe,()=>{s(n).open(),s(t).close()}),B(H,be)},$$slots:{default:!0},$$legacy:!0}),H=>F(t,H),()=>s(t)),m(A);var R=x(A,2);an(R,{get Icon(){return Tt},onmousedown:()=>s(o).open()});var G=x(R,2);an(G,{get Icon(){return Lo},onmousedown:()=>s(r).open()}),m(S);var j=x(S,2);{var ne=H=>{var we=Hd(),be=f(we,!0);m(we),$(Be=>ut(be,Be),[()=>pt.get().database.name]),B(H,we)},M=Se(()=>pt.get());Qe(j,H=>{s(M)&&H(ne)})}var ce=x(j,2),ve=f(ce);an(ve,{get Icon(){return ca},onmousedown:u,scale:.85});var Y=x(ve,2);an(Y,{get Icon(){return So},onmousedown:v,scale:.85});var U=x(Y,2);an(U,{get Icon(){return It},onmousedown:h,accent:"#f38ba8",scale:.85}),m(ce),m(C);var N=x(C,2);Ve(O1(N,{$$legacy:!0}),H=>F(i,H),()=>s(i));var ae=x(N,2);{var Z=H=>{Ve($d(H,{$$legacy:!0}),we=>F(n,we),()=>s(n))},ke=Se(()=>pt.get());Qe(ae,H=>{s(ke)&&H(Z)})}var T=x(ae,2);Ve(Wo(T,{$$legacy:!0}),H=>F(r,H),()=>s(r));var V=x(T,2);Ve(T1(V,{$$legacy:!0}),H=>F(o,H),()=>s(o)),B(a,y),ft()}Ct(["mousedown"]);var Wd=J('<section class="svelte-7b9jag"><p class="svelte-7b9jag">No project opened. Create a new one now or open an existing one.</p> <div class="svelte-7b9jag"><button class="svelte-7b9jag">Open project</button> <button class="svelte-7b9jag">Create project</button></div> <button class="svelte-7b9jag">Where am I?</button></section> <!> <!>',1);function Zd(a,e){mt(e,!1);let t=Ht(),n=Ht();Yl();var i=Wd(),r=ze(i),o=x(f(r),2),h=f(o),u=x(h,2);m(o);var v=x(o,2);m(r);var b=x(r,2);Ve(Wo(b,{$$legacy:!0}),C=>F(t,C),()=>s(t));var y=x(b,2);Ve(O1(y,{$$legacy:!0}),C=>F(n,C),()=>s(n)),ue("mousedown",h,()=>pt.open()),ue("mousedown",u,()=>s(n).open()),ue("mousedown",v,()=>s(t).open()),B(a,i),ft()}Ct(["mousedown"]);class _a{static tabID=0;#e=L(_e(Ye()));get id(){return s(this.#e)}set id(e){F(this.#e,e,!0)}constructor(){this.id=_a.tabID++}}class Rr extends _a{#e=L(_e(Ye()));get group(){return s(this.#e)}set group(e){F(this.#e,e,!0)}#t=L("hierarchy");get view(){return s(this.#t)}set view(e){F(this.#t,e,!0)}constructor(e){super(),this.group=e}}class oa extends _a{#e=L(_e(Ye()));get content(){return s(this.#e)}set content(e){F(this.#e,e,!0)}constructor(e){super(),this.content=e}}class Yd{#e=L(_e([new Rr(pt.get().database)]));get tabs(){return s(this.#e)}set tabs(e){F(this.#e,e,!0)}appendTab(e){this.tabs.push(e)}prependTab(e){this.tabs.unshift(e)}insertTab(e,t){this.tabs.splice(t,0,e)}replace(e,t){this.tabs.splice(this.indexOfID(e),1,t)}tabExists(e){return this.tabs.find(t=>t.id===e)}getTabByID(e){return this.tabs.find(t=>t.id===e)}indexOfID(e){return this.tabs.map((t,n)=>[t,n]).find(([t])=>t.id===e)[1]}getTabByIndex(e){return this.tabs[e]}deleteTab(e){this.tabs=this.tabs.filter(t=>t.id!==e)}isEmpty(){return this.tabs.length===0}count(){return this.tabs.length}}const Ud={hierarchy:{icon:$r},graph:{icon:On},spreadsheet:{icon:Mn},timeline:{icon:ha}},fn=1e-6;class V1{#e=L(_e(gt.translation({x:0,y:0})));get translation(){return s(this.#e)}set translation(e){F(this.#e,e,!0)}#t=L(_e(gt.rotation(0)));get rotation(){return s(this.#t)}set rotation(e){F(this.#t,e,!0)}#n=L(_e(gt.scale(1)));get dilation(){return s(this.#n)}set dilation(e){F(this.#n,e,!0)}get transformation(){return this.translation.times(this.rotation).times(this.dilation)}get viewMatrix(){return this.transformation.inverse}getWorldSpaceOrigin(){return this.project(Ce.origin())}project(e){return this.viewMatrix.timesPoint(e)}unproject(e){return this.transformation.timesPoint(e)}viewOrigin(){return this.viewMatrix.timesPoint(Ce.origin())}moveTo(e){this.translation=gt.translation(e)}get transformCSS(){return this.viewMatrix.css}shift(e){this.translation=this.translation.times(gt.translation(e))}setRotation(e){this.rotation=gt.rotation(e)}rotate(e){this.rotation=this.rotation.times(gt.rotation(e))}scale(e){let t=new Ce(typeof e=="object"?e:[e,e]);Math.abs(t.x)<fn||Math.abs(t.y)<fn||(this.dilation=this.dilation.times(gt.scale(t)))}getScale(){return this.dilation.getScale()}setScale(e){let t=new Ce(typeof e=="object"?e:[e,e]);const n=Math.max(Math.abs(t.x),fn)*Math.sign(t.x||1),i=Math.max(Math.abs(t.y),fn)*Math.sign(t.y||1);this.dilation=gt.scale({x:n,y:i})}rotateAround(e,t){const n=new Ce(e),i=gt.rotation(t),r=new Ce([this.translation.values[0][2],this.translation.values[1][2]]),o={x:r.x-n.x,y:r.y-n.y},h=i.timesPoint(o);this.translation=gt.translation({x:n.x+h.x,y:n.y+h.y}),this.rotate(t)}setScaleAround(e,t){const n=new Ce(e),i=new Ce(typeof t=="object"?t:[t,t]),r=this.getScale(),o=new Ce({x:i.x/r.x,y:i.y/r.y});if(Math.abs(o.x)<fn||Math.abs(o.y)<fn)return;const h=gt.scale(o),u=new Ce([this.translation.values[0][2],this.translation.values[1][2]]),v={x:u.x-n.x,y:u.y-n.y},b=h.timesPoint(v);this.translation=gt.translation({x:n.x+b.x,y:n.y+b.y}),this.setScale(i)}scaleAround(e,t){const n=new Ce(e),i=new Ce(typeof t=="object"?t:[t,t]);if(Math.abs(i.x)<fn||Math.abs(i.y)<fn)return;const r=gt.scale(i),o=new Ce([this.translation.values[0][2],this.translation.values[1][2]]),h={x:o.x-n.x,y:o.y-n.y},u=r.timesPoint(h);this.translation=gt.translation({x:n.x+u.x,y:n.y+u.y}),this.scale(i)}}var Kd=J('<section class="outer svelte-19ttu1f"><div class="inner svelte-19ttu1f"><!></div></section>');function Jd(a,e){mt(e,!0);let t=k(e,"camera",27,()=>_e(new V1)),n=k(e,"canPan",3,!0),i=L(!1);function r(A){const P=A.currentTarget.getBoundingClientRect(),D={x:A.clientX-(P.left+P.width/2),y:A.clientY-(P.top+P.height/2)},R=t().unproject(D),G=Math.exp(A.deltaY*.002);t().scaleAround(R,G)}let o;function h(A){!n()||!s(i)||t().shift([-A.movementX*t().getScale().x,-A.movementY*t().getScale().y])}let u=Se(()=>s(i)?"grabbing":"grab");var v=Kd();xt("mousedown",Rt,()=>F(i,!0)),xt("mouseup",Rt,()=>F(i,!1));let b;var y=f(v);let C;var S=f(y);tr(S,()=>e.children),m(y),m(v),Ve(v,A=>o=A,()=>o),$(()=>{b=Ge(v,"",b,{cursor:s(u)}),C=Ge(y,"",C,{transform:t().transformCSS})}),xt("wheel",v,r),ue("mousemove",v,h),B(a,v),ft()}Ct(["mousemove"]);var Xd=J('<div><span tabindex="0" role="tree" class="svelte-8hj8dk"> </span></div>'),Qd=J('<button aria-label="Node" class="node svelte-8hj8dk"></button>'),em=J("<!> <!>",1),tm=J("<button><!> <span>Hierarchy</span></button> <button><!> <span>Spreadsheet</span></button>",1),nm=J("<button><!> <span>Circle</span></button> <button><!> <span>Rectangle</span></button>",1),rm=J("<button><!> <span>Rename group</span></button> <button><!> <span>Add subgroup</span></button> <button><!> <span>Add item</span></button> <button><!> <span>Open in view</span> <!> <!></button> <hr/> <button><!> <span>Focus</span></button> <button><!> <span>Change color</span></button> <div><!> <span>Change shape</span> <!> <!></div> <button><!> <span>Resize outline</span></button> <button><!> <span>Hide outline</span></button> <button><!> <span>Hide group</span></button> <button><!> <span>Hide others</span></button> <hr/> <button><!> <span>Delete group</span></button>",1),am=J('<section class="graph svelte-8hj8dk"><!> <div class="controls svelte-8hj8dk"><!> <!></div></section> <!>',1);function im(a,e){mt(e,!0);let t=pt.get().database,n=Se(()=>t.dfsItems()),i=Se(()=>t.dfsGroups());function r(){s(h).moveTo([0,0]),s(h).setScale(8)}let o=L(null),h=L(_e(new V1));function u(j){if(!s(o))return;let ne=[j.movementX*s(h).getScale().x,j.movementY*s(h).getScale().y];if(ne=s(o).getCollisionConstrainedShift(ne),s(o).parent?.outline.isVisible){const M=s(o).parent.outline.shape;ne=s(o).outline.shape.getConstrainedShift(ne,M,2)}(ne[0]!==0||ne[1]!==0)&&s(o).shift(ne)}let v=Se(()=>s(h).getScale().x);r();let b=Se(()=>!s(o)),y;t.outline;var C=am();xt("mouseup",Rt,()=>F(o,null)),xt("mousemove",Rt,u);var S=ze(C),A=f(S);Jd(A,{get canPan(){return s(b)},get camera(){return s(h)},set camera(j){F(h,j,!0)},children:(j,ne)=>{var M=em(),ce=ze(M);Lt(ce,17,()=>s(i),Vt,(Y,U)=>{var N=Nt(),ae=ze(N);{var Z=ke=>{var T=Xd();let V;var H=f(T),we=f(H,!0);m(H),m(T),$(()=>{vt(T,1,bt(["group",s(o)===s(U)&&"active"]),"svelte-8hj8dk"),V=Ge(T,"",V,{left:`${s(U).outline.shape.center.x??""}px`,top:`${s(U).outline.shape.center.y??""}px`,width:`${s(U).outline.shape.radius*2}px`,height:`${s(U).outline.shape.radius*2}px`,"border-width":`${s(v)??""}px`,"font-size":`${.05*s(U).outline.shape.radius}px`,"background-color":`${s(U).outline.color}`}),ut(we,s(U).name)}),ue("contextmenu",H,be=>y.openAtMouse(be)),ue("mousedown",H,()=>F(o,s(U),!0)),B(ke,T)};Qe(ae,ke=>{s(U).outline.isVisible&&ke(Z)})}B(Y,N)});var ve=x(ce,2);Lt(ve,17,()=>s(n),Vt,(Y,U)=>{var N=Qd();let ae;$(()=>ae=Ge(N,"",ae,{"background-color":s(o)===s(U)?"#f38ba8":void 0,"--text":`'${s(U).attributes.name??""}'`,left:`${s(U).outline.shape.center.x??""}px`,top:`${s(U).outline.shape.center.y??""}px`,width:`${s(U).outline.shape.radius*2}px`,height:`${s(U).outline.shape.radius*2}px`,"font-size":`${s(U).outline.shape.radius*2}px`})),ue("mousedown",N,()=>F(o,s(U),!0)),B(Y,N)}),B(j,M)},$$slots:{default:!0}});var P=x(A,2),D=f(P);an(D,{get Icon(){return Tt},style:"border: 1px solid #313244"});var R=x(D,2);an(R,{get Icon(){return Tr},onmousedown:r,style:"border: 1px solid #313244"}),m(P),m(S);var G=x(S,2);Ve(vn(G,{children:(j,ne)=>{var M=rm(),ce=ze(M),ve=f(ce);rr(ve,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"}),Fe(2),m(ce);var Y=x(ce,2),U=f(Y);Dn(U,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"}),Fe(2),m(Y);var N=x(Y,2),ae=f(N);cn(ae,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"}),Fe(2),m(N);var Z=x(N,2),ke=f(Z);Mn(ke,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"});var T=x(ke,4);Qt(T,{stroke:"#cdd6f4",style:"width: 1rem; height: 1rem; margin-left: auto; rotate: 90deg;"});var V=x(T,2);vn(V,{children:(Le,oe)=>{var it=tm(),lt=ze(it),He=f(lt);$r(He,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"}),Fe(2),m(lt);var Ke=x(lt,2),Xe=f(Ke);Mn(Xe,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"}),Fe(2),m(Ke),B(Le,it)},$$slots:{default:!0}}),m(Z);var H=x(Z,4),we=f(H);Tr(we,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"}),Fe(2),m(H);var be=x(H,2),Be=f(be);jr(Be,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"}),Fe(2),m(be);var fe=x(be,2),K=f(fe);Ar(K,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"});var ge=x(K,4);Qt(ge,{stroke:"#cdd6f4",style:"width: 1rem; height: 1rem; margin-left: auto; rotate: 90deg;"});var W=x(ge,2);vn(W,{children:(Le,oe)=>{var it=nm(),lt=ze(it),He=f(lt);Ar(He,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"}),Fe(2),m(lt);var Ke=x(lt,2),Xe=f(Ke);Ar(Xe,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"}),Fe(2),m(Ke),B(Le,it)},$$slots:{default:!0}}),m(fe);var pe=x(fe,2),Pe=f(pe);Ro(Pe,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"}),Fe(2),m(pe);var ye=x(pe,2),Te=f(ye);Un(Te,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"}),Fe(2),m(ye);var Me=x(ye,2),xe=f(Me);Un(xe,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"}),Fe(2),m(Me);var Ie=x(Me,2),Ue=f(Ie);Un(Ue,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"}),Fe(2),m(Ie);var nt=x(Ie,4),ie=f(nt);Ln(ie,{stroke:"#f38ba8",style:"width: 1.2rem; height: 1.2rem;"});var je=x(ie,2);Ge(je,"",{},{color:"#f38ba8"}),m(nt),B(j,M)},$$slots:{default:!0}}),j=>y=j,()=>y),B(a,C),ft()}Ct(["contextmenu","mousedown"]);class om{#e=L(_e(Ce.origin()));get client_(){return s(this.#e)}set client_(e){F(this.#e,e,!0)}#t=L(_e(Ce.origin()));get offset_(){return s(this.#t)}set offset_(e){F(this.#t,e,!0)}#n=L(!1);get leftClicking_(){return s(this.#n)}set leftClicking_(e){F(this.#n,e,!0)}#r=L(!1);get rightClicking_(){return s(this.#r)}set rightClicking_(e){F(this.#r,e,!0)}#a=L(!1);get middleClicking_(){return s(this.#a)}set middleClicking_(e){F(this.#a,e,!0)}#i=L(!1);get isMoving_(){return s(this.#i)}set isMoving_(e){F(this.#i,e,!0)}#o=L(!1);get isDragging_(){return s(this.#o)}set isDragging_(e){F(this.#o,e,!0)}#s=L(_e([]));get handlers(){return s(this.#s)}set handlers(e){F(this.#s,e,!0)}get isLeftClicking(){return this.leftClicking_}get isRightClicking(){return this.rightClicking_}get isMiddleClicking(){return this.middleClicking_}get client(){return this.client_}get offsetY(){return this.offset_}relativeTo(e){return e.offsetParent?new Ce(this.client.x-e.offsetParent.getBoundingClientRect().left,this.client.y-e.offsetParent.getBoundingClientRect().top):Ce.origin()}get isMoving(){return this.isMoving_}get isDragging(){return this.isDragging_}onLeftClick(e){this.handlers.push({event:"mousedown",callback:e})}onClickAndRelease(e){this.handlers.push({event:"click",callback:e})}onRelease(e){this.handlers.push({event:"mouseup",callback:e})}}let kt=_e(new om);function uo(){return kt}function sm(a,e){mt(e,!0);let t=L(null),n=L(_e(Ye()));function i(h){kt.client_=new Ce(h.clientX,h.clientY),kt.offset_=new Ce(h.offsetX,h.offsetY),kt.isLeftClicking&&(kt.isDragging_=!0),kt.isMoving_=!0,s(t)&&clearTimeout(s(t)),F(t,setTimeout(()=>{kt.isMoving_=!1},200),!0),kt.handlers.filter(u=>u.event==="move").forEach(u=>u.callback(h))}function r(h){h.button===0&&(kt.leftClicking_=!0),h.button===1&&(kt.rightClicking_=!0),h.button===2&&(kt.middleClicking_=!0),kt.handlers.filter(u=>u.event==="mousedown").forEach(u=>u.callback(h)),F(n,h.target,!0),kt.absolute_=new Ce(h.clientX-(s(n).offsetParent?.getBoundingClientRect().left??0),h.clientY-(s(n).offsetParent?.getBoundingClientRect().top??0))}function o(h){h.button===0?(kt.leftClicking_=!1,kt.isDragging_=!0):h.button===1?kt.rightClicking_=!1:h.button===2&&(kt.middleClicking_=!1),kt.handlers.filter(u=>u.event==="mouseup").forEach(u=>u.callback(h))}xt("mousemove",Rt,i),xt("mouseup",Rt,o),xt("mousedown",Rt,r),ft()}var lm=J('<section><div class="inner svelte-1q6f8vv"><!></div></section>');function qn(a,e){mt(e,!0);let t=k(e,"left",15),n=k(e,"top",15),i=k(e,"onclose",3,()=>{}),r=L(!1),o=L(!0),h=L(null),u=L(0),v=L(null),b=Se(()=>s(v)?s(v).getBoundingClientRect().right>s(u):!1),y=Se(()=>t()?s(b)?"100%":"0%":s(b)?"0%":"100%"),C=Se(()=>n()?"0%":"100%");function S(){s(r)?R():A()}function A(){s(o)&&P()}function P(){F(o,!1),F(r,!0),s(h)&&clearTimeout(s(h)),F(h,setTimeout(()=>{F(o,!0)},100),!0)}function D(T){T?.preventDefault();let V=uo().relativeTo(s(v));t(`${V.x}px`),n(`${V.y}px`),A()}function R(){s(o)&&G()}function G(){F(o,!1),F(r,!1),i()(),s(h)&&clearTimeout(s(h)),F(h,setTimeout(()=>{F(o,!0)},100),!0)}function j(){return s(v)}function ne(T){s(r)&&s(o)&&s(v)&&!T.composedPath().includes(s(v))&&R()}function M(){return s(o)&&s(r)?"open":!s(o)&&s(r)?"opening":s(o)&&!s(r)?"closing":"closed"}let ce=L(!1);function ve(T,V,H,{padLeft:we,padRight:be,padTop:Be,padBottom:fe}={}){return T>=H.left-(we??0)&&T<=H.right+(be??0)&&V>=H.top-(Be??0)&&V<=H.bottom+(fe??0)}sa(()=>{let T=s(v).parentElement.closest(".context-menu");T&&(s(v).parentElement.addEventListener("mouseenter",V=>{T.matches(".open")&&!s(v).parentElement.matches(".disabled")&&(t(`${T.getBoundingClientRect().width}px`),n(`${s(v).parentElement.getBoundingClientRect().top-s(v).offsetParent.getBoundingClientRect().top-10}px`),P())}),document.addEventListener("mousemove",V=>{const H=s(v)?.parentElement?.getBoundingClientRect();if(!H)return;const we=ve(V.clientX,V.clientY,H,{padRight:10}),be=s(r)&&ve(V.clientX,V.clientY,s(v).getBoundingClientRect()),Be=s(v).parentElement.classList.contains("disabled"),fe=Array.from(s(v).querySelectorAll(".context-menu.open")).some(K=>ve(V.clientX,V.clientY,K.getBoundingClientRect(),{padLeft:10}));!be&&!we&&!fe||Be?G():(t(`${T.getBoundingClientRect().width}px`),n(`${s(v).parentElement.getBoundingClientRect().top-s(v).offsetParent.getBoundingClientRect().top-10}px`),P())}))});var Y={toggle:S,open:A,forceOpen:P,openAtMouse:D,close:R,forceClose:G,element:j,openingState:M},U=lm();xt("mousedown",Rt,ne);let N;var ae=f(U);let Z;var ke=f(ae);return tr(ke,()=>e.children),m(ae),m(U),Ve(U,T=>F(v,T),()=>s(v)),$(()=>{vt(U,1,bt(["context-menu",s(r)&&"open"]),"svelte-1q6f8vv"),N=Ge(U,"",N,{top:n(),bottom:e.bottom,right:e.right,left:t()}),Z=Ge(ae,"",Z,{scale:s(r)?"100%":"0%",transform:s(b)?"translateX(-170px)":void 0,"transform-origin":`${s(y)??""}
-		${s(C)??""}`})}),Jl("innerWidth",T=>F(u,T,!0)),xt("mouseenter",U,()=>F(ce,!0)),xt("mouseleave",U,()=>F(ce,!1)),B(a,U),ft(Y)}var hm=J('<button class="palette-color svelte-rczam"></button>'),cm=J("<button><!> <span>Remove from palette</span></button>"),um=J('<div class="popup svelte-rczam"><div class="top svelte-rczam"><div class="picker svelte-rczam"><div class="box svelte-rczam"></div></div> <div class="hue-picker svelte-rczam"><div class="hue-slider svelte-rczam"></div></div></div> <div class="preview svelte-rczam"> </div> <div class="bottom svelte-rczam"><input class="svelte-rczam"/> <!> <button class="new palette-color svelte-rczam"><!></button></div> <button class="set-color svelte-rczam">Select</button></div> <button class="preview svelte-rczam"> </button> <!>',1);function dm(a,e){mt(e,!0);let t=k(e,"value",15,null),n=L(!1),i,r=L("0px"),o=L("0px"),h,u;function v(){let ie=uo().relativeTo(i);F(r,`${ie.x}px`),F(o,`${ie.y}px`),F(n,!0)}function b(){t(s(A)),F(n,!1)}let y,C=null,S;uo().onLeftClick(ie=>{!ie.composedPath().includes(i)&&!ie.composedPath().includes(S)&&b()});let A=L(_e(t()??tt.hex("#b4befe"))),P=L(0),D=L(0),R=L(208*s(A).hue/360);Br(()=>{F(R,208*(s(A).hue/360))});function G(ie){const je=y.getBoundingClientRect(),Le=h.getBoundingClientRect();let oe=ie.clientX-je.left,it=ie.clientY-je.top;F(P,En(oe,Le.width/2,je.width-Le.width/2),!0),F(D,En(it,Le.height/2,je.height-Le.height/2),!0);const lt=En(100*oe/je.width,0,100),He=En(100-100*it/je.height,0,100);F(A,tt.hsv(s(A).hue,lt,He),!0)}function j(ie){const je=C.getBoundingClientRect();let Le=ie.clientY-je.top,oe=En(360*Le/je.height,0,360);F(A,tt.hsv(oe,s(A).saturation,s(A).value),!0)}let ne=_e([tt.black,tt.white]);function M(ie){ne.unshift(ie)}function ce(ie,je){ie.button===0&&F(A,je,!0)}function ve(ie){ie.preventDefault(),Y.openAtMouse()}let Y;var U={open:v,hide:b},N=um(),ae=ze(N);let Z;var ke=f(ae),T=f(ke),V=f(T);let H;Ve(V,ie=>h=ie,()=>h),m(T),Ve(T,ie=>y=ie,()=>y);var we=x(T,2),be=f(we);let Be;Ve(be,ie=>u=ie,()=>u),m(we),Ve(we,ie=>C=ie,()=>C),m(ke);var fe=x(ke,2);let K;var ge=f(fe,!0);m(fe);var W=x(fe,2),pe=f(W);ln(pe);var Pe=x(pe,2);Lt(Pe,17,()=>ne,Vt,(ie,je)=>{var Le=hm();let oe;$(()=>oe=Ge(Le,"",oe,{background:`${s(je)}`})),ue("contextmenu",Le,ve),ue("mousedown",Le,it=>ce(it,s(je))),B(ie,Le)});var ye=x(Pe,2),Te=f(ye);cn(Te,{stroke:"#cdd6f4",style:"height: 100%; aspect-ratio: 1;"}),m(ye),m(W);var Me=x(W,2);m(ae),Ve(ae,ie=>i=ie,()=>i);var xe=x(ae,2);let Ie;var Ue=f(xe,!0);m(xe),Ve(xe,ie=>S=ie,()=>S);var nt=x(xe,2);return Ve(qn(nt,{children:(ie,je)=>{var Le=cm(),oe=f(Le);Ln(oe,{stroke:"#f38ba8",scale:1.2});var it=x(oe,2);Ge(it,"",{},{color:"#f37ba8"}),m(Le),B(ie,Le)},$$slots:{default:!0}}),ie=>Y=ie,()=>Y),$(()=>{Z=Ge(ae,"",Z,{color:`${s(A).constrastColor}`,"--hue":s(A).hue,left:s(r),top:s(o),scale:s(n)?"100%":"0%"}),H=Ge(V,"",H,{"border-color":`${s(A).constrastColor}`,left:`${s(P)??""}px`,top:`${s(D)??""}px`}),Be=Ge(be,"",Be,{left:"0px",top:`${s(R)??""}px`}),K=Ge(fe,"",K,{background:`${s(A)}`}),ut(ge,s(A).name),Ie=Ge(xe,"",Ie,{"background-color":`${t()??tt.white}`,color:`${(t()??tt.white).constrastColor}`}),ut(Ue,t()?.name??"None")}),ue("mousedown",T,G),ue("mousedown",we,j),hn(pe,()=>s(A).hex,ie=>F(A,tt.tryHex(ie)??s(A),!0)),ue("mousedown",ye,()=>M(s(A))),ue("mousedown",Me,b),ue("mousedown",xe,v),B(a,N),ft(U)}Ct(["mousedown","contextmenu"]);var mm=J("<button>Open in Editor</button>");function fm(a,e){mt(e,!0);var t=mm();$(()=>vt(t,1,bt({"settings-button":e.context==="settings"}),"svelte-cy07bc")),ue("mousedown",t,()=>e.openEditor(e.value)),B(a,t),ft()}Ct(["mousedown"]);var gm=J('<div class="wrapper svelte-1j7mpkr"><input class="svelte-1j7mpkr"/> <button class="svelte-1j7mpkr"> </button> <button class="transfer svelte-1j7mpkr"><!></button></div>');function pm(a,e){mt(e,!0);let t=L(`${e.value?.count??""}`);function n(b){b.key==="Enter"&&b.target.blur()}var i=gm(),r=f(i);ln(r);var o=x(r,2),h=f(o,!0);m(o);var u=x(o,2),v=f(u);Vo(v,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),m(u),m(i),$(b=>ut(h,b),[()=>e.type.units()[0].abbreviation()]),ue("keydown",r,n),hn(r,()=>s(t),b=>F(t,b)),B(a,i),ft()}Ct(["keydown"]);var vm=J('<input class="svelte-xa90uk"/>');function bm(a,e){mt(e,!0);let t=k(e,"value",15),n=k(e,"background",3,"transparent");function i(h){h.key==="Enter"&&h.target.blur()}var r=vm();ln(r);let o;$(()=>o=Ge(r,"",o,{background:n()})),ue("keydown",r,i),hn(r,()=>t()?.value,h=>t(h?new Or(h):null)),B(a,r),ft()}Ct(["keydown"]);var xm=J('<input class="svelte-1kqkp3u"/>');function Cm(a,e){mt(e,!0);let t=k(e,"value",15),n=k(e,"background",3,"transparent");function i(h){h.key==="Enter"&&h.target.blur()}var r=xm();ln(r);let o;$(()=>o=Ge(r,"",o,{background:n()})),ue("keydown",r,i),hn(r,()=>t()?.value,h=>t(h?new In(h):null)),B(a,r),ft()}Ct(["keydown"]);function j1(a,e){mt(e,!0);let t=k(e,"value",15),n=k(e,"context",3,"none"),i=k(e,"background",3,"transparent");var r=Nt(),o=ze(r);{var h=C=>{pm(C,{get type(){return Dr},get value(){return t()},set value(S){t(S)}})},u=C=>{Cm(C,{get background(){return i()},get value(){return t()},set value(S){t(S)}})},v=C=>{bm(C,{get background(){return i()},get value(){return t()},set value(S){t(S)}})},b=C=>{fm(C,{get context(){return n()},get openEditor(){return e.openEditor},get value(){return t()},set value(S){t(S)}})},y=C=>{dm(C,{})};Qe(o,C=>{e.type==="length"?C(h):e.type==="shortText"?C(u,1):e.type==="number"?C(v,2):e.type==="longText"?C(b,3):e.type==="color"&&C(y,4)})}B(a,r),ft()}var _m=J('<section class="svelte-gwwcj3"><h1 class="svelte-gwwcj3"> </h1> <!> <div class="buttons svelte-gwwcj3"><button class="svelte-gwwcj3"> </button> <button class="svelte-gwwcj3"> </button></div></section>');function Ol(a,e){mt(e,!0);let t=k(e,"confirmText",3,"Confirm"),n=k(e,"cancelText",3,"Cancel"),i=k(e,"onconfirm",3,()=>{}),r;function o(){r.open()}function h(){}function u(){r.close(),i()()}var v={open:o};return Ve(ir(a,{reset:h,width:"20rem",height:"fit-content",children:(b,y)=>{var C=_m(),S=f(C),A=f(S,!0);m(S);var P=x(S,2);tr(P,()=>e.children);var D=x(P,2),R=f(D),G=f(R,!0);m(R);var j=x(R,2),ne=f(j,!0);m(j),m(D),m(C),$(()=>{ut(A,e.title),ut(G,n()),ut(ne,t())}),ue("mousedown",R,()=>r.close()),ue("mousedown",j,u),B(b,C)},$$slots:{default:!0}}),b=>r=b,()=>r),ft(v)}Ct(["mousedown"]);var wm=J('<section class="svelte-8jivgt"><div class="sidebar svelte-8jivgt"><h1 class="title svelte-8jivgt"><!> </h1> <button class="svelte-8jivgt"><!> <span class="svelte-8jivgt">General</span></button> <button class="svelte-8jivgt"><!> <span class="svelte-8jivgt">Formatting</span></button> <button class="svelte-8jivgt"><!> <span class="svelte-8jivgt">Restrictions</span></button> <button class="svelte-8jivgt">Delete field</button></div> <div class="content svelte-8jivgt"><h2 class="svelte-8jivgt">Name</h2> <input class="svelte-8jivgt"/> <h2 class="svelte-8jivgt">Type</h2> <div class="type svelte-8jivgt"><!></div> <h2 class="svelte-8jivgt">Default</h2> <!></div></section>'),ym=J('<p class="svelte-8jivgt">All entries that have values in this field will have the value deleted.</p>'),Fm=J(`<p class="svelte-8jivgt">Changing the type of this attribute will delete all entries' data for this attribute.</p>`),km=J("<!> <!> <!>",1);function Em(a,e){mt(e,!0);let t=k(e,"attribute",15);function n(){}let i,r,o,h=L(()=>{});function u(){i.open()}function v(P){F(h,P,!0),o.open()}var b={open:u},y=km(),C=ze(y);Ve(ir(C,{reset:n,children:(P,D)=>{var R=Nt(),G=ze(R);{var j=ne=>{var M=wm(),ce=f(M),ve=f(ce),Y=f(ve);Mn(Y,{stroke:"#cdd6f4",style:"width: 1rem; height: 1rem;"});var U=x(Y);m(ve);var N=x(ve,2),ae=f(N);Tt(ae,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),Fe(2),m(N);var Z=x(N,2),ke=f(Z);da(ke,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),Fe(2),m(Z);var T=x(Z,2),V=f(T);fa(V,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),Fe(2),m(T);var H=x(T,2);m(ce);var we=x(ce,2),be=x(f(we),2);ln(be);var Be=x(be,4),fe=f(Be);{let ge=Se(()=>Tn.names());Ca(fe,{onunlock:v,locked:!0,width:"100%",get options(){return s(ge)},get value(){return t().type.name},set value(W){t(t().type.name=W,!0)}})}m(Be);var K=x(Be,4);j1(K,{context:"settings",background:"#181825",get type(){return t().type.name},value:null,openEditor:()=>{}}),m(we),m(M),$(()=>ut(U,` ${t().name??""}`)),ue("mousedown",H,()=>r.open()),hn(be,()=>t().name,ge=>t(t().name=ge,!0)),B(ne,M)};Qe(G,ne=>{t()&&ne(j)})}B(P,R)},$$slots:{default:!0}}),P=>i=P,()=>i);var S=x(C,2);Ve(Ol(S,{title:"Delete field?",onconfirm:()=>{e.owner.deleteAttributeDefinition(t()),close()},children:(P,D)=>{var R=ym();B(P,R)},$$slots:{default:!0}}),P=>r=P,()=>r);var A=x(S,2);return Ve(Ol(A,{title:"Change type?",get onconfirm(){return s(h)},children:(P,D)=>{var R=Fm();B(P,R)},$$slots:{default:!0}}),P=>o=P,()=>o),B(a,y),ft(b)}Ct(["mousedown"]);var Bm=J('<div class="control cell svelte-1o9pa1e"><button class="svelte-1o9pa1e"><!></button></div>'),Sm=J('<div class="cell svelte-1o9pa1e"><!></div>'),Am=J('<div class="column svelte-1o9pa1e"><div class="cell svelte-1o9pa1e"><!> <button style="width: fit-content; margin-right: 0px;" class="svelte-1o9pa1e"><!></button></div> <!> <div class="new cell svelte-1o9pa1e"></div></div>'),Dm=J('<div class="new cell svelte-1o9pa1e"></div>'),Mm=J("<button><!> Rename</button> <button><!> Properties</button> <hr/> <button><!> Delete attribute</button>",1),Lm=J('<div class="columns svelte-1o9pa1e"><div class="column svelte-1o9pa1e"><div class="control cell svelte-1o9pa1e"><button disabled="" class="svelte-1o9pa1e"><!></button></div> <!> <div class="new control cell svelte-1o9pa1e"><button class="svelte-1o9pa1e"><!></button></div></div> <!> <div class="column svelte-1o9pa1e"><button class="new header cell svelte-1o9pa1e"><!> New</button> <!> <div class="new cell svelte-1o9pa1e"></div></div></div> <!> <!>',1);function Rm(a,e){mt(e,!0);let t=L(0),n=L(0);function i(){e.group.addChild(new sn("New Item")),Yn(t)}function r(){e.group.addNewAttributeDefinition(Ft.basic("Attribute","shortText")),Yn(n)}function o(Z){return function(){e.group.removeItem(Z),Yn(t)}}let h,u,v=L(null);function b(Z,ke){F(v,ke,!0),h.openAtMouse(Z)}e.group.attributeDefinitions;var y=Lm(),C=ze(y),S=f(C),A=f(S);Ge(A,"",{},{width:"100%"});var P=f(A);Ge(P,"",{},{opacity:"0%"});var D=f(P);Ln(D,{stroke:"#cdd6f4",style:"width: 1rem; height: 1rem;"}),m(P),m(A);var R=x(A,2);Lt(R,17,()=>e.group.children,Vt,(Z,ke)=>{var T=Bm(),V=f(T),H=Se(()=>o(s(ke))),we=f(V);Ln(we,{stroke:"#cdd6f4",style:"width: 1rem; height: 1rem;"}),m(V),m(T),ue("mousedown",V,function(...be){s(H)?.apply(this,be)}),B(Z,T)});var G=x(R,2),j=f(G),ne=f(j);cn(ne,{stroke:"#cdd6f4",style:"width: 1rem; height: 1rem;"}),m(j),m(G),m(S);var M=x(S,2);B0(M,()=>s(n),Z=>{var ke=Nt(),T=ze(ke);Lt(T,17,()=>e.group.attributeDefinitions,Vt,(V,H)=>{var we=Am(),be=f(we),Be=f(be);Xt(Be,()=>s(H).type.icon.component,(pe,Pe)=>{Pe(pe,{stroke:"#cdd6f4",style:"width: 1rem; height: 1rem;"})});var fe=x(Be),K=x(fe),ge=f(K);Tt(ge,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),m(K),m(be);var W=x(be,2);Lt(W,17,()=>e.group.directItemChildren,Vt,(pe,Pe)=>{var ye=Sm(),Te=f(ye),Me=()=>s(Pe).getAttributeValue(s(H).name),xe=Ie=>s(Pe).addNewOrOverwriteAttributeValue(s(H).name,Ie);j1(Te,{context:"spreadsheet",get openEditor(){return e.openEditor},get type(){return s(H).type.name},get value(){return Me()},set value(Ie){xe(Ie)}}),m(ye),B(pe,ye)}),Fe(2),m(we),$(()=>ut(fe,` ${s(H).name??""} `)),ue("contextmenu",be,pe=>h.openAtMouse(pe)),ue("mousedown",K,pe=>b(pe,s(H))),B(V,we)}),B(Z,ke)});var ce=x(M,2),ve=f(ce),Y=f(ve);cn(Y,{stroke:"#cdd6f4",style:"width: 1rem; height: 1rem;"}),Fe(),m(ve);var U=x(ve,2);Lt(U,17,()=>e.group.children,Vt,(Z,ke)=>{var T=Dm();B(Z,T)}),Fe(2),m(ce),m(C);var N=x(C,2);Ve(vn(N,{children:(Z,ke)=>{var T=Mm(),V=ze(T),H=f(V);rr(H,{stroke:"#cdd6f4",style:"width: 1rem; height: 1rem;"}),Fe(),m(V);var we=x(V,2),be=f(we);Tt(be,{stroke:"#cdd6f4",style:"width: 1rem; height: 1rem;"}),Fe(),m(we);var Be=x(we,4);Ge(Be,"",{},{color:"#f38ba8"});var fe=f(Be);It(fe,{stroke:"#f38ba8",style:"width: 1rem; height: 1rem;"}),Fe(),m(Be),ue("mousedown",we,()=>{u.open(),h.close()}),B(Z,T)},$$slots:{default:!0}}),Z=>h=Z,()=>h);var ae=x(N,2);Ve(Em(ae,{get owner(){return e.group},get attribute(){return s(v)},set attribute(Z){F(v,Z,!0)}}),Z=>u=Z,()=>u),ue("mousedown",j,i),ue("mousedown",ve,r),B(a,y),ft()}Ct(["mousedown","contextmenu"]);let mo=L(_e([]));async function Pm(){F(mo,await X("get_fonts"),!0)}async function Im(){return s(mo).length===0&&await Pm(),s(mo)}var Tm=J('<h1 contenteditable="" class="svelte-1aa9466"></h1>'),Om=J('<div><!> <div class="toolbar svelte-1aa9466"><div class="formatting svelte-1aa9466"><button class="svelte-1aa9466"><!></button> <button class="svelte-1aa9466"><!></button></div> <div class="font-size svelte-1aa9466"><button class="svelte-1aa9466"><!></button> <input class="svelte-1aa9466"/> <button class="svelte-1aa9466"><!></button></div> <!> <div class="formatting svelte-1aa9466"><button class="svelte-1aa9466"><!></button> <button class="svelte-1aa9466"><!></button> <button class="svelte-1aa9466"><!></button></div> <div class="formatting svelte-1aa9466"><button class="svelte-1aa9466"><!></button> <button class="svelte-1aa9466"><!></button></div> <div class="formatting svelte-1aa9466"><button class="svelte-1aa9466"><!></button></div></div> <div class="content svelte-1aa9466"><div class="editor svelte-1aa9466" tabindex="0"></div> <div class="cursor-content svelte-1aa9466"></div></div></div>');function Vm(a,e){mt(e,!0);let t=k(e,"title",7),n=k(e,"doc",15),i=L(_e(n()??new An));Br(()=>{n(s(i))}),Br(()=>{n()!==void 0&&n()!==s(i)&&F(i,n(),!0)});function r(){return t()}function o(){return bo}let h=L(0),u=L(_e(s(i).partAtIndex(s(h)).text.length)),v=Se(()=>s(i).toHTML().map(ee=>(ee.addEventListener("mousedown",$e=>G(ee,$e)),ee)));Br(()=>{y.innerHTML="";for(let ee of s(v))y.appendChild(ee)});let b=Se(()=>{let ee="";return s(i).some(($e,ht)=>{let wt=$e.clone();return ht===s(h)&&(wt.text=wt.text.substring(0,s(u))),ee+=wt.toHTML(ht,ht===s(i).partCount()-1).outerHTML,ht===s(h)}),ee}),y,C;function S(){return s(i).partAtIndex(s(h))}function A(){return s(i).partAtIndex(s(h)).style}function P(ee){for(F(u,s(u)+ee);s(u)<0&&s(h)>0;)Yn(h,-1),F(u,S().text.length-s(u));for(;s(u)>S().text.length&&s(h)<s(i).partCount()-2;){const $e=S().text.length;Yn(h),F(u,s(u)-$e)}s(h)===0&&F(u,Math.max(0,s(u)),!0),s(h)===s(i).partCount()-1&&F(u,Math.min(s(u),S().text.length),!0)}function D(ee){let $e=S().text.substring(0,s(u)),ht=S().text.substring(s(u));s(i).partAtIndex(s(h)).text=$e+ee+ht,F(u,s(u)+ee.length)}function R(ee){if(!(ee.ctrlKey||ee.metaKey||ee.altKey)){if(ee.preventDefault(),ee.key==="ArrowLeft"){P(-1);return}if(ee.key==="ArrowRight"){P(1);return}if(ee.key==="Tab"){D("	");return}if(ee.key==="Enter"){D(`
-	`);return}if(ee.key==="Backspace"){if(s(u)!==0||s(h)!==0){let $e=S().text.substring(0,s(u)-1),ht=S().text.substring(s(u));s(i).partAtIndex(s(h)).text=$e+ht,P(-1)}return}ee.key.length!==1||ee.key.charCodeAt(0)>127||D(ee.key)}}function G(ee,$e){F(h,Number(ee.getAttribute("data-part-index")),!0);let ht=0;Array.from(ee.children).some((wt,Gt)=>(ht+=wt.getBoundingClientRect().width,ht>$e.clientX-ee.getBoundingClientRect().left?(F(u,Gt+1),!0):!1))||F(u,0)}function j(){for(;S().text===""&&s(h)>0;)Yn(h,-1),F(u,0);F(i,s(i).filter(($e,ht)=>$e.text!==""||ht===0),!0);let ee=new An;for(let $e=0;$e<s(i).partCount()-1;$e+=2){let ht=s(i).partAtIndex($e),wt=s(i).partAtIndex($e+1);ht.style.ref().equals(wt.style.ref())?(ee.addPart(new on(ht.text+wt.text,ht.style.clone())),s(h)>=$e+1):(ee.addPart(ht),ee.addPart(wt))}F(i,ee,!0)}function ne(){const ee=A().clone();if(ee.bold=!ee.bold,s(h)===s(i).partCount()-1&&s(u)===S().text.length){const $e=new on("",ee.clone());s(i).addPart($e),F(h,s(i).partCount()-1),F(u,0)}else if(s(h)===0&&s(u)===0){const $e=new on("",ee.clone());s(i).prependPart($e),F(h,0),F(u,0)}else{let $e=new on(S().text.substring(s(u)),S().style.clone()),ht=new on("",ee.clone());s(i).partAtIndex(s(h)).text=S().text.substring(0,s(u)),s(i).addPartAtIndex(ht,s(h)+1),s(i).addPartAtIndex($e,s(h)+2),F(h,s(h)+1),F(u,0)}}function M(){const ee=document.createRange();ee.selectNodeContents(y);const $e=window.getSelection();$e.removeAllRanges(),$e.addRange(ee)}function ce(ee){const $e=navigator.platform.toUpperCase().indexOf("MAC")>=0;($e?ee.metaKey:ee.ctrlKey)&&ee.key==="b"?(ee.preventDefault(),ne()):($e?ee.metaKey:ee.ctrlKey)&&ee.key==="a"&&document.activeElement===y0(y)&&(ee.preventDefault(),M())}function ve(){F(h,s(i).partCount()-1),F(u,S().text.length,!0)}sa(()=>{y.focus()});function Y(ee){return function(){F(N,`${Math.max(parseInt(s(N))+ee,1)}`)}}let U=L("Garamond"),N=L("16"),ae=L("dark");var Z={getTitle:r,getIcon:o},ke=Om();xt("keydown",Rt,ce);var T=f(ke);{var V=ee=>{var $e=Tm();Kl("textContent",$e,t),B(ee,$e)};Qe(T,ee=>{t()&&ee(V)})}var H=x(T,2),we=f(H),be=f(we),Be=f(be);na(Be,{stroke:"var(--stroke)"}),m(be);var fe=x(be,2),K=f(fe);na(K,{stroke:"var(--stroke)",style:"transform: scaleX(-100%);"}),m(fe),m(we);var ge=x(we,2),W=f(ge),pe=Se(()=>Y(-1)),Pe=f(W);ca(Pe,{stroke:"var(--stroke)"}),m(W);var ye=x(W,2);ln(ye);var Te=x(ye,2),Me=Se(()=>Y(1)),xe=f(Te);cn(xe,{stroke:"var(--stroke)"}),m(Te),m(ge);var Ie=x(ge,2);k0(Ie,Im,null,(ee,$e)=>{{let ht=Se(()=>s(ae)==="dark"?"#cdd6f4":"black"),wt=Se(()=>s($e).map(Gt=>({name:Gt,style:`font-family: "${Gt}"`})));Ca(ee,{get style(){return`background-color: transparent; border: none; color: ${s(ht)??""};`},get options(){return s(wt)},width:"7rem",get value(){return s(U)},set value(Gt){F(U,Gt,!0)}})}});var Ue=x(Ie,2),nt=f(Ue),ie=f(nt);vo(ie,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),m(nt);var je=x(nt,2),Le=f(je);da(Le,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),m(je);var oe=x(je,2),it=f(oe);jo(it,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),m(oe),m(Ue);var lt=x(Ue,2),He=f(lt),Ke=f(He);ko(Ke,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),m(He);var Xe=x(He,2),Dt=f(Xe);{var un=ee=>{To(ee,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"})},Cn=ee=>{Ao(ee,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"})};Qe(Dt,ee=>{s(ae)==="dark"?ee(un):ee(Cn,-1)})}m(Xe),m(lt);var Wt=x(lt,2),_n=f(Wt),wn=f(_n);Qn(wn,{stroke:"var(--stroke)",style:"width: 1rem; height: 1rem;"}),m(_n),m(Wt),m(H);var yn=x(H,2),St=f(yn);let en;Ve(St,ee=>y=ee,()=>y);var $t=x(St,2);let tn;return M0($t,()=>s(b),!0),m($t),Ve($t,ee=>C=ee,()=>C),m(yn),m(ke),$(()=>{vt(ke,1,bt(["wrapper",s(ae)==="light"&&"light"]),"svelte-1aa9466"),en=Ge(St,"",en,{"font-family":s(U),"font-size":`${s(N)??""}px`}),tn=Ge($t,"",tn,{"font-family":s(U),"font-size":`${s(N)??""}px`})}),ue("mousedown",W,function(...ee){s(pe)?.apply(this,ee)}),hn(ye,()=>s(N),ee=>F(N,ee)),ue("mousedown",Te,function(...ee){s(Me)?.apply(this,ee)}),ue("mousedown",Xe,()=>F(ae,s(ae)==="light"?"dark":"light",!0)),xt("blur",St,j),xt("focus",St,ve),ue("keydown",St,R),B(a,ke),ft(Z)}Ct(["mousedown","keydown"]);var jm=J('<div><span class="svelte-vybefw"><!> </span> <button class="svelte-vybefw"><!></button></div>'),$m=J('<button class="svelte-vybefw"><!></button>'),Gm=J('<button class="svelte-vybefw"><!> <span>Split horizontally</span></button> <button class="svelte-vybefw"><!> <span>Split vertically</span></button> <hr/> <button class="svelte-vybefw"><!> <span>Close pane</span></button>',1),zm=J("<button><!> <span>In this tab</span></button> <button><!> <span>In new tab</span></button> <button><!> <span>In new tab to the left</span></button> <hr/> <button><!> <span>In split right</span></button> <button><!> <span>In split left</span></button> <button><!> <span>In split bottom</span></button> <button><!> <span>In split top</span></button>",1),Hm=J("<div><!> <span> </span> <!> <!></div>"),qm=J("<button><!> <span>Close others</span></button> <button><!> <span>Close tabs to the left</span></button> <button><!> <span>Close tabs to the right</span></button> <button><!> <span>Close tabs to the left</span></button>",1),Nm=J("<button><!> <span>Switch view</span> <!></button> <hr/> <button><!> <span>Rename tab</span></button> <div><!> <span>Close tab</span> <!></div>",1),Wm=J('<div class="tabs svelte-vybefw"><!> <div class="new-tab-wrapper svelte-vybefw"><button class="new-tab svelte-vybefw"><!></button></div> <div class="controls svelte-vybefw"><button class="svelte-vybefw"><!></button> <!> <!></div></div> <!>',1);function Zm(a,e){mt(e,!0);let t=k(e,"split",15),n=k(e,"isMasterPaneAlive",15),i=k(e,"selectedTabID",15),r=L(null),o=L(0),h=L(null),u=L(null);function v(){n(!1),e.onclose()}function b(K,ge){let W=new Rr(y().group);e.tabs.appendTab(W),i(W.id)}function y(){return e.tabs.getTabByID(i())}function C(K){return function(ge){ge.button===0&&e.tabs.tabExists(K)&&i(K)}}function S(K){return function(ge){ge.preventDefault(),F(o,K,!0),s(r).openAtMouse(ge)}}function A(K){return function(){if(i()===K){let ge=e.tabs.indexOfID(K);i(e.tabs.getTabByIndex(ge===0?ge+1:ge-1).id)}e.tabs.deleteTab(K),e.tabs.isEmpty()&&(n(!1),e.onclose())}}function P(){t("horizontal"),s(h).close()}function D(){t("vertical"),s(h).close()}function R(K){return function(){s(r).close(),y().view=K}}let G=L(null),j=L(null),ne=L(null),M=L(!1),ce=Se(()=>(s(M),!s(G)||!s(j)||!s(ne)?"0px":`${(s(G).getBoundingClientRect().width-s(j).getBoundingClientRect().width-s(ne).getBoundingClientRect().width-16)/e.tabs.count()}px`));sa(()=>{F(M,!0)});var ve=Wm(),Y=ze(ve),U=f(Y);Lt(U,19,()=>e.tabs.tabs,K=>K.id,(K,ge,W)=>{const pe=Se(()=>s(ge)instanceof oa?ma:s(ge)instanceof Rr?s(ge).group.icon.component:void 0);var Pe=jm(),ye=Se(()=>C(s(ge).id)),Te=Se(()=>S(s(ge).id));let Me;var xe=f(Pe),Ie=f(xe);Xt(Ie,()=>s(pe),(Le,oe)=>{oe(Le,{stroke:"#cdd6f4",style:"width: 0.85rem; height: 0.85rem;"})});var Ue=x(Ie);m(xe);var nt=x(xe,2),ie=Se(()=>A(s(ge).id)),je=f(nt);It(je,{stroke:"var(--stroke)",style:"width: 0.85rem; height: 0.85rem;"}),m(nt),m(Pe),$(()=>{vt(Pe,1,bt(["tab",i()===s(ge).id&&"selected"]),"svelte-vybefw"),Me=Ge(Pe,"",Me,{left:`calc(min(13rem, ${s(ce)??""}) * ${s(W)??""} + 1rem)`,width:s(ce),background:e.background}),ut(Ue,` ${(s(ge)instanceof oa?"Editor":s(ge)instanceof Rr?s(ge).group.name:"Empty")??""}`)}),ue("mousedown",Pe,function(...Le){s(ye)?.apply(this,Le)}),ue("contextmenu",Pe,function(...Le){s(Te)?.apply(this,Le)}),ue("mousedown",nt,function(...Le){s(ie)?.apply(this,Le)}),B(K,Pe)});var N=x(U,2);let ae;var Z=f(N),ke=f(Z);cn(ke,{stroke:"var(--stroke)",style:"width: 0.85rem; height: 0.85rem;"}),m(Z),Ve(Z,K=>F(u,K),()=>s(u)),m(N),Ve(N,K=>F(ne,K),()=>s(ne));var T=x(N,2),V=f(T),H=f(V);Tt(H,{stroke:"var(--stroke)",style:"width: 0.85rem; height: 0.85rem;"}),m(V);var we=x(V,2);{var be=K=>{var ge=$m(),W=f(ge);It(W,{stroke:"var(--stroke)",style:"width: 0.85rem; height: 0.85rem;"}),m(ge),ue("mousedown",ge,v),B(K,ge)};Qe(we,K=>{(e.subpane||t())&&K(be)})}var Be=x(we,2);Ve(qn(Be,{top:"100%",right:"0.25rem",children:(K,ge)=>{var W=Gm(),pe=ze(W),Pe=f(pe);gn(Pe,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem;"}),Fe(2),m(pe);var ye=x(pe,2),Te=f(ye);gn(Te,{stroke:"#cdd6f4",style:"width: 1.2rem; height: 1.2rem; rotate: 90deg;"}),Fe(2),m(ye);var Me=x(ye,4),xe=f(Me);{let Ue=Se(()=>e.subpane||t()?"#f38ba8":"#6c7086");It(xe,{get stroke(){return s(Ue)},scale:.85})}var Ie=x(xe,2);m(Me),$(()=>{Me.disabled=!e.subpane&&!t(),Ge(Ie,`color: ${e.subpane||t()?"#f38ba8":"#6c7086"}`)}),ue("mousedown",pe,P),ue("mousedown",ye,D),ue("mousedown",Me,v),B(K,W)},$$slots:{default:!0}}),K=>F(h,K,!0),()=>s(h)),m(T),Ve(T,K=>F(j,K),()=>s(j)),m(Y),Ve(Y,K=>F(G,K),()=>s(G));var fe=x(Y,2);Ve(qn(fe,{children:(K,ge)=>{var W=Nm(),pe=ze(W),Pe=f(pe);Un(Pe,{stroke:"#cdd6f4",scale:.85,style:"margin-left: 0.15rem;"});var ye=x(Pe,4);qn(ye,{children:(ie,je)=>{var Le=Nt(),oe=ze(Le);Lt(oe,17,()=>Object.entries(Ud),Vt,(it,lt)=>{var He=Se(()=>so(s(lt),2));let Ke=()=>s(He)[0],Xe=()=>s(He)[1];var Dt=Hm(),un=Se(()=>R(Ke())),Cn=f(Dt);Xt(Cn,()=>Xe().icon,(St,en)=>{en(St,{stroke:"#cdd6f4"})});var Wt=x(Cn,2);Ge(Wt,"",{},{"text-transform":"capitalize"});var _n=f(Wt,!0);m(Wt);var wn=x(Wt,2);Qt(wn,{stroke:"#cdd6f4",style:"rotate: 90deg; margin-left: auto;"});var yn=x(wn,2);qn(yn,{children:(St,en)=>{var $t=zm(),tn=ze($t),ee=f(tn);Tr(ee,{}),Fe(2),m(tn);var $e=x(tn,2),ht=f($e);cn(ht,{}),Fe(2),m($e);var wt=x($e,2),Gt=f(wt);Qt(Gt,{style:"rotate: 270deg;"}),Fe(2),m(wt);var Et=x(wt,4),zr=f(Et);gn(zr,{}),Fe(2),m(Et);var nn=x(Et,2),Mt=f(nn);gn(Mt,{}),Fe(2),m(nn);var Fn=x(nn,2),rt=f(Fn);gn(rt,{}),Fe(2),m(Fn);var ot=x(Fn,2),Zt=f(ot);gn(Zt,{}),Fe(2),m(ot),B(St,$t)},$$slots:{default:!0}}),m(Dt),$(()=>ut(_n,Ke())),ue("mousedown",Dt,function(...St){s(un)?.apply(this,St)}),B(it,Dt)}),B(ie,Le)},$$slots:{default:!0}}),m(pe);var Te=x(pe,4),Me=f(Te);rr(Me,{stroke:"#cdd6f4",scale:1.2}),Fe(2),m(Te);var xe=x(Te,2),Ie=f(xe);{let ie=Se(()=>e.subpane||t()?"#f38ba8":"#6c7086");It(Ie,{get stroke(){return s(ie)},style:"width: 0.85rem; height: 0.85rem;"})}var Ue=x(Ie,2),nt=x(Ue,2);qn(nt,{children:(ie,je)=>{var Le=qm(),oe=ze(Le),it=f(oe);It(it,{stroke:"#cdd6f4",style:"width: 0.85rem; height: 0.85rem;"}),Fe(2),m(oe);var lt=x(oe,2),He=f(lt);It(He,{stroke:"#cdd6f4",style:"width: 0.85rem; height: 0.85rem;"}),Fe(2),m(lt);var Ke=x(lt,2),Xe=f(Ke);It(Xe,{stroke:"#cdd6f4",style:"width: 0.85rem; height: 0.85rem;"}),Fe(2),m(Ke);var Dt=x(Ke,2),un=f(Dt);It(un,{stroke:"#cdd6f4",style:"width: 0.85rem; height: 0.85rem;"}),Fe(2),m(Dt),B(ie,Le)},$$slots:{default:!0}}),m(xe),$(()=>{vt(xe,1,bt([!e.subpane&&!t()&&"disabled"])),Ge(Ue,`color: ${e.subpane||t()?"#f38ba8":"#6c7086"}`)}),ue("mousedown",xe,()=>A(s(o))),B(K,W)},$$slots:{default:!0}}),K=>F(r,K,!0),()=>s(r)),$(K=>ae=Ge(N,"",ae,K),[()=>({left:`calc(min(${s(ce)??""}, 13rem) * ${e.tabs.count()??""})`})]),ue("mousedown",Z,()=>b()),ue("mousedown",V,()=>s(h).toggle()),B(a,ve),ft()}Ct(["mousedown","contextmenu"]);var Ym=J('<div class="view-container svelte-12uuzv1"><!></div>'),Um=J('<section><section class="pane svelte-12uuzv1"><!> <div class="content svelte-12uuzv1"><!></div> <div></div> <div></div></section> <!></section> <!>',1);function $1(a,e){mt(e,!0);let t=k(e,"width",3,"500px"),n=k(e,"height",3,"1000px"),i=k(e,"background",3,"#1e1e2e"),r=k(e,"subpane",3,!1),o=k(e,"split",7,void 0),h=k(e,"onclose",3,()=>{}),u=L("none"),v=L(_e(new Yd)),b=L(_e(s(v).tabs[0].id));function y(W){return function(){F(u,W,!0)}}function C(){F(u,"none")}let S=L(`${parseInt(n())/2}px`),A=L(`${parseInt(t())/2}px`);function P(W){s(u)==="right"?F(A,`${parseInt(s(A))+W.movementX}px`):s(u)==="bottom"&&F(S,`${parseInt(s(S))+W.movementY}px`)}let D=L(!0);function R(W){let pe=new oa(W);s(v).appendTab(pe),F(b,pe.id,!0)}let G=L(null),j,ne=Se(()=>s(v).getTabByID(s(b)));var M=Um();xt("mouseup",Rt,C),xt("mousemove",Rt,P);var ce=ze(M);vt(ce,1,bt({"pane-wrapper":!0}),"svelte-12uuzv1");let ve;var Y=f(ce);let U;var N=f(Y);Zm(N,{get background(){return i()},get subpane(){return r()},get onclose(){return h()},get isMasterPaneAlive(){return s(D)},set isMasterPaneAlive(W){F(D,W,!0)},get selectedTabID(){return s(b)},set selectedTabID(W){F(b,W,!0)},get split(){return o()},set split(W){o(W)},get tabs(){return s(v)},set tabs(W){F(v,W,!0)}});var ae=x(N,2);let Z;var ke=f(ae);{var T=W=>{Vm(W,{get doc(){return s(ne).content},set doc(pe){s(ne).content=pe}})},V=W=>{var pe=Ym(),Pe=f(pe);{var ye=xe=>{Zo(xe,{})},Te=xe=>{Rm(xe,{openEditor:R,get group(){return s(ne).group}})},Me=xe=>{im(xe,{})};Qe(Pe,xe=>{s(ne).view==="hierarchy"?xe(ye):s(ne).view==="spreadsheet"?xe(Te,1):s(ne).view==="graph"&&xe(Me,2)})}m(pe),$(()=>Ge(pe,`display: ${s(ne).id===s(b)?"block":"none"}`)),B(W,pe)};Qe(ke,W=>{s(ne)instanceof oa&&s(ne).id===s(b)?W(T):s(ne)instanceof Rr&&W(V,1)})}m(ae);var H=x(ae,2),we=Se(()=>y("right")),be=x(H,2),Be=Se(()=>y("bottom"));m(Y);var fe=x(Y,2);{var K=W=>{Ve($1(W,{background:"#1e1e2e",subpane:!0,onclose:()=>o(void 0)}),pe=>F(G,pe,!0),()=>s(G))};Qe(fe,W=>{o()&&W(K)})}m(ce);var ge=x(ce,2);Ve(Wo(ge,{}),W=>j=W,()=>j),$(()=>{ve=Ge(ce,"",ve,{"flex-direction":o()==="horizontal"?"row":"column","flex-grow":r()?"1":void 0}),U=Ge(Y,"",U,{"max-width":s(D)?"100vmax":"0px","max-height":s(D)?"100vmax":"0px",height:o()==="vertical"?s(S):"100%",width:o()==="horizontal"?s(A):"100%"}),Z=Ge(ae,"",Z,{background:i()}),vt(H,1,bt({drag:!0,right:!0,dragging:s(u)==="right"}),"svelte-12uuzv1"),vt(be,1,bt({drag:!0,bottom:!0,dragging:s(u)==="bottom"}),"svelte-12uuzv1")}),ue("mousedown",H,function(...W){s(we)?.apply(this,W)}),ue("mousedown",be,function(...W){s(Be)?.apply(this,W)}),B(a,M),ft()}Ct(["mousedown"]);var Km=J('<button class="svelte-161y12f"><!> <span>Word Count</span></button> <button class="svelte-161y12f"><!> <span>Character Count</span></button> <button class="svelte-161y12f"><!> <span>Chapter Count</span></button>',1),Jm=J('<section class="svelte-161y12f"><div class="wrapper svelte-161y12f"><button class="svelte-161y12f"><span>0 / 0 words</span></button> <!></div></section>');function Xm(a){let e=Ht();var t=Jm(),n=f(t),i=f(n),r=x(i,2);Ve(vn(r,{bottom:"120%",right:"0.5rem",children:(o,h)=>{var u=Km(),v=ze(u),b=f(v);Ho(b,{stroke:"#cdd6f4",style:"width: 0.85rem; height: 0.85rem;"}),Fe(2),m(v);var y=x(v,2),C=f(y);_o(C,{stroke:"#cdd6f4",style:"width: 0.85rem; height: 0.85rem;"}),Fe(2),m(y);var S=x(y,2),A=f(S);Qn(A,{stroke:"#cdd6f4",style:"width: 0.85rem; height: 0.85rem;"}),Fe(2),m(S),B(o,u)},$$slots:{default:!0},$$legacy:!0}),o=>F(e,o),()=>s(e)),m(n),m(t),ue("mousedown",i,()=>s(e).toggle()),B(a,t)}Ct(["mousedown"]);var Qm=J('<div class="svelte-1uha8ag"><!> <!></div>'),e3=J('<!> <main class="svelte-1uha8ag"><!> <!></main>',1);function c3(a,e){mt(e,!0),Br(()=>{ts().length>0&&ta.errors(ts())});var t=e3(),n=ze(t);sm(n,{});var i=x(n,2),r=f(i);Nd(r,{});var o=x(r,2);{var h=b=>{var y=Qm(),C=f(y);$1(C,{background:"#181825"});var S=x(C,2);Xm(S),m(y),B(b,y)},u=Se(()=>pt.get()),v=b=>{Zd(b,{})};Qe(o,b=>{s(u)?b(h):b(v,-1)})}m(i),B(a,t),ft()}export{c3 as component};
+							material. For the avoidance of doubt, this paragraph does not form part of the public licenses.</p> <p class="svelte-ip7hp8">Creative Commons may be contacted at creativecommons.org.</p></li></ol>`,
+		1,
+	),
+	dd = J('<div class="popup svelte-ip7hp8"><!> <div class="content svelte-ip7hp8"><!></div></div>');
+function Wo(a, e) {
+	mt(e, !0);
+	let t,
+		n = L("Introduction");
+	function i(h) {
+		(h && F(n, h, !0), t.open());
+	}
+	function r() {}
+	var o = { open: i };
+	return (
+		Ve(
+			ir(a, {
+				reset: r,
+				children: (h, u) => {
+					var v = dd(),
+						b = f(v);
+					{
+						let R = Se(() => ({ text: "Clara Manual", icon: Q2 })),
+							G = Se(() => ({
+								"The essentials": [
+									["Introduction", Po],
+									["Interface", $r],
+									["Entries", Mn],
+									["Templates", Dn],
+									["View", On],
+									["The Editor", ma],
+								],
+								"Advanced": [
+									["Measurements & Units", ga],
+									["Randomization", ua],
+									["Generated Attributes", wo],
+									["Suggestions", nr],
+									["Plugins", Ir],
+								],
+								"Development": [
+									["Plugin Development", Ir],
+									["Bug Reporting", xo],
+									["Contributing", Go],
+								],
+								"Legal": [
+									["License", Fo],
+									["Privacy Policy", fa],
+								],
+							}));
+						sd(b, {
+							get title() {
+								return s(R);
+							},
+							get sections() {
+								return s(G);
+							},
+							get view() {
+								return s(n);
+							},
+							set view(j) {
+								F(n, j, !0);
+							},
+						});
+					}
+					var y = x(b, 2),
+						C = f(y);
+					{
+						var S = R => {
+								var G = ld();
+								(Fe(6), B(R, G));
+							},
+							A = R => {
+								var G = hd();
+								(Fe(2), B(R, G));
+							},
+							P = R => {
+								var G = cd();
+								(Fe(6), B(R, G));
+							},
+							D = R => {
+								var G = ud();
+								(Fe(34), B(R, G));
+							};
+						Qe(C, R => {
+							s(n) === "Introduction"
+								? R(S)
+								: s(n) === "Interface"
+									? R(A, 1)
+									: s(n) === "Entries"
+										? R(P, 2)
+										: s(n) === "License" && R(D, 3);
+						});
+					}
+					(m(y), m(v), B(h, v));
+				},
+				$$slots: { default: !0 },
+			}),
+			h => (t = h),
+			() => t,
+		),
+		ft(o)
+	);
+}
+var md = J("<button><!></button>");
+function an(a, e) {
+	let t = k(e, "accent", 3, "#b4befe"),
+		n = k(e, "scale", 3, 1),
+		i = se(e, ["$$slots", "$$events", "$$legacy", "Icon", "accent", "scale"]);
+	var r = md();
+	le(r, () => ({ ...i, [he]: { "--accent": t() } }), void 0, void 0, void 0, "svelte-1g3nbt2");
+	var o = f(r);
+	(Xt(
+		o,
+		() => e.Icon,
+		(h, u) => {
+			u(h, {
+				stroke: "var(--stroke)",
+				get style() {
+					return `width: ${n() ?? ""}rem; height: ${n() ?? ""}rem;`;
+				},
+			});
+		},
+	),
+		m(r),
+		B(a, r));
+}
+var fd = J('<div class="header svelte-b4ffmr"><!></div>'),
+	gd = J("<!> <span> </span>", 1),
+	pd = J('<button class="header svelte-b4ffmr"><!> <!></button>'),
+	vd = J("<!> <!>", 1),
+	bd = J('<div class="svelte-b4ffmr"><!></div>'),
+	xd = J('<div class="svelte-b4ffmr"> </div>'),
+	Cd = J('<div><div class="input svelte-b4ffmr"><!> <!></div> <div><!> <!></div></div>');
+function Ca(a, e) {
+	mt(e, !0);
+	let t = k(e, "locked", 7, !1),
+		n = k(e, "lockable", 7, void 0),
+		i = k(e, "onunlock", 3, T => {
+			T();
+		}),
+		r = k(e, "value", 15),
+		o = k(e, "title", 3, void 0),
+		h = k(e, "width", 3, "20rem"),
+		u = k(e, "height", 3, "fit-content"),
+		v = k(e, "emptyText", 3, "None Selected"),
+		b = k(e, "noarrow", 3, !1),
+		y = se(e, [
+			"$$slots",
+			"$$events",
+			"$$legacy",
+			"options",
+			"locked",
+			"lockable",
+			"onunlock",
+			"itemOverride",
+			"value",
+			"title",
+			"children",
+			"width",
+			"height",
+			"additionalButtonText",
+			"additionalButtonClick",
+			"isError",
+			"emptyText",
+			"noarrow",
+		]);
+	n() === void 0 && n(t());
+	let C = L(!1);
+	function S(T) {
+		return function () {
+			(F(C, !1), r(T));
+		};
+	}
+	let A;
+	function P(T) {
+		t() || F(C, !s(C));
+	}
+	function D(T) {
+		T.composedPath().includes(A) || F(C, !1);
+	}
+	function R() {
+		t(!1);
+	}
+	function G() {
+		if ((console.log("toggle", t()), !t())) {
+			t(!0);
+			return;
+		}
+		(console.log("calling onunlock"), i()(R));
+	}
+	var j = Cd();
+	(xt("mousedown", Rt, D),
+		le(
+			j,
+			() => ({ class: "select", ...y, [he]: { cursor: t() ? "not-allowed" : "pointer", width: h() } }),
+			void 0,
+			void 0,
+			void 0,
+			"svelte-b4ffmr",
+		));
+	var ne = f(j),
+		M = f(ne);
+	{
+		var ce = T => {
+				var V = fd();
+				let H;
+				var we = f(V);
+				(tr(we, () => e.children),
+					m(V),
+					$(() => (H = Ge(V, "", H, { cursor: t() ? "not-allowed" : "pointer", display: "contents" }))),
+					ue("mousedown", V, P),
+					B(T, V));
+			},
+			ve = T => {
+				var V = pd();
+				let H;
+				var we = f(V);
+				{
+					var be = W => {
+							var pe = Gn();
+							($(() => ut(pe, o())), B(W, pe));
+						},
+						Be = W => {
+							const pe = Se(() =>
+								e.options.find(xe => typeof xe != "string" && xe.name === (typeof r() == "string" ? r() : r().name)),
+							);
+							var Pe = Nt(),
+								ye = ze(Pe);
+							{
+								var Te = xe => {
+										var Ie = gd(),
+											Ue = ze(Ie);
+										{
+											var nt = Le => {
+												var oe = Nt(),
+													it = ze(oe);
+												{
+													let lt = Se(() => s(pe).color ?? "#a6adc8");
+													Xt(
+														it,
+														() => s(pe).icon,
+														(He, Ke) => {
+															Ke(He, {
+																get stroke() {
+																	return s(lt);
+																},
+																style: "width: 1rem; height: 1rem;",
+															});
+														},
+													);
+												}
+												B(Le, oe);
+											};
+											Qe(Ue, Le => {
+												s(pe).icon && Le(nt);
+											});
+										}
+										var ie = x(Ue, 2),
+											je = f(ie, !0);
+										(m(ie),
+											$(() => {
+												(Ge(ie, s(pe).style ?? ""), ut(je, s(pe).name));
+											}),
+											B(xe, Ie));
+									},
+									Me = xe => {
+										var Ie = Gn();
+										($(() => ut(Ie, r())), B(xe, Ie));
+									};
+								Qe(ye, xe => {
+									s(pe) ? xe(Te) : xe(Me, -1);
+								});
+							}
+							B(W, Pe);
+						},
+						fe = W => {
+							var pe = Gn();
+							($(() => ut(pe, v())), B(W, pe));
+						};
+					Qe(we, W => {
+						o() ? W(be) : r() ? W(Be, 1) : W(fe, -1);
+					});
+				}
+				var K = x(we, 2);
+				{
+					var ge = W => {
+						{
+							let pe = Se(() => (s(C) ? "180deg" : "90deg"));
+							Qt(W, {
+								stroke: "#b4befe",
+								get style() {
+									return `width: 1rem; height: 1rem; margin-left: auto; transform: rotate(${s(pe) ?? ""}); transition: transform 0.1s;`;
+								},
+							});
+						}
+					};
+					Qe(K, W => {
+						b() || W(ge);
+					});
+				}
+				(m(V),
+					$(
+						() =>
+							(H = Ge(V, "", H, {
+								height: u(),
+								cursor: t() ? "not-allowed" : "pointer",
+								outline: e.isError ? "2px solid var(--red)" : "none",
+							})),
+					),
+					ue("mousedown", V, P),
+					B(T, V));
+			};
+		Qe(M, T => {
+			e.children ? T(ce) : T(ve, -1);
+		});
+	}
+	var Y = x(M, 2);
+	{
+		var U = T => {
+			{
+				let V = Se(() => (t() ? Bo : $o));
+				an(T, {
+					onmousedown: G,
+					scale: 1.5,
+					style: "border: 1px solid #313244;",
+					get Icon() {
+						return s(V);
+					},
+				});
+			}
+		};
+		Qe(Y, T => {
+			n() && T(U);
+		});
+	}
+	m(ne);
+	var N = x(ne, 2),
+		ae = f(N);
+	Lt(
+		ae,
+		17,
+		() => e.options,
+		Vt,
+		(T, V) => {
+			var H = bd(),
+				we = Se(() => S(typeof s(V) == "string" ? s(V) : s(V).name)),
+				be = f(H);
+			{
+				var Be = K => {
+						var ge = Gn();
+						($(() => ut(ge, s(V))), B(K, ge));
+					},
+					fe = K => {
+						var ge = vd(),
+							W = ze(ge);
+						{
+							var pe = Me => {
+								var xe = Nt(),
+									Ie = ze(xe);
+								{
+									let Ue = Se(() => s(V).color ?? "#a6adc8");
+									Xt(
+										Ie,
+										() => s(V).icon,
+										(nt, ie) => {
+											ie(nt, {
+												get stroke() {
+													return s(Ue);
+												},
+												style: "width: 1rem; height: 1rem;",
+											});
+										},
+									);
+								}
+								B(Me, xe);
+							};
+							Qe(W, Me => {
+								s(V).icon && Me(pe);
+							});
+						}
+						var Pe = x(W, 2);
+						{
+							var ye = Me => {
+									var xe = Gn();
+									($(() => ut(xe, e.itemOverride)), B(Me, xe));
+								},
+								Te = Me => {
+									var xe = Gn();
+									($(() => ut(xe, s(V).name)), B(Me, xe));
+								};
+							Qe(Pe, Me => {
+								e.itemOverride ? Me(ye) : Me(Te, -1);
+							});
+						}
+						B(K, ge);
+					};
+				Qe(be, K => {
+					typeof s(V) == "string" ? K(Be) : K(fe, -1);
+				});
+			}
+			(m(H),
+				$(() => Ge(H, typeof s(V) != "string" && s(V).style ? s(V).style : "")),
+				ue("mousedown", H, function (...K) {
+					s(we)?.apply(this, K);
+				}),
+				B(T, H));
+		},
+	);
+	var Z = x(ae, 2);
+	{
+		var ke = T => {
+			var V = xd(),
+				H = f(V, !0);
+			(m(V),
+				$(() => ut(H, e.additionalButtonText)),
+				ue("mousedown", V, function (...we) {
+					e.additionalButtonClick?.apply(this, we);
+				}),
+				B(T, V));
+		};
+		Qe(Z, T => {
+			e.additionalButtonText && T(ke);
+		});
+	}
+	(m(N),
+		m(j),
+		Ve(
+			j,
+			T => (A = T),
+			() => A,
+		),
+		$(() => vt(N, 1, bt(["options", s(C) && "visible"]), "svelte-b4ffmr")),
+		B(a, j),
+		ft());
+}
+Ct(["mousedown"]);
+var _d = J(
+		'<h1 class="svelte-1qktjv">Appearance</h1> <div class="section svelte-1qktjv"><div class="option svelte-1qktjv"><div class="left svelte-1qktjv"><h2 class="svelte-1qktjv">Theme</h2> <p class="svelte-1qktjv">Set the color theme for Clara.</p></div> <!></div> <div class="option svelte-1qktjv"><div class="left svelte-1qktjv"><h2 class="svelte-1qktjv">UI Scale</h2> <p class="svelte-1qktjv">Set the color theme for Clara.</p></div> <input class="svelte-1qktjv"/></div></div>',
+		1,
+	),
+	wd = J(
+		'<button class="header svelte-1qktjv"><div class="svelte-1qktjv"><h1 class="svelte-1qktjv"> </h1> <p class="svelte-1qktjv"> </p></div> <!></button>',
+	),
+	yd = J('<h1 style="margin-top: 1rem;" class="svelte-1qktjv">Templates</h1> <div class="templates svelte-1qktjv"></div>', 1),
+	Fd = J(
+		'<div class="template-editor svelte-1qktjv"><h2 class="svelte-1qktjv">Name</h2> <div class="name svelte-1qktjv"><button class="svelte-1qktjv"><!></button> <input class="svelte-1qktjv"/></div> <h2 class="svelte-1qktjv">Groups &amp; Items</h2></div>',
+	),
+	kd = J(
+		'<div class="popup svelte-1qktjv"><div class="sidebar svelte-1qktjv"><h1 class="title svelte-1qktjv"><!> Settings</h1> <h1 class="svelte-1qktjv">General</h1> <button class="svelte-1qktjv"><!> <span class="svelte-1qktjv">Appearance</span></button> <button class="svelte-1qktjv"><!> <span class="svelte-1qktjv">Hotkeys</span></button> <button class="svelte-1qktjv"><!> <span class="svelte-1qktjv">Startup</span></button> <button class="svelte-1qktjv"><!> <span class="svelte-1qktjv">Plugins</span></button> <h1 class="svelte-1qktjv">Presets</h1> <button><!> <span class="svelte-1qktjv">Templates</span></button> <button class="svelte-1qktjv"><!> <span class="svelte-1qktjv">Randomizers</span></button> <button class="svelte-1qktjv"><!> <span class="svelte-1qktjv">Suggestions</span></button> <h1 class="svelte-1qktjv">Plugins</h1></div> <div class="content svelte-1qktjv"><!></div></div>',
+	);
+function T1(a, e) {
+	mt(e, !0);
+	let t;
+	function n(b) {
+		(b && F(i, b, !0), t.open());
+	}
+	let i = L("appearance");
+	function r() {}
+	function o(b) {
+		return function () {
+			F(i, b, !0);
+		};
+	}
+	L(_e([]));
+	let h = L(null);
+	function u(b) {
+		return function () {
+			(F(h, b, !0), o("template-editor")());
+		};
+	}
+	var v = { open: n };
+	return (
+		Ve(
+			ir(a, {
+				reset: r,
+				children: (b, y) => {
+					var C = kd(),
+						S = f(C),
+						A = f(S),
+						P = f(A);
+					(Tt(P, { stroke: "#cdd6f4", style: "width: 1rem; height: 1rem;" }), Fe(), m(A));
+					var D = x(A, 4),
+						R = Se(() => o("appearance")),
+						G = f(D);
+					(jr(G, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), Fe(2), m(D));
+					var j = x(D, 2),
+						ne = Se(() => o("introduction")),
+						M = f(j);
+					(yo(M, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), Fe(2), m(j));
+					var ce = x(j, 2),
+						ve = Se(() => o("introduction")),
+						Y = f(ce);
+					(Io(Y, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), Fe(2), m(ce));
+					var U = x(ce, 2),
+						N = Se(() => o("introduction")),
+						ae = f(U);
+					(Ir(ae, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), Fe(2), m(U));
+					var Z = x(U, 4),
+						ke = Se(() => o("templates")),
+						T = f(Z);
+					(Dn(T, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), Fe(2), m(Z));
+					var V = x(Z, 2),
+						H = Se(() => o("introduction")),
+						we = f(V);
+					(ua(we, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), Fe(2), m(V));
+					var be = x(V, 2),
+						Be = Se(() => o("introduction")),
+						fe = f(be);
+					(nr(fe, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), Fe(2), m(be), Fe(2), m(S));
+					var K = x(S, 2),
+						ge = f(K);
+					{
+						var W = ye => {
+								var Te = _d(),
+									Me = x(ze(Te), 2),
+									xe = f(Me),
+									Ie = x(f(xe), 2);
+								(Ca(Ie, { style: "background: #1e1e2e;", options: ["Catppuccin Mocha"], value: "Catppuccin Mocha" }),
+									m(xe),
+									Fe(2),
+									m(Me),
+									B(ye, Te));
+							},
+							pe = ye => {
+								var Te = yd(),
+									Me = x(ze(Te), 2);
+								(Lt(
+									Me,
+									21,
+									() => kr().templates,
+									Vt,
+									(xe, Ie) => {
+										var Ue = wd(),
+											nt = Se(() => u(s(Ie))),
+											ie = f(Ue),
+											je = f(ie),
+											Le = f(je, !0);
+										m(je);
+										var oe = x(je, 2),
+											it = f(oe, !0);
+										(m(oe), m(ie));
+										var lt = x(ie, 2);
+										(Qt(lt, { stroke: "#cdd6f4", style: "width: 1.5rem; height: 1.5rem; rotate: 90deg;" }),
+											m(Ue),
+											$(() => {
+												(ut(Le, s(Ie).name), ut(it, s(Ie).description));
+											}),
+											ue("mousedown", Ue, function (...He) {
+												s(nt)?.apply(this, He);
+											}),
+											B(xe, Ue));
+									},
+								),
+									m(Me),
+									B(ye, Te));
+							},
+							Pe = ye => {
+								var Te = Nt(),
+									Me = ze(Te);
+								{
+									var xe = Ie => {
+										var Ue = Fd(),
+											nt = x(f(Ue), 2),
+											ie = f(nt),
+											je = f(ie);
+										(Xt(
+											je,
+											() => s(h).icon.component,
+											(oe, it) => {
+												it(oe, { stroke: "var(--stroke)" });
+											},
+										),
+											m(ie));
+										var Le = x(ie, 2);
+										(ln(Le),
+											m(nt),
+											Fe(2),
+											m(Ue),
+											hn(
+												Le,
+												() => s(h).name,
+												oe => (s(h).name = oe),
+											),
+											B(Ie, Ue));
+									};
+									Qe(Me, Ie => {
+										s(h) && Ie(xe);
+									});
+								}
+								B(ye, Te);
+							};
+						Qe(ge, ye => {
+							s(i) === "appearance" ? ye(W) : s(i) === "templates" ? ye(pe, 1) : s(i) === "template-editor" && ye(Pe, 2);
+						});
+					}
+					(m(K),
+						m(C),
+						$(() => vt(Z, 1, bt([s(i) === "templates" && "selected"]), "svelte-1qktjv")),
+						ue("mousedown", D, function (...ye) {
+							s(R)?.apply(this, ye);
+						}),
+						ue("mousedown", j, function (...ye) {
+							s(ne)?.apply(this, ye);
+						}),
+						ue("mousedown", ce, function (...ye) {
+							s(ve)?.apply(this, ye);
+						}),
+						ue("mousedown", U, function (...ye) {
+							s(N)?.apply(this, ye);
+						}),
+						ue("mousedown", Z, function (...ye) {
+							s(ke)?.apply(this, ye);
+						}),
+						ue("mousedown", V, function (...ye) {
+							s(H)?.apply(this, ye);
+						}),
+						ue("mousedown", be, function (...ye) {
+							s(Be)?.apply(this, ye);
+						}),
+						B(b, C));
+				},
+				$$slots: { default: !0 },
+			}),
+			b => (t = b),
+			() => t,
+		),
+		ft(v)
+	);
+}
+Ct(["mousedown"]);
+var Ed = J('<button><!> <span class="node-name svelte-87xnpf" contenteditable="" spellcheck="false"></span> <!></button>'),
+	Bd = J("<li><!></li>"),
+	Sd = J("<ul></ul>"),
+	Ad = J("<hr/>"),
+	Dd = J("<button><!> Create new item</button> <button><!> Create new group</button> <!>", 1),
+	Md = J('<button><!> <span>Rename</span></button> <button><!> <span style="color: #f38ba8;">Delete</span></button>', 1),
+	Ld = J("<!> <!>", 1),
+	Rd = J('<section class="svelte-87xnpf"><!> <!> <!></section>');
+function Zo(a, e) {
+	mt(e, !0);
+	let t = k(e, "entry", 7),
+		n = k(e, "hideRoot", 3, !1),
+		i = k(e, "subtree", 3, !1),
+		r = k(e, "demo", 3, !1),
+		o = L(_e(n() || r()));
+	t() || t(pt.get().database);
+	function h(N) {
+		N.button === 0 && (N.composedPath().some(ae => "classList" in ae && ae.classList.contains("node-name")) || F(o, !s(o)));
+	}
+	function u(N) {
+		N.key === "Enter" && N.target.blur();
+	}
+	let v = "",
+		b = "",
+		y = L(null),
+		C,
+		S = L(!1);
+	function A(N) {
+		(F(S, !0), s(y).openAtMouse(N));
+	}
+	function P() {
+		(t().addChild(new dt("New Group")), s(y)?.close(), F(o, !0));
+	}
+	function D() {
+		(t().addChild(new sn("New Item")), s(y)?.close(), F(o, !0));
+	}
+	let R = L(null);
+	function G() {
+		if ((s(y)?.close(), !s(R))) return;
+		s(R).focus();
+		const N = window.getSelection(),
+			ae = document.createRange();
+		(ae.selectNodeContents(s(R)), ae.collapse(!1), N?.removeAllRanges(), N?.addRange(ae));
+	}
+	function j() {
+		t().delete();
+	}
+	var ne = Rd(),
+		M = f(ne);
+	{
+		var ce = N => {
+			var ae = Ed(),
+				Z = f(ae);
+			{
+				var ke = fe => {
+						Dn(fe, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" });
+					},
+					T = Se(() => t().isBranch()),
+					V = fe => {
+						var K = Nt(),
+							ge = ze(K);
+						(Xt(
+							ge,
+							() => t().icon.component,
+							(W, pe) => {
+								pe(W, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" });
+							},
+						),
+							B(fe, K));
+					};
+				Qe(Z, fe => {
+					s(T) ? fe(ke) : fe(V, -1);
+				});
+			}
+			var H = x(Z, 2);
+			Ve(
+				H,
+				fe => F(R, fe),
+				() => s(R),
+			);
+			var we = x(H, 2);
+			{
+				var be = fe => {
+						{
+							let K = Se(() => (s(o) ? "180deg" : "90deg"));
+							Qt(fe, {
+								stroke: "var(--arrow)",
+								get style() {
+									return `width: 1rem; transition: rotate 0.1s; height: 1rem; rotate: ${s(K) ?? ""};`;
+								},
+							});
+						}
+					},
+					Be = Se(() => t().isBranch());
+				Qe(we, fe => {
+					s(Be) && fe(be);
+				});
+			}
+			(m(ae),
+				$(() => vt(ae, 1, bt(["node", s(S) && "active"]), "svelte-87xnpf")),
+				ue("contextmenu", ae, A),
+				ue("mousedown", ae, h),
+				xt("keypress", H, u),
+				Kl(
+					"textContent",
+					H,
+					() => t().name,
+					fe => t().setName(fe),
+				),
+				B(N, ae));
+		};
+		Qe(M, N => {
+			(!n() || i()) && N(ce);
+		});
+	}
+	var ve = x(M, 2);
+	{
+		var Y = N => {
+			var ae = Sd();
+			let Z;
+			(Lt(
+				ae,
+				21,
+				() => t().sortedChildren,
+				ke => ke.id,
+				(ke, T) => {
+					var V = Bd();
+					let H;
+					var we = f(V);
+					(Zo(we, {
+						get demo() {
+							return r();
+						},
+						get hideRoot() {
+							return n();
+						},
+						get entry() {
+							return s(T);
+						},
+						subtree: !0,
+					}),
+						m(V),
+						$(() => (H = Ge(V, "", H, { "padding-left": n() && t().isRoot ? "0px" : "1.25rem" }))),
+						B(ke, V));
+				},
+			),
+				m(ae),
+				$(() => {
+					(vt(ae, 1, bt({ expanded: s(o) }), "svelte-87xnpf"),
+						(Z = Ge(ae, "", Z, {
+							"border-left": n() ? "none" : "1px solid #45475a",
+							"margin-top": i() || !s(o) ? "0px" : "0.5rem",
+						})));
+				}),
+				B(N, ae));
+		};
+		Qe(ve, N => {
+			t().children.length !== 0 && N(Y);
+		});
+	}
+	var U = x(ve, 2);
+	(Ve(
+		vn(U, {
+			onclose: () => F(S, !1),
+			left: b,
+			top: v,
+			children: (N, ae) => {
+				var Z = Ld(),
+					ke = ze(Z);
+				{
+					var T = be => {
+							var Be = Dd(),
+								fe = ze(Be),
+								K = f(fe);
+							(la(K, { scale: 0.85 }), Fe(), m(fe));
+							var ge = x(fe, 2),
+								W = f(ge);
+							(Dn(W, { scale: 0.85 }), Fe(), m(ge));
+							var pe = x(ge, 2);
+							{
+								var Pe = ye => {
+									var Te = Ad();
+									B(ye, Te);
+								};
+								Qe(pe, ye => {
+									t().isRoot || ye(Pe);
+								});
+							}
+							(ue("mousedown", fe, D), ue("mousedown", ge, P), B(be, Be));
+						},
+						V = Se(() => t().isBranch());
+					Qe(ke, be => {
+						s(V) && be(T);
+					});
+				}
+				var H = x(ke, 2);
+				{
+					var we = be => {
+						var Be = Md(),
+							fe = ze(Be),
+							K = f(fe);
+						(rr(K, { scale: 0.85 }), Fe(2), m(fe));
+						var ge = x(fe, 2),
+							W = f(ge);
+						(Ln(W, { stroke: "#f38ba8", scale: 0.85 }), Fe(2), m(ge), ue("mousedown", fe, G), ue("mousedown", ge, j), B(be, Be));
+					};
+					Qe(H, be => {
+						t().isRoot || be(we);
+					});
+				}
+				B(N, Z);
+			},
+			$$slots: { default: !0 },
+		}),
+		N => F(y, N, !0),
+		() => s(y),
+	),
+		m(ne),
+		Ve(
+			ne,
+			N => (C = N),
+			() => C,
+		),
+		B(a, ne),
+		ft());
+}
+Ct(["contextmenu", "mousedown"]);
+var Pd = J('<span class="error svelte-dmtq7h"> </span>'),
+	Id = J('<span class="error svelte-dmtq7h"> </span>'),
+	Td = J('<span class="svelte-dmtq7h">Project will be created at <span class="svelte-dmtq7h"> </span></span>'),
+	Od = J(
+		'<section class="popup svelte-dmtq7h"><h1 class="svelte-dmtq7h">New Project</h1> <div><div class="svelte-dmtq7h"><h2 class="svelte-dmtq7h">Location</h2> <div class="wrapper svelte-dmtq7h"><input placeholder="/path/to/books/folder"/> <button class="input-button svelte-dmtq7h"><!></button></div> <!></div> <div class="svelte-dmtq7h"><h2 class="svelte-dmtq7h">Name</h2> <input placeholder="Book title"/> <!> <!></div></div> <div class="template svelte-dmtq7h"><div class="svelte-dmtq7h"><h2 class="svelte-dmtq7h">Template</h2> <div class="templates svelte-dmtq7h"><div class="select svelte-dmtq7h"><!> <button class="svelte-dmtq7h"><!></button></div></div></div> <p class="svelte-dmtq7h"> </p> <div class="svelte-dmtq7h"><h2 class="svelte-dmtq7h">Entries</h2> <div class="tree svelte-dmtq7h"><!></div></div></div> <button>Create</button></section>',
+	),
+	Vd = J("<!> <!>", 1);
+function O1(a, e) {
+	mt(e, !0);
+	let t;
+	function n() {
+		t.open();
+	}
+	let i,
+		r = L(""),
+		o = L(""),
+		h = L(_e(kr().templates[0])),
+		u = L(!1),
+		v = L(!1),
+		b = Se(() =>
+			s(r).length === 0
+				? "Location cannot be empty"
+				: /^([a-zA-Z]:)?[\w\.\/\\]+$/.test(s(r))
+					? null
+					: "Location contains invalid characters",
+		),
+		y = Se(() =>
+			s(o).length === 0 ? "Name cannot be empty" : /^[\w\. ]+$/.test(s(o)) ? null : "Name contains invalid characters",
+		);
+	function C() {
+		F(v, !0);
+	}
+	function S() {
+		F(u, !0);
+	}
+	const A = es(
+		async function () {
+			const Y = await Ql({ directory: !0, multiple: !1, title: "Select a directory" });
+			(F(u, !0), typeof Y == "string" ? F(r, Y, !0) : console.log("No directory selected"));
+		},
+		import.meta.url,
+	);
+	let P = Se(() => !!s(y) || !!s(b)),
+		D = L(!1);
+	const R = es(
+		async function () {
+			if (s(P)) {
+				(F(u, !0), F(v, !0), F(D, !0));
+				return;
+			}
+			let Y = s(h).clone();
+			Y.name = s(o);
+			let U = new pt({ location: s(r), database: Y });
+			pt.set(U);
+			let N = U.serialize();
+			(await X("new_project", { project: N }), t?.close());
+		},
+		import.meta.url,
+	);
+	function G() {
+		(F(r, ""), F(o, ""), F(u, !1), F(v, !1), F(h, kr().templates[0], !0));
+	}
+	var j = { open: n },
+		ne = Vd(),
+		M = ze(ne);
+	Ve(
+		ir(M, {
+			reset: G,
+			width: "50rem",
+			children: (ve, Y) => {
+				var U = Od(),
+					N = x(f(U), 2),
+					ae = f(N),
+					Z = x(f(ae), 2),
+					ke = f(Z);
+				ln(ke);
+				var T = x(ke, 2),
+					V = f(T);
+				(Kn(V, { stroke: "#a6adc8", style: "width: 1rem; height: 1rem;" }), m(T), m(Z));
+				var H = x(Z, 2);
+				{
+					var we = He => {
+						var Ke = Pd(),
+							Xe = f(Ke, !0);
+						(m(Ke), $(() => ut(Xe, s(b))), B(He, Ke));
+					};
+					Qe(H, He => {
+						s(b) && s(u) && He(we);
+					});
+				}
+				m(ae);
+				var be = x(ae, 2),
+					Be = x(f(be), 2);
+				ln(Be);
+				var fe = x(Be, 2);
+				{
+					var K = He => {
+						var Ke = Id(),
+							Xe = f(Ke, !0);
+						(m(Ke), $(() => ut(Xe, s(y))), B(He, Ke));
+					};
+					Qe(fe, He => {
+						s(y) && s(v) && He(K);
+					});
+				}
+				var ge = x(fe, 2);
+				{
+					var W = He => {
+						var Ke = Td(),
+							Xe = x(f(Ke));
+						Ge(Xe, "", {}, { color: "#cdd6f4" });
+						var Dt = f(Xe);
+						(m(Xe), m(Ke), $(() => ut(Dt, `${s(r) ?? ""}/${s(o) ?? ""}`)), B(He, Ke));
+					};
+					Qe(ge, He => {
+						!s(b) && !s(y) && s(u) && s(v) && He(W);
+					});
+				}
+				(m(be), m(N));
+				var pe = x(N, 2),
+					Pe = f(pe),
+					ye = x(f(Pe), 2),
+					Te = f(ye),
+					Me = f(Te),
+					xe = () => s(h).name,
+					Ie = He =>
+						F(
+							h,
+							kr().templates.find(Ke => Ke.name === He),
+							!0,
+						);
+				{
+					let He = Se(() => kr().templates.map(Ke => ({ name: Ke.name, icon: Ke.icon.component })));
+					Ca(Me, {
+						width: "calc(100% - 1.75rem)",
+						get options() {
+							return s(He);
+						},
+						get value() {
+							return xe();
+						},
+						set value(Ke) {
+							Ie(Ke);
+						},
+					});
+				}
+				var Ue = x(Me, 2),
+					nt = f(Ue);
+				(Tt(nt, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;", onmousedown: () => i.open("templates") }),
+					m(Ue),
+					m(Te),
+					m(ye),
+					m(Pe));
+				var ie = x(Pe, 2),
+					je = f(ie, !0);
+				m(ie);
+				var Le = x(ie, 2),
+					oe = x(f(Le), 2),
+					it = f(oe);
+				(Zo(it, {
+					hideRoot: !0,
+					get entry() {
+						return s(h);
+					},
+				}),
+					m(oe),
+					m(Le),
+					m(pe));
+				var lt = x(pe, 2);
+				(m(U),
+					$(() => {
+						(vt(N, 1, bt(["template", (s(y) || s(b)) && s(D) && "invalid-input"]), "svelte-dmtq7h"),
+							vt(ke, 1, bt([s(b) && s(u) && "invalid-input"]), "svelte-dmtq7h"),
+							vt(Be, 1, bt([s(y) && s(v) && "invalid-input"]), "svelte-dmtq7h"),
+							ut(je, s(h).description),
+							vt(lt, 1, bt(["create-button", s(P) && "disabled"]), "svelte-dmtq7h"));
+					}),
+					ue("change", ke, S),
+					hn(
+						ke,
+						() => s(r),
+						He => F(r, He),
+					),
+					ue("mousedown", T, A),
+					ue("change", Be, C),
+					hn(
+						Be,
+						() => s(o),
+						He => F(o, He),
+					),
+					ue("mousedown", lt, R),
+					B(ve, U));
+			},
+			$$slots: { default: !0 },
+		}),
+		ve => (t = ve),
+		() => t,
+	);
+	var ce = x(M, 2);
+	return (
+		Ve(
+			T1(ce, {}),
+			ve => (i = ve),
+			() => i,
+		),
+		B(a, ne),
+		ft(j)
+	);
+}
+Ct(["change", "mousedown"]);
+var jd = J(
+	'<div class="popup svelte-2dta6u"><div class="sidebar svelte-2dta6u"><button class="svelte-2dta6u"><!> <span class="svelte-2dta6u">General</span></button></div></div>',
+);
+function $d(a, e) {
+	mt(e, !0);
+	let t;
+	function n() {
+		t.open();
+	}
+	let i = L("general");
+	function r() {
+		F(i, "general");
+	}
+	var o = { open: n };
+	return (
+		Ve(
+			ir(a, {
+				reset: r,
+				children: (h, u) => {
+					var v = jd(),
+						b = f(v),
+						y = f(b),
+						C = f(y);
+					(Tt(C, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), Fe(2), m(y), m(b), m(v), B(h, v));
+				},
+				$$slots: { default: !0 },
+			}),
+			h => (t = h),
+			() => t,
+		),
+		ft(o)
+	);
+}
+var Gd = J(
+		'<button class="svelte-d8j1hi"><!> <span>Recent</span></button> <button class="svelte-d8j1hi"><!> <span>Browse</span></button>',
+		1,
+	),
+	zd = J(
+		'<div><!> <span>Open project</span> <!> <!></div> <button class="svelte-d8j1hi"><!> <span>New project</span></button> <hr/> <div><!> <span>Project settings</span></div> <button class="svelte-d8j1hi"><!> <span>Save project</span></button> <button class="svelte-d8j1hi"><!> <span>Save project as...</span></button>',
+		1,
+	),
+	Hd = J('<div class="svelte-d8j1hi"> </div>'),
+	qd = J(
+		'<nav class="svelte-d8j1hi"><div class="svelte-d8j1hi"><div class="wrapper svelte-d8j1hi"><!> <!></div> <!> <!></div> <!> <div class="svelte-d8j1hi"><!> <!> <!></div></nav> <!> <!> <!> <!>',
+		1,
+	);
+function Nd(a, e) {
+	mt(e, !1);
+	let t = Ht(),
+		n = Ht(),
+		i = Ht(),
+		r = Ht(),
+		o = Ht();
+	function h() {
+		Qr().close();
+	}
+	function u() {
+		Qr().minimize();
+	}
+	function v() {
+		Qr().toggleMaximize();
+	}
+	function b() {
+		(s(t).close(), pt.open());
+	}
+	Yl();
+	var y = qd(),
+		C = ze(y),
+		S = f(C),
+		A = f(S),
+		P = f(A);
+	an(P, {
+		get Icon() {
+			return Kn;
+		},
+		onmousedown: () => s(t).toggle(),
+	});
+	var D = x(P, 2);
+	(Ve(
+		vn(D, {
+			top: "120%",
+			left: "0px",
+			children: (H, we) => {
+				var be = zd(),
+					Be = ze(be);
+				vt(Be, 1, bt(["cm-button"]), "svelte-d8j1hi");
+				var fe = f(Be);
+				Kn(fe, { stroke: "var(--stroke)", style: "width: 0.85rem; height: 0.85rem;" });
+				var K = x(fe, 4);
+				Qt(K, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem; rotate: 90deg; margin-left: auto;" });
+				var ge = x(K, 2);
+				(vn(ge, {
+					children: (Ue, nt) => {
+						var ie = Gd(),
+							je = ze(ie),
+							Le = f(je);
+						(ha(Le, { stroke: "var(--stroke)", style: "width: 0.85rem; height: 0.85rem;" }), Fe(2), m(je));
+						var oe = x(je, 2),
+							it = f(oe);
+						(Kn(it, { stroke: "var(--stroke)", style: "width: 0.85rem; height: 0.85rem;" }),
+							Fe(2),
+							m(oe),
+							ue("mousedown", oe, b),
+							B(Ue, ie));
+					},
+					$$slots: { default: !0 },
+				}),
+					m(Be));
+				var W = x(Be, 2),
+					pe = f(W);
+				(la(pe, { stroke: "var(--stroke)", style: "width: 0.85rem; height: 0.85rem;" }), Fe(2), m(W));
+				var Pe = x(W, 4),
+					ye = f(Pe);
+				(Tt(ye, { stroke: "var(--stroke)", style: "width: 0.85rem; height: 0.85rem;" }), Fe(2), m(Pe));
+				var Te = x(Pe, 2),
+					Me = f(Te);
+				(Qn(Me, { stroke: "var(--stroke)", style: "width: 0.85rem; height: 0.85rem;" }), Fe(2), m(Te));
+				var xe = x(Te, 2),
+					Ie = f(xe);
+				(Qn(Ie, { stroke: "var(--stroke)", style: "width: 0.85rem; height: 0.85rem;" }),
+					Fe(2),
+					m(xe),
+					$(
+						(Ue, nt, ie) => {
+							(vt(Pe, 1, Ue, "svelte-d8j1hi"), (Te.disabled = nt), (xe.disabled = ie));
+						},
+						[() => bt(["cm-button", !pt.get() && "disabled"]), () => !pt.get(), () => !pt.get()],
+					),
+					ue("mousedown", Be, () => pt.open()),
+					ue("mousedown", W, () => {
+						(s(i).open(), s(t).close());
+					}),
+					ue("mousedown", Pe, () => {
+						(s(n).open(), s(t).close());
+					}),
+					B(H, be));
+			},
+			$$slots: { default: !0 },
+			$$legacy: !0,
+		}),
+		H => F(t, H),
+		() => s(t),
+	),
+		m(A));
+	var R = x(A, 2);
+	an(R, {
+		get Icon() {
+			return Tt;
+		},
+		onmousedown: () => s(o).open(),
+	});
+	var G = x(R, 2);
+	(an(G, {
+		get Icon() {
+			return Lo;
+		},
+		onmousedown: () => s(r).open(),
+	}),
+		m(S));
+	var j = x(S, 2);
+	{
+		var ne = H => {
+				var we = Hd(),
+					be = f(we, !0);
+				(m(we), $(Be => ut(be, Be), [() => pt.get().database.name]), B(H, we));
+			},
+			M = Se(() => pt.get());
+		Qe(j, H => {
+			s(M) && H(ne);
+		});
+	}
+	var ce = x(j, 2),
+		ve = f(ce);
+	an(ve, {
+		get Icon() {
+			return ca;
+		},
+		onmousedown: u,
+		scale: 0.85,
+	});
+	var Y = x(ve, 2);
+	an(Y, {
+		get Icon() {
+			return So;
+		},
+		onmousedown: v,
+		scale: 0.85,
+	});
+	var U = x(Y, 2);
+	(an(U, {
+		get Icon() {
+			return It;
+		},
+		onmousedown: h,
+		accent: "#f38ba8",
+		scale: 0.85,
+	}),
+		m(ce),
+		m(C));
+	var N = x(C, 2);
+	Ve(
+		O1(N, { $$legacy: !0 }),
+		H => F(i, H),
+		() => s(i),
+	);
+	var ae = x(N, 2);
+	{
+		var Z = H => {
+				Ve(
+					$d(H, { $$legacy: !0 }),
+					we => F(n, we),
+					() => s(n),
+				);
+			},
+			ke = Se(() => pt.get());
+		Qe(ae, H => {
+			s(ke) && H(Z);
+		});
+	}
+	var T = x(ae, 2);
+	Ve(
+		Wo(T, { $$legacy: !0 }),
+		H => F(r, H),
+		() => s(r),
+	);
+	var V = x(T, 2);
+	(Ve(
+		T1(V, { $$legacy: !0 }),
+		H => F(o, H),
+		() => s(o),
+	),
+		B(a, y),
+		ft());
+}
+Ct(["mousedown"]);
+var Wd = J(
+	'<section class="svelte-7b9jag"><p class="svelte-7b9jag">No project opened. Create a new one now or open an existing one.</p> <div class="svelte-7b9jag"><button class="svelte-7b9jag">Open project</button> <button class="svelte-7b9jag">Create project</button></div> <button class="svelte-7b9jag">Where am I?</button></section> <!> <!>',
+	1,
+);
+function Zd(a, e) {
+	mt(e, !1);
+	let t = Ht(),
+		n = Ht();
+	Yl();
+	var i = Wd(),
+		r = ze(i),
+		o = x(f(r), 2),
+		h = f(o),
+		u = x(h, 2);
+	m(o);
+	var v = x(o, 2);
+	m(r);
+	var b = x(r, 2);
+	Ve(
+		Wo(b, { $$legacy: !0 }),
+		C => F(t, C),
+		() => s(t),
+	);
+	var y = x(b, 2);
+	(Ve(
+		O1(y, { $$legacy: !0 }),
+		C => F(n, C),
+		() => s(n),
+	),
+		ue("mousedown", h, () => pt.open()),
+		ue("mousedown", u, () => s(n).open()),
+		ue("mousedown", v, () => s(t).open()),
+		B(a, i),
+		ft());
+}
+Ct(["mousedown"]);
+class _a {
+	static tabID = 0;
+	#e = L(_e(Ye()));
+	get id() {
+		return s(this.#e);
+	}
+	set id(e) {
+		F(this.#e, e, !0);
+	}
+	constructor() {
+		this.id = _a.tabID++;
+	}
+}
+class Rr extends _a {
+	#e = L(_e(Ye()));
+	get group() {
+		return s(this.#e);
+	}
+	set group(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L("hierarchy");
+	get view() {
+		return s(this.#t);
+	}
+	set view(e) {
+		F(this.#t, e, !0);
+	}
+	constructor(e) {
+		(super(), (this.group = e));
+	}
+}
+class oa extends _a {
+	#e = L(_e(Ye()));
+	get content() {
+		return s(this.#e);
+	}
+	set content(e) {
+		F(this.#e, e, !0);
+	}
+	constructor(e) {
+		(super(), (this.content = e));
+	}
+}
+class Yd {
+	#e = L(_e([new Rr(pt.get().database)]));
+	get tabs() {
+		return s(this.#e);
+	}
+	set tabs(e) {
+		F(this.#e, e, !0);
+	}
+	appendTab(e) {
+		this.tabs.push(e);
+	}
+	prependTab(e) {
+		this.tabs.unshift(e);
+	}
+	insertTab(e, t) {
+		this.tabs.splice(t, 0, e);
+	}
+	replace(e, t) {
+		this.tabs.splice(this.indexOfID(e), 1, t);
+	}
+	tabExists(e) {
+		return this.tabs.find(t => t.id === e);
+	}
+	getTabByID(e) {
+		return this.tabs.find(t => t.id === e);
+	}
+	indexOfID(e) {
+		return this.tabs.map((t, n) => [t, n]).find(([t]) => t.id === e)[1];
+	}
+	getTabByIndex(e) {
+		return this.tabs[e];
+	}
+	deleteTab(e) {
+		this.tabs = this.tabs.filter(t => t.id !== e);
+	}
+	isEmpty() {
+		return this.tabs.length === 0;
+	}
+	count() {
+		return this.tabs.length;
+	}
+}
+const Ud = { hierarchy: { icon: $r }, graph: { icon: On }, spreadsheet: { icon: Mn }, timeline: { icon: ha } },
+	fn = 1e-6;
+class V1 {
+	#e = L(_e(gt.translation({ x: 0, y: 0 })));
+	get translation() {
+		return s(this.#e);
+	}
+	set translation(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L(_e(gt.rotation(0)));
+	get rotation() {
+		return s(this.#t);
+	}
+	set rotation(e) {
+		F(this.#t, e, !0);
+	}
+	#n = L(_e(gt.scale(1)));
+	get dilation() {
+		return s(this.#n);
+	}
+	set dilation(e) {
+		F(this.#n, e, !0);
+	}
+	get transformation() {
+		return this.translation.times(this.rotation).times(this.dilation);
+	}
+	get viewMatrix() {
+		return this.transformation.inverse;
+	}
+	getWorldSpaceOrigin() {
+		return this.project(Ce.origin());
+	}
+	project(e) {
+		return this.viewMatrix.timesPoint(e);
+	}
+	unproject(e) {
+		return this.transformation.timesPoint(e);
+	}
+	viewOrigin() {
+		return this.viewMatrix.timesPoint(Ce.origin());
+	}
+	moveTo(e) {
+		this.translation = gt.translation(e);
+	}
+	get transformCSS() {
+		return this.viewMatrix.css;
+	}
+	shift(e) {
+		this.translation = this.translation.times(gt.translation(e));
+	}
+	setRotation(e) {
+		this.rotation = gt.rotation(e);
+	}
+	rotate(e) {
+		this.rotation = this.rotation.times(gt.rotation(e));
+	}
+	scale(e) {
+		let t = new Ce(typeof e == "object" ? e : [e, e]);
+		Math.abs(t.x) < fn || Math.abs(t.y) < fn || (this.dilation = this.dilation.times(gt.scale(t)));
+	}
+	getScale() {
+		return this.dilation.getScale();
+	}
+	setScale(e) {
+		let t = new Ce(typeof e == "object" ? e : [e, e]);
+		const n = Math.max(Math.abs(t.x), fn) * Math.sign(t.x || 1),
+			i = Math.max(Math.abs(t.y), fn) * Math.sign(t.y || 1);
+		this.dilation = gt.scale({ x: n, y: i });
+	}
+	rotateAround(e, t) {
+		const n = new Ce(e),
+			i = gt.rotation(t),
+			r = new Ce([this.translation.values[0][2], this.translation.values[1][2]]),
+			o = { x: r.x - n.x, y: r.y - n.y },
+			h = i.timesPoint(o);
+		((this.translation = gt.translation({ x: n.x + h.x, y: n.y + h.y })), this.rotate(t));
+	}
+	setScaleAround(e, t) {
+		const n = new Ce(e),
+			i = new Ce(typeof t == "object" ? t : [t, t]),
+			r = this.getScale(),
+			o = new Ce({ x: i.x / r.x, y: i.y / r.y });
+		if (Math.abs(o.x) < fn || Math.abs(o.y) < fn) return;
+		const h = gt.scale(o),
+			u = new Ce([this.translation.values[0][2], this.translation.values[1][2]]),
+			v = { x: u.x - n.x, y: u.y - n.y },
+			b = h.timesPoint(v);
+		((this.translation = gt.translation({ x: n.x + b.x, y: n.y + b.y })), this.setScale(i));
+	}
+	scaleAround(e, t) {
+		const n = new Ce(e),
+			i = new Ce(typeof t == "object" ? t : [t, t]);
+		if (Math.abs(i.x) < fn || Math.abs(i.y) < fn) return;
+		const r = gt.scale(i),
+			o = new Ce([this.translation.values[0][2], this.translation.values[1][2]]),
+			h = { x: o.x - n.x, y: o.y - n.y },
+			u = r.timesPoint(h);
+		((this.translation = gt.translation({ x: n.x + u.x, y: n.y + u.y })), this.scale(i));
+	}
+}
+var Kd = J('<section class="outer svelte-19ttu1f"><div class="inner svelte-19ttu1f"><!></div></section>');
+function Jd(a, e) {
+	mt(e, !0);
+	let t = k(e, "camera", 27, () => _e(new V1())),
+		n = k(e, "canPan", 3, !0),
+		i = L(!1);
+	function r(A) {
+		const P = A.currentTarget.getBoundingClientRect(),
+			D = { x: A.clientX - (P.left + P.width / 2), y: A.clientY - (P.top + P.height / 2) },
+			R = t().unproject(D),
+			G = Math.exp(A.deltaY * 0.002);
+		t().scaleAround(R, G);
+	}
+	let o;
+	function h(A) {
+		!n() || !s(i) || t().shift([-A.movementX * t().getScale().x, -A.movementY * t().getScale().y]);
+	}
+	let u = Se(() => (s(i) ? "grabbing" : "grab"));
+	var v = Kd();
+	(xt("mousedown", Rt, () => F(i, !0)), xt("mouseup", Rt, () => F(i, !1)));
+	let b;
+	var y = f(v);
+	let C;
+	var S = f(y);
+	(tr(S, () => e.children),
+		m(y),
+		m(v),
+		Ve(
+			v,
+			A => (o = A),
+			() => o,
+		),
+		$(() => {
+			((b = Ge(v, "", b, { cursor: s(u) })), (C = Ge(y, "", C, { transform: t().transformCSS })));
+		}),
+		xt("wheel", v, r),
+		ue("mousemove", v, h),
+		B(a, v),
+		ft());
+}
+Ct(["mousemove"]);
+var Xd = J('<div><span tabindex="0" role="tree" class="svelte-8hj8dk"> </span></div>'),
+	Qd = J('<button aria-label="Node" class="node svelte-8hj8dk"></button>'),
+	em = J("<!> <!>", 1),
+	tm = J("<button><!> <span>Hierarchy</span></button> <button><!> <span>Spreadsheet</span></button>", 1),
+	nm = J("<button><!> <span>Circle</span></button> <button><!> <span>Rectangle</span></button>", 1),
+	rm = J(
+		"<button><!> <span>Rename group</span></button> <button><!> <span>Add subgroup</span></button> <button><!> <span>Add item</span></button> <button><!> <span>Open in view</span> <!> <!></button> <hr/> <button><!> <span>Focus</span></button> <button><!> <span>Change color</span></button> <div><!> <span>Change shape</span> <!> <!></div> <button><!> <span>Resize outline</span></button> <button><!> <span>Hide outline</span></button> <button><!> <span>Hide group</span></button> <button><!> <span>Hide others</span></button> <hr/> <button><!> <span>Delete group</span></button>",
+		1,
+	),
+	am = J('<section class="graph svelte-8hj8dk"><!> <div class="controls svelte-8hj8dk"><!> <!></div></section> <!>', 1);
+function im(a, e) {
+	mt(e, !0);
+	let t = pt.get().database,
+		n = Se(() => t.dfsItems()),
+		i = Se(() => t.dfsGroups());
+	function r() {
+		(s(h).moveTo([0, 0]), s(h).setScale(8));
+	}
+	let o = L(null),
+		h = L(_e(new V1()));
+	function u(j) {
+		if (!s(o)) return;
+		let ne = [j.movementX * s(h).getScale().x, j.movementY * s(h).getScale().y];
+		if (((ne = s(o).getCollisionConstrainedShift(ne)), s(o).parent?.outline.isVisible)) {
+			const M = s(o).parent.outline.shape;
+			ne = s(o).outline.shape.getConstrainedShift(ne, M, 2);
+		}
+		(ne[0] !== 0 || ne[1] !== 0) && s(o).shift(ne);
+	}
+	let v = Se(() => s(h).getScale().x);
+	r();
+	let b = Se(() => !s(o)),
+		y;
+	t.outline;
+	var C = am();
+	(xt("mouseup", Rt, () => F(o, null)), xt("mousemove", Rt, u));
+	var S = ze(C),
+		A = f(S);
+	Jd(A, {
+		get canPan() {
+			return s(b);
+		},
+		get camera() {
+			return s(h);
+		},
+		set camera(j) {
+			F(h, j, !0);
+		},
+		children: (j, ne) => {
+			var M = em(),
+				ce = ze(M);
+			Lt(
+				ce,
+				17,
+				() => s(i),
+				Vt,
+				(Y, U) => {
+					var N = Nt(),
+						ae = ze(N);
+					{
+						var Z = ke => {
+							var T = Xd();
+							let V;
+							var H = f(T),
+								we = f(H, !0);
+							(m(H),
+								m(T),
+								$(() => {
+									(vt(T, 1, bt(["group", s(o) === s(U) && "active"]), "svelte-8hj8dk"),
+										(V = Ge(T, "", V, {
+											"left": `${s(U).outline.shape.center.x ?? ""}px`,
+											"top": `${s(U).outline.shape.center.y ?? ""}px`,
+											"width": `${s(U).outline.shape.radius * 2}px`,
+											"height": `${s(U).outline.shape.radius * 2}px`,
+											"border-width": `${s(v) ?? ""}px`,
+											"font-size": `${0.05 * s(U).outline.shape.radius}px`,
+											"background-color": `${s(U).outline.color}`,
+										})),
+										ut(we, s(U).name));
+								}),
+								ue("contextmenu", H, be => y.openAtMouse(be)),
+								ue("mousedown", H, () => F(o, s(U), !0)),
+								B(ke, T));
+						};
+						Qe(ae, ke => {
+							s(U).outline.isVisible && ke(Z);
+						});
+					}
+					B(Y, N);
+				},
+			);
+			var ve = x(ce, 2);
+			(Lt(
+				ve,
+				17,
+				() => s(n),
+				Vt,
+				(Y, U) => {
+					var N = Qd();
+					let ae;
+					($(
+						() =>
+							(ae = Ge(N, "", ae, {
+								"background-color": s(o) === s(U) ? "#f38ba8" : void 0,
+								"--text": `'${s(U).attributes.name ?? ""}'`,
+								"left": `${s(U).outline.shape.center.x ?? ""}px`,
+								"top": `${s(U).outline.shape.center.y ?? ""}px`,
+								"width": `${s(U).outline.shape.radius * 2}px`,
+								"height": `${s(U).outline.shape.radius * 2}px`,
+								"font-size": `${s(U).outline.shape.radius * 2}px`,
+							})),
+					),
+						ue("mousedown", N, () => F(o, s(U), !0)),
+						B(Y, N));
+				},
+			),
+				B(j, M));
+		},
+		$$slots: { default: !0 },
+	});
+	var P = x(A, 2),
+		D = f(P);
+	an(D, {
+		get Icon() {
+			return Tt;
+		},
+		style: "border: 1px solid #313244",
+	});
+	var R = x(D, 2);
+	(an(R, {
+		get Icon() {
+			return Tr;
+		},
+		onmousedown: r,
+		style: "border: 1px solid #313244",
+	}),
+		m(P),
+		m(S));
+	var G = x(S, 2);
+	(Ve(
+		vn(G, {
+			children: (j, ne) => {
+				var M = rm(),
+					ce = ze(M),
+					ve = f(ce);
+				(rr(ve, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" }), Fe(2), m(ce));
+				var Y = x(ce, 2),
+					U = f(Y);
+				(Dn(U, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" }), Fe(2), m(Y));
+				var N = x(Y, 2),
+					ae = f(N);
+				(cn(ae, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" }), Fe(2), m(N));
+				var Z = x(N, 2),
+					ke = f(Z);
+				Mn(ke, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" });
+				var T = x(ke, 4);
+				Qt(T, { stroke: "#cdd6f4", style: "width: 1rem; height: 1rem; margin-left: auto; rotate: 90deg;" });
+				var V = x(T, 2);
+				(vn(V, {
+					children: (Le, oe) => {
+						var it = tm(),
+							lt = ze(it),
+							He = f(lt);
+						($r(He, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" }), Fe(2), m(lt));
+						var Ke = x(lt, 2),
+							Xe = f(Ke);
+						(Mn(Xe, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" }), Fe(2), m(Ke), B(Le, it));
+					},
+					$$slots: { default: !0 },
+				}),
+					m(Z));
+				var H = x(Z, 4),
+					we = f(H);
+				(Tr(we, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" }), Fe(2), m(H));
+				var be = x(H, 2),
+					Be = f(be);
+				(jr(Be, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" }), Fe(2), m(be));
+				var fe = x(be, 2),
+					K = f(fe);
+				Ar(K, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" });
+				var ge = x(K, 4);
+				Qt(ge, { stroke: "#cdd6f4", style: "width: 1rem; height: 1rem; margin-left: auto; rotate: 90deg;" });
+				var W = x(ge, 2);
+				(vn(W, {
+					children: (Le, oe) => {
+						var it = nm(),
+							lt = ze(it),
+							He = f(lt);
+						(Ar(He, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" }), Fe(2), m(lt));
+						var Ke = x(lt, 2),
+							Xe = f(Ke);
+						(Ar(Xe, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" }), Fe(2), m(Ke), B(Le, it));
+					},
+					$$slots: { default: !0 },
+				}),
+					m(fe));
+				var pe = x(fe, 2),
+					Pe = f(pe);
+				(Ro(Pe, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" }), Fe(2), m(pe));
+				var ye = x(pe, 2),
+					Te = f(ye);
+				(Un(Te, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" }), Fe(2), m(ye));
+				var Me = x(ye, 2),
+					xe = f(Me);
+				(Un(xe, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" }), Fe(2), m(Me));
+				var Ie = x(Me, 2),
+					Ue = f(Ie);
+				(Un(Ue, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" }), Fe(2), m(Ie));
+				var nt = x(Ie, 4),
+					ie = f(nt);
+				Ln(ie, { stroke: "#f38ba8", style: "width: 1.2rem; height: 1.2rem;" });
+				var je = x(ie, 2);
+				(Ge(je, "", {}, { color: "#f38ba8" }), m(nt), B(j, M));
+			},
+			$$slots: { default: !0 },
+		}),
+		j => (y = j),
+		() => y,
+	),
+		B(a, C),
+		ft());
+}
+Ct(["contextmenu", "mousedown"]);
+class om {
+	#e = L(_e(Ce.origin()));
+	get client_() {
+		return s(this.#e);
+	}
+	set client_(e) {
+		F(this.#e, e, !0);
+	}
+	#t = L(_e(Ce.origin()));
+	get offset_() {
+		return s(this.#t);
+	}
+	set offset_(e) {
+		F(this.#t, e, !0);
+	}
+	#n = L(!1);
+	get leftClicking_() {
+		return s(this.#n);
+	}
+	set leftClicking_(e) {
+		F(this.#n, e, !0);
+	}
+	#r = L(!1);
+	get rightClicking_() {
+		return s(this.#r);
+	}
+	set rightClicking_(e) {
+		F(this.#r, e, !0);
+	}
+	#a = L(!1);
+	get middleClicking_() {
+		return s(this.#a);
+	}
+	set middleClicking_(e) {
+		F(this.#a, e, !0);
+	}
+	#i = L(!1);
+	get isMoving_() {
+		return s(this.#i);
+	}
+	set isMoving_(e) {
+		F(this.#i, e, !0);
+	}
+	#o = L(!1);
+	get isDragging_() {
+		return s(this.#o);
+	}
+	set isDragging_(e) {
+		F(this.#o, e, !0);
+	}
+	#s = L(_e([]));
+	get handlers() {
+		return s(this.#s);
+	}
+	set handlers(e) {
+		F(this.#s, e, !0);
+	}
+	get isLeftClicking() {
+		return this.leftClicking_;
+	}
+	get isRightClicking() {
+		return this.rightClicking_;
+	}
+	get isMiddleClicking() {
+		return this.middleClicking_;
+	}
+	get client() {
+		return this.client_;
+	}
+	get offsetY() {
+		return this.offset_;
+	}
+	relativeTo(e) {
+		return e.offsetParent
+			? new Ce(
+					this.client.x - e.offsetParent.getBoundingClientRect().left,
+					this.client.y - e.offsetParent.getBoundingClientRect().top,
+				)
+			: Ce.origin();
+	}
+	get isMoving() {
+		return this.isMoving_;
+	}
+	get isDragging() {
+		return this.isDragging_;
+	}
+	onLeftClick(e) {
+		this.handlers.push({ event: "mousedown", callback: e });
+	}
+	onClickAndRelease(e) {
+		this.handlers.push({ event: "click", callback: e });
+	}
+	onRelease(e) {
+		this.handlers.push({ event: "mouseup", callback: e });
+	}
+}
+let kt = _e(new om());
+function uo() {
+	return kt;
+}
+function sm(a, e) {
+	mt(e, !0);
+	let t = L(null),
+		n = L(_e(Ye()));
+	function i(h) {
+		((kt.client_ = new Ce(h.clientX, h.clientY)),
+			(kt.offset_ = new Ce(h.offsetX, h.offsetY)),
+			kt.isLeftClicking && (kt.isDragging_ = !0),
+			(kt.isMoving_ = !0),
+			s(t) && clearTimeout(s(t)),
+			F(
+				t,
+				setTimeout(() => {
+					kt.isMoving_ = !1;
+				}, 200),
+				!0,
+			),
+			kt.handlers.filter(u => u.event === "move").forEach(u => u.callback(h)));
+	}
+	function r(h) {
+		(h.button === 0 && (kt.leftClicking_ = !0),
+			h.button === 1 && (kt.rightClicking_ = !0),
+			h.button === 2 && (kt.middleClicking_ = !0),
+			kt.handlers.filter(u => u.event === "mousedown").forEach(u => u.callback(h)),
+			F(n, h.target, !0),
+			(kt.absolute_ = new Ce(
+				h.clientX - (s(n).offsetParent?.getBoundingClientRect().left ?? 0),
+				h.clientY - (s(n).offsetParent?.getBoundingClientRect().top ?? 0),
+			)));
+	}
+	function o(h) {
+		(h.button === 0
+			? ((kt.leftClicking_ = !1), (kt.isDragging_ = !0))
+			: h.button === 1
+				? (kt.rightClicking_ = !1)
+				: h.button === 2 && (kt.middleClicking_ = !1),
+			kt.handlers.filter(u => u.event === "mouseup").forEach(u => u.callback(h)));
+	}
+	(xt("mousemove", Rt, i), xt("mouseup", Rt, o), xt("mousedown", Rt, r), ft());
+}
+var lm = J('<section><div class="inner svelte-1q6f8vv"><!></div></section>');
+function qn(a, e) {
+	mt(e, !0);
+	let t = k(e, "left", 15),
+		n = k(e, "top", 15),
+		i = k(e, "onclose", 3, () => {}),
+		r = L(!1),
+		o = L(!0),
+		h = L(null),
+		u = L(0),
+		v = L(null),
+		b = Se(() => (s(v) ? s(v).getBoundingClientRect().right > s(u) : !1)),
+		y = Se(() => (t() ? (s(b) ? "100%" : "0%") : s(b) ? "0%" : "100%")),
+		C = Se(() => (n() ? "0%" : "100%"));
+	function S() {
+		s(r) ? R() : A();
+	}
+	function A() {
+		s(o) && P();
+	}
+	function P() {
+		(F(o, !1),
+			F(r, !0),
+			s(h) && clearTimeout(s(h)),
+			F(
+				h,
+				setTimeout(() => {
+					F(o, !0);
+				}, 100),
+				!0,
+			));
+	}
+	function D(T) {
+		T?.preventDefault();
+		let V = uo().relativeTo(s(v));
+		(t(`${V.x}px`), n(`${V.y}px`), A());
+	}
+	function R() {
+		s(o) && G();
+	}
+	function G() {
+		(F(o, !1),
+			F(r, !1),
+			i()(),
+			s(h) && clearTimeout(s(h)),
+			F(
+				h,
+				setTimeout(() => {
+					F(o, !0);
+				}, 100),
+				!0,
+			));
+	}
+	function j() {
+		return s(v);
+	}
+	function ne(T) {
+		s(r) && s(o) && s(v) && !T.composedPath().includes(s(v)) && R();
+	}
+	function M() {
+		return s(o) && s(r) ? "open" : !s(o) && s(r) ? "opening" : s(o) && !s(r) ? "closing" : "closed";
+	}
+	let ce = L(!1);
+	function ve(T, V, H, { padLeft: we, padRight: be, padTop: Be, padBottom: fe } = {}) {
+		return T >= H.left - (we ?? 0) && T <= H.right + (be ?? 0) && V >= H.top - (Be ?? 0) && V <= H.bottom + (fe ?? 0);
+	}
+	sa(() => {
+		let T = s(v).parentElement.closest(".context-menu");
+		T &&
+			(s(v).parentElement.addEventListener("mouseenter", V => {
+				T.matches(".open") &&
+					!s(v).parentElement.matches(".disabled") &&
+					(t(`${T.getBoundingClientRect().width}px`),
+					n(`${s(v).parentElement.getBoundingClientRect().top - s(v).offsetParent.getBoundingClientRect().top - 10}px`),
+					P());
+			}),
+			document.addEventListener("mousemove", V => {
+				const H = s(v)?.parentElement?.getBoundingClientRect();
+				if (!H) return;
+				const we = ve(V.clientX, V.clientY, H, { padRight: 10 }),
+					be = s(r) && ve(V.clientX, V.clientY, s(v).getBoundingClientRect()),
+					Be = s(v).parentElement.classList.contains("disabled"),
+					fe = Array.from(s(v).querySelectorAll(".context-menu.open")).some(K =>
+						ve(V.clientX, V.clientY, K.getBoundingClientRect(), { padLeft: 10 }),
+					);
+				(!be && !we && !fe) || Be
+					? G()
+					: (t(`${T.getBoundingClientRect().width}px`),
+						n(`${s(v).parentElement.getBoundingClientRect().top - s(v).offsetParent.getBoundingClientRect().top - 10}px`),
+						P());
+			}));
+	});
+	var Y = { toggle: S, open: A, forceOpen: P, openAtMouse: D, close: R, forceClose: G, element: j, openingState: M },
+		U = lm();
+	xt("mousedown", Rt, ne);
+	let N;
+	var ae = f(U);
+	let Z;
+	var ke = f(ae);
+	return (
+		tr(ke, () => e.children),
+		m(ae),
+		m(U),
+		Ve(
+			U,
+			T => F(v, T),
+			() => s(v),
+		),
+		$(() => {
+			(vt(U, 1, bt(["context-menu", s(r) && "open"]), "svelte-1q6f8vv"),
+				(N = Ge(U, "", N, { top: n(), bottom: e.bottom, right: e.right, left: t() })),
+				(Z = Ge(ae, "", Z, {
+					"scale": s(r) ? "100%" : "0%",
+					"transform": s(b) ? "translateX(-170px)" : void 0,
+					"transform-origin": `${s(y) ?? ""}
+		${s(C) ?? ""}`,
+				})));
+		}),
+		Jl("innerWidth", T => F(u, T, !0)),
+		xt("mouseenter", U, () => F(ce, !0)),
+		xt("mouseleave", U, () => F(ce, !1)),
+		B(a, U),
+		ft(Y)
+	);
+}
+var hm = J('<button class="palette-color svelte-rczam"></button>'),
+	cm = J("<button><!> <span>Remove from palette</span></button>"),
+	um = J(
+		'<div class="popup svelte-rczam"><div class="top svelte-rczam"><div class="picker svelte-rczam"><div class="box svelte-rczam"></div></div> <div class="hue-picker svelte-rczam"><div class="hue-slider svelte-rczam"></div></div></div> <div class="preview svelte-rczam"> </div> <div class="bottom svelte-rczam"><input class="svelte-rczam"/> <!> <button class="new palette-color svelte-rczam"><!></button></div> <button class="set-color svelte-rczam">Select</button></div> <button class="preview svelte-rczam"> </button> <!>',
+		1,
+	);
+function dm(a, e) {
+	mt(e, !0);
+	let t = k(e, "value", 15, null),
+		n = L(!1),
+		i,
+		r = L("0px"),
+		o = L("0px"),
+		h,
+		u;
+	function v() {
+		let ie = uo().relativeTo(i);
+		(F(r, `${ie.x}px`), F(o, `${ie.y}px`), F(n, !0));
+	}
+	function b() {
+		(t(s(A)), F(n, !1));
+	}
+	let y,
+		C = null,
+		S;
+	uo().onLeftClick(ie => {
+		!ie.composedPath().includes(i) && !ie.composedPath().includes(S) && b();
+	});
+	let A = L(_e(t() ?? tt.hex("#b4befe"))),
+		P = L(0),
+		D = L(0),
+		R = L((208 * s(A).hue) / 360);
+	Br(() => {
+		F(R, 208 * (s(A).hue / 360));
+	});
+	function G(ie) {
+		const je = y.getBoundingClientRect(),
+			Le = h.getBoundingClientRect();
+		let oe = ie.clientX - je.left,
+			it = ie.clientY - je.top;
+		(F(P, En(oe, Le.width / 2, je.width - Le.width / 2), !0), F(D, En(it, Le.height / 2, je.height - Le.height / 2), !0));
+		const lt = En((100 * oe) / je.width, 0, 100),
+			He = En(100 - (100 * it) / je.height, 0, 100);
+		F(A, tt.hsv(s(A).hue, lt, He), !0);
+	}
+	function j(ie) {
+		const je = C.getBoundingClientRect();
+		let Le = ie.clientY - je.top,
+			oe = En((360 * Le) / je.height, 0, 360);
+		F(A, tt.hsv(oe, s(A).saturation, s(A).value), !0);
+	}
+	let ne = _e([tt.black, tt.white]);
+	function M(ie) {
+		ne.unshift(ie);
+	}
+	function ce(ie, je) {
+		ie.button === 0 && F(A, je, !0);
+	}
+	function ve(ie) {
+		(ie.preventDefault(), Y.openAtMouse());
+	}
+	let Y;
+	var U = { open: v, hide: b },
+		N = um(),
+		ae = ze(N);
+	let Z;
+	var ke = f(ae),
+		T = f(ke),
+		V = f(T);
+	let H;
+	(Ve(
+		V,
+		ie => (h = ie),
+		() => h,
+	),
+		m(T),
+		Ve(
+			T,
+			ie => (y = ie),
+			() => y,
+		));
+	var we = x(T, 2),
+		be = f(we);
+	let Be;
+	(Ve(
+		be,
+		ie => (u = ie),
+		() => u,
+	),
+		m(we),
+		Ve(
+			we,
+			ie => (C = ie),
+			() => C,
+		),
+		m(ke));
+	var fe = x(ke, 2);
+	let K;
+	var ge = f(fe, !0);
+	m(fe);
+	var W = x(fe, 2),
+		pe = f(W);
+	ln(pe);
+	var Pe = x(pe, 2);
+	Lt(
+		Pe,
+		17,
+		() => ne,
+		Vt,
+		(ie, je) => {
+			var Le = hm();
+			let oe;
+			($(() => (oe = Ge(Le, "", oe, { background: `${s(je)}` }))),
+				ue("contextmenu", Le, ve),
+				ue("mousedown", Le, it => ce(it, s(je))),
+				B(ie, Le));
+		},
+	);
+	var ye = x(Pe, 2),
+		Te = f(ye);
+	(cn(Te, { stroke: "#cdd6f4", style: "height: 100%; aspect-ratio: 1;" }), m(ye), m(W));
+	var Me = x(W, 2);
+	(m(ae),
+		Ve(
+			ae,
+			ie => (i = ie),
+			() => i,
+		));
+	var xe = x(ae, 2);
+	let Ie;
+	var Ue = f(xe, !0);
+	(m(xe),
+		Ve(
+			xe,
+			ie => (S = ie),
+			() => S,
+		));
+	var nt = x(xe, 2);
+	return (
+		Ve(
+			qn(nt, {
+				children: (ie, je) => {
+					var Le = cm(),
+						oe = f(Le);
+					Ln(oe, { stroke: "#f38ba8", scale: 1.2 });
+					var it = x(oe, 2);
+					(Ge(it, "", {}, { color: "#f37ba8" }), m(Le), B(ie, Le));
+				},
+				$$slots: { default: !0 },
+			}),
+			ie => (Y = ie),
+			() => Y,
+		),
+		$(() => {
+			((Z = Ge(ae, "", Z, {
+				"color": `${s(A).constrastColor}`,
+				"--hue": s(A).hue,
+				"left": s(r),
+				"top": s(o),
+				"scale": s(n) ? "100%" : "0%",
+			})),
+				(H = Ge(V, "", H, { "border-color": `${s(A).constrastColor}`, "left": `${s(P) ?? ""}px`, "top": `${s(D) ?? ""}px` })),
+				(Be = Ge(be, "", Be, { left: "0px", top: `${s(R) ?? ""}px` })),
+				(K = Ge(fe, "", K, { background: `${s(A)}` })),
+				ut(ge, s(A).name),
+				(Ie = Ge(xe, "", Ie, { "background-color": `${t() ?? tt.white}`, "color": `${(t() ?? tt.white).constrastColor}` })),
+				ut(Ue, t()?.name ?? "None"));
+		}),
+		ue("mousedown", T, G),
+		ue("mousedown", we, j),
+		hn(
+			pe,
+			() => s(A).hex,
+			ie => F(A, tt.tryHex(ie) ?? s(A), !0),
+		),
+		ue("mousedown", ye, () => M(s(A))),
+		ue("mousedown", Me, b),
+		ue("mousedown", xe, v),
+		B(a, N),
+		ft(U)
+	);
+}
+Ct(["mousedown", "contextmenu"]);
+var mm = J("<button>Open in Editor</button>");
+function fm(a, e) {
+	mt(e, !0);
+	var t = mm();
+	($(() => vt(t, 1, bt({ "settings-button": e.context === "settings" }), "svelte-cy07bc")),
+		ue("mousedown", t, () => e.openEditor(e.value)),
+		B(a, t),
+		ft());
+}
+Ct(["mousedown"]);
+var gm = J(
+	'<div class="wrapper svelte-1j7mpkr"><input class="svelte-1j7mpkr"/> <button class="svelte-1j7mpkr"> </button> <button class="transfer svelte-1j7mpkr"><!></button></div>',
+);
+function pm(a, e) {
+	mt(e, !0);
+	let t = L(`${e.value?.count ?? ""}`);
+	function n(b) {
+		b.key === "Enter" && b.target.blur();
+	}
+	var i = gm(),
+		r = f(i);
+	ln(r);
+	var o = x(r, 2),
+		h = f(o, !0);
+	m(o);
+	var u = x(o, 2),
+		v = f(u);
+	(Vo(v, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }),
+		m(u),
+		m(i),
+		$(b => ut(h, b), [() => e.type.units()[0].abbreviation()]),
+		ue("keydown", r, n),
+		hn(
+			r,
+			() => s(t),
+			b => F(t, b),
+		),
+		B(a, i),
+		ft());
+}
+Ct(["keydown"]);
+var vm = J('<input class="svelte-xa90uk"/>');
+function bm(a, e) {
+	mt(e, !0);
+	let t = k(e, "value", 15),
+		n = k(e, "background", 3, "transparent");
+	function i(h) {
+		h.key === "Enter" && h.target.blur();
+	}
+	var r = vm();
+	ln(r);
+	let o;
+	($(() => (o = Ge(r, "", o, { background: n() }))),
+		ue("keydown", r, i),
+		hn(
+			r,
+			() => t()?.value,
+			h => t(h ? new Or(h) : null),
+		),
+		B(a, r),
+		ft());
+}
+Ct(["keydown"]);
+var xm = J('<input class="svelte-1kqkp3u"/>');
+function Cm(a, e) {
+	mt(e, !0);
+	let t = k(e, "value", 15),
+		n = k(e, "background", 3, "transparent");
+	function i(h) {
+		h.key === "Enter" && h.target.blur();
+	}
+	var r = xm();
+	ln(r);
+	let o;
+	($(() => (o = Ge(r, "", o, { background: n() }))),
+		ue("keydown", r, i),
+		hn(
+			r,
+			() => t()?.value,
+			h => t(h ? new In(h) : null),
+		),
+		B(a, r),
+		ft());
+}
+Ct(["keydown"]);
+function j1(a, e) {
+	mt(e, !0);
+	let t = k(e, "value", 15),
+		n = k(e, "context", 3, "none"),
+		i = k(e, "background", 3, "transparent");
+	var r = Nt(),
+		o = ze(r);
+	{
+		var h = C => {
+				pm(C, {
+					get type() {
+						return Dr;
+					},
+					get value() {
+						return t();
+					},
+					set value(S) {
+						t(S);
+					},
+				});
+			},
+			u = C => {
+				Cm(C, {
+					get background() {
+						return i();
+					},
+					get value() {
+						return t();
+					},
+					set value(S) {
+						t(S);
+					},
+				});
+			},
+			v = C => {
+				bm(C, {
+					get background() {
+						return i();
+					},
+					get value() {
+						return t();
+					},
+					set value(S) {
+						t(S);
+					},
+				});
+			},
+			b = C => {
+				fm(C, {
+					get context() {
+						return n();
+					},
+					get openEditor() {
+						return e.openEditor;
+					},
+					get value() {
+						return t();
+					},
+					set value(S) {
+						t(S);
+					},
+				});
+			},
+			y = C => {
+				dm(C, {});
+			};
+		Qe(o, C => {
+			e.type === "length"
+				? C(h)
+				: e.type === "shortText"
+					? C(u, 1)
+					: e.type === "number"
+						? C(v, 2)
+						: e.type === "longText"
+							? C(b, 3)
+							: e.type === "color" && C(y, 4);
+		});
+	}
+	(B(a, r), ft());
+}
+var _m = J(
+	'<section class="svelte-gwwcj3"><h1 class="svelte-gwwcj3"> </h1> <!> <div class="buttons svelte-gwwcj3"><button class="svelte-gwwcj3"> </button> <button class="svelte-gwwcj3"> </button></div></section>',
+);
+function Ol(a, e) {
+	mt(e, !0);
+	let t = k(e, "confirmText", 3, "Confirm"),
+		n = k(e, "cancelText", 3, "Cancel"),
+		i = k(e, "onconfirm", 3, () => {}),
+		r;
+	function o() {
+		r.open();
+	}
+	function h() {}
+	function u() {
+		(r.close(), i()());
+	}
+	var v = { open: o };
+	return (
+		Ve(
+			ir(a, {
+				reset: h,
+				width: "20rem",
+				height: "fit-content",
+				children: (b, y) => {
+					var C = _m(),
+						S = f(C),
+						A = f(S, !0);
+					m(S);
+					var P = x(S, 2);
+					tr(P, () => e.children);
+					var D = x(P, 2),
+						R = f(D),
+						G = f(R, !0);
+					m(R);
+					var j = x(R, 2),
+						ne = f(j, !0);
+					(m(j),
+						m(D),
+						m(C),
+						$(() => {
+							(ut(A, e.title), ut(G, n()), ut(ne, t()));
+						}),
+						ue("mousedown", R, () => r.close()),
+						ue("mousedown", j, u),
+						B(b, C));
+				},
+				$$slots: { default: !0 },
+			}),
+			b => (r = b),
+			() => r,
+		),
+		ft(v)
+	);
+}
+Ct(["mousedown"]);
+var wm = J(
+		'<section class="svelte-8jivgt"><div class="sidebar svelte-8jivgt"><h1 class="title svelte-8jivgt"><!> </h1> <button class="svelte-8jivgt"><!> <span class="svelte-8jivgt">General</span></button> <button class="svelte-8jivgt"><!> <span class="svelte-8jivgt">Formatting</span></button> <button class="svelte-8jivgt"><!> <span class="svelte-8jivgt">Restrictions</span></button> <button class="svelte-8jivgt">Delete field</button></div> <div class="content svelte-8jivgt"><h2 class="svelte-8jivgt">Name</h2> <input class="svelte-8jivgt"/> <h2 class="svelte-8jivgt">Type</h2> <div class="type svelte-8jivgt"><!></div> <h2 class="svelte-8jivgt">Default</h2> <!></div></section>',
+	),
+	ym = J('<p class="svelte-8jivgt">All entries that have values in this field will have the value deleted.</p>'),
+	Fm = J(`<p class="svelte-8jivgt">Changing the type of this attribute will delete all entries' data for this attribute.</p>`),
+	km = J("<!> <!> <!>", 1);
+function Em(a, e) {
+	mt(e, !0);
+	let t = k(e, "attribute", 15);
+	function n() {}
+	let i,
+		r,
+		o,
+		h = L(() => {});
+	function u() {
+		i.open();
+	}
+	function v(P) {
+		(F(h, P, !0), o.open());
+	}
+	var b = { open: u },
+		y = km(),
+		C = ze(y);
+	Ve(
+		ir(C, {
+			reset: n,
+			children: (P, D) => {
+				var R = Nt(),
+					G = ze(R);
+				{
+					var j = ne => {
+						var M = wm(),
+							ce = f(M),
+							ve = f(ce),
+							Y = f(ve);
+						Mn(Y, { stroke: "#cdd6f4", style: "width: 1rem; height: 1rem;" });
+						var U = x(Y);
+						m(ve);
+						var N = x(ve, 2),
+							ae = f(N);
+						(Tt(ae, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), Fe(2), m(N));
+						var Z = x(N, 2),
+							ke = f(Z);
+						(da(ke, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), Fe(2), m(Z));
+						var T = x(Z, 2),
+							V = f(T);
+						(fa(V, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), Fe(2), m(T));
+						var H = x(T, 2);
+						m(ce);
+						var we = x(ce, 2),
+							be = x(f(we), 2);
+						ln(be);
+						var Be = x(be, 4),
+							fe = f(Be);
+						{
+							let ge = Se(() => Tn.names());
+							Ca(fe, {
+								onunlock: v,
+								locked: !0,
+								width: "100%",
+								get options() {
+									return s(ge);
+								},
+								get value() {
+									return t().type.name;
+								},
+								set value(W) {
+									t((t().type.name = W), !0);
+								},
+							});
+						}
+						m(Be);
+						var K = x(Be, 4);
+						(j1(K, {
+							context: "settings",
+							background: "#181825",
+							get type() {
+								return t().type.name;
+							},
+							value: null,
+							openEditor: () => {},
+						}),
+							m(we),
+							m(M),
+							$(() => ut(U, ` ${t().name ?? ""}`)),
+							ue("mousedown", H, () => r.open()),
+							hn(
+								be,
+								() => t().name,
+								ge => t((t().name = ge), !0),
+							),
+							B(ne, M));
+					};
+					Qe(G, ne => {
+						t() && ne(j);
+					});
+				}
+				B(P, R);
+			},
+			$$slots: { default: !0 },
+		}),
+		P => (i = P),
+		() => i,
+	);
+	var S = x(C, 2);
+	Ve(
+		Ol(S, {
+			title: "Delete field?",
+			onconfirm: () => {
+				(e.owner.deleteAttributeDefinition(t()), close());
+			},
+			children: (P, D) => {
+				var R = ym();
+				B(P, R);
+			},
+			$$slots: { default: !0 },
+		}),
+		P => (r = P),
+		() => r,
+	);
+	var A = x(S, 2);
+	return (
+		Ve(
+			Ol(A, {
+				title: "Change type?",
+				get onconfirm() {
+					return s(h);
+				},
+				children: (P, D) => {
+					var R = Fm();
+					B(P, R);
+				},
+				$$slots: { default: !0 },
+			}),
+			P => (o = P),
+			() => o,
+		),
+		B(a, y),
+		ft(b)
+	);
+}
+Ct(["mousedown"]);
+var Bm = J('<div class="control cell svelte-1o9pa1e"><button class="svelte-1o9pa1e"><!></button></div>'),
+	Sm = J('<div class="cell svelte-1o9pa1e"><!></div>'),
+	Am = J(
+		'<div class="column svelte-1o9pa1e"><div class="cell svelte-1o9pa1e"><!> <button style="width: fit-content; margin-right: 0px;" class="svelte-1o9pa1e"><!></button></div> <!> <div class="new cell svelte-1o9pa1e"></div></div>',
+	),
+	Dm = J('<div class="new cell svelte-1o9pa1e"></div>'),
+	Mm = J("<button><!> Rename</button> <button><!> Properties</button> <hr/> <button><!> Delete attribute</button>", 1),
+	Lm = J(
+		'<div class="columns svelte-1o9pa1e"><div class="column svelte-1o9pa1e"><div class="control cell svelte-1o9pa1e"><button disabled="" class="svelte-1o9pa1e"><!></button></div> <!> <div class="new control cell svelte-1o9pa1e"><button class="svelte-1o9pa1e"><!></button></div></div> <!> <div class="column svelte-1o9pa1e"><button class="new header cell svelte-1o9pa1e"><!> New</button> <!> <div class="new cell svelte-1o9pa1e"></div></div></div> <!> <!>',
+		1,
+	);
+function Rm(a, e) {
+	mt(e, !0);
+	let t = L(0),
+		n = L(0);
+	function i() {
+		(e.group.addChild(new sn("New Item")), Yn(t));
+	}
+	function r() {
+		(e.group.addNewAttributeDefinition(Ft.basic("Attribute", "shortText")), Yn(n));
+	}
+	function o(Z) {
+		return function () {
+			(e.group.removeItem(Z), Yn(t));
+		};
+	}
+	let h,
+		u,
+		v = L(null);
+	function b(Z, ke) {
+		(F(v, ke, !0), h.openAtMouse(Z));
+	}
+	e.group.attributeDefinitions;
+	var y = Lm(),
+		C = ze(y),
+		S = f(C),
+		A = f(S);
+	Ge(A, "", {}, { width: "100%" });
+	var P = f(A);
+	Ge(P, "", {}, { opacity: "0%" });
+	var D = f(P);
+	(Ln(D, { stroke: "#cdd6f4", style: "width: 1rem; height: 1rem;" }), m(P), m(A));
+	var R = x(A, 2);
+	Lt(
+		R,
+		17,
+		() => e.group.children,
+		Vt,
+		(Z, ke) => {
+			var T = Bm(),
+				V = f(T),
+				H = Se(() => o(s(ke))),
+				we = f(V);
+			(Ln(we, { stroke: "#cdd6f4", style: "width: 1rem; height: 1rem;" }),
+				m(V),
+				m(T),
+				ue("mousedown", V, function (...be) {
+					s(H)?.apply(this, be);
+				}),
+				B(Z, T));
+		},
+	);
+	var G = x(R, 2),
+		j = f(G),
+		ne = f(j);
+	(cn(ne, { stroke: "#cdd6f4", style: "width: 1rem; height: 1rem;" }), m(j), m(G), m(S));
+	var M = x(S, 2);
+	B0(
+		M,
+		() => s(n),
+		Z => {
+			var ke = Nt(),
+				T = ze(ke);
+			(Lt(
+				T,
+				17,
+				() => e.group.attributeDefinitions,
+				Vt,
+				(V, H) => {
+					var we = Am(),
+						be = f(we),
+						Be = f(be);
+					Xt(
+						Be,
+						() => s(H).type.icon.component,
+						(pe, Pe) => {
+							Pe(pe, { stroke: "#cdd6f4", style: "width: 1rem; height: 1rem;" });
+						},
+					);
+					var fe = x(Be),
+						K = x(fe),
+						ge = f(K);
+					(Tt(ge, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), m(K), m(be));
+					var W = x(be, 2);
+					(Lt(
+						W,
+						17,
+						() => e.group.directItemChildren,
+						Vt,
+						(pe, Pe) => {
+							var ye = Sm(),
+								Te = f(ye),
+								Me = () => s(Pe).getAttributeValue(s(H).name),
+								xe = Ie => s(Pe).addNewOrOverwriteAttributeValue(s(H).name, Ie);
+							(j1(Te, {
+								context: "spreadsheet",
+								get openEditor() {
+									return e.openEditor;
+								},
+								get type() {
+									return s(H).type.name;
+								},
+								get value() {
+									return Me();
+								},
+								set value(Ie) {
+									xe(Ie);
+								},
+							}),
+								m(ye),
+								B(pe, ye));
+						},
+					),
+						Fe(2),
+						m(we),
+						$(() => ut(fe, ` ${s(H).name ?? ""} `)),
+						ue("contextmenu", be, pe => h.openAtMouse(pe)),
+						ue("mousedown", K, pe => b(pe, s(H))),
+						B(V, we));
+				},
+			),
+				B(Z, ke));
+		},
+	);
+	var ce = x(M, 2),
+		ve = f(ce),
+		Y = f(ve);
+	(cn(Y, { stroke: "#cdd6f4", style: "width: 1rem; height: 1rem;" }), Fe(), m(ve));
+	var U = x(ve, 2);
+	(Lt(
+		U,
+		17,
+		() => e.group.children,
+		Vt,
+		(Z, ke) => {
+			var T = Dm();
+			B(Z, T);
+		},
+	),
+		Fe(2),
+		m(ce),
+		m(C));
+	var N = x(C, 2);
+	Ve(
+		vn(N, {
+			children: (Z, ke) => {
+				var T = Mm(),
+					V = ze(T),
+					H = f(V);
+				(rr(H, { stroke: "#cdd6f4", style: "width: 1rem; height: 1rem;" }), Fe(), m(V));
+				var we = x(V, 2),
+					be = f(we);
+				(Tt(be, { stroke: "#cdd6f4", style: "width: 1rem; height: 1rem;" }), Fe(), m(we));
+				var Be = x(we, 4);
+				Ge(Be, "", {}, { color: "#f38ba8" });
+				var fe = f(Be);
+				(It(fe, { stroke: "#f38ba8", style: "width: 1rem; height: 1rem;" }),
+					Fe(),
+					m(Be),
+					ue("mousedown", we, () => {
+						(u.open(), h.close());
+					}),
+					B(Z, T));
+			},
+			$$slots: { default: !0 },
+		}),
+		Z => (h = Z),
+		() => h,
+	);
+	var ae = x(N, 2);
+	(Ve(
+		Em(ae, {
+			get owner() {
+				return e.group;
+			},
+			get attribute() {
+				return s(v);
+			},
+			set attribute(Z) {
+				F(v, Z, !0);
+			},
+		}),
+		Z => (u = Z),
+		() => u,
+	),
+		ue("mousedown", j, i),
+		ue("mousedown", ve, r),
+		B(a, y),
+		ft());
+}
+Ct(["mousedown", "contextmenu"]);
+let mo = L(_e([]));
+async function Pm() {
+	F(mo, await X("get_fonts"), !0);
+}
+async function Im() {
+	return (s(mo).length === 0 && (await Pm()), s(mo));
+}
+var Tm = J('<h1 contenteditable="" class="svelte-1aa9466"></h1>'),
+	Om = J(
+		'<div><!> <div class="toolbar svelte-1aa9466"><div class="formatting svelte-1aa9466"><button class="svelte-1aa9466"><!></button> <button class="svelte-1aa9466"><!></button></div> <div class="font-size svelte-1aa9466"><button class="svelte-1aa9466"><!></button> <input class="svelte-1aa9466"/> <button class="svelte-1aa9466"><!></button></div> <!> <div class="formatting svelte-1aa9466"><button class="svelte-1aa9466"><!></button> <button class="svelte-1aa9466"><!></button> <button class="svelte-1aa9466"><!></button></div> <div class="formatting svelte-1aa9466"><button class="svelte-1aa9466"><!></button> <button class="svelte-1aa9466"><!></button></div> <div class="formatting svelte-1aa9466"><button class="svelte-1aa9466"><!></button></div></div> <div class="content svelte-1aa9466"><div class="editor svelte-1aa9466" tabindex="0"></div> <div class="cursor-content svelte-1aa9466"></div></div></div>',
+	);
+function Vm(a, e) {
+	mt(e, !0);
+	let t = k(e, "title", 7),
+		n = k(e, "doc", 15),
+		i = L(_e(n() ?? new An()));
+	(Br(() => {
+		n(s(i));
+	}),
+		Br(() => {
+			n() !== void 0 && n() !== s(i) && F(i, n(), !0);
+		}));
+	function r() {
+		return t();
+	}
+	function o() {
+		return bo;
+	}
+	let h = L(0),
+		u = L(_e(s(i).partAtIndex(s(h)).text.length)),
+		v = Se(() =>
+			s(i)
+				.toHTML()
+				.map(ee => (ee.addEventListener("mousedown", $e => G(ee, $e)), ee)),
+		);
+	Br(() => {
+		y.innerHTML = "";
+		for (let ee of s(v)) y.appendChild(ee);
+	});
+	let b = Se(() => {
+			let ee = "";
+			return (
+				s(i).some(($e, ht) => {
+					let wt = $e.clone();
+					return (
+						ht === s(h) && (wt.text = wt.text.substring(0, s(u))),
+						(ee += wt.toHTML(ht, ht === s(i).partCount() - 1).outerHTML),
+						ht === s(h)
+					);
+				}),
+				ee
+			);
+		}),
+		y,
+		C;
+	function S() {
+		return s(i).partAtIndex(s(h));
+	}
+	function A() {
+		return s(i).partAtIndex(s(h)).style;
+	}
+	function P(ee) {
+		for (F(u, s(u) + ee); s(u) < 0 && s(h) > 0; ) (Yn(h, -1), F(u, S().text.length - s(u)));
+		for (; s(u) > S().text.length && s(h) < s(i).partCount() - 2; ) {
+			const $e = S().text.length;
+			(Yn(h), F(u, s(u) - $e));
+		}
+		(s(h) === 0 && F(u, Math.max(0, s(u)), !0), s(h) === s(i).partCount() - 1 && F(u, Math.min(s(u), S().text.length), !0));
+	}
+	function D(ee) {
+		let $e = S().text.substring(0, s(u)),
+			ht = S().text.substring(s(u));
+		((s(i).partAtIndex(s(h)).text = $e + ee + ht), F(u, s(u) + ee.length));
+	}
+	function R(ee) {
+		if (!(ee.ctrlKey || ee.metaKey || ee.altKey)) {
+			if ((ee.preventDefault(), ee.key === "ArrowLeft")) {
+				P(-1);
+				return;
+			}
+			if (ee.key === "ArrowRight") {
+				P(1);
+				return;
+			}
+			if (ee.key === "Tab") {
+				D("	");
+				return;
+			}
+			if (ee.key === "Enter") {
+				D(`
+	`);
+				return;
+			}
+			if (ee.key === "Backspace") {
+				if (s(u) !== 0 || s(h) !== 0) {
+					let $e = S().text.substring(0, s(u) - 1),
+						ht = S().text.substring(s(u));
+					((s(i).partAtIndex(s(h)).text = $e + ht), P(-1));
+				}
+				return;
+			}
+			ee.key.length !== 1 || ee.key.charCodeAt(0) > 127 || D(ee.key);
+		}
+	}
+	function G(ee, $e) {
+		F(h, Number(ee.getAttribute("data-part-index")), !0);
+		let ht = 0;
+		Array.from(ee.children).some(
+			(wt, Gt) => (
+				(ht += wt.getBoundingClientRect().width),
+				ht > $e.clientX - ee.getBoundingClientRect().left ? (F(u, Gt + 1), !0) : !1
+			),
+		) || F(u, 0);
+	}
+	function j() {
+		for (; S().text === "" && s(h) > 0; ) (Yn(h, -1), F(u, 0));
+		F(
+			i,
+			s(i).filter(($e, ht) => $e.text !== "" || ht === 0),
+			!0,
+		);
+		let ee = new An();
+		for (let $e = 0; $e < s(i).partCount() - 1; $e += 2) {
+			let ht = s(i).partAtIndex($e),
+				wt = s(i).partAtIndex($e + 1);
+			ht.style.ref().equals(wt.style.ref())
+				? (ee.addPart(new on(ht.text + wt.text, ht.style.clone())), s(h) >= $e + 1)
+				: (ee.addPart(ht), ee.addPart(wt));
+		}
+		F(i, ee, !0);
+	}
+	function ne() {
+		const ee = A().clone();
+		if (((ee.bold = !ee.bold), s(h) === s(i).partCount() - 1 && s(u) === S().text.length)) {
+			const $e = new on("", ee.clone());
+			(s(i).addPart($e), F(h, s(i).partCount() - 1), F(u, 0));
+		} else if (s(h) === 0 && s(u) === 0) {
+			const $e = new on("", ee.clone());
+			(s(i).prependPart($e), F(h, 0), F(u, 0));
+		} else {
+			let $e = new on(S().text.substring(s(u)), S().style.clone()),
+				ht = new on("", ee.clone());
+			((s(i).partAtIndex(s(h)).text = S().text.substring(0, s(u))),
+				s(i).addPartAtIndex(ht, s(h) + 1),
+				s(i).addPartAtIndex($e, s(h) + 2),
+				F(h, s(h) + 1),
+				F(u, 0));
+		}
+	}
+	function M() {
+		const ee = document.createRange();
+		ee.selectNodeContents(y);
+		const $e = window.getSelection();
+		($e.removeAllRanges(), $e.addRange(ee));
+	}
+	function ce(ee) {
+		const $e = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
+		($e ? ee.metaKey : ee.ctrlKey) && ee.key === "b"
+			? (ee.preventDefault(), ne())
+			: ($e ? ee.metaKey : ee.ctrlKey) && ee.key === "a" && document.activeElement === y0(y) && (ee.preventDefault(), M());
+	}
+	function ve() {
+		(F(h, s(i).partCount() - 1), F(u, S().text.length, !0));
+	}
+	sa(() => {
+		y.focus();
+	});
+	function Y(ee) {
+		return function () {
+			F(N, `${Math.max(parseInt(s(N)) + ee, 1)}`);
+		};
+	}
+	let U = L("Garamond"),
+		N = L("16"),
+		ae = L("dark");
+	var Z = { getTitle: r, getIcon: o },
+		ke = Om();
+	xt("keydown", Rt, ce);
+	var T = f(ke);
+	{
+		var V = ee => {
+			var $e = Tm();
+			(Kl("textContent", $e, t), B(ee, $e));
+		};
+		Qe(T, ee => {
+			t() && ee(V);
+		});
+	}
+	var H = x(T, 2),
+		we = f(H),
+		be = f(we),
+		Be = f(be);
+	(na(Be, { stroke: "var(--stroke)" }), m(be));
+	var fe = x(be, 2),
+		K = f(fe);
+	(na(K, { stroke: "var(--stroke)", style: "transform: scaleX(-100%);" }), m(fe), m(we));
+	var ge = x(we, 2),
+		W = f(ge),
+		pe = Se(() => Y(-1)),
+		Pe = f(W);
+	(ca(Pe, { stroke: "var(--stroke)" }), m(W));
+	var ye = x(W, 2);
+	ln(ye);
+	var Te = x(ye, 2),
+		Me = Se(() => Y(1)),
+		xe = f(Te);
+	(cn(xe, { stroke: "var(--stroke)" }), m(Te), m(ge));
+	var Ie = x(ge, 2);
+	k0(Ie, Im, null, (ee, $e) => {
+		{
+			let ht = Se(() => (s(ae) === "dark" ? "#cdd6f4" : "black")),
+				wt = Se(() => s($e).map(Gt => ({ name: Gt, style: `font-family: "${Gt}"` })));
+			Ca(ee, {
+				get style() {
+					return `background-color: transparent; border: none; color: ${s(ht) ?? ""};`;
+				},
+				get options() {
+					return s(wt);
+				},
+				width: "7rem",
+				get value() {
+					return s(U);
+				},
+				set value(Gt) {
+					F(U, Gt, !0);
+				},
+			});
+		}
+	});
+	var Ue = x(Ie, 2),
+		nt = f(Ue),
+		ie = f(nt);
+	(vo(ie, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), m(nt));
+	var je = x(nt, 2),
+		Le = f(je);
+	(da(Le, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), m(je));
+	var oe = x(je, 2),
+		it = f(oe);
+	(jo(it, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), m(oe), m(Ue));
+	var lt = x(Ue, 2),
+		He = f(lt),
+		Ke = f(He);
+	(ko(Ke, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), m(He));
+	var Xe = x(He, 2),
+		Dt = f(Xe);
+	{
+		var un = ee => {
+				To(ee, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" });
+			},
+			Cn = ee => {
+				Ao(ee, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" });
+			};
+		Qe(Dt, ee => {
+			s(ae) === "dark" ? ee(un) : ee(Cn, -1);
+		});
+	}
+	(m(Xe), m(lt));
+	var Wt = x(lt, 2),
+		_n = f(Wt),
+		wn = f(_n);
+	(Qn(wn, { stroke: "var(--stroke)", style: "width: 1rem; height: 1rem;" }), m(_n), m(Wt), m(H));
+	var yn = x(H, 2),
+		St = f(yn);
+	let en;
+	Ve(
+		St,
+		ee => (y = ee),
+		() => y,
+	);
+	var $t = x(St, 2);
+	let tn;
+	return (
+		M0($t, () => s(b), !0),
+		m($t),
+		Ve(
+			$t,
+			ee => (C = ee),
+			() => C,
+		),
+		m(yn),
+		m(ke),
+		$(() => {
+			(vt(ke, 1, bt(["wrapper", s(ae) === "light" && "light"]), "svelte-1aa9466"),
+				(en = Ge(St, "", en, { "font-family": s(U), "font-size": `${s(N) ?? ""}px` })),
+				(tn = Ge($t, "", tn, { "font-family": s(U), "font-size": `${s(N) ?? ""}px` })));
+		}),
+		ue("mousedown", W, function (...ee) {
+			s(pe)?.apply(this, ee);
+		}),
+		hn(
+			ye,
+			() => s(N),
+			ee => F(N, ee),
+		),
+		ue("mousedown", Te, function (...ee) {
+			s(Me)?.apply(this, ee);
+		}),
+		ue("mousedown", Xe, () => F(ae, s(ae) === "light" ? "dark" : "light", !0)),
+		xt("blur", St, j),
+		xt("focus", St, ve),
+		ue("keydown", St, R),
+		B(a, ke),
+		ft(Z)
+	);
+}
+Ct(["mousedown", "keydown"]);
+var jm = J('<div><span class="svelte-vybefw"><!> </span> <button class="svelte-vybefw"><!></button></div>'),
+	$m = J('<button class="svelte-vybefw"><!></button>'),
+	Gm = J(
+		'<button class="svelte-vybefw"><!> <span>Split horizontally</span></button> <button class="svelte-vybefw"><!> <span>Split vertically</span></button> <hr/> <button class="svelte-vybefw"><!> <span>Close pane</span></button>',
+		1,
+	),
+	zm = J(
+		"<button><!> <span>In this tab</span></button> <button><!> <span>In new tab</span></button> <button><!> <span>In new tab to the left</span></button> <hr/> <button><!> <span>In split right</span></button> <button><!> <span>In split left</span></button> <button><!> <span>In split bottom</span></button> <button><!> <span>In split top</span></button>",
+		1,
+	),
+	Hm = J("<div><!> <span> </span> <!> <!></div>"),
+	qm = J(
+		"<button><!> <span>Close others</span></button> <button><!> <span>Close tabs to the left</span></button> <button><!> <span>Close tabs to the right</span></button> <button><!> <span>Close tabs to the left</span></button>",
+		1,
+	),
+	Nm = J(
+		"<button><!> <span>Switch view</span> <!></button> <hr/> <button><!> <span>Rename tab</span></button> <div><!> <span>Close tab</span> <!></div>",
+		1,
+	),
+	Wm = J(
+		'<div class="tabs svelte-vybefw"><!> <div class="new-tab-wrapper svelte-vybefw"><button class="new-tab svelte-vybefw"><!></button></div> <div class="controls svelte-vybefw"><button class="svelte-vybefw"><!></button> <!> <!></div></div> <!>',
+		1,
+	);
+function Zm(a, e) {
+	mt(e, !0);
+	let t = k(e, "split", 15),
+		n = k(e, "isMasterPaneAlive", 15),
+		i = k(e, "selectedTabID", 15),
+		r = L(null),
+		o = L(0),
+		h = L(null),
+		u = L(null);
+	function v() {
+		(n(!1), e.onclose());
+	}
+	function b(K, ge) {
+		let W = new Rr(y().group);
+		(e.tabs.appendTab(W), i(W.id));
+	}
+	function y() {
+		return e.tabs.getTabByID(i());
+	}
+	function C(K) {
+		return function (ge) {
+			ge.button === 0 && e.tabs.tabExists(K) && i(K);
+		};
+	}
+	function S(K) {
+		return function (ge) {
+			(ge.preventDefault(), F(o, K, !0), s(r).openAtMouse(ge));
+		};
+	}
+	function A(K) {
+		return function () {
+			if (i() === K) {
+				let ge = e.tabs.indexOfID(K);
+				i(e.tabs.getTabByIndex(ge === 0 ? ge + 1 : ge - 1).id);
+			}
+			(e.tabs.deleteTab(K), e.tabs.isEmpty() && (n(!1), e.onclose()));
+		};
+	}
+	function P() {
+		(t("horizontal"), s(h).close());
+	}
+	function D() {
+		(t("vertical"), s(h).close());
+	}
+	function R(K) {
+		return function () {
+			(s(r).close(), (y().view = K));
+		};
+	}
+	let G = L(null),
+		j = L(null),
+		ne = L(null),
+		M = L(!1),
+		ce = Se(
+			() => (
+				s(M),
+				!s(G) || !s(j) || !s(ne)
+					? "0px"
+					: `${(s(G).getBoundingClientRect().width - s(j).getBoundingClientRect().width - s(ne).getBoundingClientRect().width - 16) / e.tabs.count()}px`
+			),
+		);
+	sa(() => {
+		F(M, !0);
+	});
+	var ve = Wm(),
+		Y = ze(ve),
+		U = f(Y);
+	Lt(
+		U,
+		19,
+		() => e.tabs.tabs,
+		K => K.id,
+		(K, ge, W) => {
+			const pe = Se(() => (s(ge) instanceof oa ? ma : s(ge) instanceof Rr ? s(ge).group.icon.component : void 0));
+			var Pe = jm(),
+				ye = Se(() => C(s(ge).id)),
+				Te = Se(() => S(s(ge).id));
+			let Me;
+			var xe = f(Pe),
+				Ie = f(xe);
+			Xt(
+				Ie,
+				() => s(pe),
+				(Le, oe) => {
+					oe(Le, { stroke: "#cdd6f4", style: "width: 0.85rem; height: 0.85rem;" });
+				},
+			);
+			var Ue = x(Ie);
+			m(xe);
+			var nt = x(xe, 2),
+				ie = Se(() => A(s(ge).id)),
+				je = f(nt);
+			(It(je, { stroke: "var(--stroke)", style: "width: 0.85rem; height: 0.85rem;" }),
+				m(nt),
+				m(Pe),
+				$(() => {
+					(vt(Pe, 1, bt(["tab", i() === s(ge).id && "selected"]), "svelte-vybefw"),
+						(Me = Ge(Pe, "", Me, {
+							left: `calc(min(13rem, ${s(ce) ?? ""}) * ${s(W) ?? ""} + 1rem)`,
+							width: s(ce),
+							background: e.background,
+						})),
+						ut(Ue, ` ${(s(ge) instanceof oa ? "Editor" : s(ge) instanceof Rr ? s(ge).group.name : "Empty") ?? ""}`));
+				}),
+				ue("mousedown", Pe, function (...Le) {
+					s(ye)?.apply(this, Le);
+				}),
+				ue("contextmenu", Pe, function (...Le) {
+					s(Te)?.apply(this, Le);
+				}),
+				ue("mousedown", nt, function (...Le) {
+					s(ie)?.apply(this, Le);
+				}),
+				B(K, Pe));
+		},
+	);
+	var N = x(U, 2);
+	let ae;
+	var Z = f(N),
+		ke = f(Z);
+	(cn(ke, { stroke: "var(--stroke)", style: "width: 0.85rem; height: 0.85rem;" }),
+		m(Z),
+		Ve(
+			Z,
+			K => F(u, K),
+			() => s(u),
+		),
+		m(N),
+		Ve(
+			N,
+			K => F(ne, K),
+			() => s(ne),
+		));
+	var T = x(N, 2),
+		V = f(T),
+		H = f(V);
+	(Tt(H, { stroke: "var(--stroke)", style: "width: 0.85rem; height: 0.85rem;" }), m(V));
+	var we = x(V, 2);
+	{
+		var be = K => {
+			var ge = $m(),
+				W = f(ge);
+			(It(W, { stroke: "var(--stroke)", style: "width: 0.85rem; height: 0.85rem;" }), m(ge), ue("mousedown", ge, v), B(K, ge));
+		};
+		Qe(we, K => {
+			(e.subpane || t()) && K(be);
+		});
+	}
+	var Be = x(we, 2);
+	(Ve(
+		qn(Be, {
+			top: "100%",
+			right: "0.25rem",
+			children: (K, ge) => {
+				var W = Gm(),
+					pe = ze(W),
+					Pe = f(pe);
+				(gn(Pe, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem;" }), Fe(2), m(pe));
+				var ye = x(pe, 2),
+					Te = f(ye);
+				(gn(Te, { stroke: "#cdd6f4", style: "width: 1.2rem; height: 1.2rem; rotate: 90deg;" }), Fe(2), m(ye));
+				var Me = x(ye, 4),
+					xe = f(Me);
+				{
+					let Ue = Se(() => (e.subpane || t() ? "#f38ba8" : "#6c7086"));
+					It(xe, {
+						get stroke() {
+							return s(Ue);
+						},
+						scale: 0.85,
+					});
+				}
+				var Ie = x(xe, 2);
+				(m(Me),
+					$(() => {
+						((Me.disabled = !e.subpane && !t()), Ge(Ie, `color: ${e.subpane || t() ? "#f38ba8" : "#6c7086"}`));
+					}),
+					ue("mousedown", pe, P),
+					ue("mousedown", ye, D),
+					ue("mousedown", Me, v),
+					B(K, W));
+			},
+			$$slots: { default: !0 },
+		}),
+		K => F(h, K, !0),
+		() => s(h),
+	),
+		m(T),
+		Ve(
+			T,
+			K => F(j, K),
+			() => s(j),
+		),
+		m(Y),
+		Ve(
+			Y,
+			K => F(G, K),
+			() => s(G),
+		));
+	var fe = x(Y, 2);
+	(Ve(
+		qn(fe, {
+			children: (K, ge) => {
+				var W = Nm(),
+					pe = ze(W),
+					Pe = f(pe);
+				Un(Pe, { stroke: "#cdd6f4", scale: 0.85, style: "margin-left: 0.15rem;" });
+				var ye = x(Pe, 4);
+				(qn(ye, {
+					children: (ie, je) => {
+						var Le = Nt(),
+							oe = ze(Le);
+						(Lt(
+							oe,
+							17,
+							() => Object.entries(Ud),
+							Vt,
+							(it, lt) => {
+								var He = Se(() => so(s(lt), 2));
+								let Ke = () => s(He)[0],
+									Xe = () => s(He)[1];
+								var Dt = Hm(),
+									un = Se(() => R(Ke())),
+									Cn = f(Dt);
+								Xt(
+									Cn,
+									() => Xe().icon,
+									(St, en) => {
+										en(St, { stroke: "#cdd6f4" });
+									},
+								);
+								var Wt = x(Cn, 2);
+								Ge(Wt, "", {}, { "text-transform": "capitalize" });
+								var _n = f(Wt, !0);
+								m(Wt);
+								var wn = x(Wt, 2);
+								Qt(wn, { stroke: "#cdd6f4", style: "rotate: 90deg; margin-left: auto;" });
+								var yn = x(wn, 2);
+								(qn(yn, {
+									children: (St, en) => {
+										var $t = zm(),
+											tn = ze($t),
+											ee = f(tn);
+										(Tr(ee, {}), Fe(2), m(tn));
+										var $e = x(tn, 2),
+											ht = f($e);
+										(cn(ht, {}), Fe(2), m($e));
+										var wt = x($e, 2),
+											Gt = f(wt);
+										(Qt(Gt, { style: "rotate: 270deg;" }), Fe(2), m(wt));
+										var Et = x(wt, 4),
+											zr = f(Et);
+										(gn(zr, {}), Fe(2), m(Et));
+										var nn = x(Et, 2),
+											Mt = f(nn);
+										(gn(Mt, {}), Fe(2), m(nn));
+										var Fn = x(nn, 2),
+											rt = f(Fn);
+										(gn(rt, {}), Fe(2), m(Fn));
+										var ot = x(Fn, 2),
+											Zt = f(ot);
+										(gn(Zt, {}), Fe(2), m(ot), B(St, $t));
+									},
+									$$slots: { default: !0 },
+								}),
+									m(Dt),
+									$(() => ut(_n, Ke())),
+									ue("mousedown", Dt, function (...St) {
+										s(un)?.apply(this, St);
+									}),
+									B(it, Dt));
+							},
+						),
+							B(ie, Le));
+					},
+					$$slots: { default: !0 },
+				}),
+					m(pe));
+				var Te = x(pe, 4),
+					Me = f(Te);
+				(rr(Me, { stroke: "#cdd6f4", scale: 1.2 }), Fe(2), m(Te));
+				var xe = x(Te, 2),
+					Ie = f(xe);
+				{
+					let ie = Se(() => (e.subpane || t() ? "#f38ba8" : "#6c7086"));
+					It(Ie, {
+						get stroke() {
+							return s(ie);
+						},
+						style: "width: 0.85rem; height: 0.85rem;",
+					});
+				}
+				var Ue = x(Ie, 2),
+					nt = x(Ue, 2);
+				(qn(nt, {
+					children: (ie, je) => {
+						var Le = qm(),
+							oe = ze(Le),
+							it = f(oe);
+						(It(it, { stroke: "#cdd6f4", style: "width: 0.85rem; height: 0.85rem;" }), Fe(2), m(oe));
+						var lt = x(oe, 2),
+							He = f(lt);
+						(It(He, { stroke: "#cdd6f4", style: "width: 0.85rem; height: 0.85rem;" }), Fe(2), m(lt));
+						var Ke = x(lt, 2),
+							Xe = f(Ke);
+						(It(Xe, { stroke: "#cdd6f4", style: "width: 0.85rem; height: 0.85rem;" }), Fe(2), m(Ke));
+						var Dt = x(Ke, 2),
+							un = f(Dt);
+						(It(un, { stroke: "#cdd6f4", style: "width: 0.85rem; height: 0.85rem;" }), Fe(2), m(Dt), B(ie, Le));
+					},
+					$$slots: { default: !0 },
+				}),
+					m(xe),
+					$(() => {
+						(vt(xe, 1, bt([!e.subpane && !t() && "disabled"])), Ge(Ue, `color: ${e.subpane || t() ? "#f38ba8" : "#6c7086"}`));
+					}),
+					ue("mousedown", xe, () => A(s(o))),
+					B(K, W));
+			},
+			$$slots: { default: !0 },
+		}),
+		K => F(r, K, !0),
+		() => s(r),
+	),
+		$(K => (ae = Ge(N, "", ae, K)), [() => ({ left: `calc(min(${s(ce) ?? ""}, 13rem) * ${e.tabs.count() ?? ""})` })]),
+		ue("mousedown", Z, () => b()),
+		ue("mousedown", V, () => s(h).toggle()),
+		B(a, ve),
+		ft());
+}
+Ct(["mousedown", "contextmenu"]);
+var Ym = J('<div class="view-container svelte-12uuzv1"><!></div>'),
+	Um = J(
+		'<section><section class="pane svelte-12uuzv1"><!> <div class="content svelte-12uuzv1"><!></div> <div></div> <div></div></section> <!></section> <!>',
+		1,
+	);
+function $1(a, e) {
+	mt(e, !0);
+	let t = k(e, "width", 3, "500px"),
+		n = k(e, "height", 3, "1000px"),
+		i = k(e, "background", 3, "#1e1e2e"),
+		r = k(e, "subpane", 3, !1),
+		o = k(e, "split", 7, void 0),
+		h = k(e, "onclose", 3, () => {}),
+		u = L("none"),
+		v = L(_e(new Yd())),
+		b = L(_e(s(v).tabs[0].id));
+	function y(W) {
+		return function () {
+			F(u, W, !0);
+		};
+	}
+	function C() {
+		F(u, "none");
+	}
+	let S = L(`${parseInt(n()) / 2}px`),
+		A = L(`${parseInt(t()) / 2}px`);
+	function P(W) {
+		s(u) === "right" ? F(A, `${parseInt(s(A)) + W.movementX}px`) : s(u) === "bottom" && F(S, `${parseInt(s(S)) + W.movementY}px`);
+	}
+	let D = L(!0);
+	function R(W) {
+		let pe = new oa(W);
+		(s(v).appendTab(pe), F(b, pe.id, !0));
+	}
+	let G = L(null),
+		j,
+		ne = Se(() => s(v).getTabByID(s(b)));
+	var M = Um();
+	(xt("mouseup", Rt, C), xt("mousemove", Rt, P));
+	var ce = ze(M);
+	vt(ce, 1, bt({ "pane-wrapper": !0 }), "svelte-12uuzv1");
+	let ve;
+	var Y = f(ce);
+	let U;
+	var N = f(Y);
+	Zm(N, {
+		get background() {
+			return i();
+		},
+		get subpane() {
+			return r();
+		},
+		get onclose() {
+			return h();
+		},
+		get isMasterPaneAlive() {
+			return s(D);
+		},
+		set isMasterPaneAlive(W) {
+			F(D, W, !0);
+		},
+		get selectedTabID() {
+			return s(b);
+		},
+		set selectedTabID(W) {
+			F(b, W, !0);
+		},
+		get split() {
+			return o();
+		},
+		set split(W) {
+			o(W);
+		},
+		get tabs() {
+			return s(v);
+		},
+		set tabs(W) {
+			F(v, W, !0);
+		},
+	});
+	var ae = x(N, 2);
+	let Z;
+	var ke = f(ae);
+	{
+		var T = W => {
+				Vm(W, {
+					get doc() {
+						return s(ne).content;
+					},
+					set doc(pe) {
+						s(ne).content = pe;
+					},
+				});
+			},
+			V = W => {
+				var pe = Ym(),
+					Pe = f(pe);
+				{
+					var ye = xe => {
+							Zo(xe, {});
+						},
+						Te = xe => {
+							Rm(xe, {
+								openEditor: R,
+								get group() {
+									return s(ne).group;
+								},
+							});
+						},
+						Me = xe => {
+							im(xe, {});
+						};
+					Qe(Pe, xe => {
+						s(ne).view === "hierarchy" ? xe(ye) : s(ne).view === "spreadsheet" ? xe(Te, 1) : s(ne).view === "graph" && xe(Me, 2);
+					});
+				}
+				(m(pe), $(() => Ge(pe, `display: ${s(ne).id === s(b) ? "block" : "none"}`)), B(W, pe));
+			};
+		Qe(ke, W => {
+			s(ne) instanceof oa && s(ne).id === s(b) ? W(T) : s(ne) instanceof Rr && W(V, 1);
+		});
+	}
+	m(ae);
+	var H = x(ae, 2),
+		we = Se(() => y("right")),
+		be = x(H, 2),
+		Be = Se(() => y("bottom"));
+	m(Y);
+	var fe = x(Y, 2);
+	{
+		var K = W => {
+			Ve(
+				$1(W, { background: "#1e1e2e", subpane: !0, onclose: () => o(void 0) }),
+				pe => F(G, pe, !0),
+				() => s(G),
+			);
+		};
+		Qe(fe, W => {
+			o() && W(K);
+		});
+	}
+	m(ce);
+	var ge = x(ce, 2);
+	(Ve(
+		Wo(ge, {}),
+		W => (j = W),
+		() => j,
+	),
+		$(() => {
+			((ve = Ge(ce, "", ve, { "flex-direction": o() === "horizontal" ? "row" : "column", "flex-grow": r() ? "1" : void 0 })),
+				(U = Ge(Y, "", U, {
+					"max-width": s(D) ? "100vmax" : "0px",
+					"max-height": s(D) ? "100vmax" : "0px",
+					"height": o() === "vertical" ? s(S) : "100%",
+					"width": o() === "horizontal" ? s(A) : "100%",
+				})),
+				(Z = Ge(ae, "", Z, { background: i() })),
+				vt(H, 1, bt({ drag: !0, right: !0, dragging: s(u) === "right" }), "svelte-12uuzv1"),
+				vt(be, 1, bt({ drag: !0, bottom: !0, dragging: s(u) === "bottom" }), "svelte-12uuzv1"));
+		}),
+		ue("mousedown", H, function (...W) {
+			s(we)?.apply(this, W);
+		}),
+		ue("mousedown", be, function (...W) {
+			s(Be)?.apply(this, W);
+		}),
+		B(a, M),
+		ft());
+}
+Ct(["mousedown"]);
+var Km = J(
+		'<button class="svelte-161y12f"><!> <span>Word Count</span></button> <button class="svelte-161y12f"><!> <span>Character Count</span></button> <button class="svelte-161y12f"><!> <span>Chapter Count</span></button>',
+		1,
+	),
+	Jm = J(
+		'<section class="svelte-161y12f"><div class="wrapper svelte-161y12f"><button class="svelte-161y12f"><span>0 / 0 words</span></button> <!></div></section>',
+	);
+function Xm(a) {
+	let e = Ht();
+	var t = Jm(),
+		n = f(t),
+		i = f(n),
+		r = x(i, 2);
+	(Ve(
+		vn(r, {
+			bottom: "120%",
+			right: "0.5rem",
+			children: (o, h) => {
+				var u = Km(),
+					v = ze(u),
+					b = f(v);
+				(Ho(b, { stroke: "#cdd6f4", style: "width: 0.85rem; height: 0.85rem;" }), Fe(2), m(v));
+				var y = x(v, 2),
+					C = f(y);
+				(_o(C, { stroke: "#cdd6f4", style: "width: 0.85rem; height: 0.85rem;" }), Fe(2), m(y));
+				var S = x(y, 2),
+					A = f(S);
+				(Qn(A, { stroke: "#cdd6f4", style: "width: 0.85rem; height: 0.85rem;" }), Fe(2), m(S), B(o, u));
+			},
+			$$slots: { default: !0 },
+			$$legacy: !0,
+		}),
+		o => F(e, o),
+		() => s(e),
+	),
+		m(n),
+		m(t),
+		ue("mousedown", i, () => s(e).toggle()),
+		B(a, t));
+}
+Ct(["mousedown"]);
+var Qm = J('<div class="svelte-1uha8ag"><!> <!></div>'),
+	e3 = J('<!> <main class="svelte-1uha8ag"><!> <!></main>', 1);
+function c3(a, e) {
+	(mt(e, !0),
+		Br(() => {
+			ts().length > 0 && ta.errors(ts());
+		}));
+	var t = e3(),
+		n = ze(t);
+	sm(n, {});
+	var i = x(n, 2),
+		r = f(i);
+	Nd(r, {});
+	var o = x(r, 2);
+	{
+		var h = b => {
+				var y = Qm(),
+					C = f(y);
+				$1(C, { background: "#181825" });
+				var S = x(C, 2);
+				(Xm(S), m(y), B(b, y));
+			},
+			u = Se(() => pt.get()),
+			v = b => {
+				Zd(b, {});
+			};
+		Qe(o, b => {
+			s(u) ? b(h) : b(v, -1);
+		});
+	}
+	(m(i), B(a, t), ft());
+}
+export { c3 as component };

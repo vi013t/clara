@@ -3,7 +3,7 @@
 	import ContextMenu from "../../../../api/src/lib/components/menus/ContextMenu.svelte";
 	import LittleButton from "../widgets/LittleButton.svelte";
 	import CameraView from "./CameraView.svelte";
-	import { Project } from "@wallflower/api/project";
+	import { Project } from "@clara/api/project";
 	import {
 		ArrowIcon,
 		ColorPaletteIcon,
@@ -18,10 +18,10 @@
 		SpreadsheetIcon,
 		TrashIcon,
 		TreeIcon,
-	} from "@wallflower/api/icons";
-	import { Camera } from "@wallflower/api/camera";
-	import { type Node } from "@wallflower/api/database";
-	import { Point2D, type Point2DLike } from "@wallflower/api/math";
+	} from "@clara/api/icons";
+	import { Camera } from "@clara/api/camera";
+	import { type Node } from "@clara/api/database";
+	import { Point2D, type Point2DLike } from "@clara/api/math";
 
 	let tree = Project.get()!.database;
 	let items = $derived(tree.dfsItems());

@@ -7,13 +7,24 @@
 			"outputs": ["../../generated/**"]
 		},
 		"build": {
-			"dependsOn": ["^build", "preprocess"],
+			"dependsOn": ["^build", "preprocess", "install:plugins"],
 			"outputs": ["dist/**", "target/**", "build/**"]
 		},
 		"dev": {
 			"dependsOn": ["^build", "preprocess"],
 			"cache": false,
 			"persistent": true
+		},
+		"build:plugins": {
+			"dependsOn": ["^build"],
+			"inputs": ["packages/plugins/**"],
+			"outputs": ["packages/plugins/**/dist/**"]
+		},
+		"install:plugins": {
+			"dependsOn": ["build:plugins"],
+			"cache": false,
+			"inputs": ["packages/plugins/**/dist/**"],
+			"outputs": []
 		}
 	}
 }

@@ -10,7 +10,9 @@
 	"scripts": {
 		"dev": "turbo dev --filter=clara",
 		"build": "turbo build --filter=clara",
-		"preprocess": "turbo preprocess"
+		"preprocess": "turbo preprocess",
+		"install:plugins": "bun ./scripts/install_plugins.ts",
+		"clean": "rm ./generated -rf && rm -rf node_modules bun.lock bun.lockb && rm -rf **/node_modules **/bun.lock **/bun.lockb && rm -rf **/dist **/build **/target && bun pm cache rm"
 	},
 	"dependencies": {
 		"@types/node": "^25.5.0"

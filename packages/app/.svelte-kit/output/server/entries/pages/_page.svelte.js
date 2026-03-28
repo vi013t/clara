@@ -66,10 +66,10 @@ var Debug;
   }
   Debug2.log = log;
 })(Debug || (Debug = {}));
-function assignedLater() {
+function assignedLater$1() {
   return null;
 }
-var Objects;
+var Objects$1;
 (function(Objects2) {
   function mapValues(obj, map) {
     return Object.entries(obj).map(([key, value]) => ({ [key]: map(value) })).reduce((accumulator, current) => ({ ...accumulator, ...current }));
@@ -79,13 +79,13 @@ var Objects;
     return Object.entries(obj).map(([inputKey, inputValue]) => map(inputKey, inputValue)).reduce((object, [outputKey, outputValue]) => ({ ...object, ...{ [outputKey]: outputValue } }), {});
   }
   Objects2.mapEntries = mapEntries;
-})(Objects || (Objects = {}));
+})(Objects$1 || (Objects$1 = {}));
 const utils = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   get Objects() {
-    return Objects;
+    return Objects$1;
   },
-  assignedLater
+  assignedLater: assignedLater$1
 }, Symbol.toStringTag, { value: "Module" }));
 class Matrix3x3 {
   values = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
@@ -94,7 +94,7 @@ class Matrix3x3 {
   }
   getScale() {
     let [[x, _b, _c], [_d, y, _f], [_g, _h, _i]] = this.values;
-    return new Point2D(x, y);
+    return new Point2D$1(x, y);
   }
   static identity() {
     return new Matrix3x3();
@@ -121,9 +121,9 @@ class Matrix3x3 {
     ]);
   }
   timesPoint(pointLike) {
-    let { x, y } = new Point2D(pointLike);
+    let { x, y } = new Point2D$1(pointLike);
     let [[a, b, c], [d, e, f], [g, h, i]] = this.values;
-    return new Point2D({ x: a * x + b * y + c, y: d * x + e * y + f });
+    return new Point2D$1({ x: a * x + b * y + c, y: d * x + e * y + f });
   }
   get inverse() {
     let [[a, b, c], [d, e, f], [g, h, i]] = this.values;
@@ -151,7 +151,7 @@ class Matrix3x3 {
     return a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
   }
   static translation(pointLike) {
-    let { x, y } = new Point2D(pointLike);
+    let { x, y } = new Point2D$1(pointLike);
     return new Matrix3x3([[1, 0, x], [0, 1, y], [0, 0, 1]]);
   }
   static rotation(angle) {
@@ -162,7 +162,7 @@ class Matrix3x3 {
     ]);
   }
   static scale(point) {
-    let { x, y } = new Point2D(typeof point === "object" ? point : [point, point]);
+    let { x, y } = new Point2D$1(typeof point === "object" ? point : [point, point]);
     return new Matrix3x3([[x, 0, 0], [0, y, 0], [0, 0, 1]]);
   }
   get css() {
@@ -170,9 +170,9 @@ class Matrix3x3 {
     return `matrix(${a}, ${b}, ${c}, ${d}, ${e}, ${f})`;
   }
 }
-class Point2D {
-  x = assignedLater();
-  y = assignedLater();
+let Point2D$1 = class Point2D {
+  x = assignedLater$1();
+  y = assignedLater$1();
   constructor(x, y) {
     if (typeof x === "object") {
       if (Array.isArray(x)) {
@@ -249,7 +249,7 @@ class Point2D {
   static origin() {
     return new Point2D(0, 0);
   }
-}
+};
 function sum(...values) {
   return values.reduce((total, value) => total + value, 0);
 }
@@ -257,8 +257,8 @@ function clamp(value, minimum, maximum) {
   return Math.min(maximum, Math.max(value, minimum));
 }
 class Circle {
-  radius = assignedLater();
-  center = assignedLater();
+  radius = assignedLater$1();
+  center = assignedLater$1();
   constructor(radius, center) {
     this.radius = radius;
     this.center = center;
@@ -289,7 +289,7 @@ class Circle {
       return this.center.distanceTo(other.center) < threshold;
     }
     if (other instanceof Rectangle) {
-      const closest = new Point2D(clamp(this.center.x, other.left, other.right), clamp(this.center.y, other.top, other.bottom));
+      const closest = new Point2D$1(clamp(this.center.x, other.left, other.right), clamp(this.center.y, other.top, other.bottom));
       const distance = this.center.distanceTo(closest);
       return distance <= this.radius - padding;
     }
@@ -304,29 +304,29 @@ class Circle {
     }
     if (other instanceof Rectangle) {
       const corners = [
-        new Point2D(other.left, other.top),
-        new Point2D(other.right, other.top),
-        new Point2D(other.left, other.bottom),
-        new Point2D(other.right, other.bottom)
+        new Point2D$1(other.left, other.top),
+        new Point2D$1(other.right, other.top),
+        new Point2D$1(other.left, other.bottom),
+        new Point2D$1(other.right, other.bottom)
       ];
       return corners.every((corner) => this.center.distanceTo(corner) <= safeRadius);
     }
     return false;
   }
   static unit() {
-    return new Circle(0, Point2D.origin());
+    return new Circle(0, Point2D$1.origin());
   }
   static prettyPack(smallCircles, smallCircleRadius) {
     if (smallCircles <= 0) return { circles: [], parentRadius: 0 };
     if (smallCircles === 1) return {
-      circles: [new Point2D({ x: 0, y: 0 })],
+      circles: [new Point2D$1({ x: 0, y: 0 })],
       parentRadius: smallCircleRadius
     };
     if (smallCircles === 2) {
       return {
         circles: [
-          new Point2D({ x: -smallCircleRadius, y: 0 }),
-          new Point2D({ x: smallCircleRadius, y: 0 })
+          new Point2D$1({ x: -smallCircleRadius, y: 0 }),
+          new Point2D$1({ x: smallCircleRadius, y: 0 })
         ],
         parentRadius: 2 * smallCircleRadius
       };
@@ -369,10 +369,10 @@ class Circle {
   }
 }
 class Rectangle {
-  left = assignedLater();
-  top = assignedLater();
-  width = assignedLater();
-  height = assignedLater();
+  left = assignedLater$1();
+  top = assignedLater$1();
+  width = assignedLater$1();
+  height = assignedLater$1();
   constructor(left, top, width, height) {
     this.left = left;
     this.top = top;
@@ -392,7 +392,7 @@ class Rectangle {
     return other.overlaps(this);
   }
   static squareFromCenter(center, radius) {
-    let centerPoint = new Point2D(center);
+    let centerPoint = new Point2D$1(center);
     return new Rectangle(centerPoint.x - radius, centerPoint.y - radius, radius * 2, radius * 2);
   }
   contains(other, padding = 0) {
@@ -416,7 +416,7 @@ class Rectangle {
     this.left += amount;
   }
   get center() {
-    return new Point2D([this.width / 2 + this.left, this.height / 2 + this.top]);
+    return new Point2D$1([this.width / 2 + this.left, this.height / 2 + this.top]);
   }
   get right() {
     return this.left + this.width;
@@ -425,7 +425,7 @@ class Rectangle {
     return this.top + this.height;
   }
   get size() {
-    return new Point2D(this.width, this.height);
+    return new Point2D$1(this.width, this.height);
   }
   static around(others, padding = {}) {
     let pad = { top: 0, left: 0, right: 0, bottom: 0, ...padding };
@@ -443,7 +443,7 @@ function generateRing(m, d) {
   const points = [];
   for (let possibleOuterRingRadius = 0; possibleOuterRingRadius < m; possibleOuterRingRadius++) {
     const angle = possibleOuterRingRadius * 2 * Math.PI / m;
-    points.push(new Point2D({ x: d * Math.cos(angle), y: d * Math.sin(angle) }));
+    points.push(new Point2D$1({ x: d * Math.cos(angle), y: d * Math.sin(angle) }));
   }
   return points;
 }
@@ -2957,10 +2957,10 @@ const icons$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePrope
   icons
 }, Symbol.toStringTag, { value: "Module" }));
 class Color {
-  red = assignedLater();
-  green = assignedLater();
-  blue = assignedLater();
-  alpha = assignedLater();
+  red = assignedLater$1();
+  green = assignedLater$1();
+  blue = assignedLater$1();
+  alpha = assignedLater$1();
   constructor(red, green, blue, alpha = 1) {
     this.red = red;
     this.green = green;
@@ -3312,8 +3312,8 @@ const cssColorMap = {
   yellowgreen: { r: 154, g: 205, b: 50 }
 };
 class DateTime {
-  month = assignedLater();
-  day = assignedLater();
+  month = assignedLater$1();
+  day = assignedLater$1();
   serialize() {
     throw new Error("implement ser/de on datetime");
   }
@@ -3328,7 +3328,7 @@ class MeasurementTypeInstance {
   _tag = "type instance";
 }
 class Measurement {
-  count_ = assignedLater();
+  count_ = assignedLater$1();
   constructor(value) {
     this.count_ = value;
   }
@@ -3460,7 +3460,7 @@ class Grams extends Measurement {
 }
 const units = { m: Meters, km: Kilometers, kg: Kilograms, g: Grams };
 class PrimitiveArrayAttributeValue {
-  values = assignedLater();
+  values = assignedLater$1();
   constructor(value) {
     this.values = value;
   }
@@ -3469,7 +3469,7 @@ class PrimitiveArrayAttributeValue {
   }
 }
 class PrimitiveAttributeValue {
-  value = assignedLater();
+  value = assignedLater$1();
   constructor(value) {
     this.value = value;
   }
@@ -3518,8 +3518,8 @@ class Style {
   }
 }
 class StyledText {
-  text = assignedLater();
-  style = assignedLater();
+  text = assignedLater$1();
+  style = assignedLater$1();
   constructor(text, style) {
     this.text = text;
     this.style = new Style({ bold: style.bold ?? false, italic: style.italic ?? false });
@@ -3546,7 +3546,7 @@ class StyledText {
   }
 }
 class RichText {
-  parts = assignedLater();
+  parts = assignedLater$1();
   constructor(parts) {
     this.parts = parts ?? [];
     if (this.parts.length < 1) this.parts = [
@@ -3644,10 +3644,10 @@ var AttributeType;
   AttributeType2.define = define;
 })(AttributeType || (AttributeType = {}));
 class AttributeDefinition {
-  name = assignedLater();
-  type = assignedLater();
-  id_ = assignedLater();
-  group = assignedLater();
+  name = assignedLater$1();
+  type = assignedLater$1();
+  id_ = assignedLater$1();
+  group = assignedLater$1();
   static nextID = 0;
   constructor(name, type, group, id) {
     this.name = name;
@@ -3696,8 +3696,8 @@ var AttributeValue;
 let nextID = 0;
 class TreeNode {
   static paddingMultiplier = 1.1;
-  parent_ = assignedLater();
-  outline_ = assignedLater();
+  parent_ = assignedLater$1();
+  outline_ = assignedLater$1();
   /**
    * A unique numeric ID for this tree node. Some notes on this:
    *
@@ -3744,11 +3744,11 @@ class TreeNode {
     const scaleFactor = targetRadius / this.outline_.shape.radius;
     this.outline_.shape.radius = targetRadius;
     if (!this.parent) {
-      this.outline_.shape.center = Point2D.origin();
+      this.outline_.shape.center = Point2D$1.origin();
     } else if (this.hasNoChildrenOrNiblings) {
       const dist = this.parent.outline_.shape.radius * 0.6;
       const angle = this.index * (2 * Math.PI) / this.siblingCountIncludingMe;
-      this.outline_.shape.center = Point2D.polar(dist, angle).plus(parentCenter);
+      this.outline_.shape.center = Point2D$1.polar(dist, angle).plus(parentCenter);
     } else if (this.isOnlyChild) {
       this.outline_.shape.center = parentCenter;
     } else {
@@ -3765,7 +3765,7 @@ class TreeNode {
     this.clearLayoutCache();
     const intrinsicRadius = this.calculateIntrinsicSize();
     let targetRadius = intrinsicRadius;
-    let startCenter = Point2D.origin();
+    let startCenter = Point2D$1.origin();
     if (this.parent) {
       targetRadius = Math.max(...this.siblingsIncludingMe.map((sibling) => sibling.outline_.shape.radius));
       startCenter = this.parent.outline_.shape.center;
@@ -3787,12 +3787,12 @@ class TreeNode {
     this.root().dfs().filter((node) => node !== this.self && !node.isDescendantOf(this.self)).forEach((node) => node.outline.isVisible = false);
   }
   shift(amount) {
-    let difference = new Point2D(amount);
+    let difference = new Point2D$1(amount);
     this.outline.shape.center = this.outline.shape.center.plus(difference);
     this.children.forEach((child) => child.shift(amount));
   }
   clearLayoutCache() {
-    this.outline_ = assignedLater();
+    this.outline_ = assignedLater$1();
     this.children.forEach((child) => child.clearLayoutCache());
   }
   get hasOnlyLeaves() {
@@ -3987,7 +3987,7 @@ class TreeBranch extends TreeNode {
   }
 }
 class GraphOutline {
-  shape = assignedLater();
+  shape = assignedLater$1();
   color = Color.black;
   isVisible = true;
   constructor(shape, color) {
@@ -3995,29 +3995,29 @@ class GraphOutline {
     this.color = color;
   }
   static originCircle(radius) {
-    return new GraphOutline(new Circle(radius, Point2D.origin()), Color.black);
+    return new GraphOutline(new Circle(radius, Point2D$1.origin()), Color.black);
   }
   static fromShapeAndColor(shape, color) {
     return new GraphOutline(shape, color);
   }
 }
 class Item extends TreeLeaf {
-  attributes = assignedLater();
+  attributes = assignedLater$1();
   constructor(value) {
     super();
     this.attributes = typeof value === "string" ? { Name: new StringAttribute(value) } : value;
   }
   clone() {
-    return new Item(Objects.mapValues(this.attributes, (attribute2) => attribute2?.clone() ?? null));
+    return new Item(Objects$1.mapValues(this.attributes, (attribute2) => attribute2?.clone() ?? null));
   }
   serialize() {
     return {
       id: this.id,
-      attributes: Objects.mapValues(this.attributes, (attribute2) => attribute2 ? AttributeValue.serialize(attribute2) : null)
+      attributes: Objects$1.mapValues(this.attributes, (attribute2) => attribute2 ? AttributeValue.serialize(attribute2) : null)
     };
   }
   static deserializeUnsafe(item) {
-    let created = new Item(Objects.mapValues(item.attributes, (attribute2) => attribute2 ? AttributeValue.deserialize(attribute2) : null));
+    let created = new Item(Objects$1.mapValues(item.attributes, (attribute2) => attribute2 ? AttributeValue.deserialize(attribute2) : null));
     created.id = item.id;
     return created;
   }
@@ -4062,10 +4062,10 @@ class Item extends TreeLeaf {
   }
 }
 class Group extends TreeBranch {
-  name = assignedLater();
-  description = assignedLater();
-  attributes_ = assignedLater();
-  icon_ = assignedLater();
+  name = assignedLater$1();
+  description = assignedLater$1();
+  attributes_ = assignedLater$1();
+  icon_ = assignedLater$1();
   constructor(arg, ...children) {
     super(...children);
     this.name = typeof arg === "string" ? arg : arg.name;
@@ -4080,12 +4080,15 @@ class Group extends TreeBranch {
     }
   }
   clone() {
-    return new Group({
-      name: this.name,
-      description: this.description,
-      icon: this.icon_,
-      attributes: this.attributes_ === "inherit" ? "inherit" : this.attributes_.map((definition) => definition.clone())
-    });
+    return new Group(
+      {
+        name: this.name,
+        description: this.description,
+        icon: this.icon_,
+        attributes: this.attributes_ === "inherit" ? "inherit" : this.attributes_.map((definition) => definition.clone())
+      },
+      ...this.children
+    );
   }
   serializeStandalone() {
     return {
@@ -4317,8 +4320,8 @@ const userdata = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   userData
 }, Symbol.toStringTag, { value: "Module" }));
 class Project {
-  location = assignedLater();
-  database = assignedLater();
+  location = assignedLater$1();
+  database = assignedLater$1();
   constructor({ location, database: database2 }) {
     this.location = location;
     this.database = database2;
@@ -4371,18 +4374,103 @@ const project = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePrope
   __proto__: null,
   Project
 }, Symbol.toStringTag, { value: "Module" }));
-const math = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  Circle,
-  Matrix3x3,
-  Point2D,
-  Rectangle,
-  clamp,
-  sum
-}, Symbol.toStringTag, { value: "Module" }));
+function assignedLater() {
+  return null;
+}
+var Objects;
+((Objects2) => {
+  function mapValues(obj, map) {
+    return Object.entries(obj).map(([key, value]) => ({ [key]: map(value) })).reduce((accumulator, current) => ({ ...accumulator, ...current }));
+  }
+  Objects2.mapValues = mapValues;
+  function mapEntries(obj, map) {
+    return Object.entries(obj).map(([inputKey, inputValue]) => map(inputKey, inputValue)).reduce((object, [outputKey, outputValue]) => ({ ...object, ...{ [outputKey]: outputValue } }), {});
+  }
+  Objects2.mapEntries = mapEntries;
+})(Objects || (Objects = {}));
+class Point2D2 {
+  x = assignedLater();
+  y = assignedLater();
+  constructor(x, y) {
+    if (typeof x === "object") {
+      if (Array.isArray(x)) {
+        this.x = x[0];
+        this.y = x[1];
+      } else {
+        this.x = x.x;
+        this.y = x.y;
+      }
+    } else {
+      this.x = x;
+      this.y = y;
+    }
+  }
+  clone() {
+    return new Point2D2(this);
+  }
+  plus(other) {
+    let point = new Point2D2(other);
+    return new Point2D2(this.x + point.x, this.y + point.y);
+  }
+  equals(other) {
+    let point = new Point2D2(other);
+    return this.x == point.x && this.y == point.y;
+  }
+  moveAwayFrom(point, distance) {
+    let center = new Point2D2(point);
+    let radius = this.distanceTo(center);
+    return new Point2D2(this.x + distance * (this.x - center.x) / radius, this.y + distance * (this.y - center.y) / radius);
+  }
+  static average(points) {
+    return points.map((point) => new Point2D2(point)).reduce((accumulator, current) => accumulator.plus(current), Point2D2.origin()).dividedBy(points.length);
+  }
+  static polar(radius, angle) {
+    return new Point2D2(radius * Math.cos(angle), radius * Math.sin(angle));
+  }
+  polar() {
+    return {
+      radius: this.distanceTo(Point2D2.origin()),
+      angle: Math.atan(this.y / this.x)
+    };
+  }
+  polarRelativeTo(center) {
+    let angle = Math.atan((this.y - center.y) / (this.x - center.x));
+    let radius = this.distanceTo(center);
+    return { radius, angle };
+  }
+  static sum(...pointLikes) {
+    let points = pointLikes.map((point) => new Point2D2(point));
+    return points.reduce((total, current) => total.plus(current), Point2D2.origin());
+  }
+  dividedBy(other) {
+    let point = typeof other === "object" ? new Point2D2(other) : new Point2D2([other, other]);
+    return new Point2D2(this.x / point.x, this.y / point.y);
+  }
+  distanceTo(other) {
+    let point = new Point2D2(other);
+    return Math.sqrt(Math.pow(point.x - this.x, 2) + Math.pow(point.y - this.y, 2));
+  }
+  squared() {
+    return this.times(this);
+  }
+  times(other) {
+    let point = new Point2D2(other);
+    return new Point2D2(this.x * point.x, this.y * point.y);
+  }
+  distanceSquared(other) {
+    return Math.pow(this.distanceTo(other), 2);
+  }
+  minus(other) {
+    let point = new Point2D2(other);
+    return new Point2D2(this.x - point.x, this.y - point.y);
+  }
+  static origin() {
+    return new Point2D2(0, 0);
+  }
+}
 let Mouse$1 = class Mouse {
-  client_ = Point2D.origin();
-  offset_ = Point2D.origin();
+  client_ = Point2D2.origin();
+  offset_ = Point2D2.origin();
   leftClicking_ = false;
   rightClicking_ = false;
   middleClicking_ = false;
@@ -4405,8 +4493,8 @@ let Mouse$1 = class Mouse {
     return this.offset_;
   }
   relativeTo(element) {
-    if (!element.offsetParent) return Point2D.origin();
-    return new Point2D(this.client.x - element.offsetParent.getBoundingClientRect().left, this.client.y - element.offsetParent.getBoundingClientRect().top);
+    if (!element.offsetParent) return Point2D2.origin();
+    return new Point2D2(this.client.x - element.offsetParent.getBoundingClientRect().left, this.client.y - element.offsetParent.getBoundingClientRect().top);
   }
   get isMoving() {
     return this.isMoving_;
@@ -4416,6 +4504,9 @@ let Mouse$1 = class Mouse {
   }
   onLeftClick(callback) {
     this.handlers.push({ event: "mousedown", callback });
+  }
+  onMove(callback) {
+    this.handlers.push({ event: "move", callback });
   }
   onClickAndRelease(callback) {
     this.handlers.push({ event: "click", callback });
@@ -5054,6 +5145,168 @@ function SettingsPopup($$renderer, $$props) {
     bind_props($$props, { open: open2 });
   });
 }
+const math = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  Circle,
+  Matrix3x3,
+  Point2D: Point2D$1,
+  Rectangle,
+  clamp,
+  sum
+}, Symbol.toStringTag, { value: "Module" }));
+class Mouse2 {
+  client_ = Point2D$1.origin();
+  offset_ = Point2D$1.origin();
+  leftClicking_ = false;
+  rightClicking_ = false;
+  middleClicking_ = false;
+  isMoving_ = false;
+  isDragging_ = false;
+  handlers = [];
+  get isLeftClicking() {
+    return this.leftClicking_;
+  }
+  get isRightClicking() {
+    return this.rightClicking_;
+  }
+  get isMiddleClicking() {
+    return this.middleClicking_;
+  }
+  get client() {
+    return this.client_;
+  }
+  get offsetY() {
+    return this.offset_;
+  }
+  relativeTo(element) {
+    if (!element.offsetParent) return Point2D$1.origin();
+    return new Point2D$1(this.client.x - element.offsetParent.getBoundingClientRect().left, this.client.y - element.offsetParent.getBoundingClientRect().top);
+  }
+  get isMoving() {
+    return this.isMoving_;
+  }
+  get isDragging() {
+    return this.isDragging_;
+  }
+  onLeftClick(callback) {
+    this.handlers.push({ event: "mousedown", callback });
+  }
+  onMove(callback) {
+    this.handlers.push({ event: "move", callback });
+  }
+  onClickAndRelease(callback) {
+    this.handlers.push({ event: "click", callback });
+  }
+  onRelease(callback) {
+    this.handlers.push({ event: "mouseup", callback });
+  }
+}
+let mouseState = new Mouse2();
+function mouse() {
+  return mouseState;
+}
+function InputHandler($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+  });
+}
+function ContextMenu($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    let {
+      left = void 0,
+      right,
+      bottom,
+      top = void 0,
+      onclose = () => {
+      },
+      children
+    } = $$props;
+    let visible = false;
+    let doneTransitioning = true;
+    let transitionTimer = null;
+    let domElement = null;
+    let flipX = derived(() => {
+      return false;
+    });
+    let transformOriginX = derived(() => left ? flipX() ? "100%" : "0%" : flipX() ? "0%" : "100%");
+    let transformOriginY = derived(() => top ? "0%" : "100%");
+    function toggle() {
+      if (visible) close2();
+      else open2();
+    }
+    function open2() {
+      if (!doneTransitioning) return;
+      forceOpen();
+    }
+    function forceOpen() {
+      doneTransitioning = false;
+      visible = true;
+      if (transitionTimer) clearTimeout(transitionTimer);
+      transitionTimer = setTimeout(
+        () => {
+          doneTransitioning = true;
+        },
+        100
+      );
+    }
+    function openAtMouse(event2) {
+      event2?.preventDefault();
+      let position = mouse().relativeTo(domElement);
+      left = `${position.x}px`;
+      top = `${position.y}px`;
+      open2();
+    }
+    function close2() {
+      if (!doneTransitioning) return;
+      forceClose();
+    }
+    function forceClose() {
+      doneTransitioning = false;
+      visible = false;
+      onclose();
+      if (transitionTimer) clearTimeout(transitionTimer);
+      transitionTimer = setTimeout(
+        () => {
+          doneTransitioning = true;
+        },
+        100
+      );
+    }
+    function element() {
+      return domElement;
+    }
+    function openingState() {
+      if (doneTransitioning && visible) return "open";
+      if (!doneTransitioning && visible) return "opening";
+      if (doneTransitioning && !visible) return "closing";
+      return "closed";
+    }
+    $$renderer2.push(`<section${attr_class(clsx(["context-menu", visible && "open"]), "svelte-ipyuv8")}${attr_style("", { top, bottom, right, left })}><div class="inner svelte-ipyuv8"${attr_style("", {
+      scale: visible ? "100%" : "0%",
+      transform: flipX() ? "translateX(-170px)" : void 0,
+      "transform-origin": `${stringify(transformOriginX())} ${stringify(transformOriginY())}`
+    })}>`);
+    children($$renderer2);
+    $$renderer2.push(`<!----></div></section>`);
+    bind_props($$props, {
+      left,
+      top,
+      toggle,
+      open: open2,
+      forceOpen,
+      openAtMouse,
+      close: close2,
+      forceClose,
+      element,
+      openingState
+    });
+  });
+}
+const components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  ContextMenu,
+  InputHandler,
+  mouse
+}, Symbol.toStringTag, { value: "Module" }));
 function HierarchyView_1($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     let { entry, hideRoot = false, subtree = false, demo = false } = $$props;
@@ -5102,10 +5355,7 @@ function HierarchyView_1($$renderer, $$props) {
     $$renderer2.push(`<!--]--> `);
     if (entry.children.length !== 0) {
       $$renderer2.push("<!--[0-->");
-      $$renderer2.push(`<ul${attr_class(clsx({ expanded }), "svelte-87xnpf")}${attr_style("", {
-        "border-left": hideRoot ? "none" : "1px solid #45475a",
-        "margin-top": subtree || !expanded ? "0px" : "0.5rem"
-      })}><!--[-->`);
+      $$renderer2.push(`<ul${attr_class(clsx({ expanded }), "svelte-87xnpf")}${attr_style("", { "border-left": hideRoot ? "none" : "1px solid #45475a" })}><!--[-->`);
       const each_array = ensure_array_like(entry.sortedChildren);
       for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
         let child = each_array[$$index];
@@ -5118,7 +5368,7 @@ function HierarchyView_1($$renderer, $$props) {
       $$renderer2.push("<!--[-1-->");
     }
     $$renderer2.push(`<!--]--> `);
-    ContextMenu$1($$renderer2, {
+    ContextMenu($$renderer2, {
       onclose: () => clickedNode = false,
       left: menuLeft,
       top: menuTop,
@@ -5418,7 +5668,7 @@ class Camera {
     return this.transformation.inverse;
   }
   getWorldSpaceOrigin() {
-    return this.project(Point2D.origin());
+    return this.project(Point2D$1.origin());
   }
   project(point) {
     return this.viewMatrix.timesPoint(point);
@@ -5427,7 +5677,7 @@ class Camera {
     return this.transformation.timesPoint(point);
   }
   viewOrigin() {
-    return this.viewMatrix.timesPoint(Point2D.origin());
+    return this.viewMatrix.timesPoint(Point2D$1.origin());
   }
   moveTo(point) {
     this.translation = Matrix3x3.translation(point);
@@ -5445,7 +5695,7 @@ class Camera {
     this.rotation = this.rotation.times(Matrix3x3.rotation(angle));
   }
   scale(pointLike) {
-    let point = new Point2D(typeof pointLike === "object" ? pointLike : [pointLike, pointLike]);
+    let point = new Point2D$1(typeof pointLike === "object" ? pointLike : [pointLike, pointLike]);
     if (Math.abs(point.x) < MIN_SCALE || Math.abs(point.y) < MIN_SCALE) return;
     this.dilation = this.dilation.times(Matrix3x3.scale(point));
   }
@@ -5453,39 +5703,39 @@ class Camera {
     return this.dilation.getScale();
   }
   setScale(pointLike) {
-    let point = new Point2D(typeof pointLike === "object" ? pointLike : [pointLike, pointLike]);
+    let point = new Point2D$1(typeof pointLike === "object" ? pointLike : [pointLike, pointLike]);
     const safeX = Math.max(Math.abs(point.x), MIN_SCALE) * Math.sign(point.x || 1);
     const safeY = Math.max(Math.abs(point.y), MIN_SCALE) * Math.sign(point.y || 1);
     this.dilation = Matrix3x3.scale({ x: safeX, y: safeY });
   }
   rotateAround(pivot, angle) {
-    const p = new Point2D(pivot);
+    const p = new Point2D$1(pivot);
     const rotationMatrix = Matrix3x3.rotation(angle);
-    const currentPos = new Point2D([this.translation.values[0][2], this.translation.values[1][2]]);
+    const currentPos = new Point2D$1([this.translation.values[0][2], this.translation.values[1][2]]);
     const offset = { x: currentPos.x - p.x, y: currentPos.y - p.y };
     const rotatedOffset = rotationMatrix.timesPoint(offset);
     this.translation = Matrix3x3.translation({ x: p.x + rotatedOffset.x, y: p.y + rotatedOffset.y });
     this.rotate(angle);
   }
   setScaleAround(pivot, newScale) {
-    const p = new Point2D(pivot);
-    const target = new Point2D(typeof newScale === "object" ? newScale : [newScale, newScale]);
+    const p = new Point2D$1(pivot);
+    const target = new Point2D$1(typeof newScale === "object" ? newScale : [newScale, newScale]);
     const current = this.getScale();
-    const factor = new Point2D({ x: target.x / current.x, y: target.y / current.y });
+    const factor = new Point2D$1({ x: target.x / current.x, y: target.y / current.y });
     if (Math.abs(factor.x) < MIN_SCALE || Math.abs(factor.y) < MIN_SCALE) return;
     const scaleMatrix = Matrix3x3.scale(factor);
-    const currentPos = new Point2D([this.translation.values[0][2], this.translation.values[1][2]]);
+    const currentPos = new Point2D$1([this.translation.values[0][2], this.translation.values[1][2]]);
     const offset = { x: currentPos.x - p.x, y: currentPos.y - p.y };
     const scaledOffset = scaleMatrix.timesPoint(offset);
     this.translation = Matrix3x3.translation({ x: p.x + scaledOffset.x, y: p.y + scaledOffset.y });
     this.setScale(target);
   }
   scaleAround(pivot, factor) {
-    const p = new Point2D(pivot);
-    const factorPoint = new Point2D(typeof factor === "object" ? factor : [factor, factor]);
+    const p = new Point2D$1(pivot);
+    const factorPoint = new Point2D$1(typeof factor === "object" ? factor : [factor, factor]);
     if (Math.abs(factorPoint.x) < MIN_SCALE || Math.abs(factorPoint.y) < MIN_SCALE) return;
     const scaleMatrix = Matrix3x3.scale(factorPoint);
-    const currentPos = new Point2D([this.translation.values[0][2], this.translation.values[1][2]]);
+    const currentPos = new Point2D$1([this.translation.values[0][2], this.translation.values[1][2]]);
     const offset = { x: currentPos.x - p.x, y: currentPos.y - p.y };
     const scaledOffset = scaleMatrix.timesPoint(offset);
     this.translation = Matrix3x3.translation({ x: p.x + scaledOffset.x, y: p.y + scaledOffset.y });
@@ -5678,156 +5928,6 @@ const attribute = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePro
   StyledText,
   Weight,
   attributeTypes
-}, Symbol.toStringTag, { value: "Module" }));
-class Mouse2 {
-  client_ = Point2D.origin();
-  offset_ = Point2D.origin();
-  leftClicking_ = false;
-  rightClicking_ = false;
-  middleClicking_ = false;
-  isMoving_ = false;
-  isDragging_ = false;
-  handlers = [];
-  get isLeftClicking() {
-    return this.leftClicking_;
-  }
-  get isRightClicking() {
-    return this.rightClicking_;
-  }
-  get isMiddleClicking() {
-    return this.middleClicking_;
-  }
-  get client() {
-    return this.client_;
-  }
-  get offsetY() {
-    return this.offset_;
-  }
-  relativeTo(element) {
-    if (!element.offsetParent) return Point2D.origin();
-    return new Point2D(this.client.x - element.offsetParent.getBoundingClientRect().left, this.client.y - element.offsetParent.getBoundingClientRect().top);
-  }
-  get isMoving() {
-    return this.isMoving_;
-  }
-  get isDragging() {
-    return this.isDragging_;
-  }
-  onLeftClick(callback) {
-    this.handlers.push({ event: "mousedown", callback });
-  }
-  onClickAndRelease(callback) {
-    this.handlers.push({ event: "click", callback });
-  }
-  onRelease(callback) {
-    this.handlers.push({ event: "mouseup", callback });
-  }
-}
-let mouseState = new Mouse2();
-function mouse() {
-  return mouseState;
-}
-function InputHandler($$renderer, $$props) {
-  $$renderer.component(($$renderer2) => {
-  });
-}
-function ContextMenu($$renderer, $$props) {
-  $$renderer.component(($$renderer2) => {
-    let {
-      left = void 0,
-      right,
-      bottom,
-      top = void 0,
-      onclose = () => {
-      },
-      children
-    } = $$props;
-    let visible = false;
-    let doneTransitioning = true;
-    let transitionTimer = null;
-    let domElement = null;
-    let flipX = derived(() => {
-      return false;
-    });
-    let transformOriginX = derived(() => left ? flipX() ? "100%" : "0%" : flipX() ? "0%" : "100%");
-    let transformOriginY = derived(() => top ? "0%" : "100%");
-    function toggle() {
-      if (visible) close2();
-      else open2();
-    }
-    function open2() {
-      if (!doneTransitioning) return;
-      forceOpen();
-    }
-    function forceOpen() {
-      doneTransitioning = false;
-      visible = true;
-      if (transitionTimer) clearTimeout(transitionTimer);
-      transitionTimer = setTimeout(
-        () => {
-          doneTransitioning = true;
-        },
-        100
-      );
-    }
-    function openAtMouse(event2) {
-      event2?.preventDefault();
-      let position = mouse().relativeTo(domElement);
-      left = `${position.x}px`;
-      top = `${position.y}px`;
-      open2();
-    }
-    function close2() {
-      if (!doneTransitioning) return;
-      forceClose();
-    }
-    function forceClose() {
-      doneTransitioning = false;
-      visible = false;
-      onclose();
-      if (transitionTimer) clearTimeout(transitionTimer);
-      transitionTimer = setTimeout(
-        () => {
-          doneTransitioning = true;
-        },
-        100
-      );
-    }
-    function element() {
-      return domElement;
-    }
-    function openingState() {
-      if (doneTransitioning && visible) return "open";
-      if (!doneTransitioning && visible) return "opening";
-      if (doneTransitioning && !visible) return "closing";
-      return "closed";
-    }
-    $$renderer2.push(`<section${attr_class(clsx(["context-menu", visible && "open"]), "svelte-ipyuv8")}${attr_style("", { top, bottom, right, left })}><div class="inner svelte-ipyuv8"${attr_style("", {
-      scale: visible ? "100%" : "0%",
-      transform: flipX() ? "translateX(-170px)" : void 0,
-      "transform-origin": `${stringify(transformOriginX())} ${stringify(transformOriginY())}`
-    })}>`);
-    children($$renderer2);
-    $$renderer2.push(`<!----></div></section>`);
-    bind_props($$props, {
-      left,
-      top,
-      toggle,
-      open: open2,
-      forceOpen,
-      openAtMouse,
-      close: close2,
-      forceClose,
-      element,
-      openingState
-    });
-  });
-}
-const components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  ContextMenu,
-  InputHandler,
-  mouse
 }, Symbol.toStringTag, { value: "Module" }));
 function ColorPicker($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
@@ -6340,13 +6440,13 @@ function Editor($$renderer, $$props) {
 }
 class Tab {
   static tabID = 0;
-  id = assignedLater();
+  id = assignedLater$1();
   constructor() {
     this.id = Tab.tabID++;
   }
 }
 class GroupTab extends Tab {
-  group = assignedLater();
+  group = assignedLater$1();
   view = "hierarchy";
   constructor(group) {
     super();
@@ -6354,7 +6454,7 @@ class GroupTab extends Tab {
   }
 }
 class EditorTab extends Tab {
-  content = assignedLater();
+  content = assignedLater$1();
   constructor(content) {
     super();
     this.content = content;
@@ -6414,10 +6514,9 @@ const ui = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
 function Tabline($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     let {
-      tabs = void 0,
       background,
       subpane,
-      split = void 0,
+      tree = void 0,
       onclose,
       isMasterPaneAlive = void 0,
       selectedTabID = void 0
@@ -6426,7 +6525,7 @@ function Tabline($$renderer, $$props) {
       return "0px";
     });
     $$renderer2.push(`<div class="tabs svelte-vybefw"><!--[-->`);
-    const each_array = ensure_array_like(tabs.tabs);
+    const each_array = ensure_array_like(tree.tabline.tabs);
     for (let index = 0, $$length = each_array.length; index < $$length; index++) {
       let tab = each_array[index];
       const Icon = tab instanceof EditorTab ? PencilIcon : tab instanceof GroupTab ? tab.group.icon.component : void 0;
@@ -6451,7 +6550,7 @@ function Tabline($$renderer, $$props) {
       $$renderer2.push(`<!----></button></div>`);
     }
     $$renderer2.push(`<!--]--> <div class="new-tab-wrapper svelte-vybefw"${attr_style("", {
-      left: `calc(min(${stringify(tabWidth())}, 13rem) * ${stringify(tabs.count())})`
+      left: `calc(min(${stringify(tabWidth())}, 13rem) * ${stringify(tree.tabline.count())})`
     })}><button class="new-tab svelte-vybefw">`);
     PlusIcon($$renderer2, {
       stroke: "var(--stroke)",
@@ -6463,7 +6562,7 @@ function Tabline($$renderer, $$props) {
       style: "width: 0.85rem; height: 0.85rem;"
     });
     $$renderer2.push(`<!----></button> `);
-    if (subpane || split) {
+    if (subpane || tree.split !== "none") {
       $$renderer2.push("<!--[0-->");
       $$renderer2.push(`<button class="svelte-vybefw">`);
       CloseIcon($$renderer2, {
@@ -6486,12 +6585,12 @@ function Tabline($$renderer, $$props) {
           stroke: "#cdd6f4",
           style: "width: 1.2rem; height: 1.2rem; rotate: 90deg;"
         });
-        $$renderer3.push(`<!----> <span>Split vertically</span></button> <hr/> <button${attr("disabled", !subpane && !split, true)} class="svelte-vybefw">`);
+        $$renderer3.push(`<!----> <span>Split vertically</span></button> <hr/> <button${attr("disabled", !subpane && tree.split === "none", true)} class="svelte-vybefw">`);
         CloseIcon($$renderer3, {
-          stroke: subpane || split ? "#f38ba8" : "#6c7086",
+          stroke: subpane || tree.split !== "none" ? "#f38ba8" : "#6c7086",
           scale: 0.85
         });
-        $$renderer3.push(`<!----> <span${attr_style(`color: ${stringify(subpane || split ? "#f38ba8" : "#6c7086")}`)}>Close pane</span></button>`);
+        $$renderer3.push(`<!----> <span${attr_style(`color: ${stringify(subpane || tree.split !== "none" ? "#f38ba8" : "#6c7086")}`)}>Close pane</span></button>`);
       },
       $$slots: { default: true }
     });
@@ -6554,12 +6653,12 @@ function Tabline($$renderer, $$props) {
         });
         $$renderer3.push(`<!----></button> <hr/> <button>`);
         RenameIcon($$renderer3, { stroke: "#cdd6f4", scale: 1.2 });
-        $$renderer3.push(`<!----> <span>Rename tab</span></button> <div${attr_class(clsx([!subpane && !split && "disabled"]))}>`);
+        $$renderer3.push(`<!----> <span>Rename tab</span></button> <div${attr_class(clsx([!subpane && tree.split === "none" && "disabled"]))}>`);
         CloseIcon($$renderer3, {
-          stroke: subpane || split ? "#f38ba8" : "#6c7086",
+          stroke: subpane || tree.split !== "none" ? "#f38ba8" : "#6c7086",
           style: "width: 0.85rem; height: 0.85rem;"
         });
-        $$renderer3.push(`<!----> <span${attr_style(`color: ${stringify(subpane || split ? "#f38ba8" : "#6c7086")}`)}>Close tab</span> `);
+        $$renderer3.push(`<!----> <span${attr_style(`color: ${stringify(subpane || tree.split !== "none" ? "#f38ba8" : "#6c7086")}`)}>Close tab</span> `);
         ContextMenu($$renderer3, {
           children: ($$renderer4) => {
             $$renderer4.push(`<button>`);
@@ -6579,43 +6678,45 @@ function Tabline($$renderer, $$props) {
       $$slots: { default: true }
     });
     $$renderer2.push(`<!---->`);
-    bind_props($$props, { tabs, split, isMasterPaneAlive, selectedTabID });
+    bind_props($$props, { tree, isMasterPaneAlive, selectedTabID });
   });
 }
 function Pane_1($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     let {
-      width = "500px",
-      height = "1000px",
       background = "#1e1e2e",
       subpane = false,
-      split = void 0,
+      tree = {
+        split: "none",
+        percent: 0,
+        childPane: null,
+        tabline: new TabList()
+      },
       onclose = () => {
       }
     } = $$props;
     let dragging = "none";
-    let tabline = new TabList();
-    let selectedTabID = tabline.tabs[0].id;
-    let masterHeight = `${parseInt(height) / 2}px`;
-    let masterWidth = `${parseInt(width) / 2}px`;
+    let selectedTabID = tree.tabline.tabs[0].id;
+    mouse$1().onRelease(() => {
+      console.log("release");
+      dragging = "none";
+    });
     let isMasterPaneAlive = true;
     function openEditor(content) {
       let tab2 = new EditorTab(content);
-      tabline.appendTab(tab2);
+      tree.tabline.appendTab(tab2);
       selectedTabID = tab2.id;
     }
-    let tab = derived(() => tabline.getTabByID(selectedTabID));
+    let tab = derived(() => tree.tabline.getTabByID(selectedTabID));
     let $$settled = true;
     let $$inner_renderer;
     function $$render_inner($$renderer3) {
       $$renderer3.push(`<section${attr_class(clsx({ "pane-wrapper": true }), "svelte-12uuzv1")}${attr_style("", {
-        "flex-direction": split === "horizontal" ? "row" : "column",
-        "flex-grow": subpane ? "1" : void 0
+        "flex-grow": subpane ? "1" : void 0,
+        "grid-template-columns": tree.split !== "none" ? `${tree.percent}fr ${1 - tree.percent}fr` : "1fr"
       })}><section class="pane svelte-12uuzv1"${attr_style("", {
         "max-width": isMasterPaneAlive ? "100vmax" : "0px",
-        "max-height": isMasterPaneAlive ? "100vmax" : "0px",
-        height: split === "vertical" ? masterHeight : "100%",
-        width: split === "horizontal" ? masterWidth : "100%"
+        "max-height": isMasterPaneAlive ? "100vmax" : "0px"
       })}>`);
       Tabline($$renderer3, {
         background,
@@ -6635,18 +6736,11 @@ function Pane_1($$renderer, $$props) {
           selectedTabID = $$value;
           $$settled = false;
         },
-        get split() {
-          return split;
+        get tree() {
+          return tree;
         },
-        set split($$value) {
-          split = $$value;
-          $$settled = false;
-        },
-        get tabs() {
-          return tabline;
-        },
-        set tabs($$value) {
-          tabline = $$value;
+        set tree($$value) {
+          tree = $$value;
           $$settled = false;
         }
       });
@@ -6681,13 +6775,30 @@ function Pane_1($$renderer, $$props) {
       } else {
         $$renderer3.push("<!--[-1-->");
       }
-      $$renderer3.push(`<!--]--></div> <div${attr_class(clsx({ drag: true, right: true, dragging: dragging === "right" }), "svelte-12uuzv1")}></div> <div${attr_class(clsx({ drag: true, bottom: true, dragging: dragging === "bottom" }), "svelte-12uuzv1")}></div></section> `);
-      if (split) {
+      $$renderer3.push(`<!--]--></div> `);
+      if (tree.split === "horizontal") {
+        $$renderer3.push("<!--[0-->");
+        $$renderer3.push(`<div${attr_class(clsx({ drag: true, right: true, dragging: dragging === "right" }), "svelte-12uuzv1")}></div>`);
+      } else if (tree.split === "vertical") {
+        $$renderer3.push("<!--[1-->");
+        $$renderer3.push(`<div${attr_class(clsx({ drag: true, bottom: true, dragging: dragging === "bottom" }), "svelte-12uuzv1")}></div>`);
+      } else {
+        $$renderer3.push("<!--[-1-->");
+      }
+      $$renderer3.push(`<!--]--></section> `);
+      if (tree.split !== "none") {
         $$renderer3.push("<!--[0-->");
         Pane_1($$renderer3, {
           background: "#1e1e2e",
           subpane: true,
-          onclose: () => split = void 0
+          onclose: () => tree.split = "none",
+          get tree() {
+            return tree.childPane;
+          },
+          set tree($$value) {
+            tree.childPane = $$value;
+            $$settled = false;
+          }
         });
       } else {
         $$renderer3.push("<!--[-1-->");
@@ -6702,6 +6813,7 @@ function Pane_1($$renderer, $$props) {
       $$render_inner($$inner_renderer);
     } while (!$$settled);
     $$renderer2.subsume($$inner_renderer);
+    bind_props($$props, { tree });
   });
 }
 function StatusBar($$renderer) {

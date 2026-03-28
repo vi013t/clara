@@ -9,10 +9,11 @@
 	"packageManager": "bun@1.2.23",
 	"scripts": {
 		"dev": "turbo dev --filter=clara",
-		"build": "turbo build --filter=clara",
+		"build": "turbo build --filter=clara && cp ./packages/app/src-tauri/target/release/clara.exe ./packages/app/builds && find ./packages/app/src-tauri/target/release/bundle -type f -exec cp {} ./packages/app/builds \\;",
 		"preprocess": "turbo preprocess",
 		"install:plugins": "bun ./scripts/install_plugins.ts",
-		"clean": "rm ./generated -rf && rm -rf node_modules bun.lock bun.lockb && rm -rf **/node_modules **/bun.lock **/bun.lockb && rm -rf **/dist **/build **/target && bun pm cache rm"
+		"clean": "rm ./generated -rf && rm -rf node_modules bun.lock bun.lockb && rm -rf **/node_modules **/bun.lock **/bun.lockb && rm -rf **/dist **/build **/target && bun pm cache rm",
+		"prebuild": "bun install"
 	},
 	"dependencies": {
 		"@types/node": "^25.5.0"

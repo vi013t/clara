@@ -9,5 +9,7 @@ An app for data visualization.
 You can build and launch the app from source yourself:
 
 ```bash
-git clone https://github.com/vi013t/clara.git && cd clara && bun install && bun run build
+git clone https://github.com/vi013t/clara.git
+cd clara
+bun run build
 ```

@@ -14,22 +14,19 @@
 	} from "@clara/api/icons";
 	import { EditorTab, GroupTab, Tab, TabList, views, type View } from "@clara/api/ui";
 	import { onMount } from "svelte";
-	import type { PaneTree } from "./Pane.svelte";
-	import { TreeLeaf } from "../../../../api/dist/data/tree.svelte";
+	import type { AnyPane, SinglePane } from "./Pane.svelte";
 	let {
 		background,
 		subpane,
-		tree = $bindable(),
+		pane,
+		anyPane = $bindable(),
 		onclose,
-		isMasterPaneAlive = $bindable(),
-		selectedTabID = $bindable(),
 	}: {
 		background: string;
 		subpane: boolean;
-		tree: PaneTree;
+		pane: SinglePane;
+		anyPane: AnyPane;
 		onclose: () => void;
-		isMasterPaneAlive: boolean;
-		selectedTabID: number;
 	} = $props();
 
 	let tabContextMenu: ContextMenu = $state(null!);
@@ -38,25 +35,25 @@
 	let newTabButton: HTMLElement = $state(null!);
 
 	function closePane() {
-		isMasterPaneAlive = false;
+		// TODO
 		onclose();
 	}
 
 	function createTab(group?: Group, view?: View) {
 		let tab = new GroupTab(group ?? (currentTab() as GroupTab).group);
 		if (view) tab.view = view;
-		tree.tabline.appendTab(tab);
-		selectedTabID = tab.id;
+		pane.tabline.appendTab(tab);
+		pane.selectedTabID = tab.id;
 	}
 
 	function currentTab<T extends Tab>(): T {
-		return tree.tabline.getTabByID(selectedTabID) as T;
+		return pane.tabline.getTabByID(pane.selectedTabID) as T;
 	}
 
 	function clickTab(id: number) {
 		return function (event: MouseEvent) {
 			if (event.button !== 0) return;
-			if (tree.tabline.tabExists(id)) selectedTabID = id;
+			if (pane.tabline.tabExists(id)) pane.selectedTabID = id;
 		};
 	}
 
@@ -70,39 +67,36 @@
 
 	function closeTab(id: number) {
 		return function () {
-			if (selectedTabID === id) {
-				let index = tree.tabline.indexOfID(id);
-				selectedTabID = tree.tabline.getTabByIndex(index === 0 ? index + 1 : index - 1).id;
+			if (pane.selectedTabID === id) {
+				let index = pane.tabline.indexOfID(id);
+				pane.selectedTabID = pane.tabline.getTabByIndex(index === 0 ? index + 1 : index - 1).id;
 			}
-			tree.tabline.deleteTab(id);
-			if (tree.tabline.isEmpty()) {
-				isMasterPaneAlive = false;
+			pane.tabline.deleteTab(id);
+			if (pane.tabline.isEmpty()) {
 				onclose();
 			}
 		};
 	}
 
 	function splitHorizontal() {
-		tree.split = "horizontal";
-		tree.percent = 0.5;
-		tree.childPane = {
-			split: "none",
-			percent: 0,
-			tabline: new TabList(),
-			childPane: null,
+		let tabline = new TabList();
+		anyPane = {
+			split: "horizontal",
+			percent: 0.5,
+			panes: [pane, { split: "none", tabline, selectedTabID: tabline.tabs[0].id }],
 		};
+
 		paneSettingsMenu.close();
 	}
 
 	function splitVertical() {
-		tree.split = "vertical";
-		tree.percent = 0.5;
-		tree.childPane = {
-			split: "none",
-			percent: 0,
-			tabline: new TabList(),
-			childPane: null,
+		let tabline = new TabList();
+		anyPane = {
+			split: "vertical",
+			percent: 0.5,
+			panes: [pane, { split: "none", tabline, selectedTabID: tabline.tabs[0].id }],
 		};
+
 		paneSettingsMenu.close();
 	}
 
@@ -130,20 +124,20 @@
 				controls.getBoundingClientRect().width -
 				newTabContainer.getBoundingClientRect().width -
 				16) /
-			tree.tabline.count()
+			pane.tabline.count()
 		}px`;
 	});
 
 	function changeTabGroup(group: Group, view?: View) {
 		return function () {
 			group.thanksgivingDinner();
-			group.cutOff();
+			group.emancipate();
 			if (currentTab() instanceof GroupTab) {
 				currentTab<GroupTab>().group = group;
 			} else {
 				let newTab = new GroupTab(group);
-				tree.tabline.replace(currentTab().id, newTab);
-				selectedTabID = newTab.id;
+				pane.tabline.replace(currentTab().id, newTab);
+				pane.selectedTabID = newTab.id;
 			}
 
 			if (view) setView(view)();
@@ -157,7 +151,7 @@
 </script>
 
 <div class="tabs" bind:this={tabline}>
-	{#each tree.tabline.tabs as tab, index (tab.id)}
+	{#each pane.tabline.tabs as tab, index (tab.id)}
 		{@const Icon = tab instanceof EditorTab ? PencilIcon : tab instanceof GroupTab ? tab.group.icon.component : undefined}
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -165,47 +159,47 @@
 			style:left="calc(min(13rem, {tabWidth}) * {index} + 1rem)"
 			style:width={tabWidth}
 			style:background
-			class={["tab", selectedTabID === tab.id && "selected"]}
+			class={["tab", pane.selectedTabID === tab.id && "selected"]}
 			onmousedown={clickTab(tab.id)}
 			oncontextmenu={rightClickTab(tab.id)}
 		>
 			<span>
-				<Icon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+				<Icon scale={0.85} />
 				{tab instanceof EditorTab ? "Editor" : tab instanceof GroupTab ? tab.group.name : "Empty"}
 			</span>
 			<button onmousedown={closeTab(tab.id)}>
-				<CloseIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+				<CloseIcon stroke="var(--stroke)" scale={0.85} />
 			</button>
 		</div>
 	{/each}
-	<div class="new-tab-wrapper" bind:this={newTabContainer} style:left="calc(min({tabWidth}, 13rem) * {tree.tabline.count()})">
+	<div class="new-tab-wrapper" bind:this={newTabContainer} style:left="calc(min({tabWidth}, 13rem) * {pane.tabline.count()})">
 		<button class="new-tab" onmousedown={() => createTab()} bind:this={newTabButton}>
-			<PlusIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+			<PlusIcon stroke="var(--stroke)" scale={0.85} />
 		</button>
 	</div>
 
 	<div class="controls" bind:this={controls}>
 		<button onmousedown={() => paneSettingsMenu.toggle()}>
-			<GearIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+			<GearIcon stroke="var(--stroke)" scale={0.85} />
 		</button>
-		{#if subpane || tree.split !== "none"}
+		{#if subpane || pane.split !== "none"}
 			<button onmousedown={closePane}>
-				<CloseIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+				<CloseIcon stroke="var(--stroke)" scale={0.85} />
 			</button>
 		{/if}
 		<ContextMenu top="100%" right="0.25rem" bind:this={paneSettingsMenu}>
 			<button onmousedown={splitHorizontal}>
-				<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+				<SplitHorizontalIcon stroke="#cdd6f4" scale={1.2} />
 				<span>Split horizontally</span>
 			</button>
 			<button onmousedown={splitVertical}>
-				<SplitHorizontalIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem; rotate: 90deg;" />
+				<SplitHorizontalIcon stroke="#cdd6f4" scale={1.2} style="rotate: 90deg;" />
 				<span>Split vertically</span>
 			</button>
 			<hr />
-			<button disabled={!subpane && tree.split === "none"} onmousedown={closePane}>
-				<CloseIcon stroke={subpane || tree.split !== "none" ? "#f38ba8" : "#6c7086"} scale={0.85} />
-				<span style="color: {subpane || tree.split !== 'none' ? '#f38ba8' : '#6c7086'}">Close pane</span>
+			<button disabled={!subpane && pane.split === "none"} onmousedown={closePane}>
+				<CloseIcon stroke={subpane || pane.split !== "none" ? "#f38ba8" : "#6c7086"} scale={0.85} />
+				<span style="color: {subpane || pane.split !== 'none' ? '#f38ba8' : '#6c7086'}">Close pane</span>
 			</button>
 		</ContextMenu>
 	</div>
@@ -265,24 +259,24 @@
 	</button>
 
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
-	<div class={[!subpane && tree.split === "none" && "disabled"]} onmousedown={() => closeTab(rightClickedTab)}>
-		<CloseIcon stroke={subpane || tree.split !== "none" ? "#f38ba8" : "#6c7086"} style="width: 0.85rem; height: 0.85rem;" />
-		<span style="color: {subpane || tree.split !== 'none' ? '#f38ba8' : '#6c7086'}">Close tab</span>
+	<div class={[!subpane && pane.split === "none" && "disabled"]} onmousedown={() => closeTab(rightClickedTab)}>
+		<CloseIcon stroke={subpane || pane.split !== "none" ? "#f38ba8" : "#6c7086"} scale={0.85} />
+		<span style="color: {subpane || pane.split !== 'none' ? '#f38ba8' : '#6c7086'}">Close tab</span>
 		<ContextMenu>
 			<button>
-				<CloseIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+				<CloseIcon scale={0.85} />
 				<span>Close others</span>
 			</button>
 			<button>
-				<CloseIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+				<CloseIcon scale={0.85} />
 				<span>Close tabs to the left</span>
 			</button>
 			<button>
-				<CloseIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+				<CloseIcon scale={0.85} />
 				<span>Close tabs to the right</span>
 			</button>
 			<button>
-				<CloseIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+				<CloseIcon scale={0.85} />
 				<span>Close tabs to the left</span>
 			</button>
 		</ContextMenu>

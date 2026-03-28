@@ -10,7 +10,7 @@ async function loadPlugin(absolutePluginPath: string): Promise<ClaraPlugin<any> 
 	const moduleUrl = `${scheme}${sanitizedPath}`;
 
 	try {
-		const userPlugin = await import(`${moduleUrl}?t=${Date.now()}`);
+		const userPlugin = await import(/* @vite-ignore */ `${moduleUrl}?t=${Date.now()}`);
 		return userPlugin.default;
 	} catch (error) {
 		console.error(`Failed to load ES6 plugin at ${moduleUrl}:`, error);

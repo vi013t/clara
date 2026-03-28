@@ -116,7 +116,10 @@ export abstract class TreeNode<Branch extends TreeBranch<Branch, Leaf>, Leaf ext
 			.forEach(node => (node.outline.isVisible = true));
 	}
 
-	public cutOff() {
+	/**
+	 * Hides all nodes that arent this node and its decendents.
+	 */
+	public emancipate() {
 		this.root()
 			.dfs()
 			.filter(node => node !== this.self && !node.isDescendantOf(this.self))

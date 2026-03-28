@@ -24,7 +24,7 @@
 	<Navbar />
 	{#if Project.get()}
 		<div>
-			<Pane background="#181825" />
+			<Pane />
 			<StatusBar />
 		</div>
 	{:else}

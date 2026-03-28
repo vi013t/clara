@@ -75,7 +75,6 @@
 
 <script lang="ts">
 	let moveTimeout: NodeJS.Timeout | null = $state(null);
-	let clickedElement = $state(assignedLater<HTMLElement>());
 
 	function onmousemove(event: MouseEvent) {
 		(mouseState as any).client_ = new Point2D(event.clientX, event.clientY);
@@ -92,7 +91,6 @@
 		}, 200);
 
 		// onmove events
-		console.log("mousemove");
 		((mouseState as any).handlers as { event: string; callback: (event: MouseEvent) => void }[])
 			.filter(handler => handler.event === "move")
 			.forEach(handler => handler.callback(event));
@@ -106,12 +104,6 @@
 		((mouseState as any).handlers as { event: string; callback: (event: MouseEvent) => void }[])
 			.filter(handler => handler.event === "mousedown")
 			.forEach(handler => handler.callback(event));
-
-		clickedElement = event.target as HTMLElement;
-		(mouseState as any).absolute_ = new Point2D(
-			event.clientX - (clickedElement.offsetParent?.getBoundingClientRect().left ?? 0),
-			event.clientY - (clickedElement.offsetParent?.getBoundingClientRect().top ?? 0),
-		);
 	}
 
 	function onmouseup(event: MouseEvent) {
@@ -124,7 +116,6 @@
 			(mouseState as any).middleClicking_ = false;
 		}
 
-		console.log("mouseup");
 		((mouseState as any).handlers as { event: string; callback: (event: MouseEvent) => void }[])
 			.filter(handler => handler.event === "mouseup")
 			.forEach(handler => handler.callback(event));

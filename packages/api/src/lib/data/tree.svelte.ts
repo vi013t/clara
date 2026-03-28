@@ -1,4 +1,4 @@
-import { assignedLater } from "$lib/util/index.svelte";
+import { assignedLater } from "../util/index.svelte";
 import { Point2D, type Point2DLike } from "../math/matrix.svelte";
 import { Circle } from "../math/shape.svelte";
 import { Color } from "./attribute/color.svelte";

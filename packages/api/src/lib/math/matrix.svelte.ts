@@ -1,4 +1,4 @@
-import { assignedLater } from "$lib/util/index.svelte";
+import { assignedLater } from "../util/index.svelte";
 import type { Cloneable } from "../util/Clone.svelte";
 
 type InternalMatrix = readonly [

@@ -1,4 +1,4 @@
-import { assignedLater, type Cloneable, type Serialize } from "$lib/util/index.svelte";
+import { assignedLater, type Cloneable, type Serialize } from "../../util/index.svelte";
 
 export abstract class PrimitiveArrayAttributeValue<T extends number>
 	implements Serialize<T[]>, Cloneable<PrimitiveArrayAttributeValue<T>>

@@ -1,6 +1,5 @@
-import { AttributeDefinition } from "$lib/data/attribute/definition.svelte";
-import { Group, Item, type Database, type SerializedDatabase } from "$lib/data/database.svelte";
-import { BlankPageIcon, GearIcon, LocationIcon, ParagraphIcon, PersonIcon } from "$lib/ui/icons.svelte";
+import { Group, type Database, type SerializedDatabase } from "../data/database.svelte";
+import { BlankPageIcon } from "../ui/icons.svelte";
 import { invoke } from "@tauri-apps/api/core";
 
 type UserData = { templates: Database[] };

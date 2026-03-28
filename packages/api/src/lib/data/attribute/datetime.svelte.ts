@@ -1,6 +1,6 @@
 import { type Serialize } from "../../util/serialize.svelte";
 import type { Cloneable } from "../../util/Clone.svelte";
-import { assignedLater } from "$lib/util/index.svelte";
+import { assignedLater } from "../../util/index.svelte";
 
 const months = [
 	"january",

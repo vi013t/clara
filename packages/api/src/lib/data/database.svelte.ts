@@ -12,8 +12,8 @@ import { AttributeValue, type SerializedAttributeValue } from "./attribute/value
 import { Color } from "./attribute/color.svelte";
 import { StringAttribute } from "./attribute/primitive.svelte";
 import { TreeBranch, TreeLeaf } from "./tree.svelte";
-import GraphIcon from "$lib/components/icons/GraphIcon.svelte";
-import { assignedLater, Objects } from "$lib/util/index.svelte";
+import GraphIcon from "../components/icons/GraphIcon.svelte";
+import { assignedLater, Objects } from "../util/index.svelte";
 
 export class GraphOutline<T extends Shape<any>> {
 	public shape = $state(assignedLater<T>());

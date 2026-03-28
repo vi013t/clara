@@ -35,7 +35,7 @@ build-plugins: build-api
 	done
 
 clean:
-	rm generated
+	rm generated -rf
 	rm -rf node_modules bun.lock bun.lockb
 	rm -rf **/node_modules **/bun.lock **/bun.lockb
 	rm -rf **/dist **/build **/target

@@ -6,11 +6,16 @@
 		"packages/app",
 		"packages/plugins/*"
 	],
+	"packageManager": "bun@1.2.23",
 	"scripts": {
-		"dev": "bun run --filter clara tauri dev",
-		"build": "bun run --filter clara tauri build"
+		"dev": "turbo dev --filter=clara",
+		"build": "turbo build --filter=clara",
+		"preprocess": "turbo preprocess"
 	},
 	"dependencies": {
 		"@types/node": "^25.5.0"
+	},
+	"devDependencies": {
+		"turbo": "latest"
 	}
 }

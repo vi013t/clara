@@ -1,0 +1,19 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"globalPassThroughEnv": ["PATH", "Path", "APPDATA", "LOCALAPPDATA", "USERPROFILE"],
+	"tasks": {
+		"preprocess": {
+			"inputs": ["../../scripts/generate_plugin_bridge.ts"],
+			"outputs": ["../../generated/**"]
+		},
+		"build": {
+			"dependsOn": ["^build", "preprocess"],
+			"outputs": ["dist/**", "target/**", "build/**"]
+		},
+		"dev": {
+			"dependsOn": ["^build", "preprocess"],
+			"cache": false,
+			"persistent": true
+		}
+	}
+}

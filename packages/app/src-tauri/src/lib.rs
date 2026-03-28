@@ -14,14 +14,7 @@ pub fn run() {
 		.plugin(tauri_plugin_opener::init())
 		.plugin(tauri_plugin_dialog::init())
 		.plugin(tauri_plugin_fs::init())
-		.invoke_handler(tauri::generate_handler![
-			new_project,
-			read_project,
-			get_fonts,
-			save_project,
-			save_user_data,
-			get_plugins
-		])
+		.invoke_handler(tauri::generate_handler![new_project, read_project, get_fonts, save_project, save_user_data, get_plugins])
 		.run(tauri::generate_context!())
 		.expect("error while running tauri application");
 }

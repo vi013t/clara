@@ -1,6 +1,6 @@
-import type { Group } from "$lib/data/database.svelte";
-import { Project } from "$lib/project.svelte";
-import { assignedLater } from "$lib/util/index.svelte";
+import type { Group } from "../data/database.svelte";
+import { Project } from "../project.svelte";
+import { assignedLater } from "../util/index.svelte";
 import type { RichText } from "../data/attribute/richtext.svelte";
 import type { View } from "./views.svelte";
 

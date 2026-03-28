@@ -1,6 +1,6 @@
 <script module lang="ts">
-	import { Point2D } from "@clara/api/math";
-	import { assignedLater } from "@clara/api/utils";
+	import { Point2D } from "../math/index.svelte";
+	import { assignedLater } from "../util/index.svelte";
 
 	class Mouse {
 		private client_ = $state(Point2D.origin());
@@ -92,6 +92,7 @@
 		}, 200);
 
 		// onmove events
+		console.log("mousemove");
 		((mouseState as any).handlers as { event: string; callback: (event: MouseEvent) => void }[])
 			.filter(handler => handler.event === "move")
 			.forEach(handler => handler.callback(event));
@@ -123,6 +124,7 @@
 			(mouseState as any).middleClicking_ = false;
 		}
 
+		console.log("mouseup");
 		((mouseState as any).handlers as { event: string; callback: (event: MouseEvent) => void }[])
 			.filter(handler => handler.event === "mouseup")
 			.forEach(handler => handler.callback(event));

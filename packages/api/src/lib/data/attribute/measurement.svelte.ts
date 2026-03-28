@@ -1,6 +1,6 @@
 // yeah i hate me too
 
-import { assignedLater } from "$lib/util/index.svelte";
+import { assignedLater } from "../../util/index.svelte";
 import type { Cloneable } from "../../util/Clone.svelte";
 import type { Serialize } from "../../util/serialize.svelte";
 

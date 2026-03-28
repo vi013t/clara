@@ -1,4 +1,4 @@
-import { assignedLater } from "$lib/util/index.svelte";
+import { assignedLater } from "../util/index.svelte";
 import type { Cloneable } from "../util/Clone.svelte";
 import { clamp } from "./arrays.svelte.ts";
 import { Point2D, type Point2DLike } from "./matrix.svelte.ts";

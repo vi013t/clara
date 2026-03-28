@@ -1,8 +1,8 @@
 import { invoke } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
 import { Group, type Database, type SerializedDatabase } from "./data/database.svelte";
-import type { Serialize } from "$lib/util/serialize.svelte";
-import { assignedLater } from "$lib/util/index.svelte";
+import type { Serialize } from "./util/serialize.svelte";
+import { assignedLater } from "./util/index.svelte";
 import { cache } from "./userdata/index.svelte.ts";
 
 export class Project implements Serialize<SerializedProject> {

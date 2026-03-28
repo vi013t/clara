@@ -1,6 +1,6 @@
-import type { Cloneable } from "$lib/util/Clone.svelte";
-import { assignedLater } from "$lib/util/index.svelte";
-import type { Serialize } from "$lib/util/serialize.svelte";
+import type { Cloneable } from "../../util/Clone.svelte";
+import { assignedLater } from "../../util/index.svelte";
+import type { Serialize } from "../../util/serialize.svelte";
 import { Color } from "./color.svelte.ts";
 
 export class Style implements Cloneable<Style> {

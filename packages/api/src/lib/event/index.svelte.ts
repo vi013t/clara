@@ -1,4 +1,4 @@
-import type { RichText } from "$lib/data/attribute/richtext.svelte";
+import type { RichText } from "../data/attribute/richtext.svelte";
 import { handlers } from "./internal.svelte";
 
 export type EventHandler<Target extends keyof EventData, Name extends keyof HTMLElementEventMap> = {

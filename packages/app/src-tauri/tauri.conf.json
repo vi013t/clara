@@ -4,9 +4,9 @@
 	"version": "0.1.0",
 	"identifier": "clara",
 	"build": {
-		"beforeDevCommand": "bun run dev",
+		"beforeDevCommand": "vite dev",
 		"devUrl": "http://localhost:1420",
-		"beforeBuildCommand": "bun run build",
+		"beforeBuildCommand": "vite build",
 		"frontendDist": "../build"
 	},
 	"app": {
@@ -34,11 +34,6 @@
 				"description": "A Clara project file.",
 				"role": "Editor"
 			}
-		],
-		"windows": {
-			"nsis": {
-				"installerHooks": "./windows/hooks.nsi"
-			}
-		}
+		]
 	}
 }

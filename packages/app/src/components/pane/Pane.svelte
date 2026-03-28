@@ -47,30 +47,33 @@
 	let wrapper: HTMLElement | null = $state(null);
 
 	mouse().onRelease(() => {
+		console.log("release");
 		dragging = "none";
 	});
 
-	mouse().onMove(event => {
-		if (!wrapper || tree.split === "none") return;
+	// mouse().onMove(event => {
+	// 	if (!wrapper || tree.split === "none") return;
 
-		console.log("dragging");
+	// 	console.log("dragging");
 
-		if (dragging === "right") {
-			const combinedWidth = wrapper.getBoundingClientRect().width;
-			const paneWidth = combinedWidth * tree.percent;
-			const newWidth = paneWidth + event.movementX;
-			const newPercent = newWidth / combinedWidth;
-			tree.percent = clamp(newPercent, 0.05, 0.95);
-		} else if (dragging === "bottom") {
-			const combinedHeight = wrapper.getBoundingClientRect().height;
-			const paneHeight = combinedHeight * tree.percent;
-			const newHeight = paneHeight + event.movementY;
-			const newPercent = newHeight / combinedHeight;
-			tree.percent = clamp(newPercent, 0.05, 0.95);
-		}
-	});
+	// 	if (dragging === "right") {
+	// 		const combinedWidth = wrapper.getBoundingClientRect().width;
+	// 		const paneWidth = combinedWidth * tree.percent;
+	// 		const newWidth = paneWidth + event.movementX;
+	// 		const newPercent = newWidth / combinedWidth;
+	// 		tree.percent = clamp(newPercent, 0.05, 0.95);
+	// 	} else if (dragging === "bottom") {
+	// 		const combinedHeight = wrapper.getBoundingClientRect().height;
+	// 		const paneHeight = combinedHeight * tree.percent;
+	// 		const newHeight = paneHeight + event.movementY;
+	// 		const newPercent = newHeight / combinedHeight;
+	// 		tree.percent = clamp(newPercent, 0.05, 0.95);
+	// 	}
+	// });
 
 	let isMasterPaneAlive = $state(true);
+
+	$inspect(dragging);
 
 	function openEditor(content: RichText) {
 		let tab = new EditorTab(content);

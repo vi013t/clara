@@ -2,32 +2,18 @@
 	"$schema": "https://turbo.build/schema.json",
 	"globalPassThroughEnv": ["PATH", "Path", "APPDATA", "LOCALAPPDATA", "USERPROFILE"],
 	"tasks": {
-		"@clara/api#preprocess": {
-			"inputs": ["../../scripts/generate_plugin_bridge.ts", "packages/api"],
-			"outputs": ["../../generated/**", "dist/**", ".svelte-kit/**"]
-		},
-		"@clara/api#build": {
-			"dependsOn": ["@clara/api#preprocess"],
-			"outputs": ["dist/**", "target/**", "build/**", ".svelte-kit/**"]
-		},
 		"build": {
-			"dependsOn": ["@clara/api#build"],
+			"dependsOn": ["^build"],
 			"outputs": ["dist/**", "target/**", "build/**", "builds/**", ".svelte-kit/**"]
 		},
 		"dev": {
-			"dependsOn": ["@clara/api#build"],
+			"dependsOn": ["^build"],
 			"cache": false,
 			"persistent": true
 		},
 		"build:plugins": {
 			"dependsOn": ["^build"],
-			"inputs": ["packages/plugins/**"],
-			"outputs": ["packages/plugins/**/dist/**"]
-		},
-		"install:plugins": {
-			"dependsOn": ["build:plugins"],
-			"cache": false,
-			"outputs": []
+			"outputs": ["dist/**"]
 		}
 	}
 }

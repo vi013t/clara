@@ -1,6 +1,6 @@
 pub mod plugin;
 pub mod project;
-pub mod userdata;
+pub mod usersettings;
 
 pub trait BinaryData: Sized
 where

@@ -7,104 +7,78 @@
 		ColorPaletteIcon,
 		DiceIcon,
 		GearIcon,
+		getIcon,
 		KeyboardKeyIcon,
 		PackageIcon,
 		ParagraphIcon,
 		PlugIcon,
 		StartupIcon,
 	} from "@clara/api/icons";
-	import { userData } from "@clara/api/userdata";
+	import { userSettings } from "@clara/api/usersettings";
+	import Sidebar from "./Sidebar.svelte";
 
 	let popup: Popup;
+	let view = $state("appearance");
+	let editingTemplate: Database | null = $state(null);
 
 	export function open(viewName?: string) {
 		if (viewName) view = viewName;
 		popup.open();
 	}
 
-	let view = $state("appearance");
-
 	function reset() {}
-
-	function setView(viewName: string) {
-		return function () {
-			view = viewName;
-		};
-	}
-
-	let expandedTemplates: string[] = $state([]);
-
-	function expandTemplate(name: string) {
-		return function () {
-			if (expandedTemplates.includes(name)) expandedTemplates = expandedTemplates.filter(other => other !== name);
-			else expandedTemplates.push(name);
-		};
-	}
-
-	let editingTemplate: Database | null = $state(null);
 
 	function editTemplate(template: Database) {
 		return function () {
 			editingTemplate = template;
-			setView("template-editor")();
+			view = "Template Editor";
 		};
 	}
 </script>
 
 <Popup {reset} bind:this={popup}>
 	<div class="popup">
-		<div class="sidebar">
-			<h1 class="title">
-				<GearIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
-				Settings
-			</h1>
-
-			<h1>General</h1>
-
-			<button onmousedown={setView("appearance")}>
-				<ColorPaletteIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Appearance</span>
-			</button>
-			<button onmousedown={setView("introduction")}>
-				<KeyboardKeyIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Hotkeys</span>
-			</button>
-			<button onmousedown={setView("introduction")}>
-				<StartupIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Startup</span>
-			</button>
-			<button onmousedown={setView("introduction")}>
-				<PlugIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Plugins</span>
-			</button>
-
-			<h1>Presets</h1>
-
-			<button class={[view === "templates" && "selected"]} onmousedown={setView("templates")}>
-				<PackageIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Templates</span>
-			</button>
-			<button onmousedown={setView("introduction")}>
-				<DiceIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Randomizers</span>
-			</button>
-			<button onmousedown={setView("introduction")}>
-				<ParagraphIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-				<span>Suggestions</span>
-			</button>
-
-			<h1>Plugins</h1>
-		</div>
+		<Sidebar
+			bind:view
+			title={{ text: "Settings", icon: GearIcon }}
+			sections={{
+				General: [
+					["Appearance", ColorPaletteIcon],
+					["Hotkeys", KeyboardKeyIcon],
+					["Startup", StartupIcon],
+					["Plugins", PlugIcon],
+				],
+				Presets: [
+					["Templates", PackageIcon],
+					["Randomizers", DiceIcon],
+					["Suggestions", ParagraphIcon],
+				],
+				Plugins: userSettings().plugins.map(plugin => [plugin.name, getIcon(plugin.icon).component]),
+			}}
+		/>
 		<div class="content">
-			{#if view === "appearance"}
+			{#each userSettings().plugins as plugin}
+				{#if view === plugin.name}
+					<div class="plugin">
+						<h1>{plugin.name}</h1>
+						<p>{plugin.description}</p>
+						<h2>Options</h2>
+					</div>
+				{/if}
+			{/each}
+			{#if view === "Appearance"}
 				<h1>Appearance</h1>
 				<div class="section">
 					<div class="option">
 						<div class="left">
 							<h2>Theme</h2>
-							<p>Set the color theme for Clara.</p>
+							<p>Additional themes can be installed as plugins.</p>
 						</div>
-						<Select style="background: #1e1e2e;" options={["Catppuccin Mocha"]} value="Catppuccin Mocha" />
+						<Select
+							style="background: var(--background);"
+							options={userSettings().themes.map(theme => theme.name)}
+							bind:value={() => userSettings().selectedTheme.name, name => userSettings().selectTheme(name)}
+						/>
 					</div>
 					<div class="option">
 						<div class="left">
@@ -114,20 +88,20 @@
 						<input />
 					</div>
 				</div>
-			{:else if view === "templates"}
+			{:else if view === "Templates"}
 				<h1 style="margin-top: 1rem;">Templates</h1>
 				<div class="templates">
-					{#each userData().templates as template}
+					{#each userSettings().templates as template}
 						<button class="header" onmousedown={editTemplate(template)}>
 							<div>
 								<h1>{template.name}</h1>
 								<p>{template.description}</p>
 							</div>
-							<ArrowIcon stroke="#cdd6f4" style="width: 1.5rem; height: 1.5rem; rotate: 90deg;" />
+							<ArrowIcon stroke="var(--foreground-bright)" style="width: 1.5rem; height: 1.5rem; rotate: 90deg;" />
 						</button>
 					{/each}
 				</div>
-			{:else if view === "template-editor"}
+			{:else if view === "Template Editor"}
 				{#if editingTemplate}
 					<div class="template-editor">
 						<h2>Name</h2>
@@ -147,8 +121,23 @@
 </Popup>
 
 <style>
+	.plugin {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+
+		h2 {
+			margin-top: 1rem;
+		}
+
+		p {
+			color: var(--foreground);
+			font-size: 0.85rem;
+		}
+	}
+
 	.section {
-		background-color: #181825;
+		background-color: var(--background-dark);
 		border-radius: 0.5rem;
 		padding-left: 1rem;
 		padding-right: 1rem;
@@ -162,9 +151,9 @@
 		padding-bottom: 1rem;
 
 		input {
-			background-color: #1e1e2e;
-			border: 1px solid #313244;
-			color: #cdd6f4;
+			background-color: var(--background);
+			border: 1px solid var(--border);
+			color: var(--foreground-bright);
 			padding: 0.25rem;
 			text-align: right;
 			border-radius: 0.25rem;
@@ -172,13 +161,13 @@
 		}
 
 		&:not(:last-child) {
-			border-bottom: 1px solid #313244;
+			border-bottom: 1px solid var(--border);
 		}
 
 		h2:is(h2) {
 			font-weight: normal;
 			text-transform: none;
-			color: #cdd6f4;
+			color: var(--foreground-bright);
 			font-size: 1rem;
 		}
 
@@ -189,7 +178,7 @@
 
 			p {
 				font-size: 0.75rem;
-				color: #a6adc8;
+				color: var(--foreground);
 			}
 		}
 	}
@@ -206,9 +195,9 @@
 		.name {
 			padding: 0.5rem;
 			border-radius: 0.25rem;
-			border: 1px solid #313244;
+			border: 1px solid var(--border);
 			display: flex;
-			background-color: #181825;
+			background-color: var(--background-dark);
 			gap: 0.5rem;
 
 			button {
@@ -217,16 +206,16 @@
 				justify-content: center;
 				padding: 0.25rem;
 				border-radius: 0.25rem;
-				--stroke: #cdd6f4;
+				--stroke: var(--foreground-bright);
 
 				&:hover {
-					--stroke: #181825;
-					background-color: #b4befe;
+					--stroke: var(--background-dark);
+					background-color: var(--indigo);
 				}
 			}
 
 			input {
-				color: #cdd6f4;
+				color: var(--foreground-bright);
 				padding: 0.25rem;
 				border-radius: 0.25rem;
 				font-size: 0.85rem;
@@ -247,8 +236,8 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			background-color: #181825;
-			border: 1px solid #313244;
+			background-color: var(--background-dark);
+			border: 1px solid var(--border);
 			transition: scale 0.1s;
 			margin-bottom: 0.5rem;
 			border-radius: 0.5rem;
@@ -267,14 +256,6 @@
 				font-size: 0.85rem;
 			}
 		}
-	}
-
-	.title {
-		border-bottom: 1px solid #313244;
-		padding-bottom: 1rem;
-		display: flex;
-		gap: 1rem;
-		margin-left: 0.5rem;
 	}
 
 	.popup {
@@ -303,53 +284,14 @@
 			font-weight: 700;
 			text-transform: uppercase;
 			font-size: 0.85rem;
-			color: #cdd6f4;
+			color: var(--foreground-bright);
 		}
 
 		h2 {
 			font-weight: 700;
 			text-transform: uppercase;
 			font-size: 0.85rem;
-			color: #a6adc8;
-		}
-
-		.sidebar {
-			height: 100%;
-			width: 15rem;
-			border-right: 1px solid #313244;
-			display: flex;
-			flex-direction: column;
-			gap: 0.25rem;
-			padding: 1rem;
-
-			h1:not(:first-child) {
-				margin-top: 1rem;
-			}
-
-			button {
-				display: flex;
-				align-items: center;
-				gap: 0.5rem;
-				padding: 0.25rem;
-				padding-left: 0.5rem;
-				width: 100%;
-				border-radius: 0.25rem;
-				color: #bac2de;
-				--stroke: #bac2de;
-
-				&:hover {
-					background-color: #b4befe;
-					--stroke: #181825;
-				}
-
-				&.selected:not(:hover) {
-					background-color: #313244;
-				}
-
-				span {
-					color: var(--stroke);
-				}
-			}
+			color: var(--foreground);
 		}
 	}
 </style>

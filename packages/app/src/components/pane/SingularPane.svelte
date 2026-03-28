@@ -9,7 +9,7 @@
 	import type { AnyPane, SinglePane } from "./Pane.svelte";
 
 	let {
-		background = "#1e1e2e",
+		background = "var(--background)",
 		subpane = false,
 		anyPane = $bindable(),
 		pane,
@@ -61,11 +61,13 @@
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		border: 1px solid #313244;
+		border: 1px solid var(--border);
+		width: 100%;
+		height: 100%;
 	}
 
 	.content {
-		border-top: 1px solid #313244;
+		border-top: 1px solid var(--border);
 		flex-grow: 1;
 	}
 </style>

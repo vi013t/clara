@@ -45,20 +45,20 @@
 	<div class="column">
 		<div style:width="100%" class="control cell">
 			<button style:opacity="0%" disabled>
-				<TrashIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+				<TrashIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
 			</button>
 		</div>
 
 		{#each group.children as item}
 			<div class="control cell">
 				<button onmousedown={removeItem(item as Item)}>
-					<TrashIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+					<TrashIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
 				</button>
 			</div>
 		{/each}
 		<div class="new control cell">
 			<button onmousedown={addRow}>
-				<PlusIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+				<PlusIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
 			</button>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 			<div class="column">
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div class="cell" oncontextmenu={event => fieldSettings.openAtMouse(event)}>
-					<attribute.type.icon.component stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+					<attribute.type.icon.component stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
 					{attribute.name}
 					<button style="width: fit-content; margin-right: 0px;" onmousedown={event => editAttribute(event, attribute)}>
 						<GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
@@ -92,7 +92,7 @@
 	{/key}
 	<div class="column">
 		<button class="new header cell" onmousedown={addColumn}>
-			<PlusIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+			<PlusIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
 			New
 		</button>
 		{#each group.children as item}
@@ -104,7 +104,7 @@
 
 <ContextMenu bind:this={fieldSettings}>
 	<button>
-		<RenameIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+		<RenameIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
 		Rename
 	</button>
 	<button
@@ -113,12 +113,12 @@
 			fieldSettings.close();
 		}}
 	>
-		<GearIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+		<GearIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
 		Properties
 	</button>
 	<hr />
-	<button style:color="#f38ba8">
-		<CloseIcon stroke="#f38ba8" style="width: 1rem; height: 1rem;" />
+	<button style:color="var(--red)">
+		<CloseIcon stroke="var(--red)" style="width: 1rem; height: 1rem;" />
 		Delete attribute
 	</button>
 </ContextMenu>
@@ -133,11 +133,11 @@
 
 	.new.control.cell,
 	.new.header.cell {
-		background-color: #1e1e2e;
+		background-color: var(--background);
 	}
 
 	.new.cell {
-		background-color: #313244;
+		background-color: var(--border);
 	}
 
 	.column {
@@ -152,16 +152,16 @@
 			margin-top: 0.25rem;
 			padding: 0.25rem;
 			border-radius: 0.25rem;
-			--stroke: #cdd6f4;
+			--stroke: var(--foreground-bright);
 
 			&:hover {
-				background-color: #b4befe;
-				--stroke: #181825;
+				background-color: var(--indigo);
+				--stroke: var(--background-dark);
 			}
 		}
 
 		&:first-child .cell:not(.new) {
-			background-color: #181825;
+			background-color: var(--background-dark);
 		}
 	}
 
@@ -172,15 +172,15 @@
 		align-items: center;
 		padding-left: 0.5rem;
 		padding-right: 0.5rem;
-		border-right: 1px solid #313244;
-		border-bottom: 1px solid #313244;
+		border-right: 1px solid var(--border);
+		border-bottom: 1px solid var(--border);
 		font-size: 0.85rem;
 		gap: 0.5rem;
-		color: #a6adc8;
+		color: var(--foreground);
 
 		&:first-child:not(.new) {
-			background-color: #181825;
-			color: #cdd6f4;
+			background-color: var(--background-dark);
+			color: var(--foreground-bright);
 		}
 
 		&.control {

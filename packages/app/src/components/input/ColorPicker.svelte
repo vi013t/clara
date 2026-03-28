@@ -46,7 +46,7 @@
 		value = color ?? previewColor;
 	}
 
-	let previewColor = $state(value ?? Color.hex("#b4befe"));
+	let previewColor = $state(value ?? Color.hex("var(--indigo)"));
 	let boxX = $state(0);
 	let boxY = $state(0);
 	// svelte-ignore state_referenced_locally
@@ -135,7 +135,7 @@
 			></button>
 		{/each}
 		<button class="new palette-color" onmousedown={() => addToPalette(previewColor)}>
-			<PlusIcon stroke="#cdd6f4" style="height: 100%; aspect-ratio: 1;" />
+			<PlusIcon stroke="var(--foreground-bright)" style="height: 100%; aspect-ratio: 1;" />
 		</button>
 	</div>
 	<button onmousedown={hide} class="set-color">Select</button>
@@ -152,7 +152,7 @@
 
 <ContextMenu bind:this={paletteMenu}>
 	<button>
-		<TrashIcon stroke="#f38ba8" scale={1.2} />
+		<TrashIcon stroke="var(--red)" scale={1.2} />
 		<span style:color="#f37ba8">Remove from palette</span>
 	</button>
 </ContextMenu>
@@ -162,11 +162,11 @@
 		border-radius: 0.25rem;
 		width: 100%;
 		padding: 0.5rem;
-		color: #181825;
+		color: var(--background-dark);
 		box-shadow: 0px 0px 0.25rem black;
 		font-size: 0.85rem;
 		transition: scale 0.1s;
-		background-image: linear-gradient(to bottom right, #94e2d5, #a6e3a1);
+		background-image: linear-gradient(to bottom right, var(--teal), var(--green));
 
 		&:hover {
 			scale: 103%;
@@ -178,8 +178,8 @@
 		width: 18rem;
 		box-shadow: 0px 0px 0.5rem black;
 		position: absolute;
-		background-color: #11111b;
-		border: 1px solid #313244;
+		background-color: var(--background-darker);
+		border: 1px solid var(--border);
 		border-radius: 0.25rem;
 		padding: 1rem;
 		display: flex;
@@ -208,11 +208,11 @@
 	.palette-color {
 		height: 100%;
 		aspect-ratio: 1;
-		border: 1px solid #313244;
+		border: 1px solid var(--border);
 		border-radius: 0.25rem;
 
 		&.new {
-			background-color: #1e1e2e;
+			background-color: var(--background);
 			padding: 0.25rem;
 		}
 	}
@@ -228,13 +228,13 @@
 	}
 
 	input {
-		background-color: #1e1e2e;
-		color: #a6adc8;
+		background-color: var(--background);
+		color: var(--foreground);
 		width: 4rem;
 		padding: 0.25rem;
 		border-radius: 0.25rem;
 		height: 100%;
-		border: 1px solid #313244;
+		border: 1px solid var(--border);
 		margin-right: auto;
 	}
 
@@ -277,7 +277,7 @@
 		align-items: center;
 		font-size: 0.85rem;
 		text-transform: capitalize;
-		outline: 1px solid #313244;
+		outline: 1px solid var(--border);
 	}
 
 	.picker {

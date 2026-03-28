@@ -108,7 +108,7 @@
 				aria-label="Node"
 				onmousedown={() => (clickedNode = item)}
 				class="node"
-				style:background-color={clickedNode === item ? "#f38ba8" : undefined}
+				style:background-color={clickedNode === item ? "var(--red)" : undefined}
 				style:--text="'{item.attributes.name}'"
 				style:left="{item.outline.shape.center.x}px"
 				style:top="{item.outline.shape.center.y}px"
@@ -119,83 +119,83 @@
 		{/each}
 	</CameraView>
 	<div class="controls">
-		<LittleButton Icon={GearIcon} style="border: 1px solid #313244" />
-		<LittleButton Icon={ReticleIcon} onmousedown={center} style="border: 1px solid #313244" />
+		<LittleButton Icon={GearIcon} style="border: 1px solid var(--border)" />
+		<LittleButton Icon={ReticleIcon} onmousedown={center} style="border: 1px solid var(--border)" />
 	</div>
 </section>
 
 <ContextMenu bind:this={groupContextMenu}>
 	<button>
-		<RenameIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<RenameIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
 		<span>Rename group</span>
 	</button>
 	<button>
-		<PackageIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<PackageIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
 		<span>Add subgroup</span>
 	</button>
 	<button>
-		<PlusIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<PlusIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
 		<span>Add item</span>
 	</button>
 	<button>
-		<SpreadsheetIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<SpreadsheetIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
 		<span>Open in view</span>
-		<ArrowIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem; margin-left: auto; rotate: 90deg;" />
+		<ArrowIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem; margin-left: auto; rotate: 90deg;" />
 		<ContextMenu>
 			<button>
-				<TreeIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+				<TreeIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
 				<span>Hierarchy</span>
 			</button>
 			<button>
-				<SpreadsheetIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+				<SpreadsheetIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
 				<span>Spreadsheet</span>
 			</button>
 		</ContextMenu>
 	</button>
 	<hr />
 	<button>
-		<ReticleIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<ReticleIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
 		<span>Focus</span>
 	</button>
 	<button>
-		<ColorPaletteIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<ColorPaletteIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
 		<span>Change color</span>
 	</button>
 	<div>
-		<HexagonIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<HexagonIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
 		<span>Change shape</span>
-		<ArrowIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem; margin-left: auto; rotate: 90deg;" />
+		<ArrowIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem; margin-left: auto; rotate: 90deg;" />
 		<ContextMenu>
 			<button>
-				<HexagonIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+				<HexagonIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
 				<span>Circle</span>
 			</button>
 			<button>
-				<HexagonIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+				<HexagonIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
 				<span>Rectangle</span>
 			</button>
 		</ContextMenu>
 	</div>
 	<button>
-		<ScaleIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<ScaleIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
 		<span>Resize outline</span>
 	</button>
 	<button>
-		<EyeIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<EyeIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
 		<span>Hide outline</span>
 	</button>
 	<button>
-		<EyeIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<EyeIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
 		<span>Hide group</span>
 	</button>
 	<button>
-		<EyeIcon stroke="#cdd6f4" style="width: 1.2rem; height: 1.2rem;" />
+		<EyeIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
 		<span>Hide others</span>
 	</button>
 	<hr />
 	<button>
-		<TrashIcon stroke="#f38ba8" style="width: 1.2rem; height: 1.2rem;" />
-		<span style:color="#f38ba8">Delete group</span>
+		<TrashIcon stroke="var(--red)" style="width: 1.2rem; height: 1.2rem;" />
+		<span style:color="var(--red)">Delete group</span>
 	</button>
 </ContextMenu>
 
@@ -205,15 +205,15 @@
 		transform: translate(-50%, -50%);
 		width: calc(var(--radius) * 2);
 		height: calc(var(--radius) * 2);
-		border: 1px solid #313244;
+		border: 1px solid var(--border);
 		border-radius: 50%;
 
 		&:has(span:hover),
 		&.active {
-			border: 1px solid #f38ba8;
+			border: 1px solid var(--red);
 
 			span {
-				color: #f38ba8;
+				color: var(--red);
 				width: fit-content;
 			}
 		}
@@ -225,7 +225,7 @@
 			left: 50%;
 			transform: translate(-50%);
 			position: absolute;
-			color: #a6adc8;
+			color: var(--foreground);
 			font-size: calc(var(--radius) / 20);
 			font-size: inherit;
 			width: 100%;
@@ -257,7 +257,7 @@
 		display: flex;
 		justify-content: center;
 		transform: translate(-50%, -50%);
-		background-color: #b4befe;
+		background-color: var(--indigo);
 		cursor: move;
 
 		&::after {
@@ -265,11 +265,11 @@
 			white-space: nowrap;
 			top: 125%;
 			position: absolute;
-			color: #a6adc8;
+			color: var(--foreground);
 		}
 
 		&:hover {
-			background-color: #f38ba8;
+			background-color: var(--red);
 		}
 	}
 </style>

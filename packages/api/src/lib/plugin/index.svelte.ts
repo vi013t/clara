@@ -1,3 +1,8 @@
+import type { IconIdentifier } from "../ui/icons.svelte.ts";
+import defaultThemes from "./themes/themes.svelte.ts";
+
+export const corePlugins = [defaultThemes] as const satisfies ClaraPlugin<any>[];
+
 type Setting<Name extends string> = {
 	name: Name;
 };
@@ -9,6 +14,7 @@ type Settings<Names extends string> = {
 export type ClaraPlugin<SettingNames extends string> = {
 	name: string;
 	description: string;
+	icon: IconIdentifier;
 	settings?: Setting<SettingNames>[];
 	onLoad?(info: PluginInfo<SettingNames>): void;
 	onInstall?(info: PluginInfo<SettingNames>): void;

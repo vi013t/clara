@@ -44,6 +44,13 @@
 		projectMenu.close();
 		Project.open();
 	}
+
+	function typeKey(event: KeyboardEvent) {
+		if (event.key === "Enter") {
+			event.preventDefault();
+			(event.currentTarget as HTMLElement).blur();
+		}
+	}
 </script>
 
 <nav>
@@ -104,15 +111,17 @@
 	</div>
 
 	{#if Project.get()}
-		<div>
-			{Project.get()!.database.name}
-		</div>
+		<input
+			onkeydown={typeKey}
+			class="name"
+			bind:value={() => Project.get()!.database.name, name => (Project.get()!.database.name = name)}
+		/>
 	{/if}
 
 	<div>
 		<LittleButton Icon={DashIcon} onmousedown={minimize} scale={0.85} />
 		<LittleButton Icon={MinimizeIcon} onmousedown={maximize} scale={0.85} />
-		<LittleButton Icon={CloseIcon} onmousedown={close} accent="#f38ba8" scale={0.85} />
+		<LittleButton Icon={CloseIcon} onmousedown={close} accent="var(--red)" scale={0.85} />
 	</div>
 </nav>
 
@@ -127,7 +136,7 @@
 	nav {
 		width: 100%;
 		height: 2rem;
-		background-color: #181825;
+		background-color: var(--background-dark);
 		display: flex;
 		align-items: center;
 		padding-left: 0.5rem;
@@ -144,9 +153,22 @@
 		}
 	}
 
+	.name {
+		color: var(--foreground);
+		font-size: 0.85rem;
+		text-align: center;
+		border-radius: 0.25rem;
+		padding: 0.25rem;
+		width: 20rem;
+
+		&:hover {
+			background-color: var(--border);
+		}
+	}
+
 	button,
 	.cm-button {
-		--stroke: #cdd6f4;
+		--stroke: var(--foreground-bright);
 		cursor: pointer;
 
 		&[disabled],

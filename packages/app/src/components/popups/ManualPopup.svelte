@@ -704,11 +704,11 @@
 			border-radius: 0.25rem;
 			width: 10rem;
 			padding: 0.5rem;
-			color: #181825;
+			color: var(--background-dark);
 			box-shadow: 0px 0px 0.25rem black;
 			font-size: 0.85rem;
 			transition: scale 0.1s;
-			background-image: linear-gradient(to bottom right, #94e2d5, #a6e3a1);
+			background-image: linear-gradient(to bottom right, var(--teal), var(--green));
 
 			&:hover {
 				scale: 105%;
@@ -717,7 +717,7 @@
 	}
 
 	ul {
-		color: #a6adc8;
+		color: var(--foreground);
 		font-size: 0.85rem;
 	}
 
@@ -727,12 +727,12 @@
 	}
 
 	b {
-		color: #cdd6f4;
+		color: var(--foreground-bright);
 		font-weight: normal;
 	}
 
 	i {
-		color: #cdd6f4;
+		color: var(--foreground-bright);
 	}
 
 	.popup {
@@ -757,7 +757,7 @@
 			overflow-y: auto;
 
 			p {
-				color: #a6adc8;
+				color: var(--foreground);
 				font-size: 0.85rem;
 			}
 		}
@@ -766,18 +766,18 @@
 			font-weight: 700;
 			text-transform: uppercase;
 			font-size: 0.85rem;
-			color: #cdd6f4;
+			color: var(--foreground-bright);
 		}
 
 		h2 {
 			font-weight: 700;
 			text-transform: uppercase;
 			font-size: 0.85rem;
-			color: #a6adc8;
+			color: var(--foreground);
 		}
 		ul,
 		li {
-			color: #a6adc8;
+			color: var(--foreground);
 		}
 	}
 </style>

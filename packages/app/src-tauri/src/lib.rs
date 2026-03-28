@@ -2,10 +2,10 @@ mod project;
 use crate::{
 	plugin::{get_plugins, register_plugin_uri_scheme_protocol},
 	project::{new_project, read_project, save_project},
-	userdata::save_user_data,
+	usersettings::save_user_data,
 };
 mod plugin;
-mod userdata;
+mod usersettings;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {

@@ -28,7 +28,7 @@
 		height: 100%;
 		gap: 2rem;
 		flex-direction: column;
-		background-color: #11111b;
+		background-color: var(--background-darker);
 
 		p {
 			color: #a6adb8;
@@ -36,7 +36,7 @@
 		}
 
 		> button {
-			color: #89b4fa;
+			color: var(--blue);
 			font-style: italic;
 			font-size: 0.85rem;
 
@@ -53,14 +53,14 @@
 				border-radius: 0.25rem;
 				width: 10rem;
 				padding: 0.5rem;
-				color: #181825;
-				background-image: linear-gradient(to bottom right, #b4befe, #89b4fa);
+				color: var(--background-dark);
+				background-image: linear-gradient(to bottom right, var(--indigo), var(--blue));
 				box-shadow: 0px 0px 0.25rem black;
 				font-size: 0.85rem;
 				transition: scale 0.1s;
 
 				&:last-child {
-					background-image: linear-gradient(to bottom right, #94e2d5, #a6e3a1);
+					background-image: linear-gradient(to bottom right, var(--teal), var(--green));
 				}
 
 				&:hover {

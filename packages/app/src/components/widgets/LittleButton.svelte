@@ -4,7 +4,7 @@
 
 	let {
 		Icon,
-		accent = "#b4befe",
+		accent = "var(--indigo)",
 		scale = 1,
 		...attributes
 	}: { Icon: IconComponent; accent?: string; scale?: number } & HTMLAttributes<HTMLButtonElement> = $props();
@@ -23,14 +23,14 @@
 		border-radius: 0.25rem;
 		font-size: 0.8rem;
 		padding: 0.25rem;
-		--stroke: #cdd6f4;
+		--stroke: var(--foreground-bright);
 		flex-shrink: 0;
 		width: fit-content;
 		height: fit-content;
 
 		&:hover {
 			background-color: var(--accent);
-			--stroke: #181825;
+			--stroke: var(--background-dark);
 		}
 	}
 </style>

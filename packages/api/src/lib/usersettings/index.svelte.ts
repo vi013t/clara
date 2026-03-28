@@ -1,0 +1,112 @@
+import { Group, type Database, type SerializedDatabase } from "../data/database.svelte.ts";
+import { BlankPageIcon } from "../ui/icons.svelte.ts";
+import { invoke } from "@tauri-apps/api/core";
+import type { Theme } from "./theme.svelte.ts";
+import { assignedLater, type Serialize } from "../util/index.svelte.ts";
+import { type ClaraPlugin } from "../plugin/index.svelte.ts";
+
+type SerializedUserSettings = { templates: SerializedDatabase[]; themes: Theme[]; selectedTheme: string };
+
+class UserSettings implements Serialize<SerializedUserSettings> {
+	private templates_ = $state(assignedLater<Database[]>());
+	private themes_ = $state(assignedLater<Theme[]>());
+	private selectedTheme_ = $state(assignedLater<string>());
+	private plugins_: ClaraPlugin<any>[] = $state([]);
+
+	public constructor() {
+		this.templates_ = [
+			new Group({
+				name: "Blank",
+				icon: BlankPageIcon,
+				description: "A blank project with no datasets. This is not recommended for first time users; Use Basic instead.",
+			}),
+		];
+		this.themes_ = [];
+		this.selectedTheme_ = "";
+	}
+
+	public addTheme(theme: Theme): void {
+		this.themes_.push(theme);
+	}
+
+	public addPlugin(plugin: ClaraPlugin<any>): void {
+		this.plugins_.push(plugin);
+	}
+
+	public get themes(): readonly Theme[] {
+		return this.themes_;
+	}
+
+	public get plugins(): ClaraPlugin<any>[] {
+		return this.plugins_;
+	}
+
+	public get selectedTheme(): Theme {
+		return this.themes.find(theme => theme.name === this.selectedTheme_)!;
+	}
+
+	public selectTheme(name: string): void {
+		this.selectedTheme_ = name;
+		if (!document) return;
+		document.querySelector("[data-theme]")?.remove();
+
+		let style = document.createElement("style");
+		style.innerHTML = this.selectedTheme.css;
+		document.head.appendChild(style);
+	}
+
+	public get templates(): readonly Database[] {
+		return this.templates_;
+	}
+
+	public addTemplate(template: Database): void {
+		this.templates_.push(template);
+	}
+
+	public serialize(): SerializedUserSettings {
+		return {
+			templates: this.templates_.map(template => template.serialize()),
+			themes: this.themes_,
+			selectedTheme: this.selectedTheme_,
+		};
+	}
+}
+
+let storedUserData: UserSettings | null = $state(null);
+
+export function userSettings(): UserSettings {
+	if (!storedUserData) storedUserData = new UserSettings();
+	return storedUserData;
+}
+
+export async function saveUserSettings() {
+	await invoke("save_user_data", { data: userSettings().serialize() });
+}
+
+export type SessionData = {
+	lastProjectPath: string | null;
+};
+
+let sessionData: SessionData = $state(loadSessionData());
+
+function loadSessionData(): SessionData {
+	return JSON.parse(
+		localStorage.getItem("session-data") ??
+			JSON.stringify({
+				lastProjectPath: null,
+			}),
+	);
+}
+
+function saveSessionData() {
+	localStorage.setItem("session-data", JSON.stringify(sessionData));
+}
+
+export function cache(values: Partial<SessionData>) {
+	sessionData = { ...sessionData, ...values };
+	saveSessionData();
+}
+
+export function getFromCache<Key extends keyof SessionData>(key: Key): SessionData[Key] {
+	return sessionData[key];
+}

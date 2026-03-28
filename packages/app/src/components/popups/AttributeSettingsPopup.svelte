@@ -32,7 +32,7 @@
 		<section>
 			<div class="sidebar">
 				<h1 class="title">
-					<SpreadsheetIcon stroke="#cdd6f4" style="width: 1rem; height: 1rem;" />
+					<SpreadsheetIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
 					{attribute.name}
 				</h1>
 				<button>
@@ -61,7 +61,13 @@
 				</div>
 
 				<h2>Default</h2>
-				<Input context="settings" background="#181825" type={attribute.type.name} value={null} openEditor={() => {}} />
+				<Input
+					context="settings"
+					background="var(--background-dark)"
+					type={attribute.type.name}
+					value={null}
+					openEditor={() => {}}
+				/>
 			</div>
 		</section>
 	{/if}
@@ -98,17 +104,17 @@
 	}
 
 	.title {
-		border-bottom: 1px solid #313244;
+		border-bottom: 1px solid var(--border);
 		padding-bottom: 1rem;
 		display: flex;
 		gap: 1rem;
 		margin-left: 0.5rem;
 		font-size: 0.85rem;
-		color: #cdd6f4;
+		color: var(--foreground-bright);
 		margin-bottom: 0.5rem;
 		text-transform: uppercase;
 		font-weight: 700;
-		color: #a6adc8;
+		color: var(--foreground);
 	}
 
 	section {
@@ -120,7 +126,7 @@
 	.sidebar {
 		height: 100%;
 		width: 15rem;
-		border-right: 1px solid #313244;
+		border-right: 1px solid var(--border);
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
@@ -134,11 +140,11 @@
 			padding-left: 0.5rem;
 			width: 100%;
 			border-radius: 0.25rem;
-			--stroke: #cdd6f4;
+			--stroke: var(--foreground-bright);
 
 			&:hover {
-				background-color: #b4befe;
-				--stroke: #181825;
+				background-color: var(--indigo);
+				--stroke: var(--background-dark);
 			}
 
 			span {
@@ -148,7 +154,7 @@
 
 		> :last-child {
 			margin-top: auto;
-			background-image: linear-gradient(to bottom right, #eba0ac, #f38ba8);
+			background-image: linear-gradient(to bottom right, #eba0ac, var(--red));
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -156,7 +162,7 @@
 			padding-bottom: 0.5rem;
 			transition: scale 0.1s;
 			box-shadow: 0px 0px 0.25rem black;
-			color: #11111b;
+			color: var(--background-darker);
 
 			&:hover {
 				scale: 105%;
@@ -169,21 +175,21 @@
 		border-radius: 0.25rem;
 		padding: 0.5rem;
 		padding-left: 0.5rem;
-		background-color: #181825;
-		border: 1px solid #313244;
-		color: #cdd6f4;
+		background-color: var(--background-dark);
+		border: 1px solid var(--border);
+		color: var(--foreground-bright);
 	}
 
 	p {
 		font-size: 0.85rem;
-		color: #a6adc8;
+		color: var(--foreground);
 	}
 
 	h2 {
 		font-weight: 700;
 		text-transform: uppercase;
 		font-size: 0.85rem;
-		color: #a6adc8;
+		color: var(--foreground);
 		margin-left: 2px;
 
 		&:not(:first-child) {

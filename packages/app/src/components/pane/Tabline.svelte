@@ -189,17 +189,17 @@
 		{/if}
 		<ContextMenu top="100%" right="0.25rem" bind:this={paneSettingsMenu}>
 			<button onmousedown={splitHorizontal}>
-				<SplitHorizontalIcon stroke="#cdd6f4" scale={1.2} />
+				<SplitHorizontalIcon stroke="var(--foreground-bright)" scale={1.2} />
 				<span>Split horizontally</span>
 			</button>
 			<button onmousedown={splitVertical}>
-				<SplitHorizontalIcon stroke="#cdd6f4" scale={1.2} style="rotate: 90deg;" />
+				<SplitHorizontalIcon stroke="var(--foreground-bright)" scale={1.2} style="rotate: 90deg;" />
 				<span>Split vertically</span>
 			</button>
 			<hr />
 			<button disabled={!subpane && pane.split === "none"} onmousedown={closePane}>
-				<CloseIcon stroke={subpane || pane.split !== "none" ? "#f38ba8" : "#6c7086"} scale={0.85} />
-				<span style="color: {subpane || pane.split !== 'none' ? '#f38ba8' : '#6c7086'}">Close pane</span>
+				<CloseIcon stroke={subpane || pane.split !== "none" ? "var(--red)" : "#6c7086"} scale={0.85} />
+				<span style="color: {subpane || pane.split !== 'none' ? 'var(--red)' : '#6c7086'}">Close pane</span>
 			</button>
 		</ContextMenu>
 	</div>
@@ -207,16 +207,16 @@
 
 <ContextMenu bind:this={tabContextMenu}>
 	<button>
-		<EyeIcon stroke="#cdd6f4" scale={0.85} style="margin-left: 0.15rem;" />
+		<EyeIcon stroke="var(--foreground-bright)" scale={0.85} style="margin-left: 0.15rem;" />
 		<span>Switch view</span>
 		<ContextMenu>
 			{#each Object.entries(views) as [viewName, info]}
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div onmousedown={setView(viewName as View)}>
-					<info.icon stroke={"#cdd6f4"} />
+					<info.icon stroke={"var(--foreground-bright)"} />
 					<span style:text-transform="capitalize">{viewName}</span>
 
-					<ArrowIcon stroke={"#cdd6f4"} style="rotate: 90deg; margin-left: auto;" />
+					<ArrowIcon stroke={"var(--foreground-bright)"} style="rotate: 90deg; margin-left: auto;" />
 					<ContextMenu>
 						<button>
 							<ReticleIcon />
@@ -254,14 +254,14 @@
 	</button>
 	<hr />
 	<button>
-		<RenameIcon stroke="#cdd6f4" scale={1.2} />
+		<RenameIcon stroke="var(--foreground-bright)" scale={1.2} />
 		<span>Rename tab</span>
 	</button>
 
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div class={[!subpane && pane.split === "none" && "disabled"]} onmousedown={() => closeTab(rightClickedTab)}>
-		<CloseIcon stroke={subpane || pane.split !== "none" ? "#f38ba8" : "#6c7086"} scale={0.85} />
-		<span style="color: {subpane || pane.split !== 'none' ? '#f38ba8' : '#6c7086'}">Close tab</span>
+		<CloseIcon stroke={subpane || pane.split !== "none" ? "var(--red)" : "#6c7086"} scale={0.85} />
+		<span style="color: {subpane || pane.split !== 'none' ? 'var(--red)' : '#6c7086'}">Close tab</span>
 		<ContextMenu>
 			<button>
 				<CloseIcon scale={0.85} />
@@ -292,7 +292,7 @@
 	}
 
 	.tabs {
-		background-color: #11111b;
+		background-color: var(--background-darker);
 		width: 100%;
 		height: 2.5rem;
 		display: flex;
@@ -314,7 +314,7 @@
 			width: 1.5rem;
 			height: 1.5rem;
 			border-radius: 0.5rem;
-			--stroke: #cdd6f4;
+			--stroke: var(--foreground-bright);
 			margin-top: auto;
 			margin-bottom: auto;
 			margin-right: 0.25rem;
@@ -323,13 +323,13 @@
 			justify-content: center;
 
 			&:last-child:hover {
-				--stroke: #181825;
-				background-color: #f38ba8;
+				--stroke: var(--background-dark);
+				background-color: var(--red);
 			}
 
 			&:not(:last-child):hover {
-				--stroke: #181825;
-				background-color: #b4befe;
+				--stroke: var(--background-dark);
+				background-color: var(--indigo);
 			}
 		}
 	}
@@ -338,7 +338,7 @@
 		width: 1.5rem;
 		height: 1.5rem;
 		border-radius: 0.5rem;
-		--stroke: #cdd6f4;
+		--stroke: var(--foreground-bright);
 		margin-top: auto;
 		margin-bottom: auto;
 		margin-left: 0.5rem;
@@ -347,8 +347,8 @@
 		justify-content: center;
 
 		&:hover {
-			--stroke: #181825;
-			background-color: #b4befe;
+			--stroke: var(--background-dark);
+			background-color: var(--indigo);
 		}
 	}
 
@@ -359,9 +359,9 @@
 		height: 85%;
 		border-top-right-radius: 0.5rem;
 		border-top-left-radius: 0.5rem;
-		border: 1px solid #313244;
+		border: 1px solid var(--border);
 		border-bottom: none;
-		color: #cdd6f4;
+		color: var(--foreground-bright);
 		font-size: 0.85rem;
 		display: flex;
 		align-items: center;
@@ -369,7 +369,7 @@
 		padding-right: 0.5rem;
 		justify-content: space-between;
 		user-select: none;
-		background-color: #181825;
+		background-color: var(--background-dark);
 		flex-shrink: 1;
 		transition:
 			left 0.1s,
@@ -397,13 +397,13 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			--stroke: #cdd6f4;
+			--stroke: var(--foreground-bright);
 			padding: 0.25rem;
 			border-radius: 0.25rem;
 
 			&:hover {
-				--stroke: #181825;
-				background-color: #f38ba8;
+				--stroke: var(--background-dark);
+				background-color: var(--red);
 			}
 		}
 	}

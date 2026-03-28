@@ -28,8 +28,8 @@
 	}
 
 	.transfer {
-		border: 1px solid #313244;
-		background-color: #181825;
+		border: 1px solid var(--border);
+		background-color: var(--background-dark);
 		margin-left: 0.25rem;
 	}
 
@@ -42,16 +42,16 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		--stroke: #cdd6f4;
+		--stroke: var(--foreground-bright);
 
 		&:hover {
-			--stroke: #181825;
-			background-color: #b4befe;
+			--stroke: var(--background-dark);
+			background-color: var(--indigo);
 		}
 	}
 
 	input {
-		color: #a6adc8;
+		color: var(--foreground);
 		width: 100%;
 		text-align: right;
 		flex-shrink: 1;

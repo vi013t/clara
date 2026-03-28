@@ -14,7 +14,7 @@ import * as utils from "./util/index.svelte";
 import * as components from "./components/index.svelte";
 import * as system from "./system.svelte";
 import * as ui from "./ui/index.svelte";
-import * as userdata from "./userdata/index.svelte";
+import * as usersettings from "./usersettings/index.svelte";
 
 export function attachPluginData() {
 	(globalThis as any).__CLARA_API__ = {
@@ -31,7 +31,7 @@ export function attachPluginData() {
 		components,
 		system,
 		ui,
-		userdata,
+		usersettings,
 	};
 }
 
@@ -53,5 +53,5 @@ export let importMap = {
 	"@clara/api/components": `${scheme}virtual/components.js`,
 	"@clara/api/system": `${scheme}virtual/system.js`,
 	"@clara/api/ui": `${scheme}virtual/ui.js`,
-	"@clara/api/userdata": `${scheme}virtual/userdata.js`,
+	"@clara/api/usersettings": `${scheme}virtual/usersettings.js`,
 };

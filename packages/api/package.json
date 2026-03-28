@@ -2,9 +2,9 @@
 	"name": "@clara/api",
 	"version": "0.0.1",
 	"scripts": {
-		"preprocess": "bun ../../scripts/generate_plugin_bridge.ts",
 		"dev": "vite dev",
 		"build": "vite build && bun run prepack",
+		"prebuild": "bun ../../scripts/generate_plugin_bridge.ts",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"prepack": "svelte-kit sync && svelte-package && publint",
@@ -88,10 +88,10 @@
 			"svelte": "./dist/ui/index.svelte.js",
 			"default": "./dist/ui/index.svelte.js"
 		},
-		"./userdata": {
-			"types": "./dist/userdata/index.svelte.d.ts",
-			"svelte": "./dist/userdata/index.svelte.js",
-			"default": "./dist/userdata/index.svelte.js"
+		"./usersettings": {
+			"types": "./dist/usersettings/index.svelte.d.ts",
+			"svelte": "./dist/usersettings/index.svelte.js",
+			"default": "./dist/usersettings/index.svelte.js"
 		}
 	},
 	"peerDependencies": {

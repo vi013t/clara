@@ -1,7 +1,8 @@
 import { invoke } from "@tauri-apps/api/core";
-import type { ClaraPlugin } from "./plugin/index.svelte.ts";
+import { corePlugins, type ClaraPlugin } from "./plugin/index.svelte.ts";
 
 import { attachPluginData, importMap } from "./plugin_loader.svelte.ts";
+import { userSettings } from "./usersettings/index.svelte.ts";
 
 async function loadPlugin(absolutePluginPath: string): Promise<ClaraPlugin<any> | null> {
 	const isWindows = navigator.userAgent.includes("Windows");
@@ -31,6 +32,18 @@ function createImportMap() {
 	document.head.appendChild(map);
 }
 
+function startPlugin(plugin: ClaraPlugin<any>) {
+	console.log(`Loaded plugin "${plugin.name}".`);
+	userSettings().addPlugin(plugin);
+	plugin.onLoad?.({
+		settings: {
+			get() {
+				return null!;
+			},
+		},
+	});
+}
+
 async function loadPlugins() {
 	const pluginNames = (await invoke<string[]>("get_plugins", {})).map(plugin => {
 		let path = plugin;
@@ -41,20 +54,16 @@ async function loadPlugins() {
 
 	console.log(`Loading plugins: ${pluginNames} (${pluginNames.length})`);
 	const plugins = (await Promise.all(pluginNames.map(plugin => loadPlugin(plugin)))).filter(plugin => plugin !== null);
+	plugins.forEach(plugin => startPlugin(plugin));
+}
 
-	plugins.forEach(plugin => {
-		console.log(`Loaded plugin "${plugin.name}".`);
-		plugin.onLoad?.({
-			settings: {
-				get() {
-					return null!;
-				},
-			},
-		});
-	});
+function loadCorePlugins() {
+	corePlugins.forEach(plugin => startPlugin(plugin));
+	userSettings().selectTheme(userSettings().themes[0].name);
 }
 
 export async function startPlugins() {
+	loadCorePlugins();
 	attachPluginData();
 	createImportMap();
 	loadPlugins();

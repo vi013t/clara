@@ -176,9 +176,9 @@
 			pointer-events: auto;
 			display: flex;
 			flex-direction: column;
-			background-color: #181825;
+			background-color: var(--background-dark);
 			box-shadow: 0px 0px 0.5rem rgba(0, 0, 0, 50%);
-			border: 1px solid #585b70;
+			border: 1px solid var(--foreground-dark);
 			padding: 0.5rem;
 			gap: 0.25rem;
 			width: 100%;
@@ -187,7 +187,7 @@
 
 			:global(> *:not(hr)) {
 				width: 100%;
-				color: #cdd6f4;
+				color: var(--foreground-bright);
 				height: 1.5rem;
 				display: flex;
 				align-items: center;
@@ -209,7 +209,7 @@
 			:global(> hr) {
 				width: calc(100% + 1rem);
 				transform: translateX(-0.5rem);
-				background-color: #313244;
+				background-color: var(--border);
 				height: 1px;
 			}
 		}

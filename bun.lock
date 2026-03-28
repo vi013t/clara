@@ -3,9 +3,6 @@
   "workspaces": {
     "": {
       "name": "clara",
-      "dependencies": {
-        "@types/node": "^25.5.0",
-      },
       "devDependencies": {
         "turbo": "latest",
       },

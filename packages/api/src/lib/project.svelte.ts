@@ -3,7 +3,7 @@ import { open } from "@tauri-apps/plugin-dialog";
 import { Group, type Database, type SerializedDatabase } from "./data/database.svelte";
 import type { Serialize } from "./util/serialize.svelte";
 import { assignedLater } from "./util/index.svelte";
-import { cache } from "./userdata/index.svelte.ts";
+import { cache } from "./usersettings/index.svelte.ts";
 
 export class Project implements Serialize<SerializedProject> {
 	private location = $state(assignedLater<string>());

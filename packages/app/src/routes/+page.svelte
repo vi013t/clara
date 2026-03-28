@@ -8,6 +8,8 @@
 	import StatusBar from "../components/StatusBar.svelte";
 	import { InputHandler } from "@clara/api/components";
 	import { startPlugins } from "@clara/api";
+	import { onMount } from "svelte";
+	import { userSettings } from "@clara/api/usersettings";
 
 	$effect(() => {
 		if (errors().length > 0) {
@@ -16,6 +18,10 @@
 	});
 
 	startPlugins();
+
+	onMount(() => {
+		userSettings().selectTheme(userSettings().selectedTheme.name);
+	});
 </script>
 
 <InputHandler />

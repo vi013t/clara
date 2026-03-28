@@ -18,7 +18,7 @@
 	input {
 		width: 100%;
 		padding: 0.5rem;
-		color: #a6adc8;
+		color: var(--foreground);
 
 		&:hover {
 			background-color: rgba(200, 200, 255, 10%);

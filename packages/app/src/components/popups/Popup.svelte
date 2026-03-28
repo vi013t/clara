@@ -90,8 +90,8 @@
 	}
 
 	section {
-		background-color: #1e1e2e;
-		border: 1px solid #313244;
+		background-color: var(--background);
+		border: 1px solid var(--border);
 		border-radius: 0.5rem;
 		box-shadow: 0px 0px 0.5rem black;
 		position: relative;
@@ -103,7 +103,7 @@
 		position: absolute;
 		top: 0.25rem;
 		right: 0.25rem;
-		--stroke: #cdd6f4;
+		--stroke: var(--foreground-bright);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -111,8 +111,8 @@
 		padding: 0.25rem;
 
 		&:hover {
-			--stroke: #181825;
-			background: #f38ba8;
+			--stroke: var(--background-dark);
+			background: var(--red);
 		}
 	}
 </style>

@@ -24,9 +24,9 @@ export namespace Debug {
 		if (import.meta.env.PROD) return;
 		let log = "%c!! ERROR !!%c";
 		let css: string[] = [
-			`color: #f38ba8; background: #4e3534; padding: 8px; border-radius: 5px; margin-top: 4px; font-weight: bold; margin-bottom: 8px;`,
+			`color: var(--red); background: #4e3534; padding: 8px; border-radius: 5px; margin-top: 4px; font-weight: bold; margin-bottom: 8px;`,
 			"",
-			`color: #f38ba8; background: #4e3534; padding-left: 16px; padding-right: 16px; border-radius: 5px;`,
+			`color: var(--red); background: #4e3534; padding-left: 16px; padding-right: 16px; border-radius: 5px;`,
 		];
 		errors.forEach(line => {
 			log += `\n%c${line}`;
@@ -35,7 +35,7 @@ export namespace Debug {
 	}
 
 	export function success(message: string, url?: string): void {
-		Debug.logColor(message, url, "Success", "#a6e3a1", "#344532");
+		Debug.logColor(message, url, "Success", "var(--green)", "#344532");
 	}
 
 	export function info(message: string, url?: string): void {
@@ -47,7 +47,7 @@ export namespace Debug {
 	}
 
 	export function error(message: string, url?: string): void {
-		Debug.logColor(message, url, "!! ERROR !!", "#f38ba8", "#4e3534");
+		Debug.logColor(message, url, "!! ERROR !!", "var(--red)", "#4e3534");
 	}
 
 	export function test(value: any, message: string, url: string, severity: "error" | "warning" = "error") {

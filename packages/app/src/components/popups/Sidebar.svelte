@@ -39,7 +39,7 @@
 	.sidebar {
 		height: 100%;
 		width: 15rem;
-		border-right: 1px solid #313244;
+		border-right: 1px solid var(--border);
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
@@ -57,12 +57,12 @@
 			padding-left: 0.5rem;
 			width: 100%;
 			border-radius: 0.25rem;
-			color: #cdd6f4;
+			color: var(--foreground-bright);
 
 			&:hover,
 			&.active {
-				background-color: #b4befe;
-				color: #181825;
+				background-color: var(--indigo);
+				color: var(--background-dark);
 			}
 		}
 	}
@@ -71,11 +71,11 @@
 		font-weight: 700;
 		text-transform: uppercase;
 		font-size: 0.85rem;
-		color: #cdd6f4;
+		color: var(--foreground-bright);
 	}
 
 	.title {
-		border-bottom: 1px solid #313244;
+		border-bottom: 1px solid var(--border);
 		padding-bottom: 1rem;
 		display: flex;
 		gap: 1rem;

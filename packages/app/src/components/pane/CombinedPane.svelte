@@ -61,6 +61,7 @@
 <style>
 	.pane-wrapper {
 		height: 100%;
+		width: 100%;
 		display: grid;
 		position: relative;
 	}
@@ -70,11 +71,11 @@
 		z-index: 99;
 
 		&:hover:not(.dragging) {
-			background-color: #313244;
+			background-color: var(--border);
 		}
 
 		&.dragging {
-			background-color: #b4befe;
+			background-color: var(--indigo);
 		}
 
 		&.vertical {

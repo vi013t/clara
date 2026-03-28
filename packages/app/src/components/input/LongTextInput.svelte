@@ -19,14 +19,14 @@
 	}
 
 	button {
-		color: #181825;
+		color: var(--background-dark);
 		padding: 0.25rem;
 		width: 100%;
 		border-radius: 0.25rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background-image: linear-gradient(to bottom right, #b4befe, #89b4fa);
+		background-image: linear-gradient(to bottom right, var(--indigo), var(--blue));
 		font-size: 0.85rem;
 		box-shadow: 0px 0px 0.25rem black;
 		transition: scale 0.05s;

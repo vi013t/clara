@@ -9,7 +9,7 @@
 	import type { Database } from "@clara/api/database";
 	import { Project } from "@clara/api/project";
 	import { FolderIcon, GearIcon } from "@clara/api/icons";
-	import { userData } from "@clara/api/userdata";
+	import { userSettings } from "@clara/api/usersettings";
 
 	let popup: Popup;
 
@@ -21,7 +21,7 @@
 
 	let location: string = $state("");
 	let name: string = $state("");
-	let template: Database = $state(userData().templates[0]);
+	let template: Database = $state(userSettings().templates[0]);
 
 	let startedTypingLocation = $state(false);
 	let startedTypingName = $state(false);
@@ -109,7 +109,7 @@
 		name = "";
 		startedTypingLocation = false;
 		startedTypingName = false;
-		template = userData().templates[0];
+		template = userSettings().templates[0];
 	}
 </script>
 
@@ -127,7 +127,7 @@
 						onchange={typeLocation}
 					/>
 					<button class="input-button" onmousedown={pickLocation}>
-						<FolderIcon stroke="#a6adc8" style="width: 1rem; height: 1rem;" />
+						<FolderIcon stroke="var(--foreground)" style="width: 1rem; height: 1rem;" />
 					</button>
 				</div>
 				{#if locationError && startedTypingLocation}
@@ -153,7 +153,7 @@
 
 				{#if !locationError && !nameError && startedTypingLocation && startedTypingName}
 					<span>
-						Project will be created at <span style:color="#cdd6f4">{location}/{name}</span>
+						Project will be created at <span style:color="var(--foreground-bright)">{location}/{name}</span>
 					</span>
 				{/if}
 			</div>
@@ -166,8 +166,10 @@
 					<div class="select">
 						<Select
 							width="calc(100% - 1.75rem)"
-							options={userData().templates.map(template => ({ name: template.name, icon: template.icon.component }))}
-							bind:value={() => template.name, choice => (template = userData().templates.find(other => other.name === choice)!)}
+							options={userSettings().templates.map(template => ({ name: template.name, icon: template.icon.component }))}
+							bind:value={
+								() => template.name, choice => (template = userSettings().templates.find(other => other.name === choice)!)
+							}
 						/>
 						<button>
 							<GearIcon
@@ -199,7 +201,7 @@
 <style>
 	.tree {
 		padding: 1rem;
-		background-color: #181825;
+		background-color: var(--background-dark);
 		border-radius: 0.25rem;
 	}
 
@@ -217,13 +219,13 @@
 
 		&.disabled {
 			color: #9399b2;
-			background-color: #313244;
+			background-color: var(--border);
 			cursor: default;
 		}
 
 		&:not(.disabled) {
-			background-image: linear-gradient(to bottom right, #b4befe, #89b4fa);
-			color: #181825;
+			background-image: linear-gradient(to bottom right, var(--indigo), var(--blue));
+			color: var(--background-dark);
 			box-shadow: 0px 0px 0.5rem black;
 
 			&:hover {
@@ -245,7 +247,7 @@
 	}
 
 	.error {
-		color: #f38ba8;
+		color: var(--red);
 	}
 
 	.templates {
@@ -261,7 +263,7 @@
 			align-items: center;
 
 			button {
-				--stroke: #cdd6f4;
+				--stroke: var(--foreground-bright);
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -269,8 +271,8 @@
 				border-radius: 0.25rem;
 
 				&:hover {
-					--stroke: #181825;
-					background-color: #b4befe;
+					--stroke: var(--background-dark);
+					background-color: var(--indigo);
 				}
 			}
 		}
@@ -278,11 +280,11 @@
 
 	p {
 		font-size: 0.75rem;
-		color: #a6adc8;
+		color: var(--foreground);
 	}
 
 	.invalid-input {
-		outline: 1px solid #f38ba8;
+		outline: 1px solid var(--red);
 	}
 
 	.popup {
@@ -296,7 +298,7 @@
 
 		span {
 			&:not(.error) {
-				color: #a6adc8;
+				color: var(--foreground);
 			}
 			font-size: 0.85rem;
 		}
@@ -324,14 +326,14 @@
 		}
 
 		> p {
-			background-color: #181825;
+			background-color: var(--background-dark);
 			padding: 1rem;
 			border-radius: 0.25rem;
 		}
 	}
 
 	h1 {
-		color: #cdd6f4;
+		color: var(--foreground-bright);
 		font-size: 1rem;
 	}
 
@@ -339,16 +341,16 @@
 		font-weight: 700;
 		text-transform: uppercase;
 		font-size: 0.85rem;
-		color: #a6adc8;
+		color: var(--foreground);
 	}
 
 	input {
 		padding: 0.25rem;
 		padding-left: 0.5rem;
-		background-color: #181825;
+		background-color: var(--background-dark);
 		border-radius: 0.25rem;
 		width: 100%;
-		color: #cdd6f4;
+		color: var(--foreground-bright);
 		font-size: 0.85rem;
 
 		&::placeholder {

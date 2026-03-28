@@ -296,7 +296,7 @@
 		</div>
 		{#await getFonts() then fonts}
 			<Select
-				style="background-color: transparent; border: none; color: {viewMode === 'dark' ? '#cdd6f4' : 'black'};"
+				style="background-color: transparent; border: none; color: {viewMode === 'dark' ? 'var(--foreground-bright)' : 'black'};"
 				options={fonts.map(font => ({ name: font, style: `font-family: "${font}"` }))}
 				bind:value={font}
 				width="7rem"
@@ -352,14 +352,14 @@
 
 <style>
 	h1 {
-		color: #cdd6f4;
+		color: var(--foreground-bright);
 		font-size: 1.5rem;
 	}
 
 	.toolbar {
 		display: flex;
 		gap: 0.5rem;
-		border-bottom: 1px solid #313244;
+		border-bottom: 1px solid var(--border);
 		overflow-x: auto;
 		overflow-y: visible;
 		padding-left: 0.5rem;
@@ -377,7 +377,7 @@
 		display: flex;
 		align-items: center;
 		gap: 0.25rem;
-		border-left: 1px solid #313244;
+		border-left: 1px solid var(--border);
 		padding-right: 0.75rem;
 		padding-left: 1.1rem;
 
@@ -391,11 +391,11 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			--stroke: #cdd6f4;
+			--stroke: var(--foreground-bright);
 
 			&:hover {
-				--stroke: #181825;
-				background-color: #b4befe;
+				--stroke: var(--background-dark);
+				background-color: var(--indigo);
 			}
 		}
 	}
@@ -404,17 +404,17 @@
 		width: fit-content;
 		display: flex;
 		gap: 0.5rem;
-		border-right: 1px solid #313244;
-		border-left: 1px solid #313244;
+		border-right: 1px solid var(--border);
+		border-left: 1px solid var(--border);
 		padding-left: 0.5rem;
 		padding-right: 0.5rem;
 		align-items: center;
 
 		input {
-			color: #cdd6f4;
+			color: var(--foreground-bright);
 			width: 2rem;
 			text-align: center;
-			border: 1px solid #313244;
+			border: 1px solid var(--border);
 			height: 1.5rem;
 			border-radius: 0.25rem;
 		}
@@ -425,11 +425,11 @@
 			justify-content: center;
 			padding: 0.25rem;
 			border-radius: 0.25rem;
-			--stroke: #cdd6f4;
+			--stroke: var(--foreground-bright);
 
 			&:hover {
-				--stroke: #181825;
-				background-color: #b4befe;
+				--stroke: var(--background-dark);
+				background-color: var(--indigo);
 			}
 		}
 	}
@@ -481,7 +481,7 @@
 
 		.editor {
 			cursor: text;
-			color: #cdd6f4;
+			color: var(--foreground-bright);
 		}
 
 		.editor,

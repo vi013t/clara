@@ -12,15 +12,15 @@
 		</button>
 		<ContextMenu bind:this={wordCountMenu} bottom="120%" right="0.5rem">
 			<button>
-				<WordCountIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+				<WordCountIcon stroke="var(--foreground-bright)" style="width: 0.85rem; height: 0.85rem;" />
 				<span>Word Count</span>
 			</button>
 			<button>
-				<CharacterCountIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+				<CharacterCountIcon stroke="var(--foreground-bright)" style="width: 0.85rem; height: 0.85rem;" />
 				<span>Character Count</span>
 			</button>
 			<button>
-				<SaveIcon stroke="#cdd6f4" style="width: 0.85rem; height: 0.85rem;" />
+				<SaveIcon stroke="var(--foreground-bright)" style="width: 0.85rem; height: 0.85rem;" />
 				<span>Chapter Count</span>
 			</button>
 		</ContextMenu>
@@ -36,14 +36,14 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			--stroke: #cdd6f4;
+			--stroke: var(--foreground-bright);
 			padding: 0.25rem;
 			border-radius: 0.25rem;
 			color: var(--stroke);
 
 			&:hover {
-				--stroke: #181825;
-				background-color: #b4befe;
+				--stroke: var(--background-dark);
+				background-color: var(--indigo);
 			}
 		}
 	}
@@ -52,10 +52,10 @@
 		position: fixed;
 		bottom: 0px;
 		right: 0px;
-		background-color: #11111b;
+		background-color: var(--background-darker);
 		padding: 0.5rem;
-		border-top: 1px solid #313244;
-		border-left: 1px solid #313244;
+		border-top: 1px solid var(--border);
+		border-left: 1px solid var(--border);
 		border-top-left-radius: 0.5rem;
 		display: flex;
 		align-items: center;

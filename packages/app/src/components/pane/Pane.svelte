@@ -25,8 +25,6 @@
 	if (pane.split === "none" && pane.selectedTabID === null) {
 		pane.selectedTabID = pane.tabline.tabs[0].id;
 	}
-
-	$inspect(pane);
 </script>
 
 {#if pane.split === "none"}

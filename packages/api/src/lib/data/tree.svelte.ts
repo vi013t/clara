@@ -102,7 +102,7 @@ export abstract class TreeNode<Branch extends TreeBranch<Branch, Leaf>, Leaf ext
 	}
 
 	public resetColors() {
-		if (!this.parent) this.outline_.color = Color.hex("#181825");
+		if (!this.parent) this.outline_.color = Color.hex("var(--background-dark)");
 		else this.outline_.color = this.parent.outline_.color.darken(2);
 		this.children.forEach(child => (child as unknown as TreeNode<Branch, Leaf>).resetColors());
 	}

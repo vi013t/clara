@@ -25,3 +25,5 @@ clara create plugin
 ```
 
 The CLI will prompt you for information about your plugin.
+
+**Note:** Due to limitations with how the plugin system works, plugins currently _cannot_ use external libraries (outside of `@clara/api`).

@@ -88,8 +88,6 @@
 
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <div style:cursor={locked ? "not-allowed" : "pointer"} bind:this={element} class="select" {...rest} style:width>
-	<!-- Select Button -->
-
 	<div class="input">
 		{#if children}
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -113,7 +111,7 @@
 					) as ComplexOption | undefined}
 					{#if option}
 						{#if option.icon}
-							<option.icon stroke={option.color ?? "#a6adc8"} style="width: 1rem; height: 1rem;" />
+							<option.icon stroke={option.color ?? "var(--foreground)"} />
 						{/if}
 						<span style={option.style ?? ""}>{option.name}</span>
 					{:else}
@@ -124,10 +122,7 @@
 				{/if}
 				{#if !noarrow}
 					<ArrowIcon
-						stroke="#b4befe"
-						style="width: 1rem; height: 1rem; margin-left: auto; transform: rotate({optionsVisible
-							? '180deg'
-							: '90deg'}); transition: transform 0.1s;"
+						style="margin-left: auto; transform: rotate({optionsVisible ? '180deg' : '90deg'}); transition: transform 0.1s;"
 					/>
 				{/if}
 			</button>
@@ -136,7 +131,7 @@
 			<LittleButton
 				onmousedown={toggleLocked}
 				scale={1.5}
-				style="border: 1px solid #313244;"
+				style="border: 1px solid var(--border);"
 				Icon={locked ? LockIcon : UnlockedIcon}
 			/>
 		{/if}
@@ -155,7 +150,7 @@
 					{option}
 				{:else}
 					{#if option.icon}
-						<option.icon stroke={option.color ?? "#a6adc8"} style="width: 1rem; height: 1rem;" />
+						<option.icon stroke={option.color ?? "var(--foreground)"} style="width: 1rem; height: 1rem;" />
 					{/if}
 					{#if itemOverride}
 						{itemOverride}
@@ -179,8 +174,9 @@
 <style>
 	.select {
 		position: relative;
-		background-color: #181825;
-		border: 1px solid #313244;
+		background-color: var(--background-dark);
+		border: 1px solid var(--border);
+		border-radius: 0.25rem;
 	}
 
 	.input {
@@ -188,12 +184,11 @@
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		border-radius: 0.25rem;
 	}
 
 	div,
 	button {
-		color: #a6adc8;
+		color: var(--foreground);
 	}
 
 	.header {
@@ -212,8 +207,8 @@
 		position: absolute;
 		left: 0px;
 		top: calc(100% + 0.25rem);
-		background: #11111b;
-		border: 1px solid #313244;
+		background: var(--background-darker);
+		border: 1px solid var(--border);
 		overflow: hidden;
 		box-shadow: 0px 0px 0.5rem black;
 		z-index: 9999;
@@ -240,8 +235,8 @@
 		> * {
 			padding: 0.25rem;
 			padding-left: 0.5rem;
-			color: #a6adc8;
-			background: #11111b;
+			color: var(--foreground);
+			background: var(--background-darker);
 			text-align: left;
 			display: flex;
 			align-items: center;

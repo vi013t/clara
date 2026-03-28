@@ -43,7 +43,7 @@
 		gap: 1rem;
 
 		h1 {
-			color: #cdd6f4;
+			color: var(--foreground-bright);
 			font-size: 1rem;
 			margin-left: auto;
 			margin-right: auto;
@@ -51,7 +51,7 @@
 		}
 
 		:global(p) {
-			color: #a6adc8;
+			color: var(--foreground);
 			font-size: 0.85rem;
 			text-align: center;
 		}
@@ -72,7 +72,7 @@
 			width: 8rem;
 			transition: scale 0.1s;
 			box-shadow: 0px 0px 0.25rem black;
-			color: #11111b;
+			color: var(--background-darker);
 			border-radius: 0.25rem;
 
 			&:hover {
@@ -80,11 +80,11 @@
 			}
 
 			&:first-child {
-				background-image: linear-gradient(to bottom right, #eba0ac, #f38ba8);
+				background-image: linear-gradient(to bottom right, #eba0ac, var(--red));
 			}
 
 			&:last-child {
-				background-image: linear-gradient(to bottom right, #94e2d5, #a6e3a1);
+				background-image: linear-gradient(to bottom right, var(--teal), var(--green));
 			}
 		}
 	}

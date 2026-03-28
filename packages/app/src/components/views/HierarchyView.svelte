@@ -138,8 +138,8 @@
 				<span>Rename</span>
 			</button>
 			<button onmousedown={deleteEntry}>
-				<TrashIcon stroke="#f38ba8" scale={0.85} />
-				<span style="color: #f38ba8;">Delete</span>
+				<TrashIcon stroke="var(--red)" scale={0.85} />
+				<span style="color: var(--red);">Delete</span>
 			</button>
 		{/if}
 	</ContextMenu>
@@ -154,14 +154,15 @@
 
 	ul {
 		list-style-type: none;
-		overflow: hidden;
+		flex-direction: column;
+		gap: 0.25rem;
 
 		&:not(.expanded) {
-			max-height: 0px;
+			display: none;
 		}
 
 		&.expanded {
-			max-height: 100vh;
+			display: flex;
 		}
 	}
 
@@ -176,7 +177,7 @@
 		padding-left: 0.5rem;
 		border-radius: 0.25rem;
 		width: 100%;
-		--stroke: #cdd6f4;
+		--stroke: var(--foreground-bright);
 		--arrow: #9399b2;
 
 		span {
@@ -199,9 +200,9 @@
 
 		&:hover,
 		&.active {
-			--stroke: #181825;
-			background-color: #b4befe;
-			--arrow: #181825;
+			--stroke: var(--background-dark);
+			background-color: var(--indigo);
+			--arrow: var(--background-dark);
 		}
 	}
 </style>

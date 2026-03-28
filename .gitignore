@@ -3,7 +3,7 @@
 
 # frontend stuff
 node_modules
-/.svelte-kit
+.svelte-kit/
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 

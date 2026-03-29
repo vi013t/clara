@@ -7,6 +7,8 @@ export type IconName = keyof typeof icons;
 export type IconComponent = LucideIcon;
 export type Icon = { name: IconName; component: IconComponent };
 
+export { icons };
+
 /**
  * An object that can be used to identify a singular unqiue icon.
  */

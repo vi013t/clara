@@ -2,4 +2,5 @@
 // AND IS NOT MEANT FOR MANUAL EDITING
 
 const internal = globalThis.__CLARA_API__.project;
+export const Template = internal.Template;
 export const Project = internal.Project;

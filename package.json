@@ -19,6 +19,7 @@
 		"turbo": "latest"
 	},
 	"dependencies": {
-		"@lucide/svelte": "^1.7.0"
+		"@lucide/svelte": "^1.7.0",
+		"lucide-static": "^1.7.0"
 	}
 }

@@ -18,6 +18,7 @@ To build:
 ```bash
 git clone https://github.com/vi013t/clara.git
 cd clara
+bun install
 bun run build
 ```
 
@@ -35,6 +36,7 @@ To pull the files and start the dev server:
 ```bash
 git clone https://github.com/vi013t/clara.git
 cd clara
+bun install
 bun dev
 ```
 

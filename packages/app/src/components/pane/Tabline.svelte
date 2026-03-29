@@ -3,8 +3,9 @@
 	import type { Group } from "@clara/api/database";
 	import { EditorTab, GroupTab, Tab, TabList, views, type View } from "@clara/api/ui";
 	import { onMount } from "svelte";
-	import type { AnyPane, SinglePane } from "./Pane.svelte";
 	import LittleButton from "../widgets/LittleButton.svelte";
+	import IconPicker from "../input/IconPicker.svelte";
+	import type { PaneLayout, SinglePane } from "@clara/api/project";
 	let {
 		background,
 		subpane,
@@ -15,14 +16,14 @@
 		background: string;
 		subpane: boolean;
 		pane: SinglePane;
-		anyPane: AnyPane;
+		anyPane: PaneLayout;
 		onclose: () => void;
 	} = $props();
 
 	let tabContextMenu: ContextMenu = $state(null!);
 	let rightClickedTab = $state(0);
 	let paneSettingsMenu: ContextMenu = $state(null!);
-	let newTabButton: HTMLElement = $state(null!);
+	let newTabButton: HTMLButtonElement = $state(null!);
 
 	function closePane() {
 		// TODO
@@ -97,10 +98,6 @@
 		};
 	}
 
-	function currentView(): View {
-		return currentTab<GroupTab>().view;
-	}
-
 	let tabline: HTMLElement | null = $state(null);
 	let controls: HTMLElement | null = $state(null);
 	let newTabContainer: HTMLElement | null = $state(null);
@@ -118,31 +115,16 @@
 		}px`;
 	});
 
-	function changeTabGroup(group: Group, view?: View) {
-		return function () {
-			group.thanksgivingDinner();
-			group.emancipate();
-			if (currentTab() instanceof GroupTab) {
-				currentTab<GroupTab>().group = group;
-			} else {
-				let newTab = new GroupTab(group);
-				pane.tabline.replace(currentTab().id, newTab);
-				pane.selectedTabID = newTab.id;
-			}
-
-			if (view) setView(view)();
-			tabContextMenu.close();
-		};
-	}
-
 	onMount(() => {
 		mounted = true;
 	});
+
+	let tabIconPicker: IconPicker | null = $state(null);
+	let changeTabIconButton: HTMLButtonElement | undefined = $state(undefined);
 </script>
 
 <div class="tabs" bind:this={tabline}>
 	{#each pane.tabline.tabs as tab, index (tab.id)}
-		{@const tabIcon = tab instanceof EditorTab ? "Pencil" : tab instanceof GroupTab ? tab.group.icon.name : (undefined as never)}
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div
@@ -153,17 +135,33 @@
 			onmousedown={clickTab(tab.id)}
 			oncontextmenu={rightClickTab(tab.id)}
 		>
+			<IconPicker
+				bind:this={tabIconPicker}
+				bind:value={() => tab.icon.name, name => (tab.icon = name)}
+				opener={changeTabIconButton ?? null}
+			/>
 			<span>
-				<Icon name={tabIcon} size={0.85} />
+				<LittleButton bind:element={changeTabIconButton} icon={tab.icon} onmousedown={() => tabIconPicker?.open()} />
 				{tab instanceof EditorTab ? "Editor" : tab instanceof GroupTab ? tab.group.name : "Empty"}
 			</span>
 			<LittleButton accent="var(--red)" icon="X" size={16} onmousedown={closeTab(tab.id)} />
 		</div>
 	{/each}
 	<div class="new-tab-wrapper" bind:this={newTabContainer} style:left="calc(min({tabWidth}, 13rem) * {pane.tabline.count()})">
-		<button class="new-tab" onmousedown={() => createTab()} bind:this={newTabButton}>
-			<Icon name="Plus" size={16} />
-		</button>
+		<LittleButton
+			icon="Plus"
+			style="
+				margin-top: auto;
+				margin-bottom: auto;
+				margin-left: 0.5rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			"
+			size={16}
+			onmousedown={() => createTab()}
+			bind:element={newTabButton}
+		/>
 	</div>
 
 	<div class="controls" bind:this={controls}>
@@ -318,24 +316,6 @@
 		}
 	}
 
-	.new-tab {
-		width: 1.5rem;
-		height: 1.5rem;
-		border-radius: 0.5rem;
-		--stroke: var(--foreground-bright);
-		margin-top: auto;
-		margin-bottom: auto;
-		margin-left: 0.5rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		&:hover {
-			--stroke: var(--background-dark);
-			background-color: var(--indigo);
-		}
-	}
-
 	.tab {
 		position: absolute;
 		top: 7px;
@@ -369,25 +349,11 @@
 			text-overflow: ellipsis;
 			width: calc(100% - 3rem);
 			white-space: nowrap;
-			display: block;
+			display: flex;
 			overflow: hidden;
 
 			:global(> *:first-child) {
 				margin-right: 0.5rem;
-			}
-		}
-
-		> button {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			--stroke: var(--foreground-bright);
-			padding: 0.25rem;
-			border-radius: 0.25rem;
-
-			&:hover {
-				--stroke: var(--background-dark);
-				background-color: var(--red);
 			}
 		}
 	}

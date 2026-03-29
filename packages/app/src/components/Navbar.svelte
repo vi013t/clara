@@ -7,7 +7,6 @@
 	import SettingsPopup from "./popups/SettingsPopup.svelte";
 	import LittleButton from "./widgets/LittleButton.svelte";
 	import { Project } from "@clara/api/project";
-	import { getIcon } from "@clara/api/icons";
 	import { Icon } from "@clara/api/components";
 
 	let projectMenu: ContextMenu;
@@ -138,6 +137,7 @@
 		> div {
 			display: flex;
 			gap: 0.25rem;
+			color: var(--foreground-bright);
 
 			&:last-child {
 				gap: 0.5rem;
@@ -172,5 +172,10 @@
 	.wrapper {
 		position: relative;
 		height: 100%;
+		color: var(--foreground-bright);
+
+		> * {
+			color: var(--foreground-bright);
+		}
 	}
 </style>

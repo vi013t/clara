@@ -84,7 +84,7 @@
 <section bind:this={nodeElement}>
 	{#if !hideRoot || subtree}
 		<button oncontextmenu={onRightClick} class={["node", clickedNode && "active"]} onmousedown={toggle}>
-			<entry.icon.component name="Package" size={16} />
+			<Icon name={entry.icon} />
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<span
 				class="node-name"
@@ -95,17 +95,13 @@
 				bind:this={name}
 			></span>
 			{#if entry.isBranch()}
-				<Icon
-					name="ChevronRight"
-					size={16}
-					style="color: var(--arrow); transition: rotate 0.1s; rotate: {expanded ? '90deg' : '0deg'};"
-				/>
+				<Icon name="ChevronRight" style="color: var(--arrow); transition: rotate 0.1s; rotate: {expanded ? '90deg' : '0deg'};" />
 			{/if}
 		</button>
 	{/if}
 
 	{#if entry.children.length !== 0}
-		<ul class={{ expanded }} style:border-left={hideRoot ? "none" : "1px solid #45475a"}>
+		<ul class={{ expanded }}>
 			{#each entry.sortedChildren as child (child.id)}
 				<li style:padding-left={hideRoot && entry.isRoot ? "0px" : "1.25rem"}>
 					<HierarchyView {demo} {hideRoot} entry={child} subtree />
@@ -117,11 +113,11 @@
 	<ContextMenu onclose={() => (clickedNode = false)} left={menuLeft} top={menuTop} bind:this={rightClickMenu}>
 		{#if entry.isBranch()}
 			<button onmousedown={newItem}>
-				<Icon name="CirclePlus" size={0.85} />
+				<Icon name="CirclePlus" />
 				Create new item
 			</button>
 			<button onmousedown={newGroup}>
-				<Icon name="PackagePlus" size={0.85} />
+				<Icon name="PackagePlus" />
 				Create new group
 			</button>
 			{#if !entry.isRoot}
@@ -130,11 +126,11 @@
 		{/if}
 		{#if !entry.isRoot}
 			<button onmousedown={rename}>
-				<Icon name="Type" size={0.85} />
+				<Icon name="TextCursorInput" />
 				<span>Rename</span>
 			</button>
 			<button onmousedown={deleteEntry}>
-				<Icon name="Trash2" color="var(--red)" size={0.85} />
+				<Icon name="Trash2" color="var(--red)" />
 				<span style="color: var(--red);">Delete</span>
 			</button>
 		{/if}
@@ -151,7 +147,17 @@
 	ul {
 		list-style-type: none;
 		flex-direction: column;
-		gap: 0.25rem;
+		position: relative;
+
+		&::before {
+			content: "";
+			height: 90%;
+			width: 1px;
+			background-color: var(--border-bright);
+			position: absolute;
+			left: 0.85rem;
+			top: 5%;
+		}
 
 		&:not(.expanded) {
 			display: none;
@@ -163,7 +169,7 @@
 	}
 
 	.node {
-		font-size: 0.85rem;
+		font-size: 0.75rem;
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
@@ -173,7 +179,7 @@
 		border-radius: 0.25rem;
 		width: 100%;
 		color: var(--foreground-bright);
-		--arrow: var(--foreground-dark);
+		--arrow: var(--border-bright);
 
 		span {
 			border-radius: 0.25rem;

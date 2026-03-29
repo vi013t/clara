@@ -1,40 +1,129 @@
-import type { Group } from "../data/database.svelte";
+import type { Group, SerializedGroup } from "../data/database.svelte";
 import { Project } from "../project.svelte";
-import { assignedLater } from "../util/index.svelte";
-import type { RichText } from "../data/attribute/richtext.svelte";
+import { assignedLater, type Serialize } from "../util/index.svelte";
+import { RichText, type SerializedRichText } from "../data/attribute/richtext.svelte";
 import type { View } from "./views.svelte";
+import { getIcon, type Icon, type IconIdentifier, type IconName } from "./icons.svelte";
 
 export class Tab {
 	private static tabID = 0;
 
 	public readonly id = $state(assignedLater());
+	private icon_ = $state(assignedLater<Icon>());
 
-	public constructor() {
+	public constructor(icon: IconIdentifier) {
 		this.id = Tab.tabID++;
+		this.icon_ = getIcon(icon);
+	}
+
+	public get icon(): Icon {
+		return this.icon_;
+	}
+
+	public set icon(icon: IconIdentifier) {
+		this.icon_ = getIcon(icon);
 	}
 }
 
-export class GroupTab extends Tab {
-	public group = $state(assignedLater<Group>());
+export type SerializedGroupTab = {
+	type: "group";
+	view: View;
+	id: number;
+	group: number;
+	icon: IconName;
+};
+
+export class GroupTab extends Tab implements Serialize<SerializedGroupTab> {
+	private groupID = $state(assignedLater<number>());
 	public view: View = $state("hierarchy");
 
-	public constructor(group: Group) {
-		super();
-		this.group = group;
+	public constructor(group: number, icon?: IconIdentifier) {
+		super(
+			icon ??
+				Project.get()!
+					.database.dfs()
+					.find(node => node.id === group)!.icon,
+		);
+		this.groupID = group;
+	}
+
+	public get group(): Group {
+		return Project.get()!
+			.database.dfs()
+			.find(node => node.id === this.groupID)! as Group;
+	}
+
+	public serialize(): SerializedGroupTab {
+		return {
+			type: "group",
+			id: this.id,
+			group: this.groupID,
+			view: this.view,
+			icon: this.icon.name,
+		};
+	}
+	public static deserialize(tab: SerializedGroupTab): GroupTab {
+		const group = new GroupTab(tab.group, tab.icon);
+		group.view = tab.view;
+		(group as any).id = tab.id;
+		return group;
 	}
 }
 
-export class EditorTab extends Tab {
+export class EditorTab extends Tab implements Serialize<SerializedEditorTab> {
 	public content: RichText = $state(assignedLater());
 
 	public constructor(content: RichText) {
-		super();
+		super("Pencil");
 		this.content = content;
+	}
+
+	public serialize(): SerializedEditorTab {
+		return {
+			type: "editor",
+			id: this.id,
+			content: this.content.serialize(),
+		};
+	}
+
+	public static deserialize(tab: SerializedEditorTab): EditorTab {
+		const editor = new EditorTab(RichText.deserialize(tab.content));
+		(editor as any).id = tab.id;
+		return editor;
 	}
 }
 
-export class TabList {
-	public tabs: Tab[] = $state([new GroupTab(Project.get()!.database)]);
+export type SerializedEditorTab = {
+	type: "editor";
+	id: number;
+	content: SerializedRichText;
+};
+
+export type SerializedTab = SerializedEditorTab | SerializedGroupTab;
+
+function deserializeTab(tab: SerializedTab): Tab {
+	if (tab.type === "editor") return EditorTab.deserialize(tab);
+	return GroupTab.deserialize(tab);
+}
+
+export type SerializedTabList = {
+	tabs: SerializedTab[];
+};
+
+export class TabList implements Serialize<SerializedTabList> {
+	public tabs: Tab[] = $state([new GroupTab(Project.get()!.database.id)]);
+
+	public serialize(): SerializedTabList {
+		return {
+			tabs: this.tabs.map(tab => (tab as unknown as Serialize<any>).serialize()),
+		};
+	}
+
+	public static deserialize(tablist: SerializedTabList): TabList {
+		const list = new TabList();
+		list.tabs = tablist.tabs.map(tab => deserializeTab(tab));
+		return list;
+	}
 
 	public appendTab(tab: Tab) {
 		this.tabs.push(tab);

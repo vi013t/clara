@@ -14,6 +14,7 @@ export default plugin({
 					--background-dark: #181825;
 					--background-darker: #11111b;
 					--border: #313244;
+					--border-bright: #6c7086;
 
 					--foreground-bright: #cdd6f4;
 					--foreground: #a6adc8;
@@ -40,6 +41,7 @@ export default plugin({
 					--background-dark: #e6e9ef;
 					--background-darker: #dce0e8;
 					--border: #ccd0da;
+					--border-bright: #9ca0b0;
 
 					--foreground-bright: #4c4f69;
 					--foreground: #6c6f85;

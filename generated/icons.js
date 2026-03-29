@@ -3,3 +3,4 @@
 
 const internal = globalThis.__CLARA_API__.icons;
 export const getIcon = internal.getIcon;
+export const icons = internal.icons;

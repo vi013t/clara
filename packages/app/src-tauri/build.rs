@@ -1,6 +1,12 @@
 use std::{env, fs, path::Path};
 
 fn main() {
+	compile_cli();
+	generate_plugin_bridge_macro();
+	tauri_build::build();
+}
+
+fn generate_plugin_bridge_macro() {
 	let out_dir = env::var("OUT_DIR").unwrap();
 	let dest_path = Path::new(&out_dir).join("generated_api_map.rs");
 
@@ -35,5 +41,23 @@ fn main() {
 	);
 
 	fs::write(dest_path, content).unwrap();
-	tauri_build::build();
+}
+
+fn compile_cli() {
+	let cli_project_dir = "../../../tools/clara-cli";
+	let target_binary = "../../../tools/clara-cli/target/release/clara.exe";
+	let destination = "bin/clara.exe";
+
+	let status = std::process::Command::new("cargo")
+		.args(&["build", "--release"])
+		.current_dir(cli_project_dir)
+		.status()
+		.expect("Failed to build CLI");
+
+	if status.success() {
+		std::fs::create_dir_all("bin").unwrap();
+		std::fs::copy(target_binary, destination).expect("Failed to copy CLI binary");
+	}
+
+	println!("cargo:rerun-if-changed=../../../clara-cli/src");
 }

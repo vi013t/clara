@@ -31,7 +31,7 @@
 	}
 
 	function createTab(group?: Group, view?: View) {
-		let tab = new GroupTab(group ?? (currentTab() as GroupTab).group);
+		let tab = new GroupTab((group ?? (currentTab() as GroupTab).group).id);
 		if (view) tab.view = view;
 		pane.tabline.appendTab(tab);
 		pane.selectedTabID = tab.id;

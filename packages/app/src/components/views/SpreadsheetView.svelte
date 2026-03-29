@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { TrashIcon, PlusIcon, GearIcon, RenameIcon, CloseIcon } from "@clara/api/icons";
 	import { AttributeDefinition } from "@clara/api/attribute";
 	import type { RichText } from "@clara/api/attribute";
 	import { Item, type Group } from "@clara/api/database";
 	import Input from "../input/Input.svelte";
-	import ContextMenu from "../../../../api/src/lib/components/menus/ContextMenu.svelte";
+	import { ContextMenu } from "@clara/api/components";
 	import FieldPropertiesPopup from "../popups/AttributeSettingsPopup.svelte";
+	import { Icon } from "@clara/api/components";
 
 	let { group = $bindable(), openEditor }: { group: Group; openEditor: (content: RichText) => void } = $props();
 
@@ -45,20 +45,20 @@
 	<div class="column">
 		<div style:width="100%" class="control cell">
 			<button style:opacity="0%" disabled>
-				<TrashIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
+				<Icon name="Trash2" />
 			</button>
 		</div>
 
 		{#each group.children as item}
 			<div class="control cell">
 				<button onmousedown={removeItem(item as Item)}>
-					<TrashIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
+					<Icon name="Trash2" />
 				</button>
 			</div>
 		{/each}
 		<div class="new control cell">
 			<button onmousedown={addRow}>
-				<PlusIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
+				<Icon name="Plus" />
 			</button>
 		</div>
 	</div>
@@ -70,7 +70,7 @@
 					<attribute.type.icon.component stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
 					{attribute.name}
 					<button style="width: fit-content; margin-right: 0px;" onmousedown={event => editAttribute(event, attribute)}>
-						<GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+						<Icon name="Settings" />
 					</button>
 				</div>
 				{#each group.directItemChildren as item}
@@ -92,7 +92,7 @@
 	{/key}
 	<div class="column">
 		<button class="new header cell" onmousedown={addColumn}>
-			<PlusIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
+			<Icon name="Plus" />
 			New
 		</button>
 		{#each group.children as item}
@@ -104,7 +104,7 @@
 
 <ContextMenu bind:this={fieldSettings}>
 	<button>
-		<RenameIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
+		<Icon name="Type" />
 		Rename
 	</button>
 	<button
@@ -113,12 +113,12 @@
 			fieldSettings.close();
 		}}
 	>
-		<GearIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
+		<Icon name="Settings" />
 		Properties
 	</button>
 	<hr />
 	<button style:color="var(--red)">
-		<CloseIcon stroke="var(--red)" style="width: 1rem; height: 1rem;" />
+		<Icon name="X" />
 		Delete attribute
 	</button>
 </ContextMenu>

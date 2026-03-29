@@ -1,5 +1,4 @@
 import { Group, type Database, type SerializedDatabase } from "../data/database.svelte.ts";
-import { BlankPageIcon } from "../ui/icons.svelte.ts";
 import { invoke } from "@tauri-apps/api/core";
 import type { Theme } from "./theme.svelte.ts";
 import { assignedLater, type Serialize } from "../util/index.svelte.ts";
@@ -17,7 +16,7 @@ class UserSettings implements Serialize<SerializedUserSettings> {
 		this.templates_ = [
 			new Group({
 				name: "Blank",
-				icon: BlankPageIcon,
+				icon: "StickyNote",
 				description: "A blank project with no datasets. This is not recommended for first time users; Use Basic instead.",
 			}),
 		];

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Measurement, MeasurementType } from "@clara/api/attribute";
-	import { TransferIcon } from "@clara/api/icons";
+	import { Icon } from "@clara/api/components";
 
 	let { value = $bindable(), type }: { value: Measurement<any> | null; type: MeasurementType<any> } = $props();
 
@@ -15,7 +15,7 @@
 	<input bind:value={count} onkeydown={typeKey} />
 	<button>{type.units()[0].abbreviation()}</button>
 	<button class="transfer">
-		<TransferIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+		<Icon name="ArrowDownUp" />
 	</button>
 </div>
 

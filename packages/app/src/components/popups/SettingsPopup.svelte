@@ -2,20 +2,10 @@
 	import type { Database } from "@clara/api/database";
 	import Select from "../input/Select.svelte";
 	import Popup from "./Popup.svelte";
-	import {
-		ArrowIcon,
-		ColorPaletteIcon,
-		DiceIcon,
-		GearIcon,
-		getIcon,
-		KeyboardKeyIcon,
-		PackageIcon,
-		ParagraphIcon,
-		PlugIcon,
-		StartupIcon,
-	} from "@clara/api/icons";
 	import { userSettings } from "@clara/api/usersettings";
 	import Sidebar from "./Sidebar.svelte";
+	import { getIcon } from "@clara/api/icons";
+	import { Icon } from "@clara/api/components";
 
 	let popup: Popup;
 	let view = $state("appearance");
@@ -40,18 +30,18 @@
 	<div class="popup">
 		<Sidebar
 			bind:view
-			title={{ text: "Settings", icon: GearIcon }}
+			title={{ text: "Settings", icon: getIcon("Settings").component }}
 			sections={{
 				General: [
-					["Appearance", ColorPaletteIcon],
-					["Hotkeys", KeyboardKeyIcon],
-					["Startup", StartupIcon],
-					["Plugins", PlugIcon],
+					["Appearance", "Palette"],
+					["Hotkeys", "Keyboard"],
+					["Startup", "History"],
+					["Plugins", "Plug2"],
 				],
 				Presets: [
-					["Templates", PackageIcon],
-					["Randomizers", DiceIcon],
-					["Suggestions", ParagraphIcon],
+					["Templates", "Package"],
+					["Randomizers", "Dice6"],
+					["Suggestions", "SpellCheck"],
 				],
 				Plugins: userSettings().plugins.map(plugin => [plugin.name, getIcon(plugin.icon).component]),
 			}}
@@ -97,7 +87,7 @@
 								<h1>{template.name}</h1>
 								<p>{template.description}</p>
 							</div>
-							<ArrowIcon stroke="var(--foreground-bright)" style="width: 1.5rem; height: 1.5rem; rotate: 90deg;" />
+							<Icon name="ChevronRight" size={1.5} />
 						</button>
 					{/each}
 				</div>

@@ -4,7 +4,7 @@
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
-			"outputs": ["dist/**", "target/**", "build/**", "builds/**", ".svelte-kit/**"]
+			"outputs": ["dist/**", "**/target/**", "build/**", "builds/**", ".svelte-kit/**", "**/Cargo.lock"]
 		},
 		"dev": {
 			"dependsOn": ["^build"],
@@ -13,7 +13,7 @@
 		},
 		"build:plugins": {
 			"dependsOn": ["^build"],
-			"outputs": ["dist/**"]
+			"outputs": ["dist/**", "build/**", ".svelte-kit/**", "**/Cargo.lock", "node_modules/**", ".turbo/**"]
 		}
 	}
 }

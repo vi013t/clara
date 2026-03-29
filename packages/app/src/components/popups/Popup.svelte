@@ -3,9 +3,10 @@
 </script>
 
 <script lang="ts">
-	import { CloseIcon } from "@clara/api/icons";
+	import { Icon } from "@clara/api/components";
 
 	import type { Snippet } from "svelte";
+	import LittleButton from "../widgets/LittleButton.svelte";
 
 	let {
 		children,
@@ -68,9 +69,13 @@
 		id="popup-{id}"
 	>
 		{@render children?.()}
-		<button class="close-button" onmousedown={close}>
-			<CloseIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-		</button>
+		<LittleButton
+			icon="X"
+			size={18}
+			class="close-button"
+			onmousedown={close}
+			style="position: absolute; top: 0.25rem; right: 0.25rem;"
+		/>
 	</section>
 </div>
 
@@ -97,22 +102,5 @@
 		position: relative;
 		transition: scale 0.1s;
 		overflow-y: auto;
-	}
-
-	.close-button {
-		position: absolute;
-		top: 0.25rem;
-		right: 0.25rem;
-		--stroke: var(--foreground-bright);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 0.25rem;
-		padding: 0.25rem;
-
-		&:hover {
-			--stroke: var(--background-dark);
-			background: var(--red);
-		}
 	}
 </style>

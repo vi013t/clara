@@ -2,8 +2,7 @@
 	import { Project } from "@clara/api/project";
 	import { Group, Item, type Node } from "@clara/api/database";
 	import HierarchyView from "./HierarchyView.svelte";
-	import { ArrowIcon, CircledPlusIcon, PackageIcon, RenameIcon, TrashIcon } from "@clara/api/icons";
-	import { ContextMenu } from "@clara/api/components";
+	import { ContextMenu, Icon } from "@clara/api/components";
 
 	let {
 		entry,
@@ -85,11 +84,7 @@
 <section bind:this={nodeElement}>
 	{#if !hideRoot || subtree}
 		<button oncontextmenu={onRightClick} class={["node", clickedNode && "active"]} onmousedown={toggle}>
-			{#if entry.isBranch()}
-				<PackageIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-			{:else}
-				<entry.icon.component stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
-			{/if}
+			<entry.icon.component name="Package" size={16} />
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<span
 				class="node-name"
@@ -100,9 +95,10 @@
 				bind:this={name}
 			></span>
 			{#if entry.isBranch()}
-				<ArrowIcon
-					stroke="var(--arrow)"
-					style="width: 1rem; transition: rotate 0.1s; height: 1rem; rotate: {expanded ? '180deg' : '90deg'};"
+				<Icon
+					name="ChevronRight"
+					size={16}
+					style="color: var(--arrow); transition: rotate 0.1s; rotate: {expanded ? '90deg' : '0deg'};"
 				/>
 			{/if}
 		</button>
@@ -121,11 +117,11 @@
 	<ContextMenu onclose={() => (clickedNode = false)} left={menuLeft} top={menuTop} bind:this={rightClickMenu}>
 		{#if entry.isBranch()}
 			<button onmousedown={newItem}>
-				<CircledPlusIcon scale={0.85} />
+				<Icon name="CirclePlus" size={0.85} />
 				Create new item
 			</button>
 			<button onmousedown={newGroup}>
-				<PackageIcon scale={0.85} />
+				<Icon name="PackagePlus" size={0.85} />
 				Create new group
 			</button>
 			{#if !entry.isRoot}
@@ -134,11 +130,11 @@
 		{/if}
 		{#if !entry.isRoot}
 			<button onmousedown={rename}>
-				<RenameIcon scale={0.85} />
+				<Icon name="Type" size={0.85} />
 				<span>Rename</span>
 			</button>
 			<button onmousedown={deleteEntry}>
-				<TrashIcon stroke="var(--red)" scale={0.85} />
+				<Icon name="Trash2" color="var(--red)" size={0.85} />
 				<span style="color: var(--red);">Delete</span>
 			</button>
 		{/if}
@@ -167,7 +163,6 @@
 	}
 
 	.node {
-		color: var(--stroke);
 		font-size: 0.85rem;
 		display: flex;
 		align-items: center;
@@ -177,11 +172,10 @@
 		padding-left: 0.5rem;
 		border-radius: 0.25rem;
 		width: 100%;
-		--stroke: var(--foreground-bright);
-		--arrow: #9399b2;
+		color: var(--foreground-bright);
+		--arrow: var(--foreground-dark);
 
 		span {
-			color: var(--stroke);
 			border-radius: 0.25rem;
 			padding-left: 0.25rem;
 			padding-right: 0.25rem;
@@ -200,7 +194,7 @@
 
 		&:hover,
 		&.active {
-			--stroke: var(--background-dark);
+			color: var(--background-dark);
 			background-color: var(--indigo);
 			--arrow: var(--background-dark);
 		}

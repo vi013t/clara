@@ -1,36 +1,36 @@
 <script lang="ts">
+	import { Icon } from "@clara/api/components";
+	import type { IconIdentifier } from "@clara/api/icons";
 	import type { HTMLAttributes } from "svelte/elements";
-	import type { IconComponent } from "@clara/api/icons";
 
 	let {
-		Icon,
+		icon,
+		size = 24,
 		accent = "var(--indigo)",
-		scale = 1,
 		...attributes
-	}: { Icon: IconComponent; accent?: string; scale?: number } & HTMLAttributes<HTMLButtonElement> = $props();
+	}: { icon: IconIdentifier; size?: number; accent?: string } & HTMLAttributes<HTMLButtonElement> = $props();
 </script>
 
 <button {...attributes} style:--accent={accent}>
-	<Icon stroke="var(--stroke)" style="width: {scale}rem; height: {scale}rem;" />
+	<Icon name={icon} {size} />
 </button>
 
 <style>
 	button {
-		color: var(--stroke);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		border-radius: 0.25rem;
 		font-size: 0.8rem;
 		padding: 0.25rem;
-		--stroke: var(--foreground-bright);
+		color: var(--foreground-bright);
 		flex-shrink: 0;
 		width: fit-content;
 		height: fit-content;
 
 		&:hover {
 			background-color: var(--accent);
-			--stroke: var(--background-dark);
+			color: var(--background-dark);
 		}
 	}
 </style>

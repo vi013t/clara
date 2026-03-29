@@ -1,22 +1,14 @@
 <script lang="ts">
 	import { getCurrentWindow } from "@tauri-apps/api/window";
-	import { ArrowIcon } from "@clara/api/icons";
-	import { CircledPlusIcon } from "@clara/api/icons";
-	import { ClockIcon } from "@clara/api/icons";
-	import { CloseIcon } from "@clara/api/icons";
-	import { DashIcon } from "@clara/api/icons";
-	import { FolderIcon } from "@clara/api/icons";
-	import { GearIcon } from "@clara/api/icons";
-	import { MinimizeIcon } from "@clara/api/icons";
-	import { QuestionMarkIcon } from "@clara/api/icons";
-	import { SaveIcon } from "@clara/api/icons";
-	import ContextMenu from "../../../api/src/lib/components/menus/ContextMenu.svelte";
+	import { ContextMenu } from "@clara/api/components";
 	import ManualPopup from "./popups/ManualPopup.svelte";
 	import NewProjectPopup from "./popups/NewProjectPopup.svelte";
 	import ProjectSettingsPopup from "./popups/ProjectSettingsPopup.svelte";
 	import SettingsPopup from "./popups/SettingsPopup.svelte";
 	import LittleButton from "./widgets/LittleButton.svelte";
 	import { Project } from "@clara/api/project";
+	import { getIcon } from "@clara/api/icons";
+	import { Icon } from "@clara/api/components";
 
 	let projectMenu: ContextMenu;
 
@@ -56,21 +48,21 @@
 <nav>
 	<div>
 		<div class="wrapper">
-			<LittleButton Icon={FolderIcon} onmousedown={() => projectMenu.toggle()} />
+			<LittleButton size={16} icon="Folder" onmousedown={() => projectMenu.toggle()} />
 			<ContextMenu bind:this={projectMenu} top="120%" left="0px">
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div onmousedown={() => Project.open()} class={["cm-button"]}>
-					<FolderIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+					<Icon name="Folder" size={16} />
 					<span>Open project</span>
 
-					<ArrowIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem; rotate: 90deg; margin-left: auto;" />
+					<Icon name="ChevronRight" style="margin-left: auto;" />
 					<ContextMenu>
 						<button>
-							<ClockIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+							<Icon name="Clock" size={16} />
 							<span>Recent</span>
 						</button>
 						<button onmousedown={openProject}>
-							<FolderIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+							<Icon name="Folder" size={16} />
 							<span>Browse</span>
 						</button>
 					</ContextMenu>
@@ -81,7 +73,7 @@
 						projectMenu.close();
 					}}
 				>
-					<CircledPlusIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+					<Icon name="CirclePlus" size={16} />
 					<span>New project</span>
 				</button>
 				<hr />
@@ -93,21 +85,21 @@
 					}}
 					class={["cm-button", !Project.get() && "disabled"]}
 				>
-					<GearIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+					<Icon name="Settings" size={16} />
 					<span>Project settings</span>
 				</div>
 				<button disabled={!Project.get()}>
-					<SaveIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+					<Icon name="Save" size={16} />
 					<span>Save project</span>
 				</button>
 				<button disabled={!Project.get()}>
-					<SaveIcon stroke="var(--stroke)" style="width: 0.85rem; height: 0.85rem;" />
+					<Icon name="Save" size={16} />
 					<span>Save project as...</span>
 				</button>
 			</ContextMenu>
 		</div>
-		<LittleButton Icon={GearIcon} onmousedown={() => settingsPopup.open()} />
-		<LittleButton Icon={QuestionMarkIcon} onmousedown={() => manualPopup.open()} />
+		<LittleButton size={16} icon="Settings" onmousedown={() => settingsPopup.open()} />
+		<LittleButton size={16} icon="CircleQuestionMark" onmousedown={() => manualPopup.open()} />
 	</div>
 
 	{#if Project.get()}
@@ -119,9 +111,9 @@
 	{/if}
 
 	<div>
-		<LittleButton Icon={DashIcon} onmousedown={minimize} scale={0.85} />
-		<LittleButton Icon={MinimizeIcon} onmousedown={maximize} scale={0.85} />
-		<LittleButton Icon={CloseIcon} onmousedown={close} accent="var(--red)" scale={0.85} />
+		<LittleButton icon="Minus" onmousedown={minimize} size={16} />
+		<LittleButton icon="Square" onmousedown={maximize} size={16} />
+		<LittleButton icon="X" onmousedown={close} accent="var(--red)" size={16} />
 	</div>
 </nav>
 

@@ -12,7 +12,6 @@ import { AttributeValue, type SerializedAttributeValue } from "./attribute/value
 import { Color } from "./attribute/color.svelte";
 import { StringAttribute } from "./attribute/primitive.svelte";
 import { TreeBranch, TreeLeaf } from "./tree.svelte";
-import GraphIcon from "../components/icons/GraphIcon.svelte";
 import { assignedLater, Objects } from "../util/index.svelte";
 
 export class GraphOutline<T extends Shape<any>> {
@@ -94,7 +93,7 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 
 	public get icon(): Icon {
 		if (this.isRoot) {
-			return getIcon(GraphIcon);
+			return getIcon("Share2");
 		}
 		return this.parent!.icon;
 	}
@@ -180,8 +179,8 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 	 * its parent, the parent icon is returned.
 	 */
 	public get icon(): Icon {
-		if (this.isRoot) return getIcon(GraphIcon);
 		if (this.icon_ === "inherit") {
+			if (this.isRoot) return getIcon("Package");
 			return this.parent!.icon;
 		} else {
 			return this.icon_;

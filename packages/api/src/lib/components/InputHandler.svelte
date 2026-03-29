@@ -1,6 +1,5 @@
 <script module lang="ts">
 	import { Point2D } from "../math/index.svelte";
-	import { assignedLater } from "../util/index.svelte";
 
 	class Mouse {
 		private client_ = $state(Point2D.origin());

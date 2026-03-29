@@ -1,11 +1,3 @@
-import CalendarIcon from "../../components/icons/CalendarIcon.svelte";
-import ColorPaletteIcon from "../../components/icons/ColorPaletteIcon.svelte";
-import GraphIcon from "../../components/icons/GraphIcon.svelte";
-import NumberSignIcon from "../../components/icons/NumberSignIcon.svelte";
-import ParagraphIcon from "../../components/icons/ParagraphIcon.svelte";
-import RulerIcon from "../../components/icons/RulerIcon.svelte";
-import TextIcon from "../../components/icons/TextIcon.svelte";
-import WeightScaleIcon from "../../components/icons/WeightScaleIcon.svelte";
 import { getIcon, type Icon, type IconIdentifier } from "../../ui/icons.svelte.ts";
 import type { Cloneable } from "../../util/Clone.svelte.ts";
 import type { Serialize, Serialized, Serializer } from "../../util/serialize.svelte.ts";
@@ -63,14 +55,14 @@ function attributeType<Frontend extends Serialize<Backend>, Backend, const Name 
 }
 
 export const attributeTypes = [
-	attributeType("shortText", StringAttribute, TextIcon),
-	attributeType("longText", RichText, ParagraphIcon),
-	attributeType("number", NumberAttribute, NumberSignIcon),
-	attributeType("color", Color, ColorPaletteIcon),
-	attributeType("entries", EntriesAttribute, GraphIcon),
-	attributeType("date", DateTime, CalendarIcon),
-	attributeType("length", Measurement, RulerIcon),
-	attributeType("weight", Measurement, WeightScaleIcon),
+	attributeType("shortText", StringAttribute, "CaseSensitive"),
+	attributeType("longText", RichText, "TextInitial"),
+	attributeType("number", NumberAttribute, "Hash"),
+	attributeType("color", Color, "Palette"),
+	attributeType("entries", EntriesAttribute, "Share2"),
+	attributeType("date", DateTime, "Calendar"),
+	attributeType("length", Measurement, "Ruler"),
+	attributeType("weight", Measurement, "Weight"),
 ] as const satisfies InternalAttributeType[];
 
 export type AttributeTypeName = typeof attributeTypes extends (infer A)[]

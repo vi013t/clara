@@ -1,27 +1,11 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-	import ContextMenu from "../../../../api/src/lib/components/menus/ContextMenu.svelte";
+	import { ContextMenu } from "@clara/api/components";
 	import LittleButton from "../widgets/LittleButton.svelte";
 	import CameraView from "./CameraView.svelte";
 	import { Project } from "@clara/api/project";
-	import {
-		ArrowIcon,
-		ColorPaletteIcon,
-		EyeIcon,
-		GearIcon,
-		HexagonIcon,
-		PackageIcon,
-		PlusIcon,
-		RenameIcon,
-		ReticleIcon,
-		ScaleIcon,
-		SpreadsheetIcon,
-		TrashIcon,
-		TreeIcon,
-	} from "@clara/api/icons";
 	import { Camera } from "@clara/api/camera";
 	import { type Node } from "@clara/api/database";
-	import { Point2D, type Point2DLike } from "@clara/api/math";
+	import { Icon } from "@clara/api/components";
 
 	let tree = Project.get()!.database;
 	let items = $derived(tree.dfsItems());
@@ -119,82 +103,82 @@
 		{/each}
 	</CameraView>
 	<div class="controls">
-		<LittleButton Icon={GearIcon} style="border: 1px solid var(--border)" />
-		<LittleButton Icon={ReticleIcon} onmousedown={center} style="border: 1px solid var(--border)" />
+		<LittleButton icon="Settings" style="border: 1px solid var(--border)" />
+		<LittleButton icon="Locate" onmousedown={center} style="border: 1px solid var(--border)" />
 	</div>
 </section>
 
 <ContextMenu bind:this={groupContextMenu}>
 	<button>
-		<RenameIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
+		<Icon name="FolderPen" size={1.2} />
 		<span>Rename group</span>
 	</button>
 	<button>
-		<PackageIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
+		<Icon name="PackagePlus" size={1.2} />
 		<span>Add subgroup</span>
 	</button>
 	<button>
-		<PlusIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
+		<Icon name="Plus" size={1.2} />
 		<span>Add item</span>
 	</button>
 	<button>
-		<SpreadsheetIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
+		<Icon name="Table2" size={1.2} />
 		<span>Open in view</span>
-		<ArrowIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem; margin-left: auto; rotate: 90deg;" />
+		<Icon name="ChevronRight" style="margin-left: auto;" />
 		<ContextMenu>
 			<button>
-				<TreeIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
+				<Icon name="FolderTree" size={1.2} />
 				<span>Hierarchy</span>
 			</button>
 			<button>
-				<SpreadsheetIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
+				<Icon name="Table2" size={1.2} />
 				<span>Spreadsheet</span>
 			</button>
 		</ContextMenu>
 	</button>
 	<hr />
 	<button>
-		<ReticleIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
+		<Icon name="Focus" size={1.2} />
 		<span>Focus</span>
 	</button>
 	<button>
-		<ColorPaletteIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
+		<Icon name="Palette" size={1.2} />
 		<span>Change color</span>
 	</button>
 	<div>
-		<HexagonIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
+		<Icon name="Hexagon" size={1.2} />
 		<span>Change shape</span>
-		<ArrowIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem; margin-left: auto; rotate: 90deg;" />
+		<Icon name="ChevronRight" style="margin-left: auto;" />
 		<ContextMenu>
 			<button>
-				<HexagonIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
+				<Icon name="Circle" size={1.2} />
 				<span>Circle</span>
 			</button>
 			<button>
-				<HexagonIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
+				<Icon name="Square" size={1.2} />
 				<span>Rectangle</span>
 			</button>
 		</ContextMenu>
 	</div>
 	<button>
-		<ScaleIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
+		<Icon name="Scaling" size={1.2} />
 		<span>Resize outline</span>
 	</button>
 	<button>
-		<EyeIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
+		<Icon name="EyeOff" size={1.2} />
 		<span>Hide outline</span>
 	</button>
 	<button>
-		<EyeIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
+		<Icon name="EyeOff" size={1.2} />
 		<span>Hide group</span>
 	</button>
 	<button>
-		<EyeIcon stroke="var(--foreground-bright)" style="width: 1.2rem; height: 1.2rem;" />
+		<Icon name="EyeOff" size={1.2} />
 		<span>Hide others</span>
 	</button>
 	<hr />
 	<button>
-		<TrashIcon stroke="var(--red)" style="width: 1.2rem; height: 1.2rem;" />
+		<Icon name="Trash2" size={1.2} />
 		<span style:color="var(--red)">Delete group</span>
 	</button>
 </ContextMenu>

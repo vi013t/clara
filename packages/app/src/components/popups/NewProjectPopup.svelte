@@ -8,8 +8,9 @@
 	import HierarchyView from "../views/HierarchyView.svelte";
 	import type { Database } from "@clara/api/database";
 	import { Project } from "@clara/api/project";
-	import { FolderIcon, GearIcon } from "@clara/api/icons";
 	import { userSettings } from "@clara/api/usersettings";
+	import { Icon } from "@clara/api/components";
+	import LittleButton from "../widgets/LittleButton.svelte";
 
 	let popup: Popup;
 
@@ -127,7 +128,7 @@
 						onchange={typeLocation}
 					/>
 					<button class="input-button" onmousedown={pickLocation}>
-						<FolderIcon stroke="var(--foreground)" style="width: 1rem; height: 1rem;" />
+						<Icon name="Folder" size={16} />
 					</button>
 				</div>
 				{#if locationError && startedTypingLocation}
@@ -171,13 +172,7 @@
 								() => template.name, choice => (template = userSettings().templates.find(other => other.name === choice)!)
 							}
 						/>
-						<button>
-							<GearIcon
-								stroke="var(--stroke)"
-								style="width: 1rem; height: 1rem;"
-								onmousedown={() => settingsPopup.open("templates")}
-							/>
-						</button>
+						<LittleButton size={18} icon="Settings" onmousedown={() => settingsPopup.open("templates")} />
 					</div>
 				</div>
 			</div>
@@ -244,6 +239,7 @@
 		top: 50%;
 		transform: translateY(-40%);
 		right: 0.25rem;
+		color: var(--foreground);
 	}
 
 	.error {
@@ -261,20 +257,6 @@
 			width: 100%;
 			gap: 0.25rem;
 			align-items: center;
-
-			button {
-				--stroke: var(--foreground-bright);
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				padding: 0.25rem;
-				border-radius: 0.25rem;
-
-				&:hover {
-					--stroke: var(--background-dark);
-					background-color: var(--indigo);
-				}
-			}
 		}
 	}
 

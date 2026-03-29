@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { Color } from "@clara/api/attribute";
 	import { clamp } from "@clara/api/math";
-	import { PlusIcon, TrashIcon } from "@clara/api/icons";
-	import { ContextMenu } from "@clara/api/components";
+	import { ContextMenu, Icon } from "@clara/api/components";
 	import { mouse } from "@clara/api/components";
 
 	let {
@@ -135,7 +134,7 @@
 			></button>
 		{/each}
 		<button class="new palette-color" onmousedown={() => addToPalette(previewColor)}>
-			<PlusIcon stroke="var(--foreground-bright)" style="height: 100%; aspect-ratio: 1;" />
+			<Icon name="Plus" style="height: 100%; aspect-ratio: 1;" />
 		</button>
 	</div>
 	<button onmousedown={hide} class="set-color">Select</button>
@@ -152,7 +151,7 @@
 
 <ContextMenu bind:this={paletteMenu}>
 	<button>
-		<TrashIcon stroke="var(--red)" scale={1.2} />
+		<Icon name="Trash2" stroke="var(--red)" scale={1.2} />
 		<span style:color="#f37ba8">Remove from palette</span>
 	</button>
 </ContextMenu>

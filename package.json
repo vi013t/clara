@@ -17,5 +17,8 @@
 	},
 	"devDependencies": {
 		"turbo": "latest"
+	},
+	"dependencies": {
+		"@lucide/svelte": "^1.7.0"
 	}
 }

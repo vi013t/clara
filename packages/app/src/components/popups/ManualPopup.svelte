@@ -1,21 +1,4 @@
 <script lang="ts">
-	import {
-		BugIcon,
-		DiceIcon,
-		GraphIcon,
-		IOIcon,
-		LicenseIcon,
-		PackageIcon,
-		ParagraphIcon,
-		PencilIcon,
-		PlugIcon,
-		PrivacyIcon,
-		RulerIcon,
-		SpreadsheetIcon,
-		SproutIcon,
-		TreeIcon,
-		VersionControlIcon,
-	} from "@clara/api/icons";
 	import icon from "../../assets/images/icon.png";
 	import Popup from "./Popup.svelte";
 	import Sidebar from "./Sidebar.svelte";
@@ -39,28 +22,28 @@
 			title={{ text: "Clara Manual", icon }}
 			sections={{
 				"The essentials": [
-					["Introduction", SproutIcon],
-					["Interface", TreeIcon],
-					["Entries", SpreadsheetIcon],
-					["Templates", PackageIcon],
-					["View", GraphIcon],
-					["The Editor", PencilIcon],
+					["Introduction", "Sprout"],
+					["Interface", "FolderTree"],
+					["Entries", "Table2"],
+					["Templates", "Package"],
+					["View", "ChartSpline"],
+					["The Editor", "Pencil"],
 				],
 				"Advanced": [
-					["Measurements & Units", RulerIcon],
-					["Randomization", DiceIcon],
-					["Generated Attributes", IOIcon],
-					["Suggestions", ParagraphIcon],
-					["Plugins", PlugIcon],
+					["Measurements & Units", "Ruler"],
+					["Randomization", "Dice6"],
+					["Generated Attributes", "Sigma"],
+					["Suggestions", "TextInitial"],
+					["Plugins", "Plug2"],
 				],
 				"Development": [
-					["Plugin Development", PlugIcon],
-					["Bug Reporting", BugIcon],
-					["Contributing", VersionControlIcon],
+					["Plugin Development", "PlugZap"],
+					["Bug Reporting", "Bug"],
+					["Contributing", "GitPullRequestArrow"],
 				],
 				"Legal": [
-					["License", LicenseIcon],
-					["Privacy Policy", PrivacyIcon],
+					["License", "CircleStar"],
+					["Privacy Policy", "ShieldCheck"],
 				],
 			}}
 		/>

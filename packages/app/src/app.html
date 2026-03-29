@@ -9,6 +9,27 @@
 	</head>
 
 	<body data-sveltekit-preload-data="hover">
+		<div
+			id="loading-screen"
+			style="
+				background: #181825;
+				position: fixed;
+				top: 0px;
+				left: 0px;
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.25rem;
+				color: #cdd6f4;
+				font-family:
+					Inter,
+					Segoe UI;
+			"
+		>
+			Loading...
+		</div>
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

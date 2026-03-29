@@ -1,10 +1,9 @@
 import { plugin } from "../index.svelte.ts";
 import { userSettings } from "../../usersettings/index.svelte.ts";
-import { ColorPaletteIcon } from "../../ui/icons.svelte.ts";
 
 export default plugin({
 	name: "Default themes",
-	icon: ColorPaletteIcon,
+	icon: "Palette",
 	description: "Clara's default themes.",
 	onLoad() {
 		userSettings().addTheme({

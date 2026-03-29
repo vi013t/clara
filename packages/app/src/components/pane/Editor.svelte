@@ -1,21 +1,9 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import Select from "../input/Select.svelte";
-	import {
-		BoldIcon,
-		BookIcon,
-		DashIcon,
-		ItalicIcon,
-		LineSpacingIcon,
-		MoonIcon,
-		PlusIcon,
-		SaveIcon,
-		SunIcon,
-		UnderlineIcon,
-		UndoIcon,
-	} from "@clara/api/icons";
 	import { RichText, Style, StyledText } from "@clara/api/attribute";
 	import { getFonts } from "@clara/api/system";
+	import { Icon } from "@clara/api/components";
 
 	let {
 		title,
@@ -39,10 +27,6 @@
 
 	export function getTitle() {
 		return title;
-	}
-
-	export function getIcon() {
-		return BookIcon;
 	}
 
 	let currentPartIndex = $state(0);
@@ -279,19 +263,19 @@
 	<div class="toolbar">
 		<div class="formatting">
 			<button>
-				<UndoIcon stroke="var(--stroke)" />
+				<Icon name="Undo" />
 			</button>
 			<button>
-				<UndoIcon stroke="var(--stroke)" style="transform: scaleX(-100%);" />
+				<Icon name="Redo" />
 			</button>
 		</div>
 		<div class="font-size">
 			<button onmousedown={addFontSize(-1)}>
-				<DashIcon stroke="var(--stroke)" />
+				<Icon name="Minus" />
 			</button>
 			<input bind:value={fontSize} />
 			<button onmousedown={addFontSize(1)}>
-				<PlusIcon stroke="var(--stroke)" />
+				<Icon name="Plus" />
 			</button>
 		</div>
 		{#await getFonts() then fonts}
@@ -304,30 +288,30 @@
 		{/await}
 		<div class="formatting">
 			<button>
-				<BoldIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+				<Icon name="Bold" />
 			</button>
 			<button>
-				<ItalicIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+				<Icon name="Italic" />
 			</button>
 			<button>
-				<UnderlineIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+				<Icon name="Underline" />
 			</button>
 		</div>
 		<div class="formatting">
 			<button>
-				<LineSpacingIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+				<Icon name="ListChevronsUpDown" />
 			</button>
 			<button onmousedown={() => (viewMode = viewMode === "light" ? "dark" : "light")}>
 				{#if viewMode === "dark"}
-					<SunIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+					<Icon name="Sun" />
 				{:else}
-					<MoonIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+					<Icon name="Moon" />
 				{/if}
 			</button>
 		</div>
 		<div class="formatting">
 			<button>
-				<SaveIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+				<Icon name="Save" />
 			</button>
 		</div>
 	</div>

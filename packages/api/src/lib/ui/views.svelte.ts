@@ -1,18 +1,18 @@
-import { ClockIcon, GraphIcon, SpreadsheetIcon, TreeIcon } from "./icons.svelte.ts";
+import type { IconIdentifier } from "./icons.svelte.ts";
 
 export const views = {
 	hierarchy: {
-		icon: TreeIcon,
+		icon: "FolderTree",
 	},
 	graph: {
-		icon: GraphIcon,
+		icon: "Share2",
 	},
 	spreadsheet: {
-		icon: SpreadsheetIcon,
+		icon: "Table2",
 	},
 	timeline: {
-		icon: ClockIcon,
+		icon: "Clock",
 	},
-} as const;
+} as const satisfies { [key: string]: { icon: IconIdentifier } };
 
 export type View = keyof typeof views;

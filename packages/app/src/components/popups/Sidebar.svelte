@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type { IconComponent } from "@clara/api/icons";
+	import { Icon } from "@clara/api/components";
+	import type { IconComponent, IconIdentifier } from "@clara/api/icons";
 
 	let {
 		view = $bindable(),
@@ -8,7 +9,7 @@
 	}: {
 		view: string;
 		title?: { icon: IconComponent | string; text: string };
-		sections: Record<string, [string, IconComponent][]>;
+		sections: Record<string, [string, IconIdentifier][]>;
 	} = $props();
 </script>
 
@@ -19,16 +20,16 @@
 			{#if typeof title.icon === "string"}
 				<img src={title.icon} />
 			{:else}
-				<title.icon />
+				<title.icon size={20} />
 			{/if}
 			{title.text}
 		{/if}
 	</h1>
 	{#each Object.entries(sections) as [name, buttons]}
 		<h1>{name}</h1>
-		{#each buttons as [text, Icon]}
+		{#each buttons as [text, icon]}
 			<button class={{ "sidebar-button": true, "active": view === text }} onmousedown={() => (view = text)}>
-				<Icon style="width: 1rem; height: 1rem;" />
+				<Icon name={icon} size={16} />
 				<span>{text}</span>
 			</button>
 		{/each}
@@ -78,6 +79,7 @@
 		border-bottom: 1px solid var(--border);
 		padding-bottom: 1rem;
 		display: flex;
+		align-items: center;
 		gap: 1rem;
 
 		img {

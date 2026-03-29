@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { GearIcon } from "@clara/api/icons";
+	import { Icon } from "@clara/api/components";
 	import Popup from "./Popup.svelte";
 
 	let popup: Popup;
@@ -19,7 +19,7 @@
 	<div class="popup">
 		<div class="sidebar">
 			<button>
-				<GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+				<Icon name="Settings" />
 				<span>General</span>
 			</button>
 		</div>

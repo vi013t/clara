@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { ArrowIcon, LockIcon, UnlockedIcon, type IconComponent } from "@clara/api/icons";
+	import { Icon } from "@clara/api/components";
 	import LittleButton from "../widgets/LittleButton.svelte";
+	import { getIcon, type IconIdentifier } from "@clara/api/icons";
 
-	export type ComplexOption = { name: string; icon?: IconComponent; color?: string; style?: string };
+	export type ComplexOption = { name: string; icon?: IconIdentifier; color?: string; style?: string };
 	export type SelectOption = string | ComplexOption;
 
 	let {
@@ -111,7 +112,8 @@
 					) as ComplexOption | undefined}
 					{#if option}
 						{#if option.icon}
-							<option.icon stroke={option.color ?? "var(--foreground)"} />
+							{@const OptionIcon = getIcon(option.icon).component}
+							<OptionIcon size={16} stroke={option.color ?? "var(--foreground)"} />
 						{/if}
 						<span style={option.style ?? ""}>{option.name}</span>
 					{:else}
@@ -121,8 +123,10 @@
 					{emptyText}
 				{/if}
 				{#if !noarrow}
-					<ArrowIcon
-						style="margin-left: auto; transform: rotate({optionsVisible ? '180deg' : '90deg'}); transition: transform 0.1s;"
+					<Icon
+						size={16}
+						name="ChevronRight"
+						style="margin-left: auto; transform: rotate({optionsVisible ? '90deg' : '0'}); transition: transform 0.1s;"
 					/>
 				{/if}
 			</button>
@@ -130,9 +134,9 @@
 		{#if lockable}
 			<LittleButton
 				onmousedown={toggleLocked}
-				scale={1.5}
+				size={16}
 				style="border: 1px solid var(--border);"
-				Icon={locked ? LockIcon : UnlockedIcon}
+				icon={locked ? "Lock" : "LockOpen"}
 			/>
 		{/if}
 	</div>
@@ -150,7 +154,8 @@
 					{option}
 				{:else}
 					{#if option.icon}
-						<option.icon stroke={option.color ?? "var(--foreground)"} style="width: 1rem; height: 1rem;" />
+						{@const OptionIcon = getIcon(option.icon).component}
+						<OptionIcon size={16} stroke={option.color ?? "var(--foreground)"} style="width: 1rem; height: 1rem;" />
 					{/if}
 					{#if itemOverride}
 						{itemOverride}

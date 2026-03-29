@@ -21,6 +21,7 @@
 
 	onMount(() => {
 		userSettings().selectTheme(userSettings().selectedTheme.name);
+		document.getElementById("loading-screen")?.remove();
 	});
 </script>
 

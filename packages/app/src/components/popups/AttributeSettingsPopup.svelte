@@ -5,7 +5,7 @@
 	import ConfirmationPopup from "./ConfirmationPopup.svelte";
 	import Popup from "./Popup.svelte";
 	import { AttributeType, type AttributeDefinition } from "@clara/api/attribute";
-	import { GearIcon, ItalicIcon, PrivacyIcon, SpreadsheetIcon } from "@clara/api/icons";
+	import { Icon } from "@clara/api/components";
 
 	let { owner, attribute = $bindable() }: { owner: Group; attribute: AttributeDefinition | null } = $props();
 
@@ -32,19 +32,19 @@
 		<section>
 			<div class="sidebar">
 				<h1 class="title">
-					<SpreadsheetIcon stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
+					<Icon name="Table2" />
 					{attribute.name}
 				</h1>
 				<button>
-					<GearIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+					<Icon name="Settings" />
 					<span>General</span>
 				</button>
 				<button>
-					<ItalicIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+					<Icon name="Italic" />
 					<span>Formatting</span>
 				</button>
 				<button>
-					<PrivacyIcon stroke="var(--stroke)" style="width: 1rem; height: 1rem;" />
+					<Icon name="ShieldCheck" />
 					<span>Restrictions</span>
 				</button>
 

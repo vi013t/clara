@@ -5,3 +5,4 @@ const internal = globalThis.__CLARA_API__.components;
 export const ContextMenu = internal.ContextMenu;
 export const InputHandler = internal.InputHandler;
 export const mouse = internal.mouse;
+export const Icon = internal.Icon;

@@ -22,3 +22,20 @@ bun run build
 ```
 
 The application will be placed in `/packages/app/builds`.
+
+## Development
+
+Developing on Clara requires:
+
+- [Rust / Cargo](https://rust-lang.org/)
+- [Bun](https://bun.com)
+
+To pull the files and start the dev server:
+
+```bash
+git clone https://github.com/vi013t/clara.git
+cd clara
+bun dev
+```
+
+If you run into strange caching issues at any point, run `bun clean`.

@@ -1,29 +1,11 @@
 <script lang="ts">
-	import ContextMenu from "../../../api/src/lib/components/menus/ContextMenu.svelte";
-	import { SaveIcon, CharacterCountIcon, WordCountIcon } from "@clara/api/icons";
-
-	let wordCountMenu: ContextMenu;
 </script>
 
 <section>
 	<div class="wrapper">
-		<button onmousedown={() => wordCountMenu.toggle()}>
-			<span>0 / 0 words</span>
+		<button>
+			<span>Status Bar</span>
 		</button>
-		<ContextMenu bind:this={wordCountMenu} bottom="120%" right="0.5rem">
-			<button>
-				<WordCountIcon stroke="var(--foreground-bright)" style="width: 0.85rem; height: 0.85rem;" />
-				<span>Word Count</span>
-			</button>
-			<button>
-				<CharacterCountIcon stroke="var(--foreground-bright)" style="width: 0.85rem; height: 0.85rem;" />
-				<span>Character Count</span>
-			</button>
-			<button>
-				<SaveIcon stroke="var(--foreground-bright)" style="width: 0.85rem; height: 0.85rem;" />
-				<span>Chapter Count</span>
-			</button>
-		</ContextMenu>
 	</div>
 </section>
 

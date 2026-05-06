@@ -4,7 +4,31 @@
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
-			"outputs": ["dist/**", "**/target/**", "build/**", "builds/**", ".svelte-kit/**", "**/Cargo.lock"]
+			"outputs": [
+				"dist/**",
+				"build/**",
+				"builds/**",
+				".svelte-kit/**",
+				"src-tauri/target/release/bundle/**",
+				"src-tauri/target/release/clara.exe",
+				"src-tauri/bin/**"
+			],
+			"inputs": [
+				"src/**",
+				"package.json",
+				"vite.config.ts",
+				"svelte.config.js",
+				"static/**",
+				"src-tauri/src/**",
+				"src-tauri/Cargo.toml",
+				"src-tauri/tauri.conf.json",
+				"src-tauri/build.rs",
+				"src-tauri/icons/**",
+				"src-tauri/capabilities/**",
+				"../../tools/clara-api/src/**",
+				"../../tools/clara-api/Cargo.toml",
+				"../../scripts/**"
+			]
 		},
 		"dev": {
 			"dependsOn": ["^build"],
@@ -13,7 +37,7 @@
 		},
 		"build:plugins": {
 			"dependsOn": ["^build"],
-			"outputs": ["dist/**", "build/**", ".svelte-kit/**", "**/Cargo.lock", "node_modules/**", ".turbo/**"]
+			"outputs": ["dist/**", "build/**", ".svelte-kit/**"]
 		}
 	}
 }

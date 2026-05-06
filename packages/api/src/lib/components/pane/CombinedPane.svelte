@@ -1,8 +1,7 @@
 <!-- svelte-ignore state_referenced_locally -->
 <script lang="ts">
-	import { mouse } from "@clara/api/components";
+	import { mouse, Pane } from "@clara/api/components";
 	import { clamp } from "@clara/api/math";
-	import Pane from "./Pane.svelte";
 	import type { MultiPane } from "@clara/api/project";
 
 	let {

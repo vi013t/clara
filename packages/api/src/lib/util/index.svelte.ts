@@ -1,5 +1,9 @@
 import type { Serialize, Serialized, Deserialized, Serializer } from "./serialize.svelte.ts";
 import type { Cloneable } from "./Clone.svelte.ts";
+import { asyncFn, errors, todo, unreachable } from "./errors.svelte.ts";
+import { Debug } from "./log.svelte.ts";
+
+export { asyncFn, Debug, errors, todo, unreachable };
 
 /**
  * Returns `null` coerced to a type. use this when you need to provide a non-null value

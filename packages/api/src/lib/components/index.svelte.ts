@@ -19,6 +19,19 @@ import AttributeSettingsPopup from "./popups/AttributeSettingsPopup.svelte";
 import ConfirmationPopup from "./popups/ConfirmationPopup.svelte";
 import Popup from "./popups/Popup.svelte";
 import LittleButton from "./widgets/LittleButton.svelte";
+import Navbar from "./Navbar.svelte";
+import NoProject from "./NoProject.svelte";
+import NewProjectPopup from "./popups/NewProjectPopup.svelte";
+import ManualPopup from "./popups/ManualPopup.svelte";
+import ProjectSettingsPopup from "./popups/ProjectSettingsPopup.svelte";
+import SettingsPopup from "./popups/SettingsPopup.svelte";
+import Sidebar from "./popups/Sidebar.svelte";
+import Pane from "./pane/Pane.svelte";
+import SingularPane from "./pane/SingularPane.svelte";
+import CombinedPane from "./pane/CombinedPane.svelte";
+import Tabline from "./pane/Tabline.svelte";
+import Editor from "./pane/Editor.svelte";
+import StatusBar from "./StatusBar.svelte";
 
 export {
 	ContextMenu,
@@ -43,4 +56,17 @@ export {
 	ConfirmationPopup,
 	Popup,
 	LittleButton,
+	Navbar,
+	NoProject,
+	NewProjectPopup,
+	ManualPopup,
+	ProjectSettingsPopup,
+	SettingsPopup,
+	Sidebar,
+	Pane,
+	SingularPane,
+	CombinedPane,
+	Tabline,
+	Editor,
+	StatusBar,
 };

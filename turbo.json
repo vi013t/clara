@@ -10,7 +10,7 @@
 				"builds/**",
 				".svelte-kit/**",
 				"src-tauri/target/release/bundle/**",
-				"src-tauri/target/release/clara.exe",
+				"src-tauri/target/release/*.exe",
 				"src-tauri/bin/**"
 			],
 			"inputs": [
@@ -31,7 +31,6 @@
 			]
 		},
 		"dev": {
-			"dependsOn": ["^build"],
 			"cache": false,
 			"persistent": true
 		},

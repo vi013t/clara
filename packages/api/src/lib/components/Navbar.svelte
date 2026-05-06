@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { getCurrentWindow } from "@tauri-apps/api/window";
-	import { ContextMenu, LittleButton } from "@clara/api/components";
-	import ManualPopup from "./popups/ManualPopup.svelte";
-	import NewProjectPopup from "./popups/NewProjectPopup.svelte";
-	import ProjectSettingsPopup from "./popups/ProjectSettingsPopup.svelte";
-	import SettingsPopup from "./popups/SettingsPopup.svelte";
+	import {
+		ContextMenu,
+		LittleButton,
+		ManualPopup,
+		NewProjectPopup,
+		SettingsPopup,
+		ProjectSettingsPopup,
+	} from "@clara/api/components";
 	import { Project } from "@clara/api/project";
 	import { Icon } from "@clara/api/components";
 

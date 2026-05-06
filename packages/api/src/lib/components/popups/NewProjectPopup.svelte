@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { invoke } from "@tauri-apps/api/core";
 	import { open as chooseFile } from "@tauri-apps/plugin-dialog";
-	import SettingsPopup from "./SettingsPopup.svelte";
-	import { asyncFn } from "../../api/errors.svelte";
 	import type { Database } from "@clara/api/database";
 	import { Project } from "@clara/api/project";
 	import { userSettings } from "@clara/api/usersettings";
-	import { HierarchyView, Icon, LittleButton, Popup, Select } from "@clara/api/components";
+	import { HierarchyView, Icon, LittleButton, Popup, Select, SettingsPopup } from "@clara/api/components";
 	import { TabList } from "@clara/api/ui";
+	import { asyncFn } from "@clara/api/utils";
 
 	let popup: Popup;
 

@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { EditorTab, GroupTab } from "@clara/api/ui";
-	import Editor from "./Editor.svelte";
-	import Tabline from "./Tabline.svelte";
 	import type { RichText } from "@clara/api/attribute";
-	import { GraphView, HierarchyView, SpreadsheetView } from "@clara/api/components";
+	import { GraphView, HierarchyView, SpreadsheetView, Editor, Tabline } from "@clara/api/components";
 	import type { PaneLayout, SinglePane } from "@clara/api/project";
 
 	let {

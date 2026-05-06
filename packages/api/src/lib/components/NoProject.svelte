@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Project } from "@clara/api/project";
-	import ManualPopup from "./popups/ManualPopup.svelte";
-	import NewProjectPopup from "./popups/NewProjectPopup.svelte";
+	import { ManualPopup, NewProjectPopup } from "@clara/api/components";
 
 	let manualPopup: ManualPopup;
 	let newProjectPopup: NewProjectPopup;

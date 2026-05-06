@@ -1,4 +1,4 @@
-import { Debug } from "./log";
+import { Debug } from "./log.svelte.ts";
 
 type ErrorLine = {
 	functionName: string;

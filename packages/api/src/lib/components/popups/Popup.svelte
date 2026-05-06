@@ -4,7 +4,7 @@
 
 <script lang="ts">
 	import type { Snippet } from "svelte";
-	import LittleButton from "../widgets/LittleButton.svelte";
+	import { LittleButton } from "@clara/api/components";
 
 	let {
 		children,

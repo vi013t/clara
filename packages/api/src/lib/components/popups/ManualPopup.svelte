@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { Popup } from "@clara/api/components";
-	import icon from "../../assets/images/icon.png";
-	import Sidebar from "./Sidebar.svelte";
+	import { Popup, Sidebar } from "@clara/api/components";
 
 	let popup: Popup;
 
@@ -19,7 +17,7 @@
 	<div class="popup">
 		<Sidebar
 			bind:view
-			title={{ text: "Clara Manual", icon }}
+			title={{ text: "Clara Manual", icon: "Book" }}
 			sections={{
 				"The essentials": [
 					["Introduction", "Sprout"],

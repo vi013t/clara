@@ -16,7 +16,7 @@ export default defineConfig({
 		alias: Object.fromEntries(
 			Object.entries(apiJson.exports).map(([importPath, { svelte }]) => [
 				platformPath(importPath == "." ? "@clara/api" : `@clara/api/${/^\.\/(.+)/.exec(importPath)![1]}`),
-				svelte.replace(/^.\/dist\//, platformPath("../api/src/")),
+				svelte.replace(/^.\/dist\//, platformPath("../api/src/lib/")),
 			]),
 		),
 		extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".svelte", ".svelte.ts"],

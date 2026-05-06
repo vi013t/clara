@@ -69,6 +69,7 @@ export function asyncFn<Args extends any[]>(
 			let location = `\n\tat ${callback.name || "anonymous"}`;
 			if (url) location = `${location} in ${Debug.file(url)}`;
 			let parsed = parseErrorStack(message);
+
 			let result =
 				parsed.message +
 				parsed.stack

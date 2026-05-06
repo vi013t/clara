@@ -25,6 +25,8 @@
 	}
 
 	let tab = $derived(pane.tabline.getTabByID(pane.selectedTabID));
+
+	$inspect(tab.view);
 </script>
 
 <section class="pane">
@@ -34,11 +36,11 @@
 			<Editor bind:doc={tab.content} />
 		{:else if tab instanceof GroupTab}
 			<div class="view-container" style="display: {tab.id === pane.selectedTabID ? 'block' : 'none'}">
-				{#if tab.view === "hierarchy"}
+				{#if tab.view === "Hierarchy"}
 					<HierarchyView />
-				{:else if tab.view === "spreadsheet"}
+				{:else if tab.view === "Spreadsheet"}
 					<SpreadsheetView {openEditor} group={tab.group} />
-				{:else if tab.view === "graph"}
+				{:else if tab.view === "Graph"}
 					<GraphView />
 				{/if}
 			</div>

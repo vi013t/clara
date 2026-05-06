@@ -33,11 +33,12 @@ body {
 	height: 100%;
 }
 
-*[disabled] {
+*[disabled],
+.disabled {
 	cursor: default;
 }
 
-button:not([disabled]),
+button:not([disabled], .disabled),
 label,
 video[controls] {
 	cursor: pointer;

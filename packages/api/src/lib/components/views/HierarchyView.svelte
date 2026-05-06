@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { Project } from "@clara/api/project";
 	import { Group, Item, type Node } from "@clara/api/database";
-	import HierarchyView from "./HierarchyView.svelte";
-	import { ContextMenu, Icon } from "@clara/api/components";
+	import { ContextMenu, Icon, HierarchyView } from "@clara/api/components";
 
 	let {
 		entry,

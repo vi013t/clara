@@ -34,7 +34,7 @@ export type SerializedGroupTab = {
 
 export class GroupTab extends Tab implements Serialize<SerializedGroupTab> {
 	private groupID = $state(assignedLater<number>());
-	public view: string = $state("hierarchy");
+	public view: string = $state("Hierarchy");
 
 	public constructor(group: number, icon?: IconIdentifier) {
 		super(
@@ -44,6 +44,7 @@ export class GroupTab extends Tab implements Serialize<SerializedGroupTab> {
 					.find(node => node.id === group)!.icon,
 		);
 		this.groupID = group;
+		console.log(this.view);
 	}
 
 	public get group(): Group {
@@ -123,7 +124,7 @@ export class TabList implements Serialize<SerializedTabList> {
 	}
 
 	public static deserialize(tablist: SerializedTabList): TabList {
-		const list = new TabList();
+		const list = new TabList([]);
 		list.tabs = tablist.tabs.map(tab => deserializeTab(tab));
 		return list;
 	}

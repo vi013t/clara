@@ -137,7 +137,7 @@
 	}
 
 	.new.cell {
-		background-color: var(--border);
+		background-color: var(--background-dark);
 	}
 
 	.column {
@@ -156,12 +156,12 @@
 
 			&:hover {
 				background-color: var(--indigo);
-				--stroke: var(--background-dark);
+				--stroke: var(--background);
 			}
 		}
 
 		&:first-child .cell:not(.new) {
-			background-color: var(--background-dark);
+			background-color: var(--background);
 		}
 	}
 
@@ -179,7 +179,7 @@
 		color: var(--foreground);
 
 		&:first-child:not(.new) {
-			background-color: var(--background-dark);
+			background-color: var(--background);
 			color: var(--foreground-bright);
 		}
 

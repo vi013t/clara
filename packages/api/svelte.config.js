@@ -18,12 +18,25 @@ const config = {
 		},
 	},
 	kit: {
-		alias: Object.fromEntries(
-			Object.entries(apiJson.exports).map(([importPath, { svelte }]) => [
-				platformPath(importPath == "." ? "@clara/api" : `src/lib/${/^\.\/(.+)/.exec(importPath)[1]}`),
-				svelte.replace(/^.\/dist\//, platformPath("/src/lib")),
-			]),
-		),
+		alias: {
+			...Object.fromEntries(
+				Object.entries(apiJson.exports)
+					.map(([importPath, exportConfig]) => {
+						if (importPath == ".") return [];
+
+						const key = platformPath(`@clara/api/${importPath.replace(/^\.\//, "")}`);
+						const distPath = typeof exportConfig === "string" ? exportConfig : exportConfig.svelte;
+						const sourcePath = distPath.replace(/^.\/dist\//, platformPath("./src/lib/")).replace(/\.js$/, ".ts");
+						return [
+							[key.replaceAll(/\\/g, "/"), path.resolve(sourcePath)],
+							[key.replaceAll(/\//g, "\\"), path.resolve(sourcePath)],
+						];
+					})
+					.flat(),
+			),
+			"@clara/api": path.resolve("./src/lib/index.svelte.ts"),
+			"@clara\\api": path.resolve("./src/lib/index.svelte.ts"),
+		},
 		adapter: adapter(),
 	},
 };

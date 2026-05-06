@@ -1,14 +1,12 @@
 <script lang="ts">
-	import { ContextMenu } from "@clara/api/components";
-	import LittleButton from "../widgets/LittleButton.svelte";
-	import CameraView from "./CameraView.svelte";
+	import { ContextMenu, CameraView, Icon, LittleButton } from "@clara/api/components";
 	import { Project } from "@clara/api/project";
 	import { Camera } from "@clara/api/camera";
 	import { type Node } from "@clara/api/database";
-	import { Icon } from "@clara/api/components";
 
 	let tree = Project.get()!.database;
 	let items = $derived(tree.dfsItems());
+
 	let groups = $derived(tree.dfsGroups());
 
 	// let edges = $derived(Project.get()!.database.relations());

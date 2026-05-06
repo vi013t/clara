@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { type IconName, icons } from "@clara/api/icons";
-	import LittleButton from "../widgets/LittleButton.svelte";
-	import { mouse } from "@clara/api/components";
+	import { mouse, LittleButton } from "@clara/api/components";
 	import tags from "lucide-static/tags.json";
 
 	let {
 		value = $bindable(null),
+
 		visible = $bindable(false),
 		opener = null,
 	}: { value?: IconName | null; opener?: HTMLElement | null; visible?: boolean } = $props();

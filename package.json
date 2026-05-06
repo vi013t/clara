@@ -16,7 +16,7 @@
 		"install:plugins": "bun run build:plugins && bun ./scripts/install_plugins.ts"
 	},
 	"devDependencies": {
-		"turbo": "latest"
+		"turbo": "^2.8.21"
 	},
 	"dependencies": {
 		"@lucide/svelte": "^1.7.0",

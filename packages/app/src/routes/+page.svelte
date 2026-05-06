@@ -1,13 +1,10 @@
 <script lang="ts">
 	import { errors, Debug } from "@clara/api/utils";
 	import { Project } from "@clara/api/project";
-	import Navbar from "../../../api/src/lib/components/Navbar.svelte";
-	import Pane from "../../../api/src/lib/components/pane/Pane.svelte";
-	import { InputHandler } from "@clara/api/components";
+	import { InputHandler, Navbar, Pane, StatusBar, NoProject } from "@clara/api/components";
 	import { startPlugins } from "@clara/api";
 	import { onMount } from "svelte";
 	import { userSettings } from "@clara/api/usersettings";
-	import { StatusBar, NoProject } from "@clara/api/components";
 
 	$effect(() => {
 		if (errors().length > 0) {

@@ -14,13 +14,28 @@ const config = {
 		adapter: adapter({
 			fallback: "index.html",
 		}),
-		alias: Object.fromEntries(
-			Object.entries(apiJson.exports).map(([importPath, { svelte }]) => [
-				platformPath(importPath == "." ? "@clara/api" : `@clara/api/${/^\.\/(.+)/.exec(importPath)[1]}`),
-				svelte.replace(/^.\/dist\//, platformPath("../api/src/lib/")),
-			]),
-		),
+		alias: {
+			...Object.fromEntries(
+				Object.entries(apiJson.exports)
+					.map(([importPath, exportConfig]) => {
+						if (importPath == ".") return [];
+
+						const key = platformPath(`@clara/api/${importPath.replace(/^\.\//, "")}`);
+						const distPath = typeof exportConfig === "string" ? exportConfig : exportConfig.svelte;
+						const sourcePath = distPath.replace(/^.\/dist\//, platformPath("../api/src/lib/")).replace(/\.js$/, ".ts");
+						return [
+							[key.replaceAll(/\\/g, "/"), path.resolve(sourcePath)],
+							[key.replaceAll(/\//g, "\\"), path.resolve(sourcePath)],
+						];
+					})
+					.flat(),
+			),
+			"@clara/api": path.resolve("../api/src/lib/index.svelte.ts"),
+			"@clara\\api": path.resolve("../api/src/lib/index.svelte.ts"),
+		},
 	},
 };
+
+console.log(config.kit.alias);
 
 export default config;

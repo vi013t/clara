@@ -10,7 +10,7 @@ Clara is in alpha. You can find the latest test build [in the builds folder](htt
 
 You can build and launch the app from source yourself. You need:
 
-- [Rust / Cargo](https://rust-lang.org/)
+- [Rust](https://rust-lang.org/)
 - [Bun](https://bun.com)
 
 To build:
@@ -26,9 +26,9 @@ The application will be placed in `/packages/app/builds`.
 
 ## Development
 
-Developing on Clara requires:
+Developing Clara requires:
 
-- [Rust / Cargo](https://rust-lang.org/)
+- [Rust](https://rust-lang.org/)
 - [Bun](https://bun.com)
 
 To pull the files and start the dev server:

@@ -167,6 +167,7 @@
 
 		&[disabled],
 		&.disabled {
+			cursor: default;
 			--stroke: #6c7086;
 		}
 	}

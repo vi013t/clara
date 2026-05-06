@@ -5,7 +5,7 @@ import fs from "fs";
 import os from "os";
 import path from "path";
 
-const pluginName = "%PLUGIN_NAME%";
+const pluginIdentifier = "%PLUGIN_IDENTIFIER%";
 
 let dataDir;
 if (process.platform === "win32") {
@@ -16,6 +16,6 @@ if (process.platform === "win32") {
 	dataDir = path.join(os.homedir(), ".local", "share");
 }
 
-const targetDir = path.join(dataDir, "Clara", "plugins", pluginName);
+const targetDir = path.join(dataDir, "Clara", "plugins", pluginIdentifier);
 
 fs.cpSync("dist", targetDir, { recursive: true, force: true });

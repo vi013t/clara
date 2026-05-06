@@ -3,6 +3,7 @@ import { userSettings } from "../../usersettings/index.svelte.ts";
 
 export default plugin({
 	name: "Default themes",
+	identifier: "default-themes",
 	icon: "Palette",
 	description: "Clara's default themes.",
 	onLoad() {

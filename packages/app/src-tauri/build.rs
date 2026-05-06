@@ -1,7 +1,7 @@
 use std::{env, fs, path::Path};
 
 fn main() {
-	compile_cli();
+	// compile_cli();
 	generate_plugin_bridge_macro();
 	tauri_build::build();
 }

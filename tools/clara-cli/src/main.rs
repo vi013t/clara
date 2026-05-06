@@ -66,6 +66,19 @@ fn create_plugin() -> Result<(), String> {
 		.interact_text()
 		.unwrap();
 
+	let identifier_pattern = regex_macro::regex!("^[a-z][-a-z\\d]*[a-z\\d]$");
+
+	let identifier: String = dialoguer::Input::with_theme(&dialoguer::theme::ColorfulTheme::default())
+		.with_prompt("Identifier:")
+		.validate_with(|input: &String| {
+			identifier_pattern
+				.is_match(input)
+				.then_some(())
+				.ok_or("Identifier must only contain hyphens, lowercase letters, and numbers.")
+		})
+		.interact_text()
+		.unwrap();
+
 	let package_manager = &crate::package::PACKAGE_MANAGERS[dialoguer::Select::with_theme(&dialoguer::theme::ColorfulTheme::default())
 		.with_prompt("Package Manager:")
 		.default(0)
@@ -101,7 +114,7 @@ fn create_plugin() -> Result<(), String> {
 	std::process::Command::new(package_manager.execute)
 		.arg("sv")
 		.arg("create")
-		.arg(&name)
+		.arg(&identifier)
 		.arg("--template")
 		.arg("library")
 		.arg("--types")
@@ -121,10 +134,14 @@ fn create_plugin() -> Result<(), String> {
 	print!("    {} project for Clara... ", "Setting up".bold().green());
 	std::io::stdout().flush().unwrap();
 
-	std::fs::remove_dir_all(std::path::Path::new(&name).join("static")).unwrap();
-	std::fs::write(std::path::Path::new(&name).join("svelte.config.js"), include_str!("templates/plugin/svelte.config.js")).unwrap();
+	std::fs::remove_dir_all(std::path::Path::new(&identifier).join("static")).unwrap();
+	std::fs::write(
+		std::path::Path::new(&identifier).join("svelte.config.js"),
+		include_str!("templates/plugin/svelte.config.js"),
+	)
+	.unwrap();
 
-	let routes_path = std::path::Path::new(&name).join("src").join("routes");
+	let routes_path = std::path::Path::new(&identifier).join("src").join("routes");
 	if routes_path.exists() {
 		std::fs::remove_dir_all(routes_path).map_err(|_| "Failed to remove src/routes")?;
 	}
@@ -132,25 +149,26 @@ fn create_plugin() -> Result<(), String> {
 	let typescript = include_str!("templates/plugin/install_script.ts");
 	let javascript = include_str!("templates/plugin/install_script.js");
 
-	std::fs::create_dir(std::path::Path::new(&name).join("scripts")).unwrap();
+	std::fs::create_dir(std::path::Path::new(&identifier).join("scripts")).unwrap();
 	std::fs::write(
-		std::path::Path::new(&name).join("scripts").join("install.ts"),
-		if package_manager.typescript { typescript } else { javascript }.replace("%PLUGIN_NAME%", &name),
+		std::path::Path::new(&identifier).join("scripts").join("install.ts"),
+		if package_manager.typescript { typescript } else { javascript }.replace("%PLUGIN_IDENTIFIER%", &identifier),
 	)
 	.unwrap();
 
-	std::fs::write(format!("./{name}/vite.config.ts"), include_str!("templates/plugin/vite.config.ts")).map_err(|err| format!("Error writing vite.config.ts: {err}"))?;
+	std::fs::write(format!("./{identifier}/vite.config.ts"), include_str!("templates/plugin/vite.config.ts")).map_err(|err| format!("Error writing vite.config.ts: {err}"))?;
 
 	std::fs::write(
-		format!("./{name}/src/lib/index.ts"),
+		format!("./{identifier}/src/lib/index.ts"),
 		include_str!("templates/plugin/index.ts")
 			.replace("%PLUGIN_NAME%", &name)
+			.replace("%PLUGIN_IDENTIFIER%", &identifier)
 			.replace("%PLUGIN_DESCRIPTION%", &description)
 			.replace("%PLUGIN_ICON%", &icon),
 	)
 	.map_err(|err| format!("Error writing to main file: {err}"))?;
 
-	let pkg_path = format!("./{name}/package.json");
+	let pkg_path = format!("./{identifier}/package.json");
 	let pkg_content = std::fs::read_to_string(&pkg_path).map_err(|_| "Could not read package.json")?;
 	let mut package_json: Value = serde_json::from_str(&pkg_content).map_err(|_| "Failed to parse package.json")?;
 
@@ -198,7 +216,7 @@ fn create_plugin() -> Result<(), String> {
 
 	std::process::Command::new(package_manager.name)
 		.arg("install")
-		.current_dir(std::env::current_dir().unwrap().join(&name))
+		.current_dir(std::env::current_dir().unwrap().join(&identifier))
 		.stdout(std::process::Stdio::null())
 		.stderr(std::process::Stdio::null())
 		.spawn()
@@ -209,7 +227,7 @@ fn create_plugin() -> Result<(), String> {
 	progress_bar.set_style(ProgressStyle::with_template("{msg}").unwrap());
 	progress_bar.finish_with_message(format!("    {} dependencies... {}", "Installing".green().bold(), "Done!".cyan().bold()));
 
-	println!("\n{} plugin at {}.\n", "Created".green().bold(), format!("./{name}").bold().cyan());
+	println!("\n{} plugin at {}.\n", "Created".green().bold(), format!("./{identifier}").bold().cyan());
 
 	Ok(())
 }

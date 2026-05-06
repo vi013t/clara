@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Popup from "./Popup.svelte";
+	import { Popup } from "@clara/api/components";
 
 	function reset() {}
 </script>

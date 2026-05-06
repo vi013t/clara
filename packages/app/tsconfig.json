@@ -9,6 +9,10 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"moduleResolution": "bundler"
+		"moduleResolution": "bundler",
+		"paths": {
+			"@clara/api": ["../api/src"],
+			"@clara/api/*": ["../api/src/*"]
+		}
 	}
 }

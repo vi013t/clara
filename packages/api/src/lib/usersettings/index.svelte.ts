@@ -17,7 +17,7 @@ class UserSettings implements Serialize<SerializedUserSettings> {
 			new Group({
 				name: "Blank",
 				icon: "StickyNote",
-				description: "A blank project with no datasets. This is not recommended for first time users; Use Basic instead.",
+				description: "A blank project with no datasets.",
 			}),
 		];
 		this.themes_ = [];

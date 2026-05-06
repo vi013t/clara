@@ -1,15 +1,14 @@
 <script lang="ts">
-	import { ContextMenu, Icon } from "@clara/api/components";
+	import { ContextMenu, Icon, IconPicker, LittleButton } from "@clara/api/components";
 	import type { Group } from "@clara/api/database";
 	import { EditorTab, GroupTab, Tab, TabList, views, type View } from "@clara/api/ui";
 	import { onMount } from "svelte";
-	import LittleButton from "../widgets/LittleButton.svelte";
-	import IconPicker from "../input/IconPicker.svelte";
 	import type { PaneLayout, SinglePane } from "@clara/api/project";
+
 	let {
 		background,
 		subpane,
-		pane,
+		pane = $bindable(),
 		anyPane = $bindable(),
 		onclose,
 	}: {
@@ -91,7 +90,7 @@
 		paneSettingsMenu.close();
 	}
 
-	function setView(name: View) {
+	function setView(name: string) {
 		return function () {
 			tabContextMenu.close();
 			currentTab<GroupTab>().view = name;
@@ -150,6 +149,7 @@
 	<div class="new-tab-wrapper" bind:this={newTabContainer} style:left="calc(min({tabWidth}, 13rem) * {pane.tabline.count()})">
 		<LittleButton
 			icon="Plus"
+			color="var(--foreground)"
 			style="
 				margin-top: auto;
 				margin-bottom: auto;
@@ -166,9 +166,9 @@
 
 	<div class="controls" bind:this={controls}>
 		<button onmousedown={() => paneSettingsMenu.toggle()}>
-			<Icon name="Settings" size={16} />
+			<LittleButton icon="Settings" size={16} color="var(--foreground)" />
 		</button>
-		<LittleButton icon="X" size={16} onmousedown={closePane} />
+		<LittleButton icon="X" size={16} onmousedown={closePane} color="var(--foreground)" />
 		<ContextMenu top="100%" right="0.25rem" bind:this={paneSettingsMenu}>
 			<button onmousedown={splitHorizontal}>
 				<Icon name="Columns2" size={16} />
@@ -192,11 +192,11 @@
 		<Icon name="ScanEye" size={16} style="margin-left: 0.15rem;" />
 		<span>Switch view</span>
 		<ContextMenu>
-			{#each Object.entries(views) as [viewName, info]}
+			{#each views as view}
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
-				<div onmousedown={setView(viewName as View)}>
-					<Icon name={info.icon} size={16} />
-					<span style:text-transform="capitalize">{viewName}</span>
+				<div onmousedown={setView(view.name)}>
+					<Icon name={view.icon} size={16} />
+					<span style:text-transform="capitalize">{view.name}</span>
 
 					<Icon name="ChevronRight" style="margin-left: auto;" />
 					<ContextMenu>

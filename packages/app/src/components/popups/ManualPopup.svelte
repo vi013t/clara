@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { Popup } from "@clara/api/components";
 	import icon from "../../assets/images/icon.png";
-	import Popup from "./Popup.svelte";
 	import Sidebar from "./Sidebar.svelte";
 
 	let popup: Popup;

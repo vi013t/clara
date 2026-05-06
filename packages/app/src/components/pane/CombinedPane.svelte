@@ -2,7 +2,8 @@
 <script lang="ts">
 	import { mouse } from "@clara/api/components";
 	import { clamp } from "@clara/api/math";
-	import Pane, { type MultiPane } from "./Pane.svelte";
+	import Pane from "./Pane.svelte";
+	import type { MultiPane } from "@clara/api/project";
 
 	let {
 		subpane = false,

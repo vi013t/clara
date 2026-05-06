@@ -1,24 +1,22 @@
 <script lang="ts">
 	import { EditorTab, GroupTab } from "@clara/api/ui";
-	import GraphView from "../views/GraphView.svelte";
-	import HierarchyView from "../views/HierarchyView.svelte";
-	import SpreadsheetView from "../views/SpreadsheetView.svelte";
 	import Editor from "./Editor.svelte";
 	import Tabline from "./Tabline.svelte";
 	import type { RichText } from "@clara/api/attribute";
-	import type { AnyPane, SinglePane } from "./Pane.svelte";
+	import { GraphView, HierarchyView, SpreadsheetView } from "@clara/api/components";
+	import type { PaneLayout, SinglePane } from "@clara/api/project";
 
 	let {
 		background = "var(--background)",
 		subpane = false,
 		anyPane = $bindable(),
-		pane,
+		pane = $bindable(),
 		onclose = () => {},
 	}: {
 		background?: string;
 		subpane?: boolean;
 		pane: SinglePane;
-		anyPane: AnyPane;
+		anyPane: PaneLayout;
 		onclose?: () => void;
 	} = $props();
 
@@ -32,7 +30,7 @@
 </script>
 
 <section class="pane">
-	<Tabline {pane} bind:anyPane {background} {subpane} {onclose} />
+	<Tabline bind:pane bind:anyPane {background} {subpane} {onclose} />
 	<div class="content" style:background>
 		{#if tab instanceof EditorTab && tab.id === pane.selectedTabID}
 			<Editor bind:doc={tab.content} />

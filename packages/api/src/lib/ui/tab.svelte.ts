@@ -2,7 +2,6 @@ import type { Group, SerializedGroup } from "../data/database.svelte";
 import { Project } from "../project.svelte";
 import { assignedLater, type Serialize } from "../util/index.svelte";
 import { RichText, type SerializedRichText } from "../data/attribute/richtext.svelte";
-import type { View } from "./views.svelte";
 import { getIcon, type Icon, type IconIdentifier, type IconName } from "./icons.svelte";
 
 export class Tab {
@@ -27,7 +26,7 @@ export class Tab {
 
 export type SerializedGroupTab = {
 	type: "group";
-	view: View;
+	view: string;
 	id: number;
 	group: number;
 	icon: IconName;
@@ -35,7 +34,7 @@ export type SerializedGroupTab = {
 
 export class GroupTab extends Tab implements Serialize<SerializedGroupTab> {
 	private groupID = $state(assignedLater<number>());
-	public view: View = $state("hierarchy");
+	public view: string = $state("hierarchy");
 
 	public constructor(group: number, icon?: IconIdentifier) {
 		super(
@@ -111,7 +110,11 @@ export type SerializedTabList = {
 };
 
 export class TabList implements Serialize<SerializedTabList> {
-	public tabs: Tab[] = $state([new GroupTab(Project.get()!.database.id)]);
+	public tabs: Tab[] = $state([]);
+
+	public constructor(tabs = [new GroupTab(Project.get()!.database.id)!]) {
+		this.tabs = tabs;
+	}
 
 	public serialize(): SerializedTabList {
 		return {

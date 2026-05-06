@@ -1,16 +1,13 @@
 <script lang="ts">
 	import { invoke } from "@tauri-apps/api/core";
 	import { open as chooseFile } from "@tauri-apps/plugin-dialog";
-	import Select from "../input/Select.svelte";
-	import Popup from "./Popup.svelte";
 	import SettingsPopup from "./SettingsPopup.svelte";
 	import { asyncFn } from "../../api/errors.svelte";
-	import HierarchyView from "../views/HierarchyView.svelte";
 	import type { Database } from "@clara/api/database";
 	import { Project } from "@clara/api/project";
 	import { userSettings } from "@clara/api/usersettings";
-	import { Icon } from "@clara/api/components";
-	import LittleButton from "../widgets/LittleButton.svelte";
+	import { HierarchyView, Icon, LittleButton, Popup, Select } from "@clara/api/components";
+	import { TabList } from "@clara/api/ui";
 
 	let popup: Popup;
 
@@ -85,15 +82,13 @@
 			// let currentProject = Project.get();
 			// if (currentProject) await invoke("save_project", { project: currentProject.serialize() });
 
-			let database = template.clone();
-			database.name = name;
-			console.log(template);
-			console.log(database);
-
-			let project = new Project({
-				location,
-				database,
-			});
+			let chosenTemplate = template.clone();
+			chosenTemplate.name = name;
+			let tabline = new TabList([]);
+			let project = Project.fromTemplate(
+				{ database: chosenTemplate, layout: { split: "none", tabline, selectedTabID: 0 } },
+				{ location },
+			);
 
 			Project.set(project);
 			let serializedProject = project.serialize();
@@ -172,7 +167,12 @@
 								() => template.name, choice => (template = userSettings().templates.find(other => other.name === choice)!)
 							}
 						/>
-						<LittleButton size={18} icon="Settings" onmousedown={() => settingsPopup.open("templates")} />
+						<LittleButton
+							size={18}
+							color="var(--foreground)"
+							icon="Settings"
+							onmousedown={() => settingsPopup.open("templates")}
+						/>
 					</div>
 				</div>
 			</div>

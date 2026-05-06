@@ -1,11 +1,9 @@
 <script lang="ts">
 	import type { Database } from "@clara/api/database";
-	import Select from "../input/Select.svelte";
-	import Popup from "./Popup.svelte";
 	import { userSettings } from "@clara/api/usersettings";
 	import Sidebar from "./Sidebar.svelte";
 	import { getIcon } from "@clara/api/icons";
-	import { Icon } from "@clara/api/components";
+	import { Icon, Popup, Select } from "@clara/api/components";
 
 	let popup: Popup;
 	let view = $state("appearance");

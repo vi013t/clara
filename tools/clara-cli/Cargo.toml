@@ -14,7 +14,14 @@ clara-api = { path = "../clara-api"}
 colored = "3.1.1"
 dialoguer = { version = "0.12.0", features = ["fuzzy-select"] }
 indicatif = "0.18.4"
+regex = "1.12.3"
+regex-macro = "0.3.0"
 serde = "1.0.228"
 serde_json = "1.0.149"
 strum = "0.28.0"
 strum_macros = "0.28.0"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"

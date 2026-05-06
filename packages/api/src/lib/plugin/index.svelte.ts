@@ -13,6 +13,7 @@ type Settings<Names extends string> = {
 
 export type ClaraPlugin<SettingNames extends string> = {
 	name: string;
+	identifier: string;
 	description: string;
 	icon: IconIdentifier;
 	settings?: Setting<SettingNames>[];

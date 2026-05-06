@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { Icon } from "@clara/api/components";
-	import Popup from "./Popup.svelte";
+	import { Icon, Popup } from "@clara/api/components";
 
 	let popup: Popup;
 

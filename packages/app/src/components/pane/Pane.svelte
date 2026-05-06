@@ -15,7 +15,7 @@
 </script>
 
 {#if pane.split === "none"}
-	<SingularPane {pane} bind:anyPane={pane} />
+	<SingularPane bind:pane bind:anyPane={pane} />
 {:else}
 	<CombinedPane bind:pane />
 {/if}

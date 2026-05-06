@@ -28,29 +28,34 @@ pub struct TabList {
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
 pub struct SinglePane {
-	split: String,
 	tabline: TabList,
+
 	#[serde(rename = "selectedTabID")]
 	selected_tab_id: Option<u32>,
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
 pub struct MultiPane {
-	split: String,
 	percent: u32,
 	panes: (PaneLayout, PaneLayout),
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
+#[serde(tag = "split")]
 pub enum PaneLayout {
+	#[serde(rename = "none")]
 	SinglePane(Box<SinglePane>),
-	MultiPane(Box<MultiPane>),
+
+	#[serde(rename = "horizontal")]
+	HorizontalPane(Box<MultiPane>),
+
+	#[serde(rename = "vertical")]
+	VerticalPane(Box<MultiPane>),
 }
 
 impl PaneLayout {
 	pub fn basic() -> PaneLayout {
 		PaneLayout::SinglePane(Box::new(SinglePane {
-			split: "none".to_owned(),
 			tabline: TabList { tabs: Vec::new() },
 			selected_tab_id: None,
 		}))

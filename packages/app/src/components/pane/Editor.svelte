@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import Select from "../input/Select.svelte";
 	import { RichText, Style, StyledText } from "@clara/api/attribute";
 	import { getFonts } from "@clara/api/system";
-	import { Icon } from "@clara/api/components";
+	import { Icon, Select } from "@clara/api/components";
 
 	let {
 		title,

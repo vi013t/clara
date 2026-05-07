@@ -63,10 +63,12 @@ impl PaneLayout {
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct Project {
 	location: String,
 	database: Database,
 	layout: PaneLayout,
+	pinned_groups: Vec<u32>,
 }
 
 impl Project {
@@ -74,6 +76,7 @@ impl Project {
 		Project {
 			location: location.to_owned(),
 			layout,
+			pinned_groups: Vec::new(),
 			database: Database {
 				root: 0,
 				groups: vec![Group {
@@ -220,7 +223,9 @@ pub fn new_project(project: Project) -> Result<(), String> {
 
 pub fn save_project(project: Project) -> Result<(), String> {
 	std::fs::write(
-		std::path::Path::new(&project.location).join(format!("{}.clara", project.database.root().name)),
+		std::path::Path::new(&project.location)
+			.join(&project.database.root().name)
+			.join(format!("{}.clara", project.database.root().name)),
 		project.to_bytes().map_err(|_| "Error serializing project".to_owned())?,
 	)
 	.map_err(|_| "Error writing to project file".to_owned())

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { errors, Debug } from "@clara/api/utils";
 	import { Project, type PaneLayout } from "@clara/api/project";
-	import { InputHandler, Navbar, Pane, StatusBar, NoProject, Sidebar } from "@clara/api/components";
+	import { InputHandler, Navbar, Pane, StatusBar, NoProject, Sidebar, Notifications } from "@clara/api/components";
 	import { startPlugins } from "@clara/api";
 	import { onMount } from "svelte";
-	import { userSettings } from "@clara/api/usersettings";
+	import { getFromCache, userSettings } from "@clara/api/usersettings";
 	import { TabList } from "@clara/api/ui";
 
 	$effect(() => {
@@ -12,6 +12,9 @@
 			Debug.errors(errors());
 		}
 	});
+
+	const projectPath = getFromCache("lastProjectPath");
+	if (projectPath) Project.openFromLocation(projectPath);
 
 	startPlugins();
 
@@ -38,6 +41,8 @@
 	{:else}
 		<NoProject />
 	{/if}
+
+	<Notifications />
 </main>
 
 <style>

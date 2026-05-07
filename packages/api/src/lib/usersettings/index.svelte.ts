@@ -11,6 +11,7 @@ class UserSettings implements Serialize<SerializedUserSettings> {
 	private themes_ = $state(assignedLater<Theme[]>());
 	private selectedTheme_ = $state(assignedLater<string>());
 	private plugins_: ClaraPlugin<any>[] = $state([]);
+	public autosave = $state(true);
 
 	public constructor() {
 		this.templates_ = [

@@ -78,6 +78,7 @@
 	function pin(group: Group) {
 		Project.get()!.pinnedGroups.push(group);
 		rightClickMenu?.close();
+		Project.autosave();
 	}
 </script>
 

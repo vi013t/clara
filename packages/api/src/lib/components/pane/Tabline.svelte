@@ -168,7 +168,7 @@
 		<button onmousedown={() => paneSettingsMenu.toggle()}>
 			<LittleButton icon="Settings" size={16} color="var(--foreground)" />
 		</button>
-		<LittleButton icon="X" size={16} onmousedown={closePane} color="var(--foreground)" />
+		<LittleButton accent="var(--red)" icon="X" size={16} onmousedown={closePane} color="var(--foreground)" />
 		<ContextMenu top="100%" right="0.25rem" bind:this={paneSettingsMenu}>
 			<button onmousedown={splitHorizontal}>
 				<Icon name="Columns2" size={16} />

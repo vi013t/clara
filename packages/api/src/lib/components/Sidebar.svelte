@@ -2,7 +2,7 @@
 	import { GroupTab, views } from "@clara/api/ui";
 	import { Project, type PaneLayout, type SinglePane } from "@clara/api/project";
 	import { ContextMenu, Icon, LittleButton } from "@clara/api/components";
-	import type { Group } from "@clara/api/database";
+	import { Group } from "@clara/api/database";
 
 	let { focusedPane = $bindable() }: { focusedPane: PaneLayout } = $props();
 
@@ -10,8 +10,9 @@
 	let rightClickGroupMenu: ContextMenu;
 	let rightClickViewMenu: ContextMenu;
 
-	function rightClickGroup(event: MouseEvent) {
+	function rightClickGroup(event: MouseEvent, group: Group) {
 		rightClickGroupMenu.openAtMouse(event);
+		selectedGroup = group;
 	}
 
 	function rightClickView(event: MouseEvent) {
@@ -31,49 +32,91 @@
 			(pane.tabline.getTabByID(pane.selectedTabID) as GroupTab).group = group;
 		};
 	}
+
+	let selectedGroup: Group | null = $state(null);
+
+	function unpin() {
+		Project.get()!.pinnedGroups = Project.get()!.pinnedGroups.filter(group => group.id !== selectedGroup!.id);
+		Project.autosave();
+		rightClickGroupMenu.close();
+	}
 </script>
 
 {#if Project.get()}
-	<section style:align-items={expanded ? "flex-start" : "center"}>
-		<LittleButton
-			style="margin-left: auto;"
-			icon={expanded ? "ArrowLeftFromLine" : "ArrowRightFromLine"}
-			onmousedown={() => (expanded = !expanded)}
-		/>
-		<div style:width={expanded ? "100%" : undefined}>
+	<section style:align-items={expanded ? "flex-start" : "center"} style:width={expanded ? "12rem" : "2.5rem"}>
+		{#if expanded}
+			<div class="title">
+				Sidebar
+				<LittleButton style="margin-left: auto;" icon="ArrowLeftFromLine" onmousedown={() => (expanded = !expanded)} />
+			</div>
+		{:else}
+			<LittleButton style="margin-left: auto;" icon="ArrowRightFromLine" onmousedown={() => (expanded = !expanded)} />
+		{/if}
+
+		<div>
 			{#each Project.get()!.pinnedGroups as group}
 				{#if expanded}
-					<button style:width="100%" oncontextmenu={rightClickGroup} onmousedown={setGroup(group)}>
-						<Icon name={group.icon.name} />
-						{group.name}
-					</button>
+					<div style:width="100%">
+						<button oncontextmenu={event => rightClickGroup(event, group)} onmousedown={setGroup(group)}>
+							<Icon name={group.icon.name} />
+							{group.name}
+						</button>
+
+						{#if Project.get()!.pinnedGroups.length > 1}
+							<div class="handle">
+								<Icon color="var(--foreground-dark)" name="GripHorizontal" />
+							</div>
+						{/if}
+					</div>
 				{:else}
 					<div>
-						<LittleButton icon={group.icon.name} oncontextmenu={rightClickGroup} onmousedown={setGroup(group)} />
+						<LittleButton
+							icon={group.icon.name}
+							oncontextmenu={event => rightClickGroup(event, group)}
+							onmousedown={setGroup(group)}
+						/>
 					</div>
 				{/if}
 			{/each}
 		</div>
-		<div style:width={expanded ? "100%" : undefined}>
+
+		<div>
 			{#each views as view}
 				{#if expanded}
-					<button style:width="100%" oncontextmenu={rightClickView} onmousedown={setView(view.name)}>
-						<Icon name={view.icon} />
-						{view.name}
-					</button>
+					<div style:width="100%">
+						<button oncontextmenu={rightClickView} onmousedown={setView(view.name)}>
+							<Icon name={view.icon} />
+							{view.name}
+						</button>
+						<div class="handle">
+							<Icon color="var(--foreground-dark)" name="GripHorizontal" />
+						</div>
+					</div>
 				{:else}
 					<div>
 						<LittleButton icon={view.icon} oncontextmenu={rightClickView} onmousedown={setView(view.name)} />
 					</div>
 				{/if}
 			{/each}
+			{#if expanded}
+				<div style:width="100%">
+					<button>
+						<Icon name="Pencil" />
+						Editor
+					</button>
+				</div>
+			{:else}
+				<div>
+					<LittleButton icon="Pencil" />
+				</div>
+			{/if}
 		</div>
 	</section>
 {/if}
 
 <ContextMenu bind:this={rightClickGroupMenu}>
 	<button>
-		<Icon name="Pin" />
+		<Icon name="Pin" onmousedown={unpin} />
 		Unpin
 	</button>
 	<button>
@@ -90,9 +133,17 @@
 </ContextMenu>
 
 <style>
+	.title {
+		display: flex;
+		flex-direction: row;
+		color: var(--foreground);
+		text-transform: uppercase;
+		font-size: 0.8rem;
+	}
+
 	section {
-		width: fit-content;
-		height: 100%;
+		overflow: hidden;
+		height: calc(100% - 2rem);
 		background-color: var(--background-darker);
 		color: var(--foreground);
 		padding: 0.5rem;
@@ -100,6 +151,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		transition: width 0.1s;
 
 		> div {
 			display: flex;
@@ -107,6 +159,7 @@
 			flex-direction: column;
 			justify-content: flex-end;
 			gap: 0.5rem;
+			width: 100%;
 
 			&:nth-child(2) {
 				height: 50%;
@@ -120,13 +173,26 @@
 				display: flex;
 				gap: 0.5rem;
 				font-size: 0.8rem;
-				justify-content: flex-start;
+				justify-content: space-between;
 				align-items: center;
 			}
 
 			button {
 				padding: 0.25rem;
 				border-radius: 0.25rem;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				flex-grow: 1;
+			}
+
+			.handle {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				height: 100%;
+				margin-right: 0.25rem;
+				cursor: grab;
 			}
 
 			button:hover {

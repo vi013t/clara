@@ -13,10 +13,15 @@
 
 	let projectMenu: ContextMenu;
 
-	let projectSettingsPopup: ProjectSettingsPopup;
+	let projectSettingsPopup: ProjectSettingsPopup | null = $state(null);
 	let newProjectPopup: NewProjectPopup;
 	let manualPopup: ManualPopup;
 	let settingsPopup: SettingsPopup;
+
+	async function saveProject() {
+		projectMenu.close();
+		await Project.save();
+	}
 
 	function close() {
 		const appWindow = getCurrentWindow();
@@ -81,7 +86,7 @@
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div
 					onmousedown={() => {
-						projectSettingsPopup.open();
+						projectSettingsPopup?.open();
 						projectMenu.close();
 					}}
 					class={["cm-button", !Project.get() && "disabled"]}
@@ -89,7 +94,7 @@
 					<Icon name="Settings" size={16} />
 					<span>Project settings</span>
 				</div>
-				<button disabled={!Project.get()}>
+				<button disabled={!Project.get()} onmousedown={saveProject}>
 					<Icon name="Save" size={16} />
 					<span>Save project</span>
 				</button>
@@ -111,9 +116,9 @@
 		/>
 	{/if}
 
-	<div>
+	<div class="controls">
 		<LittleButton icon="Minus" onmousedown={minimize} size={16} />
-		<LittleButton icon="Square" onmousedown={maximize} size={16} />
+		<LittleButton icon="Square" onmousedown={maximize} size={12} />
 		<LittleButton icon="X" onmousedown={close} accent="var(--red)" size={16} />
 	</div>
 </nav>
@@ -126,6 +131,12 @@
 <SettingsPopup bind:this={settingsPopup} />
 
 <style>
+	.controls {
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+	}
+
 	nav {
 		width: 100%;
 		height: 2rem;

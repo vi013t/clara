@@ -33,6 +33,23 @@ import Tabline from "./pane/Tabline.svelte";
 import Editor from "./pane/Editor.svelte";
 import StatusBar from "./StatusBar.svelte";
 import Sidebar from "./Sidebar.svelte";
+import Notification from "./Notification.svelte";
+import Notifications from "./Notifications.svelte";
+
+let notificationId = 0;
+let notifications: { title: string; text?: string; id: number }[] = $state([]);
+
+export function notify(title: string, text?: string) {
+	let id = notificationId++;
+	notifications.push({ title, text, id });
+	setTimeout(() => {
+		notifications = notifications.filter(notification => notification.id !== id);
+	}, 5000);
+}
+
+export function getNotifications() {
+	return notifications;
+}
 
 export {
 	ContextMenu,
@@ -71,4 +88,6 @@ export {
 	Editor,
 	StatusBar,
 	Sidebar,
+	Notification,
+	Notifications,
 };

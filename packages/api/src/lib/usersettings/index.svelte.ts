@@ -3,22 +3,30 @@ import { invoke } from "@tauri-apps/api/core";
 import type { Theme } from "./theme.svelte.ts";
 import { assignedLater, type Serialize } from "../util/index.svelte.ts";
 import { type ClaraPlugin } from "../plugin/index.svelte.ts";
+import { Template, type SerializedTemplate } from "@clara/api/project";
+import { TabList } from "@clara/api/ui";
 
-type SerializedUserSettings = { templates: SerializedDatabase[]; themes: Theme[]; selectedTheme: string };
+type SerializedUserSettings = { templates: SerializedTemplate[]; themes: Theme[]; selectedTheme: string };
 
 class UserSettings implements Serialize<SerializedUserSettings> {
-	private templates_ = $state(assignedLater<Database[]>());
+	private templates_ = $state(assignedLater<Template[]>());
 	private themes_ = $state(assignedLater<Theme[]>());
 	private selectedTheme_ = $state(assignedLater<string>());
 	private plugins_: ClaraPlugin<any>[] = $state([]);
 	public autosave = $state(true);
 
 	public constructor() {
+		let tablist = new TabList([]);
+		let database = new Group({
+			name: "Blank",
+			icon: "StickyNote",
+			description: "A blank project with no datasets.",
+		});
 		this.templates_ = [
-			new Group({
-				name: "Blank",
-				icon: "StickyNote",
-				description: "A blank project with no datasets.",
+			new Template({
+				database,
+				layout: { split: "none", tabline: tablist, selectedTabID: 0 },
+				pinnedGroups: [database],
 			}),
 		];
 		this.themes_ = [];
@@ -55,11 +63,11 @@ class UserSettings implements Serialize<SerializedUserSettings> {
 		document.head.appendChild(style);
 	}
 
-	public get templates(): readonly Database[] {
+	public get templates(): readonly Template[] {
 		return this.templates_;
 	}
 
-	public addTemplate(template: Database): void {
+	public addTemplate(template: Template): void {
 		this.templates_.push(template);
 	}
 

@@ -67,7 +67,13 @@ function deserializePaneLayout(layout: SerializedPaneLayout): PaneLayout {
 	};
 }
 
-export class Template {
+export type SerializedTemplate = {
+	database: SerializedDatabase;
+	layout: SerializedPaneLayout;
+	pinnedGroups: number[];
+};
+
+export class Template implements Serialize<SerializedTemplate> {
 	public database: Database = $state(assignedLater());
 	public layout: PaneLayout = $state(assignedLater());
 	public pinnedGroups: Group[] = $state([]);
@@ -76,6 +82,34 @@ export class Template {
 		this.database = database;
 		this.layout = layout;
 		this.pinnedGroups = pinnedGroups;
+	}
+
+	public serialize(): SerializedTemplate {
+		return {
+			database: this.database.serialize(),
+			layout: serializePaneLayout(this.layout),
+			pinnedGroups: this.pinnedGroups.map(group => group.id),
+		};
+	}
+
+	public clone(): Template {
+		// TODO: clone layout and pinned groups
+		return new Template({
+			database: this.database.clone(),
+			layout: this.layout,
+			pinnedGroups: this.pinnedGroups,
+		});
+	}
+
+	public static deserialize(template: SerializedTemplate): Template {
+		let temp = new Template({
+			database: Group.deserialize(template.database),
+			layout: deserializePaneLayout(template.layout),
+			pinnedGroups: [],
+		});
+		let all = temp.database.dfsBranches();
+		temp.pinnedGroups = template.pinnedGroups.map(id => all.find(group => group.id == id)!);
+		return temp;
 	}
 }
 

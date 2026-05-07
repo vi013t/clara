@@ -163,22 +163,6 @@
 		display: flex;
 		flex-direction: column;
 
-		button:not(.new) {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			margin-right: auto;
-			margin-top: 0.25rem;
-			padding: 0.25rem;
-			border-radius: 0.25rem;
-			--stroke: var(--foreground-bright);
-
-			&:hover {
-				background-color: var(--indigo);
-				--stroke: var(--background);
-			}
-		}
-
 		&:first-child .cell:not(.new) {
 			background-color: var(--background);
 		}
@@ -223,11 +207,6 @@
 		&.control {
 			width: fit-content;
 			gap: 0.25rem;
-		}
-
-		button {
-			margin-left: auto;
-			margin-right: 0rem;
 		}
 	}
 </style>

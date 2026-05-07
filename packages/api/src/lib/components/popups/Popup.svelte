@@ -71,6 +71,8 @@
 			icon="X"
 			size={18}
 			class="close-button"
+			accent="var(--red)"
+			color="var(--foreground)"
 			onmousedown={close}
 			style="position: absolute; top: 0.25rem; right: 0.25rem;"
 		/>

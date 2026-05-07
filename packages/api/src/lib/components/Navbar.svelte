@@ -102,6 +102,10 @@
 					<Icon name="Save" size={16} />
 					<span>Save project as...</span>
 				</button>
+				<button disabled={!Project.get()}>
+					<Icon name="TextCursorInput" size={16} />
+					<span>Rename Project</span>
+				</button>
 			</ContextMenu>
 		</div>
 		<LittleButton size={16} icon="Settings" onmousedown={() => settingsPopup.open()} />

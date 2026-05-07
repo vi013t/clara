@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { invoke } from "@tauri-apps/api/core";
 	import { open as chooseFile } from "@tauri-apps/plugin-dialog";
-	import type { Database } from "@clara/api/database";
-	import { Project } from "@clara/api/project";
+	import { Project, Template } from "@clara/api/project";
 	import { userSettings } from "@clara/api/usersettings";
 	import { HierarchyView, Icon, LittleButton, Popup, Select, SettingsPopup } from "@clara/api/components";
-	import { TabList } from "@clara/api/ui";
 	import { asyncFn } from "@clara/api/utils";
 
 	let popup: Popup;
@@ -18,7 +16,7 @@
 
 	let location: string = $state("");
 	let name: string = $state("");
-	let template: Database = $state(userSettings().templates[0]);
+	let template: Template = $state(userSettings().templates[0]);
 
 	let startedTypingLocation = $state(false);
 	let startedTypingName = $state(false);
@@ -82,12 +80,8 @@
 			// if (currentProject) await invoke("save_project", { project: currentProject.serialize() });
 
 			let chosenTemplate = template.clone();
-			chosenTemplate.name = name;
-			let tabline = new TabList([]);
-			let project = Project.fromTemplate(
-				{ database: chosenTemplate, layout: { split: "none", tabline, selectedTabID: 0 }, pinnedGroups: [chosenTemplate] },
-				{ location },
-			);
+			chosenTemplate.database.name = name;
+			let project = Project.fromTemplate(chosenTemplate, { location });
 
 			Project.set(project);
 			let serializedProject = project.serialize();
@@ -161,9 +155,13 @@
 					<div class="select">
 						<Select
 							width="calc(100% - 1.75rem)"
-							options={userSettings().templates.map(template => ({ name: template.name, icon: template.icon.component }))}
+							options={userSettings().templates.map(template => ({
+								name: template.database.name,
+								icon: template.database.icon.component,
+							}))}
 							bind:value={
-								() => template.name, choice => (template = userSettings().templates.find(other => other.name === choice)!)
+								() => template.database.name,
+								choice => (template = userSettings().templates.find(other => other.database.name === choice)!)
 							}
 						/>
 						<LittleButton
@@ -176,12 +174,12 @@
 				</div>
 			</div>
 
-			<p>{template.description}</p>
+			<p>{template.database.description}</p>
 
 			<div>
 				<h2>Entries</h2>
 				<div class="tree">
-					<HierarchyView hideRoot entry={template} />
+					<HierarchyView hideRoot entry={template.database} />
 				</div>
 			</div>
 		</div>

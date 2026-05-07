@@ -2,6 +2,8 @@
 // AND IS NOT MEANT FOR MANUAL EDITING
 
 const internal = globalThis.__CLARA_API__.components;
+export const notify = internal.notify;
+export const getNotifications = internal.getNotifications;
 export const ContextMenu = internal.ContextMenu;
 export const InputHandler = internal.InputHandler;
 export const mouse = internal.mouse;
@@ -30,10 +32,13 @@ export const NewProjectPopup = internal.NewProjectPopup;
 export const ManualPopup = internal.ManualPopup;
 export const ProjectSettingsPopup = internal.ProjectSettingsPopup;
 export const SettingsPopup = internal.SettingsPopup;
-export const Sidebar = internal.Sidebar;
+export const PopupSidebar = internal.PopupSidebar;
 export const Pane = internal.Pane;
 export const SingularPane = internal.SingularPane;
 export const CombinedPane = internal.CombinedPane;
 export const Tabline = internal.Tabline;
 export const Editor = internal.Editor;
 export const StatusBar = internal.StatusBar;
+export const Sidebar = internal.Sidebar;
+export const Notification = internal.Notification;
+export const Notifications = internal.Notifications;

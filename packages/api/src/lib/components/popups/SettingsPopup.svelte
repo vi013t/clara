@@ -3,10 +3,11 @@
 	import { userSettings } from "@clara/api/usersettings";
 	import { getIcon } from "@clara/api/icons";
 	import { Icon, Popup, Select, PopupSidebar } from "@clara/api/components";
+	import type { Template } from "@clara/api/project";
 
 	let popup: Popup;
 	let view = $state("appearance");
-	let editingTemplate: Database | null = $state(null);
+	let editingTemplate: Template | null = $state(null);
 
 	export function open(viewName?: string) {
 		if (viewName) view = viewName;
@@ -15,7 +16,7 @@
 
 	function reset() {}
 
-	function editTemplate(template: Database) {
+	function editTemplate(template: Template) {
 		return function () {
 			editingTemplate = template;
 			view = "Template Editor";
@@ -81,8 +82,8 @@
 					{#each userSettings().templates as template}
 						<button class="header" onmousedown={editTemplate(template)}>
 							<div>
-								<h1>{template.name}</h1>
-								<p>{template.description}</p>
+								<h1>{template.database.name}</h1>
+								<p>{template.database.description}</p>
 							</div>
 							<Icon name="ChevronRight" size={1.5} />
 						</button>
@@ -94,9 +95,9 @@
 						<h2>Name</h2>
 						<div class="name">
 							<button>
-								<editingTemplate.icon.component stroke="var(--stroke)" />
+								<editingTemplate.database.icon.component stroke="var(--stroke)" />
 							</button>
-							<input bind:value={editingTemplate.name} />
+							<input bind:value={editingTemplate.database.name} />
 						</div>
 
 						<h2>Groups &amp; Items</h2>

@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { Icon } from "@clara/api/components";
-	import LittleButton from "../widgets/LittleButton.svelte";
+	import { Icon, LittleButton } from "@clara/api/components";
 	import { getIcon, type IconIdentifier } from "@clara/api/icons";
 
 	export type ComplexOption = { name: string; icon?: IconIdentifier; color?: string; style?: string };

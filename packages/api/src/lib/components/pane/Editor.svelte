@@ -2,8 +2,7 @@
 	import { onMount } from "svelte";
 	import { RichText, Style, StyledText } from "@clara/api/attribute";
 	import { getFonts } from "@clara/api/system";
-	import { Icon, Select } from "@clara/api/components";
-	import LittleButton from "../widgets/LittleButton.svelte";
+	import { LittleButton, Select } from "@clara/api/components";
 
 	let {
 		title,
@@ -350,20 +349,6 @@
 		&:first-child {
 			border: none;
 		}
-
-		button {
-			padding: 0.25rem;
-			border-radius: 0.25rem;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			--stroke: var(--foreground-bright);
-
-			&:hover {
-				--stroke: var(--background-dark);
-				background-color: var(--indigo);
-			}
-		}
 	}
 
 	.font-size {
@@ -384,20 +369,6 @@
 			height: 1.5rem;
 			border-radius: 0.25rem;
 		}
-
-		button {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			padding: 0.25rem;
-			border-radius: 0.25rem;
-			--stroke: var(--foreground-bright);
-
-			&:hover {
-				--stroke: var(--background-dark);
-				background-color: var(--indigo);
-			}
-		}
 	}
 
 	.wrapper {
@@ -411,10 +382,6 @@
 			.editor {
 				border-color: #cccccc;
 				color: black;
-			}
-
-			button {
-				--stroke: black;
 			}
 
 			.toolbar {

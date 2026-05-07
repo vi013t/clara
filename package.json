@@ -13,7 +13,8 @@
 		"clean": "./scripts/clean.sh",
 		"build:api": "turbo build --filter='@clara/api'",
 		"build:plugins": "turbo build --filter='./packages/plugins/*'",
-		"install:plugins": "bun run build:plugins && bun ./scripts/install_plugins.ts"
+		"install:plugins": "bun run build:plugins && bun ./scripts/install_plugins.ts",
+		"install": "bun run build && bun ./scripts/install.ts"
 	},
 	"devDependencies": {
 		"turbo": "^2.8.21"

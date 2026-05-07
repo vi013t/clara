@@ -7,6 +7,7 @@ export const getNotifications = internal.getNotifications;
 export const ContextMenu = internal.ContextMenu;
 export const InputHandler = internal.InputHandler;
 export const mouse = internal.mouse;
+export const keyboard = internal.keyboard;
 export const Icon = internal.Icon;
 export const CameraView = internal.CameraView;
 export const GraphView = internal.GraphView;

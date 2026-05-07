@@ -19,10 +19,11 @@ To build:
 git clone https://github.com/vi013t/clara.git
 cd clara
 bun install
-bun run build
+bun run build # to build locally, or:
+bun run install # to install onto your machine
 ```
 
-The application will be placed in `/packages/app/builds`.
+If built locally, the application will be placed in `/packages/app/builds`.
 
 ## Development
 

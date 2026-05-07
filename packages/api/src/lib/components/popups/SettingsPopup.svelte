@@ -1,10 +1,8 @@
 <script lang="ts">
-	import type { Database } from "@clara/api/database";
 	import { userSettings } from "@clara/api/usersettings";
 	import { getIcon } from "@clara/api/icons";
-	import { Icon, Popup, Select, PopupSidebar, HierarchyView } from "@clara/api/components";
+	import { LittleButton, Icon, Popup, Select, PopupSidebar, HierarchyView } from "@clara/api/components";
 	import type { Template } from "@clara/api/project";
-	import LittleButton from "../widgets/LittleButton.svelte";
 
 	let popup: Popup;
 	let view = $state("appearance");

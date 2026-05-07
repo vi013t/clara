@@ -10,7 +10,6 @@ import ColorPicker from "./input/ColorPicker.svelte";
 import IconPicker from "./input/IconPicker.svelte";
 import Input from "./input/Input.svelte";
 import LongTextInput from "./input/LongTextInput.svelte";
-
 import MeasurementInput from "./input/MeasurementInput.svelte";
 import NumberInput from "./input/NumberInput.svelte";
 import Select from "./input/Select.svelte";
@@ -26,13 +25,14 @@ import NewProjectPopup from "./popups/NewProjectPopup.svelte";
 import ManualPopup from "./popups/ManualPopup.svelte";
 import ProjectSettingsPopup from "./popups/ProjectSettingsPopup.svelte";
 import SettingsPopup from "./popups/SettingsPopup.svelte";
-import Sidebar from "./popups/Sidebar.svelte";
+import PopupSidebar from "./popups/PopupSidebar.svelte";
 import Pane from "./pane/Pane.svelte";
 import SingularPane from "./pane/SingularPane.svelte";
 import CombinedPane from "./pane/CombinedPane.svelte";
 import Tabline from "./pane/Tabline.svelte";
 import Editor from "./pane/Editor.svelte";
 import StatusBar from "./StatusBar.svelte";
+import Sidebar from "./Sidebar.svelte";
 
 export {
 	ContextMenu,
@@ -63,11 +63,12 @@ export {
 	ManualPopup,
 	ProjectSettingsPopup,
 	SettingsPopup,
-	Sidebar,
+	PopupSidebar,
 	Pane,
 	SingularPane,
 	CombinedPane,
 	Tabline,
 	Editor,
 	StatusBar,
+	Sidebar,
 };

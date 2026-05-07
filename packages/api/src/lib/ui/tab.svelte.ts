@@ -53,6 +53,10 @@ export class GroupTab extends Tab implements Serialize<SerializedGroupTab> {
 			.find(node => node.id === this.groupID)! as Group;
 	}
 
+	public set group(group: Group) {
+		this.groupID = group.id;
+	}
+
 	public serialize(): SerializedGroupTab {
 		return {
 			type: "group",

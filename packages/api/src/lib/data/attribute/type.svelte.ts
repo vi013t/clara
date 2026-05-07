@@ -89,4 +89,27 @@ export namespace AttributeType {
 	export function define(name: string, type: Serializer<any, object>, icon: IconIdentifier, input: Snippet<[]>) {
 		attributeTypes.push(attributeType(name, type, icon) as any);
 	}
+
+	export function readableName(type: AttributeType): string {
+		let name = "";
+		let index = -1;
+
+		for (const char of type.name) {
+			index++;
+
+			if (char == char.toUpperCase()) {
+				name += ` ${char}`;
+				continue;
+			}
+
+			if (index == 0) {
+				name += char.toUpperCase();
+				continue;
+			}
+
+			name += char;
+		}
+
+		return name;
+	}
 }

@@ -2,7 +2,7 @@
 	import type { Database } from "@clara/api/database";
 	import { userSettings } from "@clara/api/usersettings";
 	import { getIcon } from "@clara/api/icons";
-	import { Icon, Popup, Select, Sidebar } from "@clara/api/components";
+	import { Icon, Popup, Select, PopupSidebar } from "@clara/api/components";
 
 	let popup: Popup;
 	let view = $state("appearance");
@@ -25,7 +25,7 @@
 
 <Popup {reset} bind:this={popup}>
 	<div class="popup">
-		<Sidebar
+		<PopupSidebar
 			bind:view
 			title={{ text: "Settings", icon: getIcon("Settings").component }}
 			sections={{

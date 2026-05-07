@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Popup, Sidebar } from "@clara/api/components";
+	import { Popup, PopupSidebar } from "@clara/api/components";
 	import { getIcon } from "@clara/api/ui";
 
 	let popup: Popup;
@@ -16,7 +16,7 @@
 
 <Popup {reset} bind:this={popup}>
 	<div class="popup">
-		<Sidebar
+		<PopupSidebar
 			bind:view
 			title={{ text: "Clara Manual", icon: getIcon("Book").component }}
 			sections={{

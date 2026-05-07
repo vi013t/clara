@@ -1,25 +1,28 @@
 <script lang="ts">
-	import { AttributeDefinition } from "@clara/api/attribute";
-	import type { RichText } from "@clara/api/attribute";
+	import { AttributeDefinition, attributeTypes } from "@clara/api/attribute";
+	import { AttributeType, type RichText } from "@clara/api/attribute";
 	import { Item, type Group } from "@clara/api/database";
-	import { ContextMenu } from "@clara/api/components";
-	import FieldPropertiesPopup from "../popups/AttributeSettingsPopup.svelte";
-	import { Icon } from "@clara/api/components";
-	import Input from "../input/Input.svelte";
+	import { Icon, AttributeSettingsPopup, ContextMenu, LittleButton, Input } from "@clara/api/components";
 
 	let { group = $bindable(), openEditor }: { group: Group; openEditor: (content: RichText) => void } = $props();
 
 	let updateCounter = $state(0);
 	let updateAttributes = $state(0);
+	let newAttributeMenu: ContextMenu;
 
 	function addRow() {
 		group.addChild(new Item("New Item"));
 		updateCounter++;
 	}
 
-	function addColumn() {
-		group.addNewAttributeDefinition(AttributeDefinition.basic("Attribute", "shortText"));
+	function addColumn(event: MouseEvent) {
+		newAttributeMenu.openAtMouse(event);
 		updateAttributes++;
+	}
+
+	function createColumn(type: AttributeType) {
+		group.addNewAttributeDefinition(AttributeDefinition.basic("Attribute", type.name));
+		newAttributeMenu.close();
 	}
 
 	function removeItem(item: Item) {
@@ -30,7 +33,7 @@
 	}
 
 	let fieldSettings: ContextMenu;
-	let fieldPropertiesPopup: FieldPropertiesPopup;
+	let fieldPropertiesPopup: AttributeSettingsPopup;
 	let editingAttribute: AttributeDefinition | null = $state(null);
 
 	function editAttribute(event: MouseEvent, field: AttributeDefinition) {
@@ -44,22 +47,16 @@
 <div class="columns">
 	<div class="column">
 		<div style:width="100%" class="control cell">
-			<button style:opacity="0%" disabled>
-				<Icon name="Trash2" />
-			</button>
+			<Icon name={group.icon.name} />
 		</div>
 
-		{#each group.children as item}
+		{#each group.dfsLeaves() as item}
 			<div class="control cell">
-				<button onmousedown={removeItem(item as Item)}>
-					<Icon name="Trash2" />
-				</button>
+				<LittleButton accent="var(--red)" icon="Trash2" onmousedown={removeItem(item)} />
 			</div>
 		{/each}
 		<div class="new control cell">
-			<button onmousedown={addRow}>
-				<Icon name="Plus" />
-			</button>
+			<LittleButton icon="Plus" onmousedown={addRow} />
 		</div>
 	</div>
 	{#key updateAttributes}
@@ -67,13 +64,27 @@
 			<div class="column">
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div class="cell" oncontextmenu={event => fieldSettings.openAtMouse(event)}>
-					<attribute.type.icon.component stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem;" />
+					<attribute.type.icon.component
+						stroke="var(--foreground-bright)"
+						style="width: 1rem; height: 1rem; margin-right: 0.75rem;"
+					/>
 					{attribute.name}
-					<button style="width: fit-content; margin-right: 0px;" onmousedown={event => editAttribute(event, attribute)}>
-						<Icon name="Settings" />
-					</button>
+					{#if attribute.name !== "Name"}
+						<LittleButton
+							color="var(--foreground)"
+							style="margin-left: auto;"
+							icon="Settings"
+							onmousedown={event => editAttribute(event, attribute)}
+						/>
+						<LittleButton
+							color="var(--foreground)"
+							accent="var(--red)"
+							icon="Trash2"
+							onmousedown={event => editAttribute(event, attribute)}
+						/>
+					{/if}
 				</div>
-				{#each group.directItemChildren as item}
+				{#each group.dfsLeaves() as item}
 					<div class="cell">
 						<Input
 							context="spreadsheet"
@@ -91,10 +102,9 @@
 		{/each}
 	{/key}
 	<div class="column">
-		<button class="new header cell" onmousedown={addColumn}>
-			<Icon name="Plus" />
-			New
-		</button>
+		<div class="new header cell">
+			<LittleButton icon="Plus" onmousedown={addColumn} />
+		</div>
 		{#each group.children as item}
 			<div class="new cell"></div>
 		{/each}
@@ -123,7 +133,16 @@
 	</button>
 </ContextMenu>
 
-<FieldPropertiesPopup bind:attribute={editingAttribute!} bind:this={fieldPropertiesPopup} owner={group} />
+<ContextMenu bind:this={newAttributeMenu}>
+	{#each attributeTypes as type}
+		<button onmousedown={() => createColumn(type)}>
+			<Icon name={type.icon.name} />
+			<span>{AttributeType.readableName(type)}</span>
+		</button>
+	{/each}
+</ContextMenu>
+
+<AttributeSettingsPopup bind:attribute={editingAttribute!} bind:this={fieldPropertiesPopup} owner={group} />
 
 <style>
 	.columns {
@@ -137,7 +156,7 @@
 	}
 
 	.new.cell {
-		background-color: var(--background-dark);
+		background-color: var(--background);
 	}
 
 	.column {
@@ -163,10 +182,27 @@
 		&:first-child .cell:not(.new) {
 			background-color: var(--background);
 		}
+
+		&:last-child .cell {
+			width: fit-content;
+			border: none;
+			background-color: var(--background);
+
+			&:first-child {
+				border-bottom: 1px solid var(--border);
+			}
+		}
+
+		> .cell:last-child {
+			&:not(.control) {
+				border-right: none;
+			}
+			border-bottom: none;
+		}
 	}
 
 	.cell {
-		width: 10rem;
+		width: 15rem;
 		height: 2.5rem;
 		display: flex;
 		align-items: center;
@@ -175,8 +211,9 @@
 		border-right: 1px solid var(--border);
 		border-bottom: 1px solid var(--border);
 		font-size: 0.85rem;
-		gap: 0.5rem;
 		color: var(--foreground);
+		background-color: var(--background-dark);
+		gap: 0.25rem;
 
 		&:first-child:not(.new) {
 			background-color: var(--background);

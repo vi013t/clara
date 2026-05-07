@@ -25,8 +25,6 @@
 	}
 
 	let tab = $derived(pane.tabline.getTabByID(pane.selectedTabID));
-
-	$inspect(tab.view);
 </script>
 
 <section class="pane">

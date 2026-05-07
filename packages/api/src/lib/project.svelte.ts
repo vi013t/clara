@@ -67,25 +67,37 @@ function deserializePaneLayout(layout: SerializedPaneLayout): PaneLayout {
 }
 
 export class Template {
-	public database: Database;
-	public layout: PaneLayout;
+	public database: Database = $state(assignedLater());
+	public layout: PaneLayout = $state(assignedLater());
+	public pinnedGroups: Group[] = $state([]);
 
-	public constructor({ database, layout }: { layout: PaneLayout; database: Database }) {
+	public constructor({ database, layout, pinnedGroups }: { layout: PaneLayout; database: Database; pinnedGroups: Group[] }) {
 		this.database = database;
 		this.layout = layout;
+		this.pinnedGroups = pinnedGroups;
 	}
 }
 
 export class Project extends Template implements Serialize<SerializedProject> {
 	private location = $state(assignedLater<string>());
 
-	private constructor({ location, database, layout }: { layout: PaneLayout; location: string; database: Database }) {
-		super({ database, layout });
+	private constructor({
+		location,
+		database,
+		layout,
+		pinnedGroups,
+	}: {
+		layout: PaneLayout;
+		location: string;
+		database: Database;
+		pinnedGroups: Group[];
+	}) {
+		super({ database, layout, pinnedGroups });
 		this.location = location;
 	}
 
 	public static fromTemplate(template: Template, { location }: { location: string }): Project {
-		return new Project({ database: template.database, layout: template.layout, location });
+		return new Project({ database: template.database, layout: template.layout, location, pinnedGroups: template.pinnedGroups });
 	}
 
 	public static set(project: Project): void {
@@ -102,6 +114,7 @@ export class Project extends Template implements Serialize<SerializedProject> {
 			location: project.location,
 			database: Group.deserialize(project.database),
 			layout: deserializePaneLayout(project.layout),
+			pinnedGroups: [], // TODO:
 		});
 	}
 

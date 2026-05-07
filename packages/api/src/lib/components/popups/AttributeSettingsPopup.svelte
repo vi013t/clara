@@ -32,15 +32,15 @@
 					{attribute.name}
 				</h1>
 				<button>
-					<Icon name="Settings" />
+					<Icon color="var(--foreground)" name="Settings" />
 					<span>General</span>
 				</button>
 				<button>
-					<Icon name="Italic" />
+					<Icon color="var(--foreground)" name="Italic" />
 					<span>Formatting</span>
 				</button>
 				<button>
-					<Icon name="ShieldCheck" />
+					<Icon color="var(--foreground)" name="ShieldCheck" />
 					<span>Restrictions</span>
 				</button>
 

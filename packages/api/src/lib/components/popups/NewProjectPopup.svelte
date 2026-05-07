@@ -85,7 +85,7 @@
 			chosenTemplate.name = name;
 			let tabline = new TabList([]);
 			let project = Project.fromTemplate(
-				{ database: chosenTemplate, layout: { split: "none", tabline, selectedTabID: 0 } },
+				{ database: chosenTemplate, layout: { split: "none", tabline, selectedTabID: 0 }, pinnedGroups: [chosenTemplate] },
 				{ location },
 			);
 

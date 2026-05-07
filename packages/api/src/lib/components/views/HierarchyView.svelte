@@ -4,7 +4,7 @@
 	import { ContextMenu, Icon, HierarchyView } from "@clara/api/components";
 
 	let {
-		entry,
+		entry = Project.get() ? Project.get()!.database : null!,
 		hideRoot = false,
 		subtree = false,
 		demo = false,
@@ -15,10 +15,7 @@
 		demo?: boolean;
 	} = $props();
 
-	// svelte-ignore state_referenced_locally
-	let expanded = $state(hideRoot || demo);
-	// svelte-ignore state_referenced_locally
-	if (!entry) entry = Project.get()!.database;
+	let expanded = $derived(hideRoot || demo);
 
 	function toggle(event: MouseEvent) {
 		if (event.button !== 0) return;
@@ -77,6 +74,11 @@
 	function deleteEntry() {
 		entry!.delete();
 	}
+
+	function pin(group: Group) {
+		Project.get()!.pinnedGroups.push(group);
+		rightClickMenu?.close();
+	}
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -118,6 +120,10 @@
 			<button onmousedown={newGroup}>
 				<Icon name="PackagePlus" />
 				Create new group
+			</button>
+			<button onmousedown={() => pin(entry)}>
+				<Icon name="Pin" />
+				Pin to sidebar
 			</button>
 			{#if !entry.isRoot}
 				<hr />

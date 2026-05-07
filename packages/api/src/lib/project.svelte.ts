@@ -93,11 +93,25 @@ export class Template implements Serialize<SerializedTemplate> {
 	}
 
 	public clone(): Template {
-		// TODO: clone layout and pinned groups
+		const database = this.database.clone();
+
+		let oldGroups = this.database.dfsGroups();
+		let newGroups = database.dfsGroups();
+
+		const pinnedGroups = [];
+		for (let index = 0; index < oldGroups.length; index++) {
+			let oldGroup = oldGroups[index];
+			let newGroup = newGroups[index];
+
+			if (this.pinnedGroups.includes(oldGroup)) {
+				pinnedGroups.push(newGroup);
+			}
+		}
+
 		return new Template({
-			database: this.database.clone(),
-			layout: this.layout,
-			pinnedGroups: this.pinnedGroups,
+			database,
+			layout: this.layout, // TODO: clone layout
+			pinnedGroups,
 		});
 	}
 
@@ -116,6 +130,8 @@ export class Template implements Serialize<SerializedTemplate> {
 export class Project extends Template implements Serialize<SerializedProject> {
 	private location = $state(assignedLater<string>());
 
+	private static onSetListeners: ((project: Project) => void)[] = [];
+
 	private constructor({
 		location,
 		database,
@@ -131,6 +147,10 @@ export class Project extends Template implements Serialize<SerializedProject> {
 		this.location = location;
 	}
 
+	public static onSet(callback: (project: Project) => void) {
+		Project.onSetListeners.push(callback);
+	}
+
 	public static fromTemplate(template: Template, { location }: { location: string }): Project {
 		return new Project({ database: template.database, layout: template.layout, location, pinnedGroups: template.pinnedGroups });
 	}
@@ -138,6 +158,9 @@ export class Project extends Template implements Serialize<SerializedProject> {
 	public static set(project: Project): void {
 		currentProject = project;
 		cache({ lastProjectPath: `${project.location}/${project.database.name}` });
+		for (const listener of Project.onSetListeners) {
+			listener(project);
+		}
 	}
 
 	public static get(): Project | null {
@@ -152,7 +175,10 @@ export class Project extends Template implements Serialize<SerializedProject> {
 			pinnedGroups: [],
 		});
 
-		let all = proj.database.dfsBranches();
+		console.log(project.database);
+		let all = proj.database.dfsGroups();
+		console.log(all.map(group => group.id));
+		console.log(project.pinnedGroups);
 		proj.pinnedGroups = project.pinnedGroups.map(id => all.find(group => group.id == id)!);
 
 		return proj;

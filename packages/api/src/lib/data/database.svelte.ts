@@ -98,6 +98,10 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 		return this.parent!.icon;
 	}
 
+	public set icon(icon: IconIdentifier) {
+		this.parent!.icon = getIcon(icon);
+	}
+
 	public get name(): string {
 		return (this.attributes.Name as StringAttribute).value;
 	}
@@ -155,8 +159,23 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 				icon: this.icon_,
 				attributes: this.attributes_ === "inherit" ? "inherit" : this.attributes_.map(definition => definition.clone()),
 			},
-			...this.children,
+			...this.children.map(child => child.clone()),
 		);
+	}
+
+	public cloneWithIDs(): [Group, number, number] {
+		let oldId = this.id;
+		let clone = new Group(
+			{
+				name: this.name,
+				description: this.description,
+				icon: this.icon_,
+				attributes: this.attributes_ === "inherit" ? "inherit" : this.attributes_.map(definition => definition.clone()),
+			},
+			...this.children.map(child => child.clone()),
+		);
+		let newId = clone.id;
+		return [clone, oldId, newId];
 	}
 
 	private serializeStandalone(): SerializedGroup {
@@ -185,6 +204,10 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 		} else {
 			return this.icon_;
 		}
+	}
+
+	public set icon(icon: IconIdentifier) {
+		this.icon_ = getIcon(icon);
 	}
 
 	public deleteAttributeDefinition(attribute: AttributeDefinition): void {

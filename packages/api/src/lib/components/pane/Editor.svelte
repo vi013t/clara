@@ -3,6 +3,7 @@
 	import { RichText, Style, StyledText } from "@clara/api/attribute";
 	import { getFonts } from "@clara/api/system";
 	import { Icon, Select } from "@clara/api/components";
+	import LittleButton from "../widgets/LittleButton.svelte";
 
 	let {
 		title,
@@ -251,6 +252,8 @@
 	let viewMode: "light" | "dark" = $state("dark");
 
 	function save() {}
+
+	let foreground = $derived.by(() => (viewMode === "light" ? "black" : "var(--foreground)"));
 </script>
 
 <svelte:document onkeydown={onDocumentKeydown} />
@@ -261,57 +264,37 @@
 	{/if}
 	<div class="toolbar">
 		<div class="formatting">
-			<button>
-				<Icon name="Undo" />
-			</button>
-			<button>
-				<Icon name="Redo" />
-			</button>
+			<LittleButton color={foreground} icon="Undo" />
+			<LittleButton color={foreground} icon="Redo" />
 		</div>
 		<div class="font-size">
-			<button onmousedown={addFontSize(-1)}>
-				<Icon name="Minus" />
-			</button>
+			<LittleButton color={foreground} icon="Minus" onmousedown={addFontSize(-1)} />
 			<input bind:value={fontSize} />
-			<button onmousedown={addFontSize(1)}>
-				<Icon name="Plus" />
-			</button>
+			<LittleButton color={foreground} icon="Plus" onmousedown={addFontSize(1)} />
 		</div>
 		{#await getFonts() then fonts}
 			<Select
-				style="background-color: transparent; border: none; color: {viewMode === 'dark' ? 'var(--foreground-bright)' : 'black'};"
+				style="background-color: transparent; border: none; color: {foreground};"
 				options={fonts.map(font => ({ name: font, style: `font-family: "${font}"` }))}
 				bind:value={font}
 				width="7rem"
 			/>
 		{/await}
 		<div class="formatting">
-			<button>
-				<Icon name="Bold" />
-			</button>
-			<button>
-				<Icon name="Italic" />
-			</button>
-			<button>
-				<Icon name="Underline" />
-			</button>
+			<LittleButton color={foreground} icon="Bold" />
+			<LittleButton color={foreground} icon="Italic" />
+			<LittleButton color={foreground} icon="Underline" />
 		</div>
 		<div class="formatting">
-			<button>
-				<Icon name="ListChevronsUpDown" />
-			</button>
-			<button onmousedown={() => (viewMode = viewMode === "light" ? "dark" : "light")}>
-				{#if viewMode === "dark"}
-					<Icon name="Sun" />
-				{:else}
-					<Icon name="Moon" />
-				{/if}
-			</button>
+			<LittleButton color={foreground} icon="ListChevronsUpDown" />
+			<LittleButton
+				icon={viewMode === "light" ? "Moon" : "Sun"}
+				onmousedown={() => (viewMode = viewMode === "light" ? "dark" : "light")}
+				color={foreground}
+			/>
 		</div>
 		<div class="formatting">
-			<button>
-				<Icon name="Save" />
-			</button>
+			<LittleButton color={foreground} icon="Save" />
 		</div>
 	</div>
 	<div class="content">

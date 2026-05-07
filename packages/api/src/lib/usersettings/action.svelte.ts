@@ -1,6 +1,11 @@
-let actionListeners: { [Key in ActionName]?: () => void } = $state({});
+import { Project } from "../project.svelte.ts";
+import { userSettings } from "./index.svelte.ts";
 
-type ActionName = "New Tab";
+let actionListeners: { [Key in ActionName]?: () => void } = $state({
+	"Save Project": () => Project.save(),
+});
+
+export type ActionName = "New Tab" | "Save Project";
 
 export function onActionRequested(name: ActionName, callback: () => void): void {
 	actionListeners[name] = callback;
@@ -10,20 +15,16 @@ export function runAction(name: ActionName) {
 	actionListeners[name]?.();
 }
 
-type Modifier = "ctrl" | "alt" | "shift";
+export type Modifier = "ctrl" | "alt" | "shift";
 
-type Keybinding = {
+export type Keybinding = {
 	key: string;
 	modifiers: Modifier[];
 };
 
-function key(key: string, ...modifiers: Modifier[]): Keybinding {
+export function key(key: string, ...modifiers: Modifier[]): Keybinding {
 	return { key, modifiers };
 }
-
-let hotkeys: { [Key in ActionName]?: Keybinding } = $state({
-	"New Tab": key("n", "ctrl"),
-});
 
 function isEditable(element: HTMLElement) {
 	return (
@@ -48,7 +49,7 @@ function matchesHotkey(key: string, ctrl: boolean, alt: boolean, shift: boolean,
 
 export function pressHotkey(event: KeyboardEvent) {
 	if (!isEditable(event.target as HTMLElement)) event.preventDefault();
-	let actionName = Object.entries(hotkeys).find(([_actionName, hotkey]) =>
+	let actionName = Object.entries(userSettings().hotkeys).find(([_actionName, hotkey]) =>
 		matchesHotkey(event.key, event.ctrlKey, event.altKey, event.shiftKey, hotkey),
 	)?.[0] as ActionName | undefined;
 	if (actionName) runAction(actionName);

@@ -31,7 +31,7 @@ pub struct SinglePane {
 	tabline: TabList,
 
 	#[serde(rename = "selectedTabID")]
-	selected_tab_id: Option<u32>,
+	selected_tab_id: u32,
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
@@ -57,7 +57,7 @@ impl PaneLayout {
 	pub fn basic() -> PaneLayout {
 		PaneLayout::SinglePane(Box::new(SinglePane {
 			tabline: TabList { tabs: Vec::new() },
-			selected_tab_id: None,
+			selected_tab_id: 0,
 		}))
 	}
 }

@@ -12,7 +12,8 @@
 
 	function addRow() {
 		group.addChild(new Item("New Item"));
-		updateCounter++;
+		// updateCounter++;
+		console.log(group);
 	}
 
 	function addColumn(event: MouseEvent) {

@@ -2,9 +2,10 @@
 	import { invoke } from "@tauri-apps/api/core";
 	import { open as chooseFile } from "@tauri-apps/plugin-dialog";
 	import { Project, Template } from "@clara/api/project";
-	import { userSettings } from "@clara/api/usersettings";
+	import { cache, userSettings } from "@clara/api/usersettings";
 	import { HierarchyView, Icon, LittleButton, Popup, Select, SettingsPopup } from "@clara/api/components";
 	import { asyncFn } from "@clara/api/utils";
+	import { sep } from "@tauri-apps/api/path";
 
 	let popup: Popup;
 
@@ -76,6 +77,8 @@
 				return;
 			}
 
+			cache({ projectsDirPath: location });
+
 			// let currentProject = Project.get();
 			// if (currentProject) await invoke("save_project", { project: currentProject.serialize() });
 
@@ -142,7 +145,7 @@
 
 				{#if !locationError && !nameError && startedTypingLocation && startedTypingName}
 					<span>
-						Project will be created at <span style:color="var(--foreground-bright)">{location}/{name}</span>
+						Project will be created at <span style:color="var(--foreground-bright)">{location}{sep()}{name}</span>
 					</span>
 				{/if}
 			</div>

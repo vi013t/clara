@@ -1,5 +1,5 @@
 import ContextMenu from "./menus/ContextMenu.svelte";
-import InputHandler, { mouse } from "./InputHandler.svelte";
+import InputHandler, { mouse, keyboard } from "./InputHandler.svelte";
 import Icon from "./Icon.svelte";
 import CameraView from "./views/CameraView.svelte";
 import GraphView from "./views/GraphView.svelte";
@@ -55,6 +55,7 @@ export {
 	ContextMenu,
 	InputHandler,
 	mouse,
+	keyboard,
 	Icon,
 	CameraView,
 	GraphView,

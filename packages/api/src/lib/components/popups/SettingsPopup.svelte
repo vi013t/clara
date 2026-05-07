@@ -2,8 +2,9 @@
 	import type { Database } from "@clara/api/database";
 	import { userSettings } from "@clara/api/usersettings";
 	import { getIcon } from "@clara/api/icons";
-	import { Icon, Popup, Select, PopupSidebar } from "@clara/api/components";
+	import { Icon, Popup, Select, PopupSidebar, HierarchyView } from "@clara/api/components";
 	import type { Template } from "@clara/api/project";
+	import LittleButton from "../widgets/LittleButton.svelte";
 
 	let popup: Popup;
 	let view = $state("appearance");
@@ -22,6 +23,8 @@
 			view = "Template Editor";
 		};
 	}
+
+	userSettings();
 </script>
 
 <Popup {reset} bind:this={popup}>
@@ -76,6 +79,23 @@
 						<input />
 					</div>
 				</div>
+			{:else if view === "Hotkeys"}
+				<h1>Hotkeys</h1>
+				<div class="section">
+					{#each Object.entries(userSettings().hotkeys) as [name, action]}
+						<div class="option">
+							<h2>{name}</h2>
+							<div class="hotkey">
+								<span style="color: var(--foreground)">
+									{action.modifiers.map(modifier => `${modifier} + `)}
+									{action.key}
+									<LittleButton style="margin-left: 0.5rem;" icon="X" accent="var(--red)" color="var(--red)" />
+								</span>
+								<LittleButton icon="Plus" color="var(--foreground)" />
+							</div>
+						</div>
+					{/each}
+				</div>
 			{:else if view === "Templates"}
 				<h1 style="margin-top: 1rem;">Templates</h1>
 				<div class="templates">
@@ -94,13 +114,14 @@
 					<div class="template-editor">
 						<h2>Name</h2>
 						<div class="name">
-							<button>
-								<editingTemplate.database.icon.component stroke="var(--stroke)" />
-							</button>
+							<LittleButton icon={editingTemplate.database.icon} color="var(--foreground)" />
 							<input bind:value={editingTemplate.database.name} />
 						</div>
 
 						<h2>Groups &amp; Items</h2>
+						<div class="hierarchy">
+							<HierarchyView entry={editingTemplate.database} demo />
+						</div>
 					</div>
 				{/if}
 			{/if}
@@ -122,6 +143,12 @@
 			color: var(--foreground);
 			font-size: 0.85rem;
 		}
+	}
+
+	.hierarchy {
+		background-color: var(--background-dark);
+		padding: 1rem;
+		border-radius: 0.25rem;
 	}
 
 	.section {
@@ -187,20 +214,7 @@
 			display: flex;
 			background-color: var(--background-dark);
 			gap: 0.5rem;
-
-			button {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				padding: 0.25rem;
-				border-radius: 0.25rem;
-				--stroke: var(--foreground-bright);
-
-				&:hover {
-					--stroke: var(--background-dark);
-					background-color: var(--indigo);
-				}
-			}
+			align-items: center;
 
 			input {
 				color: var(--foreground-bright);
@@ -242,6 +256,8 @@
 
 			p {
 				font-size: 0.85rem;
+				color: var(--foreground);
+				margin-top: 0.25rem;
 			}
 		}
 	}
@@ -280,6 +296,25 @@
 			text-transform: uppercase;
 			font-size: 0.85rem;
 			color: var(--foreground);
+		}
+	}
+
+	.hotkey {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		text-transform: capitalize;
+
+		span {
+			font-size: 0.8rem;
+			display: flex;
+			align-items: center;
+			background: var(--background);
+			border: 1px solid var(--border);
+			padding: 0.25rem;
+			padding-left: 0.5rem;
+			border-radius: 0.25rem;
+			display: flex;
 		}
 	}
 </style>

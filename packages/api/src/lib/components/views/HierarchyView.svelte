@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Project } from "@clara/api/project";
 	import { Group, Item, type Node } from "@clara/api/database";
-	import { ContextMenu, Icon, HierarchyView } from "@clara/api/components";
+	import { ContextMenu, Icon, HierarchyView, IconPicker } from "@clara/api/components";
 
 	let {
 		entry = Project.get() ? Project.get()!.database : null!,
@@ -80,6 +80,8 @@
 		rightClickMenu?.close();
 		Project.autosave();
 	}
+
+	let iconPicker: IconPicker | null = $state(null);
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -112,6 +114,8 @@
 		</ul>
 	{/if}
 
+	<IconPicker bind:this={iconPicker} bind:value={() => entry.icon.name, name => (entry.icon = name)} />
+
 	<ContextMenu onclose={() => (clickedNode = false)} left={menuLeft} top={menuTop} bind:this={rightClickMenu}>
 		{#if entry.isBranch()}
 			<button onmousedown={newItem}>
@@ -135,7 +139,7 @@
 				<Icon name="TextCursorInput" />
 				<span>Rename</span>
 			</button>
-			<button onmousedown={rename}>
+			<button onmousedown={() => iconPicker?.open()}>
 				<Icon name="Component" />
 				<span>Change Icon</span>
 			</button>

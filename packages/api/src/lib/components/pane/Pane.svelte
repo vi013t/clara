@@ -7,11 +7,8 @@
 	import SingularPane from "./SingularPane.svelte";
 	import { type PaneLayout } from "@clara/api/project";
 
-	let { pane = $bindable({ split: "none", tabline: new TabList(), selectedTabID: null! }) }: { pane?: PaneLayout } = $props();
-
-	if (pane.split === "none" && pane.selectedTabID === null) {
-		pane.selectedTabID = pane.tabline.tabs[0].id;
-	}
+	let tabline = new TabList();
+	let { pane = $bindable({ split: "none", tabline, selectedTabID: tabline.tabs[0].id }) }: { pane?: PaneLayout } = $props();
 </script>
 
 {#if pane.split === "none"}

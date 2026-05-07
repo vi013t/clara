@@ -117,7 +117,7 @@ export type SerializedTabList = {
 export class TabList implements Serialize<SerializedTabList> {
 	public tabs: Tab[] = $state([]);
 
-	public constructor(tabs = [new GroupTab(Project.get()!.database.id)!]) {
+	public constructor(tabs: Tab[] = [new GroupTab(Project.get()!.database.id)!]) {
 		this.tabs = tabs;
 	}
 
@@ -128,7 +128,7 @@ export class TabList implements Serialize<SerializedTabList> {
 	}
 
 	public static deserialize(tablist: SerializedTabList): TabList {
-		const list = new TabList([]);
+		const list = new TabList([new Tab(getIcon("StickyNote"))]);
 		list.tabs = tablist.tabs.map(tab => deserializeTab(tab));
 		return list;
 	}

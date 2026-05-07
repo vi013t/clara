@@ -70,6 +70,20 @@
 	export function mouse() {
 		return mouseState;
 	}
+
+	class Keyboard {
+		private handlers: { event: string; callback: (event: KeyboardEvent) => any }[] = $state([]);
+
+		public onKeyDown(callback: (event: KeyboardEvent) => any) {
+			this.handlers.push({ event: "keydown", callback });
+		}
+	}
+
+	let keyboardState = $state(new Keyboard());
+
+	export function keyboard() {
+		return keyboardState;
+	}
 </script>
 
 <script lang="ts">
@@ -119,6 +133,12 @@
 			.filter(handler => handler.event === "mouseup")
 			.forEach(handler => handler.callback(event));
 	}
+
+	function onkeydown(event: KeyboardEvent) {
+		((keyboardState as any).handlers as { event: string; callback: (event: KeyboardEvent) => void }[])
+			.filter(handler => handler.event === "keydown")
+			.forEach(handler => handler.callback(event));
+	}
 </script>
 
-<svelte:document {onmousemove} {onmouseup} {onmousedown} />
+<svelte:document {onmousemove} {onmouseup} {onmousedown} {onkeydown} />

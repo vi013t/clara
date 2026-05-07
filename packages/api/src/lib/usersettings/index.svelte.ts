@@ -1,10 +1,15 @@
-import { Group, type Database, type SerializedDatabase } from "../data/database.svelte.ts";
+import { Group } from "../data/database.svelte.ts";
 import { invoke } from "@tauri-apps/api/core";
 import type { Theme } from "./theme.svelte.ts";
 import { assignedLater, type Serialize } from "../util/index.svelte.ts";
 import { type ClaraPlugin } from "../plugin/index.svelte.ts";
 import { Template, type SerializedTemplate } from "@clara/api/project";
-import { TabList } from "@clara/api/ui";
+import { getIcon, Tab, TabList } from "@clara/api/ui";
+import { pressHotkey, runAction, type ActionName, type Keybinding, key } from "./action.svelte.ts";
+
+export { pressHotkey, runAction, key };
+
+export type { ActionName, Keybinding };
 
 type SerializedUserSettings = { templates: SerializedTemplate[]; themes: Theme[]; selectedTheme: string };
 
@@ -14,9 +19,13 @@ class UserSettings implements Serialize<SerializedUserSettings> {
 	private selectedTheme_ = $state(assignedLater<string>());
 	private plugins_: ClaraPlugin<any>[] = $state([]);
 	public autosave = $state(true);
+	public hotkeys: { [Key in ActionName]?: Keybinding } = $state({
+		"New Tab": key("n", "ctrl"),
+		"Save Project": key("s", "ctrl"),
+	});
 
 	public constructor() {
-		let tablist = new TabList([]);
+		let tablist = new TabList([new Tab(getIcon("StickyNote"))]);
 		let database = new Group({
 			name: "Blank",
 			icon: "StickyNote",
@@ -93,6 +102,7 @@ export async function saveUserSettings() {
 
 export type SessionData = {
 	lastProjectPath: string | null;
+	projectsDirPath: string | null;
 };
 
 let sessionData: SessionData = $state(loadSessionData());
@@ -102,6 +112,7 @@ function loadSessionData(): SessionData {
 		localStorage.getItem("session-data") ??
 			JSON.stringify({
 				lastProjectPath: null,
+				projectsDirPath: null,
 			}),
 	);
 }

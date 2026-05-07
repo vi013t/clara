@@ -24,6 +24,8 @@
 		pane.selectedTabID = tab.id;
 	}
 
+	$inspect(pane.selectedTabID);
+
 	let tab = $derived(pane.tabline.getTabByID(pane.selectedTabID));
 </script>
 

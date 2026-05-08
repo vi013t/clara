@@ -1,7 +1,8 @@
 import { getIcon, type IconIdentifier, type IconName } from "./icons.svelte.ts";
 import { GroupTab, Tab, TabList, EditorTab } from "./tab.svelte.ts";
-import { views, type ViewName } from "./views.svelte.ts";
+import { views } from "./views.svelte.ts";
+import { NodeEditorTab } from "./tab.svelte.ts";
 
-export { getIcon, GroupTab, Tab, TabList, EditorTab, views };
+export { getIcon, GroupTab, Tab, TabList, EditorTab, views, NodeEditorTab };
 
-export type { IconIdentifier, IconName, ViewName as View };
+export type { IconIdentifier, IconName };

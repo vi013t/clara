@@ -4,7 +4,7 @@ An app for data visualization.
 
 ## Installation
 
-Clara is in alpha. You can find the latest test build [in the builds folder](https://github.com/vi013t/clara/tree/main/packages/app/builds), or build from source (see below).
+Clara is in pre-alpha. You can find the latest test build [in the builds folder](https://github.com/vi013t/clara/tree/main/packages/app/builds), or build from source (see below); Note that **_things will break_**. That's what pre-alpha means. The app is literally not done yet.
 
 ### Building from source
 

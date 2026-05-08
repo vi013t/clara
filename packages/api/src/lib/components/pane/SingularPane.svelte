@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { EditorTab, GroupTab } from "@clara/api/ui";
+	import { EditorTab, GroupTab, NodeEditorTab } from "@clara/api/ui";
 	import type { RichText } from "@clara/api/attribute";
-	import { GraphView, HierarchyView, SpreadsheetView, Editor, Tabline } from "@clara/api/components";
+	import { GraphView, HierarchyView, SpreadsheetView, Editor, Tabline, NodeEditor } from "@clara/api/components";
 	import type { PaneLayout, SinglePane } from "@clara/api/project";
 
 	let {
@@ -34,6 +34,8 @@
 	<div class="content" style:background>
 		{#if tab instanceof EditorTab && tab.id === pane.selectedTabID}
 			<Editor bind:doc={tab.content} />
+		{:else if tab instanceof NodeEditorTab && tab.id === pane.selectedTabID}
+			<NodeEditor bind:nodes={tab.nodes} />
 		{:else if tab instanceof GroupTab}
 			<div class="view-container" style="display: {tab.id === pane.selectedTabID ? 'block' : 'none'}">
 				{#if tab.view === "Hierarchy"}

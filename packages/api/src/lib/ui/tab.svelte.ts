@@ -3,6 +3,8 @@ import { Project } from "../project.svelte";
 import { assignedLater, type Serialize } from "../util/index.svelte";
 import { RichText, type SerializedRichText } from "../data/attribute/richtext.svelte";
 import { getIcon, type Icon, type IconIdentifier, type IconName } from "./icons.svelte";
+import type { ScriptNode } from "@clara/api/components";
+import type { NodeInstance } from "$lib/components/views/node/Node.svelte";
 
 export class Tab {
 	private static tabID = 0;
@@ -71,6 +73,15 @@ export class GroupTab extends Tab implements Serialize<SerializedGroupTab> {
 		group.view = tab.view;
 		(group as any).id = tab.id;
 		return group;
+	}
+}
+
+export class NodeEditorTab extends Tab {
+	public nodes: NodeInstance[] = $state(assignedLater());
+
+	public constructor(nodes: NodeInstance[]) {
+		super("GitCompare");
+		this.nodes = nodes;
 	}
 }
 

@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { GroupTab, views } from "@clara/api/ui";
+	import { GroupTab, NodeEditorTab, views } from "@clara/api/ui";
 	import { Project, type PaneLayout, type SinglePane } from "@clara/api/project";
 	import { ContextMenu, Icon, LittleButton } from "@clara/api/components";
 	import { Group } from "@clara/api/database";
+	import { node } from "./views/node/Node.svelte";
 
 	let { focusedPane = $bindable() }: { focusedPane: PaneLayout } = $props();
 
@@ -39,6 +40,13 @@
 		Project.get()!.pinnedGroups = Project.get()!.pinnedGroups.filter(group => group.id !== selectedGroup!.id);
 		Project.autosave();
 		rightClickGroupMenu.close();
+	}
+
+	function openNodeEditor() {
+		let tab = new NodeEditorTab([node("Concatenate")!]);
+		let id = tab.id;
+		(focusedPane as SinglePane).tabline.appendTab(tab);
+		(focusedPane as SinglePane).selectedTabID = id;
 	}
 </script>
 
@@ -81,6 +89,21 @@
 		</div>
 
 		<div>
+			{#if expanded}
+				<div style:width="100%">
+					<button onmousedown={openNodeEditor}>
+						<Icon name="GitCompare" />
+						Node Editor
+					</button>
+					<div class="handle">
+						<Icon color="var(--foreground-dark)" name="GripHorizontal" />
+					</div>
+				</div>
+			{:else}
+				<div>
+					<LittleButton icon="GitCompare" onmousedown={openNodeEditor} />
+				</div>
+			{/if}
 			{#each views as view}
 				{#if expanded}
 					<div style:width="100%">

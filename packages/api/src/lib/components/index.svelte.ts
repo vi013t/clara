@@ -35,6 +35,9 @@ import StatusBar from "./StatusBar.svelte";
 import Sidebar from "./Sidebar.svelte";
 import Notification from "./Notification.svelte";
 import Notifications from "./Notifications.svelte";
+import NodeEditor from "./views/node/NodeEditor.svelte";
+import Node from "./views/node/Node.svelte";
+import { type NodeType, type NodeInstance } from "./views/node/Node.svelte";
 
 let notificationId = 0;
 let notifications: { title: string; text?: string; id: number }[] = $state([]);
@@ -91,4 +94,8 @@ export {
 	Sidebar,
 	Notification,
 	Notifications,
+	Node,
+	NodeEditor,
+	type NodeType,
+	type NodeInstance,
 };

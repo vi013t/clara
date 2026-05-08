@@ -13,7 +13,7 @@ fs.mkdirSync(genDir);
 const entryPoints = apiMetadata.exports;
 console.log(Object.keys(entryPoints));
 
-const modules = await Promise.all(
+const modules: { name: string; path: string }[] = await Promise.all(
 	Object.entries(entryPoints).map(async ([moduleKey, paths]) => {
 		const moduleName = moduleKey === "." ? "api" : moduleKey.replace("./", "");
 		console.log(`Generating plugin API bridge for module "${moduleName}"`);
@@ -67,6 +67,7 @@ const modules = await Promise.all(
 			return { name: moduleName, path: `./${modulePath}` };
 		} catch (e) {
 			console.error(`Failed to generate plugin API bridge for ${moduleName}:`, e);
+			return null!;
 		}
 	}),
 );

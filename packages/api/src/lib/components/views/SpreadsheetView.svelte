@@ -96,6 +96,9 @@
 								value => item.addNewOrOverwriteAttributeValue(attribute.name, value!)
 							}
 						/>
+						{#if attribute.randomizer}
+							<LittleButton icon="Dice6" />
+						{/if}
 					</div>
 				{/each}
 				<div class="new cell"></div>

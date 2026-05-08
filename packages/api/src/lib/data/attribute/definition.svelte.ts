@@ -1,8 +1,7 @@
-import type { Cloneable } from "../../util/Clone.svelte.js";
-import type { Serialize } from "../../util/serialize.svelte.js";
-import { assignedLater } from "../../util/index.svelte.ts";
-import type { Group } from "../database.svelte.js";
-import { AttributeType, type AttributeTypeName } from "./type.svelte.ts";
+import { type Cloneable, type Serialize, assignedLater } from "@clara/api/utils";
+import type { Group } from "@clara/api/database";
+import { AttributeType, type AttributeTypeName } from "@clara/api/attribute";
+import { Randomizer } from "@clara/api/random";
 
 export type SerializedAttributeDefinition = {
 	name: string;
@@ -18,6 +17,7 @@ export class AttributeDefinition implements Serialize<SerializedAttributeDefinit
 	public type = $state(assignedLater<AttributeType>());
 	private id_ = $state(assignedLater<number>());
 	public group = $state(assignedLater<Group>());
+	public randomizer: Randomizer | null = $state(null);
 
 	private static nextID = 0;
 

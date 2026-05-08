@@ -16,7 +16,7 @@
 
 <style>
 	input {
-		width: 100%;
+		flex-grow: 1;
 		padding: 0.5rem;
 		color: var(--foreground);
 

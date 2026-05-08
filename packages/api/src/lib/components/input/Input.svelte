@@ -9,11 +9,7 @@
 		type AttributeContext,
 		type AttributeTypeName,
 	} from "@clara/api/attribute";
-	import ColorPicker from "./ColorPicker.svelte";
-	import LongTextInput from "./LongTextInput.svelte";
-	import MeasurementInput from "./MeasurementInput.svelte";
-	import NumberInput from "./NumberInput.svelte";
-	import ShortTextInput from "./ShortTextInput.svelte";
+	import { ColorPicker, LongTextInput, MeasurementInput, NumberInput, ShortTextInput } from "@clara/api/components";
 
 	let {
 		type,

@@ -6,7 +6,7 @@ import { assignedLater } from "./util/index.svelte";
 import { cache, userSettings } from "./usersettings/index.svelte.ts";
 import { TabList, type SerializedTabList } from "./ui/tab.svelte.js";
 import { notify } from "./components/index.svelte.ts";
-import { Randomizer } from "@clara/api/random";
+import { Randomizer, randomizers, type SerializedRandomizer } from "@clara/api/random";
 
 export type PaneLayout = SinglePane | MultiPane;
 
@@ -72,6 +72,7 @@ export type SerializedTemplate = {
 	database: SerializedDatabase;
 	layout: SerializedPaneLayout;
 	pinnedGroups: number[];
+	randomizers: SerializedRandomizer[];
 };
 
 export class Template implements Serialize<SerializedTemplate> {
@@ -102,6 +103,7 @@ export class Template implements Serialize<SerializedTemplate> {
 			database: this.database.serialize(),
 			layout: serializePaneLayout(this.layout),
 			pinnedGroups: this.pinnedGroups.map(group => group.id),
+			randomizers: this.randomizers.map(randomizer => randomizer.serialize()),
 		};
 	}
 
@@ -125,6 +127,7 @@ export class Template implements Serialize<SerializedTemplate> {
 			database,
 			layout: this.layout, // TODO: clone layout
 			pinnedGroups,
+			randomizers: this.randomizers.map(randomizer => randomizer),
 		});
 	}
 
@@ -133,6 +136,9 @@ export class Template implements Serialize<SerializedTemplate> {
 			database: Group.deserialize(template.database),
 			layout: deserializePaneLayout(template.layout),
 			pinnedGroups: [],
+			randomizers: template.randomizers.map(
+				randomizer => randomizers().find(other => randomizer.id === other.id && randomizer.pluginId === other.pluginId)!,
+			),
 		});
 		let all = temp.database.dfsBranches();
 		temp.pinnedGroups = template.pinnedGroups.map(id => all.find(group => group.id == id)!);
@@ -150,13 +156,15 @@ export class Project extends Template implements Serialize<SerializedProject> {
 		database,
 		layout,
 		pinnedGroups,
+		randomizers = [],
 	}: {
 		layout: PaneLayout;
 		location: string;
 		database: Database;
 		pinnedGroups: Group[];
+		randomizers?: Randomizer[];
 	}) {
-		super({ database, layout, pinnedGroups });
+		super({ database, layout, pinnedGroups, randomizers });
 		this.location = location;
 	}
 
@@ -165,7 +173,13 @@ export class Project extends Template implements Serialize<SerializedProject> {
 	}
 
 	public static fromTemplate(template: Template, { location }: { location: string }): Project {
-		return new Project({ database: template.database, layout: template.layout, location, pinnedGroups: template.pinnedGroups });
+		return new Project({
+			database: template.database,
+			layout: template.layout,
+			location,
+			pinnedGroups: template.pinnedGroups,
+			randomizers: template.randomizers,
+		});
 	}
 
 	public static set(project: Project): void {
@@ -186,12 +200,12 @@ export class Project extends Template implements Serialize<SerializedProject> {
 			database: Group.deserialize(project.database),
 			layout: deserializePaneLayout(project.layout),
 			pinnedGroups: [],
+			randomizers: project.randomizers.map(
+				randomizer => randomizers().find(other => randomizer.id === other.id && randomizer.pluginId === other.pluginId)!,
+			),
 		});
 
-		console.log(project.database);
 		let all = proj.database.dfsGroups();
-		console.log(all.map(group => group.id));
-		console.log(project.pinnedGroups);
 		proj.pinnedGroups = project.pinnedGroups.map(id => all.find(group => group.id == id)!);
 
 		return proj;
@@ -203,6 +217,7 @@ export class Project extends Template implements Serialize<SerializedProject> {
 			database: this.database.serialize(),
 			layout: serializePaneLayout(this.layout),
 			pinnedGroups: this.pinnedGroups.map(group => group.id),
+			randomizers: this.randomizers.map(randomizer => randomizer.serialize()),
 		};
 	}
 
@@ -249,6 +264,7 @@ export type SerializedProject = {
 	database: SerializedDatabase;
 	layout: SerializedPaneLayout;
 	pinnedGroups: number[];
+	randomizers: SerializedRandomizer[];
 };
 
 let currentProject: Project | null = $state(null);

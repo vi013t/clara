@@ -114,21 +114,6 @@
 		</div>
 
 		<div>
-			{#if expanded}
-				<div style:width="100%">
-					<button onmousedown={openNodeEditor}>
-						<Icon name="GitCompare" />
-						Node Editor
-					</button>
-					<div class="handle">
-						<Icon color="var(--foreground-dark)" name="GripHorizontal" />
-					</div>
-				</div>
-			{:else}
-				<div>
-					<LittleButton icon="GitCompare" onmousedown={openNodeEditor} />
-				</div>
-			{/if}
 			{#each views as view}
 				{#if expanded}
 					<div style:width="100%">
@@ -146,18 +131,6 @@
 					</div>
 				{/if}
 			{/each}
-			{#if expanded}
-				<div style:width="100%">
-					<button>
-						<Icon name="Pencil" />
-						Editor
-					</button>
-				</div>
-			{:else}
-				<div>
-					<LittleButton icon="Pencil" />
-				</div>
-			{/if}
 		</div>
 	</section>
 {/if}

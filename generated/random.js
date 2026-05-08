@@ -2,4 +2,6 @@
 // AND IS NOT MEANT FOR MANUAL EDITING
 
 const internal = globalThis.__CLARA_API__.random;
+export const registerRandomizer = internal.registerRandomizer;
+export const randomizers = internal.randomizers;
 export const Randomizer = internal.Randomizer;

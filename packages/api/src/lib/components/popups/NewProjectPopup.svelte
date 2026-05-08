@@ -2,7 +2,7 @@
 	import { invoke } from "@tauri-apps/api/core";
 	import { open as chooseFile } from "@tauri-apps/plugin-dialog";
 	import { Project, Template } from "@clara/api/project";
-	import { cache, userSettings } from "@clara/api/usersettings";
+	import { cache, getFromCache, userSettings } from "@clara/api/usersettings";
 	import { HierarchyView, Icon, LittleButton, Popup, Select, SettingsPopup } from "@clara/api/components";
 	import { asyncFn } from "@clara/api/utils";
 	import { sep } from "@tauri-apps/api/path";
@@ -15,7 +15,7 @@
 
 	let settingsPopup: SettingsPopup;
 
-	let location: string = $state("");
+	let location: string = $state(getFromCache("projectsDirPath") ?? "");
 	let name: string = $state("");
 	let template: Template = $state(userSettings().templates[0]);
 
@@ -182,7 +182,19 @@
 			<div>
 				<h2>Entries</h2>
 				<div class="tree">
-					<HierarchyView hideRoot entry={template.database} />
+					<HierarchyView entry={template.database} />
+				</div>
+			</div>
+
+			<div class="randoms">
+				<h2>Randomizers</h2>
+				<div class="randomizers">
+					{#each template.randomizers as randomizer}
+						<div>
+							<Icon name="Dice6" />
+							{randomizer.name}
+						</div>
+					{/each}
 				</div>
 			</div>
 		</div>
@@ -198,6 +210,25 @@
 		padding: 1rem;
 		background-color: var(--background-dark);
 		border-radius: 0.25rem;
+	}
+
+	.randoms {
+		margin-top: 1rem;
+	}
+
+	.randomizers {
+		color: var(--foreground-bright);
+		background-color: var(--background-dark);
+		padding: 1rem;
+		border-radius: 0.25rem;
+
+		> * {
+			display: flex;
+			gap: 0.5rem;
+			align-items: center;
+			line-height: 0px;
+			font-size: 0.85rem;
+		}
 	}
 
 	.create-button {
@@ -308,9 +339,7 @@
 		}
 
 		> p {
-			background-color: var(--background-dark);
-			padding: 1rem;
-			border-radius: 0.25rem;
+			margin-bottom: 1rem;
 		}
 	}
 

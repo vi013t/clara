@@ -1,7 +1,9 @@
 <script lang="ts">
 	import type { Group } from "@clara/api/database";
 	import { AttributeType, type AttributeDefinition } from "@clara/api/attribute";
-	import { Icon, Popup, ConfirmationPopup, Select, Input } from "@clara/api/components";
+	import { Popup, ConfirmationPopup, Select, Input, PopupSidebar } from "@clara/api/components";
+	import { getIcon } from "@clara/api/icons";
+	import { Project } from "@clara/api/project";
 
 	let { owner, attribute = $bindable() }: { owner: Group; attribute: AttributeDefinition | null } = $props();
 
@@ -21,49 +23,57 @@
 		unlockType = unlock;
 		confirmUnlockTypePopup.open();
 	}
+
+	let view = $state("General");
 </script>
 
 <Popup {reset} bind:this={popup}>
 	{#if attribute}
 		<section>
-			<div class="sidebar">
-				<h1 class="title">
-					<Icon name="Table2" />
-					{attribute.name}
-				</h1>
-				<button>
-					<Icon color="var(--foreground)" name="Settings" />
-					<span>General</span>
-				</button>
-				<button>
-					<Icon color="var(--foreground)" name="Italic" />
-					<span>Formatting</span>
-				</button>
-				<button>
-					<Icon color="var(--foreground)" name="ShieldCheck" />
-					<span>Restrictions</span>
-				</button>
-
-				<button onmousedown={() => confirmDeletePopup.open()}>Delete field</button>
-			</div>
+			<PopupSidebar
+				bind:view
+				title={{ text: attribute.name, icon: getIcon("Table2").component }}
+				sections={{
+					General: [
+						["General", "Settings"],
+						["Formatting", "Italic"],
+						["Randomizers", "Dice6"],
+						["Restrictions", "ShieldCheck"],
+					],
+				}}
+			/>
 
 			<div class="content">
-				<h2>Name</h2>
-				<input bind:value={attribute.name} />
+				{#if view === "General"}
+					<h2>Name</h2>
+					<input bind:value={attribute.name} />
 
-				<h2>Type</h2>
-				<div class="type">
-					<Select {onunlock} locked width="100%" options={AttributeType.names()} bind:value={attribute.type.name} />
-				</div>
+					<h2>Type</h2>
+					<div class="type">
+						<Select {onunlock} locked width="100%" options={AttributeType.names()} bind:value={attribute.type.name} />
+					</div>
 
-				<h2>Default</h2>
-				<Input
-					context="settings"
-					background="var(--background-dark)"
-					type={attribute.type.name}
-					value={null}
-					openEditor={() => {}}
-				/>
+					<h2>Default</h2>
+					<Input
+						context="settings"
+						background="var(--background-dark)"
+						type={attribute.type.name}
+						value={null}
+						openEditor={() => {}}
+					/>
+				{:else if view === "Randomizers"}
+					<h2>Randomizer</h2>
+					<Select
+						width="100%"
+						options={Project.get()!.randomizers.map(randomizer => randomizer.name)}
+						bind:value={
+							() => attribute.randomizer?.name,
+							randomizer => (attribute.randomizer = Project.get()!.randomizers.find(other => other.name === randomizer)!)
+						}
+					/>
+
+					<h2>Parameters</h2>
+				{/if}
 			</div>
 		</section>
 	{/if}
@@ -99,71 +109,10 @@
 		margin-right: 2.5rem;
 	}
 
-	.title {
-		border-bottom: 1px solid var(--border);
-		padding-bottom: 1rem;
-		display: flex;
-		gap: 1rem;
-		margin-left: 0.5rem;
-		font-size: 0.85rem;
-		color: var(--foreground-bright);
-		margin-bottom: 0.5rem;
-		text-transform: uppercase;
-		font-weight: 700;
-		color: var(--foreground);
-	}
-
 	section {
 		display: grid;
 		grid-template-columns: 1fr 3fr;
 		height: 100%;
-	}
-
-	.sidebar {
-		height: 100%;
-		width: 15rem;
-		border-right: 1px solid var(--border);
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-		padding: 1rem;
-
-		button {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
-			padding: 0.25rem;
-			padding-left: 0.5rem;
-			width: 100%;
-			border-radius: 0.25rem;
-			--stroke: var(--foreground-bright);
-
-			&:hover {
-				background-color: var(--indigo);
-				--stroke: var(--background-dark);
-			}
-
-			span {
-				color: var(--stroke);
-			}
-		}
-
-		> :last-child {
-			margin-top: auto;
-			background-image: linear-gradient(to bottom right, #eba0ac, var(--red));
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			padding-top: 0.5rem;
-			padding-bottom: 0.5rem;
-			transition: scale 0.1s;
-			box-shadow: 0px 0px 0.25rem black;
-			color: var(--background-darker);
-
-			&:hover {
-				scale: 105%;
-			}
-		}
 	}
 
 	input {

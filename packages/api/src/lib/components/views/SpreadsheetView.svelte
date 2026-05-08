@@ -75,13 +75,13 @@
 							color="var(--foreground)"
 							style="margin-left: auto;"
 							icon="Settings"
-							onmousedown={event => editAttribute(event, attribute)}
+							onmousedown={(event: MouseEvent) => editAttribute(event, attribute)}
 						/>
 						<LittleButton
 							color="var(--foreground)"
 							accent="var(--red)"
 							icon="Trash2"
-							onmousedown={event => editAttribute(event, attribute)}
+							onmousedown={(event: MouseEvent) => editAttribute(event, attribute)}
 						/>
 					{/if}
 				</div>

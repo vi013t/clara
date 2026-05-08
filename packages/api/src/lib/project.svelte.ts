@@ -6,6 +6,7 @@ import { assignedLater } from "./util/index.svelte";
 import { cache, userSettings } from "./usersettings/index.svelte.ts";
 import { TabList, type SerializedTabList } from "./ui/tab.svelte.js";
 import { notify } from "./components/index.svelte.ts";
+import { Randomizer } from "@clara/api/random";
 
 export type PaneLayout = SinglePane | MultiPane;
 
@@ -77,11 +78,23 @@ export class Template implements Serialize<SerializedTemplate> {
 	public database: Database = $state(assignedLater());
 	public layout: PaneLayout = $state(assignedLater());
 	public pinnedGroups: Group[] = $state([]);
+	public randomizers: Randomizer[] = $state([]);
 
-	public constructor({ database, layout, pinnedGroups }: { layout: PaneLayout; database: Database; pinnedGroups: Group[] }) {
+	public constructor({
+		database,
+		layout,
+		pinnedGroups,
+		randomizers = [],
+	}: {
+		layout: PaneLayout;
+		database: Database;
+		pinnedGroups: Group[];
+		randomizers?: Randomizer[];
+	}) {
 		this.database = database;
 		this.layout = layout;
 		this.pinnedGroups = pinnedGroups;
+		this.randomizers = randomizers;
 	}
 
 	public serialize(): SerializedTemplate {

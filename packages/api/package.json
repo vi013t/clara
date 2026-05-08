@@ -92,6 +92,11 @@
 			"types": "./dist/usersettings/index.svelte.d.ts",
 			"svelte": "./dist/usersettings/index.svelte.js",
 			"default": "./dist/usersettings/index.svelte.js"
+		},
+		"./random": {
+			"types": "./dist/random/index.svelte.d.ts",
+			"svelte": "./dist/random/index.svelte.js",
+			"default": "./dist/random/index.svelte.js"
 		}
 	},
 	"peerDependencies": {

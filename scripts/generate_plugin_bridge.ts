@@ -25,7 +25,7 @@ const modules = await Promise.all(
 
 			console.log(`\tSearching for exports...`);
 
-			const directExportRegex = /export\s+(?:async\s+)?(?:const|let|var|function|class)\s+([a-zA-Z0-9_]+)/g;
+			const directExportRegex = /export\s+(?:async\s+)?(?:abstract\s+)?(?:const|let|var|function|class)\s+([a-zA-Z0-9_]+)/g;
 			const keys = new Set<string>();
 			let match;
 

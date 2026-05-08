@@ -1,5 +1,5 @@
 import { AttributeDefinition } from "./definition.svelte.ts";
-import { RichText, StyledText, Style } from "./richtext.svelte.ts";
+import { RichText, StyledText, Style, type SerializedRichText } from "./richtext.svelte.ts";
 import { StringAttribute, NumberAttribute, PrimitiveArrayAttributeValue, PrimitiveAttributeValue } from "./primitive.svelte.ts";
 import { attributeTypes, AttributeType, type AttributeTypeName, type AttributeContext } from "./type.svelte.ts";
 import { DateTime } from "./datetime.svelte.ts";
@@ -26,6 +26,7 @@ export {
 	Kilograms,
 	attributeTypes,
 	AttributeValue,
+	type SerializedRichText,
 };
 
 export type { AttributeTypeName, SerializedAttributeValue, AttributeContext, MeasurementType };

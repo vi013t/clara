@@ -1,10 +1,9 @@
-import type { Group, SerializedGroup } from "../data/database.svelte";
-import { Project } from "../project.svelte";
-import { assignedLater, type Serialize } from "../util/index.svelte";
-import { RichText, type SerializedRichText } from "../data/attribute/richtext.svelte";
-import { getIcon, type Icon, type IconIdentifier, type IconName } from "./icons.svelte";
-import type { ScriptNode } from "@clara/api/components";
-import type { NodeInstance } from "$lib/components/views/node/Node.svelte";
+import { RichText, type SerializedRichText } from "@clara/api/attribute";
+import type { NodeInstance } from "@clara/api/components";
+import type { Group } from "@clara/api/database";
+import { assignedLater, type Serialize } from "@clara/api/utils";
+import { type IconIdentifier, getIcon, type Icon, type IconName } from "@clara/api/ui";
+import { Project } from "@clara/api/project";
 
 export class Tab {
 	private static tabID = 0;
@@ -68,6 +67,7 @@ export class GroupTab extends Tab implements Serialize<SerializedGroupTab> {
 			icon: this.icon.name,
 		};
 	}
+
 	public static deserialize(tab: SerializedGroupTab): GroupTab {
 		const group = new GroupTab(tab.group, tab.icon);
 		group.view = tab.view;

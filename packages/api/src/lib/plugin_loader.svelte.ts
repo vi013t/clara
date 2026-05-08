@@ -15,6 +15,7 @@ import * as components from "./components/index.svelte";
 import * as system from "./system.svelte";
 import * as ui from "./ui/index.svelte";
 import * as usersettings from "./usersettings/index.svelte";
+import * as random from "./random/index.svelte";
 
 export function attachPluginData() {
 	(globalThis as any).__CLARA_API__ = {
@@ -32,6 +33,7 @@ export function attachPluginData() {
 		system,
 		ui,
 		usersettings,
+		random,
 	};
 }
 
@@ -54,4 +56,5 @@ export let importMap = {
 	"@clara/api/system": `${scheme}virtual/system.js`,
 	"@clara/api/ui": `${scheme}virtual/ui.js`,
 	"@clara/api/usersettings": `${scheme}virtual/usersettings.js`,
+	"@clara/api/random": `${scheme}virtual/random.js`,
 };

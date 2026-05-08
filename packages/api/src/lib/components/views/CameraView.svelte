@@ -6,7 +6,8 @@
 		children,
 		camera = $bindable(new Camera()),
 		canPan = true,
-	}: { children: Snippet; camera?: Camera; canPan?: boolean } = $props();
+		onupdate = () => {},
+	}: { children: Snippet; camera?: Camera; canPan?: boolean; onupdate?: () => void } = $props();
 
 	let mouseDown = $state(false);
 
@@ -20,6 +21,7 @@
 
 		const factor = Math.exp(event.deltaY * 0.002);
 		camera.scaleAround(worldPoint, factor);
+		onupdate();
 	}
 
 	let outer: HTMLElement;
@@ -28,6 +30,7 @@
 		if (!canPan || !mouseDown) return;
 
 		camera.shift([-event.movementX * camera.getScale().x, -event.movementY * camera.getScale().y]);
+		onupdate();
 	}
 
 	let cursor = $derived(mouseDown ? "grabbing" : "grab");

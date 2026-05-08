@@ -1,30 +1,118 @@
 <script lang="ts">
 	import { Camera } from "@clara/api/camera";
 	import { CameraView, Node, type NodeInstance } from "@clara/api/components";
+	import { typeColors, type NodeNodeArgument } from "./Node.svelte";
 
 	let camera: Camera = $state(new Camera());
-	let canPan = $state(false);
+	let canPan = $state(true);
 
 	let { nodes = $bindable() }: { nodes: NodeInstance[] } = $props();
 
 	let edges = $derived(
-		nodes.map(node => [node.inputs, node.outputs] as [{ [key: string]: NodeInstance }, { [key: string]: NodeInstance }]),
+		nodes
+			.map(node =>
+				Object.entries(node.outputs)
+					.filter(([name, argument]) => "node" in argument)
+					.map(
+						([name, argument]) =>
+							[node, name, (argument as NodeNodeArgument).outputName, (argument as NodeNodeArgument).node] as [
+								NodeInstance,
+								string,
+								string,
+								NodeInstance,
+							],
+					),
+			)
+			.flat(),
 	);
+
+	let nodeElements: Node[] = $state([]);
+
+	let svg: SVGElement | null = $state(null);
+
+	let updateCounter = $state(0);
+
+	let curves: [string, string][] = $derived.by(() => {
+		updateCounter;
+
+		return edges.map(([left, outputName, inputName, right]) => {
+			let fromIndex = nodes
+				.map((node, index) => [node, index] as [NodeInstance, number])
+				.find(([node, _index]) => node.id === left.id)?.[1];
+			let toIndex = nodes
+				.map((node, index) => [node, index] as [NodeInstance, number])
+				.find(([node, _index]) => node.id === right.id)?.[1];
+
+			if (fromIndex === undefined || toIndex === undefined || !nodeElements[fromIndex] || !nodeElements[toIndex] || !svg) {
+				return ["", ""];
+			}
+
+			const from = nodeElements[fromIndex];
+			const to = nodeElements[toIndex];
+
+			const [from_x, from_y] = from.outputPosition(svg, outputName);
+			const [to_x, to_y] = to.inputPosition(svg, inputName);
+
+			const dx = to_x - from_x;
+			const curve = Math.max(80, Math.abs(dx) * 0.5);
+
+			return [
+				`
+                    M ${from_x} ${from_y}
+                    C ${from_x + curve} ${from_y}
+                    ${to_x - curve} ${to_y}
+                    ${to_x} ${to_y}
+                `,
+				typeColors[left.type.outputs[outputName]!.type],
+			];
+		});
+	});
 </script>
 
 <section class="node-editor">
-	<CameraView bind:camera {canPan}>
-		{#each nodes as node}
-			<Node {node} />
+	<div class="gradient"></div>
+	<svg bind:this={svg}>
+		{#each curves as [d, stroke]}
+			<path {d} style:stroke class="edge" />
+		{/each}
+	</svg>
+	<CameraView bind:camera {canPan} onupdate={() => updateCounter++}>
+		{#each nodes as _node, index}
+			<Node bind:node={nodes[index]} bind:this={nodeElements[index]} bind:canPan {camera} onmove={() => updateCounter++} />
 		{/each}
 	</CameraView>
 </section>
 
 <style>
+	.gradient {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 1rem;
+		background-image: linear-gradient(to bottom, var(--background), var(--background-darker));
+	}
+
 	section {
 		width: 100%;
 		height: 100%;
 		position: relative;
 		background-color: var(--background-darker);
+	}
+
+	.edge {
+		fill: none;
+		stroke: var(--indigo);
+		stroke-width: 3;
+	}
+
+	svg {
+		pointer-events: none;
+		position: absolute;
+		overflow: visible;
+		width: 100%;
+		height: 100%;
+		top: 50%;
+		left: 50%;
 	}
 </style>

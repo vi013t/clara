@@ -20,4 +20,3 @@ export const Meters = internal.Meters;
 export const Kilograms = internal.Kilograms;
 export const attributeTypes = internal.attributeTypes;
 export const AttributeValue = internal.AttributeValue;
-export const type SerializedRichText = internal.type SerializedRichText;

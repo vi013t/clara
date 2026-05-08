@@ -1,3 +1,5 @@
+import { userSettings } from "@clara/api/usersettings";
+import type { Template } from "../project.svelte.ts";
 import type { IconIdentifier } from "../ui/icons.svelte.ts";
 import defaultThemes from "./themes/themes.svelte.ts";
 
@@ -27,4 +29,8 @@ type PluginInfo<SettingNames extends string> = {
 
 export function plugin<const SettingNames extends string>(plugin: ClaraPlugin<SettingNames>): ClaraPlugin<SettingNames> {
 	return plugin;
+}
+
+export function registerTemplate(template: Template) {
+	userSettings().addTemplate(template);
 }

@@ -43,6 +43,9 @@ const modules = await Promise.all(
 					if (!trimmed) return;
 					const parts = trimmed.split(/\s+as\s+/);
 					const exportName = parts[parts.length - 1];
+
+					if (exportName.includes(" ")) return;
+
 					console.log(`\t\tFound export "${exportName}"`);
 					if (!exportName) throw new Error(`Could not detect export name: ${content}`);
 					keys.add(exportName);

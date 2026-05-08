@@ -45,5 +45,3 @@ export const Notification = internal.Notification;
 export const Notifications = internal.Notifications;
 export const Node = internal.Node;
 export const NodeEditor = internal.NodeEditor;
-export const type NodeType = internal.type NodeType;
-export const type NodeInstance = internal.type NodeInstance;

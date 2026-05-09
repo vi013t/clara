@@ -1,17 +1,22 @@
 <script lang="ts">
 	import { AttributeDefinition, attributeTypes } from "@clara/api/attribute";
 	import { AttributeType, type RichText } from "@clara/api/attribute";
-	import { Item, type Group } from "@clara/api/database";
+	import { Item, ItemType, type Group } from "@clara/api/database";
 	import { Icon, AttributeSettingsPopup, ContextMenu, LittleButton, Input } from "@clara/api/components";
+	import { Project } from "@clara/api/project";
 
 	let { group = $bindable(), openEditor }: { group: Group; openEditor: (content: RichText) => void } = $props();
 
 	let updateCounter = $state(0);
 	let updateAttributes = $state(0);
 	let newAttributeMenu: ContextMenu;
+	let itemType = $state(Project.get()!.types[0]);
+
+	$inspect(itemType);
+	$inspect(Project.get()?.types);
 
 	function addRow() {
-		group.addChild(new Item("New Item"));
+		group.addChild(new Item(itemType!, "New Item"));
 		// updateCounter++;
 		console.log(group);
 	}
@@ -22,7 +27,7 @@
 	}
 
 	function createColumn(type: AttributeType) {
-		group.addNewAttributeDefinition(AttributeDefinition.basic("Attribute", type.name));
+		itemType.attributes.push(new AttributeDefinition({ name: "Attribute", type: AttributeType.fromName("shortText") }));
 		newAttributeMenu.close();
 	}
 
@@ -42,13 +47,29 @@
 		fieldSettings.openAtMouse(event);
 	}
 
-	group.attributeDefinitions;
+	let itemTypeMenu: ContextMenu;
+
+	function setItemType(type: ItemType) {
+		return function () {
+			itemType = type;
+			itemTypeMenu.close();
+		};
+	}
 </script>
 
 <div class="columns">
 	<div class="column">
-		<div style:width="100%" class="control cell">
-			<Icon name={group.icon.name} />
+		<div style:width="100%" class="control cell" style:position="relative">
+			<LittleButton icon={itemType.icon.name} onmousedown={() => itemTypeMenu.open()}>
+				<ContextMenu bind:this={itemTypeMenu} top="100%" left="0%">
+					{#each Project.get()!.types as itemType}
+						<button onmousedown={setItemType(itemType)}>
+							<Icon name={itemType.icon} />
+							{itemType.name}
+						</button>
+					{/each}
+				</ContextMenu>
+			</LittleButton>
 		</div>
 
 		{#each group.dfsLeaves() as item}
@@ -60,8 +81,9 @@
 			<LittleButton icon="Plus" onmousedown={addRow} />
 		</div>
 	</div>
+
 	{#key updateAttributes}
-		{#each group.attributeDefinitions as attribute}
+		{#each itemType.attributes as attribute}
 			<div class="column">
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div class="cell" oncontextmenu={event => fieldSettings.openAtMouse(event)}>
@@ -146,7 +168,7 @@
 	{/each}
 </ContextMenu>
 
-<AttributeSettingsPopup bind:attribute={editingAttribute!} bind:this={fieldPropertiesPopup} owner={group} />
+<AttributeSettingsPopup bind:attribute={editingAttribute!} bind:this={fieldPropertiesPopup} owner={itemType} />
 
 <style>
 	.columns {

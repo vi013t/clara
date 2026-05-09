@@ -5,3 +5,4 @@ const internal = globalThis.__CLARA_API__.database;
 export const GraphOutline = internal.GraphOutline;
 export const Item = internal.Item;
 export const Group = internal.Group;
+export const ItemType = internal.ItemType;

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Project } from "@clara/api/project";
-	import { Group, Item, type Node } from "@clara/api/database";
+	import { Group, Item, ItemType, type Node } from "@clara/api/database";
 	import { ContextMenu, Icon, HierarchyView, IconPicker } from "@clara/api/components";
 
 	let {
@@ -50,10 +50,12 @@
 		expanded = true;
 	}
 
-	function newItem() {
-		(entry as Group).addChild(new Item("New Item"));
-		rightClickMenu?.close();
-		expanded = true;
+	function newItem(itemType: ItemType) {
+		return function () {
+			(entry as Group).addChild(new Item(itemType, "New Item"));
+			rightClickMenu?.close();
+			expanded = true;
+		};
 	}
 
 	let name: HTMLSpanElement | null = $state(null);
@@ -118,14 +120,26 @@
 
 	<ContextMenu onclose={() => (clickedNode = false)} left={menuLeft} top={menuTop} bind:this={rightClickMenu}>
 		{#if entry.isBranch()}
-			<button onmousedown={newItem}>
+			<div>
 				<Icon name="CirclePlus" />
-				Create new item
-			</button>
-			<button onmousedown={newGroup}>
-				<Icon name="PackagePlus" />
-				Create new group
-			</button>
+				Create
+				<Icon name="ChevronRight" style="margin-left: auto;" />
+				<ContextMenu>
+					{#if Project.get()}
+						{#each Project.get()!.types as itemType}
+							<button onmousedown={newItem(itemType)}>
+								<Icon name={itemType.icon.name} />
+								{itemType.name}
+							</button>
+						{/each}
+					{/if}
+					<hr />
+					<button onmousedown={newGroup}>
+						<Icon name="PackagePlus" />
+						Group
+					</button>
+				</ContextMenu>
+			</div>
 			<button onmousedown={() => pin(entry)}>
 				<Icon name="Pin" />
 				Pin to sidebar

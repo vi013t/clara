@@ -113,3 +113,7 @@ export namespace AttributeType {
 		return name;
 	}
 }
+
+export interface AttributeTypeValue<T> {}
+
+export type AttributeTypeNameValue<T extends AttributeTypeValue<any>> = T extends AttributeTypeValue<infer R> ? R : never;

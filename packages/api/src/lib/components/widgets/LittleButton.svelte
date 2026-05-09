@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Icon } from "@clara/api/components";
 	import type { IconIdentifier } from "@clara/api/icons";
+	import type { Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	let {
@@ -9,6 +10,7 @@
 		color = "currentColor",
 		accent = "var(--indigo)",
 		element = $bindable(),
+		children,
 		...attributes
 	}: {
 		element?: HTMLButtonElement;
@@ -16,15 +18,18 @@
 		size?: number;
 		accent?: string;
 		color?: string;
+		children?: Snippet;
 	} & HTMLAttributes<HTMLButtonElement> = $props();
 </script>
 
 <button bind:this={element} {...attributes} style:--accent={accent} style:--base={color}>
 	<Icon name={icon} {size} />
+	{@render children?.()}
 </button>
 
 <style>
 	button {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: center;

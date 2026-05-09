@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ContextMenu, Icon, IconPicker, LittleButton } from "@clara/api/components";
 	import type { Group } from "@clara/api/database";
-	import { EditorTab, GroupTab, Tab, TabList, views, type View } from "@clara/api/ui";
+	import { EditorTab, GroupTab, Tab, TabList, views } from "@clara/api/ui";
 	import { onMount } from "svelte";
 	import type { PaneLayout, SinglePane } from "@clara/api/project";
 
@@ -29,7 +29,7 @@
 		onclose();
 	}
 
-	function createTab(group?: Group, view?: View) {
+	function createTab(group?: Group, view?: string) {
 		let tab = new GroupTab((group ?? (currentTab() as GroupTab).group).id);
 		if (view) tab.view = view;
 		pane.tabline.appendTab(tab);

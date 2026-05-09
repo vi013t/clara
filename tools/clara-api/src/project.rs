@@ -63,12 +63,28 @@ impl PaneLayout {
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
+pub struct ItemType {
+	name: String,
+	icon: String,
+	attributes: Vec<AttributeDefinition>,
+}
+
+#[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct Randomizer {
+	id: String,
+	plugin_id: String,
+}
+
+#[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Project {
 	location: String,
 	database: Database,
 	layout: PaneLayout,
 	pinned_groups: Vec<u32>,
+	types: Vec<ItemType>,
+	randomizers: Vec<Randomizer>,
 }
 
 impl Project {
@@ -77,6 +93,8 @@ impl Project {
 			location: location.to_owned(),
 			layout,
 			pinned_groups: Vec::new(),
+			types: Vec::new(),
+			randomizers: Vec::new(),
 			database: Database {
 				root: 0,
 				groups: vec![Group {
@@ -143,7 +161,6 @@ pub struct AttributeDefinition {
 	name: String,
 	r#type: String,
 	id: Id,
-	group_id: Id,
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]

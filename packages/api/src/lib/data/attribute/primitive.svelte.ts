@@ -1,4 +1,5 @@
 import { assignedLater, type Cloneable, type Serialize } from "../../util/index.svelte";
+import type { AttributeTypeValue } from "./type.svelte.ts";
 
 export abstract class PrimitiveArrayAttributeValue<T extends number>
 	implements Serialize<T[]>, Cloneable<PrimitiveArrayAttributeValue<T>>
@@ -29,7 +30,7 @@ export abstract class PrimitiveAttributeValue<T> implements Serialize<T>, Clonea
 	public abstract clone(): PrimitiveAttributeValue<T>;
 }
 
-export class StringAttribute extends PrimitiveAttributeValue<string> {
+export class StringAttribute extends PrimitiveAttributeValue<string> implements AttributeTypeValue<string> {
 	public static deserialize(value: string): StringAttribute {
 		return new StringAttribute(value);
 	}
@@ -39,7 +40,7 @@ export class StringAttribute extends PrimitiveAttributeValue<string> {
 	}
 }
 
-export class NumberAttribute extends PrimitiveAttributeValue<number> {
+export class NumberAttribute extends PrimitiveAttributeValue<number> implements AttributeTypeValue<number> {
 	public static deserialize(value: number): NumberAttribute {
 		return new NumberAttribute(value);
 	}
@@ -49,7 +50,7 @@ export class NumberAttribute extends PrimitiveAttributeValue<number> {
 	}
 }
 
-export class EntriesAttribute extends PrimitiveArrayAttributeValue<number> {
+export class EntriesAttribute extends PrimitiveArrayAttributeValue<number> implements AttributeTypeValue<number> {
 	public static deserialize(value: number[]): EntriesAttribute {
 		return new EntriesAttribute(value);
 	}

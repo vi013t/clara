@@ -13,6 +13,10 @@ import { Color } from "./attribute/color.svelte";
 import { StringAttribute } from "./attribute/primitive.svelte";
 import { TreeBranch, TreeLeaf } from "./tree.svelte";
 import { assignedLater, Objects } from "../util/index.svelte";
+import { AttributeType } from "./attribute/type.svelte.ts";
+import { ItemType, type SerializedItemType } from "./type.svelte.ts";
+
+export { ItemType };
 
 export class GraphOutline<T extends Shape<any>> {
 	public shape = $state(assignedLater<T>());
@@ -36,29 +40,37 @@ export class GraphOutline<T extends Shape<any>> {
 export type SerializedItem = {
 	attributes: Record<string, SerializedAttributeValue | null>;
 	id: number;
+	type: SerializedItemType;
 };
 
 export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedItem>, Cloneable<Item> {
 	public attributes = $state(assignedLater<Record<string, AttributeValue | null>>());
+	public type: ItemType;
 
-	public constructor(value: Record<string, AttributeValue | null> | string) {
+	public constructor(type: ItemType, value: Record<string, AttributeValue | null> | string) {
 		super();
 		this.attributes = typeof value === "string" ? { Name: new StringAttribute(value) } : value;
+		this.type = type;
 	}
 
 	public clone(): Item {
-		return new Item(Objects.mapValues(this.attributes, attribute => attribute?.clone() ?? null));
+		return new Item(
+			this.type.clone(),
+			Objects.mapValues(this.attributes, attribute => attribute?.clone() ?? null),
+		);
 	}
 
 	public serialize(): SerializedItem {
 		return {
 			id: this.id,
 			attributes: Objects.mapValues(this.attributes, attribute => (attribute ? AttributeValue.serialize(attribute) : null)),
+			type: this.type.serialize(),
 		};
 	}
 
 	public static deserializeUnsafe(item: SerializedItem): Item {
 		let created = new Item(
+			ItemType.deserialize(item.type),
 			Objects.mapValues(item.attributes, attribute => (attribute ? AttributeValue.deserialize(attribute) : null)),
 		);
 		(created as any).id = item.id;
@@ -241,23 +253,21 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 	 * @param builder The attribute builder. Generally you'll get one of these from a static method
 	 * on `AttributeDefinition`.
 	 */
-	public addNewAttributeDefinition(builder: AttributeDefinitionBuilder): void {
+	public addNewAttributeDefinition(attribute: AttributeDefinition): void {
 		// This group inherits attributes
 		if (this.attributes_ === "inherit") {
 			// This is the root - even if it "inherits" we add it to the root
 			if (this.isRoot) {
-				let attribute = builder(this);
 				this.attributes_ = [attribute];
 				return;
 			}
 
 			// If not, we inherit attributes from the parent, so this actually gets passed up to the parent
-			this.parent!.addNewAttributeDefinition(builder);
+			this.parent!.addNewAttributeDefinition(attribute);
 		}
 
 		// This group uses it's own attributes - doesn't inherit
 		else {
-			let attribute = builder(this);
 			if (this.getAttributeDefinition(attribute.name)) {
 				throw `Duplicate attribute: Attempted to add the attribute "${attribute.name}", but the attribute already exists. If this was intentional, use overwriteAttribute().`;
 			}
@@ -288,7 +298,7 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 	public get attributeDefinitions(): readonly AttributeDefinition[] {
 		if (this.attributes_ === "inherit") {
 			if (this.isRoot) {
-				this.attributes_ = [AttributeDefinition.basic("Name", "shortText")(this)];
+				this.attributes_ = [new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") })];
 				return this.attributes_;
 			}
 
@@ -332,7 +342,7 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 		});
 
 		if (group.attributes.type !== "inherit") {
-			created.attributes_ = group.attributes.own.map(attribute => AttributeDefinition.deserialize(attribute, created));
+			created.attributes_ = group.attributes.own.map(attribute => AttributeDefinition.deserialize(attribute));
 		}
 
 		(created as any).id = group.id;

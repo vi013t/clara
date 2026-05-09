@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { Group } from "@clara/api/database";
+	import type { Group, ItemType } from "@clara/api/database";
 	import { AttributeType, type AttributeDefinition } from "@clara/api/attribute";
 	import { Popup, ConfirmationPopup, Select, Input, PopupSidebar } from "@clara/api/components";
 	import { getIcon } from "@clara/api/icons";
 	import { Project } from "@clara/api/project";
 
-	let { owner, attribute = $bindable() }: { owner: Group; attribute: AttributeDefinition | null } = $props();
+	let { owner, attribute = $bindable() }: { owner: ItemType; attribute: AttributeDefinition | null } = $props();
 
 	function reset() {}
 
@@ -72,7 +72,15 @@
 						}
 					/>
 
-					<h2>Parameters</h2>
+					<h2>Default Parameters</h2>
+
+					<Input
+						context="settings"
+						background="var(--background-dark)"
+						type={attribute.type.name}
+						value={null}
+						openEditor={() => {}}
+					/>
 				{/if}
 			</div>
 		</section>
@@ -83,7 +91,7 @@
 	bind:this={confirmDeletePopup}
 	title="Delete field?"
 	onconfirm={() => {
-		owner.deleteAttributeDefinition(attribute!);
+		owner.attributes = owner.attributes.filter(a => a !== attribute!);
 		close();
 	}}
 >

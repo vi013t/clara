@@ -7,6 +7,7 @@ import { cache, userSettings } from "./usersettings/index.svelte.ts";
 import { TabList, type SerializedTabList } from "./ui/tab.svelte.js";
 import { notify } from "./components/index.svelte.ts";
 import { Randomizer, randomizers, type SerializedRandomizer } from "@clara/api/random";
+import { ItemType, type SerializedItemType } from "./data/type.svelte.js";
 
 export type PaneLayout = SinglePane | MultiPane;
 
@@ -73,6 +74,7 @@ export type SerializedTemplate = {
 	layout: SerializedPaneLayout;
 	pinnedGroups: number[];
 	randomizers: SerializedRandomizer[];
+	types: SerializedItemType[];
 };
 
 export class Template implements Serialize<SerializedTemplate> {
@@ -80,22 +82,26 @@ export class Template implements Serialize<SerializedTemplate> {
 	public layout: PaneLayout = $state(assignedLater());
 	public pinnedGroups: Group[] = $state([]);
 	public randomizers: Randomizer[] = $state([]);
+	public types: ItemType[] = $state([]);
 
 	public constructor({
 		database,
 		layout,
 		pinnedGroups,
 		randomizers = [],
+		types,
 	}: {
 		layout: PaneLayout;
 		database: Database;
 		pinnedGroups: Group[];
 		randomizers?: Randomizer[];
+		types: ItemType[];
 	}) {
 		this.database = database;
 		this.layout = layout;
 		this.pinnedGroups = pinnedGroups;
 		this.randomizers = randomizers;
+		this.types = types;
 	}
 
 	public serialize(): SerializedTemplate {
@@ -104,6 +110,7 @@ export class Template implements Serialize<SerializedTemplate> {
 			layout: serializePaneLayout(this.layout),
 			pinnedGroups: this.pinnedGroups.map(group => group.id),
 			randomizers: this.randomizers.map(randomizer => randomizer.serialize()),
+			types: this.types.map(type => type.serialize()),
 		};
 	}
 
@@ -127,7 +134,8 @@ export class Template implements Serialize<SerializedTemplate> {
 			database,
 			layout: this.layout, // TODO: clone layout
 			pinnedGroups,
-			randomizers: this.randomizers.map(randomizer => randomizer),
+			randomizers: this.randomizers,
+			types: this.types.map(type => type.clone()),
 		});
 	}
 
@@ -139,6 +147,7 @@ export class Template implements Serialize<SerializedTemplate> {
 			randomizers: template.randomizers.map(
 				randomizer => randomizers().find(other => randomizer.id === other.id && randomizer.pluginId === other.pluginId)!,
 			),
+			types: template.types.map(type => ItemType.deserialize(type)),
 		});
 		let all = temp.database.dfsBranches();
 		temp.pinnedGroups = template.pinnedGroups.map(id => all.find(group => group.id == id)!);
@@ -157,14 +166,16 @@ export class Project extends Template implements Serialize<SerializedProject> {
 		layout,
 		pinnedGroups,
 		randomizers = [],
+		types,
 	}: {
 		layout: PaneLayout;
 		location: string;
 		database: Database;
 		pinnedGroups: Group[];
+		types: ItemType[];
 		randomizers?: Randomizer[];
 	}) {
-		super({ database, layout, pinnedGroups, randomizers });
+		super({ database, layout, pinnedGroups, randomizers, types });
 		this.location = location;
 	}
 
@@ -179,6 +190,7 @@ export class Project extends Template implements Serialize<SerializedProject> {
 			location,
 			pinnedGroups: template.pinnedGroups,
 			randomizers: template.randomizers,
+			types: template.types,
 		});
 	}
 
@@ -200,6 +212,7 @@ export class Project extends Template implements Serialize<SerializedProject> {
 			database: Group.deserialize(project.database),
 			layout: deserializePaneLayout(project.layout),
 			pinnedGroups: [],
+			types: project.types.map(type => ItemType.deserialize(type)),
 			randomizers: project.randomizers.map(
 				randomizer => randomizers().find(other => randomizer.id === other.id && randomizer.pluginId === other.pluginId)!,
 			),
@@ -218,6 +231,7 @@ export class Project extends Template implements Serialize<SerializedProject> {
 			layout: serializePaneLayout(this.layout),
 			pinnedGroups: this.pinnedGroups.map(group => group.id),
 			randomizers: this.randomizers.map(randomizer => randomizer.serialize()),
+			types: this.types.map(type => type.serialize()),
 		};
 	}
 
@@ -265,6 +279,7 @@ export type SerializedProject = {
 	layout: SerializedPaneLayout;
 	pinnedGroups: number[];
 	randomizers: SerializedRandomizer[];
+	types: SerializedItemType[];
 };
 
 let currentProject: Project | null = $state(null);

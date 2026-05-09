@@ -1,3 +1,4 @@
+import type { AttributeTypeNameValue, AttributeTypeName, AttributeValue } from "@clara/api/attribute";
 import { getIcon, type Icon, type IconIdentifier } from "@clara/api/ui";
 import type { Serialize } from "@clara/api/utils";
 
@@ -16,7 +17,14 @@ export type SerializedRandomizer = {
 	pluginId: string;
 };
 
-export abstract class Randomizer<P extends Record<string, string> = any, T = any> implements Serialize<SerializedRandomizer> {
+export type RandomizerArguments<P extends Record<string, AttributeTypeName>> = {
+	[N in keyof P]: AttributeTypeNameValue<AttributeValue<P[N]>>;
+};
+
+export abstract class Randomizer<
+	P extends Record<string, AttributeTypeName> = any,
+	T = any,
+> implements Serialize<SerializedRandomizer> {
 	public readonly name: string;
 	public readonly pluginId: string;
 	public readonly id: string;
@@ -43,7 +51,9 @@ export abstract class Randomizer<P extends Record<string, string> = any, T = any
 		this.icon = getIcon(icon);
 	}
 
-	public abstract random(parameters: P): T;
+	public abstract parameters(): P;
+
+	public abstract random(parameters: RandomizerArguments<P>): T;
 
 	public serialize(): SerializedRandomizer {
 		return {

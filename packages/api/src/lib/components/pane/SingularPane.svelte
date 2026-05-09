@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { EditorTab, GroupTab, NodeEditorTab } from "@clara/api/ui";
-	import type { RichText } from "@clara/api/attribute";
+	import type { GeneratedAttribute, RichText } from "@clara/api/attribute";
 	import { GraphView, HierarchyView, SpreadsheetView, Editor, Tabline, NodeEditor } from "@clara/api/components";
 	import type { PaneLayout, SinglePane } from "@clara/api/project";
 
@@ -24,7 +24,11 @@
 		pane.selectedTabID = tab.id;
 	}
 
-	$inspect(pane.selectedTabID);
+	function openNodeEditor(generator: GeneratedAttribute) {
+		let tab = new NodeEditorTab(generator?.generator.nodes ?? []);
+		pane.tabline.appendTab(tab);
+		pane.selectedTabID = tab.id;
+	}
 
 	let tab = $derived(pane.tabline.getTabByID(pane.selectedTabID));
 </script>
@@ -41,7 +45,7 @@
 				{#if tab.view === "Hierarchy"}
 					<HierarchyView />
 				{:else if tab.view === "Spreadsheet"}
-					<SpreadsheetView {openEditor} group={tab.group} />
+					<SpreadsheetView {openNodeEditor} {openEditor} group={tab.group} />
 				{:else if tab.view === "Graph"}
 					<GraphView />
 				{/if}

@@ -49,3 +49,7 @@ export interface From<Input, Output> {
 }
 
 export type { Serialize, Serialized, Deserialized, Serializer, Cloneable };
+
+export function cloneRecord<T extends Cloneable<T>>(value: Record<string, T>): Record<string, T> {
+	return Object.fromEntries(Object.entries(value).map(([key, value]) => [key, value.clone()]));
+}

@@ -66,5 +66,5 @@ export async function startPlugins() {
 	loadCorePlugins();
 	attachPluginData();
 	createImportMap();
-	loadPlugins();
+	await loadPlugins();
 }

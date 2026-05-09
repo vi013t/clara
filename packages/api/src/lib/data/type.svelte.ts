@@ -1,6 +1,7 @@
 import { getIcon, type Icon, type IconIdentifier, type IconName } from "@clara/api/icons";
-import { AttributeDefinition, type SerializedAttributeDefinition } from "./attribute/definition.svelte.js";
 import { assignedLater, type Cloneable, type Serialize } from "@clara/api/utils";
+import { AttributeDefinition, type SerializedAttributeDefinition } from "@clara/api/attribute";
+import { GeneratedAttribute } from "./attribute/generated.svelte.ts";
 
 export type SerializedItemType = {
 	name: string;
@@ -12,11 +13,23 @@ export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemTy
 	name: string = $state(assignedLater());
 	icon: Icon = $state(assignedLater());
 	attributes: AttributeDefinition[] = $state(assignedLater());
+	pluralName: string = $state(assignedLater());
 
-	public constructor({ name, icon, attributes }: { name: string; icon: IconIdentifier; attributes: AttributeDefinition[] }) {
+	public constructor({
+		name,
+		icon,
+		attributes,
+		pluralName,
+	}: {
+		name: string;
+		pluralName?: string;
+		icon: IconIdentifier;
+		attributes: AttributeDefinition[];
+	}) {
 		this.name = name;
 		this.icon = getIcon(icon);
 		this.attributes = attributes;
+		this.pluralName = pluralName ?? `${this.name}s`;
 	}
 
 	public clone(): ItemType {

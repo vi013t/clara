@@ -5,6 +5,7 @@ const internal = globalThis.__CLARA_API__.utils;
 export const assignedLater = internal.assignedLater;
 export const mapValues = internal.mapValues;
 export const mapEntries = internal.mapEntries;
+export const cloneRecord = internal.cloneRecord;
 export const asyncFn = internal.asyncFn;
 export const Debug = internal.Debug;
 export const errors = internal.errors;

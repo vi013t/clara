@@ -3,7 +3,6 @@
 	import { Project, type PaneLayout, type SinglePane } from "@clara/api/project";
 	import { ContextMenu, Icon, LittleButton } from "@clara/api/components";
 	import { Group } from "@clara/api/database";
-	import { node } from "./views/node/Node.svelte";
 
 	let { focusedPane = $bindable() }: { focusedPane: PaneLayout } = $props();
 
@@ -40,38 +39,6 @@
 		Project.get()!.pinnedGroups = Project.get()!.pinnedGroups.filter(group => group.id !== selectedGroup!.id);
 		Project.autosave();
 		rightClickGroupMenu.close();
-	}
-
-	function openNodeEditor() {
-		let text = node("Text")!;
-		text.inputs["text"] = { value: "", type: "string" };
-
-		let attribute = node("Create Attribute");
-		text.outputs["text"] = { node: attribute, outputName: "value" };
-		attribute.inputs["value"] = { node: text, outputName: "text" };
-		attribute.inputs["name"] = { value: "Description", type: "string" };
-		attribute.x = 1000;
-
-		let item = node("Create Item");
-		item.inputs["name"] = { value: "New Item", type: "string" };
-		attribute.outputs["attribute"] = { node: item, outputName: "attributes" };
-		item.inputs["attributes"] = { node: attribute, outputName: "attribute" };
-		item.x = 1500;
-
-		let store = node("Store");
-		item.outputs["item"] = { node: store, outputName: "entry" };
-		store.inputs["entry"] = { node: item, outputName: "item" };
-		store.x = 2000;
-
-		let group = node("Group");
-		group.outputs["group"] = { node: store, outputName: "location" };
-		store.inputs["location"] = { node: group, outputName: "group" };
-		group.x = 2500;
-
-		let tab = new NodeEditorTab([text, attribute, item, group, store]);
-		let id = tab.id;
-		(focusedPane as SinglePane).tabline.appendTab(tab);
-		(focusedPane as SinglePane).selectedTabID = id;
 	}
 </script>
 

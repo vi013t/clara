@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { type IconName, icons } from "@clara/api/icons";
 	import { mouse, LittleButton } from "@clara/api/components";
-	import tags from "lucide-static/tags.json";
+	import tags from "lucide-static/tags.json" with { type: "json" };
 
 	let {
 		value = $bindable(null),

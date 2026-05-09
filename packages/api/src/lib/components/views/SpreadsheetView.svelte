@@ -1,19 +1,24 @@
 <script lang="ts">
-	import { AttributeDefinition, attributeTypes } from "@clara/api/attribute";
+	import { AttributeDefinition, attributeTypes, type GeneratedAttribute } from "@clara/api/attribute";
 	import { AttributeType, type RichText } from "@clara/api/attribute";
 	import { Item, ItemType, type Group } from "@clara/api/database";
 	import { Icon, AttributeSettingsPopup, ContextMenu, LittleButton, Input } from "@clara/api/components";
 	import { Project } from "@clara/api/project";
 
-	let { group = $bindable(), openEditor }: { group: Group; openEditor: (content: RichText) => void } = $props();
+	let {
+		group = $bindable(),
+		openEditor,
+		openNodeEditor,
+	}: {
+		group: Group;
+		openEditor: (content: RichText) => void;
+		openNodeEditor: (generator: GeneratedAttribute) => void;
+	} = $props();
 
 	let updateCounter = $state(0);
 	let updateAttributes = $state(0);
 	let newAttributeMenu: ContextMenu;
 	let itemType = $state(Project.get()!.types[0]);
-
-	$inspect(itemType);
-	$inspect(Project.get()?.types);
 
 	function addRow() {
 		group.addChild(new Item(itemType!, "New Item"));
@@ -27,7 +32,7 @@
 	}
 
 	function createColumn(type: AttributeType) {
-		itemType.attributes.push(new AttributeDefinition({ name: "Attribute", type: AttributeType.fromName("shortText") }));
+		itemType.attributes.push(new AttributeDefinition({ name: "Attribute", type }));
 		newAttributeMenu.close();
 	}
 
@@ -65,7 +70,7 @@
 					{#each Project.get()!.types as itemType}
 						<button onmousedown={setItemType(itemType)}>
 							<Icon name={itemType.icon} />
-							{itemType.name}
+							{itemType.pluralName}
 						</button>
 					{/each}
 				</ContextMenu>
@@ -87,10 +92,7 @@
 			<div class="column">
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div class="cell" oncontextmenu={event => fieldSettings.openAtMouse(event)}>
-					<attribute.type.icon.component
-						stroke="var(--foreground-bright)"
-						style="width: 1rem; height: 1rem; margin-right: 0.75rem;"
-					/>
+					<attribute.icon.component stroke="var(--foreground-bright)" style="width: 1rem; height: 1rem; margin-right: 0.75rem;" />
 					{attribute.name}
 					{#if attribute.name !== "Name"}
 						<LittleButton
@@ -112,13 +114,14 @@
 						<Input
 							context="spreadsheet"
 							{openEditor}
-							type={attribute.type.name}
+							{openNodeEditor}
+							type={attribute instanceof AttributeDefinition ? attribute.type.name : "generated"}
 							bind:value={
 								() => item.getAttributeValue(attribute.name),
 								value => item.addNewOrOverwriteAttributeValue(attribute.name, value!)
 							}
 						/>
-						{#if attribute.randomizer}
+						{#if attribute instanceof AttributeDefinition && attribute.randomizer}
 							<LittleButton icon="Dice6" />
 						{/if}
 					</div>

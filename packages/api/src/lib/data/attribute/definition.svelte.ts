@@ -2,6 +2,7 @@ import { type Cloneable, type Serialize, assignedLater } from "@clara/api/utils"
 import type { Group } from "@clara/api/database";
 import { AttributeType, type AttributeTypeName } from "@clara/api/attribute";
 import { Randomizer } from "@clara/api/random";
+import type { Icon } from "@clara/api/icons";
 
 export type SerializedAttributeDefinition = {
 	name: string;
@@ -9,10 +10,11 @@ export type SerializedAttributeDefinition = {
 	id: number;
 };
 
-export type AttributeDefinitionBuilder = (group: Group) => AttributeDefinition;
-
 export class AttributeDefinition implements Serialize<SerializedAttributeDefinition>, Cloneable<AttributeDefinition> {
 	public name = $state(assignedLater<string>());
+	public icon: Icon;
+	public typeName: AttributeTypeName;
+
 	public type = $state(assignedLater<AttributeType>());
 	private id_ = $state(assignedLater<number>());
 	public randomizer: Randomizer | null = $state(null);
@@ -23,6 +25,8 @@ export class AttributeDefinition implements Serialize<SerializedAttributeDefinit
 		this.name = name;
 		this.type = type;
 		this.id_ = id ?? AttributeDefinition.nextID++;
+		this.icon = type.icon;
+		this.typeName = this.type.name;
 	}
 
 	public clone(): AttributeDefinition {

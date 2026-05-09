@@ -2,7 +2,7 @@ import { invoke } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
 import { Group, type Database, type SerializedDatabase } from "./data/database.svelte";
 import type { Serialize } from "./util/serialize.svelte";
-import { assignedLater } from "./util/index.svelte";
+import { assignedLater, Debug } from "./util/index.svelte";
 import { cache, userSettings } from "./usersettings/index.svelte.ts";
 import { TabList, type SerializedTabList } from "./ui/tab.svelte.js";
 import { notify } from "./components/index.svelte.ts";
@@ -144,9 +144,20 @@ export class Template implements Serialize<SerializedTemplate> {
 			database: Group.deserialize(template.database),
 			layout: deserializePaneLayout(template.layout),
 			pinnedGroups: [],
-			randomizers: template.randomizers.map(
-				randomizer => randomizers().find(other => randomizer.id === other.id && randomizer.pluginId === other.pluginId)!,
-			),
+			randomizers: template.randomizers
+				.map(randomizer => randomizers().find(other => randomizer.id === other.id && randomizer.pluginId === other.pluginId)!)
+				.filter((randomizer, index) => {
+					if (!randomizer) {
+						Debug.warn(
+							`No randomizer found with ID ${template.randomizers[index].id} and plugin ID ${template.randomizers[index].id}`,
+							import.meta.url,
+						);
+
+						return false;
+					}
+
+					return true;
+				}),
 			types: template.types.map(type => ItemType.deserialize(type)),
 		});
 		let all = temp.database.dfsBranches();
@@ -213,9 +224,22 @@ export class Project extends Template implements Serialize<SerializedProject> {
 			layout: deserializePaneLayout(project.layout),
 			pinnedGroups: [],
 			types: project.types.map(type => ItemType.deserialize(type)),
-			randomizers: project.randomizers.map(
-				randomizer => randomizers().find(other => randomizer.id === other.id && randomizer.pluginId === other.pluginId)!,
-			),
+			randomizers: project.randomizers
+				.map(randomizer => randomizers().find(other => randomizer.id === other.id && randomizer.pluginId === other.pluginId)!)
+				.filter((randomizer, index) => {
+					if (!randomizer) {
+						Debug.warn(
+							`No randomizer found with ID ${project.randomizers[index].id} and plugin ID ${project.randomizers[index].id}; Available randomizers are: ${randomizers()
+								.map(randomizer => `[${(randomizer.id, randomizer.pluginId)}]`)
+								.join(", ")}`,
+							import.meta.url,
+						);
+
+						return false;
+					}
+
+					return true;
+				}),
 		});
 
 		let all = proj.database.dfsGroups();

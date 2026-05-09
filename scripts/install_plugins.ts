@@ -7,7 +7,7 @@ import { exit } from "node:process";
 console.log("Installing plugins...");
 
 const isWindows = process.platform === "win32";
-const configBase = isWindows ? process.env.APPDATA : join(homedir(), ".config");
+const configBase = isWindows ? process.env.APPDATA! : join(homedir(), ".config");
 const pluginDir = join(configBase, "Clara", "plugins");
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

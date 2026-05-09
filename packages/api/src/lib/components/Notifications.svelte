@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { getNotifications } from "@clara/api/components";
-	import Notification from "./Notification.svelte";
+	import { getNotifications, Notification } from "@clara/api/components";
 </script>
 
 {#each getNotifications() as notification (notification.id)}

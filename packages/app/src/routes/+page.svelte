@@ -15,16 +15,23 @@
 		}
 	});
 
-	const projectPath = getFromCache("lastProjectPath");
-	if (projectPath) Project.openFromLocation(projectPath);
+	let startingPlugins = startPlugins();
 
-	startPlugins();
+	startingPlugins.then(() => {
+		const projectPath = getFromCache("lastProjectPath");
+		if (projectPath) Project.openFromLocation(projectPath);
+	});
 
 	let tabline = new TabList([new Tab(getIcon("StickyNote"))]);
 
-	onMount(() => {
+	onMount(async () => {
 		userSettings().selectTheme(userSettings().selectedTheme.name);
-		document.getElementById("loading-screen")?.remove();
+		let loadingScreen = document.getElementById("loading-screen");
+		if (loadingScreen) {
+			loadingScreen.textContent = "Loading Plugins...";
+			await startingPlugins;
+			loadingScreen.remove();
+		}
 	});
 
 	Project.onSet(project => {

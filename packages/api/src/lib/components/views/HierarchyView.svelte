@@ -50,9 +50,9 @@
 		expanded = true;
 	}
 
-	function newItem(itemType: ItemType) {
+	function newItem(itemType?: ItemType) {
 		return function () {
-			(entry as Group).addChild(new Item(itemType, "New Item"));
+			(entry as Group).addChild(new Item(itemType ?? (entry as Group).defaultType, "New Item"));
 			rightClickMenu?.close();
 			expanded = true;
 		};

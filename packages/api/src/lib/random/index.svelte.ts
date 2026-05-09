@@ -1,11 +1,12 @@
 import type { AttributeTypeNameValue, AttributeTypeName, AttributeValue } from "@clara/api/attribute";
 import { getIcon, type Icon, type IconIdentifier } from "@clara/api/ui";
-import type { Serialize } from "@clara/api/utils";
+import { Debug, type Serialize } from "@clara/api/utils";
 
 let registry: Randomizer[] = $state([]);
 
 export function registerRandomizer(randomizer: Randomizer) {
 	registry.push(randomizer);
+	Debug.log(`Registered randomizer with ID ${randomizer.id} from plugin ${randomizer.pluginId}`, import.meta.url);
 }
 
 export function randomizers() {

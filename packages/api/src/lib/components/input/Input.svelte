@@ -8,13 +8,16 @@
 		StringAttribute,
 		type AttributeContext,
 		type AttributeTypeName,
+		type GeneratedAttribute,
 	} from "@clara/api/attribute";
 	import { ColorPicker, LongTextInput, MeasurementInput, NumberInput, ShortTextInput } from "@clara/api/components";
+	import GeneratedInput from "./GeneratedInput.svelte";
 
 	let {
 		type,
 		value = $bindable(),
 		openEditor,
+		openNodeEditor,
 		context = "none",
 		background = "transparent",
 	}: {
@@ -22,6 +25,7 @@
 		type: TypeName;
 		value: AttributeValue<TypeName> | null;
 		openEditor: (doc: RichText) => void;
+		openNodeEditor: (generator: GeneratedAttribute) => void;
 		background?: string;
 	} = $props();
 </script>
@@ -36,4 +40,6 @@
 	<LongTextInput bind:value={value as RichText} {context} {openEditor} />
 {:else if type === "color"}
 	<ColorPicker />
+{:else if type === "generated"}
+	<GeneratedInput bind:value={value as GeneratedAttribute} {context} {openNodeEditor} />
 {/if}

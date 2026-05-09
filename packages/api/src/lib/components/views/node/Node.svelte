@@ -1,118 +1,10 @@
 <script module>
-	export type Type = "number" | "string" | "boolean" | "item" | "any" | "group" | "list";
-	export type NodeCategory = "value" | "operation" | "data";
-
-	export const nodeCategoryColors = {
-		value: "var(--green)",
-		operation: "var(--indigo)",
-		data: "var(--yellow)",
-	};
-
-	export type NodeParameter = {
-		type: Type;
-		subtype?: Type;
-		required?: boolean;
-	};
-
-	export type NodeNodeArgument = {
-		node: NodeInstance;
-		outputName: string;
-	};
-
-	export type NodeArgument = NodeNodeArgument | { value: any; type: Type };
-
-	export type NodeType = {
-		name: string;
-		inputs: { [key: string]: NodeParameter };
-		outputs: { [key: string]: NodeParameter };
-		categories: NodeCategory[];
-	};
-
-	export type NodeInstance = {
-		type: NodeType;
-		inputs: { [key: string]: NodeArgument };
-		outputs: { [key: string]: NodeArgument };
-		x: number;
-		y: number;
-		id: number;
-	};
-
-	let allNodes: NodeType[] = $state([
-		{
-			name: "Create Item",
-			inputs: { name: { type: "string", required: true }, attributes: { type: "list" } },
-			outputs: { item: { type: "item" } },
-			categories: ["data"],
-		},
-		{
-			name: "Store",
-			inputs: { entry: { type: "any" }, location: { type: "group" } },
-			outputs: {},
-			categories: ["data"],
-		},
-		{
-			name: "Group",
-			inputs: { group: { type: "group" } },
-			outputs: { group: { type: "group" } },
-			categories: ["value"],
-		},
-		{
-			name: "Create Attribute",
-			inputs: { name: { type: "string", required: true }, value: { type: "any", required: true } },
-			outputs: { attribute: { type: "any" } },
-			categories: ["data"],
-		},
-		{
-			name: "Input",
-			inputs: { name: { type: "string", required: true }, type: { type: "any" }, value: { type: "any" } },
-			outputs: { attribute: { type: "any" } },
-			categories: ["value"],
-		},
-		{
-			name: "Concatenate",
-			inputs: { left: { type: "string", required: true }, right: { type: "string", required: true } },
-			outputs: { result: { type: "string" } },
-			categories: ["operation"],
-		},
-		{
-			name: "Text",
-			inputs: { text: { type: "string" } },
-			outputs: { text: { type: "string" } },
-			categories: ["value"],
-		},
-	] as NodeType[]);
-
-	export function nodes() {
-		return allNodes;
-	}
-
-	let nextID = $state(0);
-
-	export function node(name: string): NodeInstance {
-		return {
-			type: nodes().find(node => node.name === name)!,
-			inputs: {},
-			outputs: {},
-			x: 0,
-			y: 0,
-			id: nextID++,
-		};
-	}
-
-	export const typeColors: { [Key in Type]: string } = {
-		string: "var(--green)",
-		number: "var(--orange)",
-		boolean: "var(--purple)",
-		item: "var(--purple)",
-		any: "var(--indigo)",
-		group: "var(--pink)",
-		list: "var(--teal)",
-	};
 </script>
 
 <script lang="ts">
 	import { Icon, mouse } from "@clara/api/components";
 	import { type Camera } from "@clara/api/camera";
+	import { nodeCategoryColors, nodeTypeColors, type NodeInstance } from "@clara/api/attribute";
 
 	let {
 		node = $bindable(),
@@ -181,7 +73,7 @@
 		{#each Object.entries(node.type.outputs).filter(([name, type]) => !(name in node.type.inputs)) as [outputName, type]}
 			<div class="output">
 				<div class="output-name">{outputName}</div>
-				<div style:background-color={typeColors[type.type]} class="output-circle" bind:this={outputs[outputName]}></div>
+				<div style:background-color={nodeTypeColors[type.type]} class="output-circle" bind:this={outputs[outputName]}></div>
 			</div>
 		{/each}
 		<div class="inputs">
@@ -192,7 +84,7 @@
 						style:color={type.required && !node.inputs[inputName] ? "var(--red)" : "var(--foreground)"}
 					>
 						<div
-							style:background-color={typeColors[type.type]}
+							style:background-color={nodeTypeColors[type.type]}
 							bind:this={inputs[inputName]}
 							class="input-circle"
 							style:border={type.required && !node.inputs[inputName] ? "3px solid var(--red)" : "none"}
@@ -232,7 +124,7 @@
 					<div class="output">
 						<div
 							style:background-color={Object.entries(node.outputs).find(([name, type]) => name === inputName)
-								? typeColors[type.type]
+								? nodeTypeColors[type.type]
 								: "var(--background)"}
 							class="output-circle"
 							bind:this={outputs[inputName]}

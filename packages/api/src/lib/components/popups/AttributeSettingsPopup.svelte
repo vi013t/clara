@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Group, ItemType } from "@clara/api/database";
-	import { AttributeType, type AttributeDefinition } from "@clara/api/attribute";
+	import type { ItemType } from "@clara/api/database";
+	import { AttributeType, type AttributeTypeName, type AttributeDefinition } from "@clara/api/attribute";
 	import { Popup, ConfirmationPopup, Select, Input, PopupSidebar } from "@clara/api/components";
 	import { getIcon } from "@clara/api/icons";
 	import { Project } from "@clara/api/project";
@@ -50,7 +50,16 @@
 
 					<h2>Type</h2>
 					<div class="type">
-						<Select {onunlock} locked width="100%" options={AttributeType.names()} bind:value={attribute.type.name} />
+						<Select
+							{onunlock}
+							locked
+							width="100%"
+							options={AttributeType.names()}
+							bind:value={
+								() => AttributeType.readableName(attribute.type),
+								type => (attribute.type = AttributeType.fromName(type as AttributeTypeName))
+							}
+						/>
 					</div>
 
 					<h2>Default</h2>
@@ -60,6 +69,7 @@
 						type={attribute.type.name}
 						value={null}
 						openEditor={() => {}}
+						openNodeEditor={() => {}}
 					/>
 				{:else if view === "Randomizers"}
 					<h2>Randomizer</h2>
@@ -80,6 +90,7 @@
 						type={attribute.type.name}
 						value={null}
 						openEditor={() => {}}
+						openNodeEditor={() => {}}
 					/>
 				{/if}
 			</div>

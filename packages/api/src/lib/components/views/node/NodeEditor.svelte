@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { nodeTypeColors, type NodeInstance } from "@clara/api/attribute";
 	import { Camera } from "@clara/api/camera";
-	import { CameraView, Node, type NodeInstance } from "@clara/api/components";
-	import { typeColors, type NodeNodeArgument } from "./Node.svelte";
+	import { CameraView, Node } from "@clara/api/components";
 
 	let camera: Camera = $state(new Camera());
 	let canPan = $state(true);
@@ -12,15 +12,10 @@
 		nodes
 			.map(node =>
 				Object.entries(node.outputs)
-					.filter(([name, argument]) => "node" in argument)
+					.filter(([name, argument]) => argument.type === "node")
 					.map(
 						([name, argument]) =>
-							[node, name, (argument as NodeNodeArgument).outputName, (argument as NodeNodeArgument).node] as [
-								NodeInstance,
-								string,
-								string,
-								NodeInstance,
-							],
+							[node, name, argument.node!.outputName, argument.node!.node] as [NodeInstance, string, string, NodeInstance],
 					),
 			)
 			.flat(),
@@ -63,7 +58,7 @@
                     ${to_x - curve} ${to_y}
                     ${to_x} ${to_y}
                 `,
-				typeColors[left.type.outputs[outputName]!.type],
+				nodeTypeColors[left.type.outputs[outputName]!.type],
 			];
 		});
 	});

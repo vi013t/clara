@@ -3,11 +3,7 @@ import { Circle, type Shape } from "../math/shape.svelte";
 import { getIcon, type Icon, type IconIdentifier, type IconName } from "../ui/icons.svelte";
 import type { Cloneable } from "../util/Clone.svelte";
 import type { Serialize } from "../util/serialize.svelte";
-import {
-	AttributeDefinition,
-	type AttributeDefinitionBuilder,
-	type SerializedAttributeDefinition,
-} from "./attribute/definition.svelte";
+import { AttributeDefinition } from "./attribute/definition.svelte";
 import { AttributeValue, type SerializedAttributeValue } from "./attribute/value.svelte";
 import { Color } from "./attribute/color.svelte";
 import { StringAttribute } from "./attribute/primitive.svelte";
@@ -134,7 +130,7 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 export class Group extends TreeBranch<Group, Item> implements Serialize<SerializedDatabase>, Cloneable<Group> {
 	public name = $state(assignedLater<string>());
 	public description = $state(assignedLater<string>());
-	private attributes_ = $state(assignedLater<AttributeDefinition[] | "inherit">());
+	private defaultType_ = $state(assignedLater<ItemType | "inherit">());
 
 	private icon_ = $state(assignedLater<Icon | "inherit">());
 
@@ -144,7 +140,7 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 					name: string;
 					description?: string;
 					icon?: IconIdentifier | "inherit";
-					attributes?: (AttributeDefinitionBuilder | AttributeDefinition)[] | "inherit";
+					defaultType?: ItemType | "inherit";
 			  }
 			| string,
 		...children: (Group | Item)[]
@@ -154,13 +150,7 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 		this.description = typeof arg === "object" ? (arg.description ?? "") : "";
 		let icon = typeof arg === "object" ? (arg.icon ?? "inherit") : "inherit";
 		this.icon_ = icon === "inherit" ? "inherit" : getIcon(icon);
-
-		if (typeof arg === "object") {
-			if (!arg.attributes || arg.attributes === "inherit") this.attributes_ = "inherit";
-			else this.attributes_ = arg.attributes.map(attribute => (typeof attribute === "function" ? attribute(this) : attribute));
-		} else {
-			this.attributes_ = "inherit";
-		}
+		this.defaultType_ = typeof arg === "object" ? (arg.defaultType ?? "inherit") : "inherit";
 	}
 
 	public clone(): Group {
@@ -169,7 +159,7 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 				name: this.name,
 				description: this.description,
 				icon: this.icon_,
-				attributes: this.attributes_ === "inherit" ? "inherit" : this.attributes_.map(definition => definition.clone()),
+				defaultType: this.defaultType_ === "inherit" ? "inherit" : this.defaultType_.clone(),
 			},
 			...this.children.map(child => child.clone()),
 		);
@@ -182,7 +172,7 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 				name: this.name,
 				description: this.description,
 				icon: this.icon_,
-				attributes: this.attributes_ === "inherit" ? "inherit" : this.attributes_.map(definition => definition.clone()),
+				defaultType: this.defaultType_ === "inherit" ? "inherit" : this.defaultType_.clone(),
 			},
 			...this.children.map(child => child.clone()),
 		);
@@ -198,10 +188,7 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 			name: this.name,
 			description: this.description,
 			iconName: this.icon_ === "inherit" ? "inherit" : getIcon(this.icon).name,
-			attributes:
-				this.attributes_ === "inherit"
-					? { type: "inherit" }
-					: { type: "own", own: this.attributes_.map(attribute => attribute.serialize()) },
+			defaultType: this.defaultType_ === "inherit" ? { type: "inherit" } : { type: "own", own: this.defaultType_.serialize() },
 		};
 	}
 
@@ -222,92 +209,6 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 		this.icon_ = getIcon(icon);
 	}
 
-	public deleteAttributeDefinition(attribute: AttributeDefinition): void {
-		if (!this.getAttributeDefinition(attribute.name)) {
-			throw `Error deleting attribute: Attempted to delete the attribute "${attribute}", but no such attribute exists on this object.`;
-		}
-
-		if (this.attributes_ === "inherit") {
-			if (this.isRoot) return;
-			this.parent!.deleteAttributeDefinition(attribute);
-			return;
-		}
-
-		this.attributes_ = this.attributes_.filter(other => other !== attribute);
-	}
-
-	public getAttributeDefinition(name: string): AttributeDefinition | null {
-		if (this.attributes_ === "inherit") {
-			if (this.isRoot) return null;
-			return this.parent!.getAttributeDefinition(name);
-		}
-
-		return this.attributes_.find(attribute => attribute.name === name) ?? null;
-	}
-
-	/**
-	 * Defines a new attribute definition for this group. If an attribute definition with the same
-	 * name as the one provided already exists on this group, an error is thrown. If you intend to
-	 * do so, use `overwriteAttributeDefinition()`.
-	 *
-	 * @param builder The attribute builder. Generally you'll get one of these from a static method
-	 * on `AttributeDefinition`.
-	 */
-	public addNewAttributeDefinition(attribute: AttributeDefinition): void {
-		// This group inherits attributes
-		if (this.attributes_ === "inherit") {
-			// This is the root - even if it "inherits" we add it to the root
-			if (this.isRoot) {
-				this.attributes_ = [attribute];
-				return;
-			}
-
-			// If not, we inherit attributes from the parent, so this actually gets passed up to the parent
-			this.parent!.addNewAttributeDefinition(attribute);
-		}
-
-		// This group uses it's own attributes - doesn't inherit
-		else {
-			if (this.getAttributeDefinition(attribute.name)) {
-				throw `Duplicate attribute: Attempted to add the attribute "${attribute.name}", but the attribute already exists. If this was intentional, use overwriteAttribute().`;
-			}
-			this.attributes_.push(attribute);
-		}
-	}
-
-	public overwriteAttributeDefinition(builder: AttributeDefinitionBuilder): void {
-		if (this.attributes_ === "inherit") {
-			if (this.isRoot) {
-				let attribute = builder(this);
-				this.attributes_ = [attribute];
-				return;
-			}
-
-			this.parent?.overwriteAttributeDefinition(builder);
-			return;
-		}
-
-		let attribute = builder(this);
-		let newAttributes = this.attributes_.filter(other => other.name !== attribute.name);
-		if (newAttributes.length === this.attributes_.length) {
-			throw `Invalid attribute overwrite: Attempted to overwrite the attribute "${attribute.name}", but no such attribute exists. If this was intentional, use addNewAttribute().`;
-		}
-		this.attributes_.push(attribute);
-	}
-
-	public get attributeDefinitions(): readonly AttributeDefinition[] {
-		if (this.attributes_ === "inherit") {
-			if (this.isRoot) {
-				this.attributes_ = [new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") })];
-				return this.attributes_;
-			}
-
-			return this.parent!.attributeDefinitions;
-		}
-
-		return this.attributes_;
-	}
-
 	public removeItem(item: Item): void {
 		this.filterChildrenInPlace(child => child !== item);
 	}
@@ -324,6 +225,23 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 		};
 	}
 
+	public get defaultType(): ItemType {
+		if (this.defaultType_ === "inherit") {
+			if (this.isRoot) {
+				this.defaultType_ = new ItemType({
+					name: "Item",
+					icon: this.root().icon,
+					attributes: [new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") })],
+				});
+				return this.defaultType_;
+			}
+
+			return this.parent!.defaultType;
+		}
+
+		return this.defaultType_;
+	}
+
 	/**
 	 * Deserializes this group without building it into a tree with others. The returned node
 	 * **has no children or parent assigned**. This is used internally in `deserialize()` before
@@ -338,11 +256,11 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 			name: group.name,
 			description: group.description,
 			icon: group.iconName === "inherit" ? "inherit" : getIcon(group.iconName),
-			attributes: "inherit",
+			defaultType: "inherit",
 		});
 
-		if (group.attributes.type !== "inherit") {
-			created.attributes_ = group.attributes.own.map(attribute => AttributeDefinition.deserialize(attribute));
+		if (group.defaultType.type !== "inherit") {
+			created.defaultType_ = ItemType.deserialize(group.defaultType.own);
 		}
 
 		(created as any).id = group.id;
@@ -425,7 +343,7 @@ export type SerializedGroup = {
 	name: string;
 	description: string;
 	iconName: IconName | "inherit";
-	attributes: { type: "own"; own: SerializedAttributeDefinition[] } | { type: "inherit" };
+	defaultType: { type: "own"; own: SerializedItemType } | { type: "inherit" };
 };
 
 export type SerializedDatabase = {

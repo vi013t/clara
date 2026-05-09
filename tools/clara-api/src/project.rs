@@ -100,7 +100,7 @@ impl Project {
 				groups: vec![Group {
 					id: 0,
 					children: Vec::new(),
-					attributes: GroupAttributes::Inherit,
+					default_type: GroupAttributes::Inherit,
 					name: name.to_owned(),
 					icon_name: "inherit".to_owned(),
 					description: description.to_owned(),
@@ -137,7 +137,7 @@ pub struct Group {
 	name: String,
 	description: String,
 	icon_name: String,
-	attributes: GroupAttributes,
+	default_type: GroupAttributes,
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
@@ -152,7 +152,7 @@ pub struct Item {
 #[serde(rename_all = "camelCase", tag = "type")]
 pub enum GroupAttributes {
 	Inherit,
-	Own { own: Vec<AttributeDefinition> },
+	Own { own: ItemType },
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]

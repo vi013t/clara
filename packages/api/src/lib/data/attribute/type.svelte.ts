@@ -8,6 +8,7 @@ import { Measurement } from "./measurement.svelte.ts";
 import { EntriesAttribute, NumberAttribute, StringAttribute } from "./primitive.svelte.ts";
 import { RichText } from "./richtext.svelte.ts";
 import type { Snippet } from "svelte";
+import { GeneratedAttribute } from "./generated.svelte.ts";
 
 export type AttributeContext = "settings" | "spreadsheet" | "none";
 
@@ -63,6 +64,7 @@ export const attributeTypes = [
 	attributeType("date", DateTime, "Calendar"),
 	attributeType("length", Measurement, "Ruler"),
 	attributeType("weight", Measurement, "Weight"),
+	attributeType("generated", GeneratedAttribute, "Cable"),
 ] as const satisfies InternalAttributeType[];
 
 export type AttributeTypeName = typeof attributeTypes extends (infer A)[]

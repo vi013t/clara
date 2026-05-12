@@ -1,9 +1,21 @@
 use crate::BinaryData as _;
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
+pub struct AttributeRef {
+	name: String,
+	id: u32,
+}
+
+#[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
 pub struct EditorTab {
 	id: u32,
-	content: RichText,
+	attribute: AttributeRef,
+}
+
+#[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
+pub struct NodeEditorTab {
+	id: u32,
+	attribute: AttributeRef,
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
@@ -17,8 +29,14 @@ pub struct GroupTab {
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
 #[serde(tag = "type")]
 pub enum Tab {
+	#[serde(rename = "group")]
 	GroupTab(GroupTab),
+
+	#[serde(rename = "editor")]
 	EditorTab(EditorTab),
+
+	#[serde(rename = "node")]
+	NodeEditorTab(NodeEditorTab),
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]

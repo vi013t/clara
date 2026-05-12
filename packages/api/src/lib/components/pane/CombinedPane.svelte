@@ -1,8 +1,7 @@
-<!-- svelte-ignore state_referenced_locally -->
 <script lang="ts">
 	import { mouse, Pane } from "@clara/api/components";
 	import { clamp } from "@clara/api/math";
-	import type { MultiPane } from "@clara/api/project";
+	import type { MultiPane } from "@clara/api/ui";
 
 	let {
 		subpane = false,

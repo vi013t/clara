@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { StringAttribute } from "@clara/api/attribute";
+	import { AttributeRef, StringAttribute } from "@clara/api/attribute";
 
-	let { value = $bindable(), background = "transparent" }: { value: StringAttribute | null; background?: string } = $props();
+	let { attribute = $bindable(), background = "transparent" }: { attribute: AttributeRef; background?: string } = $props();
 
 	function typeKey(event: KeyboardEvent) {
 		if (event.key === "Enter") (event.target as HTMLElement).blur();
@@ -9,7 +9,10 @@
 </script>
 
 <input
-	bind:value={() => value?.value, content => (value = content ? new StringAttribute(content) : null)}
+	bind:value={
+		() => (attribute?.value as StringAttribute)?.value ?? "",
+		content => (attribute.value = content ? new StringAttribute(content) : null)
+	}
 	onkeydown={typeKey}
 	style:background
 />

@@ -1,6 +1,5 @@
 // yeah i hate me too
 
-import { assignedLater } from "../../util/index.svelte";
 import type { Cloneable } from "../../util/Clone.svelte";
 import type { Serialize } from "../../util/serialize.svelte";
 
@@ -44,10 +43,10 @@ export abstract class Measurement<
 >
 	implements Serialize<SerializedMeasurement>, Cloneable<Measurement<Type, Standard, Self>>
 {
-	protected count_: number = $state(assignedLater());
+	protected count_: number;
 
 	public constructor(value: number) {
-		this.count_ = value;
+		this.count_ = $state(value);
 	}
 
 	public serialize(): SerializedMeasurement {

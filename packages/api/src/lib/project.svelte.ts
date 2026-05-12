@@ -2,73 +2,13 @@ import { invoke } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
 import { Group, type Database, type SerializedDatabase } from "./data/database.svelte";
 import type { Serialize } from "./util/serialize.svelte";
-import { assignedLater, Debug } from "./util/index.svelte";
+import { Debug } from "./util/index.svelte";
 import { cache, userSettings } from "./usersettings/index.svelte.ts";
-import { TabList, type SerializedTabList } from "./ui/tab.svelte.js";
 import { notify } from "./components/index.svelte.ts";
 import { Randomizer, randomizers, type SerializedRandomizer } from "@clara/api/random";
 import { ItemType, type SerializedItemType } from "./data/type.svelte.js";
 import { AttributeDefinition, AttributeType } from "@clara/api/attribute";
-
-export type PaneLayout = SinglePane | MultiPane;
-
-export type SinglePane = {
-	split: "none";
-	tabline: TabList;
-	selectedTabID: number;
-};
-
-export type MultiPane = {
-	split: "horizontal" | "vertical";
-	percent: number;
-	panes: [PaneLayout, PaneLayout];
-};
-
-export type SerializedSinglePane = {
-	split: "none";
-	tabline: SerializedTabList;
-	selectedTabID: number;
-};
-
-export type SerializedMultPane = {
-	split: "horizontal" | "vertical";
-	percent: number;
-	panes: [SerializedPaneLayout, SerializedPaneLayout];
-};
-
-export type SerializedPaneLayout = SerializedSinglePane | SerializedMultPane;
-
-function serializePaneLayout(layout: PaneLayout): SerializedPaneLayout {
-	if (layout.split === "none") {
-		return {
-			split: "none",
-			tabline: layout.tabline.serialize(),
-			selectedTabID: layout.selectedTabID,
-		};
-	}
-
-	return {
-		split: layout.split,
-		percent: layout.percent,
-		panes: [serializePaneLayout(layout.panes[0]), serializePaneLayout(layout.panes[1])],
-	};
-}
-
-function deserializePaneLayout(layout: SerializedPaneLayout): PaneLayout {
-	if (layout.split === "none") {
-		return {
-			split: "none",
-			tabline: TabList.deserialize(layout.tabline),
-			selectedTabID: layout.selectedTabID,
-		};
-	}
-
-	return {
-		split: layout.split,
-		percent: layout.percent,
-		panes: [deserializePaneLayout(layout.panes[0]), deserializePaneLayout(layout.panes[1])],
-	};
-}
+import { type SerializedPaneLayout, PaneLayout } from "@clara/api/ui";
 
 export type SerializedTemplate = {
 	database: SerializedDatabase;
@@ -116,6 +56,16 @@ export class Template implements Serialize<SerializedTemplate> {
 						new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") }),
 						new AttributeDefinition({ name: "Content", type: AttributeType.fromName("longText") }),
 					],
+					defaultView: "editor",
+				}),
+				new ItemType({
+					name: "Node",
+					icon: "GitCompare",
+					attributes: [
+						new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") }),
+						new AttributeDefinition({ name: "Generator", type: AttributeType.fromName("generated") }),
+					],
+					defaultView: "node",
 				}),
 			);
 		}
@@ -125,7 +75,7 @@ export class Template implements Serialize<SerializedTemplate> {
 	public serialize(): SerializedTemplate {
 		return {
 			database: this.database.serialize(),
-			layout: serializePaneLayout(this.layout),
+			layout: this.layout.serialize(),
 			pinnedGroups: this.pinnedGroups.map(group => group.id),
 			randomizers: this.randomizers.map(randomizer => randomizer.serialize()),
 			types: this.types.map(type => type.serialize()),
@@ -151,7 +101,7 @@ export class Template implements Serialize<SerializedTemplate> {
 
 		return new Template({
 			database,
-			layout: this.layout, // TODO: clone layout
+			layout: this.layout.clone(),
 			pinnedGroups,
 			randomizers: this.randomizers,
 			types: this.types.map(type => type.clone()),
@@ -162,7 +112,7 @@ export class Template implements Serialize<SerializedTemplate> {
 	public static deserialize(template: SerializedTemplate): Template {
 		let temp = new Template({
 			database: Group.deserialize(template.database),
-			layout: deserializePaneLayout(template.layout),
+			layout: PaneLayout.deserialize(template.layout),
 			pinnedGroups: [],
 			randomizers: template.randomizers
 				.map(randomizer => randomizers().find(other => randomizer.id === other.id && randomizer.pluginId === other.pluginId)!)
@@ -188,7 +138,7 @@ export class Template implements Serialize<SerializedTemplate> {
 }
 
 export class Project extends Template implements Serialize<SerializedProject> {
-	private location = $state(assignedLater<string>());
+	private location: string;
 
 	private static onSetListeners: ((project: Project) => void)[] = [];
 
@@ -215,7 +165,7 @@ export class Project extends Template implements Serialize<SerializedProject> {
 			types,
 			plugin_id: "clara",
 		});
-		this.location = location;
+		this.location = $state(location);
 	}
 
 	public static onSet(callback: (project: Project) => void) {
@@ -249,7 +199,7 @@ export class Project extends Template implements Serialize<SerializedProject> {
 		let proj = new Project({
 			location: project.location,
 			database: Group.deserialize(project.database),
-			layout: deserializePaneLayout(project.layout),
+			layout: PaneLayout.deserialize(project.layout),
 			pinnedGroups: [],
 			types: project.types.map(type => ItemType.deserialize(type)),
 			randomizers: project.randomizers
@@ -280,7 +230,7 @@ export class Project extends Template implements Serialize<SerializedProject> {
 		return {
 			location: this.location,
 			database: this.database.serialize(),
-			layout: serializePaneLayout(this.layout),
+			layout: this.layout.serialize(),
 			pinnedGroups: this.pinnedGroups.map(group => group.id),
 			randomizers: this.randomizers.map(randomizer => randomizer.serialize()),
 			types: this.types.map(type => type.serialize()),

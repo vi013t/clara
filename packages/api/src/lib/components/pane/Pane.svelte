@@ -1,15 +1,12 @@
 <script lang="ts">
-	import { TabList } from "@clara/api/ui";
+	import { PaneLayout } from "@clara/api/ui";
 	import { CombinedPane, SingularPane } from "@clara/api/components";
-	import { type PaneLayout, type SinglePane } from "@clara/api/project";
 
-	let tabline = new TabList();
-	let { pane = $bindable({ split: "none", tabline, selectedTabID: tabline.tabs[0].id }) }: { pane?: PaneLayout } = $props();
-	tabline.owner = pane as SinglePane;
+	let { pane = $bindable() }: { pane: PaneLayout } = $props();
 </script>
 
-{#if pane.split === "none"}
-	<SingularPane bind:pane bind:anyPane={pane} />
-{:else}
+{#if pane.isSingle()}
+	<SingularPane bind:pane bind:layout={pane} />
+{:else if pane.isMulti()}
 	<CombinedPane bind:pane />
 {/if}

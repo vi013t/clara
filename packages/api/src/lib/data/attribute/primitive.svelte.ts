@@ -1,13 +1,13 @@
-import { assignedLater, type Cloneable, type Serialize } from "../../util/index.svelte";
+import { type Cloneable, type Serialize } from "../../util/index.svelte";
 import type { AttributeTypeValue } from "./type.svelte.ts";
 
 export abstract class PrimitiveArrayAttributeValue<T extends number>
 	implements Serialize<T[]>, Cloneable<PrimitiveArrayAttributeValue<T>>
 {
-	public values: T[] = $state(assignedLater());
+	public values: T[];
 
 	public constructor(value: T[]) {
-		this.values = value;
+		this.values = $state(value);
 	}
 
 	public serialize(): T[] {
@@ -18,10 +18,10 @@ export abstract class PrimitiveArrayAttributeValue<T extends number>
 }
 
 export abstract class PrimitiveAttributeValue<T> implements Serialize<T>, Cloneable<PrimitiveAttributeValue<T>> {
-	public value: T = $state(assignedLater());
+	public value: T;
 
 	public constructor(value: T) {
-		this.value = value;
+		this.value = $state(value);
 	}
 	public serialize(): T {
 		return this.value;

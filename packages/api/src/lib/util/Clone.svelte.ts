@@ -1,5 +1,3 @@
-import { assignedLater } from "./index.svelte.ts";
-
 export interface Cloneable<T extends Cloneable<T>> {
 	/**
 	 * Creates a deep clone of this value.
@@ -12,10 +10,10 @@ export interface Cloneable<T extends Cloneable<T>> {
 }
 
 export class ImmutableContainer<T extends Cloneable<T>> {
-	protected data: T = $state(assignedLater());
+	protected data: T;
 
 	public constructor(data: T) {
-		this.data = data;
+		this.data = $state(data);
 	}
 
 	public clone(): T {

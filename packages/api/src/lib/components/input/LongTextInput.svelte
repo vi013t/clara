@@ -1,15 +1,22 @@
 <script lang="ts">
 	import type { AttributeContext, AttributeRef } from "@clara/api/attribute";
+	import { EditorTab, SinglePane } from "@clara/api/ui";
 
 	let {
-		openEditor,
+		pane = $bindable(),
 		context,
 		attribute = $bindable(),
 	}: {
+		pane: SinglePane;
 		attribute: AttributeRef;
 		context: AttributeContext;
-		openEditor: (value: AttributeRef) => void;
 	} = $props();
+
+	function openEditor(attribute: AttributeRef) {
+		let tab = new EditorTab(attribute);
+		pane.tabline.appendTab(tab);
+		pane.selectedTabID = tab.id;
+	}
 </script>
 
 <button class={{ "settings-button": context === "settings" }} onmousedown={() => openEditor(attribute)}>Open in Editor</button>

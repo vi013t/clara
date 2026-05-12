@@ -1,5 +1,4 @@
 import type { Cloneable } from "../../util/Clone.svelte";
-import { assignedLater } from "../../util/index.svelte";
 import type { Serialize } from "../../util/serialize.svelte";
 import namer from "color-namer";
 
@@ -14,16 +13,16 @@ type Byte = Range<0, 256>;
 export type ToColor = Color | [Byte, Byte, Byte] | string | { r: Byte; g: Byte; b: Byte };
 
 export class Color implements Serialize<string>, Cloneable<Color> {
-	public red = $state(assignedLater<Byte>());
-	public green = $state(assignedLater<Byte>());
-	public blue = $state(assignedLater<Byte>());
-	public alpha = $state(assignedLater<number>());
+	public red: Byte;
+	public green: Byte;
+	public blue: Byte;
+	public alpha: number;
 
 	private constructor(red: Byte, green: Byte, blue: Byte, alpha: number = 1) {
-		this.red = red;
-		this.green = green;
-		this.blue = blue;
-		this.alpha = alpha;
+		this.red = $state(red);
+		this.green = $state(green);
+		this.blue = $state(blue);
+		this.alpha = $state(alpha);
 	}
 
 	public serialize(): string {

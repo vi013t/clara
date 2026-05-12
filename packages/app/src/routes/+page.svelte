@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { errors, Debug } from "@clara/api/utils";
-	import { Project, type PaneLayout } from "@clara/api/project";
+	import { Project } from "@clara/api/project";
 	import { InputHandler, Navbar, Pane, StatusBar, NoProject, Sidebar, Notifications, keyboard } from "@clara/api/components";
 	import { startPlugins } from "@clara/api";
 	import { onMount } from "svelte";
 	import { getFromCache, pressHotkey, userSettings } from "@clara/api/usersettings";
-	import { getIcon, TabList } from "@clara/api/ui";
-	import { Tab } from "@clara/api/ui";
+	import { PaneLayout, SinglePane, TabList } from "@clara/api/ui";
 	import { GroupTab } from "@clara/api/ui";
 
 	$effect(() => {
@@ -22,7 +21,7 @@
 		if (projectPath) Project.openFromLocation(projectPath);
 	});
 
-	let tabline = new TabList([new Tab(getIcon("StickyNote"))]);
+	let tabline = new TabList([]);
 
 	onMount(async () => {
 		userSettings().selectTheme(userSettings().selectedTheme.name);
@@ -34,11 +33,12 @@
 		}
 	});
 
+	let focusedPane: PaneLayout = $state(null!);
+
 	Project.onSet(project => {
 		if (!(tabline.tabs[0] instanceof GroupTab)) tabline.tabs[0] = new GroupTab(project.database.id);
+		focusedPane = new SinglePane(tabline);
 	});
-
-	let focusedPane: PaneLayout = $derived(Project.get() ? { split: "none", tabline, selectedTabID: tabline.tabs[0].id } : null!);
 
 	keyboard().onKeyDown(event => pressHotkey(event));
 </script>

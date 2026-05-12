@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { ContextMenu, Icon, IconPicker, LittleButton } from "@clara/api/components";
 	import type { Group } from "@clara/api/database";
-	import { EditorTab, GroupTab, Tab, TabList, views } from "@clara/api/ui";
+	import { GroupTab, MultiPane, PaneLayout, SinglePane, Tab, TabList, views } from "@clara/api/ui";
 	import { onMount } from "svelte";
-	import type { PaneLayout, SinglePane } from "@clara/api/project";
-	import SingularPane from "./SingularPane.svelte";
+	import { Project } from "@clara/api/project";
 
 	let {
 		background,
@@ -31,7 +30,8 @@
 	}
 
 	function createTab(group?: Group, view?: string) {
-		let tab = new GroupTab((group ?? (currentTab() as GroupTab).group).id);
+		let tabGroup = (group ?? currentTab() instanceof GroupTab) ? (currentTab() as GroupTab).group : Project.get()!.database;
+		let tab = new GroupTab(tabGroup.id);
 		if (view) tab.view = view;
 		pane.tabline.appendTab(tab);
 		pane.selectedTabID = tab.id;
@@ -71,24 +71,16 @@
 
 	function splitHorizontal() {
 		let tabline = new TabList();
-		anyPane = {
-			split: "horizontal",
-			percent: 0.5,
-			panes: [pane, { split: "none", tabline, selectedTabID: tabline.tabs[0].id }],
-		};
-		tabline.owner = anyPane.panes[1] as SinglePane;
+		anyPane = new MultiPane("horizontal", pane, new SinglePane(tabline), 0.5);
+		tabline.owner = (anyPane as MultiPane).panes[1] as SinglePane;
 
 		paneSettingsMenu.close();
 	}
 
 	function splitVertical() {
 		let tabline = new TabList();
-		anyPane = {
-			split: "vertical",
-			percent: 0.5,
-			panes: [pane, { split: "none", tabline, selectedTabID: tabline.tabs[0].id }],
-		};
-		tabline.owner = anyPane.panes[1] as SinglePane;
+		anyPane = new MultiPane("vertical", pane, new SinglePane(tabline), 0.5);
+		tabline.owner = (anyPane as MultiPane).panes[1] as SinglePane;
 
 		paneSettingsMenu.close();
 	}
@@ -144,7 +136,7 @@
 			/>
 			<span>
 				<LittleButton bind:element={changeTabIconButton} icon={tab.icon} onmousedown={() => tabIconPicker?.open()} />
-				{tab instanceof EditorTab ? "Editor" : tab instanceof GroupTab ? tab.group.name : "Empty"}
+				{tab.title}
 			</span>
 			<LittleButton accent="var(--red)" icon="X" size={16} onmousedown={closeTab(tab.id)} />
 		</div>

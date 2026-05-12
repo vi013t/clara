@@ -1,40 +1,26 @@
 <script lang="ts">
-	import { EditorTab, GroupTab, NodeEditorTab } from "@clara/api/ui";
-	import { RichText, type AttributeRef, type GeneratedAttribute } from "@clara/api/attribute";
+	import { EditorTab, GroupTab, NodeEditorTab, PaneLayout, SinglePane } from "@clara/api/ui";
 	import { GraphView, HierarchyView, SpreadsheetView, Editor, Tabline, NodeEditor } from "@clara/api/components";
-	import type { PaneLayout, SinglePane } from "@clara/api/project";
 
 	let {
 		background = "var(--background)",
 		subpane = false,
-		anyPane = $bindable(),
+		layout = $bindable(),
 		pane = $bindable(),
 		onclose = () => {},
 	}: {
 		background?: string;
 		subpane?: boolean;
 		pane: SinglePane;
-		anyPane: PaneLayout;
+		layout: PaneLayout;
 		onclose?: () => void;
 	} = $props();
-
-	function openEditor(attribute: AttributeRef) {
-		let tab = new EditorTab(attribute);
-		pane.tabline.appendTab(tab);
-		pane.selectedTabID = tab.id;
-	}
-
-	function openNodeEditor(generator: AttributeRef) {
-		let tab = new NodeEditorTab(generator);
-		pane.tabline.appendTab(tab);
-		pane.selectedTabID = tab.id;
-	}
 
 	let tab = $derived(pane.tabline.getTabByID(pane.selectedTabID));
 </script>
 
 <section class="pane">
-	<Tabline bind:pane bind:anyPane {background} {subpane} {onclose} />
+	<Tabline bind:pane bind:anyPane={layout} {background} {subpane} {onclose} />
 	<div class="content" style:background>
 		{#if tab instanceof EditorTab && tab.id === pane.selectedTabID}
 			<Editor bind:tab />
@@ -43,9 +29,9 @@
 		{:else if tab instanceof GroupTab}
 			<div class="view-container" style="display: {tab.id === pane.selectedTabID ? 'block' : 'none'}">
 				{#if tab.view === "Hierarchy"}
-					<HierarchyView />
+					<HierarchyView bind:pane bind:layout />
 				{:else if tab.view === "Spreadsheet"}
-					<SpreadsheetView {openNodeEditor} {openEditor} group={tab.group} />
+					<SpreadsheetView bind:pane group={tab.group} />
 				{:else if tab.view === "Graph"}
 					<GraphView />
 				{/if}

@@ -53,3 +53,14 @@ export type { Serialize, Serialized, Deserialized, Serializer, Cloneable };
 export function cloneRecord<T extends Cloneable<T>>(value: Record<string, T>): Record<string, T> {
 	return Object.fromEntries(Object.entries(value).map(([key, value]) => [key, value.clone()]));
 }
+
+// these are aliased so that i can easily switch to a UUID or something else if i want
+
+export type Id = number;
+export type SerializedId = number;
+
+let nextId = $state(0);
+
+export function uniqueId(): Id {
+	return nextId++;
+}

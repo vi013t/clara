@@ -1,4 +1,3 @@
-import { assignedLater } from "../util/index.svelte";
 import type { Cloneable } from "../util/Clone.svelte";
 import { clamp } from "./arrays.svelte.ts";
 import { Point2D, type Point2DLike } from "./matrix.svelte.ts";
@@ -9,12 +8,12 @@ export interface Shape<T extends Shape<T>> extends Cloneable<T> {
 }
 
 export class Circle implements Shape<Circle> {
-	public radius = $state(assignedLater<number>());
-	public center = $state(assignedLater<Point2D>());
+	public radius: number;
+	public center: Point2D;
 
 	public constructor(radius: number, center: Point2D) {
-		this.radius = radius;
-		this.center = center;
+		this.radius = $state(radius);
+		this.center = $state(center);
 	}
 
 	public clone(): Circle {
@@ -162,16 +161,16 @@ export class Circle implements Shape<Circle> {
 }
 
 export class Rectangle implements Shape<Rectangle> {
-	public left = $state(assignedLater<number>());
-	public top = $state(assignedLater<number>());
-	public width = $state(assignedLater<number>());
-	public height = $state(assignedLater<number>());
+	public left: number;
+	public top: number;
+	public width: number;
+	public height: number;
 
 	private constructor(left: number, top: number, width: number, height: number) {
-		this.left = left;
-		this.top = top;
-		this.width = width;
-		this.height = height;
+		this.left = $state(left);
+		this.top = $state(top);
+		this.width = $state(width);
+		this.height = $state(height);
 	}
 
 	public clone(): Rectangle {

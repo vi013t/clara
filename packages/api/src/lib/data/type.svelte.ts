@@ -1,7 +1,6 @@
 import { getIcon, type Icon, type IconIdentifier, type IconName } from "@clara/api/icons";
-import { assignedLater, type Cloneable, type Serialize } from "@clara/api/utils";
+import { type Cloneable, type Serialize } from "@clara/api/utils";
 import { AttributeDefinition, type SerializedAttributeDefinition } from "@clara/api/attribute";
-import { GeneratedAttribute } from "./attribute/generated.svelte.ts";
 
 export type SerializedItemType = {
 	name: string;
@@ -10,30 +9,40 @@ export type SerializedItemType = {
 };
 
 export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemType> {
-	name: string = $state(assignedLater());
-	icon: Icon = $state(assignedLater());
-	attributes: AttributeDefinition[] = $state(assignedLater());
-	pluralName: string = $state(assignedLater());
+	public name: string;
+	public icon: Icon;
+	public attributes: AttributeDefinition[];
+	public pluralName: string;
+	public defaultView: "editor" | "node" | null;
 
 	public constructor({
 		name,
 		icon,
 		attributes,
 		pluralName,
+		defaultView,
 	}: {
 		name: string;
-		pluralName?: string;
 		icon: IconIdentifier;
 		attributes: AttributeDefinition[];
+
+		pluralName?: string;
+		defaultView?: "editor" | "node";
 	}) {
-		this.name = name;
-		this.icon = getIcon(icon);
-		this.attributes = attributes;
-		this.pluralName = pluralName ?? `${this.name}s`;
+		this.name = $state(name);
+		this.icon = $state(getIcon(icon));
+		this.attributes = $state(attributes);
+		this.pluralName = $state(pluralName ?? `${this.name}s`);
+		this.defaultView = $state(defaultView ?? null);
 	}
 
 	public clone(): ItemType {
-		return new ItemType({ name: this.name, icon: this.icon, attributes: this.attributes.map(attribute => attribute.clone()) });
+		return new ItemType({
+			name: this.name,
+			icon: this.icon,
+			attributes: this.attributes.map(attribute => attribute.clone()),
+			defaultView: this.defaultView ?? undefined,
+		});
 	}
 
 	public serialize(): SerializedItemType {

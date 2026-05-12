@@ -1,5 +1,4 @@
 import type { Cloneable } from "../../util/Clone.svelte";
-import { assignedLater } from "../../util/index.svelte";
 import type { Serialize } from "../../util/serialize.svelte";
 import { Color } from "./color.svelte.ts";
 
@@ -140,10 +139,10 @@ export type SerializedRichText = {
 };
 
 export class RichText implements Cloneable<RichText>, Serialize<SerializedRichText> {
-	public parts: StyledText[] = $state(assignedLater());
+	public parts: StyledText[];
 
 	public constructor(parts?: StyledText[]) {
-		this.parts = parts ?? [];
+		this.parts = $state(parts ?? []);
 		if (this.parts.length < 1) this.parts = [new StyledText("", new Style({ bold: false, italic: false }))];
 	}
 

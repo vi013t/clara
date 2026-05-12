@@ -6,6 +6,7 @@ export const assignedLater = internal.assignedLater;
 export const mapValues = internal.mapValues;
 export const mapEntries = internal.mapEntries;
 export const cloneRecord = internal.cloneRecord;
+export const uniqueId = internal.uniqueId;
 export const asyncFn = internal.asyncFn;
 export const Debug = internal.Debug;
 export const errors = internal.errors;

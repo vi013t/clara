@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { NumberAttribute } from "@clara/api/attribute";
+	import { AttributeRef, NumberAttribute } from "@clara/api/attribute";
 
-	let { value = $bindable(), background = "transparent" }: { value: NumberAttribute | null; background?: string } = $props();
+	let { attribute = $bindable(), background = "transparent" }: { attribute: AttributeRef; background?: string } = $props();
 
 	function typeKey(event: KeyboardEvent) {
 		if (event.key === "Enter") (event.target as HTMLElement).blur();
@@ -9,7 +9,10 @@
 </script>
 
 <input
-	bind:value={() => value?.value, content => (value = content ? new NumberAttribute(content) : null)}
+	bind:value={
+		() => attribute.valueAs<NumberAttribute>()?.value,
+		content => (attribute.value = content ? new NumberAttribute(content) : null)
+	}
 	onkeydown={typeKey}
 	style:background
 />

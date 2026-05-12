@@ -1,4 +1,3 @@
-import { assignedLater } from "../util/index.svelte";
 import type { Cloneable } from "../util/Clone.svelte";
 
 type InternalMatrix = readonly [
@@ -94,24 +93,29 @@ export class Matrix3x3 {
 export type Point2DLike = { x: number; y: number } | [number, number] | Point2D;
 
 export class Point2D implements Cloneable<Point2D> {
-	public readonly x: number = $state(assignedLater());
-	public readonly y: number = $state(assignedLater());
+	public readonly x: number;
+	public readonly y: number;
 
 	public constructor(x: number, y: number);
 	public constructor(point: Point2DLike);
 	public constructor(x: number | Point2DLike, y?: number) {
+		let x_: number;
+		let y_: number;
 		if (typeof x === "object") {
 			if (Array.isArray(x)) {
-				this.x = x[0];
-				this.y = x[1];
+				x_ = x[0];
+				y_ = x[1];
 			} else {
-				this.x = x.x;
-				this.y = x.y;
+				x_ = x.x;
+				y_ = x.y;
 			}
 		} else {
-			this.x = x;
-			this.y = y!;
+			x_ = x;
+			y_ = y!;
 		}
+
+		this.x = $state(x_);
+		this.y = $state(y_);
 	}
 
 	public clone(): Point2D {

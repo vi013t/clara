@@ -8,21 +8,21 @@ import { AttributeRef, AttributeValue, type SerializedAttributeValue } from "./a
 import { Color } from "./attribute/color.svelte";
 import { StringAttribute } from "./attribute/primitive.svelte";
 import { TreeBranch, TreeLeaf } from "./tree.svelte";
-import { assignedLater, Objects } from "../util/index.svelte";
+import { Objects } from "../util/index.svelte";
 import { AttributeType } from "./attribute/type.svelte.ts";
 import { ItemType, type SerializedItemType } from "./type.svelte.ts";
-import Vault__SvelteComponent_ from "@lucide/svelte/icons/vault";
+import { EditorTab, ItemTab, NodeEditorTab } from "@clara/api/ui";
 
 export { ItemType };
 
 export class GraphOutline<T extends Shape<any>> {
-	public shape = $state(assignedLater<T>());
-	public color = $state(Color.black);
+	public shape: T;
+	public color: Color;
 	public isVisible = $state(true);
 
 	private constructor(shape: T, color: Color) {
-		this.shape = shape;
-		this.color = color;
+		this.shape = $state(shape);
+		this.color = $state(color);
 	}
 
 	public static originCircle(radius: number): GraphOutline<Circle> {
@@ -41,13 +41,13 @@ export type SerializedItem = {
 };
 
 export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedItem>, Cloneable<Item> {
-	public attributes = $state(assignedLater<Record<string, AttributeValue | null>>());
+	public attributes: Record<string, AttributeValue | null>;
 	public type: ItemType;
 
 	public constructor(type: ItemType, attributes: Record<string, AttributeValue | null> | string) {
 		super();
-		this.attributes = typeof attributes === "string" ? { Name: new StringAttribute(attributes) } : attributes;
-		this.type = type;
+		this.attributes = $state(typeof attributes === "string" ? { Name: new StringAttribute(attributes) } : attributes);
+		this.type = $state(type);
 	}
 
 	public clone(): Item {
@@ -101,14 +101,25 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 	public dfsItems(): Item[] {
 		return [this];
 	}
+
+	public newTab(): ItemTab | null {
+		if (!this.type.defaultView) return null;
+
+		const tabType = {
+			editor: EditorTab,
+			node: NodeEditorTab,
+		}[this.type.defaultView];
+
+		return tabType.fromItem(this);
+	}
 }
 
 export class Group extends TreeBranch<Group, Item> implements Serialize<SerializedDatabase>, Cloneable<Group> {
-	public name = $state(assignedLater<string>());
-	public description = $state(assignedLater<string>());
-	private defaultType_ = $state(assignedLater<ItemType | "inherit">());
+	public name: string;
+	public description: string;
 
-	private icon_ = $state(assignedLater<Icon | "inherit">());
+	private defaultType_: ItemType | "inherit";
+	private icon_: Icon | "inherit";
 
 	public constructor(
 		arg:
@@ -122,11 +133,11 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 		...children: (Group | Item)[]
 	) {
 		super(...children);
-		this.name = typeof arg === "string" ? arg : arg.name;
-		this.description = typeof arg === "object" ? (arg.description ?? "") : "";
+		this.name = $state(typeof arg === "string" ? arg : arg.name);
+		this.description = $state(typeof arg === "object" ? (arg.description ?? "") : "");
 		let icon = typeof arg === "object" ? (arg.icon ?? "inherit") : "inherit";
-		this.icon_ = icon === "inherit" ? "inherit" : getIcon(icon);
-		this.defaultType_ = typeof arg === "object" ? (arg.defaultType ?? "inherit") : "inherit";
+		this.icon_ = $state(icon === "inherit" ? "inherit" : getIcon(icon));
+		this.defaultType_ = $state(typeof arg === "object" ? (arg.defaultType ?? "inherit") : "inherit");
 	}
 
 	public clone(): Group {

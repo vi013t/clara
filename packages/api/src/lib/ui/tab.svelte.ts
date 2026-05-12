@@ -2,26 +2,28 @@ import {
 	AttributeRef,
 	NodeInstance,
 	RichText,
+	Style,
 	StyledText,
 	type GeneratedAttribute,
 	type SerializedAttributeRef,
-	type SerializedRichText,
 } from "@clara/api/attribute";
-import { Item, type Group, type SerializedItem } from "@clara/api/database";
-import { assignedLater, type Serialize } from "@clara/api/utils";
-import { type IconIdentifier, getIcon, type Icon, type IconName } from "@clara/api/ui";
-import { Project, type SinglePane } from "@clara/api/project";
+import { Item, type Group } from "@clara/api/database";
+import { uniqueId, type Cloneable, type Id, type Serialize } from "@clara/api/utils";
+import { type IconIdentifier, getIcon, type Icon, type IconName, SinglePane } from "@clara/api/ui";
+import { Project } from "@clara/api/project";
 
-export class Tab {
-	private static tabID = 0;
-
-	public readonly id = $state(assignedLater());
-	private icon_ = $state(assignedLater<Icon>());
+export abstract class Tab implements Cloneable<Tab>, Serialize<unknown> {
+	public readonly id = $state(uniqueId());
+	private icon_: Icon;
 
 	public constructor(icon: IconIdentifier) {
-		this.id = Tab.tabID++;
-		this.icon_ = getIcon(icon);
+		this.icon_ = $state(getIcon(icon));
 	}
+
+	public abstract clone(): Tab;
+
+	public abstract serialize(): unknown;
+	public abstract get title(): string;
 
 	public get icon(): Icon {
 		return this.icon_;
@@ -41,7 +43,7 @@ export type SerializedGroupTab = {
 };
 
 export class GroupTab extends Tab implements Serialize<SerializedGroupTab> {
-	private groupID = $state(assignedLater<number>());
+	private groupID: number;
 	public view: string = $state("Hierarchy");
 
 	public constructor(group: number, icon?: IconIdentifier) {
@@ -51,14 +53,21 @@ export class GroupTab extends Tab implements Serialize<SerializedGroupTab> {
 					.database.dfs()
 					.find(node => node.id === group)!.icon,
 		);
-		this.groupID = group;
-		console.log(this.view);
+		this.groupID = $state(group);
 	}
 
 	public get group(): Group {
 		return Project.get()!
 			.database.dfs()
 			.find(node => node.id === this.groupID)! as Group;
+	}
+
+	public get title(): string {
+		return this.group.name;
+	}
+
+	public clone(): GroupTab {
+		return new GroupTab(this.groupID, this.icon);
 	}
 
 	public set group(group: Group) {
@@ -83,39 +92,86 @@ export class GroupTab extends Tab implements Serialize<SerializedGroupTab> {
 	}
 }
 
-export abstract class AttributeTab extends Tab {
+export abstract class ItemTab extends Tab {
+	protected item_: Id;
+
+	protected constructor(item: Id, icon: IconIdentifier) {
+		super(icon);
+		this.item_ = $state(item);
+	}
+}
+
+export abstract class AttributeTab extends ItemTab {
 	public attribute: AttributeRef;
 
-	public constructor(attribute: AttributeRef) {
-		super(attribute.item.type.icon);
+	public constructor(attribute: AttributeRef, icon?: IconIdentifier) {
+		super(attribute.item.id, icon ?? attribute.item.type.icon);
 		this.attribute = $state(attribute);
 	}
 
 	public get item(): Item {
 		return this.attribute.item;
 	}
+
+	public get title(): string {
+		return `${this.attribute.item.name} > ${this.attribute.name}`;
+	}
 }
+
+export type SerializedNodeEditorTab = {
+	id: number;
+	type: "node";
+	attribute: SerializedAttributeRef;
+};
 
 export class NodeEditorTab extends AttributeTab {
 	public constructor(attribute: AttributeRef) {
-		super(attribute);
+		super(attribute, "GitCompare");
 	}
 
 	public get nodes(): NodeInstance[] {
 		return (this.attribute.value as GeneratedAttribute).generator.nodes;
 	}
+
+	public clone(): NodeEditorTab {
+		return new NodeEditorTab(this.attribute);
+	}
+
+	public override serialize(): SerializedNodeEditorTab {
+		return {
+			type: "node",
+			id: this.id,
+			attribute: this.attribute.serialize(),
+		};
+	}
+
+	public static deserialize(tab: SerializedNodeEditorTab): NodeEditorTab {
+		const nodeEditorTab = new NodeEditorTab(AttributeRef.deserialize(tab.attribute));
+		(nodeEditorTab as any).id = tab.id;
+		return nodeEditorTab;
+	}
+
+	public static fromItem(item: Item): NodeEditorTab {
+		return new NodeEditorTab(
+			item.attribute(
+				Object.keys(item.attributes).find(
+					name => item.type.attributes.find(def => def.name === name)!.typeName === "generated",
+				)![0],
+			),
+		);
+	}
 }
 
-export class EditorTab extends AttributeTab implements Serialize<SerializedEditorTab> {
+export class EditorTab extends AttributeTab {
 	public cursor: { part: number; position: number };
 
 	public constructor(attribute: AttributeRef) {
-		super(attribute);
+		super(attribute, "Pencil");
 		if (!this.attribute.value) this.attribute.value = new RichText();
 		this.cursor = $state({ part: 0, position: 0 });
 	}
 
-	public serialize(): SerializedEditorTab {
+	public override serialize(): SerializedEditorTab {
 		return {
 			type: "editor",
 			id: this.id,
@@ -123,12 +179,25 @@ export class EditorTab extends AttributeTab implements Serialize<SerializedEdito
 		};
 	}
 
+	public clone(): EditorTab {
+		return new EditorTab(this.attribute);
+	}
+
 	public get content(): RichText {
 		return this.attribute.value as RichText;
 	}
 
+	public static fromItem(item: Item): EditorTab {
+		return new EditorTab(item.attribute(item.type.attributes.find(def => def.typeName === "longText")!.name));
+	}
+
 	public set content(document: RichText) {
 		this.attribute.value = document;
+	}
+
+	public override get title(): string {
+		if (this.attribute.item.type.name === "Document") return this.attribute.item.name;
+		return `${this.attribute.item.name} > ${this.attribute.name}`;
 	}
 
 	public saveCursor(): { part: StyledText; position: number } {
@@ -157,6 +226,12 @@ export class EditorTab extends AttributeTab implements Serialize<SerializedEdito
 		(editor as any).id = tab.id;
 		return editor;
 	}
+
+	public styleRange(start: number, end: number, style: Style, override?: true) {
+		const cursor = this.saveCursor();
+		this.attribute.valueAs<RichText>()!.styleRange(start, end, style, override);
+		this.restoreCursor(cursor);
+	}
 }
 
 export type SerializedEditorTab = {
@@ -165,10 +240,11 @@ export type SerializedEditorTab = {
 	id: number;
 };
 
-export type SerializedTab = SerializedEditorTab | SerializedGroupTab;
+export type SerializedTab = SerializedEditorTab | SerializedGroupTab | SerializedNodeEditorTab;
 
 function deserializeTab(tab: SerializedTab): Tab {
 	if (tab.type === "editor") return EditorTab.deserialize(tab);
+	if (tab.type === "node") return NodeEditorTab.deserialize(tab);
 	return GroupTab.deserialize(tab);
 }
 
@@ -176,12 +252,18 @@ export type SerializedTabList = {
 	tabs: SerializedTab[];
 };
 
-export class TabList implements Serialize<SerializedTabList> {
+export class TabList implements Cloneable<TabList>, Serialize<SerializedTabList> {
 	public tabs: Tab[] = $state([]);
 	public owner: SinglePane = $state(null!);
 
 	public constructor(tabs: Tab[] = [new GroupTab(Project.get()!.database.id)!]) {
 		this.tabs = tabs;
+	}
+
+	public clone() {
+		const tablist = new TabList(this.tabs.map(tab => tab.clone()));
+		tablist.owner = this.owner;
+		return tablist;
 	}
 
 	public serialize(): SerializedTabList {
@@ -191,7 +273,7 @@ export class TabList implements Serialize<SerializedTabList> {
 	}
 
 	public static deserialize(tablist: SerializedTabList): TabList {
-		const list = new TabList([new Tab(getIcon("StickyNote"))]);
+		const list = new TabList([]);
 		list.tabs = tablist.tabs.map(tab => deserializeTab(tab));
 		return list;
 	}

@@ -4,15 +4,14 @@
 	import { Item, ItemType, type Group } from "@clara/api/database";
 	import { Icon, AttributeSettingsPopup, ContextMenu, LittleButton, Input } from "@clara/api/components";
 	import { Project } from "@clara/api/project";
+	import type { SinglePane } from "@clara/api/ui";
 
 	let {
 		group = $bindable(),
-		openEditor,
-		openNodeEditor,
+		pane = $bindable(),
 	}: {
 		group: Group;
-		openEditor: (value: AttributeRef) => void;
-		openNodeEditor: (generator: AttributeRef) => void;
+		pane: SinglePane;
 	} = $props();
 
 	let updateCounter = $state(0);
@@ -22,8 +21,7 @@
 
 	function addRow() {
 		group.addChild(new Item(itemType!, "New Item"));
-		// updateCounter++;
-		console.log(group);
+		Project.autosave();
 	}
 
 	function addColumn(event: MouseEvent) {
@@ -34,11 +32,13 @@
 	function createColumn(type: AttributeType) {
 		itemType.attributes.push(new AttributeDefinition({ name: "Attribute", type }));
 		newAttributeMenu.close();
+		Project.autosave();
 	}
 
 	function removeItem(item: Item) {
 		return function () {
 			group.removeItem(item);
+			Project.autosave();
 			updateCounter++;
 		};
 	}
@@ -58,6 +58,7 @@
 		return function () {
 			itemType = type;
 			itemTypeMenu.close();
+			Project.autosave();
 		};
 	}
 
@@ -126,8 +127,7 @@
 					<div class="cell">
 						<Input
 							context="spreadsheet"
-							{openEditor}
-							{openNodeEditor}
+							bind:pane
 							type={attribute instanceof AttributeDefinition ? attribute.type.name : "generated"}
 							bind:attribute={
 								() => attributes.get(attribute)!.get(item)!, ref => (attributes.get(attribute)!.get(item)!.value = ref.value)

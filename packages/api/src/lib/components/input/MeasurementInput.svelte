@@ -1,10 +1,11 @@
 <script lang="ts">
-	import type { Measurement, MeasurementType } from "@clara/api/attribute";
+	import { Measurement, type AttributeRef, type MeasurementType } from "@clara/api/attribute";
 	import { Icon } from "@clara/api/components";
 
-	let { value = $bindable(), type }: { value: Measurement<any> | null; type: MeasurementType<any> } = $props();
+	let { attribute = $bindable(), type }: { attribute: AttributeRef; type: MeasurementType<any> } = $props();
 
-	let count = $state(`${value?.count ?? ""}`);
+	// svelte-ignore state_referenced_locally
+	let unit = $state(type.units()[0]);
 
 	function typeKey(event: KeyboardEvent) {
 		if (event.key === "Enter") (event.target as HTMLElement).blur();
@@ -12,7 +13,10 @@
 </script>
 
 <div class="wrapper">
-	<input bind:value={count} onkeydown={typeKey} />
+	<input
+		bind:value={() => attribute.valueAs<Measurement<any>>()?.count ?? 0, count => (attribute.value = type.of(count, unit))}
+		onkeydown={typeKey}
+	/>
 	<button>{type.units()[0].abbreviation()}</button>
 	<button class="transfer">
 		<Icon name="ArrowDownUp" />

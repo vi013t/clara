@@ -1,30 +1,52 @@
 <script lang="ts">
 	import { Project } from "@clara/api/project";
 	import { Group, Item, ItemType, type Node } from "@clara/api/database";
-	import { ContextMenu, Icon, HierarchyView, IconPicker } from "@clara/api/components";
+	import { ContextMenu, Icon, HierarchyView } from "@clara/api/components";
+	import { MultiPane, PaneLayout, SinglePane } from "@clara/api/ui";
 
 	let {
 		entry = Project.get() ? Project.get()!.database : null!,
 		hideRoot = false,
 		subtree = false,
 		demo = false,
+		pane = $bindable(),
+		layout = $bindable(),
 	}: {
 		entry?: Node;
 		hideRoot?: boolean;
 		subtree?: boolean;
 		demo?: boolean;
+		pane?: SinglePane;
+		layout?: PaneLayout;
 	} = $props();
 
 	let expanded = $derived(hideRoot || demo);
 
-	function toggle(event: MouseEvent) {
-		if (event.button !== 0) return;
+	function toggle(event: MouseEvent): void {
 		if (
 			event.composedPath().some(element => "classList" in element! && (element as HTMLElement).classList.contains("node-name"))
 		) {
 			return;
 		}
 		expanded = !expanded;
+	}
+
+	function onmousedown(event: MouseEvent) {
+		if (event.button !== 0) return;
+
+		if (entry instanceof Group) {
+			return toggle(event);
+		}
+
+		if (!pane) return;
+
+		const tab = entry.newTab();
+		if (tab) {
+			const newPane = new SinglePane();
+			newPane.tabline.appendTab(tab);
+			newPane.selectedTabID = tab.id;
+			layout = new MultiPane("horizontal", pane, newPane, 0.25);
+		}
 	}
 
 	function onNameKeypress(event: KeyboardEvent) {
@@ -36,7 +58,6 @@
 	let menuTop: string = $state("");
 	let menuLeft: string = $state("");
 	let rightClickMenu: ContextMenu | null = $state(null);
-	let nodeElement: HTMLElement;
 	let clickedNode = $state(false);
 
 	function onRightClick(event: MouseEvent) {
@@ -48,6 +69,7 @@
 		(entry as Group).addChild(new Group("New Group"));
 		rightClickMenu?.close();
 		expanded = true;
+		Project.autosave();
 	}
 
 	function newItem(itemType?: ItemType) {
@@ -56,6 +78,7 @@
 			(entry as Group).addChild(new Item(type, `New ${type.name}`));
 			rightClickMenu?.close();
 			expanded = true;
+			Project.autosave();
 		};
 	}
 
@@ -85,10 +108,9 @@
 	}
 </script>
 
-<!-- svelte-ignore a11y_no_static_element_interactions -->
-<section bind:this={nodeElement}>
+<section>
 	{#if !hideRoot || subtree}
-		<button oncontextmenu={onRightClick} class={["node", clickedNode && "active"]} onmousedown={toggle}>
+		<button oncontextmenu={onRightClick} class={["node", clickedNode && "active"]} {onmousedown}>
 			<Icon name={entry.icon} />
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<span
@@ -109,7 +131,7 @@
 		<ul class={{ expanded }}>
 			{#each entry.sortedChildren as child (child.id)}
 				<li style:padding-left={hideRoot && entry.isRoot ? "0px" : "1.25rem"}>
-					<HierarchyView {demo} {hideRoot} entry={child} subtree />
+					<HierarchyView bind:pane {demo} {hideRoot} entry={child} subtree />
 				</li>
 			{/each}
 		</ul>
@@ -123,7 +145,7 @@
 				<Icon name="ChevronRight" style="margin-left: auto;" />
 				<ContextMenu>
 					{#if Project.get()}
-						{#each Project.get()!.types as itemType}
+						{#each Project.get()!.types.filter(type => !["Document", "Node"].includes(type.name)) as itemType}
 							<button onmousedown={newItem(itemType)}>
 								<Icon name={itemType.icon.name} />
 								{itemType.name}
@@ -131,6 +153,14 @@
 						{/each}
 					{/if}
 					<hr />
+					<button onmousedown={newItem(Project.get()!.types.find(type => type.name === "Document")!)}>
+						<Icon name="FileText" />
+						Document
+					</button>
+					<button onmousedown={newItem(Project.get()!.types.find(type => type.name === "Node")!)}>
+						<Icon name="GitCompare" />
+						Node
+					</button>
 					<button onmousedown={newGroup}>
 						<Icon name="PackagePlus" />
 						Group

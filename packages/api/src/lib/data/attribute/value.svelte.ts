@@ -54,6 +54,10 @@ export class AttributeRef implements Serialize<SerializedAttributeRef> {
 		return this.item.attributes[this.name] ?? null;
 	}
 
+	public valueAs<T extends AttributeValue>(): T | null {
+		return (this.item.attributes[this.name] as T) ?? null;
+	}
+
 	public set value(value: AttributeValue | null) {
 		this.item.attributes[this.name] = value;
 	}

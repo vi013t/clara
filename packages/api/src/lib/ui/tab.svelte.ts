@@ -1,9 +1,16 @@
-import { RichText, type SerializedRichText } from "@clara/api/attribute";
-import type { NodeInstance } from "@clara/api/components";
-import type { Group } from "@clara/api/database";
+import {
+	AttributeRef,
+	NodeInstance,
+	RichText,
+	StyledText,
+	type GeneratedAttribute,
+	type SerializedAttributeRef,
+	type SerializedRichText,
+} from "@clara/api/attribute";
+import { Item, type Group, type SerializedItem } from "@clara/api/database";
 import { assignedLater, type Serialize } from "@clara/api/utils";
 import { type IconIdentifier, getIcon, type Icon, type IconName } from "@clara/api/ui";
-import { Project } from "@clara/api/project";
+import { Project, type SinglePane } from "@clara/api/project";
 
 export class Tab {
 	private static tabID = 0;
@@ -76,42 +83,86 @@ export class GroupTab extends Tab implements Serialize<SerializedGroupTab> {
 	}
 }
 
-export class NodeEditorTab extends Tab {
-	public nodes: NodeInstance[] = $state(assignedLater());
+export abstract class AttributeTab extends Tab {
+	public attribute: AttributeRef;
 
-	public constructor(nodes: NodeInstance[]) {
-		super("GitCompare");
-		this.nodes = nodes;
+	public constructor(attribute: AttributeRef) {
+		super(attribute.item.type.icon);
+		this.attribute = $state(attribute);
+	}
+
+	public get item(): Item {
+		return this.attribute.item;
 	}
 }
 
-export class EditorTab extends Tab implements Serialize<SerializedEditorTab> {
-	public content: RichText = $state(assignedLater());
+export class NodeEditorTab extends AttributeTab {
+	public constructor(attribute: AttributeRef) {
+		super(attribute);
+	}
 
-	public constructor(content: RichText) {
-		super("Pencil");
-		this.content = content;
+	public get nodes(): NodeInstance[] {
+		return (this.attribute.value as GeneratedAttribute).generator.nodes;
+	}
+}
+
+export class EditorTab extends AttributeTab implements Serialize<SerializedEditorTab> {
+	public cursor: { part: number; position: number };
+
+	public constructor(attribute: AttributeRef) {
+		super(attribute);
+		if (!this.attribute.value) this.attribute.value = new RichText();
+		this.cursor = $state({ part: 0, position: 0 });
 	}
 
 	public serialize(): SerializedEditorTab {
 		return {
 			type: "editor",
 			id: this.id,
-			content: this.content.serialize(),
+			attribute: this.attribute.serialize(),
 		};
 	}
 
+	public get content(): RichText {
+		return this.attribute.value as RichText;
+	}
+
+	public set content(document: RichText) {
+		this.attribute.value = document;
+	}
+
+	public saveCursor(): { part: StyledText; position: number } {
+		return { part: this.content.partAtIndex(this.cursor.part), position: this.cursor.position };
+	}
+
+	public restoreCursor(cursor: { part: StyledText; position: number }): void {
+		this.cursor.position = cursor.position;
+		this.content.parts.some((part, partIndex) => {
+			if ($state.snapshot(part) === $state.snapshot(cursor.part)) {
+				this.cursor.part = partIndex;
+				return true;
+			}
+
+			return false;
+		});
+	}
+
+	public moveCursorToEnd(): void {
+		this.cursor.part = this.content.parts.length - 1;
+		this.cursor.position = this.content.parts[this.cursor.part].text.length;
+	}
+
 	public static deserialize(tab: SerializedEditorTab): EditorTab {
-		const editor = new EditorTab(RichText.deserialize(tab.content));
+		const editor = new EditorTab(AttributeRef.deserialize(tab.attribute));
 		(editor as any).id = tab.id;
 		return editor;
 	}
 }
 
 export type SerializedEditorTab = {
+	attribute: SerializedAttributeRef;
 	type: "editor";
 	id: number;
-	content: SerializedRichText;
 };
 
 export type SerializedTab = SerializedEditorTab | SerializedGroupTab;
@@ -127,6 +178,7 @@ export type SerializedTabList = {
 
 export class TabList implements Serialize<SerializedTabList> {
 	public tabs: Tab[] = $state([]);
+	public owner: SinglePane = $state(null!);
 
 	public constructor(tabs: Tab[] = [new GroupTab(Project.get()!.database.id)!]) {
 		this.tabs = tabs;
@@ -187,4 +239,14 @@ export class TabList implements Serialize<SerializedTabList> {
 	public count() {
 		return this.tabs.length;
 	}
+}
+
+let customEditorControls: { icon: IconIdentifier; onClick: ({ tab }: { tab: EditorTab }) => void }[] = $state([]);
+
+export function addEditorControl({ icon, onClick }: { icon: IconIdentifier; onClick: ({ tab }: { tab: EditorTab }) => void }) {
+	customEditorControls.push({ icon, onClick });
+}
+
+export function editorControls() {
+	return customEditorControls;
 }

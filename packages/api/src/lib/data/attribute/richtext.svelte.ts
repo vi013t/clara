@@ -3,15 +3,42 @@ import { assignedLater } from "../../util/index.svelte";
 import type { Serialize } from "../../util/serialize.svelte";
 import { Color } from "./color.svelte.ts";
 
-export class Style implements Cloneable<Style> {
+export type SerializedStyle = { bold: boolean; italic: boolean; color: string | null; underline: boolean };
+
+export class Style implements Cloneable<Style>, Serialize<SerializedStyle> {
 	public bold = $state(false);
 	public italic = $state(false);
 	public underline = $state(false);
-	public color = $state(Color.black);
+	public color: Color | null = $state(null);
 
-	public constructor({ bold, italic }: Partial<{ bold: boolean; italic: boolean }>) {
+	public constructor({
+		bold,
+		italic,
+		color,
+		underline,
+	}: Partial<{ bold: boolean; italic: boolean; underline: boolean; color: Color | null }>) {
 		this.bold = bold ?? false;
 		this.italic = italic ?? false;
+		this.underline = underline ?? false;
+		this.color = color ?? null;
+	}
+
+	public serialize(): SerializedStyle {
+		return {
+			bold: this.bold,
+			italic: this.italic,
+			underline: this.underline,
+			color: this.color?.hex ?? null,
+		};
+	}
+
+	public static deserialize(style: SerializedStyle): Style {
+		return new Style({
+			bold: style.bold,
+			italic: style.italic,
+			underline: style.underline,
+			color: style.color ? Color.hex(style.color) : null,
+		});
 	}
 
 	public clone(): Style {
@@ -23,22 +50,65 @@ export class Style implements Cloneable<Style> {
 			this.bold === other.bold &&
 			this.italic === other.italic &&
 			this.underline === other.underline &&
-			this.color.equals(other.color)
+			((this.color === null && other.color === null) ||
+				(this.color !== null && other.color !== null && this.color.equals(other.color)))
 		);
+	}
+
+	public merge(other: Style, override: boolean): Style {
+		return new Style({
+			bold: override ? other.bold : this.bold || other.bold,
+			underline: override ? other.underline : this.underline || other.underline,
+			italic: override ? other.italic : this.italic || other.italic,
+			color: override || this.color === null ? other.color : this.color,
+		});
 	}
 }
 
-export class StyledText implements Cloneable<StyledText> {
-	public text = $state(assignedLater<string>());
-	public style = $state(assignedLater<Style>());
+export type SerializedStyledText = { text: string; style: SerializedStyle };
 
-	public constructor(text: string, style: { bold?: boolean; italic?: boolean }) {
-		this.text = text;
-		this.style = new Style({ bold: style.bold ?? false, italic: style.italic ?? false });
+export class StyledText implements Cloneable<StyledText>, Serialize<SerializedStyledText> {
+	public text: string;
+	public style: Style;
+
+	public constructor(text: string, style: Style) {
+		this.text = $state(text);
+		this.style = $state(style);
 	}
 
-	clone(): StyledText {
-		return new StyledText(this.text, { bold: this.style.bold, italic: this.style.italic });
+	public serialize(): SerializedStyledText {
+		return {
+			text: this.text,
+			style: this.style.serialize(),
+		};
+	}
+
+	public static deserialize(text: SerializedStyledText): StyledText {
+		return new StyledText(text.text, Style.deserialize(text.style));
+	}
+
+	public clone(): StyledText {
+		return new StyledText(this.text, this.style.clone());
+	}
+
+	public styleRange(start: number, end: number, style: Style, override?: true): StyledText[] {
+		const parts: StyledText[] = [];
+		start = Math.min(Math.max(start, 0), this.text.length);
+		end = Math.min(Math.max(end, 0), this.text.length);
+
+		if (start > 0) {
+			parts.push(new StyledText(this.text.substring(0, start), this.style));
+		}
+
+		if (start < end) {
+			parts.push(new StyledText(this.text.substring(start, end), this.style.merge(style, override ?? false)));
+		}
+
+		if (end < this.text.length) {
+			parts.push(new StyledText(this.text.substring(end, this.text.length), this.style));
+		}
+
+		return parts;
 	}
 
 	public toHTML(index: number, addCursor: boolean = false): HTMLElement {
@@ -52,7 +122,7 @@ export class StyledText implements Cloneable<StyledText> {
 			if (character === "\n") {
 				html += "<br>";
 			} else {
-				html += `<span class="character">${character}</span>`;
+				html += `<span class="character" style="${this.style.color ? "color: " + this.style.color + ";" : ""}">${character}</span>`;
 			}
 		}
 
@@ -66,11 +136,11 @@ export class StyledText implements Cloneable<StyledText> {
 }
 
 export type SerializedRichText = {
-	parts: { text: string; style: { bold: boolean; italic: boolean } }[];
+	parts: { text: string; style: SerializedStyle }[];
 };
 
 export class RichText implements Cloneable<RichText>, Serialize<SerializedRichText> {
-	private parts: StyledText[] = $state(assignedLater());
+	public parts: StyledText[] = $state(assignedLater());
 
 	public constructor(parts?: StyledText[]) {
 		this.parts = parts ?? [];
@@ -79,11 +149,25 @@ export class RichText implements Cloneable<RichText>, Serialize<SerializedRichTe
 
 	public serialize(): SerializedRichText {
 		return {
-			parts: this.parts.map(part => ({
-				text: part.text,
-				style: { bold: part.style.bold, italic: part.style.italic },
-			})),
+			parts: this.parts.map(part => part.serialize()),
 		};
+	}
+
+	public styleRange(start: number, end: number, style: Style, override?: true) {
+		let position = 0;
+		const parts: StyledText[] = [];
+		let rangeLength = end - start;
+
+		for (const part of this.parts) {
+			const relativeStart = start - position;
+			const relativeEnd = relativeStart + rangeLength;
+			console.log(relativeStart, relativeEnd);
+
+			parts.push(...part.styleRange(relativeStart, relativeEnd, style, override));
+
+			position += part.text.length;
+		}
+		this.reconstruct(new RichText(parts));
 	}
 
 	public reconstruct(doc: RichText): void {
@@ -95,7 +179,7 @@ export class RichText implements Cloneable<RichText>, Serialize<SerializedRichTe
 	}
 
 	public static deserialize(doc: SerializedRichText): RichText {
-		return new RichText(doc.parts.map(part => new StyledText(part.text, part.style)));
+		return new RichText(doc.parts.map(part => StyledText.deserialize(part)));
 	}
 
 	public addPart(part: StyledText) {

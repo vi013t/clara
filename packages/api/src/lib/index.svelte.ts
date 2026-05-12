@@ -44,7 +44,7 @@ function startPlugin(plugin: ClaraPlugin<any>) {
 	});
 }
 
-async function loadPlugins() {
+async function loadPlugins(): Promise<ClaraPlugin<any>[]> {
 	const pluginNames = (await invoke<string[]>("get_plugins", {})).map(plugin => {
 		let path = plugin;
 		if (plugin.startsWith("\\\\?\\")) path = path.slice(4);
@@ -55,6 +55,7 @@ async function loadPlugins() {
 	console.log(`Loading plugins: ${pluginNames} (${pluginNames.length})`);
 	const plugins = (await Promise.all(pluginNames.map(plugin => loadPlugin(plugin)))).filter(plugin => plugin !== null);
 	plugins.forEach(plugin => startPlugin(plugin));
+	return plugins;
 }
 
 function loadCorePlugins() {
@@ -62,9 +63,15 @@ function loadCorePlugins() {
 	userSettings().selectTheme(userSettings().themes[0].name);
 }
 
+let allPlugins: ClaraPlugin<any>[] = $state([]);
+
 export async function startPlugins() {
 	loadCorePlugins();
 	attachPluginData();
 	createImportMap();
-	await loadPlugins();
+	allPlugins = await loadPlugins();
+}
+
+export function plugins() {
+	return allPlugins;
 }

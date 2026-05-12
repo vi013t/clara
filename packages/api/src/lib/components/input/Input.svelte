@@ -7,6 +7,7 @@
 		RichText,
 		StringAttribute,
 		type AttributeContext,
+		type AttributeRef,
 		type AttributeTypeName,
 		type GeneratedAttribute,
 	} from "@clara/api/attribute";
@@ -15,7 +16,7 @@
 
 	let {
 		type,
-		value = $bindable(),
+		attribute = $bindable(),
 		openEditor,
 		openNodeEditor,
 		context = "none",
@@ -23,23 +24,23 @@
 	}: {
 		context?: AttributeContext | "none";
 		type: TypeName;
-		value: AttributeValue<TypeName> | null;
-		openEditor: (doc: RichText) => void;
-		openNodeEditor: (generator: GeneratedAttribute) => void;
+		attribute: AttributeRef;
+		openEditor: (value: AttributeRef) => void;
+		openNodeEditor: (generator: AttributeRef) => void;
 		background?: string;
 	} = $props();
 </script>
 
 {#if type === "length"}
-	<MeasurementInput type={Length} bind:value={value as Measurement<any> | null} />
+	<MeasurementInput type={Length} bind:attribute />
 {:else if type === "shortText"}
-	<ShortTextInput {background} bind:value={value as StringAttribute} />
+	<ShortTextInput {background} bind:attribute />
 {:else if type === "number"}
-	<NumberInput {background} bind:value={value as NumberAttribute} />
+	<NumberInput {background} bind:attribute />
 {:else if type === "longText"}
-	<LongTextInput bind:value={value as RichText} {context} {openEditor} />
+	<LongTextInput bind:attribute {context} {openEditor} />
 {:else if type === "color"}
 	<ColorPicker />
 {:else if type === "generated"}
-	<GeneratedInput bind:value={value as GeneratedAttribute} {context} {openNodeEditor} />
+	<GeneratedInput bind:attribute {context} {openNodeEditor} />
 {/if}

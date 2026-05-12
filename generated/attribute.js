@@ -26,3 +26,4 @@ export const NodeArgument = internal.NodeArgument;
 export const NodeInstance = internal.NodeInstance;
 export const nodeTypeColors = internal.nodeTypeColors;
 export const nodeCategoryColors = internal.nodeCategoryColors;
+export const AttributeRef = internal.AttributeRef;

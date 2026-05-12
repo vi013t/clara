@@ -3,3 +3,4 @@
 
 const internal = globalThis.__CLARA_API__.api;
 export const startPlugins = internal.startPlugins;
+export const plugins = internal.plugins;

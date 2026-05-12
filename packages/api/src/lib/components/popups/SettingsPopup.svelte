@@ -3,6 +3,7 @@
 	import { getIcon } from "@clara/api/icons";
 	import { LittleButton, Icon, Popup, Select, PopupSidebar, HierarchyView } from "@clara/api/components";
 	import type { Template } from "@clara/api/project";
+	import { plugins } from "@clara/api";
 
 	let popup: Popup;
 	let view = $state("appearance");
@@ -100,7 +101,16 @@
 					{#each userSettings().templates as template}
 						<button class="header" onmousedown={editTemplate(template)}>
 							<div>
-								<h1>{template.database.name}</h1>
+								<div class="template-name">
+									<Icon name={template.database.icon} />
+									<h1>{template.database.name}</h1>
+									{#if template.plugin_id !== "clara"}
+										<span>
+											<Icon name="Plug2" />
+											{plugins().find(plugin => plugin.identifier === template.plugin_id)!.name}
+										</span>
+									{/if}
+								</div>
 								<p>{template.database.description}</p>
 							</div>
 							<Icon name="ChevronRight" size={1.5} />
@@ -140,6 +150,20 @@
 		p {
 			color: var(--foreground);
 			font-size: 0.85rem;
+		}
+	}
+
+	.template-name {
+		display: flex;
+		color: var(--foreground);
+		width: 100%;
+		gap: 0.5rem;
+
+		span {
+			margin-left: auto;
+			display: flex;
+			align-items: center;
+			gap: 0.25rem;
 		}
 	}
 
@@ -235,27 +259,25 @@
 			gap: 0.5rem;
 			display: flex;
 			justify-content: space-between;
-			align-items: center;
 			background-color: var(--background-dark);
 			border: 1px solid var(--border);
 			transition: scale 0.1s;
 			margin-bottom: 0.5rem;
 			border-radius: 0.5rem;
 
-			&:hover {
-				scale: 102%;
+			> div {
+				width: 100%;
 			}
 
-			div {
-				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
+			&:hover {
+				scale: 102%;
 			}
 
 			p {
 				font-size: 0.85rem;
 				color: var(--foreground);
-				margin-top: 0.25rem;
+				margin-top: 0.5rem;
+				text-align: left;
 			}
 		}
 	}
@@ -268,7 +290,7 @@
 		padding-right: 3rem;
 
 		.content {
-			h1:not(:first-child) {
+			> h1:not(:first-child) {
 				margin-top: 2rem;
 			}
 

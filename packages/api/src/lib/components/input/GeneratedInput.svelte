@@ -1,14 +1,18 @@
 <script lang="ts">
-	import type { AttributeContext, GeneratedAttribute } from "@clara/api/attribute";
+	import type { AttributeContext, AttributeRef, GeneratedAttribute } from "@clara/api/attribute";
 
 	let {
 		context,
 		openNodeEditor,
-		value = $bindable(),
-	}: { value: GeneratedAttribute; openNodeEditor: (generator: GeneratedAttribute) => void; context: AttributeContext } = $props();
+		attribute = $bindable(),
+	}: {
+		attribute: AttributeRef;
+		openNodeEditor: (generator: AttributeRef) => void;
+		context: AttributeContext;
+	} = $props();
 </script>
 
-<button class={{ "settings-button": context === "settings" }} onmousedown={() => openNodeEditor(value)}>
+<button class={{ "settings-button": context === "settings" }} onmousedown={() => openNodeEditor(attribute)}>
 	Open in Node Editor
 </button>
 

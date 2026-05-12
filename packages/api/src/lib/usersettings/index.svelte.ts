@@ -36,6 +36,8 @@ class UserSettings implements Serialize<SerializedUserSettings> {
 				database,
 				layout: { split: "none", tabline: tablist, selectedTabID: 0 },
 				pinnedGroups: [database],
+				plugin_id: "clara",
+				types: [],
 			}),
 		];
 		this.themes_ = [];

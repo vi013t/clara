@@ -115,7 +115,7 @@
 					<input
 						class={[locationError && startedTypingLocation && "invalid-input"]}
 						bind:value={location}
-						placeholder="/path/to/books/folder"
+						placeholder="/path/to/projects/folder"
 						onchange={typeLocation}
 					/>
 					<button class="input-button" onmousedown={pickLocation}>
@@ -134,7 +134,7 @@
 				<input
 					class={[nameError && startedTypingName && "invalid-input"]}
 					bind:value={name}
-					placeholder="Book title"
+					placeholder="Project name"
 					onchange={typeName}
 				/>
 				{#if nameError && startedTypingName}

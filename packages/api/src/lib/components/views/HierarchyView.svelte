@@ -52,7 +52,8 @@
 
 	function newItem(itemType?: ItemType) {
 		return function () {
-			(entry as Group).addChild(new Item(itemType ?? (entry as Group).defaultType, "New Item"));
+			const type = itemType ?? (entry as Group).defaultType;
+			(entry as Group).addChild(new Item(type, `New ${type.name}`));
 			rightClickMenu?.close();
 			expanded = true;
 		};
@@ -82,8 +83,6 @@
 		rightClickMenu?.close();
 		Project.autosave();
 	}
-
-	let iconPicker: IconPicker | null = $state(null);
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -95,7 +94,7 @@
 			<span
 				class="node-name"
 				contenteditable
-				bind:textContent={() => entry.name, name => entry.setName(name)}
+				bind:textContent={entry.name}
 				onkeypress={onNameKeypress}
 				spellcheck="false"
 				bind:this={name}
@@ -115,8 +114,6 @@
 			{/each}
 		</ul>
 	{/if}
-
-	<IconPicker bind:this={iconPicker} bind:value={() => entry.icon.name, name => (entry.icon = name)} />
 
 	<ContextMenu onclose={() => (clickedNode = false)} left={menuLeft} top={menuTop} bind:this={rightClickMenu}>
 		{#if entry.isBranch()}
@@ -152,10 +149,6 @@
 			<button onmousedown={rename}>
 				<Icon name="TextCursorInput" />
 				<span>Rename</span>
-			</button>
-			<button onmousedown={() => iconPicker?.open()}>
-				<Icon name="Component" />
-				<span>Change Icon</span>
 			</button>
 			<button onmousedown={deleteEntry}>
 				<Icon name="Trash2" color="var(--red)" />

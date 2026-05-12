@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { AttributeDefinition, attributeTypes, type GeneratedAttribute } from "@clara/api/attribute";
-	import { AttributeType, type RichText } from "@clara/api/attribute";
+	import { AttributeDefinition, attributeTypes, type AttributeRef, type GeneratedAttribute } from "@clara/api/attribute";
+	import { AttributeType } from "@clara/api/attribute";
 	import { Item, ItemType, type Group } from "@clara/api/database";
 	import { Icon, AttributeSettingsPopup, ContextMenu, LittleButton, Input } from "@clara/api/components";
 	import { Project } from "@clara/api/project";
@@ -11,8 +11,8 @@
 		openNodeEditor,
 	}: {
 		group: Group;
-		openEditor: (content: RichText) => void;
-		openNodeEditor: (generator: GeneratedAttribute) => void;
+		openEditor: (value: AttributeRef) => void;
+		openNodeEditor: (generator: AttributeRef) => void;
 	} = $props();
 
 	let updateCounter = $state(0);
@@ -60,6 +60,18 @@
 			itemTypeMenu.close();
 		};
 	}
+
+	let attributes: Map<AttributeDefinition, Map<Item, AttributeRef>> = $derived.by(() => {
+		let attributes = new Map();
+		for (const attribute of itemType.attributes) {
+			const items = new Map();
+			for (const item of group.dfsItems().filter(item => item.type === itemType)) {
+				items.set(item, item.attribute(attribute.name));
+			}
+			attributes.set(attribute, items);
+		}
+		return attributes;
+	});
 </script>
 
 <div class="columns">
@@ -88,7 +100,7 @@
 	</div>
 
 	{#key updateAttributes}
-		{#each itemType.attributes as attribute}
+		{#each attributes as [attribute, items]}
 			<div class="column">
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div class="cell" oncontextmenu={event => fieldSettings.openAtMouse(event)}>
@@ -109,16 +121,16 @@
 						/>
 					{/if}
 				</div>
-				{#each group.dfsLeaves() as item}
+
+				{#each items as [item, attributeRef]}
 					<div class="cell">
 						<Input
 							context="spreadsheet"
 							{openEditor}
 							{openNodeEditor}
 							type={attribute instanceof AttributeDefinition ? attribute.type.name : "generated"}
-							bind:value={
-								() => item.getAttributeValue(attribute.name),
-								value => item.addNewOrOverwriteAttributeValue(attribute.name, value!)
+							bind:attribute={
+								() => attributes.get(attribute)!.get(item)!, ref => (attributes.get(attribute)!.get(item)!.value = ref.value)
 							}
 						/>
 						{#if attribute instanceof AttributeDefinition && attribute.randomizer}

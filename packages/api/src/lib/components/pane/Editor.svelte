@@ -3,36 +3,25 @@
 	import { RichText, Style, StyledText } from "@clara/api/attribute";
 	import { getFonts } from "@clara/api/system";
 	import { LittleButton, Select } from "@clara/api/components";
+	import { editorControls, EditorTab } from "@clara/api/ui";
+	import { getListeners } from "@clara/api/plugin";
+	import { Project } from "@clara/api/project";
 
 	let {
 		title,
-		doc = $bindable(),
+		tab = $bindable(),
 	}: {
 		title?: string;
-		doc?: RichText;
+		tab: EditorTab;
 	} = $props();
-
-	let internalDocument = $state(doc ?? new RichText());
-
-	$effect(() => {
-		doc = internalDocument;
-	});
-
-	$effect(() => {
-		if (doc !== undefined && doc !== internalDocument) {
-			internalDocument = doc;
-		}
-	});
 
 	export function getTitle() {
 		return title;
 	}
 
-	let currentPartIndex = $state(0);
-	// svelte-ignore state_referenced_locally
-	let cursorPosition = $state(internalDocument.partAtIndex(currentPartIndex).text.length);
+	tab.cursor.position = tab.content.partAtIndex(tab.cursor.part).text.length;
 	let childElements = $derived(
-		internalDocument.toHTML().map(element => {
+		tab.content.toHTML().map(element => {
 			element.addEventListener("mousedown", event => onPartClick(element, event));
 			return element;
 		}),
@@ -47,11 +36,11 @@
 
 	let cursorContentHTML = $derived.by(() => {
 		let html = "";
-		internalDocument.some((part, index) => {
+		tab.content.some((part, index) => {
 			let partClone = part.clone();
-			if (index === currentPartIndex) partClone.text = partClone.text.substring(0, cursorPosition);
-			html += partClone.toHTML(index, index === internalDocument.partCount() - 1).outerHTML;
-			return index === currentPartIndex;
+			if (index === tab.cursor.part) partClone.text = partClone.text.substring(0, tab.cursor.position);
+			html += partClone.toHTML(index, index === tab.content.partCount() - 1).outerHTML;
+			return index === tab.cursor.part;
 		});
 		return html;
 	});
@@ -60,37 +49,37 @@
 	let cursorContent: HTMLElement;
 
 	function currentPart(): StyledText {
-		return internalDocument.partAtIndex(currentPartIndex);
+		return tab.content.partAtIndex(tab.cursor.part);
 	}
 
 	function currentStyle(): Style {
-		return internalDocument.partAtIndex(currentPartIndex).style;
+		return tab.content.partAtIndex(tab.cursor.part).style;
 	}
 
 	function moveCursor(amount: number) {
-		cursorPosition += amount;
+		tab.cursor.position += amount;
 
-		while (cursorPosition < 0 && currentPartIndex > 0) {
-			currentPartIndex--;
-			cursorPosition = currentPart().text.length - cursorPosition;
+		while (tab.cursor.position < 0 && tab.cursor.part > 0) {
+			tab.cursor.part--;
+			tab.cursor.position = currentPart().text.length - tab.cursor.position;
 		}
 
-		while (cursorPosition > currentPart().text.length && currentPartIndex < internalDocument.partCount() - 2) {
+		while (tab.cursor.position > currentPart().text.length && tab.cursor.part < tab.content.partCount() - 2) {
 			const oldPartLength = currentPart().text.length;
-			currentPartIndex++;
-			cursorPosition = cursorPosition - oldPartLength;
+			tab.cursor.part++;
+			tab.cursor.position = tab.cursor.position - oldPartLength;
 		}
 
-		if (currentPartIndex === 0) cursorPosition = Math.max(0, cursorPosition);
-		if (currentPartIndex === internalDocument.partCount() - 1)
-			cursorPosition = Math.min(cursorPosition, currentPart().text.length);
+		if (tab.cursor.part === 0) tab.cursor.position = Math.max(0, tab.cursor.position);
+		if (tab.cursor.part === tab.content.partCount() - 1)
+			tab.cursor.position = Math.min(tab.cursor.position, currentPart().text.length);
 	}
 
 	function typeAtCursor(text: string) {
-		let before = currentPart().text.substring(0, cursorPosition);
-		let after = currentPart().text.substring(cursorPosition);
-		internalDocument.partAtIndex(currentPartIndex).text = before + text + after;
-		cursorPosition += text.length;
+		let before = currentPart().text.substring(0, tab.cursor.position);
+		let after = currentPart().text.substring(tab.cursor.position);
+		tab.content.partAtIndex(tab.cursor.part).text = before + text + after;
+		tab.cursor.position += text.length;
 	}
 
 	function onkeypress(event: KeyboardEvent) {
@@ -118,10 +107,10 @@
 		}
 
 		if (event.key === "Backspace") {
-			if (cursorPosition !== 0 || currentPartIndex !== 0) {
-				let before = currentPart().text.substring(0, cursorPosition - 1);
-				let after = currentPart().text.substring(cursorPosition);
-				internalDocument.partAtIndex(currentPartIndex).text = before + after;
+			if (tab.cursor.position !== 0 || tab.cursor.part !== 0) {
+				let before = currentPart().text.substring(0, tab.cursor.position - 1);
+				let after = currentPart().text.substring(tab.cursor.position);
+				tab.content.partAtIndex(tab.cursor.part).text = before + after;
 				moveCursor(-1);
 			}
 			return;
@@ -135,41 +124,41 @@
 	}
 
 	function onPartClick(element: HTMLElement, event: MouseEvent) {
-		currentPartIndex = Number(element.getAttribute("data-part-index"));
+		tab.cursor.part = Number(element.getAttribute("data-part-index"));
 		let accumulatedValue = 0;
 		if (
 			!Array.from(element.children).some((character, characterIndex) => {
 				accumulatedValue += character.getBoundingClientRect().width;
 				if (accumulatedValue > event.clientX - element.getBoundingClientRect().left) {
-					cursorPosition = characterIndex + 1;
+					tab.cursor.position = characterIndex + 1;
 					return true;
 				}
 				return false;
 			})
 		) {
-			cursorPosition = 0;
+			tab.cursor.position = 0;
 		}
 	}
 
 	function cleanup() {
 		// Move cursor out of empty part (about to be removed)
-		while (currentPart().text === "" && currentPartIndex > 0) {
-			currentPartIndex--;
-			cursorPosition = 0;
+		while (currentPart().text === "" && tab.cursor.part > 0) {
+			tab.cursor.part--;
+			tab.cursor.position = 0;
 		}
 
 		// Remove empty parts
-		internalDocument = internalDocument.filter((part, index) => part.text !== "" || index === 0);
+		tab.content = tab.content.filter((part, index) => part.text !== "" || index === 0);
 
 		// Merge adjacent parts with equivalent styles
 		let newDocument = new RichText();
 		let removedAmount = 0;
-		for (let index = 0; index < internalDocument.partCount() - 1; index += 2) {
-			let first = internalDocument.partAtIndex(index);
-			let second = internalDocument.partAtIndex(index + 1);
+		for (let index = 0; index < tab.content.partCount() - 1; index += 2) {
+			let first = tab.content.partAtIndex(index);
+			let second = tab.content.partAtIndex(index + 1);
 			if (first.style.equals(second.style)) {
 				newDocument.addPart(new StyledText(first.text + second.text, first.style.clone()));
-				if (currentPartIndex >= index + 1) {
+				if (tab.cursor.part >= index + 1) {
 					removedAmount++;
 				}
 			} else {
@@ -177,7 +166,7 @@
 				newDocument.addPart(second);
 			}
 		}
-		internalDocument = newDocument;
+		tab.content = newDocument;
 	}
 
 	function toggleBold() {
@@ -185,27 +174,27 @@
 		style.bold = !style.bold;
 
 		// End
-		if (currentPartIndex === internalDocument.partCount() - 1 && cursorPosition === currentPart().text.length) {
+		if (tab.cursor.part === tab.content.partCount() - 1 && tab.cursor.position === currentPart().text.length) {
 			const part = new StyledText("", style.clone());
-			internalDocument.addPart(part);
-			currentPartIndex = internalDocument.partCount() - 1;
-			cursorPosition = 0;
+			tab.content.addPart(part);
+			tab.cursor.part = tab.content.partCount() - 1;
+			tab.cursor.position = 0;
 		}
 
 		// Beginning
-		else if (currentPartIndex === 0 && cursorPosition === 0) {
+		else if (tab.cursor.part === 0 && tab.cursor.position === 0) {
 			const part = new StyledText("", style.clone());
-			internalDocument.prependPart(part);
-			currentPartIndex = 0;
-			cursorPosition = 0;
+			tab.content.prependPart(part);
+			tab.cursor.part = 0;
+			tab.cursor.position = 0;
 		} else {
-			let currentPartAfter = new StyledText(currentPart().text.substring(cursorPosition), currentPart().style.clone());
+			let currentPartAfter = new StyledText(currentPart().text.substring(tab.cursor.position), currentPart().style.clone());
 			let newPart = new StyledText("", style.clone());
-			internalDocument.partAtIndex(currentPartIndex).text = currentPart().text.substring(0, cursorPosition);
-			internalDocument.addPartAtIndex(newPart, currentPartIndex + 1);
-			internalDocument.addPartAtIndex(currentPartAfter, currentPartIndex + 2);
-			currentPartIndex += 1;
-			cursorPosition = 0;
+			tab.content.partAtIndex(tab.cursor.part).text = currentPart().text.substring(0, tab.cursor.position);
+			tab.content.addPartAtIndex(newPart, tab.cursor.part + 1);
+			tab.content.addPartAtIndex(currentPartAfter, tab.cursor.part + 2);
+			tab.cursor.part += 1;
+			tab.cursor.position = 0;
 		}
 	}
 
@@ -229,11 +218,13 @@
 				highlightAll();
 			}
 		}
+
+		getListeners({ inside: "editor", on: "keydown" }).forEach(listener => listener.run({ tab, project: Project.get()!, event }));
 	}
 
 	function onfocus() {
-		currentPartIndex = internalDocument.partCount() - 1;
-		cursorPosition = currentPart().text.length;
+		tab.cursor.part = tab.content.partCount() - 1;
+		tab.cursor.position = currentPart().text.length;
 	}
 
 	onMount(() => {
@@ -246,18 +237,18 @@
 		};
 	}
 
-	let font = $state("Garamond");
+	let font = $state("Segoe UI");
 	let fontSize = $state("16");
 	let viewMode: "light" | "dark" = $state("dark");
 
 	function save() {}
 
-	let foreground = $derived.by(() => (viewMode === "light" ? "black" : "var(--foreground)"));
+	let foreground = "var(--foreground)";
 </script>
 
 <svelte:document onkeydown={onDocumentKeydown} />
 
-<div class={["wrapper", viewMode === "light" && "light"]}>
+<div class={["wrapper"]}>
 	{#if title}
 		<h1 contenteditable bind:textContent={title}></h1>
 	{/if}
@@ -286,14 +277,12 @@
 		</div>
 		<div class="formatting">
 			<LittleButton color={foreground} icon="ListChevronsUpDown" />
-			<LittleButton
-				icon={viewMode === "light" ? "Moon" : "Sun"}
-				onmousedown={() => (viewMode = viewMode === "light" ? "dark" : "light")}
-				color={foreground}
-			/>
+			<LittleButton color={foreground} icon="Save" />
 		</div>
 		<div class="formatting">
-			<LittleButton color={foreground} icon="Save" />
+			{#each editorControls() as { icon, onClick }}
+				<LittleButton color="var(--foreground)" {icon} onmousedown={() => onClick({ tab })} />
+			{/each}
 		</div>
 	</div>
 	<div class="content">
@@ -376,7 +365,7 @@
 		flex-direction: column;
 		height: calc(100% - 2rem);
 
-		&.light {
+		/* &.light {
 			background-color: white;
 
 			.editor {
@@ -404,7 +393,7 @@
 			.formatting {
 				border-color: #cccccc;
 			}
-		}
+		} */
 	}
 
 	.content {

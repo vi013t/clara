@@ -36,6 +36,4 @@ const config = {
 	},
 };
 
-console.log(config.kit.alias);
-
 export default config;

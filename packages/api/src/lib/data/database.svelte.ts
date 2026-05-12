@@ -4,13 +4,14 @@ import { getIcon, type Icon, type IconIdentifier, type IconName } from "../ui/ic
 import type { Cloneable } from "../util/Clone.svelte";
 import type { Serialize } from "../util/serialize.svelte";
 import { AttributeDefinition } from "./attribute/definition.svelte";
-import { AttributeValue, type SerializedAttributeValue } from "./attribute/value.svelte";
+import { AttributeRef, AttributeValue, type SerializedAttributeValue } from "./attribute/value.svelte";
 import { Color } from "./attribute/color.svelte";
 import { StringAttribute } from "./attribute/primitive.svelte";
 import { TreeBranch, TreeLeaf } from "./tree.svelte";
 import { assignedLater, Objects } from "../util/index.svelte";
 import { AttributeType } from "./attribute/type.svelte.ts";
 import { ItemType, type SerializedItemType } from "./type.svelte.ts";
+import Vault__SvelteComponent_ from "@lucide/svelte/icons/vault";
 
 export { ItemType };
 
@@ -43,9 +44,9 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 	public attributes = $state(assignedLater<Record<string, AttributeValue | null>>());
 	public type: ItemType;
 
-	public constructor(type: ItemType, value: Record<string, AttributeValue | null> | string) {
+	public constructor(type: ItemType, attributes: Record<string, AttributeValue | null> | string) {
 		super();
-		this.attributes = typeof value === "string" ? { Name: new StringAttribute(value) } : value;
+		this.attributes = typeof attributes === "string" ? { Name: new StringAttribute(attributes) } : attributes;
 		this.type = type;
 	}
 
@@ -64,6 +65,10 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 		};
 	}
 
+	public attribute(name: string): AttributeRef {
+		return new AttributeRef(this, name);
+	}
+
 	public static deserializeUnsafe(item: SerializedItem): Item {
 		let created = new Item(
 			ItemType.deserialize(item.type),
@@ -73,45 +78,16 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 		return created;
 	}
 
-	public getAttributeValue(name: string): AttributeValue | null {
-		return this.attributes[name] ?? null;
-	}
-
-	public overwriteAttributeValue(name: string, value: AttributeValue | null) {
-		if (!this.getAttributeValue(name)) {
-			throw `Invalid attribute overwrite: Attempted to overwrite the attribute "${name}" on an item, but no such attribute exists. If this was intentional, use addNewAttributeValue().`;
-		}
-		this.attributes[name] = value;
-	}
-
-	public setName(name: string): void {
-		this.addNewOrOverwriteAttributeValue("Name", new StringAttribute(name));
-	}
-
-	public addNewOrOverwriteAttributeValue(name: string, value: AttributeValue | null) {
-		this.attributes[name] = value;
-	}
-
-	public addNewAttributeValue(name: string, value: AttributeValue | null) {
-		if (this.getAttributeValue(name)) {
-			throw `Invalid attribute additoin: Attempted to overwrite the attribute "${name}" on an item, but no such attribute exists. If this was intentional, use addNewAttributeValue().`;
-		}
-		this.attributes[name] = value;
-	}
-
-	public get icon(): Icon {
-		if (this.isRoot) {
-			return getIcon("Share2");
-		}
-		return this.parent!.icon;
-	}
-
-	public set icon(icon: IconIdentifier) {
-		this.parent!.icon = getIcon(icon);
+	public set name(name: string) {
+		this.attributes.Name = new StringAttribute(name);
 	}
 
 	public get name(): string {
 		return (this.attributes.Name as StringAttribute).value;
+	}
+
+	public get icon(): Icon {
+		return this.type.icon;
 	}
 
 	public toString(): string {

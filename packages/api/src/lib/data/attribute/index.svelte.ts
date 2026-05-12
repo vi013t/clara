@@ -11,7 +11,7 @@ import {
 import { DateTime } from "./datetime.svelte.ts";
 import { Color } from "./color.svelte.ts";
 import { Measurement, Length, Weight, Meters, Kilograms, type MeasurementType } from "./measurement.svelte.ts";
-import { AttributeValue, type SerializedAttributeValue } from "./value.svelte.ts";
+import { AttributeValue, type SerializedAttributeValue, AttributeRef, type SerializedAttributeRef } from "./value.svelte.ts";
 import {
 	NodeType,
 	NodeParameter,
@@ -57,6 +57,8 @@ export {
 	nodeCategoryColors,
 	type SerializedAttributeDefinition,
 	type GeneratedAttribute,
+	AttributeRef,
+	type SerializedAttributeRef,
 };
 
 export type { AttributeTypeName, SerializedAttributeValue, AttributeContext, MeasurementType };

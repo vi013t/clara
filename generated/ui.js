@@ -9,3 +9,5 @@ export const TabList = internal.TabList;
 export const EditorTab = internal.EditorTab;
 export const views = internal.views;
 export const NodeEditorTab = internal.NodeEditorTab;
+export const editorControls = internal.editorControls;
+export const addEditorControl = internal.addEditorControl;

@@ -5,3 +5,5 @@ const internal = globalThis.__CLARA_API__.plugin;
 export const corePlugins = internal.corePlugins;
 export const plugin = internal.plugin;
 export const registerTemplate = internal.registerTemplate;
+export const getListeners = internal.getListeners;
+export const listen = internal.listen;

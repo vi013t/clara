@@ -4,6 +4,7 @@
 	import { EditorTab, GroupTab, Tab, TabList, views } from "@clara/api/ui";
 	import { onMount } from "svelte";
 	import type { PaneLayout, SinglePane } from "@clara/api/project";
+	import SingularPane from "./SingularPane.svelte";
 
 	let {
 		background,
@@ -75,6 +76,7 @@
 			percent: 0.5,
 			panes: [pane, { split: "none", tabline, selectedTabID: tabline.tabs[0].id }],
 		};
+		tabline.owner = anyPane.panes[1] as SinglePane;
 
 		paneSettingsMenu.close();
 	}
@@ -86,6 +88,7 @@
 			percent: 0.5,
 			panes: [pane, { split: "none", tabline, selectedTabID: tabline.tabs[0].id }],
 		};
+		tabline.owner = anyPane.panes[1] as SinglePane;
 
 		paneSettingsMenu.close();
 	}

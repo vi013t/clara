@@ -8,6 +8,7 @@ import { TabList, type SerializedTabList } from "./ui/tab.svelte.js";
 import { notify } from "./components/index.svelte.ts";
 import { Randomizer, randomizers, type SerializedRandomizer } from "@clara/api/random";
 import { ItemType, type SerializedItemType } from "./data/type.svelte.js";
+import { AttributeDefinition, AttributeType } from "@clara/api/attribute";
 
 export type PaneLayout = SinglePane | MultiPane;
 
@@ -75,14 +76,16 @@ export type SerializedTemplate = {
 	pinnedGroups: number[];
 	randomizers: SerializedRandomizer[];
 	types: SerializedItemType[];
+	plugin_id: string;
 };
 
 export class Template implements Serialize<SerializedTemplate> {
-	public database: Database = $state(assignedLater());
-	public layout: PaneLayout = $state(assignedLater());
-	public pinnedGroups: Group[] = $state([]);
-	public randomizers: Randomizer[] = $state([]);
-	public types: ItemType[] = $state([]);
+	public database: Database;
+	public layout: PaneLayout;
+	public pinnedGroups: Group[];
+	public randomizers: Randomizer[];
+	public types: ItemType[];
+	public readonly plugin_id: string;
 
 	public constructor({
 		database,
@@ -90,18 +93,33 @@ export class Template implements Serialize<SerializedTemplate> {
 		pinnedGroups,
 		randomizers = [],
 		types,
+		plugin_id,
 	}: {
 		layout: PaneLayout;
 		database: Database;
 		pinnedGroups: Group[];
 		randomizers?: Randomizer[];
 		types: ItemType[];
+		plugin_id: string;
 	}) {
-		this.database = database;
-		this.layout = layout;
-		this.pinnedGroups = pinnedGroups;
-		this.randomizers = randomizers;
-		this.types = types;
+		this.database = $state(database);
+		this.layout = $state(layout);
+		this.pinnedGroups = $state(pinnedGroups);
+		this.randomizers = $state(randomizers);
+		this.types = $state(types);
+		if (!this.types.some(type => type.name === "Document")) {
+			this.types.push(
+				new ItemType({
+					name: "Document",
+					icon: "FileText",
+					attributes: [
+						new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") }),
+						new AttributeDefinition({ name: "Content", type: AttributeType.fromName("longText") }),
+					],
+				}),
+			);
+		}
+		this.plugin_id = $state(plugin_id);
 	}
 
 	public serialize(): SerializedTemplate {
@@ -111,6 +129,7 @@ export class Template implements Serialize<SerializedTemplate> {
 			pinnedGroups: this.pinnedGroups.map(group => group.id),
 			randomizers: this.randomizers.map(randomizer => randomizer.serialize()),
 			types: this.types.map(type => type.serialize()),
+			plugin_id: this.plugin_id,
 		};
 	}
 
@@ -136,6 +155,7 @@ export class Template implements Serialize<SerializedTemplate> {
 			pinnedGroups,
 			randomizers: this.randomizers,
 			types: this.types.map(type => type.clone()),
+			plugin_id: this.plugin_id,
 		});
 	}
 
@@ -159,6 +179,7 @@ export class Template implements Serialize<SerializedTemplate> {
 					return true;
 				}),
 			types: template.types.map(type => ItemType.deserialize(type)),
+			plugin_id: template.plugin_id,
 		});
 		let all = temp.database.dfsBranches();
 		temp.pinnedGroups = template.pinnedGroups.map(id => all.find(group => group.id == id)!);
@@ -186,7 +207,14 @@ export class Project extends Template implements Serialize<SerializedProject> {
 		types: ItemType[];
 		randomizers?: Randomizer[];
 	}) {
-		super({ database, layout, pinnedGroups, randomizers, types });
+		super({
+			database,
+			layout,
+			pinnedGroups,
+			randomizers,
+			types,
+			plugin_id: "clara",
+		});
 		this.location = location;
 	}
 
@@ -248,7 +276,7 @@ export class Project extends Template implements Serialize<SerializedProject> {
 		return proj;
 	}
 
-	public serialize(): SerializedProject {
+	public override serialize(): SerializedProject {
 		return {
 			location: this.location,
 			database: this.database.serialize(),
@@ -256,6 +284,7 @@ export class Project extends Template implements Serialize<SerializedProject> {
 			pinnedGroups: this.pinnedGroups.map(group => group.id),
 			randomizers: this.randomizers.map(randomizer => randomizer.serialize()),
 			types: this.types.map(type => type.serialize()),
+			plugin_id: this.plugin_id,
 		};
 	}
 
@@ -304,6 +333,7 @@ export type SerializedProject = {
 	pinnedGroups: number[];
 	randomizers: SerializedRandomizer[];
 	types: SerializedItemType[];
+	plugin_id: string;
 };
 
 let currentProject: Project | null = $state(null);

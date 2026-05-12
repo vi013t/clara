@@ -1,14 +1,18 @@
 <script lang="ts">
-	import type { AttributeContext, RichText } from "@clara/api/attribute";
+	import type { AttributeContext, AttributeRef } from "@clara/api/attribute";
 
 	let {
 		openEditor,
 		context,
-		value = $bindable(),
-	}: { value: RichText; context: AttributeContext; openEditor: (doc: RichText) => void } = $props();
+		attribute = $bindable(),
+	}: {
+		attribute: AttributeRef;
+		context: AttributeContext;
+		openEditor: (value: AttributeRef) => void;
+	} = $props();
 </script>
 
-<button class={{ "settings-button": context === "settings" }} onmousedown={() => openEditor(value)}>Open in Editor</button>
+<button class={{ "settings-button": context === "settings" }} onmousedown={() => openEditor(attribute)}>Open in Editor</button>
 
 <style>
 	.settings-button {

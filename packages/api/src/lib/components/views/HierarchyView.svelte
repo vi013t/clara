@@ -5,7 +5,7 @@
 	import { MultiPane, PaneLayout, SinglePane } from "@clara/api/ui";
 
 	let {
-		entry = Project.get() ? Project.get()!.database : null!,
+		entry = $bindable(Project.get() ? Project.get()!.database : null!),
 		hideRoot = false,
 		subtree = false,
 		demo = false,
@@ -108,7 +108,7 @@
 	}
 </script>
 
-<section>
+<section style:padding={!subtree ? "1rem" : undefined}>
 	{#if !hideRoot || subtree}
 		<button oncontextmenu={onRightClick} class={["node", clickedNode && "active"]} {onmousedown}>
 			<Icon name={entry.icon} />
@@ -127,12 +127,14 @@
 		</button>
 	{/if}
 
-	{#if entry.children.length !== 0}
+	{#if entry.children.filter(child => child instanceof Group || !child.hidden).length !== 0}
 		<ul class={{ expanded }}>
 			{#each entry.sortedChildren as child (child.id)}
-				<li style:padding-left={hideRoot && entry.isRoot ? "0px" : "1.25rem"}>
-					<HierarchyView bind:pane {demo} {hideRoot} entry={child} subtree />
-				</li>
+				{#if child instanceof Group || !child.hidden}
+					<li style:padding-left={hideRoot && entry.isRoot ? "0px" : "1.25rem"}>
+						<HierarchyView bind:pane {demo} {hideRoot} entry={child} subtree />
+					</li>
+				{/if}
 			{/each}
 		</ul>
 	{/if}

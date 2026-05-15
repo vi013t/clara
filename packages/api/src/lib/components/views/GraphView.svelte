@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ContextMenu, CameraView, Icon, LittleButton } from "@clara/api/components";
+	import { ContextMenu, InfiniteCanvas, Icon, LittleButton } from "@clara/api/components";
 	import { Project } from "@clara/api/project";
 	import { Camera } from "@clara/api/camera";
 	import { type Node } from "@clara/api/database";
@@ -61,7 +61,7 @@
 <svelte:document onmouseup={() => (clickedNode = null)} {onmousemove} />
 
 <section class="graph">
-	<CameraView bind:camera {canPan}>
+	<InfiniteCanvas bind:camera {canPan}>
 		{#each groups as group}
 			{#if group.outline.isVisible}
 				<div
@@ -99,7 +99,7 @@
 				style:font-size="{item.outline.shape.radius * 2}px"
 			></button>
 		{/each}
-	</CameraView>
+	</InfiniteCanvas>
 	<div class="controls">
 		<LittleButton icon="Settings" style="border: 1px solid var(--border)" />
 		<LittleButton icon="Locate" onmousedown={center} style="border: 1px solid var(--border)" />

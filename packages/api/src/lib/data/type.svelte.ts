@@ -6,6 +6,8 @@ export type SerializedItemType = {
 	name: string;
 	icon: string;
 	attributes: SerializedAttributeDefinition[];
+	pluralName: string | null;
+	defaultValue: "editor" | "node" | null;
 };
 
 export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemType> {
@@ -50,6 +52,8 @@ export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemTy
 			name: this.name,
 			icon: this.icon.name,
 			attributes: this.attributes.map(attribute => attribute.serialize()),
+			pluralName: this.pluralName,
+			defaultValue: this.defaultView,
 		};
 	}
 
@@ -58,6 +62,8 @@ export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemTy
 			name: itemType.name,
 			icon: getIcon(itemType.icon as IconName),
 			attributes: itemType.attributes.map(attribute => AttributeDefinition.deserialize(attribute)),
+			pluralName: itemType.pluralName ?? undefined,
+			defaultView: itemType.defaultValue ?? undefined,
 		});
 	}
 }

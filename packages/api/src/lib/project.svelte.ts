@@ -1,7 +1,7 @@
 import { invoke } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
 import { Group, type Database, type SerializedDatabase } from "./data/database.svelte";
-import type { Serialize } from "./util/serialize.svelte";
+import type { Serialize, Serialized } from "./util/serialize.svelte";
 import { Debug } from "./util/index.svelte";
 import { cache, userSettings } from "./usersettings/index.svelte.ts";
 import { notify } from "./components/index.svelte.ts";
@@ -137,10 +137,16 @@ export class Template implements Serialize<SerializedTemplate> {
 	}
 }
 
+export type AttachedProjectData<T extends Serialize<S>, S = Serialized<T>> = {
+	data: T;
+	deserialize(s: S): T;
+};
+
 export class Project extends Template implements Serialize<SerializedProject> {
 	private location: string;
 
 	private static onSetListeners: ((project: Project) => void)[] = [];
+	private static extraData: Map<string, Map<string, AttachedProjectData<any>>> = new Map();
 
 	private constructor({
 		location,
@@ -166,6 +172,12 @@ export class Project extends Template implements Serialize<SerializedProject> {
 			plugin_id: "clara",
 		});
 		this.location = $state(location);
+	}
+
+	public static attachData<T extends Serialize<S>, S = Serialized<T>>(
+		data: AttachedProjectData<T, S> & { pluginId: string; dataId: string },
+	): void {
+		this.extraData.getOrInsert(data.pluginId, new Map()).set(data.dataId, data);
 	}
 
 	public static onSet(callback: (project: Project) => void) {

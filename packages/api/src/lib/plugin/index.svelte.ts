@@ -3,8 +3,9 @@ import type { Project, Template } from "../project.svelte.ts";
 import type { IconIdentifier } from "../ui/icons.svelte.ts";
 import defaultThemes from "./themes/themes.svelte.ts";
 import type { EditorTab } from "@clara/api/ui";
+import { extraViewsPlugin } from "./views/index.svelte";
 
-export const corePlugins = [defaultThemes] as const satisfies ClaraPlugin<any>[];
+export const corePlugins = [defaultThemes, extraViewsPlugin] as const satisfies ClaraPlugin<any>[];
 
 type Setting<Name extends string> = {
 	name: Name;

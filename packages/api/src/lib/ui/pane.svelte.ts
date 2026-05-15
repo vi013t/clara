@@ -104,3 +104,13 @@ export class MultiPane extends PaneLayout {
 		return new MultiPane(pane.split, PaneLayout.deserialize(pane.panes[0]), PaneLayout.deserialize(pane.panes[1]), pane.percent);
 	}
 }
+
+let focusedPane_: PaneLayout = $state(new SinglePane());
+
+export function focusedPane() {
+	return focusedPane_;
+}
+
+export function focusPane(pane: PaneLayout) {
+	focusedPane_ = pane;
+}

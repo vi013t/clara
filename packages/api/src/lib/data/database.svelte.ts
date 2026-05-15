@@ -38,22 +38,26 @@ export type SerializedItem = {
 	attributes: Record<string, SerializedAttributeValue | null>;
 	id: number;
 	type: SerializedItemType;
+	hidden: boolean;
 };
 
 export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedItem>, Cloneable<Item> {
 	public attributes: Record<string, AttributeValue | null>;
 	public type: ItemType;
+	public hidden: boolean;
 
-	public constructor(type: ItemType, attributes: Record<string, AttributeValue | null> | string) {
+	public constructor(type: ItemType, attributes: Record<string, AttributeValue | null> | string, options?: { hidden?: true }) {
 		super();
 		this.attributes = $state(typeof attributes === "string" ? { Name: new StringAttribute(attributes) } : attributes);
 		this.type = $state(type);
+		this.hidden = $state(options?.hidden ?? false);
 	}
 
 	public clone(): Item {
 		return new Item(
 			this.type.clone(),
 			Objects.mapValues(this.attributes, attribute => attribute?.clone() ?? null),
+			{ hidden: this.hidden || undefined },
 		);
 	}
 
@@ -62,6 +66,7 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 			id: this.id,
 			attributes: Objects.mapValues(this.attributes, attribute => (attribute ? AttributeValue.serialize(attribute) : null)),
 			type: this.type.serialize(),
+			hidden: this.hidden,
 		};
 	}
 
@@ -73,6 +78,7 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 		let created = new Item(
 			ItemType.deserialize(item.type),
 			Objects.mapValues(item.attributes, attribute => (attribute ? AttributeValue.deserialize(attribute) : null)),
+			{ hidden: item.hidden || undefined },
 		);
 		(created as any).id = item.id;
 		return created;

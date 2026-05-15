@@ -20,12 +20,18 @@ export class AttributeDefinition implements Serialize<SerializedAttributeDefinit
 
 	private static nextID = 0;
 
-	public constructor({ name, type, id }: { name: string; type: AttributeType; id?: Id }) {
+	public constructor({ name, type, id, hidden }: { name: string; type: AttributeType; id?: Id; hidden?: true }) {
 		this.name = $state(name);
 		this.type = type;
 		this.id_ = $state(id ?? uniqueId());
 		this.icon = $state(type.icon);
 		this.typeName = $state(this.type.name);
+	}
+
+	public static simpleList(values: Record<string, AttributeTypeName>): AttributeDefinition[] {
+		return Object.entries(values).map(
+			([name, typeName]) => new AttributeDefinition({ name, type: AttributeType.fromName(typeName) }),
+		);
 	}
 
 	public clone(): AttributeDefinition {

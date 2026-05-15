@@ -9,21 +9,24 @@ import {
 } from "@clara/api/attribute";
 import { Item, type Group } from "@clara/api/database";
 import { uniqueId, type Cloneable, type Id, type Serialize } from "@clara/api/utils";
-import { type IconIdentifier, getIcon, type Icon, type IconName, SinglePane } from "@clara/api/ui";
+import { type IconIdentifier, getIcon, type Icon, type IconName, SinglePane, views } from "@clara/api/ui";
 import { Project } from "@clara/api/project";
+import { type GroupView, type ItemView, view, type View } from "./views.svelte";
 
-export abstract class Tab implements Cloneable<Tab>, Serialize<unknown> {
+export abstract class Tab<V extends View = View> implements Cloneable<Tab<V>>, Serialize<unknown> {
 	public readonly id = $state(uniqueId());
 	private icon_: Icon;
+	public view: View;
 
-	public constructor(icon: IconIdentifier) {
+	public constructor(icon: IconIdentifier, view: View) {
 		this.icon_ = $state(getIcon(icon));
+		this.view = $state(view);
 	}
 
-	public abstract clone(): Tab;
-
+	public abstract clone(): Tab<V>;
 	public abstract serialize(): unknown;
 	public abstract get title(): string;
+	public abstract get possibleViews(): View[];
 
 	public get icon(): Icon {
 		return this.icon_;
@@ -42,9 +45,8 @@ export type SerializedGroupTab = {
 	icon: IconName;
 };
 
-export class GroupTab extends Tab implements Serialize<SerializedGroupTab> {
+export class GroupTab extends Tab<GroupView> implements Serialize<SerializedGroupTab> {
 	private groupID: number;
-	public view: string = $state("Hierarchy");
 
 	public constructor(group: number, icon?: IconIdentifier) {
 		super(
@@ -52,6 +54,7 @@ export class GroupTab extends Tab implements Serialize<SerializedGroupTab> {
 				Project.get()!
 					.database.dfs()
 					.find(node => node.id === group)!.icon,
+			views().find(view => view.name === "Hierarchy")!,
 		);
 		this.groupID = $state(group);
 	}
@@ -74,29 +77,33 @@ export class GroupTab extends Tab implements Serialize<SerializedGroupTab> {
 		this.groupID = group.id;
 	}
 
+	public get possibleViews(): View[] {
+		return views().filter(view => view.type === "group");
+	}
+
 	public serialize(): SerializedGroupTab {
 		return {
 			type: "group",
 			id: this.id,
 			group: this.groupID,
-			view: this.view,
+			view: this.view.name,
 			icon: this.icon.name,
 		};
 	}
 
 	public static deserialize(tab: SerializedGroupTab): GroupTab {
 		const group = new GroupTab(tab.group, tab.icon);
-		group.view = tab.view;
+		group.view = view(tab.view)!;
 		(group as any).id = tab.id;
 		return group;
 	}
 }
 
-export abstract class ItemTab extends Tab {
+export abstract class ItemTab extends Tab<ItemView> {
 	protected item_: Id;
 
-	protected constructor(item: Id, icon: IconIdentifier) {
-		super(icon);
+	protected constructor(item: Id, icon: IconIdentifier, view: View) {
+		super(icon, view);
 		this.item_ = $state(item);
 	}
 }
@@ -104,13 +111,17 @@ export abstract class ItemTab extends Tab {
 export abstract class AttributeTab extends ItemTab {
 	public attribute: AttributeRef;
 
-	public constructor(attribute: AttributeRef, icon?: IconIdentifier) {
-		super(attribute.item.id, icon ?? attribute.item.type.icon);
+	public constructor(attribute: AttributeRef, view: View, icon?: IconIdentifier) {
+		super(attribute.item.id, icon ?? attribute.item.type.icon, view);
 		this.attribute = $state(attribute);
 	}
 
 	public get item(): Item {
 		return this.attribute.item;
+	}
+
+	public get possibleViews(): View[] {
+		return views().filter(view => view.type === "attribute");
 	}
 
 	public get title(): string {
@@ -126,7 +137,7 @@ export type SerializedNodeEditorTab = {
 
 export class NodeEditorTab extends AttributeTab {
 	public constructor(attribute: AttributeRef) {
-		super(attribute, "GitCompare");
+		super(attribute, view("Node Editor")!, "GitCompare");
 	}
 
 	public get nodes(): NodeInstance[] {
@@ -164,9 +175,10 @@ export class NodeEditorTab extends AttributeTab {
 
 export class EditorTab extends AttributeTab {
 	public cursor: { part: number; position: number };
+	public element: HTMLElement = $state(null!);
 
 	public constructor(attribute: AttributeRef) {
-		super(attribute, "Pencil");
+		super(attribute, view("Editor")!, "Pencil");
 		if (!this.attribute.value) this.attribute.value = new RichText();
 		this.cursor = $state({ part: 0, position: 0 });
 	}
@@ -242,7 +254,7 @@ export type SerializedEditorTab = {
 
 export type SerializedTab = SerializedEditorTab | SerializedGroupTab | SerializedNodeEditorTab;
 
-function deserializeTab(tab: SerializedTab): Tab {
+function deserializeTab(tab: SerializedTab): Tab<any> {
 	if (tab.type === "editor") return EditorTab.deserialize(tab);
 	if (tab.type === "node") return NodeEditorTab.deserialize(tab);
 	return GroupTab.deserialize(tab);
@@ -253,10 +265,10 @@ export type SerializedTabList = {
 };
 
 export class TabList implements Cloneable<TabList>, Serialize<SerializedTabList> {
-	public tabs: Tab[] = $state([]);
+	public tabs: Tab<any>[] = $state([]);
 	public owner: SinglePane = $state(null!);
 
-	public constructor(tabs: Tab[] = [new GroupTab(Project.get()!.database.id)!]) {
+	public constructor(tabs: Tab<any>[] = [new GroupTab(Project.get()!.database.id)!]) {
 		this.tabs = tabs;
 	}
 
@@ -278,19 +290,19 @@ export class TabList implements Cloneable<TabList>, Serialize<SerializedTabList>
 		return list;
 	}
 
-	public appendTab(tab: Tab) {
+	public appendTab(tab: Tab<any>) {
 		this.tabs.push(tab);
 	}
 
-	public prependTab(tab: Tab) {
+	public prependTab(tab: Tab<any>) {
 		this.tabs.unshift(tab);
 	}
 
-	public insertTab(tab: Tab, index: number) {
+	public insertTab(tab: Tab<any>, index: number) {
 		this.tabs.splice(index, 0, tab);
 	}
 
-	public replace(id: number, newTab: Tab) {
+	public replace(id: number, newTab: Tab<any>) {
 		this.tabs.splice(this.indexOfID(id), 1, newTab);
 	}
 
@@ -298,15 +310,15 @@ export class TabList implements Cloneable<TabList>, Serialize<SerializedTabList>
 		return this.tabs.find(tab => tab.id === id);
 	}
 
-	public getTabByID(id: number): Tab {
+	public getTabByID(id: number): Tab<any> {
 		return this.tabs.find(tab => tab.id === id)!;
 	}
 
 	public indexOfID(id: number): number {
-		return this.tabs.map((tab, index) => [tab, index] as [Tab, number]).find(([tab]) => tab.id === id)![1];
+		return this.tabs.map((tab, index) => [tab, index] as [Tab<any>, number]).find(([tab]) => tab.id === id)![1];
 	}
 
-	public getTabByIndex(index: number): Tab {
+	public getTabByIndex(index: number): Tab<any> {
 		return this.tabs[index];
 	}
 

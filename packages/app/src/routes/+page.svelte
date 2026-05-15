@@ -5,7 +5,7 @@
 	import { startPlugins } from "@clara/api";
 	import { onMount } from "svelte";
 	import { getFromCache, pressHotkey, userSettings } from "@clara/api/usersettings";
-	import { PaneLayout, SinglePane, TabList } from "@clara/api/ui";
+	import { focusedPane, focusPane, PaneLayout, SinglePane, TabList } from "@clara/api/ui";
 	import { GroupTab } from "@clara/api/ui";
 
 	$effect(() => {
@@ -21,8 +21,6 @@
 		if (projectPath) Project.openFromLocation(projectPath);
 	});
 
-	let tabline = new TabList([]);
-
 	onMount(async () => {
 		userSettings().selectTheme(userSettings().selectedTheme.name);
 		let loadingScreen = document.getElementById("loading-screen");
@@ -33,11 +31,12 @@
 		}
 	});
 
-	let focusedPane: PaneLayout = $state(null!);
-
 	Project.onSet(project => {
-		if (!(tabline.tabs[0] instanceof GroupTab)) tabline.tabs[0] = new GroupTab(project.database.id);
-		focusedPane = new SinglePane(tabline);
+		const pane = focusedPane();
+		if (!pane.isSingle()) return;
+		if (pane.tabline.tabs.length === 0) {
+			pane.tabline.tabs[0] = new GroupTab(project.database.id);
+		}
 	});
 
 	keyboard().onKeyDown(event => pressHotkey(event));
@@ -49,9 +48,9 @@
 	<Navbar />
 	{#if Project.get()}
 		<div>
-			<Sidebar bind:focusedPane />
+			<Sidebar />
 			<div class="pane">
-				<Pane bind:pane={focusedPane} />
+				<Pane bind:pane={focusedPane, focusPane} />
 			</div>
 			<StatusBar />
 		</div>

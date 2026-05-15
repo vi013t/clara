@@ -1,11 +1,13 @@
 <script lang="ts">
+	import { statusBarButtons } from "@clara/api/ui";
+	import { LittleButton } from "@clara/api/components";
 </script>
 
 <section>
 	<div class="wrapper">
-		<button>
-			<span>Status Bar</span>
-		</button>
+		{#each statusBarButtons() as button}
+			<LittleButton icon={button.icon} isToggle={button.isToggle} />
+		{/each}
 	</div>
 </section>
 
@@ -13,21 +15,7 @@
 	.wrapper {
 		position: relative;
 		display: contents;
-
-		> button {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			--stroke: var(--foreground-bright);
-			padding: 0.25rem;
-			border-radius: 0.25rem;
-			color: var(--stroke);
-
-			&:hover {
-				--stroke: var(--background-dark);
-				background-color: var(--indigo);
-			}
-		}
+		color: var(--foreground);
 	}
 
 	section {

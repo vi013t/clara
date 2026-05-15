@@ -189,6 +189,7 @@
 	.columns {
 		display: flex;
 		position: relative;
+		padding: 2rem;
 	}
 
 	.new.control.cell,

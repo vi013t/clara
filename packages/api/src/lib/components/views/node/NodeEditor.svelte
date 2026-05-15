@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { nodeTypeColors, type NodeInstance } from "@clara/api/attribute";
 	import { Camera } from "@clara/api/camera";
-	import { CameraView, Node } from "@clara/api/components";
+	import { InfiniteCanvas, Node } from "@clara/api/components";
 
 	let camera: Camera = $state(new Camera());
 	let canPan = $state(true);
@@ -71,11 +71,11 @@
 			<path {d} style:stroke class="edge" />
 		{/each}
 	</svg>
-	<CameraView bind:camera {canPan} onupdate={() => updateCounter++}>
+	<InfiniteCanvas bind:camera {canPan} onupdate={() => updateCounter++}>
 		{#each nodes as _node, index}
 			<Node bind:node={nodes[index]} bind:this={nodeElements[index]} bind:canPan {camera} onmove={() => updateCounter++} />
 		{/each}
-	</CameraView>
+	</InfiniteCanvas>
 </section>
 
 <style>

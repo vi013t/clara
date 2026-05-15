@@ -239,16 +239,13 @@
 
 	let font = $state("Segoe UI");
 	let fontSize = $state("16");
-	let viewMode: "light" | "dark" = $state("dark");
-
-	function save() {}
 
 	let foreground = "var(--foreground)";
 </script>
 
 <svelte:document onkeydown={onDocumentKeydown} />
 
-<div class={["wrapper"]}>
+<div bind:this={tab.element} class={["wrapper"]}>
 	{#if title}
 		<h1 contenteditable bind:textContent={title}></h1>
 	{/if}

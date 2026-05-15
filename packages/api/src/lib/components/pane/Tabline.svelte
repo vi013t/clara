@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ContextMenu, Icon, IconPicker, LittleButton } from "@clara/api/components";
 	import type { Group } from "@clara/api/database";
-	import { GroupTab, MultiPane, PaneLayout, SinglePane, Tab, TabList, views } from "@clara/api/ui";
+	import { GroupTab, MultiPane, PaneLayout, SinglePane, Tab, TabList, views, type View } from "@clara/api/ui";
 	import { onMount } from "svelte";
 	import { Project } from "@clara/api/project";
 
@@ -29,7 +29,7 @@
 		onclose();
 	}
 
-	function createTab(group?: Group, view?: string) {
+	function createTab(group?: Group, view?: View) {
 		let tabGroup = (group ?? currentTab() instanceof GroupTab) ? (currentTab() as GroupTab).group : Project.get()!.database;
 		let tab = new GroupTab(tabGroup.id);
 		if (view) tab.view = view;
@@ -85,7 +85,7 @@
 		paneSettingsMenu.close();
 	}
 
-	function setView(name: string) {
+	function setView(name: View) {
 		return function () {
 			tabContextMenu.close();
 			currentTab<GroupTab>().view = name;
@@ -187,9 +187,9 @@
 		<Icon name="ScanEye" size={16} style="margin-left: 0.15rem;" />
 		<span>Switch view</span>
 		<ContextMenu>
-			{#each views as view}
+			{#each views() as view}
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
-				<div onmousedown={setView(view.name)}>
+				<div onmousedown={setView(view)}>
 					<Icon name={view.icon} size={16} />
 					<span style:text-transform="capitalize">{view.name}</span>
 

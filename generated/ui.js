@@ -16,3 +16,7 @@ export const SinglePane = internal.SinglePane;
 export const MultiPane = internal.MultiPane;
 export const ItemTab = internal.ItemTab;
 export const AttributeTab = internal.AttributeTab;
+export const registerStatusBarButton = internal.registerStatusBarButton;
+export const statusBarButtons = internal.statusBarButtons;
+export const focusedPane = internal.focusedPane;
+export const focusPane = internal.focusPane;

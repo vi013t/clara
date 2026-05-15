@@ -1,7 +1,7 @@
 import ContextMenu from "./menus/ContextMenu.svelte";
 import InputHandler, { mouse, keyboard } from "./InputHandler.svelte";
 import Icon from "./Icon.svelte";
-import CameraView from "./views/CameraView.svelte";
+import InfiniteCanvas from "./views/InfiniteCanvas.svelte";
 import GraphView from "./views/GraphView.svelte";
 import HierarchyView from "./views/HierarchyView.svelte";
 import SpreadsheetView from "./views/SpreadsheetView.svelte";
@@ -59,7 +59,7 @@ export {
 	mouse,
 	keyboard,
 	Icon,
-	CameraView,
+	InfiniteCanvas,
 	GraphView,
 	HierarchyView,
 	SpreadsheetView,

@@ -81,10 +81,13 @@ impl PaneLayout {
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct ItemType {
 	name: String,
 	icon: String,
 	attributes: Vec<AttributeDefinition>,
+	default_view: Option<String>,
+	plural_name: Option<String>,
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
@@ -162,8 +165,8 @@ pub struct Group {
 #[serde(rename_all = "camelCase")]
 pub struct Item {
 	id: Id,
-
 	attributes: std::collections::HashMap<String, Option<AttributeValue>>,
+	r#type: ItemType,
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]

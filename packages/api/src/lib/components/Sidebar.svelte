@@ -1,10 +1,8 @@
 <script lang="ts">
-	import { GroupTab, NodeEditorTab, views } from "@clara/api/ui";
-	import { Project, type PaneLayout, type SinglePane } from "@clara/api/project";
+	import { focusedPane, GroupTab, SinglePane, views, type View, hierarchy, spreadsheet } from "@clara/api/ui";
 	import { ContextMenu, Icon, LittleButton } from "@clara/api/components";
 	import { Group } from "@clara/api/database";
-
-	let { focusedPane = $bindable() }: { focusedPane: PaneLayout } = $props();
+	import { Project } from "@clara/api/project";
 
 	let expanded = $state(false);
 	let rightClickGroupMenu: ContextMenu;
@@ -19,16 +17,16 @@
 		rightClickViewMenu.openAtMouse(event);
 	}
 
-	function setView(name: string) {
+	function setView(name: View) {
 		return function () {
-			let pane = focusedPane as SinglePane;
-			(pane.tabline.getTabByID(pane.selectedTabID) as GroupTab).view = name;
+			let pane = focusedPane() as SinglePane;
+			pane.tabline.getTabByID(pane.selectedTabID).view = name;
 		};
 	}
 
 	function setGroup(group: Group) {
 		return function () {
-			let pane = focusedPane as SinglePane;
+			let pane = focusedPane() as SinglePane;
 			(pane.tabline.getTabByID(pane.selectedTabID) as GroupTab).group = group;
 		};
 	}
@@ -81,10 +79,10 @@
 		</div>
 
 		<div>
-			{#each views as view}
+			{#each [hierarchy, spreadsheet] as view}
 				{#if expanded}
 					<div style:width="100%">
-						<button oncontextmenu={rightClickView} onmousedown={setView(view.name)}>
+						<button oncontextmenu={rightClickView} onmousedown={setView(view)}>
 							<Icon name={view.icon} />
 							{view.name}
 						</button>
@@ -94,10 +92,25 @@
 					</div>
 				{:else}
 					<div>
-						<LittleButton icon={view.icon} oncontextmenu={rightClickView} onmousedown={setView(view.name)} />
+						<LittleButton icon={view.icon} oncontextmenu={rightClickView} onmousedown={setView(view)} />
 					</div>
 				{/if}
 			{/each}
+			{#if expanded}
+				<div style:width="100%">
+					<button>
+						<Icon name="Plus" />
+						Pin new view
+					</button>
+					<div class="handle">
+						<Icon color="var(--foreground-dark)" name="GripHorizontal" />
+					</div>
+				</div>
+			{:else}
+				<div>
+					<LittleButton icon="Plus" />
+				</div>
+			{/if}
 		</div>
 	</section>
 {/if}

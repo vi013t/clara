@@ -19,7 +19,7 @@ vite.config.ts.timestamp-*
 build/
 target/
 dist/
-.turbo
+.turbo/
 
 # separate projects
 /packages/plugins

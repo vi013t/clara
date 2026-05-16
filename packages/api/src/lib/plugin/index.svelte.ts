@@ -2,10 +2,18 @@ import { userSettings } from "@clara/api/usersettings";
 import type { Project, Template } from "../project.svelte.ts";
 import type { IconIdentifier } from "../ui/icons.svelte.ts";
 import defaultThemes from "./themes/themes.svelte.ts";
-import type { EditorTab } from "@clara/api/ui";
+import type { Tab } from "@clara/api/ui";
 import { extraViewsPlugin } from "./views/index.svelte";
+import type { View, ViewType } from "../ui/views.svelte";
+import { breadcrumbsPlugin } from "./breadcrumbs/breadcrumbs.svelte";
+import { manualPlugin } from "./manual/manual.svelte";
 
-export const corePlugins = [defaultThemes, extraViewsPlugin] as const satisfies ClaraPlugin<any>[];
+export const corePlugins = [
+	defaultThemes,
+	extraViewsPlugin,
+	breadcrumbsPlugin,
+	manualPlugin,
+] as const satisfies ClaraPlugin<any>[];
 
 type Setting<Name extends string> = {
 	name: Name;
@@ -37,32 +45,29 @@ export function registerTemplate(template: Template) {
 	userSettings().addTemplate(template);
 }
 
-export type EventName = "keydown";
-export type EventContext = "editor";
-export type EventHandler<Name extends EventName, Context extends EventContext> = {
-	editor: {
-		keydown: ({ event, tab, project }: { event: KeyboardEvent; tab: EditorTab; project: Project }) => void;
-	};
-}[Context][Name];
-
-export type Listener<Name extends EventName, Context extends EventContext> = {
-	on: Name;
-	inside: Context;
-	run: EventHandler<Name, Context>;
+type ListenableEvent = {
+	keydown: KeyboardEvent;
+	keyup: KeyboardEvent;
+	mousedown: MouseEvent;
+	mousemove: MouseEvent;
+	contextmenu: MouseEvent;
 };
 
-let listeners: Listener<EventName, EventContext>[] = $state([]);
+export type EventName = keyof ListenableEvent;
+export type EventType<Name extends EventName> = ListenableEvent[Name];
 
-export function getListeners<Name extends EventName, Context extends EventContext>({
-	inside,
-	on,
-}: {
-	inside: Context;
+export type Listener<T extends ViewType, Name extends EventName> = {
 	on: Name;
-}): Listener<Name, Context>[] {
-	return listeners.filter(listener => on === listener.on && inside === listener.inside) as Listener<Name, Context>[];
+	inside: string;
+	run: ({ event, tab, project }: { event: EventType<Name>; tab: Tab<View<T>>; project: Project }) => void;
+};
+
+let listeners: Listener<ViewType, EventName>[] = $state([]);
+
+export function getListeners({ inside, on }: { inside: string; on: string }): Listener<ViewType, EventName>[] {
+	return listeners.filter(listener => on === listener.on && inside === listener.inside);
 }
 
-export function listen<Name extends EventName, Context extends EventContext>(listener: Listener<Name, Context>) {
-	listeners.push(listener);
+export function listen<T extends ViewType, Name extends EventName>(listener: Listener<T, Name>) {
+	listeners.push(listener as unknown as Listener<ViewType, EventName>);
 }

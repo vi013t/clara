@@ -5,6 +5,8 @@ import type { SerializedTabList } from "./tab.svelte.ts";
 export type SerializedPaneLayout = SerializedSinglePane | SerializedMultiPane;
 
 export abstract class PaneLayout implements Cloneable<PaneLayout>, Serialize<SerializedPaneLayout> {
+	public sibling: PaneLayout | null = $state(null);
+
 	public abstract get split(): string;
 	public abstract clone(): PaneLayout;
 	public abstract serialize(): SerializedPaneLayout;
@@ -78,6 +80,9 @@ export class MultiPane extends PaneLayout {
 		this.split_ = $state(split);
 		this.panes = $state([first, second]);
 		this.percent = $state(percent);
+
+		first.sibling = second;
+		second.sibling = first;
 	}
 
 	public get split(): "horizontal" | "vertical" {
@@ -106,6 +111,15 @@ export class MultiPane extends PaneLayout {
 }
 
 let focusedPane_: PaneLayout = $state(new SinglePane());
+let rootPane_: PaneLayout = $state(new SinglePane());
+
+export function rootPane() {
+	return rootPane_;
+}
+
+export function setRootPane(pane: PaneLayout) {
+	rootPane_ = pane;
+}
 
 export function focusedPane() {
 	return focusedPane_;

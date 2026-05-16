@@ -207,7 +207,6 @@
 
 <style>
 	.tree {
-		padding: 1rem;
 		background-color: var(--background-dark);
 		border-radius: 0.25rem;
 	}

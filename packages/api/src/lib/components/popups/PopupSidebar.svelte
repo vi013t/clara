@@ -9,7 +9,7 @@
 	}: {
 		view: string;
 		title?: { icon: IconComponent | string; text: string };
-		sections: Record<string, [string, IconIdentifier][]>;
+		sections: Record<string, ([string, IconIdentifier] | [string, IconIdentifier, { disabled?: true }])[]>;
 	} = $props();
 </script>
 
@@ -27,10 +27,17 @@
 	</h1>
 	{#each Object.entries(sections) as [name, buttons]}
 		<h1>{name}</h1>
-		{#each buttons as [text, icon]}
-			<button class={{ "sidebar-button": true, "active": view === text }} onmousedown={() => (view = text)}>
-				<Icon name={icon} size={16} />
+		{#each buttons as [text, icon, options]}
+			<button
+				class={{ "sidebar-button": true, "active": view === text }}
+				onmousedown={() => (view = text)}
+				style:--color={options?.disabled ? "var(--foreground-dark)" : "var(--foreground)"}
+			>
+				<Icon name={icon} />
 				<span>{text}</span>
+				{#if options?.disabled}
+					<Icon style="margin-left: auto;" name="ToggleLeft" />
+				{/if}
 			</button>
 		{/each}
 	{/each}
@@ -58,7 +65,7 @@
 			padding-left: 0.5rem;
 			width: 100%;
 			border-radius: 0.25rem;
-			color: var(--foreground-bright);
+			color: var(--color);
 
 			&:hover,
 			&.active {

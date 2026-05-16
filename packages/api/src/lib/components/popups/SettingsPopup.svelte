@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { userSettings } from "@clara/api/usersettings";
-	import { getIcon } from "@clara/api/icons";
+	import { getIcon, type IconIdentifier } from "@clara/api/icons";
 	import { LittleButton, Icon, Popup, Select, PopupSidebar, HierarchyView } from "@clara/api/components";
 	import type { Template } from "@clara/api/project";
 	import { plugins } from "@clara/api";
+	import type { ClaraPlugin } from "@clara/api/plugin";
 
 	let popup: Popup;
 	let view = $state("appearance");
@@ -24,6 +25,16 @@
 	}
 
 	userSettings();
+
+	function togglePlugin(plugin: ClaraPlugin<any>) {
+		return function () {
+			if (userSettings().isPluginEnabled(plugin)) {
+				userSettings().disablePlugin(plugin);
+			} else {
+				userSettings().enablePlugin(plugin);
+			}
+		};
+	}
 </script>
 
 <Popup {reset} bind:this={popup}>
@@ -43,14 +54,26 @@
 					["Randomizers", "Dice6"],
 					["Suggestions", "SpellCheck"],
 				],
-				Plugins: userSettings().plugins.map(plugin => [plugin.name, getIcon(plugin.icon).component]),
+				Plugins: [
+					...userSettings()
+						.enabledPlugins()
+						.map(plugin => [plugin.name, plugin.icon] as [string, IconIdentifier]),
+					...userSettings()
+						.disabledPlugins()
+						.map(plugin => [plugin.name, plugin.icon, { disabled: true }] as [string, IconIdentifier, { disabled: true }]),
+				],
 			}}
 		/>
 		<div class="content">
 			{#each userSettings().plugins as plugin}
 				{#if view === plugin.name}
 					<div class="plugin">
-						<h1>{plugin.name}</h1>
+						<div class="plugin-name">
+							<h1>{plugin.name}</h1>
+							<button class={userSettings().isPluginEnabled(plugin) ? "disable" : "enable"} onmousedown={togglePlugin(plugin)}>
+								{userSettings().isPluginEnabled(plugin) ? "Disable" : "Enable"}
+							</button>
+						</div>
 						<p>{plugin.description}</p>
 						<h2>Options</h2>
 					</div>
@@ -150,6 +173,33 @@
 		p {
 			color: var(--foreground);
 			font-size: 0.85rem;
+		}
+
+		.plugin-name {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			button {
+				color: var(--background-darker);
+				padding: 0.5rem;
+				width: 8rem;
+				border-radius: 0.25rem;
+				transition: scale 0.1s;
+				box-shadow: 0px 0px 0.25rem black;
+
+				&:hover {
+					scale: 105%;
+				}
+
+				&.disable {
+					background: linear-gradient(to bottom right, var(--pink), var(--red));
+				}
+
+				&.enable {
+					background: linear-gradient(to bottom right, var(--teal), var(--green));
+				}
+			}
 		}
 	}
 

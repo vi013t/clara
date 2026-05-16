@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { AttributeContext, AttributeRef, GeneratedAttribute } from "@clara/api/attribute";
-	import { NodeEditorTab, SinglePane } from "@clara/api/ui";
+	import { AttributeTab, nodeEditor, SinglePane } from "@clara/api/ui";
 
 	let {
 		context,
@@ -13,7 +13,7 @@
 	} = $props();
 
 	function openNodeEditor(attribute: AttributeRef) {
-		let tab = new NodeEditorTab(attribute);
+		let tab = new AttributeTab(attribute, nodeEditor);
 		pane.tabline.appendTab(tab);
 		pane.selectedTabID = tab.id;
 	}

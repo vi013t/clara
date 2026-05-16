@@ -22,7 +22,6 @@ import LittleButton from "./widgets/LittleButton.svelte";
 import Navbar from "./Navbar.svelte";
 import NoProject from "./NoProject.svelte";
 import NewProjectPopup from "./popups/NewProjectPopup.svelte";
-import ManualPopup from "./popups/ManualPopup.svelte";
 import ProjectSettingsPopup from "./popups/ProjectSettingsPopup.svelte";
 import SettingsPopup from "./popups/SettingsPopup.svelte";
 import PopupSidebar from "./popups/PopupSidebar.svelte";
@@ -37,6 +36,7 @@ import Notification from "./Notification.svelte";
 import Notifications from "./Notifications.svelte";
 import NodeEditor from "./views/node/NodeEditor.svelte";
 import Node from "./views/node/Node.svelte";
+import App, { registerPopup } from "./App.svelte";
 
 let notificationId = 0;
 let notifications: { title: string; text?: string; id: number }[] = $state([]);
@@ -80,7 +80,6 @@ export {
 	Navbar,
 	NoProject,
 	NewProjectPopup,
-	ManualPopup,
 	ProjectSettingsPopup,
 	SettingsPopup,
 	PopupSidebar,
@@ -95,4 +94,6 @@ export {
 	Notifications,
 	Node,
 	NodeEditor,
+	App,
+	registerPopup,
 };

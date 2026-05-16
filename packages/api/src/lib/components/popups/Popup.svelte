@@ -11,14 +11,17 @@
 		reset,
 		width = "70%",
 		height = "85%",
+		close: closeCallback,
+		visible = $bindable(false),
 	}: {
 		reset: () => void | Promise<void>;
 		children?: Snippet;
 		width?: string;
 		height?: string;
+		close?: () => void;
+		visible?: boolean;
 	} = $props();
 
-	let visible = $state(false);
 	let id = popupID++;
 
 	export function open() {
@@ -27,6 +30,9 @@
 
 	export function close() {
 		visible = false;
+		setTimeout(() => {
+			closeCallback?.();
+		}, 100);
 		reset();
 	}
 

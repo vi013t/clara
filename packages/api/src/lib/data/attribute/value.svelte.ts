@@ -22,7 +22,7 @@ export type SerializedAttributeRef = {
 	name: string;
 };
 
-export class AttributeRef implements Serialize<SerializedAttributeRef> {
+export class AttributeRef implements Cloneable<AttributeRef>, Serialize<SerializedAttributeRef> {
 	private item_: number;
 
 	public name: string;
@@ -30,6 +30,10 @@ export class AttributeRef implements Serialize<SerializedAttributeRef> {
 	public constructor(item: Item | number, name: string) {
 		this.item_ = $state(typeof item === "number" ? item : item.id);
 		this.name = $state(name);
+	}
+
+	public clone(): AttributeRef {
+		return new AttributeRef(this.item_, this.name);
 	}
 
 	public get item() {
@@ -54,12 +58,12 @@ export class AttributeRef implements Serialize<SerializedAttributeRef> {
 		return this.item.attributes[this.name] ?? null;
 	}
 
-	public valueAs<T extends AttributeValue>(): T | null {
-		return (this.item.attributes[this.name] as T) ?? null;
-	}
-
 	public set value(value: AttributeValue | null) {
 		this.item.attributes[this.name] = value;
+	}
+
+	public valueAs<T extends AttributeValue>(): T | null {
+		return (this.item.attributes[this.name] as T) ?? null;
 	}
 }
 

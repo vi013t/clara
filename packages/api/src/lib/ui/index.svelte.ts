@@ -1,5 +1,5 @@
 import { getIcon, type IconIdentifier, type IconName, type Icon } from "./icons.svelte.ts";
-import { GroupTab, Tab, TabList, EditorTab } from "./tab.svelte.ts";
+import { GroupTab, Tab, TabList } from "./tab.svelte.ts";
 import {
 	views,
 	registerGlobalView,
@@ -8,12 +8,12 @@ import {
 	type View,
 	type GroupView,
 	type AttributeView,
-	hierarchy,
-	spreadsheet,
-	nodeEditor,
-	editor,
+	hierarchyView,
+	spreadsheetView,
+	nodeEditorView,
+	editorView,
 } from "./views.svelte";
-import { NodeEditorTab, editorControls, addEditorControl, ItemTab, AttributeTab } from "./tab.svelte.ts";
+import { editorControls, addEditorControl, ItemTab, AttributeTab } from "./tab.svelte.ts";
 import {
 	PaneLayout,
 	SinglePane,
@@ -31,9 +31,7 @@ export {
 	GroupTab,
 	Tab,
 	TabList,
-	EditorTab,
 	views,
-	NodeEditorTab,
 	editorControls,
 	addEditorControl,
 	PaneLayout,
@@ -52,10 +50,10 @@ export {
 	type GroupView,
 	view,
 	type View,
-	hierarchy,
-	spreadsheet,
-	nodeEditor,
-	editor,
+	hierarchyView as hierarchy,
+	spreadsheetView as spreadsheet,
+	nodeEditorView as nodeEditor,
+	editorView as editor,
 };
 
 export type { IconIdentifier, IconName, Icon, SerializedMultiPane, SerializedPaneLayout, SerializedSinglePane };

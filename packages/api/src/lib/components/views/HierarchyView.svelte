@@ -2,7 +2,7 @@
 	import { Project } from "@clara/api/project";
 	import { Group, Item, ItemType, type Node } from "@clara/api/database";
 	import { ContextMenu, Icon, HierarchyView } from "@clara/api/components";
-	import { MultiPane, PaneLayout, SinglePane } from "@clara/api/ui";
+	import { GroupTab, MultiPane, PaneLayout, SinglePane } from "@clara/api/ui";
 
 	let {
 		entry = $bindable(Project.get() ? Project.get()!.database : null!),
@@ -11,6 +11,8 @@
 		demo = false,
 		pane = $bindable(),
 		layout = $bindable(),
+		setPane,
+		tab,
 	}: {
 		entry?: Node;
 		hideRoot?: boolean;
@@ -18,6 +20,8 @@
 		demo?: boolean;
 		pane?: SinglePane;
 		layout?: PaneLayout;
+		tab?: GroupTab;
+		setPane?: (pane: PaneLayout) => void;
 	} = $props();
 
 	let expanded = $derived(hideRoot || demo);
@@ -40,12 +44,24 @@
 
 		if (!pane) return;
 
-		const tab = entry.newTab();
-		if (tab) {
-			const newPane = new SinglePane();
-			newPane.tabline.appendTab(tab);
-			newPane.selectedTabID = tab.id;
-			layout = new MultiPane("horizontal", pane, newPane, 0.25);
+		if (
+			event.composedPath().some(element => "hasAttribute" in element && (element as HTMLElement).hasAttribute("contenteditable"))
+		) {
+			return;
+		}
+
+		const newTab = entry.newTab();
+		if (newTab) {
+			if (pane.sibling instanceof SinglePane) {
+				pane.sibling.tabline.appendTab(newTab);
+				pane.sibling.selectedTabID = newTab.id;
+			} else {
+				const newPane = new SinglePane();
+				newPane.tabline.appendTab(newTab);
+				newPane.selectedTabID = newTab.id;
+				let layout = new MultiPane("horizontal", pane, newPane, 0.22);
+				setPane!(layout);
+			}
 		}
 	}
 
@@ -130,9 +146,9 @@
 	{#if entry.children.filter(child => child instanceof Group || !child.hidden).length !== 0}
 		<ul class={{ expanded }}>
 			{#each entry.sortedChildren as child (child.id)}
-				{#if child instanceof Group || !child.hidden}
+				{#if child instanceof Group || (child instanceof Item && !child.hidden)}
 					<li style:padding-left={hideRoot && entry.isRoot ? "0px" : "1.25rem"}>
-						<HierarchyView bind:pane {demo} {hideRoot} entry={child} subtree />
+						<HierarchyView bind:pane {demo} {hideRoot} entry={child} subtree {setPane} />
 					</li>
 				{/if}
 			{/each}
@@ -147,7 +163,7 @@
 				<Icon name="ChevronRight" style="margin-left: auto;" />
 				<ContextMenu>
 					{#if Project.get()}
-						{#each Project.get()!.types.filter(type => !["Document", "Node"].includes(type.name)) as itemType}
+						{#each Project.get()!.types.filter(type => !["Document", "Node"].includes(type.name) && !type.hidden) as itemType}
 							<button onmousedown={newItem(itemType)}>
 								<Icon name={itemType.icon.name} />
 								{itemType.name}

@@ -1,10 +1,8 @@
-import { assignedLater } from "../util/index.svelte";
+import { assignedLater, uniqueId } from "../util/index.svelte";
 import { Point2D, type Point2DLike } from "../math/matrix.svelte";
 import { Circle } from "../math/shape.svelte";
 import { Color } from "./attribute/color.svelte";
 import { GraphOutline } from "./database.svelte";
-
-let nextID = 0; // TODO: ensure this doesnt get fricked when deserializing
 
 export abstract class TreeNode<Branch extends TreeBranch<Branch, Leaf>, Leaf extends TreeLeaf<Branch, Leaf>> {
 	private static paddingMultiplier = 1.1;
@@ -27,7 +25,7 @@ export abstract class TreeNode<Branch extends TreeBranch<Branch, Leaf>, Leaf ext
 	public readonly id: number;
 
 	protected constructor() {
-		this.id = nextID++;
+		this.id = uniqueId();
 	}
 
 	public get parent() {

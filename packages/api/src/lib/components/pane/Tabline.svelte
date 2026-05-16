@@ -29,15 +29,14 @@
 		onclose();
 	}
 
-	function createTab(group?: Group, view?: View) {
+	function createTab(group?: Group) {
 		let tabGroup = (group ?? currentTab() instanceof GroupTab) ? (currentTab() as GroupTab).group : Project.get()!.database;
 		let tab = new GroupTab(tabGroup.id);
-		if (view) tab.view = view;
 		pane.tabline.appendTab(tab);
 		pane.selectedTabID = tab.id;
 	}
 
-	function currentTab<T extends Tab>(): T {
+	function currentTab<T extends Tab<any>>(): T {
 		return pane.tabline.getTabByID(pane.selectedTabID) as T;
 	}
 
@@ -85,10 +84,10 @@
 		paneSettingsMenu.close();
 	}
 
-	function setView(name: View) {
+	function setView(view: View<any>) {
 		return function () {
 			tabContextMenu.close();
-			currentTab<GroupTab>().view = name;
+			currentTab().view = view;
 		};
 	}
 

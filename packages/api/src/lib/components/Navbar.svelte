@@ -1,21 +1,29 @@
+<script lang="ts" module>
+	export type NavbarButton = {
+		icon: IconIdentifier;
+		render: Snippet<[() => void]>;
+	};
+
+	let buttons: SvelteMap<NavbarButton, boolean> = $state(new SvelteMap());
+
+	export function registerNavbarButton(button: NavbarButton) {
+		buttons.set(button, false);
+	}
+</script>
+
 <script lang="ts">
 	import { getCurrentWindow } from "@tauri-apps/api/window";
-	import {
-		ContextMenu,
-		LittleButton,
-		ManualPopup,
-		NewProjectPopup,
-		SettingsPopup,
-		ProjectSettingsPopup,
-	} from "@clara/api/components";
+	import { ContextMenu, LittleButton, NewProjectPopup, SettingsPopup, ProjectSettingsPopup } from "@clara/api/components";
 	import { Project } from "@clara/api/project";
 	import { Icon } from "@clara/api/components";
+	import type { IconIdentifier } from "@clara/api/icons";
+	import type { Snippet } from "svelte";
+	import { SvelteMap } from "svelte/reactivity";
 
 	let projectMenu: ContextMenu;
 
 	let projectSettingsPopup: ProjectSettingsPopup | null = $state(null);
 	let newProjectPopup: NewProjectPopup;
-	let manualPopup: ManualPopup;
 	let settingsPopup: SettingsPopup;
 
 	async function saveProject() {
@@ -49,26 +57,28 @@
 			(event.currentTarget as HTMLElement).blur();
 		}
 	}
+
+	$inspect(buttons);
 </script>
 
 <nav>
 	<div>
 		<div class="wrapper">
-			<LittleButton size={16} icon="Folder" onmousedown={() => projectMenu.toggle()} />
+			<LittleButton icon="Folder" onmousedown={() => projectMenu.toggle()} />
 			<ContextMenu bind:this={projectMenu} top="120%" left="0px">
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div onmousedown={() => Project.open()} class={["cm-button"]}>
-					<Icon name="Folder" size={16} />
+					<Icon name="Folder" />
 					<span>Open project</span>
 
 					<Icon name="ChevronRight" style="margin-left: auto;" />
 					<ContextMenu>
 						<button>
-							<Icon name="Clock" size={16} />
+							<Icon name="Clock" />
 							<span>Recent</span>
 						</button>
 						<button onmousedown={openProject}>
-							<Icon name="Folder" size={16} />
+							<Icon name="Folder" />
 							<span>Browse</span>
 						</button>
 					</ContextMenu>
@@ -79,7 +89,7 @@
 						projectMenu.close();
 					}}
 				>
-					<Icon name="CirclePlus" size={16} />
+					<Icon name="CirclePlus" />
 					<span>New project</span>
 				</button>
 				<hr />
@@ -91,25 +101,37 @@
 					}}
 					class={["cm-button", !Project.get() && "disabled"]}
 				>
-					<Icon name="Settings" size={16} />
+					<Icon name="Settings" />
 					<span>Project settings</span>
 				</div>
 				<button disabled={!Project.get()} onmousedown={saveProject}>
-					<Icon name="Save" size={16} />
+					<Icon name="Save" />
 					<span>Save project</span>
 				</button>
 				<button disabled={!Project.get()}>
-					<Icon name="Save" size={16} />
+					<Icon name="Save" />
 					<span>Save project as...</span>
 				</button>
 				<button disabled={!Project.get()}>
-					<Icon name="TextCursorInput" size={16} />
+					<Icon name="TextCursorInput" />
 					<span>Rename Project</span>
 				</button>
 			</ContextMenu>
 		</div>
-		<LittleButton size={16} icon="Settings" onmousedown={() => settingsPopup.open()} />
-		<LittleButton size={16} icon="CircleQuestionMark" onmousedown={() => manualPopup.open()} />
+		<LittleButton icon="Settings" onmousedown={() => settingsPopup.open()} />
+
+		{#each buttons as [button, open]}
+			<LittleButton
+				icon={button.icon}
+				onmousedown={() => {
+					console.log("press");
+					buttons.set(button, true);
+				}}
+			/>
+			{#if open}
+				{@render button.render(() => buttons.set(button, false))}
+			{/if}
+		{/each}
 	</div>
 
 	{#if Project.get()}
@@ -121,9 +143,9 @@
 	{/if}
 
 	<div class="controls">
-		<LittleButton icon="Minus" onmousedown={minimize} size={16} />
+		<LittleButton icon="Minus" onmousedown={minimize} />
 		<LittleButton icon="Square" onmousedown={maximize} size={12} />
-		<LittleButton icon="X" onmousedown={close} accent="var(--red)" size={16} />
+		<LittleButton icon="X" onmousedown={close} accent="var(--red)" />
 	</div>
 </nav>
 
@@ -131,7 +153,6 @@
 {#if Project.get()}
 	<ProjectSettingsPopup bind:this={projectSettingsPopup} />
 {/if}
-<ManualPopup bind:this={manualPopup} />
 <SettingsPopup bind:this={settingsPopup} />
 
 <style>

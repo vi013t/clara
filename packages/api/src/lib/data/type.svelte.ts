@@ -1,13 +1,15 @@
 import { getIcon, type Icon, type IconIdentifier, type IconName } from "@clara/api/icons";
 import { type Cloneable, type Serialize } from "@clara/api/utils";
-import { AttributeDefinition, type SerializedAttributeDefinition } from "@clara/api/attribute";
+import { AttributeDefinition, AttributeValue, type SerializedAttributeDefinition } from "@clara/api/attribute";
+import { views, type AttributeView, type GroupView, type ItemView } from "../ui/views.svelte";
 
 export type SerializedItemType = {
 	name: string;
 	icon: string;
 	attributes: SerializedAttributeDefinition[];
 	pluralName: string | null;
-	defaultValue: "editor" | "node" | null;
+	defaultView: string | null;
+	hidden: boolean;
 };
 
 export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemType> {
@@ -15,7 +17,8 @@ export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemTy
 	public icon: Icon;
 	public attributes: AttributeDefinition[];
 	public pluralName: string;
-	public defaultView: "editor" | "node" | null;
+	public defaultView_: string | null;
+	public hidden: boolean;
 
 	public constructor({
 		name,
@@ -23,19 +26,26 @@ export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemTy
 		attributes,
 		pluralName,
 		defaultView,
+		hidden,
 	}: {
 		name: string;
 		icon: IconIdentifier;
 		attributes: AttributeDefinition[];
 
 		pluralName?: string;
-		defaultView?: "editor" | "node";
+		defaultView?: string;
+		hidden?: true;
 	}) {
 		this.name = $state(name);
 		this.icon = $state(getIcon(icon));
 		this.attributes = $state(attributes);
 		this.pluralName = $state(pluralName ?? `${this.name}s`);
-		this.defaultView = $state(defaultView ?? null);
+		this.defaultView_ = $state(defaultView ?? null);
+		this.hidden = hidden ?? false;
+	}
+
+	public get defaultView(): ItemView | AttributeView | null {
+		return views().find(view => view.name === this.defaultView_) as ItemView | AttributeView | null;
 	}
 
 	public clone(): ItemType {
@@ -43,7 +53,7 @@ export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemTy
 			name: this.name,
 			icon: this.icon,
 			attributes: this.attributes.map(attribute => attribute.clone()),
-			defaultView: this.defaultView ?? undefined,
+			defaultView: this.defaultView_ ?? undefined,
 		});
 	}
 
@@ -53,7 +63,8 @@ export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemTy
 			icon: this.icon.name,
 			attributes: this.attributes.map(attribute => attribute.serialize()),
 			pluralName: this.pluralName,
-			defaultValue: this.defaultView,
+			defaultView: this.defaultView_,
+			hidden: this.hidden,
 		};
 	}
 
@@ -63,7 +74,7 @@ export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemTy
 			icon: getIcon(itemType.icon as IconName),
 			attributes: itemType.attributes.map(attribute => AttributeDefinition.deserialize(attribute)),
 			pluralName: itemType.pluralName ?? undefined,
-			defaultView: itemType.defaultValue ?? undefined,
+			defaultView: itemType.defaultView ?? undefined,
 		});
 	}
 }

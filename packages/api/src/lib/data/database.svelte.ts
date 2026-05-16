@@ -11,7 +11,7 @@ import { TreeBranch, TreeLeaf } from "./tree.svelte";
 import { Objects } from "../util/index.svelte";
 import { AttributeType } from "./attribute/type.svelte.ts";
 import { ItemType, type SerializedItemType } from "./type.svelte.ts";
-import { EditorTab, ItemTab, NodeEditorTab } from "@clara/api/ui";
+import { AttributeTab, ItemTab, Tab, view } from "@clara/api/ui";
 
 export { ItemType };
 
@@ -108,15 +108,14 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 		return [this];
 	}
 
-	public newTab(): ItemTab | null {
+	public newTab(): Tab<any> | null {
 		if (!this.type.defaultView) return null;
 
-		const tabType = {
-			editor: EditorTab,
-			node: NodeEditorTab,
-		}[this.type.defaultView];
+		if (this.type.defaultView.type === "attribute") {
+			return new AttributeTab(this.attribute("Content"), this.type.defaultView);
+		}
 
-		return tabType.fromItem(this);
+		return new ItemTab(this.id, this.type.defaultView);
 	}
 }
 

@@ -56,7 +56,7 @@ export class Template implements Serialize<SerializedTemplate> {
 						new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") }),
 						new AttributeDefinition({ name: "Content", type: AttributeType.fromName("longText") }),
 					],
-					defaultView: "editor",
+					defaultView: "Editor",
 				}),
 				new ItemType({
 					name: "Node",
@@ -65,7 +65,7 @@ export class Template implements Serialize<SerializedTemplate> {
 						new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") }),
 						new AttributeDefinition({ name: "Generator", type: AttributeType.fromName("generated") }),
 					],
-					defaultView: "node",
+					defaultView: "Node Editor",
 				}),
 			);
 		}

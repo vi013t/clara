@@ -1,3 +1,4 @@
+import { Project } from "@clara/api/project";
 import { type Cloneable, type Serialize } from "../../util/index.svelte";
 import type { AttributeTypeValue } from "./type.svelte.ts";
 
@@ -57,5 +58,10 @@ export class EntriesAttribute extends PrimitiveArrayAttributeValue<number> imple
 
 	public clone(): EntriesAttribute {
 		return new EntriesAttribute([...this.values]);
+	}
+
+	public get entries() {
+		const items = Project.get()!.database.dfsItems();
+		return this.values.map(id => items.find(item => item.id === id)!);
 	}
 }

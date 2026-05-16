@@ -19,11 +19,13 @@ class UserSettings implements Serialize<SerializedUserSettings> {
 	private selectedTheme_: string;
 
 	private plugins_: ClaraPlugin<any>[] = $state([]);
+	public disabledPlugins_: string[] = $state([]);
 	public autosave = $state(true);
 
-	public hotkeys: { [Key in ActionName]?: Keybinding } = $state({
+	public hotkeys: Record<string, Keybinding> = $state({
 		"New Tab": key("n", "ctrl"),
 		"Save Project": key("s", "ctrl"),
+		"Open Command Palette": key("p", "ctrl"),
 	});
 
 	public constructor() {
@@ -44,6 +46,26 @@ class UserSettings implements Serialize<SerializedUserSettings> {
 		]);
 		this.themes_ = $state([]);
 		this.selectedTheme_ = $state("");
+	}
+
+	public disablePlugin(plugin: ClaraPlugin<any>) {
+		this.disabledPlugins_.push(plugin.identifier);
+	}
+
+	public enabledPlugins() {
+		return this.plugins.filter(plugin => this.isPluginEnabled(plugin));
+	}
+
+	public disabledPlugins() {
+		return this.plugins.filter(plugin => !this.isPluginEnabled(plugin));
+	}
+
+	public enablePlugin(plugin: ClaraPlugin<any>) {
+		this.disabledPlugins_ = this.disabledPlugins_.filter(identifier => identifier !== plugin.identifier);
+	}
+
+	public isPluginEnabled(plugin: ClaraPlugin<any>) {
+		return !this.disabledPlugins_.includes(plugin.identifier);
 	}
 
 	public addTheme(theme: Theme): void {
@@ -91,6 +113,10 @@ class UserSettings implements Serialize<SerializedUserSettings> {
 			selectedTheme: this.selectedTheme_,
 		};
 	}
+}
+
+export function registerHotkey(key: Keybinding, action: string) {
+	userSettings().hotkeys[action] = key;
 }
 
 let storedUserData: UserSettings | null = $state(null);

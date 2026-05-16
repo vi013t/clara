@@ -28,7 +28,7 @@
 	contenteditable
 	spellcheck="false"
 	autocapitalize="off"
-	style:rotate="{Math.random() * 10}deg"
+	style:rotate="{Math.random() * 5}deg"
 	bind:textContent={note.content}
 ></div>
 

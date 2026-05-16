@@ -1,18 +1,24 @@
+import { getIcon, type Icon, type IconIdentifier } from "@clara/api/ui";
 import { Project } from "../project.svelte.ts";
 import { userSettings } from "./index.svelte.ts";
 
-let actionListeners: { [Key in ActionName]?: () => void } = $state({
-	"Save Project": () => Project.save(),
-});
+let actionListeners: { name: string; actions: (() => any)[]; icon: Icon }[] = $state([
+	{ name: "Save Project", actions: [() => Project.save()], icon: getIcon("Save") },
+	{ name: "Open Command Palette", actions: [], icon: getIcon("Terminal") },
+]);
 
-export type ActionName = "New Tab" | "Save Project";
-
-export function onActionRequested(name: ActionName, callback: () => void): void {
-	actionListeners[name] = callback;
+export function actions() {
+	return actionListeners;
 }
 
+export type ActionName = "New Tab" | "Save Project" | "Open Command Palette";
+
 export function runAction(name: ActionName) {
-	actionListeners[name]?.();
+	actionListeners.find(action => action.name === name)?.actions.forEach(action => action());
+}
+
+export function onActionRequested(name: string, callback: () => void) {
+	actionListeners.find(action => action.name === name)!.actions.push(callback);
 }
 
 export type Modifier = "ctrl" | "alt" | "shift";
@@ -24,6 +30,10 @@ export type Keybinding = {
 
 export function key(key: string, ...modifiers: Modifier[]): Keybinding {
 	return { key, modifiers };
+}
+
+export function registerAction(name: string, icon: IconIdentifier) {
+	actionListeners.push({ name, actions: [], icon: getIcon(icon) });
 }
 
 function isEditable(element: HTMLElement) {

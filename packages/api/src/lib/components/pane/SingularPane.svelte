@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { AttributeTab, EditorTab, GroupTab, NodeEditorTab, PaneLayout, SinglePane } from "@clara/api/ui";
-	import { Editor, Tabline, NodeEditor } from "@clara/api/components";
+	import { AttributeTab, GroupTab, ItemTab, PaneLayout, SinglePane } from "@clara/api/ui";
+	import { Tabline } from "@clara/api/components";
 
 	let {
 		background = "var(--background)",
@@ -17,15 +17,22 @@
 	} = $props();
 
 	let tab = $derived(pane.tabline.getTabByID(pane.selectedTabID));
+
+	function setPane(newPane: PaneLayout) {
+		layout = newPane;
+	}
 </script>
 
 <section class="pane">
 	<Tabline bind:pane bind:anyPane={layout} {background} {subpane} {onclose} />
+
 	<div class="content" style:background>
 		{#if tab instanceof AttributeTab && tab.id === pane.selectedTabID}
-			{@render tab.view.render({ tab, pane, attribute: tab.attribute })}
+			{@render tab.view.render({ tab, pane, attribute: tab.attribute, setPane })}
 		{:else if tab instanceof GroupTab && tab.id === pane.selectedTabID}
-			{@render tab.view.render({ tab, pane, group: tab.group })}
+			{@render tab.view.render({ tab, pane, group: tab.group, setPane })}
+		{:else if tab instanceof ItemTab && tab.id === pane.selectedTabID}
+			{@render tab.view.render({ tab, pane, item: tab.item, setPane })}
 		{/if}
 	</div>
 </section>

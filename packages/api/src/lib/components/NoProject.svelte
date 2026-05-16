@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { Project } from "@clara/api/project";
-	import { ManualPopup, NewProjectPopup } from "@clara/api/components";
+	import { NewProjectPopup } from "@clara/api/components";
 
-	let manualPopup: ManualPopup;
 	let newProjectPopup: NewProjectPopup;
 </script>
 
@@ -12,10 +11,8 @@
 		<button onmousedown={() => Project.open()}>Open project</button>
 		<button onmousedown={() => newProjectPopup.open()}>Create project</button>
 	</div>
-	<button onmousedown={() => manualPopup.open()}>Where am I?</button>
 </section>
 
-<ManualPopup bind:this={manualPopup} />
 <NewProjectPopup bind:this={newProjectPopup} />
 
 <style>
@@ -32,16 +29,6 @@
 		p {
 			color: #a6adb8;
 			font-size: 0.85rem;
-		}
-
-		> button {
-			color: var(--blue);
-			font-style: italic;
-			font-size: 0.85rem;
-
-			&:hover {
-				text-decoration: underline;
-			}
 		}
 
 		div {

@@ -88,6 +88,7 @@ pub struct ItemType {
 	attributes: Vec<AttributeDefinition>,
 	default_view: Option<String>,
 	plural_name: Option<String>,
+	hidden: bool,
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
@@ -167,6 +168,7 @@ pub struct Item {
 	id: Id,
 	attributes: std::collections::HashMap<String, Option<AttributeValue>>,
 	r#type: ItemType,
+	hidden: bool,
 }
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]

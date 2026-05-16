@@ -1,32 +1,44 @@
-import {
-	AttributeRef,
-	NodeInstance,
-	RichText,
-	Style,
-	StyledText,
-	type GeneratedAttribute,
-	type SerializedAttributeRef,
-} from "@clara/api/attribute";
+import { AttributeRef, RichText, StringAttribute, Style, StyledText, type SerializedAttributeRef } from "@clara/api/attribute";
 import { Item, type Group } from "@clara/api/database";
-import { uniqueId, type Cloneable, type Id, type Serialize } from "@clara/api/utils";
+import { todo, uniqueId, unreachable, type Cloneable, type Id, type Serialize } from "@clara/api/utils";
 import { type IconIdentifier, getIcon, type Icon, type IconName, SinglePane, views } from "@clara/api/ui";
 import { Project } from "@clara/api/project";
-import { type GroupView, type ItemView, view, type View } from "./views.svelte";
+import {
+	type AttributeView,
+	type GroupView,
+	type ItemView,
+	view,
+	type View,
+	type ViewInterface,
+	viewIs,
+	type ViewType,
+	type ViewTypeOf,
+} from "./views.svelte";
 
-export abstract class Tab<V extends View = View> implements Cloneable<Tab<V>>, Serialize<unknown> {
+export type TabConstructor<V extends ViewType> = V extends "group"
+	? { new (group: number, icon?: IconIdentifier): GroupTab }
+	: V extends "item"
+		? { new (item: Id, view: View<"item">, icon?: IconIdentifier): ItemTab }
+		: V extends "attribute"
+			? { new (attribute: AttributeRef, view: View<"attribute">, icon?: IconIdentifier): AttributeTab }
+			: never;
+
+export abstract class Tab<V extends View<T>, T extends ViewType = ViewTypeOf<V>>
+	implements Cloneable<Tab<V, T>>, Serialize<unknown>
+{
 	public readonly id = $state(uniqueId());
 	private icon_: Icon;
-	public view: View;
+	public view: V;
 
-	public constructor(icon: IconIdentifier, view: View) {
+	public constructor(icon: IconIdentifier, view: V) {
 		this.icon_ = $state(getIcon(icon));
 		this.view = $state(view);
 	}
 
-	public abstract clone(): Tab<V>;
+	public abstract clone(): Tab<V, T>;
 	public abstract serialize(): unknown;
 	public abstract get title(): string;
-	public abstract get possibleViews(): View[];
+	public abstract get possibleViews(): V[];
 
 	public get icon(): Icon {
 		return this.icon_;
@@ -34,6 +46,22 @@ export abstract class Tab<V extends View = View> implements Cloneable<Tab<V>>, S
 
 	public set icon(icon: IconIdentifier) {
 		this.icon_ = getIcon(icon);
+	}
+
+	public static fromView<T extends ViewType>(view: ViewInterface<T>): TabConstructor<T> {
+		if (viewIs(view, "group")) {
+			return GroupTab as unknown as TabConstructor<T>;
+		}
+
+		if (viewIs(view, "item")) {
+			return ItemTab as unknown as TabConstructor<T>;
+		}
+
+		if (viewIs(view, "attribute")) {
+			return AttributeTab as unknown as TabConstructor<T>;
+		}
+
+		unreachable();
 	}
 }
 
@@ -54,7 +82,7 @@ export class GroupTab extends Tab<GroupView> implements Serialize<SerializedGrou
 				Project.get()!
 					.database.dfs()
 					.find(node => node.id === group)!.icon,
-			views().find(view => view.name === "Hierarchy")!,
+			view("Hierarchy")!,
 		);
 		this.groupID = $state(group);
 	}
@@ -66,7 +94,7 @@ export class GroupTab extends Tab<GroupView> implements Serialize<SerializedGrou
 	}
 
 	public get title(): string {
-		return this.group.name;
+		return this.group?.name ?? "";
 	}
 
 	public clone(): GroupTab {
@@ -77,8 +105,8 @@ export class GroupTab extends Tab<GroupView> implements Serialize<SerializedGrou
 		this.groupID = group.id;
 	}
 
-	public get possibleViews(): View[] {
-		return views().filter(view => view.type === "group");
+	public get possibleViews(): GroupView[] {
+		return views().filter(view => view.type === "group") as View<"group">[];
 	}
 
 	public serialize(): SerializedGroupTab {
@@ -99,77 +127,91 @@ export class GroupTab extends Tab<GroupView> implements Serialize<SerializedGrou
 	}
 }
 
-export abstract class ItemTab extends Tab<ItemView> {
-	protected item_: Id;
+export type SerializedItemTab = {
+	type: "item";
+	id: Id;
+	view: string;
+	icon: IconName;
+};
 
-	protected constructor(item: Id, icon: IconIdentifier, view: View) {
-		super(icon, view);
+export class ItemTab extends Tab<ItemView> {
+	private item_: Id;
+
+	public constructor(item: Id, view: ItemView, icon?: IconIdentifier) {
+		super(
+			icon ??
+				Project.get()!
+					.database.dfsItems()
+					.find(other => other.id === item)!.icon,
+			view,
+		);
 		this.item_ = $state(item);
+	}
+
+	public clone(): Tab<ItemView> {
+		return new ItemTab(this.item_, this.view, this.icon);
+	}
+
+	public serialize(): SerializedItemTab {
+		return { type: "item", id: this.item_, view: this.view.name, icon: this.icon.name };
+	}
+
+	public static deserialize(tab: SerializedItemTab): ItemTab {
+		return new ItemTab(tab.id, view(tab.view)!, tab.icon);
+	}
+
+	public get item(): Item {
+		return Project.get()!
+			.database.dfsItems()
+			.find(item => item.id === this.item_)!;
+	}
+
+	public get title(): string {
+		return (this.item.attributes.Name as StringAttribute).value;
+	}
+
+	public get possibleViews(): ItemView[] {
+		return views().filter(view => view.type === "item") as ItemView[];
 	}
 }
 
-export abstract class AttributeTab extends ItemTab {
+type SerializedAttributeTab = {
+	attribute: SerializedAttributeRef;
+	type: "attribute";
+	view: string;
+	icon: IconName;
+};
+
+export class AttributeTab extends Tab<AttributeView> {
 	public attribute: AttributeRef;
 
-	public constructor(attribute: AttributeRef, view: View, icon?: IconIdentifier) {
-		super(attribute.item.id, icon ?? attribute.item.type.icon, view);
+	public constructor(attribute: AttributeRef, view: AttributeView, icon?: IconIdentifier) {
+		super(icon ?? attribute.item.type.icon, view);
 		this.attribute = $state(attribute);
+	}
+
+	public clone(): AttributeTab {
+		return new AttributeTab(this.attribute.clone(), this.view, this.icon);
+	}
+
+	public serialize(): SerializedAttributeTab {
+		return { type: "attribute", attribute: this.attribute.serialize(), view: this.view.name, icon: this.icon.name };
+	}
+
+	public static deserialize(tab: SerializedAttributeTab): AttributeTab {
+		return new AttributeTab(AttributeRef.deserialize(tab.attribute), view(tab.view)!, getIcon(tab.icon));
 	}
 
 	public get item(): Item {
 		return this.attribute.item;
 	}
 
-	public get possibleViews(): View[] {
-		return views().filter(view => view.type === "attribute");
+	public get possibleViews(): AttributeView[] {
+		return views().filter(view => view.type === "attribute") as AttributeView[];
 	}
 
 	public get title(): string {
 		return `${this.attribute.item.name} > ${this.attribute.name}`;
-	}
-}
-
-export type SerializedNodeEditorTab = {
-	id: number;
-	type: "node";
-	attribute: SerializedAttributeRef;
-};
-
-export class NodeEditorTab extends AttributeTab {
-	public constructor(attribute: AttributeRef) {
-		super(attribute, view("Node Editor")!, "GitCompare");
-	}
-
-	public get nodes(): NodeInstance[] {
-		return (this.attribute.value as GeneratedAttribute).generator.nodes;
-	}
-
-	public clone(): NodeEditorTab {
-		return new NodeEditorTab(this.attribute);
-	}
-
-	public override serialize(): SerializedNodeEditorTab {
-		return {
-			type: "node",
-			id: this.id,
-			attribute: this.attribute.serialize(),
-		};
-	}
-
-	public static deserialize(tab: SerializedNodeEditorTab): NodeEditorTab {
-		const nodeEditorTab = new NodeEditorTab(AttributeRef.deserialize(tab.attribute));
-		(nodeEditorTab as any).id = tab.id;
-		return nodeEditorTab;
-	}
-
-	public static fromItem(item: Item): NodeEditorTab {
-		return new NodeEditorTab(
-			item.attribute(
-				Object.keys(item.attributes).find(
-					name => item.type.attributes.find(def => def.name === name)!.typeName === "generated",
-				)![0],
-			),
-		);
 	}
 }
 
@@ -181,22 +223,6 @@ export class EditorTab extends AttributeTab {
 		super(attribute, view("Editor")!, "Pencil");
 		if (!this.attribute.value) this.attribute.value = new RichText();
 		this.cursor = $state({ part: 0, position: 0 });
-	}
-
-	public override serialize(): SerializedEditorTab {
-		return {
-			type: "editor",
-			id: this.id,
-			attribute: this.attribute.serialize(),
-		};
-	}
-
-	public clone(): EditorTab {
-		return new EditorTab(this.attribute);
-	}
-
-	public get content(): RichText {
-		return this.attribute.value as RichText;
 	}
 
 	public static fromItem(item: Item): EditorTab {
@@ -233,12 +259,6 @@ export class EditorTab extends AttributeTab {
 		this.cursor.position = this.content.parts[this.cursor.part].text.length;
 	}
 
-	public static deserialize(tab: SerializedEditorTab): EditorTab {
-		const editor = new EditorTab(AttributeRef.deserialize(tab.attribute));
-		(editor as any).id = tab.id;
-		return editor;
-	}
-
 	public styleRange(start: number, end: number, style: Style, override?: true) {
 		const cursor = this.saveCursor();
 		this.attribute.valueAs<RichText>()!.styleRange(start, end, style, override);
@@ -246,18 +266,13 @@ export class EditorTab extends AttributeTab {
 	}
 }
 
-export type SerializedEditorTab = {
-	attribute: SerializedAttributeRef;
-	type: "editor";
-	id: number;
-};
-
-export type SerializedTab = SerializedEditorTab | SerializedGroupTab | SerializedNodeEditorTab;
+export type SerializedTab = SerializedItemTab | SerializedGroupTab | SerializedAttributeTab;
 
 function deserializeTab(tab: SerializedTab): Tab<any> {
-	if (tab.type === "editor") return EditorTab.deserialize(tab);
-	if (tab.type === "node") return NodeEditorTab.deserialize(tab);
-	return GroupTab.deserialize(tab);
+	if (tab.type === "item") return ItemTab.deserialize(tab);
+	if (tab.type === "group") return GroupTab.deserialize(tab);
+	if (tab.type === "attribute") return AttributeTab.deserialize(tab);
+	unreachable();
 }
 
 export type SerializedTabList = {

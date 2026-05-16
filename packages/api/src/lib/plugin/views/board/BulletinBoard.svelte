@@ -1,69 +1,70 @@
 <script lang="ts">
 	import { ContextMenu, Icon, InfiniteCanvas } from "@clara/api/components";
-	import { Item, ItemType, type Group } from "@clara/api/database";
-	import { AttributeDefinition, AttributeType, Color, NumberAttribute, StringAttribute } from "@clara/api/attribute";
+	import { Item, type Group } from "@clara/api/database";
+	import { Color, NumberAttribute, StringAttribute } from "@clara/api/attribute";
 	import StickyNote, { type Note } from "./StickyNote.svelte";
 	import { Project } from "@clara/api/project";
 	import { Rectangle } from "@clara/api/math";
 	import { uniqueId } from "@clara/api/utils";
+	import { EntriesAttribute } from "../../../data/attribute/primitive.svelte.ts";
 
-	let { group }: { group: Group } = $props();
-
-	if (!Project.get()!.types.some(type => type.name === "Sticky Note")) {
-		Project.get()!.types.push(
-			new ItemType({
-				name: "Sticky Note",
-				icon: "StickyNote",
-				attributes: [
-					new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") }),
-					new AttributeDefinition({ name: "Content", type: AttributeType.fromName("longText") }),
-					new AttributeDefinition({ name: "Color", type: AttributeType.fromName("color") }),
-					new AttributeDefinition({ name: "x", type: AttributeType.fromName("number"), hidden: true }),
-					new AttributeDefinition({ name: "y", type: AttributeType.fromName("number"), hidden: true }),
-					new AttributeDefinition({ name: "width", type: AttributeType.fromName("number"), hidden: true }),
-					new AttributeDefinition({ name: "height", type: AttributeType.fromName("number"), hidden: true }),
-				],
-			}),
-		);
-	}
+	let { item }: { item: Item } = $props();
 
 	let contextMenu: ContextMenu;
 
+	function ensureNotes() {
+		if (!item.attributes.Notes) {
+			item.attribute("Notes").value = new EntriesAttribute([]);
+		}
+	}
+
+	ensureNotes();
+
+	$effect(() => {
+		ensureNotes();
+	});
+
 	let notes: Note[] = $derived(
-		group
-			.dfsItems()
-			.filter(item => item.type.name === "Sticky Note")
-			.map(note => ({
-				content: "",
-				color: Color.white,
-				box: Rectangle.fromXYWH({
-					x: (note.attributes.x as NumberAttribute).value,
-					y: (note.attributes.y as NumberAttribute).value,
-					width: (note.attributes.width as NumberAttribute).value,
-					height: (note.attributes.height as NumberAttribute).value,
-				}),
-			})),
+		item
+			.attribute("Notes")
+			.valueAs<EntriesAttribute>()!
+			.entries.map(entry => {
+				const x = entry.attribute("X").valueAs<NumberAttribute>()!.value;
+				const y = entry.attribute("Y").valueAs<NumberAttribute>()!.value;
+				const width = entry.attribute("Width").valueAs<NumberAttribute>()!.value;
+				const height = entry.attribute("Height").valueAs<NumberAttribute>()!.value;
+				const color = entry.attribute("Color").valueAs<Color>()!;
+				const content = entry.attribute("Content").valueAs<StringAttribute>()!.value;
+				return {
+					color,
+					content,
+					box: Rectangle.fromXYWH({ x, y, width, height }),
+				};
+			}),
 	);
 
 	function newNote(event: MouseEvent) {
-		const item = new Item(
+		const note = new Item(
 			Project.get()!.types.find(type => type.name === "Sticky Note")!,
 			{
 				Name: new StringAttribute(`Sticky Note ${uniqueId()}`),
 				Content: new StringAttribute(""),
-				x: new NumberAttribute(event.x),
-				y: new NumberAttribute(event.y),
-				width: new NumberAttribute(200),
-				height: new NumberAttribute(200),
+				X: new NumberAttribute(event.x),
+				Y: new NumberAttribute(event.y),
+				Width: new NumberAttribute(200),
+				Height: new NumberAttribute(200),
+				Color: Color.hex("#f38ba8"),
 			},
 			{ hidden: true },
 		);
-		group.addChild(item);
+		Project.get()!.database.addChild(note);
+		item.attribute("Notes").valueAs<EntriesAttribute>()!.values.push(note.id);
+
 		contextMenu.close();
 	}
 </script>
 
-<InfiniteCanvas oncontextmenu={event => contextMenu.openAtMouse(event)}>
+<InfiniteCanvas oncontextmenu={(event: MouseEvent) => contextMenu.openAtMouse(event)}>
 	{#each notes as note, index}
 		<StickyNote bind:note={notes[index]} />
 	{/each}

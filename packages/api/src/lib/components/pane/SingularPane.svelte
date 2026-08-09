@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { AttributeTab, GroupTab, ItemTab, PaneLayout, SinglePane } from "@clara/api/ui";
 	import { Tabline } from "@clara/api/components";
+	import { AttributeTab, GroupTab, ItemTab, PaneLayout, SinglePane } from "@clara/api/ui";
 
 	let {
 		background = "var(--background)",
@@ -24,7 +24,7 @@
 </script>
 
 <section class="pane">
-	<Tabline bind:pane bind:anyPane={layout} {background} {subpane} {onclose} />
+	<Tabline bind:pane bind:paneLayout={layout} {background} {subpane} {onclose} />
 
 	<div class="content" style:background>
 		{#if tab instanceof AttributeTab && tab.id === pane.selectedTabID}

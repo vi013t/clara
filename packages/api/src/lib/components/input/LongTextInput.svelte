@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { AttributeContext, AttributeRef } from "@clara/api/attribute";
+	import type { AttributeBox, AttributeContext, AttributeRef } from "@clara/api/attribute";
 	import { AttributeTab, editor, SinglePane } from "@clara/api/ui";
 
 	let {
@@ -8,12 +8,12 @@
 		attribute = $bindable(),
 	}: {
 		pane: SinglePane;
-		attribute: AttributeRef;
+		attribute: AttributeBox;
 		context: AttributeContext;
 	} = $props();
 
-	function openEditor(attribute: AttributeRef) {
-		let tab = new AttributeTab(attribute, editor);
+	function openEditor(attribute: AttributeBox) {
+		let tab = new AttributeTab(attribute as AttributeRef, editor); // todo cast
 		pane.tabline.appendTab(tab);
 		pane.selectedTabID = tab.id;
 	}

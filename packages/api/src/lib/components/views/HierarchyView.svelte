@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Project } from "@clara/api/project";
+	import { ContextMenu, HierarchyView, Icon } from "@clara/api/components";
 	import { Group, Item, ItemType, type Node } from "@clara/api/database";
-	import { ContextMenu, Icon, HierarchyView } from "@clara/api/components";
+	import { Project } from "@clara/api/project";
 	import { GroupTab, MultiPane, PaneLayout, SinglePane } from "@clara/api/ui";
 
 	let {
@@ -56,10 +56,10 @@
 				pane.sibling.tabline.appendTab(newTab);
 				pane.sibling.selectedTabID = newTab.id;
 			} else {
-				const newPane = new SinglePane();
+				const newPane = new SinglePane(true);
 				newPane.tabline.appendTab(newTab);
 				newPane.selectedTabID = newTab.id;
-				let layout = new MultiPane("horizontal", pane, newPane, 0.22);
+				let layout = new MultiPane(pane.hasParent, "horizontal", pane, newPane, 0.22);
 				setPane!(layout);
 			}
 		}

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { AttributeRef, NumberAttribute } from "@clara/api/attribute";
+	import { NumberAttribute, type AttributeBox } from "@clara/api/attribute";
 
-	let { attribute = $bindable(), background = "transparent" }: { attribute: AttributeRef; background?: string } = $props();
+	let { attribute = $bindable(), background = "transparent" }: { attribute: AttributeBox; background?: string } = $props();
 
 	function typeKey(event: KeyboardEvent) {
 		if (event.key === "Enter") (event.target as HTMLElement).blur();

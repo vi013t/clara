@@ -6,6 +6,7 @@ export type SerializedPaneLayout = SerializedSinglePane | SerializedMultiPane;
 
 export abstract class PaneLayout implements Cloneable<PaneLayout>, Serialize<SerializedPaneLayout> {
 	public sibling: PaneLayout | null = $state(null);
+	public hasParent = $state(false);
 
 	public abstract get split(): string;
 	public abstract clone(): PaneLayout;
@@ -26,14 +27,16 @@ export type SerializedSinglePane = {
 	split: "none";
 	tabline: SerializedTabList;
 	selectedTabID: number;
+	hasParent: boolean;
 };
 
 export class SinglePane extends PaneLayout {
 	public tabline: TabList;
 	public selectedTabID: number;
 
-	public constructor(tabline?: TabList, selectedTabID?: number) {
+	public constructor(hasParent: boolean, tabline?: TabList, selectedTabID?: number) {
 		super();
+		this.hasParent = hasParent;
 		this.tabline = $state(tabline ?? new TabList([]));
 		this.selectedTabID = $state(selectedTabID ?? this.tabline.tabs[0]?.id ?? 0);
 	}
@@ -48,6 +51,7 @@ export class SinglePane extends PaneLayout {
 
 	public serialize(): SerializedSinglePane {
 		return {
+			hasParent: this.hasParent,
 			split: "none",
 			tabline: this.tabline.serialize(),
 			selectedTabID: this.selectedTabID,
@@ -55,11 +59,11 @@ export class SinglePane extends PaneLayout {
 	}
 
 	public clone(): SinglePane {
-		return new SinglePane(this.tabline.clone(), this.selectedTabID);
+		return new SinglePane(this.hasParent, this.tabline.clone(), this.selectedTabID);
 	}
 
 	public static deserialize(pane: SerializedSinglePane): SinglePane {
-		return new SinglePane(TabList.deserialize(pane.tabline), pane.selectedTabID);
+		return new SinglePane(pane.hasParent, TabList.deserialize(pane.tabline), pane.selectedTabID);
 	}
 }
 
@@ -67,6 +71,7 @@ export type SerializedMultiPane = {
 	split: "horizontal" | "vertical";
 	percent: number;
 	panes: [SerializedPaneLayout, SerializedPaneLayout];
+	hasParent: boolean;
 };
 
 export class MultiPane extends PaneLayout {
@@ -75,8 +80,15 @@ export class MultiPane extends PaneLayout {
 	public panes: [PaneLayout, PaneLayout];
 	public percent: number;
 
-	public constructor(split: "horizontal" | "vertical", first: PaneLayout, second: PaneLayout, percent: number) {
+	public constructor(
+		hasParent: boolean,
+		split: "horizontal" | "vertical",
+		first: PaneLayout,
+		second: PaneLayout,
+		percent: number,
+	) {
 		super();
+		this.hasParent = hasParent;
 		this.split_ = $state(split);
 		this.panes = $state([first, second]);
 		this.percent = $state(percent);
@@ -98,20 +110,27 @@ export class MultiPane extends PaneLayout {
 			split: this.split_,
 			percent: this.percent,
 			panes: [this.panes[0].serialize(), this.panes[1].serialize()],
+			hasParent: this.hasParent,
 		};
 	}
 
 	public clone(): MultiPane {
-		return new MultiPane(this.split, this.panes[0].clone(), this.panes[1].clone(), this.percent);
+		return new MultiPane(this.hasParent, this.split, this.panes[0].clone(), this.panes[1].clone(), this.percent);
 	}
 
 	public static deserialize(pane: SerializedMultiPane): MultiPane {
-		return new MultiPane(pane.split, PaneLayout.deserialize(pane.panes[0]), PaneLayout.deserialize(pane.panes[1]), pane.percent);
+		return new MultiPane(
+			pane.hasParent,
+			pane.split,
+			PaneLayout.deserialize(pane.panes[0]),
+			PaneLayout.deserialize(pane.panes[1]),
+			pane.percent,
+		);
 	}
 }
 
-let focusedPane_: PaneLayout = $state(new SinglePane());
-let rootPane_: PaneLayout = $state(new SinglePane());
+let rootPane_: PaneLayout = $state(new SinglePane(false));
+let focusedPane_: PaneLayout = $state(rootPane_);
 
 export function rootPane() {
 	return rootPane_;

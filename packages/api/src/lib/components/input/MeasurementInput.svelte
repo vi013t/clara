@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Measurement, type AttributeRef, type MeasurementType } from "@clara/api/attribute";
+	import { Measurement, type AttributeBox, type MeasurementType } from "@clara/api/attribute";
 	import { Icon } from "@clara/api/components";
 
-	let { attribute = $bindable(), type }: { attribute: AttributeRef; type: MeasurementType<any> } = $props();
+	let { attribute = $bindable(), type }: { attribute: AttributeBox; type: MeasurementType<any> } = $props();
 
 	// svelte-ignore state_referenced_locally
 	let unit = $state(type.units()[0]);

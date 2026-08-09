@@ -1,7 +1,8 @@
-import type { Cloneable, Serialize, Serialized } from "@clara/api/utils";
-import { AttributeType, attributeTypes, type AttributeTypeName } from "./type.svelte.ts";
-import type { Item } from "../database.svelte.ts";
 import { Project } from "@clara/api/project";
+import type { Cloneable, Serialize, Serialized } from "@clara/api/utils";
+import type { Item } from "../database.svelte.ts";
+import type { AttributeDefinition } from "./index.svelte.ts";
+import { AttributeType, attributeTypes, type AttributeTypeName } from "./type.svelte.ts";
 
 export class EmptyAttributeValue implements Serialize<{}>, Cloneable<EmptyAttributeValue> {
 	public clone(): EmptyAttributeValue {
@@ -22,7 +23,33 @@ export type SerializedAttributeRef = {
 	name: string;
 };
 
-export class AttributeRef implements Cloneable<AttributeRef>, Serialize<SerializedAttributeRef> {
+export interface AttributeBox {
+	set value(attributeValue: AttributeValue | null);
+	get value(): AttributeValue | null;
+	valueAs<T extends AttributeValue>(): T | null;
+}
+
+export class BasicAttributeBox implements AttributeBox {
+	private value_: AttributeValue | null = $state(null);
+
+	public constructor(value: AttributeValue | null) {
+		this.value_ = value;
+	}
+
+	set value(value: AttributeValue | null) {
+		this.value_ = value;
+	}
+
+	get value(): AttributeValue | null {
+		return this.value_;
+	}
+
+	valueAs<T extends AttributeValue>(): T | null {
+		return this.value as T | null;
+	}
+}
+
+export class AttributeRef implements Cloneable<AttributeRef>, Serialize<SerializedAttributeRef>, AttributeBox {
 	private item_: number;
 
 	public name: string;
@@ -56,6 +83,10 @@ export class AttributeRef implements Cloneable<AttributeRef>, Serialize<Serializ
 
 	public get value(): AttributeValue | null {
 		return this.item.attributes[this.name] ?? null;
+	}
+
+	public get definition(): AttributeDefinition {
+		return this.item.type.attributes.find(def => def.name === this.name)!;
 	}
 
 	public set value(value: AttributeValue | null) {

@@ -1,64 +1,73 @@
-import { AttributeDefinition, type SerializedAttributeDefinition } from "./definition.svelte.ts";
-import { RichText, StyledText, Style, type SerializedRichText } from "./richtext.svelte.ts";
-import { StringAttribute, NumberAttribute, PrimitiveArrayAttributeValue, PrimitiveAttributeValue } from "./primitive.svelte.ts";
-import {
-	attributeTypes,
-	AttributeType,
-	type AttributeTypeName,
-	type AttributeContext,
-	type AttributeTypeNameValue,
-} from "./type.svelte.ts";
-import { DateTime } from "./datetime.svelte.ts";
 import { Color } from "./color.svelte.ts";
-import { Measurement, Length, Weight, Meters, Kilograms, type MeasurementType } from "./measurement.svelte.ts";
-import { AttributeValue, type SerializedAttributeValue, AttributeRef, type SerializedAttributeRef } from "./value.svelte.ts";
+import { DateTime } from "./datetime.svelte.ts";
+import { AttributeDefinition, type SerializedAttributeDefinition } from "./definition.svelte.ts";
 import {
-	NodeType,
-	NodeParameter,
 	NodeArgument,
+	nodeCategoryColors,
 	NodeInstance,
+	NodeParameter,
+	NodeType,
 	nodeTypeColors,
+	type GeneratedAttribute,
+	type NodeNodeArgument,
 	type Type,
 	type ValueArgument,
-	type NodeNodeArgument,
-	nodeCategoryColors,
-	type GeneratedAttribute,
 } from "./generated.svelte.ts";
+import { Kilograms, Length, Measurement, Meters, Weight, type MeasurementType } from "./measurement.svelte.ts";
+import { NumberAttribute, PrimitiveArrayAttributeValue, PrimitiveAttributeValue, StringAttribute } from "./primitive.svelte.ts";
+import { RichText, Style, StyledText, type SerializedRichText } from "./richtext.svelte.ts";
+import {
+	AttributeType,
+	attributeTypes,
+	type AttributeContext,
+	type AttributeTypeName,
+	type AttributeTypeNameValue,
+} from "./type.svelte.ts";
+import {
+	AttributeRef,
+	AttributeValue,
+	BasicAttributeBox,
+	type AttributeBox,
+	type SerializedAttributeRef,
+	type SerializedAttributeValue,
+} from "./value.svelte.ts";
 
 export {
-	RichText,
-	Style,
-	StyledText,
-	StringAttribute,
+	AttributeDefinition,
+	AttributeRef,
+	AttributeType,
+	attributeTypes,
+	AttributeValue,
+	BasicAttributeBox,
+	Color,
+	DateTime,
+	Kilograms,
+	Length,
+	Measurement,
+	Meters,
+	NodeArgument,
+	nodeCategoryColors,
+	NodeInstance,
+	NodeParameter,
+	NodeType,
+	nodeTypeColors,
 	NumberAttribute,
 	PrimitiveArrayAttributeValue,
 	PrimitiveAttributeValue,
-	AttributeType,
-	AttributeDefinition,
-	DateTime,
-	Color,
-	Measurement,
-	Length,
+	RichText,
+	StringAttribute,
+	Style,
+	StyledText,
 	Weight,
-	Meters,
-	Kilograms,
-	attributeTypes,
-	AttributeValue,
-	type SerializedRichText,
+	type AttributeBox,
 	type AttributeTypeNameValue,
-	NodeType,
-	NodeParameter,
-	NodeArgument,
-	NodeInstance,
-	nodeTypeColors,
+	type GeneratedAttribute,
+	type NodeNodeArgument,
+	type SerializedAttributeDefinition,
+	type SerializedAttributeRef,
+	type SerializedRichText,
 	type Type,
 	type ValueArgument,
-	type NodeNodeArgument,
-	nodeCategoryColors,
-	type SerializedAttributeDefinition,
-	type GeneratedAttribute,
-	AttributeRef,
-	type SerializedAttributeRef,
 };
 
-export type { AttributeTypeName, SerializedAttributeValue, AttributeContext, MeasurementType };
+export type { AttributeContext, AttributeTypeName, MeasurementType, SerializedAttributeValue };

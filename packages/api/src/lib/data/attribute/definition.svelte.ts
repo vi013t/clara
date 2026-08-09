@@ -1,12 +1,17 @@
-import { type Cloneable, type Id, type Serialize, uniqueId } from "@clara/api/utils";
-import { AttributeType, type AttributeTypeName } from "@clara/api/attribute";
-import { Randomizer } from "@clara/api/random";
+import { AttributeType, type AttributeBox, type AttributeTypeName } from "@clara/api/attribute";
 import type { Icon } from "@clara/api/icons";
+import { Randomizer } from "@clara/api/random";
+import { uniqueId, type Cloneable, type Id, type Serialize } from "@clara/api/utils";
 
 export type SerializedAttributeDefinition = {
 	name: string;
 	type: AttributeTypeName;
 	id: number;
+};
+
+export type RandomizerWithArguments<Parameters extends Record<string, AttributeTypeName>> = {
+	randomizer: Randomizer<Parameters>;
+	arguments: Record<keyof Parameters, AttributeBox>;
 };
 
 export class AttributeDefinition implements Serialize<SerializedAttributeDefinition>, Cloneable<AttributeDefinition> {
@@ -16,7 +21,7 @@ export class AttributeDefinition implements Serialize<SerializedAttributeDefinit
 
 	public type: AttributeType;
 	private id_: number;
-	public randomizer: Randomizer | null = $state(null);
+	public randomizer: RandomizerWithArguments<any> | null = $state(null);
 
 	private static nextID = 0;
 

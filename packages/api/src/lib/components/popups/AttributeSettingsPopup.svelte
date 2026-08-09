@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { AttributeType, BasicAttributeBox, type AttributeDefinition, type AttributeTypeName } from "@clara/api/attribute";
+	import { ConfirmationPopup, Input, Popup, PopupSidebar, Select } from "@clara/api/components";
 	import type { ItemType } from "@clara/api/database";
-	import { AttributeType, type AttributeTypeName, type AttributeDefinition } from "@clara/api/attribute";
-	import { Popup, ConfirmationPopup, Select, Input, PopupSidebar } from "@clara/api/components";
 	import { getIcon } from "@clara/api/icons";
 	import { Project } from "@clara/api/project";
 
@@ -25,6 +25,7 @@
 	}
 
 	let view = $state("General");
+	let randomizerOutput: HTMLElement | null = $state(null);
 </script>
 
 <Popup {reset} bind:this={popup}>
@@ -62,36 +63,40 @@
 						/>
 					</div>
 
-					<h2>Default</h2>
-					<Input
-						context="settings"
-						background="var(--background-dark)"
-						type={attribute.type.name}
-						value={null}
-						openEditor={() => {}}
-						openNodeEditor={() => {}}
-					/>
+					<!-- <h2>Default Value</h2>
+					<Input context="settings" background="var(--background-dark)" type={attribute.type.name} /> -->
 				{:else if view === "Randomizers"}
 					<h2>Randomizer</h2>
 					<Select
 						width="100%"
 						options={Project.get()!.randomizers.map(randomizer => randomizer.name)}
 						bind:value={
-							() => attribute.randomizer?.name,
-							randomizer => (attribute.randomizer = Project.get()!.randomizers.find(other => other.name === randomizer)!)
+							() => attribute.randomizer?.randomizer.name,
+							randomizerName => {
+								let randomizer = Project.get()!.randomizers.find(other => other.name === randomizerName)!;
+								attribute.randomizer = {
+									randomizer: randomizer,
+									arguments: Object.fromEntries(
+										Object.entries(randomizer.defaultArguments()).map(([name, value]) => [name, new BasicAttributeBox(value)]),
+									) as any,
+								};
+							}
 						}
 					/>
 
 					<h2>Default Parameters</h2>
 
-					<Input
-						context="settings"
-						background="var(--background-dark)"
-						type={attribute.type.name}
-						value={null}
-						openEditor={() => {}}
-						openNodeEditor={() => {}}
-					/>
+					{#each Object.entries(attribute.randomizer?.randomizer.parameters() ?? {}) as [name, type]}
+						<div class="randomizer-parameter">
+							<span>{name}:</span>
+							<Input
+								attribute={attribute.randomizer!.arguments[name]}
+								context="settings"
+								background="var(--background-dark)"
+								type={type as AttributeTypeName}
+							/>
+						</div>
+					{/each}
 				{/if}
 			</div>
 		</section>
@@ -119,6 +124,17 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
+	}
+
+	.randomizer-parameter {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+
+		> span {
+			text-transform: capitalize;
+			color: var(--foreground);
+		}
 	}
 
 	.type {

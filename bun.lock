@@ -1,5 +1,6 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "clara",
@@ -61,7 +62,7 @@
         "vite": "^6.0.3",
       },
     },
-    "packages/plugins/novel": {
+    "packages/plugins/clara-plugin-novel": {
       "name": "novel",
       "version": "0.0.1",
       "dependencies": {
@@ -746,7 +747,7 @@
 
     "normalize-url": ["normalize-url@6.1.0", "", {}, "sha512-DlL+XwOy3NxAQ8xuC0okPgK46iuVNAK01YN7RueYBqqFeGsBjV9XmCAzAdgt+667bCl5kPh9EqKKDwnaPG1I7A=="],
 
-    "novel": ["novel@workspace:packages/plugins/novel"],
+    "novel": ["novel@workspace:packages/plugins/clara-plugin-novel"],
 
     "object-keys": ["object-keys@1.1.1", "", {}, "sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA=="],
 

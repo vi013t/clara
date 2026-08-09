@@ -1,21 +1,21 @@
 <script lang="ts">
 	import { ContextMenu, Icon, IconPicker, LittleButton } from "@clara/api/components";
 	import type { Group } from "@clara/api/database";
+	import { Project } from "@clara/api/project";
 	import { GroupTab, MultiPane, PaneLayout, SinglePane, Tab, TabList, views, type View } from "@clara/api/ui";
 	import { onMount } from "svelte";
-	import { Project } from "@clara/api/project";
 
 	let {
 		background,
 		subpane,
 		pane = $bindable(),
-		anyPane = $bindable(),
+		paneLayout = $bindable(),
 		onclose,
 	}: {
 		background: string;
 		subpane: boolean;
 		pane: SinglePane;
-		anyPane: PaneLayout;
+		paneLayout: PaneLayout;
 		onclose: () => void;
 	} = $props();
 
@@ -55,9 +55,17 @@
 		};
 	}
 
+	function canCloseTab(id: number) {
+		return pane.hasParent || pane.tabline.tabs.length > 1;
+	}
+
 	function closeTab(id: number) {
 		return function () {
-			if (pane.selectedTabID === id) {
+			if (!canCloseTab(id)) {
+				return;
+			}
+
+			if (pane.selectedTabID === id && pane.tabline.tabs.length > 1) {
 				let index = pane.tabline.indexOfID(id);
 				pane.selectedTabID = pane.tabline.getTabByIndex(index === 0 ? index + 1 : index - 1).id;
 			}
@@ -70,16 +78,16 @@
 
 	function splitHorizontal() {
 		let tabline = new TabList();
-		anyPane = new MultiPane("horizontal", pane, new SinglePane(tabline), 0.5);
-		tabline.owner = (anyPane as MultiPane).panes[1] as SinglePane;
+		paneLayout = new MultiPane(paneLayout.hasParent, "horizontal", pane, new SinglePane(true, tabline), 0.5);
+		tabline.owner = (paneLayout as MultiPane).panes[1] as SinglePane;
 
 		paneSettingsMenu.close();
 	}
 
 	function splitVertical() {
 		let tabline = new TabList();
-		anyPane = new MultiPane("vertical", pane, new SinglePane(tabline), 0.5);
-		tabline.owner = (anyPane as MultiPane).panes[1] as SinglePane;
+		paneLayout = new MultiPane(paneLayout.hasParent, "vertical", pane, new SinglePane(true, tabline), 0.5);
+		tabline.owner = (paneLayout as MultiPane).panes[1] as SinglePane;
 
 		paneSettingsMenu.close();
 	}
@@ -137,7 +145,13 @@
 				<LittleButton bind:element={changeTabIconButton} icon={tab.icon} onmousedown={() => tabIconPicker?.open()} />
 				{tab.title}
 			</span>
-			<LittleButton accent="var(--red)" icon="X" size={16} onmousedown={closeTab(tab.id)} />
+			<LittleButton
+				accent="var(--red)"
+				icon="X"
+				size={16}
+				onmousedown={closeTab(tab.id)}
+				style="cursor: {canCloseTab(tab.id) ? 'cursor' : 'not-allowed'}"
+			/>
 		</div>
 	{/each}
 	<div class="new-tab-wrapper" bind:this={newTabContainer} style:left="calc(min({tabWidth}, 13rem) * {pane.tabline.count()})">

@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { AttributeDefinition, attributeTypes, type AttributeRef, type GeneratedAttribute } from "@clara/api/attribute";
-	import { AttributeType } from "@clara/api/attribute";
+	import { AttributeDefinition, AttributeType, attributeTypes, type AttributeRef } from "@clara/api/attribute";
+	import { AttributeSettingsPopup, ContextMenu, Icon, Input, LittleButton } from "@clara/api/components";
 	import { Item, ItemType, type Group } from "@clara/api/database";
-	import { Icon, AttributeSettingsPopup, ContextMenu, LittleButton, Input } from "@clara/api/components";
 	import { Project } from "@clara/api/project";
 	import type { SinglePane } from "@clara/api/ui";
 
@@ -18,6 +17,17 @@
 	let updateAttributes = $state(0);
 	let newAttributeMenu: ContextMenu;
 	let itemType = $state(Project.get()!.types[0]);
+
+	function randomize(attribute: AttributeRef) {
+		return function () {
+			let args = Object.fromEntries(
+				Object.entries(attribute.definition.randomizer?.arguments ?? {}).map(([name, boxed]) => [name, boxed.value!]),
+			);
+			console.log(args);
+			attribute.value = attribute.definition.randomizer?.randomizer.random(args);
+			console.log(attribute.value);
+		};
+	}
 
 	function addRow() {
 		group.addChild(new Item(itemType!, "New Item"));
@@ -134,7 +144,7 @@
 							}
 						/>
 						{#if attribute instanceof AttributeDefinition && attribute.randomizer}
-							<LittleButton icon="Dice6" />
+							<LittleButton icon="Dice6" onmousedown={randomize(attributeRef)} />
 						{/if}
 					</div>
 				{/each}

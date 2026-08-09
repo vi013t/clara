@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { AttributeContext, AttributeRef, GeneratedAttribute } from "@clara/api/attribute";
+	import type { AttributeContext, AttributeRef } from "@clara/api/attribute";
 	import { AttributeTab, nodeEditor, SinglePane } from "@clara/api/ui";
 
 	let {

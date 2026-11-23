@@ -1,25 +1,32 @@
 <script lang="ts">
-	import { statusBarButtons } from "@clara/api/ui";
+	import type { ViewType } from "$lib/ui/views.svelte";
 	import { LittleButton } from "@clara/api/components";
+	import { views, type View } from "@clara/api/ui";
+
+	let { view = $bindable() }: { view: View<ViewType> } = $props();
 </script>
 
 <section>
-	<div class="wrapper">
-		{#each statusBarButtons() as button}
-			<LittleButton icon={button.icon} isToggle={button.isToggle} />
+	{#each views().filter(view => view.type === "group") as otherView}
+		<LittleButton icon={otherView.icon} toggle on={view.name === otherView.name} />
+	{/each}
+	{#if view.type === "item" || view.type === "attribute"}
+		{#each views().filter(view => view.type === "item") as otherView}
+			<LittleButton icon={otherView.icon} toggle on={view.name === otherView.name} />
 		{/each}
-	</div>
+		{#if view.type === "attribute"}
+			{#each views().filter(view => view.type === "attribute") as otherView}
+				<LittleButton icon={otherView.icon} toggle on={view.name === otherView.name} />
+			{/each}
+		{/if}
+	{/if}
 </section>
 
 <style>
-	.wrapper {
-		position: relative;
-		display: contents;
-		color: var(--foreground);
-	}
-
 	section {
-		position: fixed;
+		position: absolute;
+		color: var(--foreground);
+		height: 2rem;
 		bottom: 0px;
 		right: 0px;
 		background-color: var(--background-darker);

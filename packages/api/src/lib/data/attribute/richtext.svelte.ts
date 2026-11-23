@@ -152,21 +152,27 @@ export class RichText implements Cloneable<RichText>, Serialize<SerializedRichTe
 		};
 	}
 
-	public styleRange(start: number, end: number, style: Style, override?: true) {
-		let position = 0;
+	public styleRange(start: number, end: number, style: Style, override = false): void {
 		const parts: StyledText[] = [];
-		let rangeLength = end - start;
+		let position = 0;
 
 		for (const part of this.parts) {
-			const relativeStart = start - position;
-			const relativeEnd = relativeStart + rangeLength;
-			console.log(relativeStart, relativeEnd);
+			const partStart = position;
+			const partEnd = position + part.text.length;
 
-			parts.push(...part.styleRange(relativeStart, relativeEnd, style, override));
+			const selectionStart = Math.max(start, partStart);
+			const selectionEnd = Math.min(end, partEnd);
 
-			position += part.text.length;
+			if (selectionStart >= selectionEnd) {
+				parts.push(part.clone());
+			} else {
+				parts.push(...part.styleRange(selectionStart - partStart, selectionEnd - partStart, style, override || undefined));
+			}
+
+			position = partEnd;
 		}
-		this.reconstruct(new RichText(parts));
+
+		this.parts = parts;
 	}
 
 	public reconstruct(doc: RichText): void {

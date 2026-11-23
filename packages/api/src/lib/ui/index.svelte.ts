@@ -1,59 +1,58 @@
-import { getIcon, type IconIdentifier, type IconName, type Icon } from "./icons.svelte.ts";
-import { GroupTab, Tab, TabList } from "./tab.svelte.ts";
+import { getIcon, type Icon, type IconIdentifier, type IconName } from "./icons.svelte.ts";
 import {
-	views,
-	registerGlobalView,
-	view,
-	type ItemView,
-	type View,
-	type GroupView,
-	type AttributeView,
-	hierarchyView,
-	spreadsheetView,
-	nodeEditorView,
-	editorView,
-} from "./views.svelte";
-import { editorControls, addEditorControl, ItemTab, AttributeTab } from "./tab.svelte.ts";
-import {
+	focusedPane,
+	focusPane,
+	MultiPane,
 	PaneLayout,
 	SinglePane,
-	MultiPane,
 	type SerializedMultiPane,
 	type SerializedPaneLayout,
 	type SerializedSinglePane,
-	focusedPane,
-	focusPane,
 } from "./pane.svelte.ts";
-import { type StatusBarButton, registerStatusBarButton, statusBarButtons } from "./statusbar.svelte.ts";
+import { registerStatusBarButton, statusBarButtons, type StatusBarButton } from "./statusbar.svelte.ts";
+import { addEditorControl, AttributeTab, editorControls, GroupTab, ItemTab, Tab, TabList } from "./tab.svelte.ts";
+import {
+	editorView,
+	hierarchyView,
+	nodeEditorView,
+	registerGlobalView,
+	spreadsheetView,
+	view,
+	views,
+	type AttributeView,
+	type GroupView,
+	type ItemView,
+	type View,
+} from "./views.svelte";
 
 export {
-	getIcon,
-	GroupTab,
-	Tab,
-	TabList,
-	views,
-	editorControls,
 	addEditorControl,
-	PaneLayout,
-	SinglePane,
-	MultiPane,
-	ItemTab,
 	AttributeTab,
-	type StatusBarButton,
-	registerStatusBarButton,
-	statusBarButtons,
+	editorView as editor,
+	editorControls,
 	focusedPane,
 	focusPane,
-	registerGlobalView,
-	type AttributeView,
-	type ItemView,
-	type GroupView,
-	view,
-	type View,
+	getIcon,
+	GroupTab,
 	hierarchyView as hierarchy,
-	spreadsheetView as spreadsheet,
+	ItemTab,
+	MultiPane,
 	nodeEditorView as nodeEditor,
-	editorView as editor,
+	PaneLayout,
+	registerGlobalView,
+	registerStatusBarButton,
+	SinglePane,
+	spreadsheetView as spreadsheet,
+	statusBarButtons,
+	Tab,
+	TabList,
+	view,
+	views,
+	type AttributeView,
+	type GroupView,
+	type ItemView,
+	type StatusBarButton,
+	type View,
 };
 
-export type { IconIdentifier, IconName, Icon, SerializedMultiPane, SerializedPaneLayout, SerializedSinglePane };
+export type { Icon, IconIdentifier, IconName, SerializedMultiPane, SerializedPaneLayout, SerializedSinglePane };

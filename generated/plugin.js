@@ -7,3 +7,5 @@ export const plugin = internal.plugin;
 export const registerTemplate = internal.registerTemplate;
 export const getListeners = internal.getListeners;
 export const listen = internal.listen;
+export const editorBarButtons = internal.editorBarButtons;
+export const registerEditorButton = internal.registerEditorButton;

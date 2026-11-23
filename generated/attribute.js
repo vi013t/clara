@@ -2,7 +2,15 @@
 // AND IS NOT MEANT FOR MANUAL EDITING
 
 const internal = globalThis.__CLARA_API__.attribute;
+export const string = internal.string;
+export const any = internal.any;
+export const number = internal.number;
+export const boolean = internal.boolean;
+export const select = internal.select;
+export const listOf = internal.listOf;
+export const object = internal.object;
 export const AttributeDefinition = internal.AttributeDefinition;
+export const AttributeGraph = internal.AttributeGraph;
 export const AttributeRef = internal.AttributeRef;
 export const AttributeType = internal.AttributeType;
 export const attributeTypes = internal.attributeTypes;
@@ -18,6 +26,7 @@ export const NodeArgument = internal.NodeArgument;
 export const nodeCategoryColors = internal.nodeCategoryColors;
 export const NodeInstance = internal.NodeInstance;
 export const NodeParameter = internal.NodeParameter;
+export const nodes = internal.nodes;
 export const NodeType = internal.NodeType;
 export const nodeTypeColors = internal.nodeTypeColors;
 export const NumberAttribute = internal.NumberAttribute;

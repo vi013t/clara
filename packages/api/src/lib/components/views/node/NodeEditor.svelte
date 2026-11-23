@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { nodeTypeColors, type NodeInstance } from "@clara/api/attribute";
+	import { NodeInstance, NodeType, nodeTypeColors, nodes as nodeTypes } from "@clara/api/attribute";
 	import { Camera } from "@clara/api/camera";
-	import { InfiniteCanvas, Node } from "@clara/api/components";
+	import { ContextMenu, InfiniteCanvas, Node } from "@clara/api/components";
 
 	let camera: Camera = $state(new Camera());
 	let canPan = $state(true);
@@ -12,7 +12,7 @@
 		nodes
 			.map(node =>
 				Object.entries(node.outputs)
-					.filter(([name, argument]) => argument.type === "node")
+					.filter(([_name, argument]) => argument.type === "node")
 					.map(
 						([name, argument]) =>
 							[node, name, argument.node!.outputName, argument.node!.node] as [NodeInstance, string, string, NodeInstance],
@@ -62,9 +62,24 @@
 			];
 		});
 	});
+
+	let addNodeMenu: ContextMenu = $state(null!);
+
+	function addNode(event: MouseEvent) {
+		addNodeMenu.openAtMouse(event);
+	}
+
+	function createNode(type: NodeType) {
+		return function (event: MouseEvent) {
+			nodes.push(new NodeInstance({ x: 0, y: 0, type }));
+			addNodeMenu.close();
+			console.log(nodes);
+		};
+	}
 </script>
 
-<section class="node-editor">
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<section class="node-editor" oncontextmenu={addNode}>
 	<div class="gradient"></div>
 	<svg bind:this={svg}>
 		{#each curves as [d, stroke]}
@@ -72,10 +87,18 @@
 		{/each}
 	</svg>
 	<InfiniteCanvas bind:camera {canPan} onupdate={() => updateCounter++}>
-		{#each nodes as _node, index}
-			<Node bind:node={nodes[index]} bind:this={nodeElements[index]} bind:canPan {camera} onmove={() => updateCounter++} />
-		{/each}
+		{#key nodes}
+			{#each nodes as _node, index}
+				<Node bind:node={nodes[index]} bind:this={nodeElements[index]} bind:canPan {camera} onmove={() => updateCounter++} />
+			{/each}
+		{/key}
 	</InfiniteCanvas>
+
+	<ContextMenu bind:this={addNodeMenu}>
+		{#each nodeTypes() as nodeType}
+			<button onmousedown={createNode(nodeType)}>{nodeType.name}</button>
+		{/each}
+	</ContextMenu>
 </section>
 
 <style>

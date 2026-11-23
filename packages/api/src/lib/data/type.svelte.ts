@@ -1,7 +1,7 @@
+import { AttributeDefinition, type SerializedAttributeDefinition } from "@clara/api/attribute";
 import { getIcon, type Icon, type IconIdentifier, type IconName } from "@clara/api/icons";
 import { type Cloneable, type Serialize } from "@clara/api/utils";
-import { AttributeDefinition, AttributeValue, type SerializedAttributeDefinition } from "@clara/api/attribute";
-import { views, type AttributeView, type GroupView, type ItemView } from "../ui/views.svelte";
+import { views, type AttributeView, type ItemView } from "../ui/views.svelte";
 
 export type SerializedItemType = {
 	name: string;
@@ -75,6 +75,7 @@ export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemTy
 			attributes: itemType.attributes.map(attribute => AttributeDefinition.deserialize(attribute)),
 			pluralName: itemType.pluralName ?? undefined,
 			defaultView: itemType.defaultView ?? undefined,
+			hidden: itemType.hidden ? true : undefined,
 		});
 	}
 }

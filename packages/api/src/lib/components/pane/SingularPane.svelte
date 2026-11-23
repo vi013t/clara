@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Tabline } from "@clara/api/components";
+	import { StatusBar, Tabline } from "@clara/api/components";
 	import { AttributeTab, GroupTab, ItemTab, PaneLayout, SinglePane } from "@clara/api/ui";
 
 	let {
@@ -35,6 +35,7 @@
 			{@render tab.view.render({ tab, pane, item: tab.item, setPane })}
 		{/if}
 	</div>
+	<StatusBar bind:view={tab.view} />
 </section>
 
 <style>
@@ -44,7 +45,7 @@
 		flex-direction: column;
 		border: 1px solid var(--border);
 		width: 100%;
-		height: 100%;
+		flex-grow: 1;
 	}
 
 	.content {

@@ -26,7 +26,7 @@
 
 	let expanded = $derived(hideRoot || demo);
 
-	function toggle(event: MouseEvent): void {
+	function toggleExpanded(event: MouseEvent): void {
 		if (
 			event.composedPath().some(element => "classList" in element! && (element as HTMLElement).classList.contains("node-name"))
 		) {
@@ -35,11 +35,11 @@
 		expanded = !expanded;
 	}
 
-	function onmousedown(event: MouseEvent) {
+	function clickItem(event: MouseEvent) {
 		if (event.button !== 0) return;
 
 		if (entry instanceof Group) {
-			return toggle(event);
+			return toggleExpanded(event);
 		}
 
 		if (!pane) return;
@@ -126,7 +126,7 @@
 
 <section style:padding={!subtree ? "1rem" : undefined}>
 	{#if !hideRoot || subtree}
-		<button oncontextmenu={onRightClick} class={["node", clickedNode && "active"]} {onmousedown}>
+		<button oncontextmenu={onRightClick} class={["node", clickedNode && "active"]} onmousedown={clickItem}>
 			<Icon name={entry.icon} />
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<span
@@ -157,13 +157,17 @@
 
 	<ContextMenu onclose={() => (clickedNode = false)} left={menuLeft} top={menuTop} bind:this={rightClickMenu}>
 		{#if entry.isBranch()}
-			<div>
+			<button onmousedown={newItem(entry.defaultType)}>
 				<Icon name="CirclePlus" />
-				Create
+				Create New
+			</button>
+			<div>
+				<Icon name="SquarePlus" />
+				Create Other
 				<Icon name="ChevronRight" style="margin-left: auto;" />
 				<ContextMenu>
 					{#if Project.get()}
-						{#each Project.get()!.types.filter(type => !["Document", "Node"].includes(type.name) && !type.hidden) as itemType}
+						{#each Project.get()!.types.filter(type => !["Document", "Node"].includes(type.name) && !type.hidden && type !== entry.defaultType) as itemType}
 							<button onmousedown={newItem(itemType)}>
 								<Icon name={itemType.icon.name} />
 								{itemType.name}

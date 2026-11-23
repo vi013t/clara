@@ -16,17 +16,16 @@
 </script>
 
 <script lang="ts">
-	import { errors, Debug, uniqueId, type Id } from "@clara/api/utils";
-	import { Project } from "@clara/api/project";
-	import { InputHandler, Navbar, Pane, StatusBar, NoProject, Sidebar, Notifications, keyboard } from "@clara/api/components";
 	import { startPlugins } from "@clara/api";
-	import { onMount, type Snippet } from "svelte";
+	import { InputHandler, keyboard, Navbar, NoProject, Notifications, Pane } from "@clara/api/components";
+	import { Project } from "@clara/api/project";
+	import { focusedPane, GroupTab } from "@clara/api/ui";
 	import { getFromCache, pressHotkey, userSettings } from "@clara/api/usersettings";
-	import { focusedPane, focusPane } from "@clara/api/ui";
-	import { GroupTab } from "@clara/api/ui";
+	import { Debug, errors, uniqueId, type Id } from "@clara/api/utils";
+	import { onMount, type Snippet } from "svelte";
 	import { SvelteMap } from "svelte/reactivity";
-	import CommandPalette from "./popups/CommandPalette.svelte";
 	import { rootPane, setRootPane } from "../ui/pane.svelte.ts";
+	import CommandPalette from "./popups/CommandPalette.svelte";
 
 	$effect(() => {
 		if (errors().length > 0) {
@@ -56,6 +55,7 @@
 		if (!pane.isSingle()) return;
 		if (pane.tabline.tabs.length === 0) {
 			pane.tabline.tabs[0] = new GroupTab(project.database.id);
+			pane.selectedTabID = pane.tabline.tabs[0].id;
 		}
 	});
 
@@ -68,11 +68,10 @@
 	<Navbar />
 	{#if Project.get()}
 		<div>
-			<Sidebar />
+			<!-- <Sidebar /> -->
 			<div class="pane">
 				<Pane bind:pane={rootPane, setRootPane} />
 			</div>
-			<StatusBar />
 		</div>
 	{:else}
 		<NoProject />
@@ -95,7 +94,7 @@
 		flex-direction: column;
 
 		div {
-			height: 100%;
+			flex-grow: 1;
 			display: flex;
 		}
 	}

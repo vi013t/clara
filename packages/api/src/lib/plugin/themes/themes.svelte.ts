@@ -1,5 +1,5 @@
-import { plugin } from "../index.svelte.ts";
 import { userSettings } from "../../usersettings/index.svelte.ts";
+import { plugin } from "../index.svelte.ts";
 
 export default plugin({
 	name: "Default themes",
@@ -32,6 +32,11 @@ export default plugin({
 					--purple: #cba6f7;
 				}
 			`,
+			colors: {
+				background: "#1e1e2e",
+				foreground: "#a6adc8",
+			},
+			fontFamily: "'Inter', 'Segoe UI'",
 		});
 
 		userSettings().addTheme({
@@ -59,6 +64,11 @@ export default plugin({
 					--purple: #8839ef;
 				}
 			`,
+			colors: {
+				background: "#eff1f5",
+				foreground: "#6c6f85",
+			},
+			fontFamily: "'Inter', 'Segoe UI'",
 		});
 	},
 });

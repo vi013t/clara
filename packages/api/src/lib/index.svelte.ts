@@ -4,7 +4,7 @@ import { corePlugins, type ClaraPlugin } from "./plugin/index.svelte.ts";
 import { attachPluginData, importMap } from "./plugin_loader.svelte.ts";
 import { userSettings } from "./usersettings/index.svelte.ts";
 
-async function loadPlugin(absolutePluginPath: string): Promise<ClaraPlugin<any> | null> {
+async function loadPlugin(absolutePluginPath: string): Promise<ClaraPlugin<string, string> | null> {
 	const isWindows = navigator.userAgent.includes("Windows");
 	const scheme = isWindows ? "http://plugin.localhost/" : "plugin://localhost/";
 	const sanitizedPath = absolutePluginPath.replace(/^\/+/, "");
@@ -32,8 +32,15 @@ function createImportMap() {
 	document.head.appendChild(map);
 }
 
-function startPlugin(plugin: ClaraPlugin<any>) {
+let currentPlugin: ClaraPlugin<string, string> | null = $state(null);
+
+export function currentPluginBeingLoaded() {
+	return currentPlugin;
+}
+
+function startPlugin(plugin: ClaraPlugin<string, string>) {
 	console.log(`Loaded plugin "${plugin.name}".`);
+	currentPlugin = plugin;
 	userSettings().addPlugin(plugin);
 	plugin.onLoad?.({
 		settings: {
@@ -44,7 +51,7 @@ function startPlugin(plugin: ClaraPlugin<any>) {
 	});
 }
 
-async function loadPlugins(): Promise<ClaraPlugin<any>[]> {
+async function loadPlugins(): Promise<ClaraPlugin<string, string>[]> {
 	const pluginNames = (await invoke<string[]>("get_plugins", {})).map(plugin => {
 		let path = plugin;
 		if (plugin.startsWith("\\\\?\\")) path = path.slice(4);
@@ -63,7 +70,7 @@ function loadCorePlugins() {
 	userSettings().selectTheme(userSettings().themes[0].name);
 }
 
-let allPlugins: ClaraPlugin<any>[] = $state([]);
+let allPlugins: ClaraPlugin<string, string>[] = $state([]);
 
 export async function startPlugins() {
 	loadCorePlugins();

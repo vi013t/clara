@@ -1,9 +1,9 @@
 <script lang="ts" module>
-	import type { Snippet } from "svelte";
-	import { GraphView, HierarchyView, SpreadsheetView, Editor } from "@clara/api/components";
-	import { AttributeTab, getIcon, GroupTab, ItemTab, PaneLayout, SinglePane, type Icon } from "@clara/api/ui";
-	import type { Group, Item } from "@clara/api/database";
 	import type { AttributeRef } from "@clara/api/attribute";
+	import { Editor, HierarchyView, NodeEditor, SpreadsheetView } from "@clara/api/components";
+	import type { Group, Item } from "@clara/api/database";
+	import { AttributeTab, getIcon, GroupTab, ItemTab, PaneLayout, SinglePane, type Icon } from "@clara/api/ui";
+	import type { Snippet } from "svelte";
 
 	export type ViewType = "group" | "attribute" | "item";
 
@@ -150,7 +150,7 @@
 	tab: AttributeTab;
 	setPane: (pane: PaneLayout) => void;
 })}
-	<GraphView />
+	<NodeEditor nodes={[]} />
 {/snippet}
 
 {#snippet renderEditor({

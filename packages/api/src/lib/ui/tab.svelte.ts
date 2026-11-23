@@ -1,16 +1,16 @@
 import { AttributeRef, RichText, StringAttribute, Style, StyledText, type SerializedAttributeRef } from "@clara/api/attribute";
 import { Item, type Group } from "@clara/api/database";
-import { todo, uniqueId, unreachable, type Cloneable, type Id, type Serialize } from "@clara/api/utils";
-import { type IconIdentifier, getIcon, type Icon, type IconName, SinglePane, views } from "@clara/api/ui";
 import { Project } from "@clara/api/project";
+import { getIcon, SinglePane, views, type Icon, type IconIdentifier, type IconName } from "@clara/api/ui";
+import { uniqueId, unreachable, type Cloneable, type Id, type Serialize } from "@clara/api/utils";
 import {
+	view,
+	viewIs,
 	type AttributeView,
 	type GroupView,
 	type ItemView,
-	view,
 	type View,
 	type ViewInterface,
-	viewIs,
 	type ViewType,
 	type ViewTypeOf,
 } from "./views.svelte";
@@ -211,6 +211,7 @@ export class AttributeTab extends Tab<AttributeView> {
 	}
 
 	public get title(): string {
+		if (this.item.type.name === "Document" && this.attribute.name === "Content") return this.attribute.item.name;
 		return `${this.attribute.item.name} > ${this.attribute.name}`;
 	}
 }

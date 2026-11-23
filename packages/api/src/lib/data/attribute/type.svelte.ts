@@ -1,14 +1,13 @@
+import type { Snippet } from "svelte";
 import { getIcon, type Icon, type IconIdentifier } from "../../ui/icons.svelte.ts";
 import type { Cloneable } from "../../util/Clone.svelte.ts";
 import type { Serialize, Serialized, Serializer } from "../../util/serialize.svelte.ts";
-import type { AttributeValue } from "./value.svelte";
 import { Color } from "./color.svelte.ts";
 import { DateTime } from "./datetime.svelte.ts";
 import { Measurement } from "./measurement.svelte.ts";
 import { EntriesAttribute, NumberAttribute, StringAttribute } from "./primitive.svelte.ts";
 import { RichText } from "./richtext.svelte.ts";
-import type { Snippet } from "svelte";
-import { GeneratedAttribute } from "./generated.svelte.ts";
+import type { AttributeValue } from "./value.svelte";
 
 export type AttributeContext = "settings" | "spreadsheet" | "none";
 
@@ -64,7 +63,6 @@ export const attributeTypes = [
 	attributeType("date", DateTime, "Calendar"),
 	attributeType("length", Measurement, "Ruler"),
 	attributeType("weight", Measurement, "Weight"),
-	attributeType("generated", GeneratedAttribute, "Cable"),
 ] as const satisfies InternalAttributeType[];
 
 export type AttributeTypeName = typeof attributeTypes extends (infer A)[]

@@ -1,24 +1,24 @@
-import { Group } from "../data/database.svelte.ts";
-import { invoke } from "@tauri-apps/api/core";
-import type { Theme } from "./theme.svelte.ts";
-import { type Serialize } from "../util/index.svelte.ts";
-import { type ClaraPlugin } from "../plugin/index.svelte.ts";
 import { Template, type SerializedTemplate } from "@clara/api/project";
 import { SinglePane, TabList } from "@clara/api/ui";
-import { pressHotkey, runAction, type ActionName, type Keybinding, key } from "./action.svelte.ts";
+import { invoke } from "@tauri-apps/api/core";
+import { Group } from "../data/database.svelte.ts";
+import { type ClaraPlugin } from "../plugin/index.svelte.ts";
+import { type Serialize } from "../util/index.svelte.ts";
+import { key, pressHotkey, runAction, type ActionName, type Keybinding } from "./action.svelte.ts";
+import type { Theme } from "./theme.svelte.ts";
 
-export { pressHotkey, runAction, key };
+export { key, pressHotkey, runAction };
 
 export type { ActionName, Keybinding };
 
 type SerializedUserSettings = { templates: SerializedTemplate[]; themes: Theme[]; selectedTheme: string };
 
-class UserSettings implements Serialize<SerializedUserSettings> {
+export class UserSettings implements Serialize<SerializedUserSettings> {
 	private templates_: Template[];
 	private themes_: Theme[];
 	private selectedTheme_: string;
 
-	private plugins_: ClaraPlugin<any>[] = $state([]);
+	private plugins_: ClaraPlugin<string, string>[] = $state([]);
 	public disabledPlugins_: string[] = $state([]);
 	public autosave = $state(true);
 
@@ -38,7 +38,7 @@ class UserSettings implements Serialize<SerializedUserSettings> {
 		this.templates_ = $state([
 			new Template({
 				database,
-				layout: new SinglePane(tablist),
+				layout: new SinglePane(false, tablist),
 				pinnedGroups: [database],
 				plugin_id: "clara",
 				types: [],
@@ -48,7 +48,7 @@ class UserSettings implements Serialize<SerializedUserSettings> {
 		this.selectedTheme_ = $state("");
 	}
 
-	public disablePlugin(plugin: ClaraPlugin<any>) {
+	public disablePlugin(plugin: ClaraPlugin<string, string>) {
 		this.disabledPlugins_.push(plugin.identifier);
 	}
 
@@ -60,11 +60,11 @@ class UserSettings implements Serialize<SerializedUserSettings> {
 		return this.plugins.filter(plugin => !this.isPluginEnabled(plugin));
 	}
 
-	public enablePlugin(plugin: ClaraPlugin<any>) {
+	public enablePlugin(plugin: ClaraPlugin<string, string>) {
 		this.disabledPlugins_ = this.disabledPlugins_.filter(identifier => identifier !== plugin.identifier);
 	}
 
-	public isPluginEnabled(plugin: ClaraPlugin<any>) {
+	public isPluginEnabled(plugin: ClaraPlugin<string, string>) {
 		return !this.disabledPlugins_.includes(plugin.identifier);
 	}
 
@@ -72,7 +72,7 @@ class UserSettings implements Serialize<SerializedUserSettings> {
 		this.themes_.push(theme);
 	}
 
-	public addPlugin(plugin: ClaraPlugin<any>): void {
+	public addPlugin(plugin: ClaraPlugin<string, string>): void {
 		this.plugins_.push(plugin);
 	}
 
@@ -80,7 +80,7 @@ class UserSettings implements Serialize<SerializedUserSettings> {
 		return this.themes_;
 	}
 
-	public get plugins(): ClaraPlugin<any>[] {
+	public get plugins(): ClaraPlugin<string, string>[] {
 		return this.plugins_;
 	}
 

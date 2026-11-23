@@ -1,14 +1,25 @@
+import {
+	AnyType,
+	BooleanType,
+	ListType,
+	NumberType,
+	ObjectType,
+	PrimitiveType,
+	SelectType,
+	StringType,
+} from "../primitive.svelte.ts";
 import { Color } from "./color.svelte.ts";
 import { DateTime } from "./datetime.svelte.ts";
 import { AttributeDefinition, type SerializedAttributeDefinition } from "./definition.svelte.ts";
 import {
+	AttributeGraph,
 	NodeArgument,
 	nodeCategoryColors,
 	NodeInstance,
 	NodeParameter,
+	nodes,
 	NodeType,
 	nodeTypeColors,
-	type GeneratedAttribute,
 	type NodeNodeArgument,
 	type Type,
 	type ValueArgument,
@@ -34,6 +45,7 @@ import {
 
 export {
 	AttributeDefinition,
+	AttributeGraph,
 	AttributeRef,
 	AttributeType,
 	attributeTypes,
@@ -49,6 +61,7 @@ export {
 	nodeCategoryColors,
 	NodeInstance,
 	NodeParameter,
+	nodes,
 	NodeType,
 	nodeTypeColors,
 	NumberAttribute,
@@ -61,7 +74,6 @@ export {
 	Weight,
 	type AttributeBox,
 	type AttributeTypeNameValue,
-	type GeneratedAttribute,
 	type NodeNodeArgument,
 	type SerializedAttributeDefinition,
 	type SerializedAttributeRef,
@@ -71,3 +83,31 @@ export {
 };
 
 export type { AttributeContext, AttributeTypeName, MeasurementType, SerializedAttributeValue };
+
+export function string() {
+	return new StringType();
+}
+
+export function any() {
+	return new AnyType();
+}
+
+export function number() {
+	return new NumberType();
+}
+
+export function boolean() {
+	return new BooleanType();
+}
+
+export function select() {
+	return new SelectType();
+}
+
+export function listOf(subtype: PrimitiveType<any>) {
+	return new ListType(subtype);
+}
+
+export function object() {
+	return new ObjectType();
+}

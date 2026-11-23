@@ -1,14 +1,14 @@
+import { AttributeDefinition, AttributeType } from "@clara/api/attribute";
+import { Randomizer, randomizers, type SerializedRandomizer } from "@clara/api/random";
+import { PaneLayout, type SerializedPaneLayout } from "@clara/api/ui";
 import { invoke } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
-import { Group, type Database, type SerializedDatabase } from "./data/database.svelte";
-import type { Serialize, Serialized } from "./util/serialize.svelte";
-import { Debug } from "./util/index.svelte";
-import { cache, userSettings } from "./usersettings/index.svelte.ts";
 import { notify } from "./components/index.svelte.ts";
-import { Randomizer, randomizers, type SerializedRandomizer } from "@clara/api/random";
+import { Group, type Database, type SerializedDatabase } from "./data/database.svelte";
 import { ItemType, type SerializedItemType } from "./data/type.svelte.js";
-import { AttributeDefinition, AttributeType } from "@clara/api/attribute";
-import { type SerializedPaneLayout, PaneLayout } from "@clara/api/ui";
+import { cache, userSettings } from "./usersettings/index.svelte.ts";
+import { Debug } from "./util/index.svelte";
+import type { Serialize, Serialized } from "./util/serialize.svelte";
 
 export type SerializedTemplate = {
 	database: SerializedDatabase;
@@ -61,10 +61,7 @@ export class Template implements Serialize<SerializedTemplate> {
 				new ItemType({
 					name: "Node",
 					icon: "GitCompare",
-					attributes: [
-						new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") }),
-						new AttributeDefinition({ name: "Generator", type: AttributeType.fromName("generated") }),
-					],
+					attributes: [new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") })],
 					defaultView: "Node Editor",
 				}),
 			);

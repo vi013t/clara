@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { userSettings } from "@clara/api/usersettings";
-	import { getIcon, type IconIdentifier } from "@clara/api/icons";
-	import { LittleButton, Icon, Popup, Select, PopupSidebar, HierarchyView } from "@clara/api/components";
-	import type { Template } from "@clara/api/project";
 	import { plugins } from "@clara/api";
+	import { HierarchyView, Icon, LittleButton, Popup, PopupSidebar, Select } from "@clara/api/components";
+	import { getIcon, type IconIdentifier } from "@clara/api/icons";
 	import type { ClaraPlugin } from "@clara/api/plugin";
+	import type { Template } from "@clara/api/project";
+	import { userSettings } from "@clara/api/usersettings";
 
 	let popup: Popup;
 	let view = $state("appearance");
@@ -26,7 +26,7 @@
 
 	userSettings();
 
-	function togglePlugin(plugin: ClaraPlugin<any>) {
+	function togglePlugin(plugin: ClaraPlugin<string, string>) {
 		return function () {
 			if (userSettings().isPluginEnabled(plugin)) {
 				userSettings().disablePlugin(plugin);

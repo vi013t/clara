@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { invoke } from "@tauri-apps/api/core";
-	import { open as chooseFile } from "@tauri-apps/plugin-dialog";
+	import { HierarchyView, Icon, LittleButton, Popup, Select, SettingsPopup } from "@clara/api/components";
 	import { Project, Template } from "@clara/api/project";
 	import { cache, getFromCache, userSettings } from "@clara/api/usersettings";
-	import { HierarchyView, Icon, LittleButton, Popup, Select, SettingsPopup } from "@clara/api/components";
 	import { asyncFn } from "@clara/api/utils";
+	import { invoke } from "@tauri-apps/api/core";
 	import { sep } from "@tauri-apps/api/path";
+	import { open as chooseFile } from "@tauri-apps/plugin-dialog";
 
 	let popup: Popup;
 

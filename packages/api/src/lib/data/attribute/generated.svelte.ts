@@ -1,5 +1,20 @@
 import { cloneRecord, type Cloneable, type Serialize } from "@clara/api/utils";
-import { Item } from "@clara/api/database";
+
+export const nodeTypeColors: { [Key in Type]: string } = {
+	string: "var(--green)",
+	number: "var(--orange)",
+	boolean: "var(--purple)",
+	item: "var(--purple)",
+	any: "var(--indigo)",
+	group: "var(--pink)",
+	list: "var(--teal)",
+};
+
+export const nodeCategoryColors = {
+	value: "var(--green)",
+	operation: "var(--indigo)",
+	data: "var(--yellow)",
+};
 
 export type SerializedGeneratedAttributeType = {
 	name: string;
@@ -8,93 +23,15 @@ export type SerializedGeneratedAttributeType = {
 	generated: true;
 };
 
-export class GeneratedAttribute implements Serialize<SerializedGeneratedAttributeType>, Cloneable<GeneratedAttribute> {
-	public name;
-	public generator: NodeGenerator;
-
-	private id_;
-	private static nextID = 0;
-
-	public constructor({ name, generator, id }: { name: string; generator: NodeGenerator; id?: number }) {
-		this.name = $state(name);
-		this.id_ = id ?? GeneratedAttribute.nextID++;
-		this.generator = $state(generator);
-	}
-
-	public fromItem(name: string, item: Item) {
-		return new GeneratedAttribute({
-			name,
-			generator: new NodeGenerator([
-				new NodeInstance({
-					x: 0,
-					y: 0,
-					type: NodeType.fromName("Item")!,
-					inputs: { item: new NodeArgument({ type: "value", value: { value: item, type: "item" } }) },
-				}),
-			]),
-		});
-	}
-
-	public clone(): GeneratedAttribute {
-		return new GeneratedAttribute({ name: this.name, generator: this.generator.clone() });
-	}
-
-	public serialize(): SerializedGeneratedAttributeType {
-		return {
-			name: this.name,
-			id: this.id_,
-			generator: this.generator.serialize(),
-			generated: true,
-		};
-	}
-
-	public static deserialize(attribute: SerializedGeneratedAttributeType): GeneratedAttribute {
-		if (GeneratedAttribute.nextID <= attribute.id) GeneratedAttribute.nextID = attribute.id + 1;
-		const definition = new GeneratedAttribute({
-			name: attribute.name,
-			generator: NodeGenerator.deserialize(attribute.generator),
-		});
-		return definition;
-	}
-
-	public get id() {
-		return this.id_;
-	}
-}
-
 export type SerializedNodeGenerator = {
 	nodes: NodeInstance[];
 };
-
-export class NodeGenerator implements Serialize<SerializedNodeGenerator>, Cloneable<NodeGenerator> {
-	nodes: NodeInstance[];
-
-	public constructor(nodes: NodeInstance[]) {
-		this.nodes = $state(nodes);
-	}
-
-	public clone(): NodeGenerator {
-		return new NodeGenerator(this.nodes.map(node => node.clone()));
-	}
-
-	public static deserialize(generator: SerializedNodeGenerator): NodeGenerator {
-		return new NodeGenerator(generator.nodes);
-	}
-
-	public serialize(): SerializedNodeGenerator {
-		return {
-			nodes: this.nodes,
-		};
-	}
-}
 
 export type SerializedNodeInstance = {
 	type: NodeType;
 	id: number;
 	x: number;
 	y: number;
-	inputs: Record<string, NodeArgument>;
-	outputs: Record<string, NodeArgument>;
 };
 
 export class NodeInstance implements Cloneable<NodeInstance>, Serialize<SerializedNodeInstance> {
@@ -103,8 +40,6 @@ export class NodeInstance implements Cloneable<NodeInstance>, Serialize<Serializ
 
 	public x: number;
 	public y: number;
-	public inputs: Record<string, NodeArgument>;
-	public outputs: Record<string, NodeArgument>;
 
 	private static nextID = 0;
 
@@ -112,8 +47,6 @@ export class NodeInstance implements Cloneable<NodeInstance>, Serialize<Serializ
 		x,
 		y,
 		type,
-		inputs,
-		outputs,
 		id,
 	}: {
 		type: NodeType;
@@ -126,8 +59,6 @@ export class NodeInstance implements Cloneable<NodeInstance>, Serialize<Serializ
 		this.x = x;
 		this.y = y;
 		this.type = type;
-		this.inputs = inputs ?? {};
-		this.outputs = outputs ?? {};
 		this.id = id ?? NodeInstance.nextID++;
 	}
 
@@ -136,13 +67,11 @@ export class NodeInstance implements Cloneable<NodeInstance>, Serialize<Serializ
 			x: this.x,
 			y: this.y,
 			type: this.type.clone(),
-			inputs: cloneRecord(this.inputs),
-			outputs: cloneRecord(this.outputs),
 		});
 	}
 
 	public static deserialize(node: SerializedNodeInstance): NodeInstance {
-		return new NodeInstance({ x: node.x, y: node.y, type: node.type, inputs: node.inputs, outputs: node.outputs, id: node.id });
+		return new NodeInstance({ x: node.x, y: node.y, type: node.type, id: node.id });
 	}
 
 	public serialize(): SerializedNodeInstance {
@@ -150,8 +79,6 @@ export class NodeInstance implements Cloneable<NodeInstance>, Serialize<Serializ
 			x: this.x,
 			y: this.y,
 			type: this.type,
-			inputs: this.inputs,
-			outputs: this.outputs,
 			id: this.id,
 		};
 	}
@@ -303,12 +230,6 @@ export type SerializedNodeNodeArgument = { node: SerializedNodeInstance; outputN
 export type ValueArgument = { value: any; type: Type };
 export type NodeCategory = "value" | "operation" | "data";
 
-export const nodeCategoryColors = {
-	value: "var(--green)",
-	operation: "var(--indigo)",
-	data: "var(--yellow)",
-};
-
 let nodeTypes = $state([
 	new NodeType({
 		name: "Create Item",
@@ -368,12 +289,29 @@ export function nodes() {
 	return nodeTypes;
 }
 
-export const nodeTypeColors: { [Key in Type]: string } = {
-	string: "var(--green)",
-	number: "var(--orange)",
-	boolean: "var(--purple)",
-	item: "var(--purple)",
-	any: "var(--indigo)",
-	group: "var(--pink)",
-	list: "var(--teal)",
-};
+export class NodePort {
+	public readonly type: "input" | "output";
+	public readonly name: string;
+	public readonly node: NodeInstance;
+
+	public constructor({ type, name, node }: { node: NodeInstance; name: string; type: "input" | "output" }) {
+		this.type = type;
+		this.name = name;
+		this.node = node;
+	}
+}
+
+export class NodeEdge {
+	public readonly left: NodePort;
+	public readonly right: NodePort;
+
+	public constructor(left: NodePort, right: NodePort) {
+		this.left = left;
+		this.right = right;
+	}
+}
+
+export class AttributeGraph {
+	nodes: NodeInstance[] = $state([]);
+	edges: NodeEdge[] = $state([]);
+}

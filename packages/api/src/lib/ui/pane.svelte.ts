@@ -1,5 +1,5 @@
+import { TabList } from "@clara/api/ui";
 import type { Cloneable, Serialize } from "@clara/api/utils";
-import { TabList } from "./index.svelte.js";
 import type { SerializedTabList } from "./tab.svelte.ts";
 
 export type SerializedPaneLayout = SerializedSinglePane | SerializedMultiPane;
@@ -129,10 +129,14 @@ export class MultiPane extends PaneLayout {
 	}
 }
 
-let rootPane_: PaneLayout = $state(new SinglePane(false));
+let rootPane_: PaneLayout = $state(null!);
 let focusedPane_: PaneLayout = $state(rootPane_);
 
 export function rootPane() {
+	if (!rootPane_) {
+		rootPane_ = new SinglePane(false);
+		focusedPane_ = rootPane_;
+	}
 	return rootPane_;
 }
 
@@ -141,6 +145,9 @@ export function setRootPane(pane: PaneLayout) {
 }
 
 export function focusedPane() {
+	if (!focusedPane_) {
+		focusedPane_ = rootPane();
+	}
 	return focusedPane_;
 }
 

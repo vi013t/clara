@@ -2,5 +2,6 @@
 // AND IS NOT MEANT FOR MANUAL EDITING
 
 const internal = globalThis.__CLARA_API__.api;
+export const currentPluginBeingLoaded = internal.currentPluginBeingLoaded;
 export const startPlugins = internal.startPlugins;
 export const plugins = internal.plugins;

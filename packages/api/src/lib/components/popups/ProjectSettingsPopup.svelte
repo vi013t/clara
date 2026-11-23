@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { Icon, Popup } from "@clara/api/components";
+	import { Popup, PopupSidebar } from "@clara/api/components";
+	import { getIcon, type IconIdentifier } from "@clara/api/icons";
+	import { userSettings } from "@clara/api/usersettings";
 
 	let popup: Popup;
 
@@ -7,21 +9,28 @@
 		popup.open();
 	}
 
-	let selectedTab = $state("general");
+	let view = $state("General");
 
 	function reset() {
-		selectedTab = "general";
+		view = "general";
 	}
 </script>
 
 <Popup {reset} bind:this={popup}>
 	<div class="popup">
-		<div class="sidebar">
-			<button>
-				<Icon name="Settings" />
-				<span>General</span>
-			</button>
-		</div>
+		<PopupSidebar
+			bind:view
+			title={{ text: "Project Settings", icon: getIcon("Settings").component }}
+			sections={{
+				General: [["General", "Folder"]],
+				Plugins: [
+					...userSettings()
+						.enabledPlugins()
+						.filter(plugin => plugin.projectSettings)
+						.map(plugin => [plugin.name, plugin.icon] as [string, IconIdentifier]),
+				],
+			}}
+		/>
 	</div>
 </Popup>
 
@@ -31,35 +40,5 @@
 		height: 100%;
 		display: flex;
 		overflow-y: auto;
-
-		.sidebar {
-			height: 100%;
-			width: 15rem;
-			border-right: 1px solid var(--border);
-			display: flex;
-			flex-direction: column;
-			gap: 0.25rem;
-			padding: 1rem;
-
-			button {
-				display: flex;
-				align-items: center;
-				gap: 0.5rem;
-				padding: 0.25rem;
-				padding-left: 0.5rem;
-				width: 100%;
-				border-radius: 0.25rem;
-				--stroke: var(--foreground-bright);
-
-				&:hover {
-					background-color: var(--indigo);
-					--stroke: var(--background-dark);
-				}
-
-				span {
-					color: var(--stroke);
-				}
-			}
-		}
 	}
 </style>

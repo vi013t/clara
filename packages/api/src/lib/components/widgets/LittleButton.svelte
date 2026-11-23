@@ -9,30 +9,42 @@
 		size = 16,
 		color = "currentColor",
 		accent = "var(--indigo)",
+		background = "var(--background-dark)",
 		element = $bindable(),
 		on = $bindable(false),
-		isToggle,
+		toggle,
 		children,
 		...attributes
 	}: {
 		element?: HTMLButtonElement;
 		icon: IconIdentifier;
 		size?: number;
+		background?: string;
 		accent?: string;
 		color?: string;
 		children?: Snippet;
-		isToggle?: true;
+		toggle?: true;
 		on?: boolean;
 	} & HTMLAttributes<HTMLButtonElement> = $props();
 
-	function onmousedown() {
-		if (isToggle) {
+	function onmousedown(event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
+		if (toggle) {
 			on = !on;
 		}
+
+		attributes.onmousedown?.(event);
 	}
 </script>
 
-<button {onmousedown} bind:this={element} {...attributes} style:--accent={accent} style:--base={color} class={{ on }}>
+<button
+	{...attributes}
+	{onmousedown}
+	bind:this={element}
+	style:--bg={background}
+	style:--accent={accent}
+	style:--base={color}
+	class={{ on }}
+>
 	<Icon name={icon} {size} />
 	{@render children?.()}
 </button>
@@ -53,12 +65,12 @@
 
 		&:hover {
 			background-color: var(--accent);
-			color: var(--background-dark);
+			color: var(--bg);
 		}
 
 		&.on {
 			background-color: var(--accent);
-			color: var(--background-dark);
+			color: var(--bg);
 		}
 	}
 </style>

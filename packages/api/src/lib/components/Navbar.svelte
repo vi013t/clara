@@ -12,11 +12,10 @@
 </script>
 
 <script lang="ts">
-	import { getCurrentWindow } from "@tauri-apps/api/window";
-	import { ContextMenu, LittleButton, NewProjectPopup, SettingsPopup, ProjectSettingsPopup } from "@clara/api/components";
-	import { Project } from "@clara/api/project";
-	import { Icon } from "@clara/api/components";
+	import { ContextMenu, Icon, LittleButton, NewProjectPopup, ProjectSettingsPopup, SettingsPopup } from "@clara/api/components";
 	import type { IconIdentifier } from "@clara/api/icons";
+	import { Project } from "@clara/api/project";
+	import { getCurrentWindow } from "@tauri-apps/api/window";
 	import type { Snippet } from "svelte";
 	import { SvelteMap } from "svelte/reactivity";
 
@@ -57,8 +56,6 @@
 			(event.currentTarget as HTMLElement).blur();
 		}
 	}
-
-	$inspect(buttons);
 </script>
 
 <nav>

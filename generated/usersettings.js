@@ -2,11 +2,12 @@
 // AND IS NOT MEANT FOR MANUAL EDITING
 
 const internal = globalThis.__CLARA_API__.usersettings;
+export const UserSettings = internal.UserSettings;
 export const registerHotkey = internal.registerHotkey;
 export const userSettings = internal.userSettings;
 export const saveUserSettings = internal.saveUserSettings;
 export const cache = internal.cache;
 export const getFromCache = internal.getFromCache;
+export const key = internal.key;
 export const pressHotkey = internal.pressHotkey;
 export const runAction = internal.runAction;
-export const key = internal.key;

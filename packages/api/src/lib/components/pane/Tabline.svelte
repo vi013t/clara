@@ -359,6 +359,7 @@
 			white-space: nowrap;
 			display: flex;
 			overflow: hidden;
+			align-items: center;
 
 			:global(> *:first-child) {
 				margin-right: 0.5rem;

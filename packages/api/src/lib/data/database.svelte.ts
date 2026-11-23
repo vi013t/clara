@@ -1,17 +1,18 @@
+import { AttributeTab, GroupTab, ItemTab, spreadsheet, Tab } from "@clara/api/ui";
 import { Point2D } from "../math/matrix.svelte";
 import { Circle, type Shape } from "../math/shape.svelte";
 import { getIcon, type Icon, type IconIdentifier, type IconName } from "../ui/icons.svelte";
 import type { Cloneable } from "../util/Clone.svelte";
-import type { Serialize } from "../util/serialize.svelte";
-import { AttributeDefinition } from "./attribute/definition.svelte";
-import { AttributeRef, AttributeValue, type SerializedAttributeValue } from "./attribute/value.svelte";
-import { Color } from "./attribute/color.svelte";
-import { StringAttribute } from "./attribute/primitive.svelte";
-import { TreeBranch, TreeLeaf } from "./tree.svelte";
 import { Objects } from "../util/index.svelte";
+import type { Serialize } from "../util/serialize.svelte";
+import { Color } from "./attribute/color.svelte";
+import { AttributeDefinition } from "./attribute/definition.svelte";
+import { StringAttribute } from "./attribute/primitive.svelte";
 import { AttributeType } from "./attribute/type.svelte.ts";
+import { AttributeRef, AttributeValue, type SerializedAttributeValue } from "./attribute/value.svelte";
+import type { PrimitiveType } from "./primitive.svelte.ts";
+import { TreeBranch, TreeLeaf } from "./tree.svelte";
 import { ItemType, type SerializedItemType } from "./type.svelte.ts";
-import { AttributeTab, ItemTab, Tab, view } from "@clara/api/ui";
 
 export { ItemType };
 
@@ -109,7 +110,11 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 	}
 
 	public newTab(): Tab<any> | null {
-		if (!this.type.defaultView) return null;
+		if (!this.type.defaultView) {
+			const tab = new GroupTab(this.parent!.id);
+			tab.view = spreadsheet;
+			return tab;
+		}
 
 		if (this.type.defaultView.type === "attribute") {
 			return new AttributeTab(this.attribute("Content"), this.type.defaultView);
@@ -143,6 +148,13 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 		let icon = typeof arg === "object" ? (arg.icon ?? "inherit") : "inherit";
 		this.icon_ = $state(icon === "inherit" ? "inherit" : getIcon(icon));
 		this.defaultType_ = $state(typeof arg === "object" ? (arg.defaultType ?? "inherit") : "inherit");
+		if (this.isRoot) {
+			this.defaultType_ = new ItemType({
+				name: "Item",
+				icon: this.root().icon,
+				attributes: [new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") })],
+			});
+		}
 	}
 
 	public clone(): Group {
@@ -219,15 +231,6 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 
 	public get defaultType(): ItemType {
 		if (this.defaultType_ === "inherit") {
-			if (this.isRoot) {
-				this.defaultType_ = new ItemType({
-					name: "Item",
-					icon: this.root().icon,
-					attributes: [new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") })],
-				});
-				return this.defaultType_;
-			}
-
 			return this.parent!.defaultType;
 		}
 
@@ -351,3 +354,5 @@ export type Node = Group | Item;
  * such as a project or template.
  */
 export type Database = Group;
+
+export type { PrimitiveType as Type };

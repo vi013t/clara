@@ -1,24 +1,10 @@
 <script lang="ts" module>
-	import { getIcon, GroupTab, ItemTab, registerGlobalView, SinglePane, type GroupView, type ItemView } from "@clara/api/ui";
-	import { plugin } from "@clara/api/plugin";
-	import { Item, ItemType, type Group } from "@clara/api/database";
-	import BulletinBoard from "./board/BulletinBoard.svelte";
-	import { Project } from "@clara/api/project";
 	import { AttributeDefinition, AttributeType } from "@clara/api/attribute";
-
-	export const bulletinBoardView: ItemView = {
-		name: "Bulletin Board",
-		icon: getIcon("StickyNote"),
-		render: bulletinBoard,
-		type: "item",
-	};
-
-	export const timelineView: GroupView = {
-		name: "Timeline",
-		icon: getIcon("Clock"),
-		render: timeline,
-		type: "group",
-	};
+	import { Item, ItemType, type Group } from "@clara/api/database";
+	import { plugin } from "@clara/api/plugin";
+	import { Project } from "@clara/api/project";
+	import { GroupTab, ItemTab, SinglePane } from "@clara/api/ui";
+	import BulletinBoard from "./board/BulletinBoard.svelte";
 
 	const extraViewsPlugin = plugin({
 		name: "Extra Views",
@@ -27,9 +13,6 @@
 		description: "Extra views for Clara.",
 
 		onLoad() {
-			registerGlobalView(bulletinBoardView);
-			registerGlobalView(timelineView);
-
 			Project.onSet(project => {
 				if (!project.types.some(type => type.name === "Sticky Note")) {
 					project!.types.push(
@@ -57,7 +40,6 @@
 								new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") }),
 								new AttributeDefinition({ name: "Notes", type: AttributeType.fromName("entries") }),
 							],
-							defaultView: bulletinBoardView.name,
 						}),
 					);
 				}

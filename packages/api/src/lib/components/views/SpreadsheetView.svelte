@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { AttributeDefinition, AttributeType, attributeTypes, type AttributeRef } from "@clara/api/attribute";
 	import { AttributeSettingsPopup, ContextMenu, Icon, Input, LittleButton } from "@clara/api/components";
-	import { Item, ItemType, type Group } from "@clara/api/database";
+	import { Item, ItemType } from "@clara/api/database";
 	import { Project } from "@clara/api/project";
-	import type { SinglePane } from "@clara/api/ui";
+	import type { SinglePane, Spreadsheet } from "@clara/api/ui";
+	import { SvelteMap } from "svelte/reactivity";
 
 	let {
-		group = $bindable(),
+		spreadsheet = $bindable(),
 		pane = $bindable(),
 	}: {
-		group: Group;
+		spreadsheet: Spreadsheet;
 		pane: SinglePane;
 	} = $props();
 
@@ -30,7 +31,7 @@
 	}
 
 	function addRow() {
-		group.addChild(new Item(itemType!, "New Item"));
+		spreadsheet.group.addChild(new Item(itemType!, `New ${itemType.name}`));
 		Project.autosave();
 	}
 
@@ -47,7 +48,7 @@
 
 	function removeItem(item: Item) {
 		return function () {
-			group.removeItem(item);
+			spreadsheet.group.removeItem(item);
 			Project.autosave();
 			updateCounter++;
 		};
@@ -72,11 +73,11 @@
 		};
 	}
 
-	let attributes: Map<AttributeDefinition, Map<Item, AttributeRef>> = $derived.by(() => {
-		let attributes = new Map();
+	let attributes: SvelteMap<AttributeDefinition, SvelteMap<Item, AttributeRef>> = $derived.by(() => {
+		let attributes = new SvelteMap<AttributeDefinition, SvelteMap<Item, AttributeRef>>();
 		for (const attribute of itemType.attributes) {
-			const items = new Map();
-			for (const item of group.dfsItems().filter(item => item.type === itemType)) {
+			const items = new SvelteMap<Item, AttributeRef>();
+			for (const item of spreadsheet.group.dfsLeaves().filter(item => item.type === itemType)) {
 				items.set(item, item.attribute(attribute.name));
 			}
 			attributes.set(attribute, items);
@@ -90,7 +91,14 @@
 		<div style:width="100%" class="control cell" style:position="relative">
 			<LittleButton icon={itemType.icon.name} onmousedown={() => itemTypeMenu.open()}>
 				<ContextMenu bind:this={itemTypeMenu} top="100%" left="0%">
-					{#each Project.get()!.types as itemType}
+					{#each Project.get()!.types.filter(type => !["Document", "Node"].includes(type.name) && !type.hidden) as itemType}
+						<button onmousedown={setItemType(itemType)}>
+							<Icon name={itemType.icon} />
+							{itemType.pluralName}
+						</button>
+					{/each}
+					<hr />
+					{#each Project.get()!.types.filter(type => ["Document", "Node"].includes(type.name)) as itemType}
 						<button onmousedown={setItemType(itemType)}>
 							<Icon name={itemType.icon} />
 							{itemType.pluralName}
@@ -100,7 +108,7 @@
 			</LittleButton>
 		</div>
 
-		{#each group.dfsLeaves() as item}
+		{#each spreadsheet.group.dfsLeaves().filter(item => item.type === itemType) as item}
 			<div class="control cell">
 				<LittleButton accent="var(--red)" icon="Trash2" onmousedown={removeItem(item)} />
 			</div>
@@ -138,7 +146,7 @@
 						<Input
 							context="spreadsheet"
 							bind:pane
-							type={attribute instanceof AttributeDefinition ? attribute.type.name : "generated"}
+							type={attribute instanceof AttributeDefinition ? attribute.type.name : "shortText"}
 							bind:attribute={
 								() => attributes.get(attribute)!.get(item)!, ref => (attributes.get(attribute)!.get(item)!.value = ref.value)
 							}
@@ -156,7 +164,7 @@
 		<div class="new header cell">
 			<LittleButton icon="Plus" onmousedown={addColumn} />
 		</div>
-		{#each group.children as item}
+		{#each spreadsheet.group.children}
 			<div class="new cell"></div>
 		{/each}
 		<div class="new cell"></div>

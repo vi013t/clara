@@ -2,7 +2,8 @@
 	import { ContextMenu, HierarchyView, Icon } from "@clara/api/components";
 	import { Group, Item, ItemType, type Node } from "@clara/api/database";
 	import { Project } from "@clara/api/project";
-	import { GroupTab, MultiPane, PaneLayout, SinglePane } from "@clara/api/ui";
+	import { GroupTab, MultiPane, PaneLayout, SinglePane, TabRef } from "@clara/api/ui";
+	import { onMount } from "svelte";
 
 	let {
 		entry = $bindable(Project.get() ? Project.get()!.database : null!),
@@ -52,13 +53,14 @@
 
 		const newTab = entry.newTab();
 		if (newTab) {
+			const newTabRef = new TabRef(newTab);
 			if (pane.sibling instanceof SinglePane) {
-				pane.sibling.tabline.appendTab(newTab);
-				pane.sibling.selectedTabID = newTab.id;
+				pane.sibling.tabline.appendTab(newTabRef);
+				pane.sibling.selectedTabID = newTabRef.id;
 			} else {
 				const newPane = new SinglePane(true);
-				newPane.tabline.appendTab(newTab);
-				newPane.selectedTabID = newTab.id;
+				newPane.tabline.appendTab(newTabRef);
+				newPane.selectedTabID = newTabRef.id;
 				let layout = new MultiPane(pane.hasParent, "horizontal", pane, newPane, 0.22);
 				setPane!(layout);
 			}
@@ -122,6 +124,10 @@
 		rightClickMenu?.close();
 		Project.autosave();
 	}
+
+	onMount(() => {
+		console.log(")rendering hierarchy");
+	});
 </script>
 
 <section style:padding={!subtree ? "1rem" : undefined}>
@@ -157,7 +163,7 @@
 
 	<ContextMenu onclose={() => (clickedNode = false)} left={menuLeft} top={menuTop} bind:this={rightClickMenu}>
 		{#if entry.isBranch()}
-			<button onmousedown={newItem(entry.defaultType)}>
+			<button onmousedown={newItem()}>
 				<Icon name="CirclePlus" />
 				Create New
 			</button>
@@ -167,7 +173,7 @@
 				<Icon name="ChevronRight" style="margin-left: auto;" />
 				<ContextMenu>
 					{#if Project.get()}
-						{#each Project.get()!.types.filter(type => !["Document", "Node"].includes(type.name) && !type.hidden && type !== entry.defaultType) as itemType}
+						{#each Project.get()!.types.filter(type => !["Document", "Node"].includes(type.name) && !type.hidden) as itemType}
 							<button onmousedown={newItem(itemType)}>
 								<Icon name={itemType.icon.name} />
 								{itemType.name}

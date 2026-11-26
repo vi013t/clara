@@ -2,7 +2,18 @@
 	import { ContextMenu, Icon, IconPicker, LittleButton } from "@clara/api/components";
 	import type { Group } from "@clara/api/database";
 	import { Project } from "@clara/api/project";
-	import { GroupTab, MultiPane, PaneLayout, SinglePane, Tab, TabList, views, type View } from "@clara/api/ui";
+	import {
+		GroupTab,
+		MultiPane,
+		PaneLayout,
+		SinglePane,
+		Tab,
+		TabList,
+		TabRef,
+		views,
+		type ViewFactory,
+		type ViewType,
+	} from "@clara/api/ui";
 	import { onMount } from "svelte";
 
 	let {
@@ -31,7 +42,7 @@
 
 	function createTab(group?: Group) {
 		let tabGroup = (group ?? currentTab() instanceof GroupTab) ? (currentTab() as GroupTab).group : Project.get()!.database;
-		let tab = new GroupTab(tabGroup.id);
+		let tab = new TabRef(new GroupTab(tabGroup.id));
 		pane.tabline.appendTab(tab);
 		pane.selectedTabID = tab.id;
 	}
@@ -67,7 +78,7 @@
 
 			if (pane.selectedTabID === id && pane.tabline.tabs.length > 1) {
 				let index = pane.tabline.indexOfID(id);
-				pane.selectedTabID = pane.tabline.getTabByIndex(index === 0 ? index + 1 : index - 1).id;
+				pane.selectedTabID = pane.tabline.getTabRefByIndex(index === 0 ? index + 1 : index - 1).id;
 			}
 			pane.tabline.deleteTab(id);
 			if (pane.tabline.isEmpty()) {
@@ -92,7 +103,7 @@
 		paneSettingsMenu.close();
 	}
 
-	function setView(view: View<any>) {
+	function setView(view: ViewFactory<ViewType>) {
 		return function () {
 			tabContextMenu.close();
 			currentTab().view = view;
@@ -138,12 +149,12 @@
 		>
 			<IconPicker
 				bind:this={tabIconPicker}
-				bind:value={() => tab.icon.name, name => (tab.icon = name)}
+				bind:value={() => tab.tab.icon.name, name => (tab.tab.icon = name)}
 				opener={changeTabIconButton ?? null}
 			/>
 			<span>
-				<LittleButton bind:element={changeTabIconButton} icon={tab.icon} onmousedown={() => tabIconPicker?.open()} />
-				{tab.title}
+				<LittleButton bind:element={changeTabIconButton} icon={tab.tab.icon} onmousedown={() => tabIconPicker?.open()} />
+				{tab.tab.title}
 			</span>
 			<LittleButton
 				accent="var(--red)"
@@ -204,7 +215,7 @@
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div onmousedown={setView(view)}>
 					<Icon name={view.icon} size={16} />
-					<span style:text-transform="capitalize">{view.name}</span>
+					<span style:text-transform="capitalize">{view.identifier}</span>
 
 					<Icon name="ChevronRight" style="margin-left: auto;" />
 					<ContextMenu>

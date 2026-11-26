@@ -49,6 +49,7 @@ function startPlugin(plugin: ClaraPlugin<string, string>) {
 			},
 		},
 	});
+	currentPlugin = null;
 }
 
 async function loadPlugins(): Promise<ClaraPlugin<string, string>[]> {

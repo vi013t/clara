@@ -10,49 +10,53 @@ import {
 	type SerializedSinglePane,
 } from "./pane.svelte.ts";
 import { registerStatusBarButton, statusBarButtons, type StatusBarButton } from "./statusbar.svelte.ts";
-import { addEditorControl, AttributeTab, editorControls, GroupTab, ItemTab, Tab, TabList } from "./tab.svelte.ts";
+import { addEditorControl, AttributeTab, editorControls, GroupTab, ItemTab, Tab, TabList, TabRef } from "./tab.svelte.ts";
 import {
-	editorView,
-	hierarchyView,
-	nodeEditorView,
+	AttributeView,
+	GroupView,
+	ItemView,
 	registerGlobalView,
-	spreadsheetView,
-	view,
+	View,
 	views,
-	type AttributeView,
-	type GroupView,
-	type ItemView,
-	type View,
+	type ViewFactory,
+	type ViewType,
 } from "./views.svelte";
+import { Editor, editorFactory } from "./views/editor.svelte";
+import { Hierarchy, hierarchyFactory } from "./views/hierarchy.svelte";
+import { Spreadsheet, spreadsheetFactory } from "./views/spreadsheet.svelte";
 
 export {
 	addEditorControl,
 	AttributeTab,
-	editorView as editor,
+	AttributeView,
+	Editor,
 	editorControls,
+	editorFactory,
 	focusedPane,
 	focusPane,
 	getIcon,
 	GroupTab,
-	hierarchyView as hierarchy,
+	GroupView,
+	Hierarchy,
+	hierarchyFactory,
 	ItemTab,
+	ItemView,
 	MultiPane,
-	nodeEditorView as nodeEditor,
 	PaneLayout,
 	registerGlobalView,
 	registerStatusBarButton,
 	SinglePane,
-	spreadsheetView as spreadsheet,
+	Spreadsheet,
+	spreadsheetFactory,
 	statusBarButtons,
 	Tab,
 	TabList,
-	view,
+	TabRef,
+	View,
 	views,
-	type AttributeView,
-	type GroupView,
-	type ItemView,
 	type StatusBarButton,
-	type View,
+	type ViewFactory,
 };
+export type { ViewType };
 
 export type { Icon, IconIdentifier, IconName, SerializedMultiPane, SerializedPaneLayout, SerializedSinglePane };

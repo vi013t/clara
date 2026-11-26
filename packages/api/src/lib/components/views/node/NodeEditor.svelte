@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { NodeInstance, NodeType, nodeTypeColors, nodes as nodeTypes } from "@clara/api/attribute";
 	import { Camera } from "@clara/api/camera";
-	import { ContextMenu, InfiniteCanvas, Node } from "@clara/api/components";
+	import { ContextMenu, InfiniteCanvas, Node, NodeEditor } from "@clara/api/components";
 
 	let camera: Camera = $state(new Camera());
 	let canPan = $state(true);
@@ -77,6 +77,10 @@
 		};
 	}
 </script>
+
+{#snippet renderNodeEditor({}: {})}
+	<NodeEditor nodes={[]} />
+{/snippet}
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <section class="node-editor" oncontextmenu={addNode}>

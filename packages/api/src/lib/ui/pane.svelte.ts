@@ -38,7 +38,7 @@ export class SinglePane extends PaneLayout {
 		super();
 		this.hasParent = hasParent;
 		this.tabline = $state(tabline ?? new TabList([]));
-		this.selectedTabID = $state(selectedTabID ?? this.tabline.tabs[0]?.id ?? 0);
+		this.selectedTabID = $state(selectedTabID ?? this.tabline.tabs[0]?.tab.id ?? 0);
 	}
 
 	public isSingle(): this is SinglePane {

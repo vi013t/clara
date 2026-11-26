@@ -3,9 +3,8 @@
 	import { LittleButton } from "@clara/api/components";
 	import { editorBarButtons, getListeners } from "@clara/api/plugin";
 	import { Project } from "@clara/api/project";
-	import { AttributeTab } from "@clara/api/ui";
+	import type { AttributeTab } from "@clara/api/ui";
 	import { userSettings } from "@clara/api/usersettings";
-	import { onMount } from "svelte";
 
 	let {
 		title,
@@ -31,7 +30,7 @@
 		tab.attribute.value = parseDocument(element);
 	}
 
-	function parseDocument(element: HTMLElement) {
+	function parseDocument(element: HTMLElement): RichText {
 		const parts: StyledText[] = [];
 
 		function visit(node: Node, inheritedStyle: Style) {
@@ -70,13 +69,6 @@
 
 		return new RichText(parts);
 	}
-
-	onMount(() => {
-		// tab.attribute
-		// 	.valueAs<RichText>()!
-		// 	.toHTML()
-		// 	.map(part => element.appendChild(part));
-	});
 
 	function toggleStyle(tagName: string) {
 		return function () {

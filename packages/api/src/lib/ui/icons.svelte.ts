@@ -1,7 +1,5 @@
-import type { SVGAttributes } from "svelte/elements";
-
-import { icons } from "@lucide/svelte";
 import type { LucideIcon } from "@lucide/svelte";
+import { icons } from "@lucide/svelte";
 
 export type IconName = keyof typeof icons;
 export type IconComponent = LucideIcon;
@@ -22,6 +20,7 @@ export type IconIdentifier = IconName | IconComponent | Icon;
  * @returns The icon data.
  */
 export function getIcon(identifier: IconIdentifier): Icon {
+	if (!identifier) return getIcon("OctagonX");
 	if (typeof identifier === "string") return { name: identifier, component: icons[identifier] };
 	if ("component" in identifier) return identifier;
 	return {

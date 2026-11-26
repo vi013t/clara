@@ -1,7 +1,7 @@
 import { AttributeDefinition, type SerializedAttributeDefinition } from "@clara/api/attribute";
 import { getIcon, type Icon, type IconIdentifier, type IconName } from "@clara/api/icons";
 import { type Cloneable, type Serialize } from "@clara/api/utils";
-import { views, type AttributeView, type ItemView } from "../ui/views.svelte";
+import { views, type AttributeView, type ItemView, type ViewClass } from "../ui/views.svelte";
 
 export type SerializedItemType = {
 	name: string;
@@ -19,6 +19,7 @@ export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemTy
 	public pluralName: string;
 	public defaultView_: string | null;
 	public hidden: boolean;
+	public defaultAttribute: string | null;
 
 	public constructor({
 		name,
@@ -26,14 +27,15 @@ export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemTy
 		attributes,
 		pluralName,
 		defaultView,
+		defaultAttribute,
 		hidden,
 	}: {
 		name: string;
 		icon: IconIdentifier;
 		attributes: AttributeDefinition[];
-
 		pluralName?: string;
 		defaultView?: string;
+		defaultAttribute?: string;
 		hidden?: true;
 	}) {
 		this.name = $state(name);
@@ -41,11 +43,12 @@ export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemTy
 		this.attributes = $state(attributes);
 		this.pluralName = $state(pluralName ?? `${this.name}s`);
 		this.defaultView_ = $state(defaultView ?? null);
+		this.defaultAttribute = $state(defaultAttribute ?? null);
 		this.hidden = hidden ?? false;
 	}
 
-	public get defaultView(): ItemView | AttributeView | null {
-		return views().find(view => view.name === this.defaultView_) as ItemView | AttributeView | null;
+	public get defaultView(): ViewClass<ItemView | AttributeView> | null {
+		return views().find(view => view.identifier === this.defaultView_) as ViewClass<ItemView | AttributeView> | null;
 	}
 
 	public clone(): ItemType {
@@ -54,6 +57,7 @@ export class ItemType implements Serialize<SerializedItemType>, Cloneable<ItemTy
 			icon: this.icon,
 			attributes: this.attributes.map(attribute => attribute.clone()),
 			defaultView: this.defaultView_ ?? undefined,
+			hidden: this.hidden ? true : undefined,
 		});
 	}
 

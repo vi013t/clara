@@ -19,7 +19,15 @@
 	import { startPlugins } from "@clara/api";
 	import { InputHandler, keyboard, Navbar, NoProject, Notifications, Pane } from "@clara/api/components";
 	import { Project } from "@clara/api/project";
-	import { focusedPane, GroupTab } from "@clara/api/ui";
+	import {
+		editorFactory,
+		focusedPane,
+		GroupTab,
+		hierarchyFactory,
+		registerGlobalView,
+		spreadsheetFactory,
+		TabRef,
+	} from "@clara/api/ui";
 	import { getFromCache, pressHotkey, userSettings } from "@clara/api/usersettings";
 	import { Debug, errors, uniqueId, type Id } from "@clara/api/utils";
 	import { onMount, type Snippet } from "svelte";
@@ -32,6 +40,10 @@
 			Debug.errors(errors());
 		}
 	});
+
+	registerGlobalView(editorFactory);
+	registerGlobalView(spreadsheetFactory);
+	registerGlobalView(hierarchyFactory);
 
 	let startingPlugins = startPlugins();
 
@@ -54,7 +66,7 @@
 		const pane = focusedPane();
 		if (!pane.isSingle()) return;
 		if (pane.tabline.tabs.length === 0) {
-			pane.tabline.tabs[0] = new GroupTab(project.database.id);
+			pane.tabline.tabs[0] = new TabRef(new GroupTab(project.database.id));
 			pane.selectedTabID = pane.tabline.tabs[0].id;
 		}
 	});

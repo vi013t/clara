@@ -1,4 +1,4 @@
-import { AttributeTab, GroupTab, ItemTab, spreadsheet, Tab } from "@clara/api/ui";
+import { GroupTab, Spreadsheet, Tab } from "@clara/api/ui";
 import { Point2D } from "../math/matrix.svelte";
 import { Circle, type Shape } from "../math/shape.svelte";
 import { getIcon, type Icon, type IconIdentifier, type IconName } from "../ui/icons.svelte";
@@ -112,15 +112,15 @@ export class Item extends TreeLeaf<Group, Item> implements Serialize<SerializedI
 	public newTab(): Tab<any> | null {
 		if (!this.type.defaultView) {
 			const tab = new GroupTab(this.parent!.id);
-			tab.view = spreadsheet;
+			tab.view = new Spreadsheet({ group: this.parent!, itemType: this.parent!.defaultType });
 			return tab;
 		}
 
 		if (this.type.defaultView.type === "attribute") {
-			return new AttributeTab(this.attribute("Content"), this.type.defaultView);
+			return this.type.defaultView.createTab(this.attribute("Content"));
 		}
 
-		return new ItemTab(this.id, this.type.defaultView);
+		return this.type.defaultView.createTab(this);
 	}
 }
 
@@ -148,13 +148,6 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 		let icon = typeof arg === "object" ? (arg.icon ?? "inherit") : "inherit";
 		this.icon_ = $state(icon === "inherit" ? "inherit" : getIcon(icon));
 		this.defaultType_ = $state(typeof arg === "object" ? (arg.defaultType ?? "inherit") : "inherit");
-		if (this.isRoot) {
-			this.defaultType_ = new ItemType({
-				name: "Item",
-				icon: this.root().icon,
-				attributes: [new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") })],
-			});
-		}
 	}
 
 	public clone(): Group {
@@ -230,6 +223,14 @@ export class Group extends TreeBranch<Group, Item> implements Serialize<Serializ
 	}
 
 	public get defaultType(): ItemType {
+		if (this.isRoot) {
+			this.defaultType_ = new ItemType({
+				name: "Item",
+				icon: this.root().icon,
+				attributes: [new AttributeDefinition({ name: "Name", type: AttributeType.fromName("shortText") })],
+			});
+		}
+
 		if (this.defaultType_ === "inherit") {
 			return this.parent!.defaultType;
 		}

@@ -16,7 +16,7 @@
 		onclose?: () => void;
 	} = $props();
 
-	let tab = $derived(pane.tabline.getTabByID(pane.selectedTabID));
+	let tab = $derived(pane.tabline.getTabRefByID(pane.selectedTabID));
 
 	function setPane(newPane: PaneLayout) {
 		layout = newPane;
@@ -27,15 +27,15 @@
 	<Tabline bind:pane bind:paneLayout={layout} {background} {subpane} {onclose} />
 
 	<div class="content" style:background>
-		{#if tab instanceof AttributeTab && tab.id === pane.selectedTabID}
-			{@render tab.view.render({ tab, pane, attribute: tab.attribute, setPane })}
-		{:else if tab instanceof GroupTab && tab.id === pane.selectedTabID}
-			{@render tab.view.render({ tab, pane, group: tab.group, setPane })}
-		{:else if tab instanceof ItemTab && tab.id === pane.selectedTabID}
-			{@render tab.view.render({ tab, pane, item: tab.item, setPane })}
+		{#if tab.tab instanceof AttributeTab && tab.id === pane.selectedTabID}
+			{@render tab.tab.view.render({ tab: tab.tab, pane, setPane })}
+		{:else if tab.tab instanceof GroupTab && tab.id === pane.selectedTabID}
+			{@render tab.tab.view.render({ tab: tab.tab, pane, setPane })}
+		{:else if tab.tab instanceof ItemTab && tab.id === pane.selectedTabID}
+			{@render tab.tab.view.render({ tab: tab.tab, pane, setPane })}
 		{/if}
 	</div>
-	<StatusBar bind:view={tab.view} />
+	<StatusBar bind:tab bind:pane />
 </section>
 
 <style>

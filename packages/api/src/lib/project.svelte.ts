@@ -6,6 +6,7 @@ import { open } from "@tauri-apps/plugin-dialog";
 import { notify } from "./components/index.svelte.ts";
 import { Group, type Database, type SerializedDatabase } from "./data/database.svelte";
 import { ItemType, type SerializedItemType } from "./data/type.svelte.js";
+import { currentPluginBeingLoaded } from "./index.svelte.ts";
 import { cache, userSettings } from "./usersettings/index.svelte.ts";
 import { Debug } from "./util/index.svelte";
 import type { Serialize, Serialized } from "./util/serialize.svelte";
@@ -25,7 +26,7 @@ export class Template implements Serialize<SerializedTemplate> {
 	public pinnedGroups: Group[];
 	public randomizers: Randomizer[];
 	public types: ItemType[];
-	public readonly plugin_id: string;
+	public plugin_id: string;
 
 	public constructor({
 		database,
@@ -33,20 +34,19 @@ export class Template implements Serialize<SerializedTemplate> {
 		pinnedGroups,
 		randomizers = [],
 		types,
-		plugin_id,
 	}: {
 		layout: PaneLayout;
 		database: Database;
 		pinnedGroups: Group[];
 		randomizers?: Randomizer[];
 		types: ItemType[];
-		plugin_id: string;
 	}) {
 		this.database = $state(database);
 		this.layout = $state(layout);
 		this.pinnedGroups = $state(pinnedGroups);
 		this.randomizers = $state(randomizers);
 		this.types = $state(types);
+
 		if (!this.types.some(type => type.name === "Document")) {
 			this.types.push(
 				new ItemType({
@@ -66,7 +66,8 @@ export class Template implements Serialize<SerializedTemplate> {
 				}),
 			);
 		}
-		this.plugin_id = $state(plugin_id);
+
+		this.plugin_id = $state(currentPluginBeingLoaded()?.name ?? "clara");
 	}
 
 	public serialize(): SerializedTemplate {
@@ -96,14 +97,16 @@ export class Template implements Serialize<SerializedTemplate> {
 			}
 		}
 
-		return new Template({
+		const template = new Template({
 			database,
 			layout: this.layout.clone(),
 			pinnedGroups,
 			randomizers: this.randomizers,
 			types: this.types.map(type => type.clone()),
-			plugin_id: this.plugin_id,
 		});
+
+		template.plugin_id = this.plugin_id;
+		return template;
 	}
 
 	public static deserialize(template: SerializedTemplate): Template {
@@ -126,8 +129,8 @@ export class Template implements Serialize<SerializedTemplate> {
 					return true;
 				}),
 			types: template.types.map(type => ItemType.deserialize(type)),
-			plugin_id: template.plugin_id,
 		});
+		temp.plugin_id = template.plugin_id;
 		let all = temp.database.dfsBranches();
 		temp.pinnedGroups = template.pinnedGroups.map(id => all.find(group => group.id == id)!);
 		return temp;
@@ -166,7 +169,6 @@ export class Project extends Template implements Serialize<SerializedProject> {
 			pinnedGroups,
 			randomizers,
 			types,
-			plugin_id: "clara",
 		});
 		this.location = $state(location);
 	}

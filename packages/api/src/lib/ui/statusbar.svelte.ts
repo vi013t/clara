@@ -1,11 +1,11 @@
-import { getIcon, Tab, type Icon } from "@clara/api/ui";
+import { getIcon, Tab, View, type Icon, type ViewType } from "@clara/api/ui";
 import type { Snippet } from "svelte";
 
 export type StatusBarButton = {
 	icon: Icon;
 	menu?: Snippet;
 	isToggle?: true;
-	onClick?({ tab }: { tab: Tab }): void;
+	onClick?({ tab }: { tab: Tab<View<ViewType>> }): void;
 	views?: string[];
 };
 

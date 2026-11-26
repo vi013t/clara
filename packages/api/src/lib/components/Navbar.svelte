@@ -58,7 +58,7 @@
 	}
 </script>
 
-<nav>
+<nav data-tauri-drag-region>
 	<div>
 		<div class="wrapper">
 			<LittleButton icon="Folder" onmousedown={() => projectMenu.toggle()} />
@@ -108,6 +108,10 @@
 				<button disabled={!Project.get()}>
 					<Icon name="Save" />
 					<span>Save project as...</span>
+				</button>
+				<button disabled={!Project.get()}>
+					<Icon name="PackagePlus" />
+					<span>Save project as template</span>
 				</button>
 				<button disabled={!Project.get()}>
 					<Icon name="TextCursorInput" />

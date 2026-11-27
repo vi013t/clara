@@ -17,21 +17,18 @@
 	let updateCounter = $state(0);
 	let updateAttributes = $state(0);
 	let newAttributeMenu: ContextMenu;
-	let itemType = $state(Project.get()!.types[0]);
 
 	function randomize(attribute: AttributeRef) {
 		return function () {
 			let args = Object.fromEntries(
 				Object.entries(attribute.definition.randomizer?.arguments ?? {}).map(([name, boxed]) => [name, boxed.value!]),
 			);
-			console.log(args);
 			attribute.value = attribute.definition.randomizer?.randomizer.random(args);
-			console.log(attribute.value);
 		};
 	}
 
 	function addRow() {
-		spreadsheet.group.addChild(new Item(itemType!, `New ${itemType.name}`));
+		spreadsheet.group.addChild(new Item(spreadsheet.itemType!, `New ${spreadsheet.itemType.name}`));
 		Project.autosave();
 	}
 
@@ -41,7 +38,7 @@
 	}
 
 	function createColumn(type: AttributeType) {
-		itemType.attributes.push(new AttributeDefinition({ name: "Attribute", type }));
+		spreadsheet.itemType.attributes.push(new AttributeDefinition({ name: "Attribute", type }));
 		newAttributeMenu.close();
 		Project.autosave();
 	}
@@ -67,7 +64,7 @@
 
 	function setItemType(type: ItemType) {
 		return function () {
-			itemType = type;
+			spreadsheet.itemType = type;
 			itemTypeMenu.close();
 			Project.autosave();
 		};
@@ -75,9 +72,9 @@
 
 	let attributes: SvelteMap<AttributeDefinition, SvelteMap<Item, AttributeRef>> = $derived.by(() => {
 		let attributes = new SvelteMap<AttributeDefinition, SvelteMap<Item, AttributeRef>>();
-		for (const attribute of itemType.attributes) {
+		for (const attribute of spreadsheet.itemType.attributes) {
 			const items = new SvelteMap<Item, AttributeRef>();
-			for (const item of spreadsheet.group.dfsLeaves().filter(item => item.type === itemType)) {
+			for (const item of spreadsheet.group.dfsLeaves().filter(item => item.type === spreadsheet.itemType)) {
 				items.set(item, item.attribute(attribute.name));
 			}
 			attributes.set(attribute, items);
@@ -89,7 +86,7 @@
 <div class="columns">
 	<div class="column">
 		<div style:width="100%" class="control cell" style:position="relative">
-			<LittleButton icon={itemType.icon.name} onmousedown={() => itemTypeMenu.open()}>
+			<LittleButton icon={spreadsheet.itemType.icon.name} onmousedown={() => itemTypeMenu.open()}>
 				<ContextMenu bind:this={itemTypeMenu} top="100%" left="0%">
 					{#each Project.get()!.types.filter(type => !["Document", "Node"].includes(type.name) && !type.hidden) as itemType}
 						<button onmousedown={setItemType(itemType)}>
@@ -108,7 +105,7 @@
 			</LittleButton>
 		</div>
 
-		{#each spreadsheet.group.dfsLeaves().filter(item => item.type === itemType) as item}
+		{#each spreadsheet.group.dfsLeaves().filter(item => item.type === spreadsheet.itemType) as item}
 			<div class="control cell">
 				<LittleButton accent="var(--red)" icon="Trash2" onmousedown={removeItem(item)} />
 			</div>
@@ -201,7 +198,7 @@
 	{/each}
 </ContextMenu>
 
-<AttributeSettingsPopup bind:attribute={editingAttribute!} bind:this={fieldPropertiesPopup} owner={itemType} />
+<AttributeSettingsPopup bind:attribute={editingAttribute!} bind:this={fieldPropertiesPopup} owner={spreadsheet.itemType} />
 
 <style>
 	.columns {

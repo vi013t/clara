@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { HierarchyView, Icon, LittleButton, Popup, Select, SettingsPopup } from "@clara/api/components";
 	import { Project, Template } from "@clara/api/project";
+	import { Hierarchy } from "@clara/api/ui";
 	import { cache, getFromCache, userSettings } from "@clara/api/usersettings";
 	import { asyncFn } from "@clara/api/utils";
 	import { invoke } from "@tauri-apps/api/core";
@@ -182,7 +183,7 @@
 			<div>
 				<h2>Entries</h2>
 				<div class="tree">
-					<HierarchyView entry={template.database} />
+					<HierarchyView database={template.database} hierarchy={new Hierarchy(template.database.id)} />
 				</div>
 			</div>
 

@@ -1,4 +1,4 @@
-import { AttributeRef, RichText, StringAttribute, Style, StyledText, type SerializedAttributeRef } from "@clara/api/attribute";
+import { AttributeRef, RichText, StringAttribute, type SerializedAttributeRef } from "@clara/api/attribute";
 import { Item, type Group } from "@clara/api/database";
 import { Project } from "@clara/api/project";
 import { Editor, getIcon, Hierarchy, SinglePane, views, type Icon, type IconIdentifier, type IconName } from "@clara/api/ui";
@@ -215,33 +215,6 @@ export class EditorTab extends AttributeTab {
 	public override get title(): string {
 		if (this.attribute.item.type.name === "Document") return this.attribute.item.name;
 		return `${this.attribute.item.name} > ${this.attribute.name}`;
-	}
-
-	public saveCursor(): { part: StyledText; position: number } {
-		return { part: this.content.partAtIndex(this.cursor.part), position: this.cursor.position };
-	}
-
-	public restoreCursor(cursor: { part: StyledText; position: number }): void {
-		this.cursor.position = cursor.position;
-		this.content.parts.some((part, partIndex) => {
-			if ($state.snapshot(part) === $state.snapshot(cursor.part)) {
-				this.cursor.part = partIndex;
-				return true;
-			}
-
-			return false;
-		});
-	}
-
-	public moveCursorToEnd(): void {
-		this.cursor.part = this.content.parts.length - 1;
-		this.cursor.position = this.content.parts[this.cursor.part].text.length;
-	}
-
-	public styleRange(start: number, end: number, style: Style, override?: true) {
-		const cursor = this.saveCursor();
-		this.attribute.valueAs<RichText>()!.styleRange(start, end, style, override);
-		this.restoreCursor(cursor);
 	}
 }
 

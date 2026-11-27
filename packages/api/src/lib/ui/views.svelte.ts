@@ -24,6 +24,11 @@ export abstract class GroupView<const I extends string = string> extends View<"g
 		super();
 		this.group_ = $state(group);
 	}
+
+	public get groupID() {
+		return this.group_;
+	}
+
 	public get group(): Group {
 		return Project.get()!
 			.database.dfs()

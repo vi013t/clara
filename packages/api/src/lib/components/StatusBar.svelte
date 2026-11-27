@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { LittleButton } from "@clara/api/components";
-	import { AttributeView, ItemView, SinglePane, TabRef, views, type ViewFactory, type ViewType } from "@clara/api/ui";
+	import type { Group } from "@clara/api/database";
+	import { AttributeView, GroupTab, ItemView, SinglePane, TabRef, views, type ViewFactory, type ViewType } from "@clara/api/ui";
+	import { Project } from "../project.svelte.ts";
 
 	let { tab = $bindable(), pane = $bindable() }: { tab: TabRef; pane: SinglePane } = $props();
 
@@ -9,22 +11,35 @@
 			tab.tab = view.createTab(tab.tab);
 		};
 	}
+
+	function setGroup(group: Group) {
+		return function () {
+			tab.tab = new GroupTab(group.id);
+		};
+	}
 </script>
 
 <section>
+	{#each Project.get()!.pinnedGroups as group}
+		<LittleButton
+			onmousedown={setGroup(group)}
+			icon={group.icon}
+			toggle
+			on={tab.tab instanceof GroupTab && tab.tab.group.id === group.id}
+		/>
+	{/each}
+
+	<div class="separator"></div>
+
 	{#if tab.tab.view instanceof AttributeView}
 		{#each views().filter(view => view.type === "attribute") as view}
 			<LittleButton onmousedown={setView(view)} icon={view.icon} toggle on={tab.tab.view.identifier === view.identifier} />
 		{/each}
-
-		<div class="separator"></div>
 	{/if}
 	{#if tab.tab.view instanceof ItemView || tab.tab.view instanceof AttributeView}
 		{#each views().filter(view => view.type === "item") as view}
 			<LittleButton onmousedown={setView(view)} icon={view.icon} toggle on={tab.tab.view.identifier === view.identifier} />
 		{/each}
-
-		<div class="separator"></div>
 	{/if}
 	{#each views().filter(view => view.type === "group") as view}
 		<LittleButton onmousedown={setView(view)} icon={view.icon} toggle on={tab.tab.view.identifier === view.identifier} />

@@ -1,31 +1,30 @@
 <script lang="ts">
-	import { ContextMenu, HierarchyView, Icon } from "@clara/api/components";
+	import { ContextMenu, HierarchyEntry, Icon } from "@clara/api/components";
 	import { Group, Item, ItemType, type Node } from "@clara/api/database";
 	import { Project } from "@clara/api/project";
-	import { GroupTab, MultiPane, PaneLayout, SinglePane, TabRef } from "@clara/api/ui";
-	import { onMount } from "svelte";
+	import { Hierarchy, MultiPane, PaneLayout, SinglePane, TabRef } from "@clara/api/ui";
 
 	let {
-		entry = $bindable(Project.get() ? Project.get()!.database : null!),
+		entry = $bindable(),
+		hierarchy = $bindable(),
 		hideRoot = false,
 		subtree = false,
 		demo = false,
 		pane = $bindable(),
 		layout = $bindable(),
 		setPane,
-		tab,
 	}: {
-		entry?: Node;
+		hierarchy: Hierarchy;
+		entry: Node;
 		hideRoot?: boolean;
 		subtree?: boolean;
 		demo?: boolean;
 		pane?: SinglePane;
 		layout?: PaneLayout;
-		tab?: GroupTab;
 		setPane?: (pane: PaneLayout) => void;
 	} = $props();
 
-	let expanded = $derived(hideRoot || demo);
+	let expanded = $derived(entry instanceof Group ? hierarchy.isExpanded(entry) : false);
 
 	function toggleExpanded(event: MouseEvent): void {
 		if (
@@ -33,7 +32,10 @@
 		) {
 			return;
 		}
-		expanded = !expanded;
+
+		if (entry instanceof Group) {
+			hierarchy.toggleExpanded(entry);
+		}
 	}
 
 	function clickItem(event: MouseEvent) {
@@ -124,10 +126,6 @@
 		rightClickMenu?.close();
 		Project.autosave();
 	}
-
-	onMount(() => {
-		console.log(")rendering hierarchy");
-	});
 </script>
 
 <section style:padding={!subtree ? "1rem" : undefined}>
@@ -154,7 +152,7 @@
 			{#each entry.sortedChildren as child (child.id)}
 				{#if child instanceof Group || (child instanceof Item && !child.hidden)}
 					<li style:padding-left={hideRoot && entry.isRoot ? "0px" : "1.25rem"}>
-						<HierarchyView bind:pane {demo} {hideRoot} entry={child} subtree {setPane} />
+						<HierarchyEntry bind:hierarchy bind:pane {demo} {hideRoot} entry={child} subtree {setPane} />
 					</li>
 				{/if}
 			{/each}

@@ -30,7 +30,8 @@ import Sidebar from "./Sidebar.svelte";
 import StatusBar from "./StatusBar.svelte";
 import EditorView from "./views/EditorView.svelte";
 import GraphView from "./views/GraphView.svelte";
-import HierarchyView from "./views/HierarchyView.svelte";
+import HierarchyEntry from "./views/hierarchy/HierarchyEntry.svelte";
+import HierarchyView from "./views/hierarchy/HierarchyView.svelte";
 import InfiniteCanvas from "./views/InfiniteCanvas.svelte";
 import Node from "./views/node/Node.svelte";
 import NodeEditor from "./views/node/NodeEditor.svelte";
@@ -62,6 +63,7 @@ export {
 	ContextMenu,
 	EditorView,
 	GraphView,
+	HierarchyEntry,
 	HierarchyView,
 	Icon,
 	IconPicker,
